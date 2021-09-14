@@ -24,21 +24,19 @@ pub struct InstantiateMsg {
 {% tab title="JSON" %}
 ```javascript
 {
-    "instantiate_msg": {
-        "name": "Example Token",
-        "symbol": "ET",
-        "minter": "terra1...",
-        "modules": [
-            "whitelist": {
-                "moderators": ["terra1..."]
-            },
-            "taxable": {
-                "tax": 4,
-                "receivers": ["terra1..."]
-            }
-        ],
-        "metadata_limit": 10000
-    }
+    "name": "Example Token",
+    "symbol": "ET",
+    "minter": "terra1...",
+    "modules": [
+        "whitelist": {
+            "moderators": ["terra1..."]
+        },
+        "taxable": {
+            "tax": 4,
+            "receivers": ["terra1..."]
+        }
+    ],
+    "metadata_limit": 10000
 }
 ```
 {% endtab %}
