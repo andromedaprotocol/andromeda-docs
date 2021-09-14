@@ -84,7 +84,7 @@ pub enum ExecuteMsg {
         "owner": "terra1...",
         "name": "A New Token",
         "description": "A newly minted token",
-        "metadata": "{'some_json_field': 'some_json_key_stringified'}"
+        "metadata": "{'some_json_field': 'some_json_value_stringified'}"
     }
 }
 ```
@@ -401,7 +401,7 @@ pub enum ExecuteMsg {
 {% tab title="JSON" %}
 ```javascript
 {
-    "whitelist": {
+    "blacklist": {
         "address": "terra1...",
         "whitelisted": true
     }
