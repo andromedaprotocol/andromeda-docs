@@ -1,8 +1,8 @@
 ---
-description: The message definitions for the Andromeda Token contract
+description: The message definitions for the Andromeda Digital Object contract
 ---
 
-# Andromeda Token
+# Andromeda Digital Object
 
 ### InstantiateMsg
 
@@ -46,7 +46,7 @@ pub struct InstantiateMsg {
 | :--- | :--- | :--- |
 | name | String | The name of the NFT |
 | symbol | String | The symbol of the NFT |
-| minter | String | The address of the token minter |
+| minter | String | The address of the ADO minter |
 | modules | Vec&lt;ModuleDefinition&gt; | A vector of Andromeda Module definitions. The module definitions can be found here. |
 | init\_hook | Option&lt;InitHook&gt; | An optional instantiation hook message, primarily used by the `andromeda_factory` contract |
 | metadata\_limit | Option&lt;u64&gt; | An optional size limit on any metadata assigned to an NFT minted in the contract \(in bytes\) |
@@ -55,7 +55,7 @@ pub struct InstantiateMsg {
 
 #### MintMsg
 
-Mints a new token, only available to the defined `minter` in the contract's `InstantiateMsg`
+Mints a new ADO, only available to the defined `minter` in the contract's `InstantiateMsg`
 
 {% tabs %}
 {% tab title="Rust" %}
@@ -91,15 +91,15 @@ pub enum ExecuteMsg {
 
 | Name | Type | Description |
 | :--- | :--- | :--- |
-| token\_id | String | The id of the token to be minted |
-| owner | String | The address of the token owner |
-| name | String | The token's name |
-| description | Option&lt;String&gt; | An optional description of the token |
-| metadata | Option&lt;String&gt; | An option string field storing some metadata related to the token |
+| token\_id | String | The id of the ADO to be minted |
+| owner | String | The address of the ADO owner |
+| name | String | The ADO's name |
+| description | Option&lt;String&gt; | An optional description of the ADO |
+| metadata | Option&lt;String&gt; | An option string field storing some metadata related to the ADO |
 
 #### TransferNft
 
-A CW721 compliant transfer method. Transfers ownership of a minted token. Only available to the token owner, an approved operator or the purchaser in a `TransferAgreement` for the given token.
+A CW721 compliant transfer method. Transfers ownership of a minted token. Only available to the ADO owner, an approved operator or the purchaser in a `TransferAgreement` for the given ADO.
 
 {% tabs %}
 {% tab title="Rust" %}
@@ -128,11 +128,11 @@ pub enum ExecuteMsg {
 | Name | Type | Description |
 | :--- | :--- | :--- |
 | recipient | String | The address of the recipient |
-| token\_id | String | The id of the token to be transferred |
+| token\_id | String | The id of the ADO to be transferred |
 
 #### SendNft
 
-A CW721 compliant send method. Sends ownership of a minted token to an external contract. Only available to the token owner or an approved operator for the given token.
+A CW721 compliant send method. Sends ownership of a minted token to an external contract. Only available to the ADO owner or an approved operator for the given ADO.
 
 {% tabs %}
 {% tab title="Rust" %}
@@ -163,12 +163,12 @@ pub enum ExecuteMsg {
 | Name | Type | Description |
 | :--- | :--- | :--- |
 | contract | String | The address of the receiving contract |
-| token\_id | String | The id of the token to be sent |
+| token\_id | String | The id of the ADO to be sent |
 | msg | Binary | A message to be sent to the receiving contract |
 
 #### Approve
 
-A CW721 compliant approve method. Approves a given address as an operator for the token, allowing them to transfer, burn or archive the token. Only available to the token owner.
+A CW721 compliant approve method. Approves a given address as an operator for the ADO, allowing them to transfer, burn or archive the ADO. Only available to the ADO owner.
 
 {% tabs %}
 {% tab title="Rust" %}
@@ -199,12 +199,12 @@ pub enum ExecuteMsg {
 | Name | Type | Description |
 | :--- | :--- | :--- |
 | spender | String | The address to be authorised as an operator |
-| token\_id | String | The id of the token for which to assign the `spender` as an operator |
+| token\_id | String | The id of the ADO for which to assign the `spender` as an operator |
 | expires | Option&lt;Expiration&gt; | An optional expiration for the approval |
 
 #### Revoke
 
-A CW721 compliant revoke method. Revokes operator privileges for a given address. Only available to the token owner.
+A CW721 compliant revoke method. Revokes operator privileges for a given address. Only available to the ADO owner.
 
 {% tabs %}
 {% tab title="Rust" %}
@@ -233,11 +233,11 @@ pub enum ExecuteMsg {
 | Name | Type | Description |
 | :--- | :--- | :--- |
 | spender | String | The address of the operator for which to revoke privileges |
-| token\_id | String | The id of the token for which to revoke operator privileges |
+| token\_id | String | The id of the ADO for which to revoke operator privileges |
 
 #### ApproveAll
 
-A CW721 compliant approve all method. Approves a given address as an operator for all tokens owned by the sender.
+A CW721 compliant approve all method. Approves a given address as an operator for all ADOs owned by the sender.
 
 {% tabs %}
 {% tab title="Rust" %}
@@ -272,7 +272,7 @@ pub enum ExecuteMsg {
 
 #### RevokeAll
 
-A CW721 compliant revoke all method. Revokes an operator's privileges for any tokens owned by the sender.
+A CW721 compliant revoke all method. Revokes an operator's privileges for any ADOs owned by the sender.
 
 {% tabs %}
 {% tab title="Rust" %}
@@ -302,7 +302,7 @@ pub enum ExecuteMsg {
 
 #### TransferAgreement
 
-Allows a token owner to generate a transfer agreement for an owner token. This agreement allows the purchaser to transfer ownership of the token provided the correct funds are provided. The current owner of the token will receive the sent funds minus any required financial payments assigned to the contract via modules.
+Allows an ADO owner to generate a transfer agreement for an owned ADO. This agreement allows the purchaser to transfer ownership of the ADO provided the correct funds are provided in a `TransferNft` message from the purchaser. The current owner of the ADO will receive the sent funds minus any required financial payments assigned to the contract via modules.
 
 {% tabs %}
 {% tab title="Rust" %}
@@ -334,7 +334,7 @@ pub enum ExecuteMsg {
 
 | Name | Type | Description |
 | :--- | :--- | :--- |
-| token\_id | String | The id of the token for which the agreement is made |
+| token\_id | String | The id of the ADO for which the agreement is made |
 | denom | String | The agreed amount's denomination |
 | amount | u128 | The agreed transfer amount |
 | purchaser | String | The address of the transfer purchaser |
@@ -417,7 +417,7 @@ pub enum ExecuteMsg {
 
 #### OwnerOf
 
-A CW721 compliant "owner of" query. Queries the current owner of a given token id.
+A CW721 compliant "owner of" query. Queries the current owner of a given ADO id.
 
 {% tabs %}
 {% tab title="Rust" %}
@@ -443,7 +443,7 @@ pub enum QueryMsg {
 
 | Name | Type | Description |
 | :--- | :--- | :--- |
-| token\_id | String | The id of the queried token |
+| token\_id | String | The id of the queried ADO |
 
 #### OwnerOfResponse
 
@@ -480,8 +480,8 @@ pub struct OwnerOfResponse {
 
 | Name | Type | Description |
 | :--- | :--- | :--- |
-| owner | String | The owner of the queried token |
-| approvals | Vec&lt;Approval&gt; | An array of all approvals for the token |
+| owner | String | The owner of the queried ADO |
+| approvals | Vec&lt;Approval&gt; | An array of all approvals for the ADO |
 
 #### ApprovedForAll
 
@@ -555,7 +555,7 @@ pub struct ApprovedForAllResponse {
 
 #### NumTokens
 
-A CW721 compliant "num tokens" query. Queries the amount of tokens minted by the contract.
+A CW721 compliant "num tokens" query. Queries the amount of ADOs minted by the contract.
 
 {% tabs %}
 {% tab title="Rust" %}
@@ -598,11 +598,11 @@ pub struct NumTokensResponse {
 
 | Name | Type | Description |
 | :--- | :--- | :--- |
-| count | u64 | The amount of tokens minted by the contract |
+| count | u64 | The amount of ADOs minted by the contract |
 
 #### NftInfo
 
-A CW721 compliant "nft info" query. Queries the stored info of a token.
+A CW721 compliant "nft info" query. Queries the stored info of an ADO.
 
 {% tabs %}
 {% tab title="Rust" %}
@@ -656,13 +656,13 @@ pub struct NftInfoResponse {
 
 | Name | Type | Description |
 | :--- | :--- | :--- |
-| name | String | The name of the token |
-| description | String | The description of the token |
+| name | String | The name of the ADO |
+| description | String | The description of the ADO |
 | image | Option&lt;String&gt; | A URI pointing to a resource with mime type image/\* representing the asset to which this NFT represents. \(Taken from [here](https://github.com/CosmWasm/cw-plus/blob/main/packages/cw721/src/query.rs)\) |
 
 #### AllNftInfo
 
-A CW721 compliant "all nft info" query. Queries all stored info of a token.
+A CW721 compliant "all nft info" query. Queries all stored info of an ADO.
 
 {% tabs %}
 {% tab title="Rust" %}
@@ -688,7 +688,7 @@ pub enum QueryMsg {
 
 | Name | Type | Description |
 | :--- | :--- | :--- |
-| token\_id | String | The id of the token |
+| token\_id | String | The id of the ADO |
 
 #### AllNftInfoResponse
 
@@ -727,12 +727,12 @@ pub struct AllNftInfoResponse {
 
 | Name | Type | Description |
 | :--- | :--- | :--- |
-| access | OwnerOfResponse | The owner of the token and any approvals |
-| info | NFtInfoResponse | The given token's stored information |
+| access | OwnerOfResponse | The owner of the ADO and any approvals |
+| info | NFtInfoResponse | The given ADO's stored information |
 
 #### NftTransferAgreementInfo
 
-Queries the current transfer agreement for a token.
+Queries the current transfer agreement for an ADO.
 
 {% tabs %}
 {% tab title="Rust" %}
@@ -758,7 +758,7 @@ pub enum QueryMsg {
 
 | Name | Type | Description |
 | :--- | :--- | :--- |
-| token\_id | String | The id of the token |
+| token\_id | String | The id of the ADO |
 
 #### NftTransferAgreementResponse
 
@@ -785,11 +785,11 @@ pub struct NftTransferAgreementResponse {
 
 | Name | Type | Description |
 | :--- | :--- | :--- |
-| agreement | Option&lt;TransferAgreement&gt; | The transfer agreement for the given token, undefined if no agreement set. |
+| agreement | Option&lt;TransferAgreement&gt; | The transfer agreement for the given ADO, undefined if no agreement set. |
 
 #### NftMetadata
 
-Queries the  metadata field for a given token.
+Queries the  metadata field for a given ADO.
 
 {% tabs %}
 {% tab title="Rust" %}
@@ -815,7 +815,7 @@ pub enum QueryMsg {
 
 | Name | Type | Description |
 | :--- | :--- | :--- |
-| token\_id | String | The id of the token |
+| token\_id | String | The id of the ADO |
 
 #### NftMetadataResponse
 
@@ -839,7 +839,7 @@ pub struct NftMetadataResponse{
 
 | Name | Type | Description |
 | :--- | :--- | :--- |
-| metadata | Option&lt;String&gt; | The assigned metadata for the token |
+| metadata | Option&lt;String&gt; | The assigned metadata for the ADO |
 
 #### ContractInfo
 
