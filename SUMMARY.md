@@ -6,4 +6,5 @@
 ## Contracts
 
 * [Andromeda Token](contracts/andromeda-token.md)
+* [Andromeda Factory](contracts/andromeda-factory.md)
 

@@ -1,10 +1,8 @@
 ---
-description: The message definitions for Andromeda Contracts
+description: The message definitions for the Andromeda Token contract
 ---
 
 # Andromeda Token
-
-## Andromeda Token
 
 ### InstantiateMsg
 
@@ -345,7 +343,11 @@ pub enum ExecuteMsg {
 
 #### Whitelist
 
-Whitelists or unwhitelists an address to be able to execute messages on the contract. **Only availabe if the `Whitelist` module is assigned to the contract.**
+{% hint style="warning" %}
+Only available if the contract has an assigned `Whitelist` module
+{% endhint %}
+
+Whitelists or unwhitelists an address to be able to execute messages on the contract. 
 
 {% tabs %}
 {% tab title="Rust" %}
@@ -378,7 +380,11 @@ pub enum ExecuteMsg {
 
 #### Blacklist
 
-Blacklists or unblacklists an address to be unable to execute messages on the contract. **Only availabe if the `Blacklist` module is assigned to the contract.**
+{% hint style="warning" %}
+Only available if the contract has an assigned `Blacklist` module
+{% endhint %}
+
+Blacklists or unblacklists an address to be unable to execute messages on the contract.
 
 {% tabs %}
 {% tab title="Rust" %}
@@ -409,5 +415,480 @@ pub enum ExecuteMsg {
 | address | String | The address for which to modify blacklist status |
 | blacklisted | bool | Whether or not the address is to be blacklisted |
 
+### QueryMsg
 
+#### OwnerOf
+
+A CW721 compliant "owner of" query. Queries the current owner of a given token id.
+
+{% tabs %}
+{% tab title="Rust" %}
+```rust
+pub enum QueryMsg {
+    OwnerOf {
+        token_id: String
+    }
+}
+```
+{% endtab %}
+
+{% tab title="JSON" %}
+```javascript
+{
+    "owner_of": {
+        "token_id": "anewtoken"
+    }
+}
+```
+{% endtab %}
+{% endtabs %}
+
+| Name | Type | Description |
+| :--- | :--- | :--- |
+| token\_id | String | The id of the queried token |
+
+#### OwnerOfResponse
+
+{% tabs %}
+{% tab title="Rust" %}
+```rust
+#[derive(Serialize, Deserialize, Clone, PartialEq, JsonSchema, Debug)]
+pub struct OwnerOfResponse {
+    /// Owner of the token
+    pub owner: String,
+    /// If set this address is approved to transfer/send the token as well
+    pub approvals: Vec<Approval>,
+}
+
+```
+{% endtab %}
+
+{% tab title="JSON" %}
+```javascript
+{
+    "owner": "terra1...",
+    "approvals": [
+        {
+            "spender": "terra1...",
+            "expires": {
+                "never": {}
+            }
+        }
+    ]
+}
+```
+{% endtab %}
+{% endtabs %}
+
+| Name | Type | Description |
+| :--- | :--- | :--- |
+| owner | String | The owner of the queried token |
+| approvals | Vec&lt;Approval&gt; | An array of all approvals for the token |
+
+#### ApprovedForAll
+
+A CW721 compliant "approved for all" query. Queries any operators for a given address.
+
+{% tabs %}
+{% tab title="Rust" %}
+```rust
+pub enum QueryMsg {
+    ApprovedForAll {
+        owner: String,
+        include_expired: Option<bool>,
+        start_after: Option<String>,
+        limit: Option<u32>,
+    }
+}
+```
+{% endtab %}
+
+{% tab title="JSON" %}
+```javascript
+{
+    "approved_for_all": {
+        "owner": "terra1...",
+        "include_expired": true,
+        "limit": 10
+    }
+}
+```
+{% endtab %}
+{% endtabs %}
+
+| Name | Type | Description |
+| :--- | :--- | :--- |
+| owner | String | The address of the owner for which to query operators |
+| include\_expired | Option&lt;bool&gt; | Whether to include any expired approvals. Defaults to false \(if not defined in message\). |
+| limit | Option&lt;u64&gt; | An optional limit on how many approvals are returned |
+| start\_after | Option&lt;String&gt; | An optional address for which to start after, used for pagination. |
+
+#### ApprovedForAllResponse
+
+{% tabs %}
+{% tab title="Rust" %}
+```rust
+#[derive(Serialize, Deserialize, Clone, PartialEq, JsonSchema, Debug)]
+pub struct ApprovedForAllResponse {
+    pub operators: Vec<Approval>,
+}
+```
+{% endtab %}
+
+{% tab title="JSON" %}
+```javascript
+{
+    "operators": [
+        {
+            "spender": "terra1...",
+            "expires": {
+                "never": {}
+            }
+        }
+    ]
+}
+```
+{% endtab %}
+{% endtabs %}
+
+| Name | Type | Description |
+| :--- | :--- | :--- |
+| approvals | Vec&lt;Approval&gt; | An array of all approvals for the given owner address |
+
+#### NumTokens
+
+A CW721 compliant "num tokens" query. Queries the amount of tokens minted by the contract.
+
+{% tabs %}
+{% tab title="Rust" %}
+```rust
+pub enum QueryMsg {
+    NumTokens {}
+}
+```
+{% endtab %}
+
+{% tab title="JSON" %}
+```javascript
+{
+    "num_tokens": {}
+}
+```
+{% endtab %}
+{% endtabs %}
+
+#### NumTokensResponse
+
+{% tabs %}
+{% tab title="Rust" %}
+```rust
+#[derive(Serialize, Deserialize, Clone, PartialEq, JsonSchema, Debug)]
+pub struct NumTokensResponse {
+    pub count: u64,
+}
+```
+{% endtab %}
+
+{% tab title="JSON" %}
+```javascript
+{
+    "count": 1
+}
+```
+{% endtab %}
+{% endtabs %}
+
+| Name | Type | Description |
+| :--- | :--- | :--- |
+| count | u64 | The amount of tokens minted by the contract |
+
+#### NftInfo
+
+A CW721 compliant "nft info" query. Queries the stored info of a token.
+
+{% tabs %}
+{% tab title="Rust" %}
+```rust
+pub enum QueryMsg {
+    NftInfo {
+        token_id: String,
+    }
+}
+```
+{% endtab %}
+
+{% tab title="JSON" %}
+```javascript
+{
+    "nft_info": {
+        "token_id": "anewtoken"
+    }
+}
+```
+{% endtab %}
+{% endtabs %}
+
+| Name | Type | Description |
+| :--- | :--- | :--- |
+| token\_id | String | The id of the token |
+
+#### NftInfoResponse
+
+{% tabs %}
+{% tab title="Rust" %}
+```rust
+#[derive(Serialize, Deserialize, Clone, PartialEq, JsonSchema, Debug)]
+pub struct NftInfoResponse {
+    pub name: String,
+    pub description: String,
+    pub image: Option<String>,
+}
+```
+{% endtab %}
+
+{% tab title="JSON" %}
+```javascript
+{
+    "name": "A New Token",
+    "description": "A newly minted token",
+}
+```
+{% endtab %}
+{% endtabs %}
+
+| Name | Type | Description |
+| :--- | :--- | :--- |
+| name | String | The name of the token |
+| description | String | The description of the token |
+| image | Option&lt;String&gt; | A URI pointing to a resource with mime type image/\* representing the asset to which this NFT represents. \(Taken from [here](https://github.com/CosmWasm/cw-plus/blob/main/packages/cw721/src/query.rs)\) |
+
+#### AllNftInfo
+
+A CW721 compliant "all nft info" query. Queries all stored info of a token.
+
+{% tabs %}
+{% tab title="Rust" %}
+```rust
+pub enum QueryMsg {
+    AllNftInfo {
+        token_id: String,
+    }
+}
+```
+{% endtab %}
+
+{% tab title="JSON" %}
+```javascript
+{
+    "all_nft_info": {
+        "token_id": "anewtoken"
+    }
+}
+```
+{% endtab %}
+{% endtabs %}
+
+| Name | Type | Description |
+| :--- | :--- | :--- |
+| token\_id | String | The id of the token |
+
+#### AllNftInfoResponse
+
+{% tabs %}
+{% tab title="Rust" %}
+```rust
+pub struct AllNftInfoResponse {
+    pub access: OwnerOfResponse,
+    pub info: NftInfoResponse,
+}
+```
+{% endtab %}
+
+{% tab title="JSON" %}
+```javascript
+{
+    "access": {
+        "owner": "terra1...",
+        "approvals": [
+            {
+                "spender": "terra1...",
+                "expires": {
+                    "never": {}
+                }
+            }
+        ]
+    },
+    "info": {
+        "name": "A New Token",
+        "description": "A newly minted token",
+    }
+}
+```
+{% endtab %}
+{% endtabs %}
+
+| Name | Type | Description |
+| :--- | :--- | :--- |
+| access | OwnerOfResponse | The owner of the token and any approvals |
+| info | NFtInfoResponse | The given token's stored information |
+
+#### NftTransferAgreementInfo
+
+Queries the current transfer agreement for a token.
+
+{% tabs %}
+{% tab title="Rust" %}
+```rust
+pub enum QueryMsg {
+    NftTransferAgreementInfo {
+        token_id: String,
+    }
+}
+```
+{% endtab %}
+
+{% tab title="JSON" %}
+```javascript
+{
+    "nft_transfer_agreement_info": {
+        "token_id": "anewtoken"
+    }
+}
+```
+{% endtab %}
+{% endtabs %}
+
+| Name | Type | Description |
+| :--- | :--- | :--- |
+| token\_id | String | The id of the token |
+
+#### NftTransferAgreementResponse
+
+{% tabs %}
+{% tab title="Rust" %}
+```rust
+pub struct NftTransferAgreementResponse {
+    pub agreement: Option<TransferAgreement>
+}
+```
+{% endtab %}
+
+{% tab title="JSON" %}
+```javascript
+{
+    "agreement": {
+        "amount": "100uluna",
+        "purchaser": "terra1..."
+    }
+}
+```
+{% endtab %}
+{% endtabs %}
+
+| Name | Type | Description |
+| :--- | :--- | :--- |
+| agreement | Option&lt;TransferAgreement&gt; | The transfer agreement for the given token, undefined if no agreement set. |
+
+#### NftMetadata
+
+Queries the  metadata field for a given token.
+
+{% tabs %}
+{% tab title="Rust" %}
+```rust
+pub enum QueryMsg {
+    NftMetadata {
+        token_id: String
+    }
+}
+```
+{% endtab %}
+
+{% tab title="JSON" %}
+```javascript
+{
+    "nft_metadata": {
+        "token_id": "anewtoken"
+    }
+}
+```
+{% endtab %}
+{% endtabs %}
+
+| Name | Type | Description |
+| :--- | :--- | :--- |
+| token\_id | String | The id of the token |
+
+#### NftMetadataResponse
+
+{% tabs %}
+{% tab title="Rust" %}
+```rust
+pub struct NftMetadataResponse{
+    pub metadata: Option<String>
+}
+```
+{% endtab %}
+
+{% tab title="JSON" %}
+```javascript
+{
+    "metadata": "{'some_json_key': 'some_json_stringified_value'}"
+}
+```
+{% endtab %}
+{% endtabs %}
+
+| Name | Type | Description |
+| :--- | :--- | :--- |
+| metadata | Option&lt;String&gt; | The assigned metadata for the token |
+
+#### ContractInfo
+
+Queries the  metadata field for a given token.
+
+{% tabs %}
+{% tab title="Rust" %}
+```rust
+pub enum QueryMsg {
+    ContractInfo {}
+}
+```
+{% endtab %}
+
+{% tab title="JSON" %}
+```javascript
+{
+    "contract_info": {}
+}
+```
+{% endtab %}
+{% endtabs %}
+
+#### ContractInfoResponse
+
+{% tabs %}
+{% tab title="Rust" %}
+```rust
+pub struct CotractInfoResponse {
+    pub name: String,
+    pub symbol: String,
+}
+```
+{% endtab %}
+
+{% tab title="JSON" %}
+```javascript
+{
+    "name": "Example Token",
+    "symbol": "ET"
+}
+```
+{% endtab %}
+{% endtabs %}
+
+| Name | Type | Description |
+| :--- | :--- | :--- |
+| name | String | The name of the contract |
+| symbol | String | The assigned symbol of the contract |
 
