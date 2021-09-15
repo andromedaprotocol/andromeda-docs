@@ -10,5 +10,6 @@
 
 ---
 
-* [Modules](modules.md)
+* [Modules](modules/README.md)
+  * [Whitelist](modules/whitelist.md)
 
