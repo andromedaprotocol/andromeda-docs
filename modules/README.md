@@ -19,6 +19,30 @@ enum ModuleDefinition {
 }
 ```
 
+## Defining Modules
+
+When instantiating an **Andromeda Digital Object** contract the modules can be defined within the `modules` field of the `InstantiateMsg` like so:
+
+```rust
+{
+    "modules": [
+        {
+            "whitelist": {
+                "moderators": ["terra1...", "terra1..."]
+            }
+        },
+        {
+            "taxable": {
+                "tax": 4,
+                "receivers": ["terra1...", "terra1..."]
+            }
+        }
+    ]
+}
+```
+
+Each module has a **Definition** section within their respective documentation that describes the object required to define the module.
+
 ## Module Trait
 
 Each `ModuleDefinition` can then be mapped to a struct that implements the `Module` trait using the `as_definition()` function:
