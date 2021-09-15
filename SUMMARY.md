@@ -8,3 +8,7 @@
 * [Andromeda Digital Object](contracts/andromeda-digital-object.md)
 * [Andromeda Factory](contracts/andromeda-factory.md)
 
+---
+
+* [Modules](modules.md)
+
