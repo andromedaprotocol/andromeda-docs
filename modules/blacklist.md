@@ -100,13 +100,6 @@ pub fn is_blacklisted(&self, storage: &dyn Storage, addr: &String) -> StdResult<
 | storage | &mut dyn Storage | The storage mechanism within which the address list is stored |
 | addr | String | The address for which to check whitelist status |
 
-## Validation
-
-The Blacklist module has the following validation requirements:
-
-* Must be unique
-* Cannot be included alongside a `Whitelist` module
-
 ## Hooks
 
 The Blacklist module implements the following hooks:
@@ -130,4 +123,13 @@ fn on_execute(
     Ok(HookResponse::default())
 }
 ```
+
+## Validation
+
+The Blacklist module has the following validation requirements:
+
+* Must be unique
+* Cannot be included alongside a `Whitelist` module
+
+
 
