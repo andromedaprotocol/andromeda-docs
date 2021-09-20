@@ -6,8 +6,6 @@ description: A module used to create a list of unauthorised addresses
 
 ## Definition
 
-The blacklist module has only one configurable field, the `moderators` list.
-
 {% tabs %}
 {% tab title="Rust" %}
 ```rust

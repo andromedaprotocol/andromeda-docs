@@ -14,4 +14,5 @@
   * [Whitelist](modules/whitelist.md)
   * [Blacklist](modules/blacklist.md)
   * [Royalties](modules/royalties.md)
+  * [Tax](modules/tax.md)
 

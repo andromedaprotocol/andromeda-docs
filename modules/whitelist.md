@@ -8,8 +8,6 @@ description: >-
 
 ## Definition
 
-The whitelist module has only one configurable field, the `moderators` list.
-
 {% tabs %}
 {% tab title="Rust" %}
 ```rust
