@@ -11,5 +11,6 @@
 ---
 
 * [Modules](modules/README.md)
+  * [Blacklist](modules/blacklist.md)
   * [Whitelist](modules/whitelist.md)
 

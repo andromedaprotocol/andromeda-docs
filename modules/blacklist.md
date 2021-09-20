@@ -1,20 +1,18 @@
 ---
-description: >-
-  A module used to create a list of authorised addresses to interact with a
-  contract
+description: A module used to create a list of unauthorised addresses
 ---
 
-# Whitelist
+# Blacklist
 
 ## Definition
 
-The whitelist module has only one configurable field, the `moderators` list.
+The blacklist module has only one configurable field, the `moderators` list.
 
 {% tabs %}
 {% tab title="Rust" %}
 ```rust
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
-pub struct Whitelist {
+pub struct Blacklist {
     pub moderators: Vec<String>,
 }
 ```
@@ -23,7 +21,7 @@ pub struct Whitelist {
 {% tab title="Javascript" %}
 ```javascript
 {
-    "whitelist": {
+    "blacklist": {
         "moderators": ["terra1...", "terra1..."]
     }
 }
@@ -33,13 +31,13 @@ pub struct Whitelist {
 
 | Name | Type | Description |
 | :--- | :--- | :--- |
-| moderators | Vec&lt;String&gt; | The list of addresses authorised to moderate the whitelist |
+| moderators | Vec&lt;String&gt; | The list of addresses authorised to moderate the blacklist |
 
 ## Methods
 
 ### `is_moderator`
 
-Used to determine if a given address is a moderator of the whitelist.
+Used to determine if a given address is a moderator of the blacklist.
 
 ```rust
 pub fn is_moderator(&self, addr: &String) -> bool {
@@ -51,28 +49,28 @@ pub fn is_moderator(&self, addr: &String) -> bool {
 | :--- | :--- | :--- |
 | addr | &String | The address to check against the moderators list |
 
-### `whitelist_addr`
+### `blacklist_addr`
 
-Adds an address to the list of authorised address.
+Adds an address to the list of unauthorised address.
 
 ```rust
-pub fn whitelist_addr(storage: &mut dyn Storage, addr: &String) -> StdResult<()> {
-    WHITELIST.save(storage, addr.clone(), &true)
+pub fn blacklist_addr(storage: &mut dyn Storage, addr: &String) -> StdResult<()> {
+    BLACKLIST.save(storage, addr.clone(), &true)
 }
 ```
 
 | Name | Type | Description |
 | :--- | :--- | :--- |
 | storage | &mut dyn Storage | The storage mechanism within which the address list is stored |
-| addr | String | The address to be whitelisted |
+| addr | String | The address to be blacklisted |
 
-### `remove_whitelist`
+### `remove_blacklist`
 
-Removes an address' authorisation status.
+Removes an address from the blacklist
 
 ```rust
-pub fn remove_whitelist(&self, storage: &mut dyn Storage, addr: &String) -> StdResult<()> {
-    WHITELIST.save(storage, addr.clone(), &false)
+pub fn remove_blacklist(&self, storage: &mut dyn Storage, addr: &String) -> StdResult<()> {
+    BLACKLIST.save(storage, addr.clone(), &false)
 }
 ```
 
@@ -81,14 +79,14 @@ pub fn remove_whitelist(&self, storage: &mut dyn Storage, addr: &String) -> StdR
 | storage | &mut dyn Storage | The storage mechanism within which the address list is stored |
 | addr | String | The address for which to remove authorisation |
 
-### `is_whitelisted`
+### `is_blacklisted`
 
-Used to determine is a given address is whitelisted. Returns `StdResult<bool>` indicating whether the address is whitelisted or not.
+Used to determine is a given address is blacklisted. Returns `StdResult<bool>` indicating whether the address is blacklisted or not.
 
 ```rust
-pub fn is_whitelisted(&self, storage: &dyn Storage, addr: &String) -> StdResult<bool> {
-    match WHITELIST.load(storage, addr.clone()) {
-        Ok(whitelisted) => Ok(whitelisted),
+pub fn is_blacklisted(&self, storage: &dyn Storage, addr: &String) -> StdResult<bool> {
+    match BLACKLIST.load(storage, addr.clone()) {
+        Ok(blacklisted) => Ok(blacklisted),
         Err(e) => match e {
             cosmwasm_std::StdError::NotFound { .. } => Ok(false),
             _ => Err(e),
@@ -104,14 +102,14 @@ pub fn is_whitelisted(&self, storage: &dyn Storage, addr: &String) -> StdResult<
 
 ## Validation
 
-The Whitelist module has the following validation requirements:
+The Blacklist module has the following validation requirements:
 
 * Must be unique
-* Cannot be included alongside a `Blacklist` module
+* Cannot be included alongside a `Whitelist` module
 
 ## Hooks
 
-The Whitelist module implements the following hooks:
+The Blacklist module implements the following hooks:
 
 ### `on_execute`
 
@@ -123,12 +121,10 @@ fn on_execute(
     deps: &DepsMut,
     info: MessageInfo,
     env: Env,
-    msg: ExecuteMsg,
 ) -> StdResult<HookResponse> {
     require(
-        self.is_whitelisted(deps.storage, &info.sender.to_string())?
-            || self.is_moderator(&info.sender.to_string()),
-        StdError::generic_err("Address is not whitelisted"),
+        !self.is_blacklisted(deps.storage, &info.sender.to_string())?,
+        StdError::generic_err("Address is blacklisted"),
     )?;
 
     Ok(HookResponse::default())
