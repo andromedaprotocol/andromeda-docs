@@ -37,7 +37,7 @@ pub struct Taxable {
 
 | Name | Type | Description |
 | :--- | :--- | :--- |
-| rate | Rate | The amount to be paid to each receiver upon an agreed transfer. |
+| rate | Rate | The amount to be paid to each receiver upon an agreed transfer. See more [here](https://docs.andromedaprotocol.io/andromeda/modules#rates). |
 | receivers | Vec&lt;String&gt; | An address list of recipients for the royalty fee |
 
 ## Methods
