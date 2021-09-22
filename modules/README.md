@@ -14,8 +14,9 @@ Each module is defined using a `ModuleDefinition` enum which contains the metada
 ```rust
 enum ModuleDefinition {
     Whitelist { moderators: Vec<String> },
-    Taxable { tax: Fee, receivers: Vec<String> },
-    Royalties { fee: Fee, receivers: Vec<String> },
+    Blacklist { moderators: Vec<String> },
+    Taxable { tax: Rate, receivers: Vec<String> },
+    Royalties { fee: Rate, receivers: Vec<String> },
 }
 ```
 
@@ -427,4 +428,31 @@ pub fn read_modules(storage: &dyn Storage) -> StdResult<Modules> {
     }
 }
 ```
+
+## Rates
+
+Rates that are used in various modules can be broken in to two categories:
+
+* Flat - A flat amount with a defined denomination that is sent to each receiver
+* Percentage - A percentage of the transfer agreement amount
+
+```rust
+#[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema, Eq)]
+#[serde(rename_all = "snake_case")]
+pub struct FlatRate {
+    amount: u128,
+    denom: String,
+}
+
+#[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema, Eq)]
+#[serde(rename_all = "snake_case")]
+pub enum Rate {
+    Flat(FlatRate),
+    Percent(u128),
+}
+```
+
+{% hint style="warning" %}
+In the case of the Percentage rate the rounding always favours the receivers, rounding up in the case of a remainder. This can result in a fluctuation of +1 to the sent amount per receiver.
+{% endhint %}
 
