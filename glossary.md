@@ -58,9 +58,6 @@ Terra is a programmable money for the internet that is easier to spend, and more
 **GraphQL**  
 
 
-**Dogs**  
-
-
 **UST**  
 
 
