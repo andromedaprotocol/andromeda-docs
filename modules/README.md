@@ -455,7 +455,7 @@ pub enum Rate {
 ```
 {% endtab %}
 
-{% tab title="Second Tab" %}
+{% tab title="JSON" %}
 ```javascript
 //Flat
 {
