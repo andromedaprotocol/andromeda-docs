@@ -478,6 +478,6 @@ pub enum Rate {
 {% endtabs %}
 
 {% hint style="warning" %}
-In the case of the Percentage rate the rounding always favours the receivers, rounding up in the case of a remainder. This can result in a fluctuation of +1 to the sent amount per receiver.
+In the case of the Percentage rate the rounding always favours the receivers, rounding up in the case of a remainder. This can result in a fluctuation of +1 \(of the defined denom\) to the fee amount per receiver.
 {% endhint %}
 
