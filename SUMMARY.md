@@ -15,6 +15,7 @@
   * [Tax](modules/tax.md)
   * [Royalties](modules/royalties.md)
   * [Whitelist](modules/whitelist.md)
-* [User Docs](user-docs.md)
-* [Glossary](glossary.md)
+* [User Docs](user-docs/README.md)
+  * [How-To Guides](user-docs/how-to-guides.md)
+  * [Glossary](user-docs/glossary.md)
 
