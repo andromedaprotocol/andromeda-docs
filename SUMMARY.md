@@ -12,7 +12,9 @@
 
 * [Modules](modules/README.md)
   * [Whitelist](modules/whitelist.md)
-  * [Blacklist](modules/blacklist.md)
-  * [Royalties](modules/royalties.md)
-  * [Tax](modules/tax.md)
+* [User Docs](user-docs/README.md)
+  * [Blacklist](user-docs/blacklist.md)
+* [Glossary](glossary/README.md)
+  * [Royalties](glossary/royalties.md)
+  * [Tax](glossary/tax.md)
 
