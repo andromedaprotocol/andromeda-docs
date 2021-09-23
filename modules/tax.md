@@ -26,7 +26,12 @@ pub struct Taxable {
 ```javascript
 {
     "taxable": {
-        "tax": 2,
+        "rate": {
+            "flat": {
+                "amount": 2,
+                "denom": "uluna"
+            }
+        },
         "receivers": ["terra1...", "terra1..."],
         "description": "Some tax payment to be made to..."
     }

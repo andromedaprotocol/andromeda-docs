@@ -436,6 +436,8 @@ Rates that are used in various modules can be broken in to two categories:
 * Flat - A flat amount with a defined denomination that is sent to each receiver
 * Percentage - A percentage of the transfer agreement amount
 
+{% tabs %}
+{% tab title="Rust" %}
 ```rust
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema, Eq)]
 #[serde(rename_all = "snake_case")]
@@ -451,6 +453,29 @@ pub enum Rate {
     Percent(u128),
 }
 ```
+{% endtab %}
+
+{% tab title="Second Tab" %}
+```javascript
+//Flat
+{
+    "rate": {
+        "flat": {
+            "amount": 2,
+            "denom": "uluna",
+        }
+    }
+}
+
+//Percent
+{
+    "rate": {
+        "percent": 2
+    }
+}
+```
+{% endtab %}
+{% endtabs %}
 
 {% hint style="warning" %}
 In the case of the Percentage rate the rounding always favours the receivers, rounding up in the case of a remainder. This can result in a fluctuation of +1 to the sent amount per receiver.

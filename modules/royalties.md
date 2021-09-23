@@ -26,7 +26,9 @@ pub struct Royalty {
 ```javascript
 {
     "royalty": {
-        "fee": 2,
+        "rate": {
+            "percent": 2
+        },
         "receivers": ["terra1...", "terra1..."],
         "description": "Some royalty payment to be made to..."
     }
