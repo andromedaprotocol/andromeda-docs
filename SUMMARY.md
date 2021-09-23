@@ -11,10 +11,10 @@
 ---
 
 * [Modules](modules/README.md)
+  * [Blacklist](modules/blacklist.md)
   * [Tax](modules/tax.md)
   * [Royalties](modules/royalties.md)
   * [Whitelist](modules/whitelist.md)
-* [User Docs](user-docs/README.md)
-  * [Blacklist](user-docs/blacklist.md)
+* [User Docs](user-docs.md)
 * [Glossary](glossary.md)
 
