@@ -20,13 +20,13 @@ A system in which a group of blockchains can function together, moving through a
 Cosmos is an ever-expanding ecosystem of interconnected apps, services, and blockchains, built for a decentralized future. Cosmos connects blockchains using IBC.
 
 **IBC**  
-IBC stands for the Inter-Blockchain Communication. A protocol innovation that allows a user to freely exchange assets and data across soverign, decentralized blockchains.
+IBC stands for the Inter-Blockchain Communication. A protocol innovation that allows a user to freely exchange assets and data across sovereign, decentralized blockchains.
 
 **Terra**  
 Terra is a programmable money for the internet that is easier to spend, and more attractive to hold. Available on all leading blockchains.
 
 **Secret**  
-
+An open-source protocol that prioritizes privacy. Secret Network supports encrypted inputs, outputs, and an encrypted state for Smart Contracts.
 
 **Smart Contracts**  
 
