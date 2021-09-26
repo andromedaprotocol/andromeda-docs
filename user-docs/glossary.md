@@ -29,7 +29,7 @@ Terra is a programmable money for the internet that is easier to spend, and more
 An open-source protocol that prioritizes privacy. Secret Network supports encrypted inputs, outputs, and an encrypted state for Smart Contracts.
 
 **Smart Contracts**  
-
+A smart contract is a self-executing contract with the terms of the agreement between buyer and seller being directly written into lines of code. The code and the agreements contained therein exist across a distributed, decentralized blockchain network.
 
 **Wallet**  
 
