@@ -450,7 +450,7 @@ pub struct FlatRate {
 #[serde(rename_all = "snake_case")]
 pub enum Rate {
     Flat(FlatRate),
-    Percent(u128),
+    Percent(Uint128),
 }
 ```
 {% endtab %}
@@ -461,7 +461,7 @@ pub enum Rate {
 {
     "rate": {
         "flat": {
-            "amount": 2,
+            "amount": "2",
             "denom": "uluna",
         }
     }
@@ -470,7 +470,7 @@ pub enum Rate {
 //Percent
 {
     "rate": {
-        "percent": 2
+        "percent": "2"
     }
 }
 ```
