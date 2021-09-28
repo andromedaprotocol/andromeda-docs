@@ -442,7 +442,7 @@ Rates that are used in various modules can be broken in to two categories:
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema, Eq)]
 #[serde(rename_all = "snake_case")]
 pub struct FlatRate {
-    amount: u128,
+    amount: Uint128,
     denom: String,
 }
 
