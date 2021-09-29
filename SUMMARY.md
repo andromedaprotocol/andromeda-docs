@@ -6,6 +6,7 @@
 
 * [Andromeda Digital Object](contracts/andromeda-digital-object.md)
 * [Andromeda Factory](contracts/andromeda-factory.md)
+* [Andromeda Splitter](contracts/andromeda-splitter.md)
 
 ---
 
