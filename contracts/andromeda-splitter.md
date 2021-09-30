@@ -4,14 +4,53 @@ description: An ADO contract to split sent funds amongst predefined addresses.
 
 # Andromeda Splitter
 
+### AddressPercent
+
+The splitter uses a basic array of structs to determine recipients and how the funds are divided.
+
+{% tabs %}
+{% tab title="Rust" %}
+```rust
+#[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
+pub struct AddressPercent {
+    pub addr: String,
+    pub percent: Uint128,
+}
+```
+{% endtab %}
+
+{% tab title="JSON" %}
+```javascript
+{
+    "addr": "terra1...",
+    "percent": "50"
+}
+```
+{% endtab %}
+{% endtabs %}
+
+{% hint style="warning" %}
+To be a valid recipient list the array of `AddressPercent` structs must meet the following requirements:
+
+* Be non-empty
+* Have percentage amounts equalling 100
+{% endhint %}
+
 ### InstantiateMsg
 
 {% tabs %}
 {% tab title="Rust" %}
 ```rust
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
+pub struct AddressPercent {
+    pub addr: String,
+    pub percent: Uint128,
+}
+
+#[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
 pub struct InstantiateMsg {
     pub use_whitelist: bool,
+    pub recipients: Vec<AddressPercent>
 }
 ```
 {% endtab %}
@@ -28,6 +67,7 @@ pub struct InstantiateMsg {
 | Name | Type | Description |
 | :--- | :--- | :--- |
 | use\_whitelist | bool | Whether or not to use a whitelist for interacting with the splitter. |
+| recipients | Vec&lt;AddressPercent&gt; | The recipient list of the splitter. Can be updated after instantiation. |
 
 ### ExecuteMsg
 
@@ -60,7 +100,7 @@ pub enum ExecuteMsg {
 
 | Name | Type | Description |
 | :--- | :--- | :--- |
-| recipient | Vec&lt;String&gt; | The new list of recipient addresses |
+| recipient | Vec&lt;AddressPercent&gt; | The new list of recipient addresses |
 
 #### UpdateRecipients
 
@@ -236,7 +276,7 @@ pub enum QueryMsg {
 {% endtab %}
 {% endtabs %}
 
-#### GetConfigResponse
+#### GetSplitterConfigResponse
 
 {% tabs %}
 {% tab title="Rust" %}
