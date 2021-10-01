@@ -42,12 +42,6 @@ To be a valid recipient list the array of `AddressPercent` structs must meet the
 {% tab title="Rust" %}
 ```rust
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
-pub struct AddressPercent {
-    pub addr: String,
-    pub percent: Uint128,
-}
-
-#[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
 pub struct InstantiateMsg {
     pub use_whitelist: bool,
     pub recipients: Vec<AddressPercent>
@@ -58,7 +52,8 @@ pub struct InstantiateMsg {
 {% tab title="JSON" %}
 ```javascript
 {
-    "use_whitelist": true
+    "use_whitelist": true,
+    "recipients: ["terra1...", "terra2..."]
 }
 ```
 {% endtab %}
@@ -102,7 +97,7 @@ pub enum ExecuteMsg {
 | :--- | :--- | :--- |
 | recipient | Vec&lt;AddressPercent&gt; | The new list of recipient addresses |
 
-#### UpdateRecipients
+#### UpdateLock
 
 Sets a lock on the contract, disallowing editing of any other config fields.
 
@@ -183,8 +178,8 @@ pub enum ExecuteMsg {
 {% tab title="JSON" %}
 ```javascript
 {
-    "update_use_whitelist": {
-        "use_whitelist": true
+    "update_token_list": {
+        "accepted_tokenlist": ["Token1", "Token2"]
     }
 }
 ```
@@ -214,8 +209,8 @@ pub enum ExecuteMsg {
 {% tab title="JSON" %}
 ```javascript
 {
-    "update_use_whitelist": {
-        "use_whitelist": true
+    "update_sender_whitelist": {
+        "sender_whitelist": ["terra1...", "terra2..."]
     }
 }
 ```
@@ -243,9 +238,7 @@ pub enum ExecuteMsg {
 {% tab title="JSON" %}
 ```javascript
 {
-    "update_use_whitelist": {
-        "use_whitelist": true
-    }
+    "send": {}
 }
 ```
 {% endtab %}
