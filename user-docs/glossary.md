@@ -7,84 +7,83 @@ description: >-
 
 # Glossary
 
-**ADO**  
-Andromeda Digital Object - A reimagining of the traditional ERC-721 NFT Collectible. An ADO has additional functionality which is customizable and modular in nature, able to shift and morph it's function using tools that enable autonomous function, whitelisting, royalties, taxation, and more. ADOs can be constructed using a combination of Primitives, and Modules. The ADO is the most functional building block of Andromeda Protocol.
+**ADO**\
+****Andromeda Digital Object - A reimagining of the traditional ERC-721 NFT Collectible. An ADO has additional functionality which is customizable and modular in nature, able to shift and morph it's function using tools that enable autonomous function, whitelisting, royalties, taxation, and more. ADOs can be constructed using a combination of Primitives, and Modules. The ADO is the most functional building block of Andromeda Protocol.
 
-**Blockchain**  
-A system in which a record of transactions made in bitcoin or another cryptocurrency are maintained across several computers that are linked in a peer-to-peer network.
+**Blockchain**\
+****A system in which a record of transactions made in bitcoin or another cryptocurrency are maintained across several computers that are linked in a peer-to-peer network.
 
-**Multichain**   
-A system in which a group of blockchains can function together, moving through a mechanism which allows assets to migrate from one chain to another. Multichain systems are interoperable by nature and can leverage the utility from multiple chains on non-native chains. 
+**Multichain **\
+****A system in which a group of blockchains can function together, moving through a mechanism which allows assets to migrate from one chain to another. Multichain systems are interoperable by nature and can leverage the utility from multiple chains on non-native chains. 
 
-**Cosmos**  
-Cosmos is an ever-expanding ecosystem of interconnected apps, services, and blockchains, built for a decentralized future. Cosmos connects blockchains using IBC.
+**Cosmos**\
+****Cosmos is an ever-expanding ecosystem of interconnected apps, services, and blockchains, built for a decentralized future. Cosmos connects blockchains using IBC.
 
-**IBC**  
-IBC stands for the Inter-Blockchain Communication. A protocol innovation that allows a user to freely exchange assets and data across sovereign, decentralized blockchains.
+**IBC**\
+****IBC stands for the Inter-Blockchain Communication. A protocol innovation that allows a user to freely exchange assets and data across sovereign, decentralized blockchains.
 
-**Terra**  
-Terra is a programmable money for the internet that is easier to spend, and more attractive to hold. Available on all leading blockchains.
+**Terra**\
+****Terra is a programmable money for the internet that is easier to spend, and more attractive to hold. Available on all leading blockchains.
 
-**Secret**  
-An open-source protocol that prioritizes privacy. Secret Network supports encrypted inputs, outputs, and an encrypted state for Smart Contracts.
+**Secret**\
+****An open-source protocol that prioritizes privacy. Secret Network supports encrypted inputs, outputs, and an encrypted state for Smart Contracts.
 
-**Smart Contracts**  
-A smart contract is a self-executing contract with the terms of the agreement between buyer and seller being directly written into lines of code. The code and the agreements contained therein exist across a distributed, decentralized blockchain network.
+**Smart Contracts**\
+****A smart contract is a self-executing contract with the terms of the agreement between buyer and seller being directly written into lines of code. The code and the agreements contained therein exist across a distributed, decentralized blockchain network.
 
-**Wallet**  
+**Wallet**\
+****
 
+**Off-chain data/oracles**\
+****
 
-**Off-chain data/oracles**  
+**DeFi**\
+****
 
+**Rust**\
+****
 
-**DeFi**  
+**Cosm/Wasm**\
+****
 
+**Digital Objects**\
+****
 
-**Rust**  
+**RESTful API**\
+****
 
+**Distributed Autonomous Organization (DAO)**\
+****
 
-**Cosm/Wasm**  
+**GraphQL**\
+****
 
+**UST**\
+****
 
-**Digital Objects**  
+**Mirror (CDPs)**\
+****
 
+**Anchor (Stable Savings) **\
+****
 
-**RESTful API**  
+**Pylon **\
+****
 
+**Secret**\
+****
 
-**Distributed Autonomous Organization \(DAO\)**  
+**AMMs **\
+****
 
+**NFTs**\
+****
 
-**GraphQL**  
+**TenderMint**\
+****
 
+**Tokonomics**\
+****
 
-**UST**  
-
-
-**Mirror \(CDPs\)**  
-
-
-**Anchor \(Stable Savings\)**   
-
-
-**Pylon**   
-
-
-**Secret**  
-
-
-**AMMs**   
-
-
-**NFTs**  
-
-
-**TenderMint**  
-
-
-**Tokonomics**  
-
-
-**LUNA**  
-The native token of the Terra Blockchain.
-
+**LUNA**\
+****The native token of the Terra Blockchain.

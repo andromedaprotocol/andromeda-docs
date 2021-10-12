@@ -17,12 +17,13 @@ enum ModuleDefinition {
     Blacklist { moderators: Vec<String> },
     Taxable { tax: Rate, receivers: Vec<String> },
     Royalties { fee: Rate, receivers: Vec<String> },
+    Receipt { }
 }
 ```
 
 ## Defining Modules
 
-When instantiating an **Andromeda Digital Object** contract the modules can be defined within the `modules` field of the `InstantiateMsg` like so:
+When instantiating an **Andromeda Digital Object **contract the modules can be defined within the `modules` field of the `InstantiateMsg` like so:
 
 ```rust
 {
@@ -42,7 +43,7 @@ When instantiating an **Andromeda Digital Object** contract the modules can be d
 }
 ```
 
-Each module has a **Definition** section within their respective documentation that describes the object required to define the module.
+Each module has a **Definition **section within their respective documentation that describes the object required to define the module.
 
 ## Module Trait
 
@@ -73,9 +74,9 @@ pub trait Module: MessageHooks {
 
 Validates whether the module definition is suitable given the other set of modules it is defined alongside. Returns a `StdResult<bool>` indicating whether the module is valid.
 
-| Name | Type | Description |
-| :--- | :--- | :--- |
-| modules | Vec&lt;ModuleDefinition&gt; | The vector of modules that the module is defined within |
+| Name    | Type                   | Description                                             |
+| ------- | ---------------------- | ------------------------------------------------------- |
+| modules | Vec\<ModuleDefinition> | The vector of modules that the module is defined within |
 
 `as_definition`
 
@@ -122,6 +123,27 @@ impl HookResponse {
 
 The `HookResponse` contains any messages that the hook may wish to send in the response and a list of events used to log anything important that the hook may have done, for example if the `Taxable` module is used it will add an event of what payments were made in the case of an agreed transfer.
 
+`on_instantiate`
+
+A hook called whenever an `Instantiate` message is sent.
+
+```rust
+pub fn on_instantiate(
+    &self,
+    deps: &DepsMut,
+    info: MessageInfo,
+    env: Env,
+) -> StdResult<HookResponse> {
+    Ok(HookResponse)
+}
+```
+
+| Name | Type        | Description                                                         |
+| ---- | ----------- | ------------------------------------------------------------------- |
+| deps | \&DepsMut   | The standard mutable dependencies provided with any execute message |
+| info | MessageInfo | The standard message info struct provided with any execute message  |
+| env  | Env         | The standard environment struct provided with any execute message   |
+
 `on_execute`
 
 {% hint style="danger" %}
@@ -135,19 +157,17 @@ fn on_execute(
     &self,
     deps: &DepsMut,
     info: MessageInfo,
-    env: Env,
-    msg: ExecuteMsg,
+    env: Env
 ) -> StdResult<HookResponse> {
     Ok(HookResponse::default())
 }
 ```
 
-| Name | Type | Description |
-| :--- | :--- | :--- |
-| deps | &DepsMut | The standard mutable dependencies provided with any execute message |
-| info | MessageInfo | The standard message info struct provided with any execute message |
-| env | Env | The standard environment struct provided with any execute message |
-| msg | ExecuteMsg | The execute message that triggered the hook |
+| Name | Type        | Description                                                         |
+| ---- | ----------- | ------------------------------------------------------------------- |
+| deps | \&DepsMut   | The standard mutable dependencies provided with any execute message |
+| info | MessageInfo | The standard message info struct provided with any execute message  |
+| env  | Env         | The standard environment struct provided with any execute message   |
 
 `on_mint`
 
@@ -165,12 +185,12 @@ fn on_mint(
 }
 ```
 
-| Name | Type | Description |
-| :--- | :--- | :--- |
-| deps | &DepsMut | The standard mutable dependencies provided with any execute message |
-| info | MessageInfo | The standard message info struct provided with any execute message |
-| env | Env | The standard environment struct provided with any execute message |
-| token\_id | String | The id of the token being minted |
+| Name     | Type        | Description                                                         |
+| -------- | ----------- | ------------------------------------------------------------------- |
+| deps     | \&DepsMut   | The standard mutable dependencies provided with any execute message |
+| info     | MessageInfo | The standard message info struct provided with any execute message  |
+| env      | Env         | The standard environment struct provided with any execute message   |
+| token_id | String      | The id of the token being minted                                    |
 
 `on_transfer`
 
@@ -188,13 +208,13 @@ fn on_transfer(
 }
 ```
 
-| Name | Type | Description |
-| :--- | :--- | :--- |
-| deps | &DepsMut | The standard mutable dependencies provided with any execute message |
-| info | MessageInfo | The standard message info struct provided with any execute message |
-| env | Env | The standard environment struct provided with any execute message |
-| recipient | String | The recipient of the transfer |
-| token\_id | String | The id of the token being transferred |
+| Name      | Type        | Description                                                         |
+| --------- | ----------- | ------------------------------------------------------------------- |
+| deps      | \&DepsMut   | The standard mutable dependencies provided with any execute message |
+| info      | MessageInfo | The standard message info struct provided with any execute message  |
+| env       | Env         | The standard environment struct provided with any execute message   |
+| recipient | String      | The recipient of the transfer                                       |
+| token_id  | String      | The id of the token being transferred                               |
 
 `on_send`
 
@@ -212,13 +232,13 @@ fn on_send(
 }
 ```
 
-| Name | Type | Description |
-| :--- | :--- | :--- |
-| deps | &DepsMut | The standard mutable dependencies provided with any execute message |
-| info | MessageInfo | The standard message info struct provided with any execute message |
-| env | Env | The standard environment struct provided with any execute message |
-| contract | String | The recipient contract of the transfer |
-| token\_id | String | The id of the token being transferred |
+| Name     | Type        | Description                                                         |
+| -------- | ----------- | ------------------------------------------------------------------- |
+| deps     | \&DepsMut   | The standard mutable dependencies provided with any execute message |
+| info     | MessageInfo | The standard message info struct provided with any execute message  |
+| env      | Env         | The standard environment struct provided with any execute message   |
+| contract | String      | The recipient contract of the transfer                              |
+| token_id | String      | The id of the token being transferred                               |
 
 `on_approve`
 
@@ -237,14 +257,14 @@ fn on_transfer(
 }
 ```
 
-| Name | Type | Description |
-| :--- | :--- | :--- |
-| deps | &DepsMut | The standard mutable dependencies provided with any execute message |
-| info | MessageInfo | The standard message info struct provided with any execute message |
-| env | Env | The standard environment struct provided with any execute message |
-| spender | String | The new operator |
-| token\_id | String | The id of the token |
-| expires | Option&lt;Expiration&gt; | The optional expiration of the approval |
+| Name     | Type                | Description                                                         |
+| -------- | ------------------- | ------------------------------------------------------------------- |
+| deps     | \&DepsMut           | The standard mutable dependencies provided with any execute message |
+| info     | MessageInfo         | The standard message info struct provided with any execute message  |
+| env      | Env                 | The standard environment struct provided with any execute message   |
+| spender  | String              | The new operator                                                    |
+| token_id | String              | The id of the token                                                 |
+| expires  | Option\<Expiration> | The optional expiration of the approval                             |
 
 `on_revoke`
 
@@ -262,13 +282,13 @@ fn on_revoke(
 }
 ```
 
-| Name | Type | Description |
-| :--- | :--- | :--- |
-| deps | &DepsMut | The standard mutable dependencies provided with any execute message |
-| info | MessageInfo | The standard message info struct provided with any execute message |
-| env | Env | The standard environment struct provided with any execute message |
-| spender | String | The operator to be revoked |
-| token\_id | String | The id of the token |
+| Name     | Type        | Description                                                         |
+| -------- | ----------- | ------------------------------------------------------------------- |
+| deps     | \&DepsMut   | The standard mutable dependencies provided with any execute message |
+| info     | MessageInfo | The standard message info struct provided with any execute message  |
+| env      | Env         | The standard environment struct provided with any execute message   |
+| spender  | String      | The operator to be revoked                                          |
+| token_id | String      | The id of the token                                                 |
 
 `on_approve_all`
 
@@ -285,12 +305,12 @@ fn on_approve_all(
 }
 ```
 
-| Name | Type | Description |
-| :--- | :--- | :--- |
-| deps | &DepsMut | The standard mutable dependencies provided with any execute message |
-| info | MessageInfo | The standard message info struct provided with any execute message |
-| env | Env | The standard environment struct provided with any execute message |
-| operator | String | The address of the new operator |
+| Name     | Type        | Description                                                         |
+| -------- | ----------- | ------------------------------------------------------------------- |
+| deps     | \&DepsMut   | The standard mutable dependencies provided with any execute message |
+| info     | MessageInfo | The standard message info struct provided with any execute message  |
+| env      | Env         | The standard environment struct provided with any execute message   |
+| operator | String      | The address of the new operator                                     |
 
 `on_transfer_agreement`
 
@@ -310,15 +330,15 @@ fn on_transfer_agreement(
 }
 ```
 
-| Name | Type | Description |
-| :--- | :--- | :--- |
-| deps | &DepsMut | The standard mutable dependencies provided with any execute message |
-| info | MessageInfo | The standard message info struct provided with any execute message |
-| env | Env | The standard environment struct provided with any execute message |
-| token\_id | String | The id of the token |
-| purchaser | String | The address of the purchaser |
-| amount | u128 | The agreed amount to be paid |
-| denom | String | The agreed denomination to be paid |
+| Name      | Type        | Description                                                         |
+| --------- | ----------- | ------------------------------------------------------------------- |
+| deps      | \&DepsMut   | The standard mutable dependencies provided with any execute message |
+| info      | MessageInfo | The standard message info struct provided with any execute message  |
+| env       | Env         | The standard environment struct provided with any execute message   |
+| token_id  | String      | The id of the token                                                 |
+| purchaser | String      | The address of the purchaser                                        |
+| amount    | u128        | The agreed amount to be paid                                        |
+| denom     | String      | The agreed denomination to be paid                                  |
 
 `on_burn`
 
@@ -335,12 +355,12 @@ fn on_burn(
 }
 ```
 
-| Name | Type | Description |
-| :--- | :--- | :--- |
-| deps | &DepsMut | The standard mutable dependencies provided with any execute message |
-| info | MessageInfo | The standard message info struct provided with any execute message |
-| env | Env | The standard environment struct provided with any execute message |
-| token\_id | String | The id of the token |
+| Name     | Type        | Description                                                         |
+| -------- | ----------- | ------------------------------------------------------------------- |
+| deps     | \&DepsMut   | The standard mutable dependencies provided with any execute message |
+| info     | MessageInfo | The standard message info struct provided with any execute message  |
+| env      | Env         | The standard environment struct provided with any execute message   |
+| token_id | String      | The id of the token                                                 |
 
 `on_archive`
 
@@ -357,12 +377,12 @@ fn on_archive(
 }
 ```
 
-| Name | Type | Description |
-| :--- | :--- | :--- |
-| deps | &DepsMut | The standard mutable dependencies provided with any execute message |
-| info | MessageInfo | The standard message info struct provided with any execute message |
-| env | Env | The standard environment struct provided with any execute message |
-| token\_id | String | The id of the token |
+| Name     | Type        | Description                                                         |
+| -------- | ----------- | ------------------------------------------------------------------- |
+| deps     | \&DepsMut   | The standard mutable dependencies provided with any execute message |
+| info     | MessageInfo | The standard message info struct provided with any execute message  |
+| env      | Env         | The standard environment struct provided with any execute message   |
+| token_id | String      | The id of the token                                                 |
 
 `on_agreed_transfer`
 
@@ -382,15 +402,15 @@ fn on_approve_all(
 }
 ```
 
-| Name | Type | Description |
-| :--- | :--- | :--- |
-| deps | &DepsMut | The standard mutable dependencies provided with any execute message |
-| info | MessageInfo | The standard message info struct provided with any execute message |
-| env | Env | The standard environment struct provided with any execute message |
-| payments | &mut Vec&lt;BankMsg&gt; | A mutable vector of payments to be sent following the hook. **Any payments added will be automatically added to the response struct.** |
-| owner | String | The current owner of the ADO |
-| purchaser | String | The purchaser of the ADO |
-| amount | Coin | The agreed transfer amount of the ADO |
+| Name      | Type                | Description                                                                                                                            |
+| --------- | ------------------- | -------------------------------------------------------------------------------------------------------------------------------------- |
+| deps      | \&DepsMut           | The standard mutable dependencies provided with any execute message                                                                    |
+| info      | MessageInfo         | The standard message info struct provided with any execute message                                                                     |
+| env       | Env                 | The standard environment struct provided with any execute message                                                                      |
+| payments  | \&mut Vec\<BankMsg> | A mutable vector of payments to be sent following the hook. **Any payments added will be automatically added to the response struct.** |
+| owner     | String              | The current owner of the ADO                                                                                                           |
+| purchaser | String              | The purchaser of the ADO                                                                                                               |
+| amount    | Coin                | The agreed transfer amount of the ADO                                                                                                  |
 
 ## Modules Struct
 
@@ -478,6 +498,5 @@ pub enum Rate {
 {% endtabs %}
 
 {% hint style="warning" %}
-In the case of the Percentage rate the rounding always favours the receivers, rounding up in the case of a remainder. This can result in a fluctuation of +1 \(of the defined denom\) to the fee amount per receiver.
+In the case of the Percentage rate the rounding always favours the receivers, rounding up in the case of a remainder. This can result in a fluctuation of +1 (of the defined denom) to the fee amount per receiver.
 {% endhint %}
-
