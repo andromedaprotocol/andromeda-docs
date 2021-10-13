@@ -8,7 +8,7 @@ description: >-
 
 ## Definition
 
-The AddressList module cannot be defined directly, instead it is defined using either the [`Whitelist`](https://app.gitbook.com/o/-LSIp3xE4R-AyCUl9k_P/s/-MdsL0ugFI5WNyjzflKI/c/Al8Wb6fICx0KwYkblGXN/modules/address-list/whitelist) or [`Blacklist`](https://app.gitbook.com/o/-LSIp3xE4R-AyCUl9k_P/s/-MdsL0ugFI5WNyjzflKI/c/Al8Wb6fICx0KwYkblGXN/modules/address-list/blacklist) module. Both of these modules can be defined using one of the following:
+The AddressList module **cannot** be defined directly, instead it is defined using either the [`Whitelist`](https://app.gitbook.com/o/-LSIp3xE4R-AyCUl9k_P/s/-MdsL0ugFI5WNyjzflKI/c/Al8Wb6fICx0KwYkblGXN/modules/address-list/whitelist) or [`Blacklist`](https://app.gitbook.com/o/-LSIp3xE4R-AyCUl9k_P/s/-MdsL0ugFI5WNyjzflKI/c/Al8Wb6fICx0KwYkblGXN/modules/address-list/blacklist) module. Both of these modules can be defined using one of the following:
 
 * A list of moderators and a valid contract code id
 * A valid `AddressList` contract address

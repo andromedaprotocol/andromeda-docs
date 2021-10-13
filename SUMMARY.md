@@ -16,6 +16,7 @@
     * [Blacklist](modules/address-list/blacklist.md)
   * [Tax](modules/tax.md)
   * [Royalties](modules/royalties.md)
+  * [Receipt](modules/receipt.md)
 * [User Docs](user-docs/README.md)
   * [How-To Guides](user-docs/how-to-guides.md)
   * [Glossary](user-docs/glossary.md)

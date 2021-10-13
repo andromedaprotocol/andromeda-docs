@@ -25,7 +25,7 @@ pub struct Whitelist {
 ```
 {% endtab %}
 
-{% tab title="Javascript" %}
+{% tab title="JSON" %}
 ```javascript
 {
     "whitelist": {
@@ -57,6 +57,9 @@ The Whitelist module has the following validation requirements:
 
 * Must be unique
 * Cannot be included alongside a `Blacklist` module
+* Must include either:
+  * A valid `AddressList` contract `code_id` and a list of `moderators`
+  * A valid `AddressList` contract `address`
 
 ## Hooks
 
