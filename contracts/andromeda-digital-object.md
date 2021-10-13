@@ -15,7 +15,6 @@ pub struct InstantiateMsg {
     pub symbol: String,
     pub minter: String,
     pub modules: Vec<ModuleDefinition>,
-    pub init_hook: Option<InitHook>,
     pub metadata_limit: Option<u64>,
 }
 ```
@@ -48,7 +47,6 @@ pub struct InstantiateMsg {
 | symbol         | String                 | The symbol of the NFT                                                                       |
 | minter         | String                 | The address of the ADO minter                                                               |
 | modules        | Vec\<ModuleDefinition> | A vector of Andromeda Module definitions. The module definitions can be found here.         |
-| init_hook      | Option\<InitHook>      | An optional instantiation hook message, primarily used by the `andromeda_factory` contract  |
 | metadata_limit | Option\<u64>           | An optional size limit on any metadata assigned to an NFT minted in the contract (in bytes) |
 
 ### ExecuteMsg
@@ -66,6 +64,7 @@ pub struct MintMsg {
     pub name: String,
     pub description: Option<String>,
     pub metadata: Option<String>,
+    pub image: Option<String>
 }
 
 pub enum ExecuteMsg {
@@ -96,6 +95,7 @@ pub enum ExecuteMsg {
 | name        | String          | The ADO's name                                                  |
 | description | Option\<String> | An optional description of the ADO                              |
 | metadata    | Option\<String> | An option string field storing some metadata related to the ADO |
+| image       | Option\<String> | The CW721 image field                                           |
 
 #### TransferNft
 
@@ -339,79 +339,9 @@ pub enum ExecuteMsg {
 | amount    | u128   | The agreed transfer amount                        |
 | purchaser | String | The address of the transfer purchaser             |
 
-#### Whitelist
+#### UpdateOwner
 
-{% hint style="warning" %}
-Only available if the contract has an assigned `Whitelist` module
-{% endhint %}
-
-Whitelists or unwhitelists an address to be able to execute messages on the contract. 
-
-{% tabs %}
-{% tab title="Rust" %}
-```rust
-pub enum ExecuteMsg {
-    Whitelist {
-        address: String,
-        whitelisted: bool
-    },
-}
-```
-{% endtab %}
-
-{% tab title="JSON" %}
-```javascript
-{
-    "whitelist": {
-        "address": "terra1...",
-        "whitelisted": true
-    }
-}
-```
-{% endtab %}
-{% endtabs %}
-
-| Name        | Type   | Description                                      |
-| ----------- | ------ | ------------------------------------------------ |
-| address     | String | The address for which to modify whitelist status |
-| whitelisted | bool   | Whether or not the address is to be whitelisted  |
-
-#### Blacklist
-
-{% hint style="warning" %}
-Only available if the contract has an assigned `Blacklist` module
-{% endhint %}
-
-Blacklists or unblacklists an address to be unable to execute messages on the contract.
-
-{% tabs %}
-{% tab title="Rust" %}
-```rust
-pub enum ExecuteMsg {
-    Blacklist {
-        address: String,
-        blacklisted: bool
-    },
-}
-```
-{% endtab %}
-
-{% tab title="JSON" %}
-```javascript
-{
-    "blacklist": {
-        "address": "terra1...",
-        "whitelisted": true
-    }
-}
-```
-{% endtab %}
-{% endtabs %}
-
-| Name        | Type   | Description                                      |
-| ----------- | ------ | ------------------------------------------------ |
-| address     | String | The address for which to modify blacklist status |
-| blacklisted | bool   | Whether or not the address is to be blacklisted  |
+See [Ownership](ownership.md#executemsg).
 
 ### QueryMsg
 
@@ -640,6 +570,11 @@ pub struct NftInfoResponse {
     pub name: String,
     pub description: String,
     pub image: Option<String>,
+    pub extension: {
+        metadata: Option<String>,
+        archived: bool,
+        transfer_agreement: Option<TransferAgreement>
+    }
 }
 ```
 {% endtab %}
@@ -649,6 +584,14 @@ pub struct NftInfoResponse {
 {
     "name": "A New Token",
     "description": "A newly minted token",
+    "extension": {
+        "archived": false,
+        "metadata": "{ \"some_json_field\": \"some_json_value\" }",
+        "agreement": {
+            "purchaser": "terra1...",
+            "amount": "100uluna"
+        }
+    }
 }
 ```
 {% endtab %}
@@ -659,6 +602,7 @@ pub struct NftInfoResponse {
 | name        | String          | The name of the ADO                                                                                                                                                                                      |
 | description | String          | The description of the ADO                                                                                                                                                                               |
 | image       | Option\<String> | A URI pointing to a resource with mime type image/\* representing the asset to which this NFT represents. (Taken from [here](https://github.com/CosmWasm/cw-plus/blob/main/packages/cw721/src/query.rs)) |
+| extension   | Object          | Extended metadata related to the token.                                                                                                                                                                  |
 
 #### AllNftInfo
 
@@ -719,6 +663,14 @@ pub struct AllNftInfoResponse {
     "info": {
         "name": "A New Token",
         "description": "A newly minted token",
+        "extension": {
+            "archived": false,
+            "metadata": "{ \"some_json_field\": \"some_json_value\" }",
+            "agreement": {
+                "purchaser": "terra1...",
+                "amount": "100uluna"
+            }
+        }
     }
 }
 ```
@@ -730,73 +682,15 @@ pub struct AllNftInfoResponse {
 | access | OwnerOfResponse | The owner of the ADO and any approvals |
 | info   | NFtInfoResponse | The given ADO's stored information     |
 
-#### NftTransferAgreementInfo
+#### ModuleInfo
 
-Queries the current transfer agreement for an ADO.
-
-{% tabs %}
-{% tab title="Rust" %}
-```rust
-pub enum QueryMsg {
-    NftTransferAgreementInfo {
-        token_id: String,
-    }
-}
-```
-{% endtab %}
-
-{% tab title="JSON" %}
-```javascript
-{
-    "nft_transfer_agreement_info": {
-        "token_id": "anewtoken"
-    }
-}
-```
-{% endtab %}
-{% endtabs %}
-
-| Name     | Type   | Description       |
-| -------- | ------ | ----------------- |
-| token_id | String | The id of the ADO |
-
-#### NftTransferAgreementResponse
-
-{% tabs %}
-{% tab title="Rust" %}
-```rust
-pub struct NftTransferAgreementResponse {
-    pub agreement: Option<TransferAgreement>
-}
-```
-{% endtab %}
-
-{% tab title="JSON" %}
-```javascript
-{
-    "agreement": {
-        "amount": "100uluna",
-        "purchaser": "terra1..."
-    }
-}
-```
-{% endtab %}
-{% endtabs %}
-
-| Name      | Type                       | Description                                                              |
-| --------- | -------------------------- | ------------------------------------------------------------------------ |
-| agreement | Option\<TransferAgreement> | The transfer agreement for the given ADO, undefined if no agreement set. |
-
-#### NftMetadata
-
-Queries the  metadata field for a given ADO.
+Queries module definitions for the contract.
 
 {% tabs %}
 {% tab title="Rust" %}
 ```rust
 pub enum QueryMsg {
-    NftMetadata {
-        token_id: String
+    ModuleInfo {
     }
 }
 ```
@@ -805,25 +699,21 @@ pub enum QueryMsg {
 {% tab title="JSON" %}
 ```javascript
 {
-    "nft_metadata": {
-        "token_id": "anewtoken"
+    "module_info": {
     }
 }
 ```
 {% endtab %}
 {% endtabs %}
 
-| Name     | Type   | Description       |
-| -------- | ------ | ----------------- |
-| token_id | String | The id of the ADO |
-
-#### NftMetadataResponse
+#### ModuleInfoResponse
 
 {% tabs %}
 {% tab title="Rust" %}
 ```rust
-pub struct NftMetadataResponse{
-    pub metadata: Option<String>
+#[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
+pub struct ModuleInfoResponse {
+    pub modules: Vec<ModuleDefinition>,
 }
 ```
 {% endtab %}
@@ -831,15 +721,88 @@ pub struct NftMetadataResponse{
 {% tab title="JSON" %}
 ```javascript
 {
-    "metadata": "{'some_json_key': 'some_json_stringified_value'}"
+    "modules": [
+        "receipt":{},
+        "whitelist": {
+            "address": "terra1...",
+        },
+        "taxable": {
+            "rate": 2,
+            "receivers": ["terra1..."]
+        }
+    ]
 }
 ```
 {% endtab %}
 {% endtabs %}
 
-| Name     | Type            | Description                       |
-| -------- | --------------- | --------------------------------- |
-| metadata | Option\<String> | The assigned metadata for the ADO |
+| Name    | Type                                           | Description                              |
+| ------- | ---------------------------------------------- | ---------------------------------------- |
+| modules | Vec<[ModuleDefinition](../modules/modules.md)> | The module definitions for the contract. |
+
+#### ModuleContracts
+
+Queries the assigned contracts for any modules.
+
+{% tabs %}
+{% tab title="Rust" %}
+```rust
+pub enum QueryMsg {
+    ModuleContracts {
+    }
+}
+```
+{% endtab %}
+
+{% tab title="JSON" %}
+```javascript
+{
+    "module_contracts": {
+    }
+}
+```
+{% endtab %}
+{% endtabs %}
+
+#### ModuleContractsResponse
+
+{% tabs %}
+{% tab title="Rust" %}
+```rust
+#[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
+pub struct ModuleContract {
+    pub module: String,
+    pub contract: Option<String>,
+}
+
+#[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
+pub struct ModuleContractsResponse {
+    pub contracts: Vec<ModuleContract>,
+}
+```
+{% endtab %}
+
+{% tab title="JSON" %}
+```javascript
+{
+    "contracts": [
+        {
+            "module": "tax",
+            "contract": null,
+        },
+        {
+            "module": "whitelist",
+            "contract": "terra1...",
+        }
+    ]
+}
+```
+{% endtab %}
+{% endtabs %}
+
+| Name      | Type                 | Description                                                                          |
+| --------- | -------------------- | ------------------------------------------------------------------------------------ |
+| contracts | Vec\<ModuleContract> | A list of modules and their contract addresses (if they have an associated contract) |
 
 #### ContractInfo
 
@@ -889,3 +852,7 @@ pub struct CotractInfoResponse {
 | ------ | ------ | ----------------------------------- |
 | name   | String | The name of the contract            |
 | symbol | String | The assigned symbol of the contract |
+
+#### ContractOwner
+
+See [Ownership](ownership.md#querymsg).
