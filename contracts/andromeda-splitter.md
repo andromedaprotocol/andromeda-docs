@@ -33,7 +33,7 @@ pub struct AddressPercent {
 To be a valid recipient list the array of `AddressPercent` structs must meet the following requirements:
 
 * Be non-empty
-* Have percentage amounts equalling 100
+* Have percentage amounts less than or equalling 100
 {% endhint %}
 
 ### InstantiateMsg
@@ -64,10 +64,10 @@ pub struct InstantiateMsg {
 {% endtab %}
 {% endtabs %}
 
-| Name | Type | Description |
-| :--- | :--- | :--- |
-| use\_whitelist | bool | Whether or not to use a whitelist for interacting with the splitter. |
-| recipients | Vec&lt;AddressPercent&gt; | The recipient list of the splitter. Can be updated after instantiation. |
+| Name          | Type                 | Description                                                             |
+| ------------- | -------------------- | ----------------------------------------------------------------------- |
+| use_whitelist | bool                 | Whether or not to use a whitelist for interacting with the splitter.    |
+| recipients    | Vec\<AddressPercent> | The recipient list of the splitter. Can be updated after instantiation. |
 
 ### ExecuteMsg
 
@@ -98,9 +98,9 @@ pub enum ExecuteMsg {
 {% endtab %}
 {% endtabs %}
 
-| Name | Type | Description |
-| :--- | :--- | :--- |
-| recipient | Vec&lt;AddressPercent&gt; | The new list of recipient addresses |
+| Name      | Type                 | Description                         |
+| --------- | -------------------- | ----------------------------------- |
+| recipient | Vec\<AddressPercent> | The new list of recipient addresses |
 
 #### UpdateRecipients
 
@@ -129,8 +129,8 @@ pub enum ExecuteMsg {
 {% endtab %}
 {% endtabs %}
 
-| Name | Type | Description |
-| :--- | :--- | :--- |
+| Name | Type | Description                            |
+| ---- | ---- | -------------------------------------- |
 | lock | bool | Whether the contract should be locked. |
 
 #### UpdateUseWhitelist
@@ -160,9 +160,9 @@ pub enum ExecuteMsg {
 {% endtab %}
 {% endtabs %}
 
-| Name | Type | Description |
-| :--- | :--- | :--- |
-| use\_whitelist | bool | Whether the contract should use a whitelist or not. |
+| Name          | Type | Description                                         |
+| ------------- | ---- | --------------------------------------------------- |
+| use_whitelist | bool | Whether the contract should use a whitelist or not. |
 
 **UpdateTokenList**
 
@@ -191,9 +191,9 @@ pub enum ExecuteMsg {
 {% endtab %}
 {% endtabs %}
 
-| Name | Type | Description |
-| :--- | :--- | :--- |
-| accepted\_tokenlist | Vec&lt;String&gt; | Whether the contract should use a whitelist or not. |
+| Name               | Type         | Description                                         |
+| ------------------ | ------------ | --------------------------------------------------- |
+| accepted_tokenlist | Vec\<String> | Whether the contract should use a whitelist or not. |
 
 **UpdateSenderWhitelist**
 
@@ -222,9 +222,9 @@ pub enum ExecuteMsg {
 {% endtab %}
 {% endtabs %}
 
-| Name | Type | Description |
-| :--- | :--- | :--- |
-| sender\_whitelist | Vec&lt;String&gt; | The new vector of whitelisted addresses. |
+| Name             | Type         | Description                              |
+| ---------------- | ------------ | ---------------------------------------- |
+| sender_whitelist | Vec\<String> | The new vector of whitelisted addresses. |
 
 **Send**
 
@@ -314,8 +314,8 @@ pub struct AddressResponse {
 {% endtab %}
 {% endtabs %}
 
-| Name | Type | Description |
-| :--- | :--- | :--- |
+| Name   | Type     | Description                |
+| ------ | -------- | -------------------------- |
 | config | Splitter | The Splitter config struct |
 
 #### IsWhitelisted
@@ -342,8 +342,8 @@ pub enum QueryMsg {
 {% endtab %}
 {% endtabs %}
 
-| Name | Type | Description |
-| :--- | :--- | :--- |
+| Name    | Type   | Description                                         |
+| ------- | ------ | --------------------------------------------------- |
 | address | String | The address for which to check the whitelist status |
 
 #### IsWhitelisted
@@ -369,7 +369,6 @@ pub struct IsWhitelistedResponse {
 {% endtab %}
 {% endtabs %}
 
-| Name | Type | Description |
-| :--- | :--- | :--- |
+| Name        | Type | Description                        |
+| ----------- | ---- | ---------------------------------- |
 | whitelisted | bool | Whether the address is whitelisted |
-

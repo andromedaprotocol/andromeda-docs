@@ -1,8 +1,8 @@
 ---
-description: The message definitions for the Andromeda Digital Object contract
+description: The message definitions for the Andromeda Token contract
 ---
 
-# Andromeda Digital Object
+# Andromeda Token
 
 ### InstantiateMsg
 
@@ -42,14 +42,14 @@ pub struct InstantiateMsg {
 {% endtab %}
 {% endtabs %}
 
-| Name | Type | Description |
-| :--- | :--- | :--- |
-| name | String | The name of the NFT |
-| symbol | String | The symbol of the NFT |
-| minter | String | The address of the ADO minter |
-| modules | Vec&lt;ModuleDefinition&gt; | A vector of Andromeda Module definitions. The module definitions can be found here. |
-| init\_hook | Option&lt;InitHook&gt; | An optional instantiation hook message, primarily used by the `andromeda_factory` contract |
-| metadata\_limit | Option&lt;u64&gt; | An optional size limit on any metadata assigned to an NFT minted in the contract \(in bytes\) |
+| Name           | Type                   | Description                                                                                 |
+| -------------- | ---------------------- | ------------------------------------------------------------------------------------------- |
+| name           | String                 | The name of the NFT                                                                         |
+| symbol         | String                 | The symbol of the NFT                                                                       |
+| minter         | String                 | The address of the ADO minter                                                               |
+| modules        | Vec\<ModuleDefinition> | A vector of Andromeda Module definitions. The module definitions can be found here.         |
+| init_hook      | Option\<InitHook>      | An optional instantiation hook message, primarily used by the `andromeda_factory` contract  |
+| metadata_limit | Option\<u64>           | An optional size limit on any metadata assigned to an NFT minted in the contract (in bytes) |
 
 ### ExecuteMsg
 
@@ -89,13 +89,13 @@ pub enum ExecuteMsg {
 {% endtab %}
 {% endtabs %}
 
-| Name | Type | Description |
-| :--- | :--- | :--- |
-| token\_id | String | The id of the ADO to be minted |
-| owner | String | The address of the ADO owner |
-| name | String | The ADO's name |
-| description | Option&lt;String&gt; | An optional description of the ADO |
-| metadata | Option&lt;String&gt; | An option string field storing some metadata related to the ADO |
+| Name        | Type            | Description                                                     |
+| ----------- | --------------- | --------------------------------------------------------------- |
+| token_id    | String          | The id of the ADO to be minted                                  |
+| owner       | String          | The address of the ADO owner                                    |
+| name        | String          | The ADO's name                                                  |
+| description | Option\<String> | An optional description of the ADO                              |
+| metadata    | Option\<String> | An option string field storing some metadata related to the ADO |
 
 #### TransferNft
 
@@ -125,10 +125,10 @@ pub enum ExecuteMsg {
 {% endtab %}
 {% endtabs %}
 
-| Name | Type | Description |
-| :--- | :--- | :--- |
-| recipient | String | The address of the recipient |
-| token\_id | String | The id of the ADO to be transferred |
+| Name      | Type   | Description                         |
+| --------- | ------ | ----------------------------------- |
+| recipient | String | The address of the recipient        |
+| token_id  | String | The id of the ADO to be transferred |
 
 #### SendNft
 
@@ -160,11 +160,11 @@ pub enum ExecuteMsg {
 {% endtab %}
 {% endtabs %}
 
-| Name | Type | Description |
-| :--- | :--- | :--- |
-| contract | String | The address of the receiving contract |
-| token\_id | String | The id of the ADO to be sent |
-| msg | Binary | A message to be sent to the receiving contract |
+| Name     | Type   | Description                                    |
+| -------- | ------ | ---------------------------------------------- |
+| contract | String | The address of the receiving contract          |
+| token_id | String | The id of the ADO to be sent                   |
+| msg      | Binary | A message to be sent to the receiving contract |
 
 #### Approve
 
@@ -196,11 +196,11 @@ pub enum ExecuteMsg {
 {% endtab %}
 {% endtabs %}
 
-| Name | Type | Description |
-| :--- | :--- | :--- |
-| spender | String | The address to be authorised as an operator |
-| token\_id | String | The id of the ADO for which to assign the `spender` as an operator |
-| expires | Option&lt;Expiration&gt; | An optional expiration for the approval |
+| Name     | Type                | Description                                                        |
+| -------- | ------------------- | ------------------------------------------------------------------ |
+| spender  | String              | The address to be authorised as an operator                        |
+| token_id | String              | The id of the ADO for which to assign the `spender` as an operator |
+| expires  | Option\<Expiration> | An optional expiration for the approval                            |
 
 #### Revoke
 
@@ -230,10 +230,10 @@ pub enum ExecuteMsg {
 {% endtab %}
 {% endtabs %}
 
-| Name | Type | Description |
-| :--- | :--- | :--- |
-| spender | String | The address of the operator for which to revoke privileges |
-| token\_id | String | The id of the ADO for which to revoke operator privileges |
+| Name     | Type   | Description                                                |
+| -------- | ------ | ---------------------------------------------------------- |
+| spender  | String | The address of the operator for which to revoke privileges |
+| token_id | String | The id of the ADO for which to revoke operator privileges  |
 
 #### ApproveAll
 
@@ -265,10 +265,10 @@ pub enum ExecuteMsg {
 {% endtab %}
 {% endtabs %}
 
-| Name | Type | Description |
-| :--- | :--- | :--- |
-| operator | String | The address to be authorised as an operator |
-| expires | Option&lt;Expiration&gt; | An optional expiration for the approval |
+| Name     | Type                | Description                                 |
+| -------- | ------------------- | ------------------------------------------- |
+| operator | String              | The address to be authorised as an operator |
+| expires  | Option\<Expiration> | An optional expiration for the approval     |
 
 #### RevokeAll
 
@@ -296,8 +296,8 @@ pub enum ExecuteMsg {
 {% endtab %}
 {% endtabs %}
 
-| Name | Type | Description |
-| :--- | :--- | :--- |
+| Name     | Type   | Description                                                |
+| -------- | ------ | ---------------------------------------------------------- |
 | operator | String | The address of the operator for which to revoke privileges |
 
 #### TransferAgreement
@@ -332,12 +332,12 @@ pub enum ExecuteMsg {
 {% endtab %}
 {% endtabs %}
 
-| Name | Type | Description |
-| :--- | :--- | :--- |
-| token\_id | String | The id of the ADO for which the agreement is made |
-| denom | String | The agreed amount's denomination |
-| amount | u128 | The agreed transfer amount |
-| purchaser | String | The address of the transfer purchaser |
+| Name      | Type   | Description                                       |
+| --------- | ------ | ------------------------------------------------- |
+| token_id  | String | The id of the ADO for which the agreement is made |
+| denom     | String | The agreed amount's denomination                  |
+| amount    | u128   | The agreed transfer amount                        |
+| purchaser | String | The address of the transfer purchaser             |
 
 #### Whitelist
 
@@ -371,10 +371,10 @@ pub enum ExecuteMsg {
 {% endtab %}
 {% endtabs %}
 
-| Name | Type | Description |
-| :--- | :--- | :--- |
-| address | String | The address for which to modify whitelist status |
-| whitelisted | bool | Whether or not the address is to be whitelisted |
+| Name        | Type   | Description                                      |
+| ----------- | ------ | ------------------------------------------------ |
+| address     | String | The address for which to modify whitelist status |
+| whitelisted | bool   | Whether or not the address is to be whitelisted  |
 
 #### Blacklist
 
@@ -408,10 +408,10 @@ pub enum ExecuteMsg {
 {% endtab %}
 {% endtabs %}
 
-| Name | Type | Description |
-| :--- | :--- | :--- |
-| address | String | The address for which to modify blacklist status |
-| blacklisted | bool | Whether or not the address is to be blacklisted |
+| Name        | Type   | Description                                      |
+| ----------- | ------ | ------------------------------------------------ |
+| address     | String | The address for which to modify blacklist status |
+| blacklisted | bool   | Whether or not the address is to be blacklisted  |
 
 ### QueryMsg
 
@@ -441,9 +441,9 @@ pub enum QueryMsg {
 {% endtab %}
 {% endtabs %}
 
-| Name | Type | Description |
-| :--- | :--- | :--- |
-| token\_id | String | The id of the queried ADO |
+| Name     | Type   | Description               |
+| -------- | ------ | ------------------------- |
+| token_id | String | The id of the queried ADO |
 
 #### OwnerOfResponse
 
@@ -478,10 +478,10 @@ pub struct OwnerOfResponse {
 {% endtab %}
 {% endtabs %}
 
-| Name | Type | Description |
-| :--- | :--- | :--- |
-| owner | String | The owner of the queried ADO |
-| approvals | Vec&lt;Approval&gt; | An array of all approvals for the ADO |
+| Name      | Type           | Description                           |
+| --------- | -------------- | ------------------------------------- |
+| owner     | String         | The owner of the queried ADO          |
+| approvals | Vec\<Approval> | An array of all approvals for the ADO |
 
 #### ApprovedForAll
 
@@ -514,12 +514,12 @@ pub enum QueryMsg {
 {% endtab %}
 {% endtabs %}
 
-| Name | Type | Description |
-| :--- | :--- | :--- |
-| owner | String | The address of the owner for which to query operators |
-| include\_expired | Option&lt;bool&gt; | Whether to include any expired approvals. Defaults to false \(if not defined in message\). |
-| limit | Option&lt;u64&gt; | An optional limit on how many approvals are returned |
-| start\_after | Option&lt;String&gt; | An optional address for which to start after, used for pagination. |
+| Name            | Type            | Description                                                                              |
+| --------------- | --------------- | ---------------------------------------------------------------------------------------- |
+| owner           | String          | The address of the owner for which to query operators                                    |
+| include_expired | Option\<bool>   | Whether to include any expired approvals. Defaults to false (if not defined in message). |
+| limit           | Option\<u64>    | An optional limit on how many approvals are returned                                     |
+| start_after     | Option\<String> | An optional address for which to start after, used for pagination.                       |
 
 #### ApprovedForAllResponse
 
@@ -549,9 +549,9 @@ pub struct ApprovedForAllResponse {
 {% endtab %}
 {% endtabs %}
 
-| Name | Type | Description |
-| :--- | :--- | :--- |
-| approvals | Vec&lt;Approval&gt; | An array of all approvals for the given owner address |
+| Name      | Type           | Description                                           |
+| --------- | -------------- | ----------------------------------------------------- |
+| approvals | Vec\<Approval> | An array of all approvals for the given owner address |
 
 #### NumTokens
 
@@ -596,9 +596,9 @@ pub struct NumTokensResponse {
 {% endtab %}
 {% endtabs %}
 
-| Name | Type | Description |
-| :--- | :--- | :--- |
-| count | u64 | The amount of ADOs minted by the contract |
+| Name  | Type | Description                               |
+| ----- | ---- | ----------------------------------------- |
+| count | u64  | The amount of ADOs minted by the contract |
 
 #### NftInfo
 
@@ -626,9 +626,9 @@ pub enum QueryMsg {
 {% endtab %}
 {% endtabs %}
 
-| Name | Type | Description |
-| :--- | :--- | :--- |
-| token\_id | String | The id of the token |
+| Name     | Type   | Description         |
+| -------- | ------ | ------------------- |
+| token_id | String | The id of the token |
 
 #### NftInfoResponse
 
@@ -654,11 +654,11 @@ pub struct NftInfoResponse {
 {% endtab %}
 {% endtabs %}
 
-| Name | Type | Description |
-| :--- | :--- | :--- |
-| name | String | The name of the ADO |
-| description | String | The description of the ADO |
-| image | Option&lt;String&gt; | A URI pointing to a resource with mime type image/\* representing the asset to which this NFT represents. \(Taken from [here](https://github.com/CosmWasm/cw-plus/blob/main/packages/cw721/src/query.rs)\) |
+| Name        | Type            | Description                                                                                                                                                                                              |
+| ----------- | --------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| name        | String          | The name of the ADO                                                                                                                                                                                      |
+| description | String          | The description of the ADO                                                                                                                                                                               |
+| image       | Option\<String> | A URI pointing to a resource with mime type image/\* representing the asset to which this NFT represents. (Taken from [here](https://github.com/CosmWasm/cw-plus/blob/main/packages/cw721/src/query.rs)) |
 
 #### AllNftInfo
 
@@ -686,9 +686,9 @@ pub enum QueryMsg {
 {% endtab %}
 {% endtabs %}
 
-| Name | Type | Description |
-| :--- | :--- | :--- |
-| token\_id | String | The id of the ADO |
+| Name     | Type   | Description       |
+| -------- | ------ | ----------------- |
+| token_id | String | The id of the ADO |
 
 #### AllNftInfoResponse
 
@@ -725,10 +725,10 @@ pub struct AllNftInfoResponse {
 {% endtab %}
 {% endtabs %}
 
-| Name | Type | Description |
-| :--- | :--- | :--- |
+| Name   | Type            | Description                            |
+| ------ | --------------- | -------------------------------------- |
 | access | OwnerOfResponse | The owner of the ADO and any approvals |
-| info | NFtInfoResponse | The given ADO's stored information |
+| info   | NFtInfoResponse | The given ADO's stored information     |
 
 #### NftTransferAgreementInfo
 
@@ -756,9 +756,9 @@ pub enum QueryMsg {
 {% endtab %}
 {% endtabs %}
 
-| Name | Type | Description |
-| :--- | :--- | :--- |
-| token\_id | String | The id of the ADO |
+| Name     | Type   | Description       |
+| -------- | ------ | ----------------- |
+| token_id | String | The id of the ADO |
 
 #### NftTransferAgreementResponse
 
@@ -783,9 +783,9 @@ pub struct NftTransferAgreementResponse {
 {% endtab %}
 {% endtabs %}
 
-| Name | Type | Description |
-| :--- | :--- | :--- |
-| agreement | Option&lt;TransferAgreement&gt; | The transfer agreement for the given ADO, undefined if no agreement set. |
+| Name      | Type                       | Description                                                              |
+| --------- | -------------------------- | ------------------------------------------------------------------------ |
+| agreement | Option\<TransferAgreement> | The transfer agreement for the given ADO, undefined if no agreement set. |
 
 #### NftMetadata
 
@@ -813,9 +813,9 @@ pub enum QueryMsg {
 {% endtab %}
 {% endtabs %}
 
-| Name | Type | Description |
-| :--- | :--- | :--- |
-| token\_id | String | The id of the ADO |
+| Name     | Type   | Description       |
+| -------- | ------ | ----------------- |
+| token_id | String | The id of the ADO |
 
 #### NftMetadataResponse
 
@@ -837,9 +837,9 @@ pub struct NftMetadataResponse{
 {% endtab %}
 {% endtabs %}
 
-| Name | Type | Description |
-| :--- | :--- | :--- |
-| metadata | Option&lt;String&gt; | The assigned metadata for the ADO |
+| Name     | Type            | Description                       |
+| -------- | --------------- | --------------------------------- |
+| metadata | Option\<String> | The assigned metadata for the ADO |
 
 #### ContractInfo
 
@@ -885,8 +885,7 @@ pub struct CotractInfoResponse {
 {% endtab %}
 {% endtabs %}
 
-| Name | Type | Description |
-| :--- | :--- | :--- |
-| name | String | The name of the contract |
+| Name   | Type   | Description                         |
+| ------ | ------ | ----------------------------------- |
+| name   | String | The name of the contract            |
 | symbol | String | The assigned symbol of the contract |
-
