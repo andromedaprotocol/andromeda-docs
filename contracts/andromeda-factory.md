@@ -1,5 +1,5 @@
 ---
-description: The message definitions for the Andromeda Factory contract
+description: A factory contract for generating Andromeda Digital Objects
 ---
 
 # Andromeda Factory
@@ -12,6 +12,8 @@ description: The message definitions for the Andromeda Factory contract
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
 pub struct InstantiateMsg {
     pub token_code_id: u64,
+    pub receipt_code_id: u64,
+    pub address_list_code_id: u64,
 }
 ```
 {% endtab %}
@@ -19,15 +21,19 @@ pub struct InstantiateMsg {
 {% tab title="JSON" %}
 ```javascript
 {
-    "token_code_id": 1
+    "token_code_id": 1,
+    "receipt_code_id": 2,
+    "address_list_code_id": 3
 }
 ```
 {% endtab %}
 {% endtabs %}
 
-| Name | Type | Description |
-| :--- | :--- | :--- |
-| token\_code\_id | String | The code ID for the token contract |
+| Name                 | Type | Description                                                            |
+| -------------------- | ---- | ---------------------------------------------------------------------- |
+| token_code_id        | u64  | The code ID for the token contract                                     |
+| receipt_code_id      | u64  | The code ID for the [receipt](andromeda-receipts.md) contract          |
+| address_list_code_id | u64  | The code ID for the [address list](andromeda-address-list.md) contract |
 
 ### ExecuteMsg
 
@@ -76,57 +82,19 @@ pub enum ExecuteMsg {
 {% endtab %}
 {% endtabs %}
 
-| Name | Type | Description |
-| :--- | :--- | :--- |
-| name | String | The token's name |
-| symbol | String | The token's symbol |
-| extensions | Vec&lt;ModuleDefinition&gt; | Any Andromeda Modules to be attached to the token |
-| metadata\_limit | Option&lt;u64&gt; | An optional limit on the size of any metadata assigned to a minted token in the contract \(in bytes\) |
-
-#### TokenCreationHook
-
-A hook message used by the contract to assign an address to a given symbol.
-
-{% hint style="info" %}
-Called automatically upon sending a `Create` message in order to register the newly instantiated contract's address.
-{% endhint %}
-
-{% tabs %}
-{% tab title="Rust" %}
-```rust
-#[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
-pub enum ExecuteMsg {
-    TokenCreationHook {
-        symbol: String,
-        creator: String,
-    }
-}
-```
-{% endtab %}
-
-{% tab title="JSON" %}
-```javascript
-{
-    "create": {
-        "symbol": "ET",
-        "creator": "terra1..."
-    }
-}
-```
-{% endtab %}
-{% endtabs %}
-
-| Name | Type | Description |
-| :--- | :--- | :--- |
-| symbol | String | The token's symbol |
-| creator | String | The address for the creator of the token |
+| Name           | Type                   | Description                                                                                         |
+| -------------- | ---------------------- | --------------------------------------------------------------------------------------------------- |
+| name           | String                 | The token's name                                                                                    |
+| symbol         | String                 | The token's symbol                                                                                  |
+| extensions     | Vec\<ModuleDefinition> | Any Andromeda Modules to be attached to the token                                                   |
+| metadata_limit | Option\<u64>           | An optional limit on the size of any metadata assigned to a minted token in the contract (in bytes) |
 
 #### UpdateAddress
 
 Updates the contract address for a given symbol.
 
 {% hint style="danger" %}
-Only available to the token creator.
+Only available to the token creator or contract owner.
 {% endhint %}
 
 {% tabs %}
@@ -154,10 +122,14 @@ pub enum ExecuteMsg {
 {% endtab %}
 {% endtabs %}
 
-| Name | Type | Description |
-| :--- | :--- | :--- |
-| symbol | String | The token's symbol |
-| new\_address | String | The new contract address |
+| Name        | Type   | Description              |
+| ----------- | ------ | ------------------------ |
+| symbol      | String | The token's symbol       |
+| new_address | String | The new contract address |
+
+#### UpdateOwner
+
+See [Ownership](ownership.md#executemsg).
 
 ### QueryMsg
 
@@ -187,8 +159,8 @@ pub enum QueryMsg {
 {% endtab %}
 {% endtabs %}
 
-| Name | Type | Description |
-| :--- | :--- | :--- |
+| Name   | Type   | Description                                     |
+| ------ | ------ | ----------------------------------------------- |
 | symbol | String | The token symbol for which to query the address |
 
 #### AddressResponse
@@ -212,7 +184,10 @@ pub struct AddressResponse {
 {% endtab %}
 {% endtabs %}
 
-| Name | Type | Description |
-| :--- | :--- | :--- |
+| Name    | Type   | Description                              |
+| ------- | ------ | ---------------------------------------- |
 | address | String | The contract address of the given symbol |
 
+#### ContractOwner
+
+See [Ownership](ownership.md#querymsg).
