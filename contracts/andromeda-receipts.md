@@ -57,7 +57,6 @@ Mints a new receipt. Only available to the contract owner or a moderator.
 {% tab title="Rust" %}
 ```rust
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
-#[serde(rename_all = "snake_case")]
 pub enum ExecuteMsg {
     StoreReceipt {
         receipt: Receipt,

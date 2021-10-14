@@ -4,7 +4,7 @@ description: A factory contract for generating Andromeda Digital Objects
 
 # Andromeda Factory
 
-### InstantiateMsg
+## InstantiateMsg
 
 {% tabs %}
 {% tab title="Rust" %}
@@ -35,9 +35,9 @@ pub struct InstantiateMsg {
 | receipt_code_id      | u64  | The code ID for the [receipt](andromeda-receipts.md) contract          |
 | address_list_code_id | u64  | The code ID for the [address list](andromeda-address-list.md) contract |
 
-### ExecuteMsg
+## ExecuteMsg
 
-#### Create
+### Create
 
 Creates a new token contract using the defined  `token_code_id`. The address of the instantiated contract is then registered under the token's symbol.
 
@@ -89,11 +89,11 @@ pub enum ExecuteMsg {
 | extensions     | Vec\<ModuleDefinition> | Any Andromeda Modules to be attached to the token                                                   |
 | metadata_limit | Option\<u64>           | An optional limit on the size of any metadata assigned to a minted token in the contract (in bytes) |
 
-#### UpdateAddress
+### UpdateAddress
 
-Updates the contract address for a given symbol.
+Updates the contract address for a given symbol. 
 
-{% hint style="danger" %}
+{% hint style="info" %}
 Only available to the token creator or contract owner.
 {% endhint %}
 
@@ -127,13 +127,13 @@ pub enum ExecuteMsg {
 | symbol      | String | The token's symbol       |
 | new_address | String | The new contract address |
 
-#### UpdateOwner
+### UpdateOwner
 
 See [Ownership](ownership.md#executemsg).
 
-### QueryMsg
+## QueryMsg
 
-#### GetAddress
+### GetAddress
 
 Query the address of a given symbol.
 
@@ -188,6 +188,6 @@ pub struct AddressResponse {
 | ------- | ------ | ---------------------------------------- |
 | address | String | The contract address of the given symbol |
 
-#### ContractOwner
+### ContractOwner
 
 See [Ownership](ownership.md#querymsg).

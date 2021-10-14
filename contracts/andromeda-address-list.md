@@ -17,7 +17,7 @@ pub struct AddressList {
 | ---------- | ------------ | ---------------------------------------------------------------------- |
 | moderators | Vec\<String> | A list of addresses that are authorised to interact with the contract. |
 
-### InstantiateMsg
+## InstantiateMsg
 
 {% tabs %}
 {% tab title="Rust" %}
@@ -42,9 +42,9 @@ pub struct InstantiateMsg {
 | ---------- | ------------ | ---------------------------------------------------------------------- |
 | moderators | Vec\<String> | A list of addresses that are authorised to interact with the contract. |
 
-### ExecuteMsg
+## ExecuteMsg
 
-#### AddAddress
+### AddAddress
 
 Adds an address to the address list.
 
@@ -73,7 +73,7 @@ pub enum ExecuteMsg {
 | ------- | ------ | ------------------------------- |
 | address | String | The address to add to the list. |
 
-#### RemoveAddress
+### RemoveAddress
 
 Removes an address from the address list.
 
@@ -102,13 +102,13 @@ pub enum ExecuteMsg {
 | ------- | ------ | ------------------------------------ |
 | address | String | The address to remove from the list. |
 
-#### UpdateOwner
+### UpdateOwner
 
 See [Ownership](ownership.md#executemsg).
 
-### QueryMsg
+## QueryMsg
 
-#### IncludesAddress
+### IncludesAddress
 
 Query if an address is included in the address list.
 
@@ -163,6 +163,6 @@ pub struct IncludesAddressResponse {
 | -------- | ---- | -------------------------------- |
 | included | Bool | Whether the address is included. |
 
-#### ContractOwner
+### ContractOwner
 
 See [Ownership](ownership.md#querymsg).

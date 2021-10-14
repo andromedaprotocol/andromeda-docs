@@ -4,7 +4,7 @@ description: An ADO contract to split sent funds amongst predefined addresses.
 
 # Andromeda Splitter
 
-### Splitter
+## Splitter
 
 The splitter's config is stored in a basic struct.
 
@@ -17,7 +17,7 @@ pub struct Splitter {
 }
 ```
 
-### AddressPercent
+## AddressPercent
 
 The splitter uses a basic array of structs to determine recipients and how the funds are divided.
 
@@ -49,7 +49,7 @@ To be a valid recipient list the array of `AddressPercent` structs must meet the
 * Have percentage amounts less than or equalling 100
 {% endhint %}
 
-### InstantiateMsg
+## InstantiateMsg
 
 {% tabs %}
 {% tab title="Rust" %}
@@ -79,9 +79,9 @@ pub struct InstantiateMsg {
 | address_list | Option<[AddressListModule](../modules/address-list/)>       | An optional address list module for limiting authorised addresses.      |
 | recipients   | Vec<[AddressPercent](andromeda-splitter.md#addresspercent)> | The recipient list of the splitter. Can be updated after instantiation. |
 
-### ExecuteMsg
+## ExecuteMsg
 
-#### UpdateRecipients
+### UpdateRecipients
 
 Updates the recipients of the splitter contract.
 
@@ -118,7 +118,7 @@ pub enum ExecuteMsg {
 | ---------- | ----------------------------------------------------------- | ----------------------------------- |
 | recipients | Vec<[AddressPercent](andromeda-splitter.md#addresspercent)> | The new list of recipient addresses |
 
-#### UpdateLock
+### UpdateLock
 
 Sets a lock on the contract, disallowing editing of any other config fields.
 
@@ -149,7 +149,7 @@ pub enum ExecuteMsg {
 | ---- | ---- | -------------------------------------- |
 | lock | bool | Whether the contract should be locked. |
 
-#### UpdateAddressList
+### UpdateAddressList
 
 Updates the `address_list` config field.
 
@@ -183,7 +183,7 @@ pub enum ExecuteMsg {
 | ------------ | --------------------------------------------- | ------------------------------------------------------------------ |
 | address_list | [AddressListModule](../modules/address-list/) | An optional address list module for limiting authorised addresses. |
 
-**Send**
+### **Send**
 
 Send funds to the contract to be split amongst the recipients. 
 
@@ -207,13 +207,13 @@ pub enum ExecuteMsg {
 {% endtab %}
 {% endtabs %}
 
-#### UpdateOwner
+### UpdateOwner
 
 See [Ownership](ownership.md#executemsg).
 
-### QueryMsg
+## QueryMsg
 
-#### GetSplitterConfig
+### GetSplitterConfig
 
 Query the address of a given symbol.
 
@@ -269,6 +269,6 @@ pub struct GetSplitterConfigResponse {
 | config                | [Splitter](andromeda-splitter.md#splitter) | The Splitter config struct                              |
 | address_list_contract | Option\<String>                            | The contract address for the address list if it exists. |
 
-#### Contract Owner
+### Contract Owner
 
 See [Ownership](ownership.md#querymsg).

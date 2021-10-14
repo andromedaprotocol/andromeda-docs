@@ -4,7 +4,7 @@ description: The message definitions for the Andromeda Token contract
 
 # Andromeda Token
 
-### InstantiateMsg
+## InstantiateMsg
 
 {% tabs %}
 {% tab title="Rust" %}
@@ -49,9 +49,9 @@ pub struct InstantiateMsg {
 | modules        | Vec\<ModuleDefinition> | A vector of Andromeda Module definitions. The module definitions can be found here.         |
 | metadata_limit | Option\<u64>           | An optional size limit on any metadata assigned to an NFT minted in the contract (in bytes) |
 
-### ExecuteMsg
+## ExecuteMsg
 
-#### MintMsg
+### MintMsg
 
 Mints a new ADO, only available to the defined `minter` in the contract's `InstantiateMsg`
 
@@ -97,7 +97,7 @@ pub enum ExecuteMsg {
 | metadata    | Option\<String> | An option string field storing some metadata related to the ADO |
 | image       | Option\<String> | The CW721 image field                                           |
 
-#### TransferNft
+### TransferNft
 
 A CW721 compliant transfer method. Transfers ownership of a minted token. Only available to the ADO owner, an approved operator or the purchaser in a `TransferAgreement` for the given ADO.
 
@@ -130,7 +130,7 @@ pub enum ExecuteMsg {
 | recipient | String | The address of the recipient        |
 | token_id  | String | The id of the ADO to be transferred |
 
-#### SendNft
+### SendNft
 
 A CW721 compliant send method. Sends ownership of a minted token to an external contract. Only available to the ADO owner or an approved operator for the given ADO.
 
@@ -166,7 +166,7 @@ pub enum ExecuteMsg {
 | token_id | String | The id of the ADO to be sent                   |
 | msg      | Binary | A message to be sent to the receiving contract |
 
-#### Approve
+### Approve
 
 A CW721 compliant approve method. Approves a given address as an operator for the ADO, allowing them to transfer, burn or archive the ADO. Only available to the ADO owner.
 
@@ -202,7 +202,7 @@ pub enum ExecuteMsg {
 | token_id | String              | The id of the ADO for which to assign the `spender` as an operator |
 | expires  | Option\<Expiration> | An optional expiration for the approval                            |
 
-#### Revoke
+### Revoke
 
 A CW721 compliant revoke method. Revokes operator privileges for a given address. Only available to the ADO owner.
 
@@ -235,7 +235,7 @@ pub enum ExecuteMsg {
 | spender  | String | The address of the operator for which to revoke privileges |
 | token_id | String | The id of the ADO for which to revoke operator privileges  |
 
-#### ApproveAll
+### ApproveAll
 
 A CW721 compliant approve all method. Approves a given address as an operator for all ADOs owned by the sender.
 
@@ -270,7 +270,7 @@ pub enum ExecuteMsg {
 | operator | String              | The address to be authorised as an operator |
 | expires  | Option\<Expiration> | An optional expiration for the approval     |
 
-#### RevokeAll
+### RevokeAll
 
 A CW721 compliant revoke all method. Revokes an operator's privileges for any ADOs owned by the sender.
 
@@ -300,7 +300,7 @@ pub enum ExecuteMsg {
 | -------- | ------ | ---------------------------------------------------------- |
 | operator | String | The address of the operator for which to revoke privileges |
 
-#### TransferAgreement
+### TransferAgreement
 
 Allows an ADO owner to generate a transfer agreement for an owned ADO. This agreement allows the purchaser to transfer ownership of the ADO provided the correct funds are provided in a `TransferNft` message from the purchaser. The current owner of the ADO will receive the sent funds minus any required financial payments assigned to the contract via modules.
 
@@ -339,13 +339,13 @@ pub enum ExecuteMsg {
 | amount    | u128   | The agreed transfer amount                        |
 | purchaser | String | The address of the transfer purchaser             |
 
-#### UpdateOwner
+### UpdateOwner
 
 See [Ownership](ownership.md#executemsg).
 
-### QueryMsg
+## QueryMsg
 
-#### OwnerOf
+### OwnerOf
 
 A CW721 compliant "owner of" query. Queries the current owner of a given ADO id.
 
@@ -413,7 +413,7 @@ pub struct OwnerOfResponse {
 | owner     | String         | The owner of the queried ADO          |
 | approvals | Vec\<Approval> | An array of all approvals for the ADO |
 
-#### ApprovedForAll
+### ApprovedForAll
 
 A CW721 compliant "approved for all" query. Queries any operators for a given address.
 
@@ -483,7 +483,7 @@ pub struct ApprovedForAllResponse {
 | --------- | -------------- | ----------------------------------------------------- |
 | approvals | Vec\<Approval> | An array of all approvals for the given owner address |
 
-#### NumTokens
+### NumTokens
 
 A CW721 compliant "num tokens" query. Queries the amount of ADOs minted by the contract.
 
@@ -530,7 +530,7 @@ pub struct NumTokensResponse {
 | ----- | ---- | ----------------------------------------- |
 | count | u64  | The amount of ADOs minted by the contract |
 
-#### NftInfo
+### NftInfo
 
 A CW721 compliant "nft info" query. Queries the stored info of an ADO.
 
@@ -604,7 +604,7 @@ pub struct NftInfoResponse {
 | image       | Option\<String> | A URI pointing to a resource with mime type image/\* representing the asset to which this NFT represents. (Taken from [here](https://github.com/CosmWasm/cw-plus/blob/main/packages/cw721/src/query.rs)) |
 | extension   | Object          | Extended metadata related to the token.                                                                                                                                                                  |
 
-#### AllNftInfo
+### AllNftInfo
 
 A CW721 compliant "all nft info" query. Queries all stored info of an ADO.
 
@@ -682,7 +682,7 @@ pub struct AllNftInfoResponse {
 | access | OwnerOfResponse | The owner of the ADO and any approvals |
 | info   | NFtInfoResponse | The given ADO's stored information     |
 
-#### ModuleInfo
+### ModuleInfo
 
 Queries module definitions for the contract.
 
@@ -740,7 +740,7 @@ pub struct ModuleInfoResponse {
 | ------- | ---------------------------------------------- | ---------------------------------------- |
 | modules | Vec<[ModuleDefinition](../modules/modules.md)> | The module definitions for the contract. |
 
-#### ModuleContracts
+### ModuleContracts
 
 Queries the assigned contracts for any modules.
 
@@ -804,7 +804,7 @@ pub struct ModuleContractsResponse {
 | --------- | -------------------- | ------------------------------------------------------------------------------------ |
 | contracts | Vec\<ModuleContract> | A list of modules and their contract addresses (if they have an associated contract) |
 
-#### ContractInfo
+### ContractInfo
 
 Queries the  metadata field for a given token.
 

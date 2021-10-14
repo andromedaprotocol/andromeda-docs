@@ -17,7 +17,7 @@ pub struct Escrow {
 }
 ```
 
-### InstantiateMsg
+## InstantiateMsg
 
 {% tabs %}
 {% tab title="Rust" %}
@@ -61,9 +61,9 @@ pub struct InstantiateMsg {
 | ------------ | ----------------------------------------------------- | ----------------------------------------------------------------- |
 | address_list | Option<[AddressListModule](../modules/address-list/)> | An optional address list to use when calling any execute methods. |
 
-### ExecuteMsg
+## ExecuteMsg
 
-#### HoldFunds
+### HoldFunds
 
 Holds sent funds in escrow.
 
@@ -99,7 +99,7 @@ pub enum ExecuteMsg {
 | recipient  | Option\<String> | Optional recipient address. If not set defaults to the sender. |
 | expiration | Expiration      | When the funds can be released.                                |
 
-#### ReleaseFunds
+### ReleaseFunds
 
 Releases any held funds for the sender.
 
@@ -123,13 +123,13 @@ pub enum ExecuteMsg {
 {% endtab %}
 {% endtabs %}
 
-#### UpdateOwner
+### UpdateOwner
 
 See [Ownership](ownership.md#executemsg).
 
-### QueryMsg
+## QueryMsg
 
-#### GetLockedFunds
+### GetLockedFunds
 
 Query any held funds for an address.
 
@@ -192,7 +192,7 @@ pub struct GetLockedFundsResponse {
 | ----- | -------------------------------------- | --------------- |
 | funds | [Escrow](andromeda-timelock.md#escrow) | The held funds. |
 
-#### GetTimelockConfig
+### GetTimelockConfig
 
 Queries the contract's configuration.
 
@@ -246,6 +246,6 @@ pub struct GetTimelockConfigResponse {
 | address_list          | Option<[AddressListModule](../modules/address-list/#definition)> | The `AddressList` module definition.                 |
 | address_list_contract | Option\<String>                                                  | The contract address for the `AddressList` contract. |
 
-#### ContractOwner
+### ContractOwner
 
 See [Ownership](ownership.md#querymsg).
