@@ -45,7 +45,7 @@ pub struct InstantiateMsg {
 | -------------- | ---------------------- | ------------------------------------------------------------------------------------------- |
 | name           | String                 | The name of the NFT                                                                         |
 | symbol         | String                 | The symbol of the NFT                                                                       |
-| minter         | String                 | The address of the ADO minter                                                               |
+| minter         | String                 | The address of the ADO minter. Will be assigned as the [contract owner](ownership.md).      |
 | modules        | Vec\<ModuleDefinition> | A vector of Andromeda Module definitions. The module definitions can be found here.         |
 | metadata_limit | Option\<u64>           | An optional size limit on any metadata assigned to an NFT minted in the contract (in bytes) |
 

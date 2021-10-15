@@ -159,7 +159,7 @@ Updates the `address_list` config field.
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
 pub enum ExecuteMsg {
    UpdateAddressList { 
-      address_list: AddressListModule 
+      address_list: Option<AddressListModule>
    },
 }
 ```
@@ -179,9 +179,9 @@ pub enum ExecuteMsg {
 {% endtab %}
 {% endtabs %}
 
-| Name         | Type                                          | Description                                                        |
-| ------------ | --------------------------------------------- | ------------------------------------------------------------------ |
-| address_list | [AddressListModule](../modules/address-list/) | An optional address list module for limiting authorised addresses. |
+| Name         | Type                                                  | Description                                                        |
+| ------------ | ----------------------------------------------------- | ------------------------------------------------------------------ |
+| address_list | Option<[AddressListModule](../modules/address-list/)> | An optional address list module for limiting authorised addresses. |
 
 ### **Send**
 

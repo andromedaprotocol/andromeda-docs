@@ -94,7 +94,7 @@ pub enum ExecuteMsg {
 Updates the contract address for a given symbol. 
 
 {% hint style="info" %}
-Only available to the token creator or contract owner.
+Only available to the ADO owner or contract owner.
 {% endhint %}
 
 {% tabs %}
@@ -126,6 +126,50 @@ pub enum ExecuteMsg {
 | ----------- | ------ | ------------------------ |
 | symbol      | String | The token's symbol       |
 | new_address | String | The new contract address |
+
+### UpdateCodeId
+
+Updates the contract address for a given symbol. 
+
+{% hint style="warning" %}
+Only available to the contract owner.
+
+
+
+One of the code IDs must be provided.
+{% endhint %}
+
+{% tabs %}
+{% tab title="Rust" %}
+```rust
+#[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
+pub enum ExecuteMsg {
+    UpdateCodeId {
+        receipt_code_id: Option<u64>,
+        address_list_code_id: Option<u64>,
+        token_code_id: Option<u64>,
+    },
+}
+```
+{% endtab %}
+
+{% tab title="JSON" %}
+```javascript
+{
+    "update_code_id": {
+        "receipt_code_id": 1,
+        "address_list_code_id": 2,
+    }
+}
+```
+{% endtab %}
+{% endtabs %}
+
+| Name                 | Type         | Description                                                                       |
+| -------------------- | ------------ | --------------------------------------------------------------------------------- |
+| receipt_code_id      | Option\<u64> | Optional new code ID for the [receipt](andromeda-receipts.md) contracts.          |
+| token_code_id        | Option\<u64> | Optional new code ID for the [token](andromeda-digital-object.md) contracts.      |
+| address_list_code_id | Option\<u64> | Optional new code ID for the [address list](andromeda-address-list.md) contracts. |
 
 ### UpdateOwner
 
@@ -187,6 +231,59 @@ pub struct AddressResponse {
 | Name    | Type   | Description                              |
 | ------- | ------ | ---------------------------------------- |
 | address | String | The contract address of the given symbol |
+
+### CodeIds
+
+Query the address of a given symbol.
+
+{% tabs %}
+{% tab title="Rust" %}
+```rust
+pub enum QueryMsg {
+    CodeIds {}
+}
+```
+{% endtab %}
+
+{% tab title="JSON" %}
+```javascript
+{
+    "code_ids": {}
+}
+```
+{% endtab %}
+{% endtabs %}
+
+#### CodeIdsResponse
+
+{% tabs %}
+{% tab title="Rust" %}
+```rust
+#[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
+pub struct CodeIdsResponse {
+    pub receipt_code_id: u64,
+    pub token_code_id: u64,
+    pub address_list_code_id: u64,
+}
+```
+{% endtab %}
+
+{% tab title="JSON" %}
+```javascript
+{
+    "receipt_code_id": 1,
+    "token_code_id": 2,
+    "address_list_code_id": 3,
+}
+```
+{% endtab %}
+{% endtabs %}
+
+| Name                 | Type | Description                                                         |
+| -------------------- | ---- | ------------------------------------------------------------------- |
+| receipt_code_id      | u64  | The code ID used for [receipt](andromeda-receipts.md) ADOs          |
+| token_code_id        | u64  | The code ID used for [token](andromeda-digital-object.md) ADOs      |
+| address_list_code_id | u64  | The code ID used for [address list](andromeda-address-list.md) ADOs |
 
 ### ContractOwner
 
