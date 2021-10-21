@@ -57,9 +57,9 @@ pub struct InstantiateMsg {
 {% endtab %}
 {% endtabs %}
 
-| Name         | Type                                                  | Description                                                       |
-| ------------ | ----------------------------------------------------- | ----------------------------------------------------------------- |
-| address_list | Option<[AddressListModule](../modules/address-list/)> | An optional address list to use when calling any execute methods. |
+| Name          | Type                                                  | Description                                                       |
+| ------------- | ----------------------------------------------------- | ----------------------------------------------------------------- |
+| address\_list | Option<[AddressListModule](../modules/address-list/)> | An optional address list to use when calling any execute methods. |
 
 ## ExecuteMsg
 
@@ -122,6 +122,40 @@ pub enum ExecuteMsg {
 ```
 {% endtab %}
 {% endtabs %}
+
+### UpdateAddressList
+
+Updates the `address_list` config field.
+
+{% tabs %}
+{% tab title="Rust" %}
+```rust
+#[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
+pub enum ExecuteMsg {
+   UpdateAddressList { 
+      address_list: Option<AddressListModule>
+   },
+}
+```
+{% endtab %}
+
+{% tab title="JSON" %}
+```javascript
+{
+    "updated_address_list": {
+        "address_list": {
+            "code_id": 1,
+            "moderators": ["terra1...", "terra1..."]
+        }
+    }
+}
+```
+{% endtab %}
+{% endtabs %}
+
+| Name          | Type                                                  | Description                                                        |
+| ------------- | ----------------------------------------------------- | ------------------------------------------------------------------ |
+| address\_list | Option<[AddressListModule](../modules/address-list/)> | An optional address list module for limiting authorised addresses. |
 
 ### UpdateOwner
 
@@ -241,10 +275,10 @@ pub struct GetTimelockConfigResponse {
 {% endtab %}
 {% endtabs %}
 
-| Name                  | Type                                                             | Description                                          |
-| --------------------- | ---------------------------------------------------------------- | ---------------------------------------------------- |
-| address_list          | Option<[AddressListModule](../modules/address-list/#definition)> | The `AddressList` module definition.                 |
-| address_list_contract | Option\<String>                                                  | The contract address for the `AddressList` contract. |
+| Name                    | Type                                                             | Description                                          |
+| ----------------------- | ---------------------------------------------------------------- | ---------------------------------------------------- |
+| address\_list           | Option<[AddressListModule](../modules/address-list/#definition)> | The `AddressList` module definition.                 |
+| address\_list\_contract | Option\<String>                                                  | The contract address for the `AddressList` contract. |
 
 ### ContractOwner
 
