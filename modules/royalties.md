@@ -27,7 +27,7 @@ pub struct Royalty {
 {
     "royalty": {
         "rate": {
-            "percent": 2
+            "percent": "2"
         },
         "receivers": ["terra1...", "terra1..."],
         "description": "Some royalty payment to be made to..."
@@ -37,11 +37,11 @@ pub struct Royalty {
 {% endtab %}
 {% endtabs %}
 
-| Name | Type | Description |
-| :--- | :--- | :--- |
-| rate | Rate | The amount to be paid to each receiver upon an agreed transfer. See more [here](https://docs.andromedaprotocol.io/andromeda/modules#rates). |
-| receivers | Vec&lt;String&gt; | An address list of recipients for the royalty fee |
-| description | Option&lt;String&gt; | An optional description of the royalty payment |
+| Name        | Type            | Description                                                                                                                                 |
+| ----------- | --------------- | ------------------------------------------------------------------------------------------------------------------------------------------- |
+| rate        | Rate            | The amount to be paid to each receiver upon an agreed transfer. See more [here](https://docs.andromedaprotocol.io/andromeda/modules#rates). |
+| receivers   | Vec\<String>    | An address list of recipients for the royalty fee                                                                                           |
+| description | Option\<String> | An optional description of the royalty payment                                                                                              |
 
 ## Methods
 
@@ -59,8 +59,8 @@ pub fn calculate_fee(&self, payment: Coin) -> Coin {
 }
 ```
 
-| Name | Type | Description |
-| :--- | :--- | :--- |
+| Name    | Type | Description                             |
+| ------- | ---- | --------------------------------------- |
 | payment | Coin | The amount to calculate the fee against |
 
 ## Hooks
@@ -95,4 +95,3 @@ fn on_agreed_transfer(
 ## Validation
 
 The Royalties module does not have any validation requirements.
-
