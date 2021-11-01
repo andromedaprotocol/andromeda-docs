@@ -29,11 +29,11 @@ pub struct InstantiateMsg {
 {% endtab %}
 {% endtabs %}
 
-| Name                 | Type | Description                                                            |
-| -------------------- | ---- | ---------------------------------------------------------------------- |
-| token_code_id        | u64  | The code ID for the token contract                                     |
-| receipt_code_id      | u64  | The code ID for the [receipt](andromeda-receipts.md) contract          |
-| address_list_code_id | u64  | The code ID for the [address list](andromeda-address-list.md) contract |
+| Name                    | Type | Description                                                            |
+| ----------------------- | ---- | ---------------------------------------------------------------------- |
+| token\_code\_id         | u64  | The code ID for the token contract                                     |
+| receipt\_code\_id       | u64  | The code ID for the [receipt](andromeda-receipts.md) contract          |
+| address\_list\_code\_id | u64  | The code ID for the [address list](andromeda-address-list.md) contract |
 
 ## ExecuteMsg
 
@@ -50,7 +50,6 @@ pub enum ExecuteMsg {
         name: String,
         symbol: String,
         modules: Vec<ModuleDefinition>,
-        metadata_limit: Option<u64>
     }
 }
 ```
@@ -82,16 +81,15 @@ pub enum ExecuteMsg {
 {% endtab %}
 {% endtabs %}
 
-| Name           | Type                   | Description                                                                                         |
-| -------------- | ---------------------- | --------------------------------------------------------------------------------------------------- |
-| name           | String                 | The token's name                                                                                    |
-| symbol         | String                 | The token's symbol                                                                                  |
-| extensions     | Vec\<ModuleDefinition> | Any Andromeda Modules to be attached to the token                                                   |
-| metadata_limit | Option\<u64>           | An optional limit on the size of any metadata assigned to a minted token in the contract (in bytes) |
+| Name       | Type                   | Description                                       |
+| ---------- | ---------------------- | ------------------------------------------------- |
+| name       | String                 | The token's name                                  |
+| symbol     | String                 | The token's symbol                                |
+| extensions | Vec\<ModuleDefinition> | Any Andromeda Modules to be attached to the token |
 
 ### UpdateAddress
 
-Updates the contract address for a given symbol. 
+Updates the contract address for a given symbol.&#x20;
 
 {% hint style="info" %}
 Only available to the ADO owner or contract owner.
@@ -122,14 +120,14 @@ pub enum ExecuteMsg {
 {% endtab %}
 {% endtabs %}
 
-| Name        | Type   | Description              |
-| ----------- | ------ | ------------------------ |
-| symbol      | String | The token's symbol       |
-| new_address | String | The new contract address |
+| Name         | Type   | Description              |
+| ------------ | ------ | ------------------------ |
+| symbol       | String | The token's symbol       |
+| new\_address | String | The new contract address |
 
 ### UpdateCodeId
 
-Updates the contract address for a given symbol. 
+Updates the contract address for a given symbol.&#x20;
 
 {% hint style="warning" %}
 Only available to the contract owner.
@@ -165,11 +163,11 @@ pub enum ExecuteMsg {
 {% endtab %}
 {% endtabs %}
 
-| Name                 | Type         | Description                                                                       |
-| -------------------- | ------------ | --------------------------------------------------------------------------------- |
-| receipt_code_id      | Option\<u64> | Optional new code ID for the [receipt](andromeda-receipts.md) contracts.          |
-| token_code_id        | Option\<u64> | Optional new code ID for the [token](andromeda-digital-object.md) contracts.      |
-| address_list_code_id | Option\<u64> | Optional new code ID for the [address list](andromeda-address-list.md) contracts. |
+| Name                    | Type         | Description                                                                       |
+| ----------------------- | ------------ | --------------------------------------------------------------------------------- |
+| receipt\_code\_id       | Option\<u64> | Optional new code ID for the [receipt](andromeda-receipts.md) contracts.          |
+| token\_code\_id         | Option\<u64> | Optional new code ID for the [token](andromeda-digital-object.md) contracts.      |
+| address\_list\_code\_id | Option\<u64> | Optional new code ID for the [address list](andromeda-address-list.md) contracts. |
 
 ### UpdateOwner
 
@@ -279,11 +277,11 @@ pub struct CodeIdsResponse {
 {% endtab %}
 {% endtabs %}
 
-| Name                 | Type | Description                                                         |
-| -------------------- | ---- | ------------------------------------------------------------------- |
-| receipt_code_id      | u64  | The code ID used for [receipt](andromeda-receipts.md) ADOs          |
-| token_code_id        | u64  | The code ID used for [token](andromeda-digital-object.md) ADOs      |
-| address_list_code_id | u64  | The code ID used for [address list](andromeda-address-list.md) ADOs |
+| Name                    | Type | Description                                                         |
+| ----------------------- | ---- | ------------------------------------------------------------------- |
+| receipt\_code\_id       | u64  | The code ID used for [receipt](andromeda-receipts.md) ADOs          |
+| token\_code\_id         | u64  | The code ID used for [token](andromeda-digital-object.md) ADOs      |
+| address\_list\_code\_id | u64  | The code ID used for [address list](andromeda-address-list.md) ADOs |
 
 ### ContractOwner
 
