@@ -260,7 +260,7 @@ pub enum ExecuteMsg {
 
 ### Archive <a href="mintmsg" id="mintmsg"></a>
 
-Archives a token, making it immutable in any respect. Once a token is archived it cannot be edited, transferred or burnt. Only available to the token owner.
+Archives a token, making it immutable in any respect. Once a token is archived it cannot be edited, transferred or burnt. Only available to the ADO owner.
 
 {% hint style="danger" %}
 Cannot be undone
