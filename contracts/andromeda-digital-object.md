@@ -81,8 +81,14 @@ pub struct InstantiateMsg {
             "moderators": ["terra1..."]
         },
         "taxable": {
-            "tax": 4,
-            "receivers": ["terra1..."]
+            "rate": {
+                "flat": {
+                    "amount": 2,
+                    "denom": "uluna"
+                }
+            },
+            "receivers": ["terra1...", "terra1..."],
+            "description": "Some tax payment to be made to..."
         }
     ],
 }
