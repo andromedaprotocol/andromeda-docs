@@ -15,9 +15,9 @@ pub struct Receipt {
 }
 ```
 
-| Name   | Type                                        | Description                                |
-| ------ | ------------------------------------------- | ------------------------------------------ |
-| events | Vec<[Event](andromeda-receipts.md#receipt)> | An array of events related to the receipt. |
+| Name   | Type                                                                              | Description                                |
+| ------ | --------------------------------------------------------------------------------- | ------------------------------------------ |
+| events | Vec<[Event](https://docs.rs/cosmwasm-std/0.16.2/cosmwasm\_std/struct.Event.html)> | An array of events related to the receipt. |
 
 ## InstantiateMsg
 
@@ -138,10 +138,10 @@ pub enum ExecuteMsg {
 {% endtab %}
 {% endtabs %}
 
-| Name       | Type                                     | Description                    |
-| ---------- | ---------------------------------------- | ------------------------------ |
-| receipt    | [Receipt](andromeda-receipts.md#receipt) | The receipt to store.          |
-| receipt_id | Uint128                                  | The ID of the receipt to edit. |
+| Name        | Type                                     | Description                    |
+| ----------- | ---------------------------------------- | ------------------------------ |
+| receipt     | [Receipt](andromeda-receipts.md#receipt) | The receipt to store.          |
+| receipt\_id | Uint128                                  | The ID of the receipt to edit. |
 
 ### UpdateOwner
 
@@ -175,9 +175,9 @@ pub enum QueryMsg {
 {% endtab %}
 {% endtabs %}
 
-| Name       | Type    | Description                     |
-| ---------- | ------- | ------------------------------- |
-| receipt_id | Uint128 | The ID of the receipt to query. |
+| Name        | Type    | Description                     |
+| ----------- | ------- | ------------------------------- |
+| receipt\_id | Uint128 | The ID of the receipt to query. |
 
 ### ReceiptResponse
 

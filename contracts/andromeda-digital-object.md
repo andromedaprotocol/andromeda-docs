@@ -99,7 +99,7 @@ pub struct InstantiateMsg {
 
 ## ExecuteMsg
 
-### MintMsg
+### Mint
 
 Mints a new ADO, only available to the defined `minter` in the contract's `InstantiateMsg`
 
@@ -223,6 +223,74 @@ pub enum ExecuteMsg {
 | contract  | String | The address of the receiving contract          |
 | token\_id | String | The id of the ADO to be sent                   |
 | msg       | Binary | A message to be sent to the receiving contract |
+
+### Burn <a href="mintmsg" id="mintmsg"></a>
+
+Destroys any token data related to a token id. Only available to the ADO owner.
+
+{% hint style="danger" %}
+Cannot be undone
+{% endhint %}
+
+{% tabs %}
+{% tab title="Rust" %}
+```rust
+pub enum ExecuteMsg {
+    Burn {
+        token_id: String,
+    },
+}
+```
+{% endtab %}
+
+{% tab title="Second Tab" %}
+```javascript
+{
+    "burn": {
+        "token_id": "anewtoken",
+    }
+}
+```
+{% endtab %}
+{% endtabs %}
+
+| Name      | Type   | Description                 |
+| --------- | ------ | --------------------------- |
+| token\_id | String | The id of the token to burn |
+
+### Archive <a href="mintmsg" id="mintmsg"></a>
+
+Archives a token, making it immutable in any respect. Once a token is archived it cannot be edited, transferred or burnt. Only available to the token owner.
+
+{% hint style="danger" %}
+Cannot be undone
+{% endhint %}
+
+{% tabs %}
+{% tab title="Rust" %}
+```rust
+pub enum ExecuteMsg {
+    Archive {
+        token_id: String,
+    },
+}
+```
+{% endtab %}
+
+{% tab title="Second Tab" %}
+```javascript
+{
+    "archive": {
+        "token_id": "anewtoken",
+    }
+}
+```
+{% endtab %}
+{% endtabs %}
+
+| Name      | Type   | Description                    |
+| --------- | ------ | ------------------------------ |
+| token\_id | String | The id of the token to archive |
 
 ### Approve
 
