@@ -85,7 +85,6 @@ pub struct InstantiateMsg {
             "receivers": ["terra1..."]
         }
     ],
-    "metadata_limit": 10000
 }
 ```
 {% endtab %}

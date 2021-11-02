@@ -74,7 +74,6 @@ pub enum ExecuteMsg {
                 }
             }
         ],
-        "metadata_limit": 1000
     }
 }
 ```
