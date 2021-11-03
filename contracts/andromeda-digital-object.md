@@ -57,6 +57,10 @@ Used to define any rich data attributes related to a token.
 
 ## InstantiateMsg
 
+{% hint style="info" %}
+The defined `minter` address is assigned as the contract owner.
+{% endhint %}
+
 {% tabs %}
 {% tab title="Rust" %}
 ```rust

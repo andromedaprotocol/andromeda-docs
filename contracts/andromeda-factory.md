@@ -39,7 +39,7 @@ pub struct InstantiateMsg {
 
 ### Create
 
-Creates a new token contract using the defined  `token_code_id`. The address of the instantiated contract is then registered under the token's symbol.
+Creates a new token contract using the defined  `token_code_id`. The address of the instantiated contract is then registered under the token's symbol. The sender of the message is defined as the minter for the token contract and as such, the owner of the token contract.
 
 {% tabs %}
 {% tab title="Rust" %}
@@ -61,17 +61,21 @@ pub enum ExecuteMsg {
     "create": {
         "name": "Example Token",
         "symbol": "ET",
-        "extensions": [
+        "modules": [
             {
                 "whitelist": {
                     "moderators": ["terra1..."]
                 }
             },
-            {
-                "taxable": {
-                    "tax": 4,
-                    "receivers": ["terra1...", "terra1..."]
-                }
+            "taxable": {
+                "rate": {
+                    "flat": {
+                        "amount": 2,
+                        "denom": "uluna"
+                    }
+                },
+                "receivers": ["terra1...", "terra1..."],
+                "description": "Some tax payment to be made to..."
             }
         ],
     }
@@ -80,11 +84,11 @@ pub enum ExecuteMsg {
 {% endtab %}
 {% endtabs %}
 
-| Name       | Type                   | Description                                       |
-| ---------- | ---------------------- | ------------------------------------------------- |
-| name       | String                 | The token's name                                  |
-| symbol     | String                 | The token's symbol                                |
-| extensions | Vec\<ModuleDefinition> | Any Andromeda Modules to be attached to the token |
+| Name    | Type                   | Description                                       |
+| ------- | ---------------------- | ------------------------------------------------- |
+| name    | String                 | The token's name                                  |
+| symbol  | String                 | The token's symbol                                |
+| modules | Vec\<ModuleDefinition> | Any Andromeda Modules to be attached to the token |
 
 ### UpdateAddress
 
