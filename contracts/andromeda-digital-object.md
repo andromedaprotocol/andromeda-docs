@@ -147,7 +147,8 @@ pub enum ExecuteMsg {
             "data_url": "https://...",
         },
         "pricing": {
-            "uluna": 100,
+            "denom": "uluna",
+            "amount": "100",
         }
     }
 }
