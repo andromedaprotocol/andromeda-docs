@@ -40,10 +40,10 @@ pub struct Taxable {
 {% endtab %}
 {% endtabs %}
 
-| Name | Type | Description |
-| :--- | :--- | :--- |
-| rate | Rate | The amount to be paid to each receiver upon an agreed transfer. See more [here](https://docs.andromedaprotocol.io/andromeda/modules#rates). |
-| receivers | Vec&lt;String&gt; | An address list of recipients for the royalty fee |
+| Name      | Type         | Description                                                                                                                                 |
+| --------- | ------------ | ------------------------------------------------------------------------------------------------------------------------------------------- |
+| rate      | Rate         | The amount to be paid to each receiver upon an agreed transfer. See more [here](https://docs.andromedaprotocol.io/andromeda/modules#rates). |
+| receivers | Vec\<String> | An address list of recipients for the royalty fee                                                                                           |
 
 ## Methods
 
@@ -61,8 +61,8 @@ pub fn calculate_fee(&self, payment: Coin) -> Coin {
 }
 ```
 
-| Name | Type | Description |
-| :--- | :--- | :--- |
+| Name    | Type | Description                             |
+| ------- | ---- | --------------------------------------- |
 | payment | Coin | The amount to calculate the fee against |
 
 ## Hooks
@@ -71,7 +71,7 @@ The Tax module implements the following hooks:
 
 ### `on_agreed_transfer`
 
-Used to append the required royalty payments to the agreed transfer payments and deduct the funds from the payment being made to the seller.
+Used to append the required tax payments to the agreed transfer payments.
 
 ```rust
 fn on_agreed_transfer(
@@ -97,4 +97,3 @@ fn on_agreed_transfer(
 ## Validation
 
 The Tax module does not have any validation requirements.
-
