@@ -76,21 +76,41 @@ Used to append the required tax payments to the agreed transfer payments.
 ```rust
 fn on_agreed_transfer(
     &self,
-    deps: &DepsMut,
-    info: MessageInfo,
+    _deps: &DepsMut,
+    _info: MessageInfo,
     env: Env,
-    payments: &mut Vec<BankMsg>,
-    owner: String,
-    purchaser: String,
-    amount: Coin,
-) -> StdResult<bool> {
-    let fee_payment = self.calculate_fee(amount);
-    for receiver in self.receivers.to_vec() {
-        deduct_payment(payments, owner.clone(), fee_payment.clone())?;
-        add_payment(payments, receiver, fee_payment.clone());
-    }
+    payments: &mut Vec<cosmwasm_std::BankMsg>,
+    _owner: String,
+    _purchaser: String,
+    agreed_payment: Coin,
+) -> StdResult<HookResponse> {
+    let _contract_addr = env.contract.address;
+    let tax_amount = calculate_fee(self.rate.clone(), agreed_payment);
 
-    Ok(true)
+    let mut resp = HookResponse::default();
+    let mut event = Event::new(TAX_EVENT_ID);
+
+    match self.description.clone() {
+        Some(desc) => {
+            event = event.add_attribute(ATTR_DESC, desc);
+        }
+        None => {}
+    }
+    // No deduction of payment because the buyer pays the tax while royalties are paid by seller [ROY-01]
+    for receiver in self.receivers.to_vec() {
+        add_payment(payments, receiver.clone(), tax_amount.clone());
+        event = event.add_attribute(
+            ATTR_PAYMENT,
+            PaymentAttribute {
+                receiver: receiver.clone(),
+                amount: tax_amount.clone(),
+            }
+            .to_string(),
+        );
+    }
+    resp = resp.add_event(event);
+
+    Ok(resp)
 }
 ```
 

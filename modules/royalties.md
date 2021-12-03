@@ -74,21 +74,43 @@ Used to append the required royalty payments to the agreed transfer payments and
 ```rust
 fn on_agreed_transfer(
     &self,
-    deps: &DepsMut,
-    info: MessageInfo,
-    env: Env,
-    payments: &mut Vec<BankMsg>,
+    _deps: &DepsMut,
+    _info: MessageInfo,
+    _env: Env,
+    payments: &mut Vec<cosmwasm_std::BankMsg>,
     owner: String,
-    purchaser: String,
-    amount: Coin,
-) -> StdResult<bool> {
-    let fee_payment = self.calculate_fee(amount);
-    for receiver in self.receivers.to_vec() {
-        deduct_payment(payments, owner.clone(), fee_payment.clone())?;
-        add_payment(payments, receiver, fee_payment.clone());
+    _purchaser: String,
+    amount: cosmwasm_std::Coin,
+) -> StdResult<HookResponse> {
+    let fee_payment = calculate_fee(self.rate.clone(), amount);
+    let mut resp = HookResponse::default();
+    let mut event = Event::new("royalty");
+
+    match self.description.clone() {
+        Some(desc) => {
+            event = event.add_attribute(ATTR_DESC, desc);
+        }
+        None => {}
     }
 
-    Ok(true)
+    for receiver in self.receivers.to_vec() {
+        // Deducts the required payment since it should be paid by token owner. [ROY-01]
+        deduct_payment(payments, owner.clone(), fee_payment.clone())?;
+        event = event.add_attribute(ATTR_DEDUCTED, fee_payment.to_string());
+        add_payment(payments, receiver.clone(), fee_payment.clone());
+        event = event.add_attribute(
+            ATTR_PAYMENT,
+            PaymentAttribute {
+                receiver: receiver.clone(),
+                amount: fee_payment.clone(),
+            }
+            .to_string(),
+        );
+    }
+
+    resp = resp.add_event(event);
+
+    Ok(resp)
 }
 ```
 
