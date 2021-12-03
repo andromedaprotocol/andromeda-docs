@@ -120,7 +120,7 @@ pub struct MintMsg {
     pub token_id: String,
     pub owner: String,
     pub name: String,
-    pub image: Option<String>,
+    pub url: Option<String>,
     pub description: Option<String>,
     pub metadata: Option<TokenMetadata>,
     pub pricing: Option<Coin>,
@@ -147,8 +147,7 @@ pub enum ExecuteMsg {
             "data_url": "https://...",
         },
         "pricing": {
-            "denom": "uluna",
-            "amount": "100",
+            "uluna": 100,
         }
     }
 }
@@ -235,7 +234,7 @@ pub enum ExecuteMsg {
 | token\_id | String | The id of the ADO to be sent                   |
 | msg       | Binary | A message to be sent to the receiving contract |
 
-### Burn <a href="mintmsg" id="mintmsg"></a>
+### Burn <a href="#mintmsg" id="mintmsg"></a>
 
 Destroys any token data related to a token id. Only available to the ADO owner.
 
@@ -269,7 +268,7 @@ pub enum ExecuteMsg {
 | --------- | ------ | --------------------------- |
 | token\_id | String | The id of the token to burn |
 
-### Archive <a href="mintmsg" id="mintmsg"></a>
+### Archive <a href="#mintmsg" id="mintmsg"></a>
 
 Archives a token, making it immutable in any respect. Once a token is archived it cannot be edited, transferred or burnt. Only available to the ADO owner.
 
@@ -498,7 +497,8 @@ pub enum ExecuteMsg {
     "update_pricing": {
         "token_id": "anewtoken",
         "price": {
-            "uluna": 100
+            "denom": "uluna",
+            "amount": "100",
         }
     }
 }
