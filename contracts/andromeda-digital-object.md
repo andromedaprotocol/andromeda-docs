@@ -375,6 +375,10 @@ pub enum ExecuteMsg {
 
 A CW721 compliant approve all method. Approves a given address as an operator for all ADOs owned by the sender.
 
+{% hint style="warning" %}
+Will overwrite any approval currently assigned to the operator's address.
+{% endhint %}
+
 {% tabs %}
 {% tab title="Rust" %}
 ```rust
