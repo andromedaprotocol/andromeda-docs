@@ -444,6 +444,10 @@ pub enum ExecuteMsg {
 
 Allows an ADO owner to generate a transfer agreement for an owned ADO. This agreement allows the purchaser to transfer ownership of the ADO provided the correct funds are provided in a `TransferNft` message from the purchaser. The current owner of the ADO will receive the sent funds minus any required financial payments assigned to the contract via modules.
 
+{% hint style="warning" %}
+Will overwrite any current transfer agreement for the token.
+{% endhint %}
+
 {% tabs %}
 {% tab title="Rust" %}
 ```rust
