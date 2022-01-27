@@ -29,11 +29,11 @@ pub struct InstantiateMsg {
 {% endtab %}
 {% endtabs %}
 
-| Name                    | Type | Description                                                  |
-| ----------------------- | ---- | ------------------------------------------------------------ |
-| token\_code\_id         | u64  | The code ID for the ADO  contract                            |
-| receipt\_code\_id       | u64  | The code ID for the [receipt](receipt.md) contract           |
-| address\_list\_code\_id | u64  | The code ID for the [address list](address-list.md) contract |
+| Name                    | Type | Description                                                            |
+| ----------------------- | ---- | ---------------------------------------------------------------------- |
+| token\_code\_id         | u64  | The code ID for the ADO  contract                                      |
+| receipt\_code\_id       | u64  | The code ID for the [receipt](ado-types/receipt.md) contract           |
+| address\_list\_code\_id | u64  | The code ID for the [address list](ado-types/address-list.md) contract |
 
 ## ExecuteMsg
 
@@ -168,15 +168,15 @@ pub enum ExecuteMsg {
 {% endtab %}
 {% endtabs %}
 
-| Name                    | Type         | Description                                                                   |
-| ----------------------- | ------------ | ----------------------------------------------------------------------------- |
-| receipt\_code\_id       | Option\<u64> | Optional new code ID for the [receipt](receipt.md) contracts.                 |
-| token\_code\_id         | Option\<u64> | Optional new code ID for the [ADO](../andromeda-digital-object.md) contracts. |
-| address\_list\_code\_id | Option\<u64> | Optional new code ID for the [address list](address-list.md) contracts.       |
+| Name                    | Type         | Description                                                                       |
+| ----------------------- | ------------ | --------------------------------------------------------------------------------- |
+| receipt\_code\_id       | Option\<u64> | Optional new code ID for the [receipt](ado-types/receipt.md) contracts.           |
+| token\_code\_id         | Option\<u64> | Optional new code ID for the [ADO](andromeda-digital-object.md) contracts.        |
+| address\_list\_code\_id | Option\<u64> | Optional new code ID for the [address list](ado-types/address-list.md) contracts. |
 
 ### UpdateOwner
 
-See [Ownership](ownership.md#executemsg).
+See [Ownership](ado-types/ownership.md#executemsg).
 
 ## QueryMsg
 
@@ -282,12 +282,12 @@ pub struct CodeIdsResponse {
 {% endtab %}
 {% endtabs %}
 
-| Name                    | Type | Description                                                     |
-| ----------------------- | ---- | --------------------------------------------------------------- |
-| receipt\_code\_id       | u64  | The code ID used for [receipt](receipt.md) ADOs                 |
-| token\_code\_id         | u64  | The code ID used for the [ADOs](../andromeda-digital-object.md) |
-| address\_list\_code\_id | u64  | The code ID used for [address list](address-list.md) ADOs       |
+| Name                    | Type | Description                                                         |
+| ----------------------- | ---- | ------------------------------------------------------------------- |
+| receipt\_code\_id       | u64  | The code ID used for [receipt](ado-types/receipt.md) ADOs           |
+| token\_code\_id         | u64  | The code ID used for the [ADOs](andromeda-digital-object.md)        |
+| address\_list\_code\_id | u64  | The code ID used for [address list](ado-types/address-list.md) ADOs |
 
 ### ContractOwner
 
-See [Ownership](ownership.md#querymsg).
+See [Ownership](ado-types/ownership.md#querymsg).

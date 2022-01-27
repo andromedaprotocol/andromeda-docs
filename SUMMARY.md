@@ -2,10 +2,10 @@
 
 * [Introduction](README.md)
 * [Andromeda Digital Object](andromeda-digital-object.md)
+* [Factory](andromeda-factory.md)
 
 ## ADO Classes <a href="#ado-types" id="ado-types"></a>
 
-* [Factory](ado-types/andromeda-factory.md)
 * [Splitter](ado-types/andromeda-splitter.md)
 * [Timelock](ado-types/timelock.md)
 * [Address List](ado-types/address-list.md)
