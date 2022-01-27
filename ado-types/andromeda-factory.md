@@ -39,7 +39,7 @@ pub struct InstantiateMsg {
 
 ### Create
 
-Creates a new ADP contract using the defined  `token_code_id`. The address of the instantiated contract is then registered under the ADO's symbol. The sender of the message is defined as the minter for the ADO contract and as such, the owner of the ADO contract.
+Creates a new ADO contract using the defined `token_code_id`. The address of the instantiated contract is then registered under the ADO's symbol. The sender of the message is defined as the minter for the ADO contract and as such, the owner of the ADO contract.
 
 {% tabs %}
 {% tab title="Rust" %}
