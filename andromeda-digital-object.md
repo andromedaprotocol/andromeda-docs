@@ -1,5 +1,5 @@
 ---
-description: The message definitions for the Andromeda Digital Object contract
+description: The message definitions for the Andromeda Digital Object contract.
 ---
 
 # Andromeda Digital Object
@@ -21,17 +21,13 @@ pub enum MetadataType {
 pub struct MetadataAttribute {
     pub key: String,
     pub value: String,
-    //The string used to display the attribute, if none is provided the `key` field can be used
     pub display_label: Option<String>,
 }
 
 pub struct TokenMetadata {
     pub data_type: MetadataType,
-    //A URL to the ADO's source
     pub external_url: Option<String>,
-    //A URL to any off-chain data relating to the ADO, the response from this URL should match the defined `data_type` of the ADO
     pub data_url: Option<String>,
-    //On chain attributes related to the ADO (basic key/value)
     pub attributes: Option<Vec<MetadataAttribute>>,
 }
 ```
@@ -40,20 +36,62 @@ pub struct TokenMetadata {
 
 Used to define any rich data attributes related to an ADO.
 
-| Name           | Type            | Description                                             |
-| -------------- | --------------- | ------------------------------------------------------- |
-| key            | String          | The associated key for the attribute.                   |
-| value          | String          | The value for the attribute.                            |
-| display\_label | Option\<String> | An optional string for how the key should be displayed. |
+| Name            | Type            | Description                                                                                                |
+| --------------- | --------------- | ---------------------------------------------------------------------------------------------------------- |
+| `key`           | String          | The associated key for the attribute.                                                                      |
+| `value`         | String          | The value for the attribute.                                                                               |
+| `display_label` | Option\<String> | An optional string for how the key should be displayed. If none is provided the \`key\` field can be used. |
 
 ### TokenMetadata
 
-| Name          | Type                             | Description                                                                                                   |
-| ------------- | -------------------------------- | ------------------------------------------------------------------------------------------------------------- |
-| data\_type    | Metadatatype                     | The type of data related to the ADO, must be one of the following; Audio, Video, Image, Domain, Json, Other   |
-| external\_url | Option\<String>                  | An optional link to an external source for the ADO.                                                           |
-| data\_url     | Option\<String>                  | An optional link to the ADO's external data. Response should be of the type defined by the `data_type` field. |
-| attributes    | Option\<Vec\<MetadataAttribute>> | An array of rich data attributes. See [MetadataAttribute](andromeda-digital-object.md#metadataattribute).     |
+| Name           | Type                             | Description                                                                                                   |
+| -------------- | -------------------------------- | ------------------------------------------------------------------------------------------------------------- |
+| `data_type`    | Metadatatype                     | The type of data related to the ADO, must be one of the following; Audio, Video, Image, Domain, Json, Other.  |
+| `external_url` | Option\<String>                  | An optional link to an external source for the ADO.                                                           |
+| `data_url`     | Option\<String>                  | An optional link to the ADO's external data. Response should be of the type defined by the `data_type` field. |
+| `attributes`   | Option\<Vec\<MetadataAttribute>> | An array of rich data attributes. See [MetadataAttribute](andromeda-digital-object.md#metadataattribute).     |
+
+### TransferAgreement
+
+A struct used to represent an agreed transfer of a token. The `purchaser` may use the `Transfer` message for this token as long as funds are provided equaling the `amount` defined in the agreement.
+
+```rust
+pub struct TransferAgreement {
+    pub amount: Coin,
+    pub purchaser: String,
+}
+```
+
+| Name        | Type   | Description                                                               |
+| ----------- | ------ | ------------------------------------------------------------------------- |
+| `amount`    | Coin   | The amount required for the purchaser to transfer ownership of the token. |
+| `purchaser` | String | The address of the purchaser.                                             |
+
+### TokenExtension
+
+Extension that can be added to an ADO when minting.
+
+```rust
+pub struct TokenExtension {
+    pub name: String,
+    pub publisher: String,
+    pub description: Option<String>,
+    pub transfer_agreement: Option<TransferAgreement>,
+    pub metadata: Option<TokenMetadata>,
+    pub archived: bool,
+    pub pricing: Option<Coin>,
+}
+```
+
+| Name                 | Type                                                                       | Description                                         |
+| -------------------- | -------------------------------------------------------------------------- | --------------------------------------------------- |
+| `name`               | String                                                                     | The name of the token.                              |
+| `publisher`          | String                                                                     | The original publisher of the token (immutable).    |
+| `description`        | Option\<String>                                                            | An optional description of the token.               |
+| `transfer_agreement` | Option<[TransferAgreement](andromeda-digital-object.md#transferagreement)> | The transfer agreement of the token (if it exists). |
+| `metadata`           | Option<[TokenMetadata](andromeda-digital-object.md#metadata-schema)>       | The metadata of the token (if it exists)            |
+| `archived`           | bool                                                                       | Whether the token is archived or not.               |
+| `pricing`            | Option\<Coin>                                                              | The current price listing for the token.            |
 
 ## InstantiateMsg
 
@@ -70,6 +108,7 @@ pub struct InstantiateMsg {
     pub symbol: String,
     pub minter: String,
     pub modules: Vec<ModuleDefinition>,
+    pub primitive_contract:String,
 }
 ```
 {% endtab %}
@@ -95,17 +134,19 @@ pub struct InstantiateMsg {
             "description": "Some tax payment to be made to..."
         }
     ],
+    "primitive_contract":"terra1...",
 }
 ```
 {% endtab %}
 {% endtabs %}
 
-| Name    | Type                   | Description                                                                                               |
-| ------- | ---------------------- | --------------------------------------------------------------------------------------------------------- |
-| name    | String                 | The name of the ADO                                                                                       |
-| symbol  | String                 | The symbol of the ADO                                                                                     |
-| minter  | String                 | The address of the ADO minter. Will be assigned as the [contract owner](ado-types/ownership.md).          |
-| modules | Vec\<ModuleDefinition> | A vector of Andromeda Module definitions. The module definitions can be found [here](modules/modules.md). |
+| Name                 | Type                   | Description                                                                                               |
+| -------------------- | ---------------------- | --------------------------------------------------------------------------------------------------------- |
+| `name`               | String                 | The name of the ADO. Has to be between 3 and 30 characters.                                               |
+| `symbol`             | String                 | The symbol of the ADO.                                                                                    |
+| `minter`             | String                 | The address of the ADO minter. Will be assigned as the [contract owner](ado-types/ownership.md).          |
+| `modules`            | Vec\<ModuleDefinition> | A vector of Andromeda Module definitions. The module definitions can be found [here](modules/modules.md). |
+| `primitive_contract` | String                 | The primitive contract address used to retrieve contract addresses.                                       |
 
 ## ExecuteMsg
 
@@ -116,18 +157,15 @@ Mints a new ADO, only available to the defined `minter` in the contract's `Insta
 {% tabs %}
 {% tab title="Rust" %}
 ```rust
-pub struct MintMsg {
+pub struct MintMsg<T> {
     pub token_id: String,
     pub owner: String,
-    pub name: String,
-    pub url: Option<String>,
-    pub description: Option<String>,
-    pub metadata: Option<TokenMetadata>,
-    pub pricing: Option<Coin>,
+    pub token_uri: Option<String>,
+    pub extension: T,
 }
 
 pub enum ExecuteMsg {
-    Mint(MintMsg)
+    Mint(box<MintMsg<TokenExtension>>)
 }
 ```
 {% endtab %}
@@ -138,16 +176,11 @@ pub enum ExecuteMsg {
     "mint": {
         "token_id": "anewtoken",
         "owner": "terra1...",
-        "name": "A New Token",
-        "description": "A newly minted token",
-        "image": "ipfs://...",
-        "metadata": {
-            "data_type": "Audio",
-            "external_url": "https://...",
-            "data_url": "https://...",
-        },
-        "pricing": {
-            "uluna": 100,
+        "extension":{
+         "name":"mytoken",
+         "publisher":"publisher",
+         "description":"This token ....",
+         "archived": false,
         }
     }
 }
@@ -155,19 +188,20 @@ pub enum ExecuteMsg {
 {% endtab %}
 {% endtabs %}
 
-| Name        | Type                   | Description                                                       |
-| ----------- | ---------------------- | ----------------------------------------------------------------- |
-| token\_id   | String                 | The id of the ADO to be minted                                    |
-| owner       | String                 | The address of the ADO owner                                      |
-| name        | String                 | The ADO's name                                                    |
-| description | Option\<String>        | An optional description of the ADO                                |
-| metadata    | Option\<TokenMetadata> | See [Token Metadata](andromeda-digital-object.md#token-metadata). |
-| image       | Option\<String>        | The CW721 image field                                             |
-| pricing     | Option\<Coin>          | Optional listing price for the ADO.                               |
+| Name        | Type            | Description                                                                                                               |
+| ----------- | --------------- | ------------------------------------------------------------------------------------------------------------------------- |
+| `token_id`  | String          | The id of the ADO to be minted.                                                                                           |
+| `owner`     | String          | The address of the ADO owner.                                                                                             |
+| `token_uri` | Option\<String> | Universal resource identifier for this ADO. Should point to a JSON file that conforms to the ERC721 Metadata JSON Schema. |
+| `extension` | T               | Any custom extension used by this contract. Her we use [TokenExtension](andromeda-digital-object.md#tokenextension).      |
 
 ### TransferNft
 
 A CW721 compliant transfer method. Transfers ownership of a minted ADO. Only available to the ADO owner, an approved operator or the purchaser in a `TransferAgreement` for the given ADO.
+
+{% hint style="info" %}
+Archived tokens cannot be transferred.
+{% endhint %}
 
 {% tabs %}
 {% tab title="Rust" %}
@@ -193,10 +227,10 @@ pub enum ExecuteMsg {
 {% endtab %}
 {% endtabs %}
 
-| Name      | Type   | Description                         |
-| --------- | ------ | ----------------------------------- |
-| recipient | String | The address of the recipient        |
-| token\_id | String | The id of the ADO to be transferred |
+| Name        | Type   | Description                          |
+| ----------- | ------ | ------------------------------------ |
+| `recipient` | String | The address of the recipient.        |
+| `token_id`  | String | The id of the ADO to be transferred. |
 
 ### SendNft
 
@@ -228,11 +262,11 @@ pub enum ExecuteMsg {
 {% endtab %}
 {% endtabs %}
 
-| Name      | Type   | Description                                    |
-| --------- | ------ | ---------------------------------------------- |
-| contract  | String | The address of the receiving contract          |
-| token\_id | String | The id of the ADO to be sent                   |
-| msg       | Binary | A message to be sent to the receiving contract |
+| Name       | Type   | Description                                     |
+| ---------- | ------ | ----------------------------------------------- |
+| `contract` | String | The address of the receiving contract.          |
+| `token_id` | String | The id of the ADO to be sent.                   |
+| `msg`      | Binary | A message to be sent to the receiving contract. |
 
 ### Burn <a href="#mintmsg" id="mintmsg"></a>
 
@@ -264,9 +298,9 @@ pub enum ExecuteMsg {
 {% endtab %}
 {% endtabs %}
 
-| Name      | Type   | Description               |
-| --------- | ------ | ------------------------- |
-| token\_id | String | The id of the ADO to burn |
+| Name       | Type   | Description                |
+| ---------- | ------ | -------------------------- |
+| `token_id` | String | The id of the ADO to burn. |
 
 ### Archive <a href="#mintmsg" id="mintmsg"></a>
 
@@ -298,9 +332,9 @@ pub enum ExecuteMsg {
 {% endtab %}
 {% endtabs %}
 
-| Name      | Type   | Description                  |
-| --------- | ------ | ---------------------------- |
-| token\_id | String | The id of the ADO to archive |
+| Name       | Type   | Description                   |
+| ---------- | ------ | ----------------------------- |
+| `token_id` | String | The id of the ADO to archive. |
 
 ### Approve
 
@@ -332,11 +366,11 @@ pub enum ExecuteMsg {
 {% endtab %}
 {% endtabs %}
 
-| Name      | Type                | Description                                                        |
-| --------- | ------------------- | ------------------------------------------------------------------ |
-| spender   | String              | The address to be authorised as an operator                        |
-| token\_id | String              | The id of the ADO for which to assign the `spender` as an operator |
-| expires   | Option\<Expiration> | An optional expiration for the approval                            |
+| Name       | Type                | Description                                                        |
+| ---------- | ------------------- | ------------------------------------------------------------------ |
+| `spender`  | String              | The address to be authorised as an operator                        |
+| `token_id` | String              | The id of the ADO for which to assign the `spender` as an operator |
+| `expires`  | Option\<Expiration> | An optional expiration for the approval                            |
 
 ### Revoke
 
@@ -366,10 +400,10 @@ pub enum ExecuteMsg {
 {% endtab %}
 {% endtabs %}
 
-| Name      | Type   | Description                                                |
-| --------- | ------ | ---------------------------------------------------------- |
-| spender   | String | The address of the operator for which to revoke privileges |
-| token\_id | String | The id of the ADO for which to revoke operator privileges  |
+| Name       | Type   | Description                                                |
+| ---------- | ------ | ---------------------------------------------------------- |
+| `spender`  | String | The address of the operator for which to revoke privileges |
+| `token_id` | String | The id of the ADO for which to revoke operator privileges  |
 
 ### ApproveAll
 
@@ -405,10 +439,10 @@ pub enum ExecuteMsg {
 {% endtab %}
 {% endtabs %}
 
-| Name     | Type                | Description                                 |
-| -------- | ------------------- | ------------------------------------------- |
-| operator | String              | The address to be authorised as an operator |
-| expires  | Option\<Expiration> | An optional expiration for the approval     |
+| Name       | Type                | Description                                 |
+| ---------- | ------------------- | ------------------------------------------- |
+| `operator` | String              | The address to be authorised as an operator |
+| `expires`  | Option\<Expiration> | An optional expiration for the approval     |
 
 ### RevokeAll
 
@@ -436,9 +470,9 @@ pub enum ExecuteMsg {
 {% endtab %}
 {% endtabs %}
 
-| Name     | Type   | Description                                                |
-| -------- | ------ | ---------------------------------------------------------- |
-| operator | String | The address of the operator for which to revoke privileges |
+| Name       | Type   | Description                                                |
+| ---------- | ------ | ---------------------------------------------------------- |
+| `operator` | String | The address of the operator for which to revoke privileges |
 
 ### TransferAgreement
 
@@ -454,10 +488,8 @@ Will overwrite any current transfer agreement for the ADO.
 pub enum ExecuteMsg {
     TransferAgreement {
         token_id: String,
-        denom: String,
-        amount: u128,
-        purchaser: String,
-    },
+        agreement:Option<TransferAgreement>,
+    }
 }
 ```
 {% endtab %}
@@ -467,63 +499,55 @@ pub enum ExecuteMsg {
 {
     "transfer_agreement": {
         "token_id": "anewtoken",
-        "denom": "uluna",
-        "amount": 100,
-        "purchaser": "terra1..."
+        "agreement":{
+         "amount":{
+           "denom":"uusd",
+           "amount":"1000",
+           }
+           "purchaser":"terra1...",
+           }
     }
 }
 ```
 {% endtab %}
 {% endtabs %}
 
-| Name      | Type   | Description                                       |
-| --------- | ------ | ------------------------------------------------- |
-| token\_id | String | The id of the ADO for which the agreement is made |
-| denom     | String | The agreed amount's denomination                  |
-| amount    | u128   | The agreed transfer amount                        |
-| purchaser | String | The address of the transfer purchaser             |
+| Name        | Type                                                               | Description                                                     |
+| ----------- | ------------------------------------------------------------------ | --------------------------------------------------------------- |
+| `token_id`  | String                                                             | The id of the ADO for which the agreement is made.              |
+| `agreement` | Option<[TransferAgreement](andromeda-digital-object.md#undefined)> | See [TransferAgreement](andromeda-digital-object.md#undefined). |
 
-### UpdatePricing
+## QueryMsg
 
-Allows an ADO owner to update or remove the listing price of their ADO.
+### Minter
+
+Queries the current minter of the contract.
+
+```rust
+pub enum QueryMsg{
+Minter{},
+}
+```
+
+#### MinterResponse
 
 {% tabs %}
 {% tab title="Rust" %}
 ```rust
-pub enum ExecuteMsg {
-    UpdatePricing {
-        token_id: String,
-        price: Option<Coin>
-    },
-}
+pub struct MinterResponse{
+ minter:String,
+ }
 ```
 {% endtab %}
 
 {% tab title="JSON" %}
-```javascript
+```json
 {
-    "update_pricing": {
-        "token_id": "anewtoken",
-        "price": {
-            "denom": "uluna",
-            "amount": "100",
-        }
-    }
+"minter":"terra1..."
 }
 ```
 {% endtab %}
 {% endtabs %}
-
-| Name      | Type          | Description                                                                 |
-| --------- | ------------- | --------------------------------------------------------------------------- |
-| token\_id | String        | The id of the ADO for which the agreement is made                           |
-| price     | Option\<Coin> | The listing price for the ADO. If `None` token will be considered unlisted. |
-
-### UpdateOwner
-
-See [Ownership](ado-types/ownership.md#executemsg).
-
-## QueryMsg
 
 ### OwnerOf
 
@@ -534,7 +558,8 @@ A CW721 compliant "owner of" query. Queries the current owner of a given ADO id.
 ```rust
 pub enum QueryMsg {
     OwnerOf {
-        token_id: String
+        token_id: String,
+        include_expired:bool,
     }
 }
 ```
@@ -545,15 +570,17 @@ pub enum QueryMsg {
 {
     "owner_of": {
         "token_id": "anewtoken"
+        "include_expired": false,
     }
 }
 ```
 {% endtab %}
 {% endtabs %}
 
-| Name      | Type   | Description               |
-| --------- | ------ | ------------------------- |
-| token\_id | String | The id of the queried ADO |
+| Name              | Type   | Description                            |
+| ----------------- | ------ | -------------------------------------- |
+| `token_id`        | String | The id of the queried ADO.             |
+| `include_expired` | bool   | Whether to include any expired owners. |
 
 #### OwnerOfResponse
 
@@ -562,9 +589,7 @@ pub enum QueryMsg {
 ```rust
 #[derive(Serialize, Deserialize, Clone, PartialEq, JsonSchema, Debug)]
 pub struct OwnerOfResponse {
-    /// Owner of the ADO
     pub owner: String,
-    /// If set this address is approved to transfer/send the ADO as well
     pub approvals: Vec<Approval>,
 }
 
@@ -588,10 +613,10 @@ pub struct OwnerOfResponse {
 {% endtab %}
 {% endtabs %}
 
-| Name      | Type           | Description                           |
-| --------- | -------------- | ------------------------------------- |
-| owner     | String         | The owner of the queried ADO          |
-| approvals | Vec\<Approval> | An array of all approvals for the ADO |
+| Name        | Type           | Description                           |
+| ----------- | -------------- | ------------------------------------- |
+| `owner`     | String         | The owner of the queried ADO          |
+| `approvals` | Vec\<Approval> | An array of all approvals for the ADO |
 
 ### ApprovedForAll
 
@@ -603,7 +628,7 @@ A CW721 compliant "approved for all" query. Queries any operators for a given ad
 pub enum QueryMsg {
     ApprovedForAll {
         owner: String,
-        include_expired: Option<bool>,
+        include_expired: bool,
         start_after: Option<String>,
         limit: Option<u32>,
     }
@@ -624,12 +649,12 @@ pub enum QueryMsg {
 {% endtab %}
 {% endtabs %}
 
-| Name             | Type            | Description                                                                              |
-| ---------------- | --------------- | ---------------------------------------------------------------------------------------- |
-| owner            | String          | The address of the owner for which to query operators                                    |
-| include\_expired | Option\<bool>   | Whether to include any expired approvals. Defaults to false (if not defined in message). |
-| limit            | Option\<u64>    | An optional limit on how many approvals are returned                                     |
-| start\_after     | Option\<String> | An optional address for which to start after, used for pagination.                       |
+| Name              | Type            | Description                                                        |
+| ----------------- | --------------- | ------------------------------------------------------------------ |
+| `owner`           | String          | The address of the owner for which to query operators              |
+| `include_expired` | bool            | Whether to include any expired approvals.                          |
+| `limit`           | Option\<u32>    | An optional limit on how many approvals are returned               |
+| `start_after`     | Option\<String> | An optional address for which to start after, used for pagination. |
 
 #### ApprovedForAllResponse
 
@@ -659,9 +684,9 @@ pub struct ApprovedForAllResponse {
 {% endtab %}
 {% endtabs %}
 
-| Name      | Type           | Description                                           |
-| --------- | -------------- | ----------------------------------------------------- |
-| approvals | Vec\<Approval> | An array of all approvals for the given owner address |
+| Name        | Type           | Description                                           |
+| ----------- | -------------- | ----------------------------------------------------- |
+| `approvals` | Vec\<Approval> | An array of all approvals for the given owner address |
 
 ### NumTokens
 
@@ -706,9 +731,9 @@ pub struct NumTokensResponse {
 {% endtab %}
 {% endtabs %}
 
-| Name  | Type | Description                               |
-| ----- | ---- | ----------------------------------------- |
-| count | u64  | The amount of ADOs minted by the contract |
+| Name    | Type | Description                               |
+| ------- | ---- | ----------------------------------------- |
+| `count` | u64  | The amount of ADOs minted by the contract |
 
 ### NftInfo
 
@@ -736,25 +761,22 @@ pub enum QueryMsg {
 {% endtab %}
 {% endtabs %}
 
-| Name      | Type   | Description       |
-| --------- | ------ | ----------------- |
-| token\_id | String | The id of the ADO |
+| Name       | Type   | Description       |
+| ---------- | ------ | ----------------- |
+| `token_id` | String | The id of the ADO |
 
 #### NftInfoResponse
 
 {% tabs %}
 {% tab title="Rust" %}
 ```rust
-#[derive(Serialize, Deserialize, Clone, PartialEq, JsonSchema, Debug)]
-pub struct NftInfoResponse {
-    pub name: String,
-    pub description: String,
-    pub image: Option<String>,
-    pub extension: {
-        metadata: Option<String>,
-        archived: bool,
-        transfer_agreement: Option<TransferAgreement>
-    }
+pub struct NftInfoResponse<T> {
+    /// Universal resource identifier for this NFT
+    /// Should point to a JSON file that conforms to the ERC721
+    /// Metadata JSON Schema
+    pub token_uri: Option<String>,
+    /// You can add any custom metadata here when you extend cw721-base
+    pub extension: T,
 }
 ```
 {% endtab %}
@@ -762,27 +784,21 @@ pub struct NftInfoResponse {
 {% tab title="JSON" %}
 ```javascript
 {
-    "name": "A New Token",
-    "description": "A newly minted token",
-    "extension": {
-        "archived": false,
-        "metadata": "{ \"some_json_field\": \"some_json_value\" }",
-        "agreement": {
-            "purchaser": "terra1...",
-            "amount": "100uluna"
+   "extension":{
+         "name":"mytoken",
+         "publisher":"publisher",
+         "description":"This token ....",
+         "archived": false,
         }
-    }
-}
+ }
 ```
 {% endtab %}
 {% endtabs %}
 
-| Name        | Type            | Description                                                                                                                                                                                              |
-| ----------- | --------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| name        | String          | The name of the ADO                                                                                                                                                                                      |
-| description | String          | The description of the ADO                                                                                                                                                                               |
-| image       | Option\<String> | A URI pointing to a resource with mime type image/\* representing the asset to which this ADO represents. (Taken from [here](https://github.com/CosmWasm/cw-plus/blob/main/packages/cw721/src/query.rs)) |
-| extension   | Object          | Extended metadata related to the ADO.                                                                                                                                                                    |
+| Name        | Type   | Description                                  |
+| ----------- | ------ | -------------------------------------------- |
+| `token_uri` | String | Universal resource identifier for this ADO.  |
+| `extension` | T      | Any extension being used by the contract.    |
 
 ### AllNftInfo
 
@@ -794,6 +810,7 @@ A CW721 compliant "all nft info" query. Queries all stored info of an ADO.
 pub enum QueryMsg {
     AllNftInfo {
         token_id: String,
+        include_expired:String,
     }
 }
 ```
@@ -810,9 +827,10 @@ pub enum QueryMsg {
 {% endtab %}
 {% endtabs %}
 
-| Name      | Type   | Description       |
-| --------- | ------ | ----------------- |
-| token\_id | String | The id of the ADO |
+| Name              | Type   | Description                               |
+| ----------------- | ------ | ----------------------------------------- |
+| `token_id`        | String | The id of the ADO                         |
+| `include_expired` | String | Whether to include any expired approvals. |
 
 #### AllNftInfoResponse
 
@@ -862,127 +880,98 @@ pub struct AllNftInfoResponse {
 | access | [OwnerOfResponse](andromeda-digital-object.md#ownerofresponse) | The owner of the ADO and any approvals |
 | info   | [NFtInfoResponse](andromeda-digital-object.md#nftinforesponse) | The given ADO's stored information     |
 
-### ModuleInfo
+### Tokens
 
-Queries module definitions for the contract.
-
-{% tabs %}
-{% tab title="Rust" %}
-```rust
-pub enum QueryMsg {
-    ModuleInfo {
-    }
-}
-```
-{% endtab %}
-
-{% tab title="JSON" %}
-```javascript
-{
-    "module_info": {
-    }
-}
-```
-{% endtab %}
-{% endtabs %}
-
-#### ModuleInfoResponse
-
-{% tabs %}
-{% tab title="Rust" %}
-```rust
-#[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
-pub struct ModuleInfoResponse {
-    pub modules: Vec<ModuleDefinition>,
-}
-```
-{% endtab %}
-
-{% tab title="JSON" %}
-```javascript
-{
-    "modules": [
-        "receipt":{},
-        "whitelist": {
-            "address": "terra1...",
-        },
-        "taxable": {
-            "rate": 2,
-            "receivers": ["terra1..."]
-        }
-    ]
-}
-```
-{% endtab %}
-{% endtabs %}
-
-| Name    | Type                                        | Description                              |
-| ------- | ------------------------------------------- | ---------------------------------------- |
-| modules | Vec<[ModuleDefinition](modules/modules.md)> | The module definitions for the contract. |
-
-### ModuleContracts
-
-Queries the assigned contracts for any modules.
+Queries all the tokens of a particular owner.
 
 {% tabs %}
 {% tab title="Rust" %}
 ```rust
 pub enum QueryMsg {
-    ModuleContracts {
+    Tokens {
+        owner: String,
+        start_after: Option<String>,
+        limit: Option<u32>,
     }
 }
 ```
 {% endtab %}
 
 {% tab title="JSON" %}
-```javascript
+```json
 {
-    "module_contracts": {
+"tokens": {
+            "owner":"terra1...",
+            "limit": 25,
+            }
     }
-}
+
 ```
 {% endtab %}
 {% endtabs %}
 
-#### ModuleContractsResponse
+| Name          | Type            | Description                                                                                         |
+| ------------- | --------------- | --------------------------------------------------------------------------------------------------- |
+| `owner`       | String          | The address that we want to check the tokens of                                                     |
+| `start_after` | Option\<String> | An optional address for which to start after, used for pagination.                                  |
+| `limit`       | Option\<u32>    | Optional limit to the number of tokens queried. It is set by default as 10 and can be set up to 30. |
+
+#### TokensResponse
+
+Contains all token\_ids in lexicographical ordering. If there are more than `limit`, use `start_from` in future queries to achieve pagination.
+
+```rust
+pub struct TokensResponse {
+    pub tokens: Vec<String>,
+}
+```
+
+### AllTokens
+
+Queries the tokens minted by the contract.
 
 {% tabs %}
 {% tab title="Rust" %}
 ```rust
-#[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
-pub struct ModuleContract {
-    pub module: String,
-    pub contract: Option<String>,
-}
-
-#[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
-pub struct ModuleContractsResponse {
-    pub contracts: Vec<ModuleContract>,
-}
+ pub enum QueryMsg {
+ AllTokens {
+        start_after: Option<String>,
+        limit: Option<u32>,
+        }
+ }
 ```
 {% endtab %}
 
 {% tab title="JSON" %}
-```javascript
+```json
 {
-    "contracts": [
-        {
-            "module": "tax",
-            "contract": null,
-        },
-        {
-            "module": "whitelist",
-            "contract": "terra1...",
-        }
-    ]
-}
+  "all_tokens": {
+  
+          "limit": 5
+          
+          }
+  }
+  
+
+ 
 ```
 {% endtab %}
 {% endtabs %}
 
-| Name      | Type                 | Description                                                                          |
-| --------- | -------------------- | ------------------------------------------------------------------------------------ |
-| contracts | Vec\<ModuleContract> | A list of modules and their contract addresses (if they have an associated contract) |
+| Name          | Type            | Description                                                                                         |
+| ------------- | --------------- | --------------------------------------------------------------------------------------------------- |
+| `start_after` | Option\<String> | An optional address for which to start after, used for pagination.                                  |
+| `limit`       | Option\<u32>    | Optional limit to the number of tokens queried. It is set by default as 10 and can be set up to 30. |
+
+#### AllTokensResponse
+
+Contains all token\_ids in lexicographical ordering. If there are more than `limit`, use `start_from` in future queries to achieve pagination.
+
+```rust
+pub struct TokensResponse {
+    pub tokens: Vec<String>,
+}
+```
 
 ### ContractInfo
 
@@ -1028,11 +1017,7 @@ pub struct CotractInfoResponse {
 {% endtab %}
 {% endtabs %}
 
-| Name   | Type   | Description                         |
-| ------ | ------ | ----------------------------------- |
-| name   | String | The name of the contract            |
-| symbol | String | The assigned symbol of the contract |
-
-#### ContractOwner
-
-See [Ownership](ado-types/ownership.md#querymsg).
+| Name     | Type   | Description                         |
+| -------- | ------ | ----------------------------------- |
+| `name`   | String | The name of the contract            |
+| `symbol` | String | The assigned symbol of the contract |

@@ -13,9 +13,9 @@ pub struct AddressList {
 }
 ```
 
-| Name       | Type         | Description                                                            |
-| ---------- | ------------ | ---------------------------------------------------------------------- |
-| moderators | Vec\<String> | A list of addresses that are authorised to interact with the contract. |
+| Name         | Type         | Description                                                            |
+| ------------ | ------------ | ---------------------------------------------------------------------- |
+| `moderators` | Vec\<String> | A list of addresses that are authorised to interact with the contract. |
 
 ## InstantiateMsg
 
@@ -38,9 +38,9 @@ pub struct InstantiateMsg {
 {% endtab %}
 {% endtabs %}
 
-| Name       | Type         | Description                                                            |
-| ---------- | ------------ | ---------------------------------------------------------------------- |
-| moderators | Vec\<String> | A list of addresses that are authorised to interact with the contract. |
+| Name         | Type         | Description                                                            |
+| ------------ | ------------ | ---------------------------------------------------------------------- |
+| `moderators` | Vec\<String> | A list of addresses that are authorised to interact with the contract. |
 
 ## ExecuteMsg
 

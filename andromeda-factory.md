@@ -10,36 +10,16 @@ description: A factory contract for generating Andromeda Digital Objects
 {% tab title="Rust" %}
 ```rust
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
-pub struct InstantiateMsg {
-    pub token_code_id: u64,
-    pub receipt_code_id: u64,
-    pub address_list_code_id: u64,
-}
-```
-{% endtab %}
-
-{% tab title="JSON" %}
-```javascript
-{
-    "token_code_id": 1,
-    "receipt_code_id": 2,
-    "address_list_code_id": 3
-}
+pub struct InstantiateMsg {}
 ```
 {% endtab %}
 {% endtabs %}
-
-| Name                    | Type | Description                                                            |
-| ----------------------- | ---- | ---------------------------------------------------------------------- |
-| token\_code\_id         | u64  | The code ID for the ADO  contract                                      |
-| receipt\_code\_id       | u64  | The code ID for the [receipt](ado-types/receipt.md) contract           |
-| address\_list\_code\_id | u64  | The code ID for the [address list](ado-types/address-list.md) contract |
 
 ## ExecuteMsg
 
 ### Create
 
-Creates a new ADO contract using the defined `token_code_id`. The address of the instantiated contract is then registered under the ADO's symbol. The sender of the message is defined as the minter for the ADO contract and as such, the owner of the ADO contract.
+Creates a new [ADO](andromeda-digital-object.md) contract. The sender of the message is defined as the minter for the ADO contract and as such, the owner of the ADO contract.
 
 {% tabs %}
 {% tab title="Rust" %}
@@ -86,15 +66,15 @@ pub enum ExecuteMsg {
 {% endtab %}
 {% endtabs %}
 
-| Name    | Type                   | Description                                     |
-| ------- | ---------------------- | ----------------------------------------------- |
-| name    | String                 | The ADO's name                                  |
-| symbol  | String                 | The ADO's symbol                                |
-| modules | Vec\<ModuleDefinition> | Any Andromeda Modules to be attached to the ADO |
+| Name      | Type                                        | Description                                      |
+| --------- | ------------------------------------------- | ------------------------------------------------ |
+| `name`    | String                                      | The ADO's name                                   |
+| `symbol`  | String                                      | The ADO's symbol                                 |
+| `modules` | Vec<[ModuleDefinition](modules/modules.md)> | Any Andromeda Modules to be attached to the ADO. |
 
 ### UpdateAddress
 
-Updates the contract address for a given symbol.&#x20;
+Updates the ADO contract address for the given `symbol`. ``&#x20;
 
 {% hint style="info" %}
 Only available to the ADO owner or contract owner.
@@ -125,21 +105,17 @@ pub enum ExecuteMsg {
 {% endtab %}
 {% endtabs %}
 
-| Name         | Type   | Description              |
-| ------------ | ------ | ------------------------ |
-| symbol       | String | The token's symbol       |
-| new\_address | String | The new contract address |
+| Name          | Type   | Description                                 |
+| ------------- | ------ | ------------------------------------------- |
+| `symbol`      | String | The ADO's symbol to change the address for. |
+| `new_address` | String | The new contract address.                   |
 
 ### UpdateCodeId
 
-Updates the contract address for a given symbol.&#x20;
+Updates the Code Id of the a contract.
 
-{% hint style="warning" %}
+{% hint style="info" %}
 Only available to the contract owner.
-
-
-
-One of the code IDs must be provided.
 {% endhint %}
 
 {% tabs %}
@@ -147,10 +123,9 @@ One of the code IDs must be provided.
 ```rust
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
 pub enum ExecuteMsg {
-    UpdateCodeId {
-        receipt_code_id: Option<u64>,
-        address_list_code_id: Option<u64>,
-        token_code_id: Option<u64>,
+     UpdateCodeId {
+        code_id_key: String,
+        code_id: u64,
     },
 }
 ```
@@ -160,36 +135,31 @@ pub enum ExecuteMsg {
 ```javascript
 {
     "update_code_id": {
-        "receipt_code_id": 1,
-        "address_list_code_id": 2,
+        "code_id_key": "adress_list",
+        "code_id": 2,
     }
 }
 ```
 {% endtab %}
 {% endtabs %}
 
-| Name                    | Type         | Description                                                                       |
-| ----------------------- | ------------ | --------------------------------------------------------------------------------- |
-| receipt\_code\_id       | Option\<u64> | Optional new code ID for the [receipt](ado-types/receipt.md) contracts.           |
-| token\_code\_id         | Option\<u64> | Optional new code ID for the [ADO](andromeda-digital-object.md) contracts.        |
-| address\_list\_code\_id | Option\<u64> | Optional new code ID for the [address list](ado-types/address-list.md) contracts. |
-
-### UpdateOwner
-
-See [Ownership](ado-types/ownership.md#executemsg).
+| Name          | Type   | Description                           |
+| ------------- | ------ | ------------------------------------- |
+| `code_id_key` | String | The key of the code id to be updated. |
+| `code_id`     | u64    | The new code ID.                      |
 
 ## QueryMsg
 
 ### GetAddress
 
-Query the address of a given symbol.
+Query the contract address of a given symbol.
 
 {% tabs %}
 {% tab title="Rust" %}
 ```rust
 pub enum QueryMsg {
     GetAddress {
-        symbol: String
+        symbol: String,
     }
 }
 ```
@@ -206,9 +176,9 @@ pub enum QueryMsg {
 {% endtab %}
 {% endtabs %}
 
-| Name   | Type   | Description                                   |
-| ------ | ------ | --------------------------------------------- |
-| symbol | String | The ADO symbol for which to query the address |
+| Name     | Type   | Description                                   |
+| -------- | ------ | --------------------------------------------- |
+| `symbol` | String | The ADO symbol for which to query the address |
 
 #### AddressResponse
 
@@ -231,11 +201,11 @@ pub struct AddressResponse {
 {% endtab %}
 {% endtabs %}
 
-| Name    | Type   | Description                                  |
-| ------- | ------ | -------------------------------------------- |
-| address | String | The contract address of the given ADO symbol |
+| Name      | Type   | Description                                  |
+| --------- | ------ | -------------------------------------------- |
+| `address` | String | The contract address of the given ADO symbol |
 
-### CodeIds
+### CodeId
 
 Query the address of a given symbol.
 
@@ -243,7 +213,9 @@ Query the address of a given symbol.
 {% tab title="Rust" %}
 ```rust
 pub enum QueryMsg {
-    CodeIds {}
+    CodeId {
+      key:String,
+    }
 }
 ```
 {% endtab %}
@@ -251,43 +223,16 @@ pub enum QueryMsg {
 {% tab title="JSON" %}
 ```javascript
 {
-    "code_ids": {}
+    "code_ids": {
+    "key": "..."
+    }
 }
 ```
 {% endtab %}
 {% endtabs %}
 
-#### CodeIdsResponse
+| Name  | Type   | Description                                           |
+| ----- | ------ | ----------------------------------------------------- |
+| `key` | String | The key of the contract which we want the code id of. |
 
-{% tabs %}
-{% tab title="Rust" %}
-```rust
-#[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
-pub struct CodeIdsResponse {
-    pub receipt_code_id: u64,
-    pub token_code_id: u64,
-    pub address_list_code_id: u64,
-}
-```
-{% endtab %}
-
-{% tab title="JSON" %}
-```javascript
-{
-    "receipt_code_id": 1,
-    "token_code_id": 2,
-    "address_list_code_id": 3,
-}
-```
-{% endtab %}
-{% endtabs %}
-
-| Name                    | Type | Description                                                         |
-| ----------------------- | ---- | ------------------------------------------------------------------- |
-| receipt\_code\_id       | u64  | The code ID used for [receipt](ado-types/receipt.md) ADOs           |
-| token\_code\_id         | u64  | The code ID used for the [ADOs](andromeda-digital-object.md)        |
-| address\_list\_code\_id | u64  | The code ID used for [address list](ado-types/address-list.md) ADOs |
-
-### ContractOwner
-
-See [Ownership](ado-types/ownership.md#querymsg).
+Returns a u64 which represents the code\_id.

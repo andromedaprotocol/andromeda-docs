@@ -22,19 +22,19 @@ If the module is provided a list of moderators and a valid `AddressList` code id
 pub struct AddressListModule {
     pub address: Option<String>,
     pub code_id: Option<u64>,
-    pub moderators: Option<Vec<String>>,
+    pub operators: Option<Vec<String>>,
     pub inclusive: bool,
 }
 ```
 {% endtab %}
 {% endtabs %}
 
-| Name       | Type                  | Description                                                                                                                        |
-| ---------- | --------------------- | ---------------------------------------------------------------------------------------------------------------------------------- |
-| address    | Option\<String>       | A valid `AddressList` contract address. Highest priority.                                                                          |
-| code\_id   | Option\<u64>          | A valid `AddressList` contract code id. Must be included with the `moderators` field.                                              |
-| moderators | Option\<Vec\<String>> | A list of address list moderators. Must be included with the `code_id` field.                                                      |
-| inclusive  | bool                  | Whether or not the address list is inclusive. If `true` the address list is a whitelist, if false the address list is a blacklist. |
+| Name      | Type                  | Description                                                                                                                        |
+| --------- | --------------------- | ---------------------------------------------------------------------------------------------------------------------------------- |
+| address   | Option\<String>       | A valid `AddressList` contract address. Highest priority.                                                                          |
+| code\_id  | Option\<u64>          | A valid `AddressList` contract code id. Must be included with the `moderators` field.                                              |
+| operators | Option\<Vec\<String>> | A list of address list moderators. Must be included with the `code_id` field.                                                      |
+| inclusive | bool                  | Whether or not the address list is inclusive. If `true` the address list is a whitelist, if false the address list is a blacklist. |
 
 ## Methods
 
