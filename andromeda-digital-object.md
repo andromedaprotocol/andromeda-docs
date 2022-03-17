@@ -771,11 +771,7 @@ pub enum QueryMsg {
 {% tab title="Rust" %}
 ```rust
 pub struct NftInfoResponse<T> {
-    /// Universal resource identifier for this NFT
-    /// Should point to a JSON file that conforms to the ERC721
-    /// Metadata JSON Schema
     pub token_uri: Option<String>,
-    /// You can add any custom metadata here when you extend cw721-base
     pub extension: T,
 }
 ```
