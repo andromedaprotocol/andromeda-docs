@@ -15,9 +15,9 @@ pub struct Receipt {
 }
 ```
 
-| Name   | Type                                                                              | Description                                |
-| ------ | --------------------------------------------------------------------------------- | ------------------------------------------ |
-| events | Vec<[Event](https://docs.rs/cosmwasm-std/0.16.2/cosmwasm\_std/struct.Event.html)> | An array of events related to the receipt. |
+| Name     | Type                                                                              | Description                                |
+| -------- | --------------------------------------------------------------------------------- | ------------------------------------------ |
+| `events` | Vec<[Event](https://docs.rs/cosmwasm-std/0.16.2/cosmwasm\_std/struct.Event.html)> | An array of events related to the receipt. |
 
 ## InstantiateMsg
 
@@ -27,7 +27,7 @@ pub struct Receipt {
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
 pub struct InstantiateMsg {
     pub minter: String,
-    pub moderators: Option<Vec<String>>,
+    pub operators: Option<Vec<String>>,
 }
 ```
 {% endtab %}
@@ -36,22 +36,22 @@ pub struct InstantiateMsg {
 ```javascript
 {
     "minter": "terra1...",
-    "moderators": ["terra1...", ...],
+    "operators": ["terra1...", ...],
 }
 ```
 {% endtab %}
 {% endtabs %}
 
-| Name       | Type                  | Description                                                             |
-| ---------- | --------------------- | ----------------------------------------------------------------------- |
-| minter     | String                | An address authorised to edit or mint receipts.                         |
-| moderators | Option\<Vec\<String>> | An optional list of contract moderators that may edit or mint receipts. |
+| Name        | Type                  | Description                                                                                      |
+| ----------- | --------------------- | ------------------------------------------------------------------------------------------------ |
+| `minter`    | String                | The address authorized to mint new receipts                                                      |
+| `operators` | Option\<Vec\<String>> | Optional list of moderating addresses authorized to update receipts, defaults to an empty vector |
 
 ## ExecuteMsg
 
 ### StoreReceipt
 
-Mints a new receipt. Only available to the contract owner or a moderator.
+Mint a new receipt. Only executable by the assigned `minter` address. Generates a receipt ID.
 
 {% tabs %}
 {% tab title="Rust" %}
@@ -90,13 +90,13 @@ pub enum ExecuteMsg {
 {% endtab %}
 {% endtabs %}
 
-| Name    | Type                          | Description           |
-| ------- | ----------------------------- | --------------------- |
-| receipt | [Receipt](receipt.md#receipt) | The receipt to store. |
+| Name      | Type                          | Description           |
+| --------- | ----------------------------- | --------------------- |
+| `receipt` | [Receipt](receipt.md#receipt) | The receipt to store. |
 
 ### EditReceipt
 
-Edits a receipt. Only available to the contract owner or a moderator.
+Edit a receipt by ID. Only executable by the assigned `minter` address or a valid `operator`.
 
 {% tabs %}
 {% tab title="Rust" %}
@@ -138,14 +138,10 @@ pub enum ExecuteMsg {
 {% endtab %}
 {% endtabs %}
 
-| Name        | Type                          | Description                    |
-| ----------- | ----------------------------- | ------------------------------ |
-| receipt     | [Receipt](receipt.md#receipt) | The receipt to edit.           |
-| receipt\_id | Uint128                       | The ID of the receipt to edit. |
-
-### UpdateOwner
-
-See [Ownership](ownership.md#executemsg).
+| Name         | Type                          | Description                    |
+| ------------ | ----------------------------- | ------------------------------ |
+| `receipt`    | [Receipt](receipt.md#receipt) | The receipt to edit.           |
+| `receipt_id` | Uint128                       | The ID of the receipt to edit. |
 
 ## QueryMsg
 
@@ -214,9 +210,9 @@ pub struct ReceiptResponse {
 {% endtab %}
 {% endtabs %}
 
-| Name    | Type                          | Description       |
-| ------- | ----------------------------- | ----------------- |
-| receipt | [Receipt](receipt.md#receipt) | The receipt data. |
+| Name      | Type                          | Description       |
+| --------- | ----------------------------- | ----------------- |
+| `receipt` | [Receipt](receipt.md#receipt) | The receipt data. |
 
 ### ContractInfo
 
@@ -250,7 +246,7 @@ pub enum QueryMsg {
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
 pub struct Config {
     pub minter: String,
-    pub moderators: Vec<String>,
+   
 }
 
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
@@ -266,18 +262,12 @@ pub struct ContractInfoResponse {
 {
     "config": {
         "minter": "terra1...",
-        "moderators": ["terra1...", ...]
     }
 }
 ```
 {% endtab %}
 {% endtabs %}
 
-| Name       | Type         | Description                               |
-| ---------- | ------------ | ----------------------------------------- |
-| minter     | String       | The assigned minter for the contract.     |
-| moderators | Vec\<String> | The assigned moderators for the contract. |
-
-### ContractOwner
-
-See [Ownership](ownership.md#querymsg).
+| Name     | Type   | Description                                  |
+| -------- | ------ | -------------------------------------------- |
+| `minter` | String | The address authorized to mint new receipts. |

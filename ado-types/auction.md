@@ -19,8 +19,11 @@ pub struct TokenAuctionState {
     pub high_bidder_amount: Uint128,
     pub coin_denom: String,
     pub auction_id: Uint128,
-    pub claimed: bool,
-    pub whitelist: Option<Vec<Addr>>,
+    pub whitelist: Option<Vec<Addr>>
+    pub owner: String,
+    pub token_id:String,
+    pub token_address:String,
+    pub is_cancelled:bool,
 }
 ```
 
@@ -43,44 +46,54 @@ pub struct Bid {
 {% tab title="Rust" %}
 ```rust
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
-pub struct InstantiateMsg {
-    pub token_addr: String,
-}
-```
-{% endtab %}
-
-{% tab title="JSON" %}
-```json
-{
-    "token_addr": "terra1...",
-}
+pub struct InstantiateMsg {}
 ```
 {% endtab %}
 {% endtabs %}
 
-| Name         | Type   | Description                                    |
-| ------------ | ------ | ---------------------------------------------- |
-| `token_addr` | String | The address of the corresponding ADO address.  |
-
 ## ExecuteMsg
 
-### StartAuction
+### ReceiveNft
 
-Starts an auction for the given token or updates the auction's details if it hasn't started yet.
+Receives a token from a [`Send`](../andromeda-digital-object.md#sendnft) and starts an auction based on the given parameters in the [`StartAuction` ](auction.md#startauction)struct. &#x20;
+
+{% hint style="info" %}
+The auction information can be modified before it has started but is immutable after that.
+
+Only the ADO owner can start the auction.
+{% endhint %}
 
 {% tabs %}
 {% tab title="Rust" %}
 ```rust
-#[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
-#[serde(renamste_all = "snake_case")]
+ pub struct Cw721ReceiveMsg {
+        pub sender: String,
+        pub token_id: String,
+        pub msg: Binary,
+    }
+
 pub enum ExecuteMsg {
-     StartAuction {
-          token_id: String,
-          start_time: Expiration,
-          end_time: Expiration,
-          coin_denom: String,
-          whitelist: Option<Vec<Addr>>,
-    },
+    ReceiveNft(Cw721ReceiveMsg)
+```
+{% endtab %}
+{% endtabs %}
+
+{% hint style="warning" %}
+In order to start an auction you need to define the message of the `Cw721ReceiveMsg` as a `Cw721HookMsg`.
+{% endhint %}
+
+#### StartAuction
+
+{% tabs %}
+{% tab title="Rust" %}
+```rust
+pub enum Cw721HookMsg {
+    StartAuction {
+        start_time: Expiration,
+        end_time: Expiration,
+        coin_denom: String,
+        whitelist: Option<Vec<Addr>>,
+    }
 }
 ```
 {% endtab %}
@@ -89,7 +102,6 @@ pub enum ExecuteMsg {
 ```json
 {
     "start_auction": {
-          "token_id": "token_001",
           "start_time": { "at_height": 500 },
           "end_time": { "at_height": 600 },
           "coin_denom": "uusd",
@@ -102,10 +114,9 @@ pub enum ExecuteMsg {
 
 | Name         | Type                | Description                                                                          |
 | ------------ | ------------------- | ------------------------------------------------------------------------------------ |
-| `token_id`   | String              | The id of the ADO to auction.                                                        |
 | `start_time` | Expiration          | The start of the auction.                                                            |
 | `end_time`   | Expiration          | The end of the auction.                                                              |
-| `coin_denom` | String              | The native coin denomination to do the auction in                                    |
+| `coin_denom` | String              | The native coin denomination to do the auction in.                                   |
 | `whitelist`  | Option\<Vec\<Addr>> | Optional list of addresses to whitelist for the auction. If None, auction is public. |
 
 {% hint style="warning" %}
@@ -114,23 +125,110 @@ To be a valid auction the following requirements must be met:
 * `start_time` occurs not in the past
 * `start_time` and `end_time` use the same variant of `Expiration`, (but not `Expiration::Never {})`
 * `start_time` < `end_time`
-* The sender of the transaction owns the ADO with`token_id`
-* No auction is currently ongoing for ADO with`token_id`
 {% endhint %}
 
-### PlaceBid
+### UpdateAuction
 
-Places a bid for the auction for the given ADO id. The bid must be sent as native funds along with this message. If this is not the first bid, the previous bid is sent back to the user who placed it.
+Updates the information of an auction.
+
+{% hint style="info" %}
+Only the owner of the auction can execute `UpdateAuction`.
+
+An auction can be updated only if it has not started yet.&#x20;
+{% endhint %}
 
 {% tabs %}
 {% tab title="Rust" %}
 ```rust
-#[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
-#[serde(renamste_all = "snake_case")]
+ pub enum ExecuteMsg {
+ UpdateAuction {
+        token_id: String,
+        token_address: String,
+        start_time: Expiration,
+        end_time: Expiration,
+        coin_denom: String,
+        whitelist: Option<Vec<Addr>>,
+    }
+  }
+```
+{% endtab %}
+
+{% tab title="JSON" %}
+```json
+{
+  "update_auction": {
+  "token_id":"token_001",
+   "token_address":"terra1...",
+   "start_time": { "at_height": 500 },
+   "end_time": { "at_height": 600 },
+   "coin_denom": "uusd",
+   "whitelist": ["terra1...", "terra1...", ...],
+    }
+ }
+```
+{% endtab %}
+{% endtabs %}
+
+{% hint style="warning" %}
+* `start_time` occurs not in the past
+* `start_time` and `end_time` use the same variant of `Expiration`, (but not `Expiration::Never {})`
+* `start_time` < `end_time`
+{% endhint %}
+
+| Name            | Type                | Description                                                                          |
+| --------------- | ------------------- | ------------------------------------------------------------------------------------ |
+| `token_id`      | String              | The id of the ADO that is being auctioned.                                           |
+| `token_address` | String              | The address of the token contract.                                                   |
+| `start_time`    | Expiration          | The start of the auction.                                                            |
+| `end_time`      | Expiration          | The end of the auction.                                                              |
+| `coin_denom`    | String              | The native coin denomination to do the auction in.                                   |
+| `whitelist`     | Option\<Vec\<Addr>> | Optional list of addresses to whitelist for the auction. If None, auction is public. |
+
+### CancelAuction
+
+Cancels the auction of a token.
+
+{% tabs %}
+{% tab title="Rust" %}
+```rust
+pub enum ExecuteMsg {
+    CancelAuction {
+        token_id: String,
+        token_address: String,
+    }
+}
+```
+{% endtab %}
+
+{% tab title="JSON" %}
+```json
+{
+  "cancel_auction": {
+    "token_id":"token_001",
+    "token_address":"terra1...",
+  }
+}
+```
+{% endtab %}
+{% endtabs %}
+
+| Name            | Type   | Description                                       |
+| --------------- | ------ | ------------------------------------------------- |
+| `token_id`      | String | The id of the ADO in the auction to be cancelled. |
+| `token_address` | String | The address of the token contract.                |
+
+### PlaceBid
+
+Places a bid for the auction for the given ADO id. The bid must be sent as native funds along with this message. The previous largest bid gets automatically sent back to the bidder when they are outbid.
+
+{% tabs %}
+{% tab title="Rust" %}
+```rust
 pub enum ExecuteMsg {
     PlaceBid {
         token_id: String,
-    },
+        token_address:String,
+    }
 }
 ```
 {% endtab %}
@@ -139,16 +237,18 @@ pub enum ExecuteMsg {
 ```json
 {
     "place_bid": {
-        "token_id": "token_001"
+        "token_id": "token_001",
+        "token_address":"terra1...",
     }
 }
 ```
 {% endtab %}
 {% endtabs %}
 
-| Name       | Type   | Description        |
-| ---------- | ------ | ------------------ |
-| `token_id` | String | The id of the ADO. |
+| Name            | Type   | Description                          |
+| --------------- | ------ | ------------------------------------ |
+| `token_id`      | String | The id of the ADO to place a bid on. |
+| `token_address` | String | The address of the token contract.   |
 
 {% hint style="warning" %}
 The following criteria must be met for the bid to be placed:
@@ -156,20 +256,20 @@ The following criteria must be met for the bid to be placed:
 * The ADO is currently under auction
 * The sender's bid is higher than the highest bid
 * The sender does not currently hold the highest bid
+* The sender is not the token owner
 {% endhint %}
 
 ### Claim
 
-Sends the winner of the auction the ADO and the funds to the ADO owner via a `transfer_agreement` when the auction has finished. Anyone is allowed to execute this message.
+Sends the winner of the auction the ADO and the funds to the ADO owner  when the auction has finished. Anyone is allowed to execute this message.
 
 {% tabs %}
 {% tab title="Rust" %}
 ```rust
-#[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
-#[serde(renamste_all = "snake_case")]
 pub enum ExecuteMsg {
     Claim {
         token_id: String,
+        token_address:String,
     },
 }
 ```
@@ -179,16 +279,18 @@ pub enum ExecuteMsg {
 ```json
 {
     "claim": {
-        "token_id": "token_001"
+        "token_id": "token_001",
+        "token_address":"terra1..."
     }
 }
 ```
 {% endtab %}
 {% endtabs %}
 
-| Name       | Type   | Description                             |
-| ---------- | ------ | --------------------------------------- |
-| `token_id` | String | The id of the token that was auctioned. |
+| Name            | Type   | Description                             |
+| --------------- | ------ | --------------------------------------- |
+| `token_id`      | String | The id of the token that was auctioned. |
+| `token_address` | String | The address of the token contract.      |
 
 {% hint style="warning" %}
 Can only be done when the `end_time` has been passed. If no bids has been placed the original owner retains the token.
@@ -196,7 +298,32 @@ Can only be done when the `end_time` has been passed. If no bids has been placed
 
 ### UpdateOwner
 
-See [Ownership](ownership.md#executemsg).
+{% tabs %}
+{% tab title="Rust" %}
+```rust
+pub enum ExecuteMsg {
+    UpdateOwner {
+        address: String,
+    }
+}
+```
+{% endtab %}
+
+{% tab title="JSON" %}
+```json
+{
+  "update_owner": {
+      "address": "terra1..."
+      }
+  }
+       
+```
+{% endtab %}
+{% endtabs %}
+
+| Name      | Type   | Description                   |
+| --------- | ------ | ----------------------------- |
+| `address` | String | The address of the new owner. |
 
 ## QueryMsg
 
@@ -212,6 +339,7 @@ Queries the most recent auction for the given token (either ongoing, complete, o
 pub enum QueryMsg {
     LatestAuctionState {
         token_id: String,
+        token_address:String,
     },
 }
 ```
@@ -221,16 +349,18 @@ pub enum QueryMsg {
 ```json
 {
     "latest_auction_state": {
-        "token_id": "token_001"
+        "token_id": "token_001",
+        "token_address":"tera1...",
     }
 }
 ```
 {% endtab %}
 {% endtabs %}
 
-| Name       | Type   | Description   |
-| ---------- | ------ | ------------- |
-| `token_id` | String | The token id. |
+| Name            | Type   | Description                                             |
+| --------------- | ------ | ------------------------------------------------------- |
+| `token_id`      | String | The id of the ADO that we want to query the auction of. |
+| `token_address` | String | The address of the token contract.                      |
 
 #### AuctionStateResponse
 
@@ -245,7 +375,7 @@ pub struct AuctionStateResponse {
     pub high_bidder_amount: Uint128,
     pub auction_id: Uint128,
     pub coin_denom: String,
-    pub claimed: bool,
+    pub is_cancelled:bool, 
     pub whitelist: Option<Vec<Addr>>,
 }
 ```
@@ -269,16 +399,16 @@ pub struct AuctionStateResponse {
 {% endtab %}
 {% endtabs %}
 
-| Name                 | Type                | Description                                                                                         |
-| -------------------- | ------------------- | --------------------------------------------------------------------------------------------------- |
-| `start_time`         | Expiration          | The start of the auction.                                                                           |
-| `end_time`           | Expiration          | The end of the auction.                                                                             |
-| `high_bidder_addr`   | String              | The terra address of the highest bidder.                                                            |
-| `high_bidder_amount` | Uint128             | The amount of the highest bid.                                                                      |
-| `auction_id`         | Uint128             | The id of the auction.                                                                              |
-| `coin_denom`         | String              | The denom the auction is in.                                                                        |
-| `claimed`            | bool                | Whether or not the auction has been claimed. If `true` a new auction for this token can be created. |
-| `whitelist`          | Option\<Vec\<Addr>> | The whitelisted addresses if they were specified at time of creation.                               |
+| Name                 | Type                | Description                                                           |
+| -------------------- | ------------------- | --------------------------------------------------------------------- |
+| `start_time`         | Expiration          | The start of the auction.                                             |
+| `end_time`           | Expiration          | The end of the auction.                                               |
+| `high_bidder_addr`   | String              | The terra address of the highest bidder.                              |
+| `high_bidder_amount` | Uint128             | The amount of the highest bid.                                        |
+| `auction_id`         | Uint128             | The id of the auction.                                                |
+| `coin_denom`         | String              | The denom the auction is in.                                          |
+| `is_cancelled`       | bool                | Whether or not the auction has been cancelled.                        |
+| `whitelist`          | Option\<Vec\<Addr>> | The whitelisted addresses if they were specified at time of creation. |
 
 ### AuctionState
 
@@ -312,9 +442,7 @@ pub enum QueryMsg {
 | ------------ | ------- | --------------- |
 | `auction_id` | Uint128 | The auction id. |
 
-See [TokenAuctionStateResponse](auction.md#auctionstateresponse).
-
-
+See [AuctionStateResponse](auction.md#auctionstateresponse).
 
 ### Bids
 
@@ -337,23 +465,33 @@ pub enum QueryMsg {
 {% endtab %}
 
 {% tab title="JSON" %}
-
+```json
+{
+ "bids":{
+    "auction_id": "4",
+    "start_after": 3,
+    "limit": 25,
+    }
+ }
+    
+ 
+```
 {% endtab %}
 {% endtabs %}
 
-| Name          | Type             | Description                                                                                          |
-| ------------- | ---------------- | ---------------------------------------------------------------------------------------------------- |
-| `auction_id`  | Uint128          | The auction id.                                                                                      |
-| `start_after` | Option\<u64>     | Optional parameter to specify which bid to start after. If none specified index `0` will be used.    |
-| `limit`       | Option\<u64>     | Optional parameter to specify how many bids to query. If none specified a max limit of `30` is used. |
-| `order_by`    | Option\<OrderBy> | Optional parameter to specify the order of the bids being queries. Default is Ascending.             |
+| Name          | Type             | Description                                                                                            |
+| ------------- | ---------------- | ------------------------------------------------------------------------------------------------------ |
+| `auction_id`  | Uint128          | The auction id.                                                                                        |
+| `start_after` | Option\<u64>     | Optional parameter to specify which bid to start after. If none specified index `0` will be used.      |
+| `limit`       | Option\<u64>     | Optional parameter to specify how many bids to query. If none specified a default limit of 10 is used. |
+| `order_by`    | Option\<OrderBy> | Optional parameter to specify the order of the bids being queries. Default is Ascending.               |
 
 ```rust
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
 #[serde(rename_all = "snake_case")]
-pub struct OrderBy {
+pub enum OrderBy {
     Asc,
-    Desc
+    Desc,
 }
 ```
 
@@ -401,8 +539,9 @@ Queries the auction ids for a given token.
 #[serde(rename_all = "snake_case")]
 pub enum QueryMsg {
     AuctionIds {
-        token_id: String
-    },
+        token_id: String,
+        token_address:String
+    }
 }
 ```
 {% endtab %}
@@ -411,16 +550,18 @@ pub enum QueryMsg {
 ```json
 {
     "auction_ids": {
-        "token_id": "token_001"
+        "token_id": "token_001",
+        "token_address":"terra1..."
     }
 }
 ```
 {% endtab %}
 {% endtabs %}
 
-| Name       | Type   | Description |
-| ---------- | ------ | ----------- |
-| `token_id` | String | The ADO id. |
+| Name            | Type   | Description                        |
+| --------------- | ------ | ---------------------------------- |
+| `token_id`      | String | The ADO id.                        |
+| `token_address` | String | The address of the token contract. |
 
 #### AuctionIdsResponse
 
@@ -449,57 +590,116 @@ pub struct AuctionIdsResponse {
 | ------------- | ------------- | ---------------- |
 | `auction_ids` | Vec\<Uint128> | The auction ids. |
 
-### Config
-
-Queries the config for the ADO.
+### AuctionInfosForAddress
 
 {% tabs %}
 {% tab title="Rust" %}
 ```rust
-#[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
-#[serde(rename_all = "snake_case")]
-pub enum QueryMsg {
-    Config {},
-}
-```
-{% endtab %}
-
-{% tab title="JSON" %}
-```json
-{
-    "config": {}
-}
-```
-{% endtab %}
-{% endtabs %}
-
-#### ConfigResponse
-
-{% tabs %}
-{% tab title="Rust" %}
-```rust
-#[derive(Serialize, Deserialize, Clone, PartialEq, JsonSchema, Debug)]
-pub struct ConfigResponse {
-    pub token_addr: String,
-}
-```
-{% endtab %}
-
-{% tab title="JSON" %}
-```json
-{
-    "config_response": {
-        "token_addr": "terra1..."
+  pub enum ExecuteMsg {
+    AuctionInfosForAddress {
+        token_address: String,
+        start_after: Option<String>,
+        limit: Option<u64>,
     }
+ }
+```
+{% endtab %}
+
+{% tab title="JSON" %}
+```json
+{
+"auction_infos_for_address":{
+       "token_address":"terra1...",
+       "start_after":"3",
+       "limit": 15,
+       }
 }
 ```
 {% endtab %}
 {% endtabs %}
 
-| Name         | Type   | Description                      |
-| ------------ | ------ | -------------------------------- |
-| `token_addr` | String | The address of the ADO contract. |
+| Name            | Type            | Description                                                                                                     |
+| --------------- | --------------- | --------------------------------------------------------------------------------------------------------------- |
+| `token_address` | String          | The address of the token contract                                                                               |
+| `start_after`   | Option\<String> | Optional parameter to specify which `AuctionInfo` to start from. If none specified index `0` will be used.      |
+| `limit`         | Option\<u64>    | Optional parameter to specify how many `AuctionInfo` to query. If none specified a default limit of 10 is used. |
+
+#### AuctionInfosForAddressResponse
+
+Returns a vector of AuctionInfo defined below.
+
+{% tabs %}
+{% tab title="Rust" %}
+```rust
+pub struct AuctionInfo {
+    pub auction_ids: Vec<Uint128>,
+    pub token_address: String,
+    pub token_id: String,
+}
+```
+{% endtab %}
+
+{% tab title="JSON" %}
+```json
+{
+
+"auction_info" {
+   "auction_ids": ["0","1",...],
+   "token_address":"terra1...",
+   "token_id":"token_001"
+   }
+}
+   
+```
+{% endtab %}
+{% endtabs %}
+
+| Name            | Type          | Description                                                     |
+| --------------- | ------------- | --------------------------------------------------------------- |
+| `auction_ids`   | Vec\<Uint128> | The ids of the auctions that use  the specified `token_address` |
+| `token_address` | String        | The address of the token contract.                              |
+| `token_id`      | String        | The id of the token that was auctioned.                         |
 
 ### Owner
 
-See [Ownership](ownership.md#executemsg).
+{% tabs %}
+{% tab title="Rust" %}
+```rust
+   pub enum QueryMsg{
+     Owner {}
+     }
+```
+{% endtab %}
+
+{% tab title="JSON" %}
+```json
+{
+"owner":{}
+}
+```
+{% endtab %}
+{% endtabs %}
+
+#### ContractOwnerResponse
+
+{% tabs %}
+{% tab title="Rust" %}
+```rust
+pub struct ContractOwnerResponse {
+    pub owner: String,
+}
+```
+{% endtab %}
+
+{% tab title="JSON" %}
+```json
+{
+"owner":"terra1..."
+}
+```
+{% endtab %}
+{% endtabs %}
+
+| Name    | Type   | Description               |
+| ------- | ------ | ------------------------- |
+| `owner` | String | The owner of the contract |

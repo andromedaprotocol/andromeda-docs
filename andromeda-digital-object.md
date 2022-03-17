@@ -1,5 +1,5 @@
 ---
-description: The message definitions for the Andromeda Digital Object contract.
+description: The message definitions for the Andromeda Digital Object contract
 ---
 
 # Andromeda Digital Object

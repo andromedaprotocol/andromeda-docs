@@ -4,19 +4,6 @@ description: An ADO contract to store a queryable list of addresses.
 
 # Address List
 
-## Address List
-
-```rust
-#[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema, Eq)]
-pub struct AddressList {
-    pub moderators: Vec<String>,
-}
-```
-
-| Name         | Type         | Description                                                            |
-| ------------ | ------------ | ---------------------------------------------------------------------- |
-| `moderators` | Vec\<String> | A list of addresses that are authorised to interact with the contract. |
-
 ## InstantiateMsg
 
 {% tabs %}
@@ -24,7 +11,8 @@ pub struct AddressList {
 ```rust
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
 pub struct InstantiateMsg {
-    pub moderators: Vec<String>,
+    pub operators: Vec<String>,
+    pub is_inclusive: bool,
 }
 ```
 {% endtab %}
@@ -32,21 +20,26 @@ pub struct InstantiateMsg {
 {% tab title="JSON" %}
 ```javascript
 {
-    "moderators": ["terra1..."],
+    "operators": ["terra1..."],
 }
 ```
 {% endtab %}
 {% endtabs %}
 
-| Name         | Type         | Description                                                            |
-| ------------ | ------------ | ---------------------------------------------------------------------- |
-| `moderators` | Vec\<String> | A list of addresses that are authorised to interact with the contract. |
+| Name           | Type         | Description                                                                                                                        |
+| -------------- | ------------ | ---------------------------------------------------------------------------------------------------------------------------------- |
+| `operators`    | Vec\<String> | A list of addresses that are authorised to interact with the contract.                                                             |
+| `is_inclusive` | bool         | Whether or not the address list is inclusive. If `true` the address list is a whitelist, if false the address list is a blacklist. |
 
 ## ExecuteMsg
 
 ### AddAddress
 
 Adds an address to the address list.
+
+{% hint style="info" %}
+Only Owner/Operators can execute AddAddress.
+{% endhint %}
 
 {% tabs %}
 {% tab title="Rust" %}
@@ -77,6 +70,10 @@ pub enum ExecuteMsg {
 
 Removes an address from the address list.
 
+{% hint style="info" %}
+Only Owner/Operators can execute RemoveAddress.
+{% endhint %}
+
 {% tabs %}
 {% tab title="Rust" %}
 ```rust
@@ -101,10 +98,6 @@ pub enum ExecuteMsg {
 | Name    | Type   | Description                          |
 | ------- | ------ | ------------------------------------ |
 | address | String | The address to remove from the list. |
-
-### UpdateOwner
-
-See [Ownership](ownership.md#executemsg).
 
 ## QueryMsg
 
@@ -162,7 +155,3 @@ pub struct IncludesAddressResponse {
 | Name     | Type | Description                      |
 | -------- | ---- | -------------------------------- |
 | included | Bool | Whether the address is included. |
-
-### ContractOwner
-
-See [Ownership](ownership.md#querymsg).

@@ -66,11 +66,11 @@ pub enum ExecuteMsg {
 {% endtab %}
 {% endtabs %}
 
-| Name      | Type                                        | Description                                      |
-| --------- | ------------------------------------------- | ------------------------------------------------ |
-| `name`    | String                                      | The ADO's name                                   |
-| `symbol`  | String                                      | The ADO's symbol                                 |
-| `modules` | Vec<[ModuleDefinition](modules/modules.md)> | Any Andromeda Modules to be attached to the ADO. |
+| Name    | Type                   | Description                                     |
+| ------- | ---------------------- | ----------------------------------------------- |
+| name    | String                 | The ADO's name                                  |
+| symbol  | String                 | The ADO's symbol                                |
+| modules | Vec\<ModuleDefinition> | Any Andromeda Modules to be attached to the ADO |
 
 ### UpdateAddress
 
@@ -105,10 +105,10 @@ pub enum ExecuteMsg {
 {% endtab %}
 {% endtabs %}
 
-| Name          | Type   | Description                                 |
-| ------------- | ------ | ------------------------------------------- |
-| `symbol`      | String | The ADO's symbol to change the address for. |
-| `new_address` | String | The new contract address.                   |
+| Name         | Type   | Description              |
+| ------------ | ------ | ------------------------ |
+| symbol       | String | The token's symbol       |
+| new\_address | String | The new contract address |
 
 ### UpdateCodeId
 
@@ -143,10 +143,11 @@ pub enum ExecuteMsg {
 {% endtab %}
 {% endtabs %}
 
-| Name          | Type   | Description                           |
-| ------------- | ------ | ------------------------------------- |
-| `code_id_key` | String | The key of the code id to be updated. |
-| `code_id`     | u64    | The new code ID.                      |
+| Name                   | Type         | Description                                                                       |
+| ---------------------- | ------------ | --------------------------------------------------------------------------------- |
+| `receipt_code_id`      | Option\<u64> | Optional new code ID for the [receipt](ado-types/receipt.md) contracts.           |
+| `token_code_id`        | Option\<u64> | Optional new code ID for the [ADO](andromeda-digital-object.md) contracts.        |
+| `address_list_code_id` | Option\<u64> | Optional new code ID for the [address list](ado-types/address-list.md) contracts. |
 
 ## QueryMsg
 
@@ -176,9 +177,9 @@ pub enum QueryMsg {
 {% endtab %}
 {% endtabs %}
 
-| Name     | Type   | Description                                   |
-| -------- | ------ | --------------------------------------------- |
-| `symbol` | String | The ADO symbol for which to query the address |
+| Name   | Type   | Description                                   |
+| ------ | ------ | --------------------------------------------- |
+| symbol | String | The ADO symbol for which to query the address |
 
 #### AddressResponse
 
@@ -201,9 +202,9 @@ pub struct AddressResponse {
 {% endtab %}
 {% endtabs %}
 
-| Name      | Type   | Description                                  |
-| --------- | ------ | -------------------------------------------- |
-| `address` | String | The contract address of the given ADO symbol |
+| Name    | Type   | Description                                  |
+| ------- | ------ | -------------------------------------------- |
+| address | String | The contract address of the given ADO symbol |
 
 ### CodeId
 
