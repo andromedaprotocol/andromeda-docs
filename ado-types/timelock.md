@@ -253,7 +253,9 @@ pub enum ExecuteMsg {
 | -------------- | ----------------------------------------------------- | ------------------------------------------------------------------ |
 | `address_list` | Option<[AddressListModule](../modules/address-list/)> | An optional address list module for limiting authorised addresses. |
 
-###
+### UpdateOwner/UpdateOperators
+
+Check [AndrReceive](../andrreceive-andrquery.md).
 
 ## QueryMsg
 
@@ -450,3 +452,7 @@ pub struct GetTimelockConfigResponse {
 | ----------------------- | ---------------------------------------------------------------- | ---------------------------------------------------- |
 | `address_list`          | Option<[AddressListModule](../modules/address-list/#definition)> | The `AddressList` module definition.                 |
 | `address_list_contract` | Option\<String>                                                  | The contract address for the `AddressList` contract. |
+
+### Owner/Operators/IsOperator
+
+Check [AndrQuery](../andrreceive-andrquery.md).

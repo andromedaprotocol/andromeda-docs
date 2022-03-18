@@ -1,3 +1,7 @@
+---
+description: A contract to facilitate the buying and selling of ADOs.
+---
+
 # ADO Offers
 
 ## InstantiateMsg

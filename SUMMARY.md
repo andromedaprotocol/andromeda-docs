@@ -16,6 +16,8 @@
 * [Rates](ado-types/rates.md)
 * [ADO Offers](ado-types/ado-offers.md)
 * [Primitive](ado-types/primitive.md)
+* [Mission](ado-types/mission.md)
+* [Crowdfund](ado-types/crowdfund.md)
 
 ## Modules
 

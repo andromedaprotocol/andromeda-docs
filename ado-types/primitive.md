@@ -1,3 +1,9 @@
+---
+description: >-
+  A contract used to store data. This contract would be referenced by other
+  contracts to retrieve the saved values.
+---
+
 # Primitive
 
 ### Primitive

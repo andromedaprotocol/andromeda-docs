@@ -8,7 +8,7 @@ Many of the contracts will have repeating functionality. To normalize one struct
 
 ### AndrRecieve
 
-Many of the contracts have an `AndrReceive` as an execute message.
+Many of the contracts have an `AndrReceive` as an execute.
 
 {% tabs %}
 {% tab title="Rust" %}
@@ -54,6 +54,8 @@ pub enum AndromedaMsg {
 
 ### UpdateOwner
 
+Updates the owner of the contract.
+
 {% tabs %}
 {% tab title="Rust" %}
 ```
@@ -84,6 +86,8 @@ pub enum AndromedaMsg{
 | `address` | String | The address of the new owner. |
 
 ### UpdateOperators
+
+Updates the assigned operators of the contract.
 
 {% hint style="info" %}
 Removes previous list of operators.

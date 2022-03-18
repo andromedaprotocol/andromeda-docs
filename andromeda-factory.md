@@ -148,6 +148,10 @@ pub enum ExecuteMsg {
 | `receipt_code_id` | Option\<u64> | Optional new code ID for the [receipt](ado-types/receipt.md) contracts.    |
 | `token_code_id`   | Option\<u64> | Optional new code ID for the [ADO](andromeda-digital-object.md) contracts. |
 
+### UpdateOwner/UpdateOperators
+
+Check [AndrReceive](andrreceive-andrquery.md).
+
 ## QueryMsg
 
 ### GetAddress
@@ -236,3 +240,7 @@ pub enum QueryMsg {
 | `key` | String | The key of the contract which we want the code id of. |
 
 Returns a u64 which represents the code\_id.
+
+### Owner/Operators/IsOperator
+
+Check [AndrQuery](andrreceive-andrquery.md).

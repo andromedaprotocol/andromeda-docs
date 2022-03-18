@@ -188,12 +188,12 @@ pub enum ExecuteMsg {
 {% endtab %}
 {% endtabs %}
 
-| Name        | Type            | Description                                                                                                               |
-| ----------- | --------------- | ------------------------------------------------------------------------------------------------------------------------- |
-| `token_id`  | String          | The id of the ADO to be minted.                                                                                           |
-| `owner`     | String          | The address of the ADO owner.                                                                                             |
-| `token_uri` | Option\<String> | Universal resource identifier for this ADO. Should point to a JSON file that conforms to the ERC721 Metadata JSON Schema. |
-| `extension` | T               | Any custom extension used by this contract. Her we use [TokenExtension](andromeda-digital-object.md#tokenextension).      |
+| Name        | Type              | Description                                                                                                               |
+| ----------- | ----------------- | ------------------------------------------------------------------------------------------------------------------------- |
+| `token_id`  | String            | The id of the ADO to be minted.                                                                                           |
+| `owner`     | String            | The address of the ADO owner.                                                                                             |
+| `token_uri` | Option\<String>   | Universal resource identifier for this ADO. Should point to a JSON file that conforms to the ERC721 Metadata JSON Schema. |
+| `extension` | T  (Generic type) | Any custom extension used by this contract. Her we use [TokenExtension](andromeda-digital-object.md#tokenextension).      |
 
 ### TransferNft
 
@@ -517,6 +517,10 @@ pub enum ExecuteMsg {
 | `token_id`  | String                                                             | The id of the ADO for which the agreement is made.              |
 | `agreement` | Option<[TransferAgreement](andromeda-digital-object.md#undefined)> | See [TransferAgreement](andromeda-digital-object.md#undefined). |
 
+### UpdateOwner/UpdateOperators
+
+Check [AndrReceive](andrreceive-andrquery.md).
+
 ## QueryMsg
 
 ### Minter
@@ -791,10 +795,10 @@ pub struct NftInfoResponse<T> {
 {% endtab %}
 {% endtabs %}
 
-| Name        | Type   | Description                                  |
-| ----------- | ------ | -------------------------------------------- |
-| `token_uri` | String | Universal resource identifier for this ADO.  |
-| `extension` | T      | Any extension being used by the contract.    |
+| Name        | Type             | Description                                  |
+| ----------- | ---------------- | -------------------------------------------- |
+| `token_uri` | String           | Universal resource identifier for this ADO.  |
+| `extension` | T (Generic type) | Any extension being used by the contract.    |
 
 ### AllNftInfo
 
@@ -1013,7 +1017,7 @@ pub struct CotractInfoResponse {
 {% endtab %}
 {% endtabs %}
 
-| Name     | Type   | Description                         |
-| -------- | ------ | ----------------------------------- |
-| `name`   | String | The name of the contract            |
-| `symbol` | String | The assigned symbol of the contract |
+| Name     | Type   | Description                          |
+| -------- | ------ | ------------------------------------ |
+| `name`   | String | The name of the contract.            |
+| `symbol` | String | The assigned symbol of the contract. |

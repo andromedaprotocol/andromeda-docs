@@ -243,6 +243,10 @@ pub enum ExecuteMsg {
 {% endtab %}
 {% endtabs %}
 
+### UpdateOwner/UpdateOperators
+
+Check [AndrReceive](../andrreceive-andrquery.md).
+
 ## QueryMsg
 
 ### GetSplitterConfig
@@ -306,3 +310,7 @@ pub struct GetSplitterConfigResponse {
 | ----------------------- | ------------------------------------------ | ------------------------------------------------------- |
 | `config`                | [Splitter](andromeda-splitter.md#splitter) | The Splitter config struct.                             |
 | `address_list_contract` | Option\<String>                            | The contract address for the address list if it exists. |
+
+### Owner/Operators/IsOperator
+
+Check [AndrQuery](../andrreceive-andrquery.md).

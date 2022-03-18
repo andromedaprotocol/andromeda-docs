@@ -636,6 +636,10 @@ UpdateMarketing {
 | `description` | Option\<String> | A longer description of the token and it's utility. Designed for tooltips or such. |
 | `marketing`   | Option\<String> | The address (if any) who can update this data structure.                           |
 
+### UpdateOwner/UpdateOperators
+
+Check [AndrReceive](andrreceive-andrquery.md).
+
 ## QueryMsg
 
 ### Balance
@@ -1098,3 +1102,7 @@ pub struct DownloadLogoResponse {
 | ----------- | ------ | -------------------------- |
 | `mime_type` | String | The MIME type of the logo. |
 | `data`      | Binary | The LOGO data.             |
+
+### Owner/Operators/IsOperator
+
+Check [AndrQuery](andrreceive-andrquery.md).
