@@ -2,19 +2,19 @@
 
 * [Introduction](README.md)
 * [Andromeda Digital Object](andromeda-digital-object.md)
-* [Token](token.md)
 * [Factory](andromeda-factory.md)
 
 ## ADO Classes <a href="#ado-types" id="ado-types"></a>
 
-* [Splitter](ado-types/andromeda-splitter.md)
+* [Token](ado-types/token.md)
 * [Timelock](ado-types/timelock.md)
 * [Address List](ado-types/address-list.md)
 * [Auction](ado-types/auction.md)
 * [Receipt](ado-types/receipt.md)
-* [Rates](ado-types/rates.md)
 * [ADO Offers](ado-types/ado-offers.md)
 * [Primitive](ado-types/primitive.md)
+* [Splitter](ado-types/andromeda-splitter.md)
+* [Rates](ado-types/rates.md)
 * [Mission](ado-types/mission.md)
 * [Crowdfund](ado-types/crowdfund.md)
 

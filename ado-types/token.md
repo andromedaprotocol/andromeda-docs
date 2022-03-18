@@ -1,5 +1,5 @@
 ---
-description: The message definitions for the Andromeda CW-20 token
+description: The message definitions for the Andromeda token contract.
 ---
 
 # Token
@@ -517,11 +517,11 @@ UpdateMarketing {
 
 ### UpdateOwner/UpdateOperators
 
-Check [AndrReceive](andrreceive-andrquery.md).
+Check [AndrReceive](../andrreceive-andrquery.md).
 
 ### RegisterModule/DeregisterModule/AlterModule
 
-Check [AndrReceive](andrreceive-andrquery.md).
+Check [AndrReceive](../andrreceive-andrquery.md).
 
 ## QueryMsg
 
