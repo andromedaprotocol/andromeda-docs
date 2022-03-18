@@ -119,6 +119,10 @@ Only the contract owner can execute UpdateRates.
 | ------- | ---------------------------------- | ------------------------------------------------------------------ |
 | `rates` | Vec<[RateInfo](rates.md#rateinfo)> | A vector containing the new `RateInfo` to be used by the contract. |
 
+### UpdateOwner/UpdateOperators
+
+Check [AndrQuery](../andrreceive-andrquery.md).
+
 ## QueryMsg
 
 ### Payments
@@ -179,3 +183,6 @@ pub struct PaymentsResponse {
 | ---------- | ---------------------------------- | --------------------------------------------------------- |
 | `payments` | Vec<[RateInfo](rates.md#rateinfo)> | A vector of the `RatInfo` currently used by the contract. |
 
+### Owner/Operators/IsOperator
+
+Check [AndrQuery](../andrreceive-andrquery.md).

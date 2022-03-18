@@ -275,127 +275,6 @@ Burn is a base message to destroy tokens forever
 | -------- | ------- | -------------------------------- |
 | `amount` | Uint128 | The amount of coins to be burnt. |
 
-### RegisterModule
-
-Adds a module to the contract.
-
-{% hint style="info" %}
-Only the owner or an operator can execute RegisterModule.
-
-Each module is assigned a u64 index so as it can be unregistered/altered by the owner.
-{% endhint %}
-
-{% tabs %}
-{% tab title="Rust" %}
-```rust
-pub enum ExecuteMsg {
-  RegisterModule {
-        module: Module,
-    }
-}
-```
-{% endtab %}
-
-{% tab title="JSON" %}
-```json
-{
- "register_module": {
-      "module":{
-          "module_type": "receipt"
-          "instantiate":{
-          "address":"terra1..."
-          }
-     "is_mutable": true, 
-        }
-     }
- }  
-```
-{% endtab %}
-{% endtabs %}
-
-| Name   | Type                      | Description         |
-| ------ | ------------------------- | ------------------- |
-| module | [Module](token.md#module) | The module to add.  |
-
-### DeregisterModule
-
-Removes a module from the contract.
-
-{% hint style="info" %}
-Only the owner or an operator can execute `DeregisterModule`.
-{% endhint %}
-
-{% tabs %}
-{% tab title="Rust" %}
-```rust
- pub enum ExecuteMsg{
-  DeregisterModule {
-        module_idx: Uint64,
-    }
-  }
-```
-{% endtab %}
-
-{% tab title="JSON" %}
-```json
-{
-"deregistering_module":{
-    "module_idx":"3",
-    }
-}
-```
-{% endtab %}
-{% endtabs %}
-
-| Name         | Type   | Description                            |
-| ------------ | ------ | -------------------------------------- |
-| `module_idx` | Uint64 | The index of the module to be removed. |
-
-### AlterModule
-
-Changes a module to a new one specified.
-
-{% hint style="info" %}
-Only the owner or an operator can execute `AlterModule`.
-
-Only mutable modules can be altered.
-{% endhint %}
-
-{% tabs %}
-{% tab title="Rust" %}
-```rust
-pub enum ExecuteMsg{
- AlterModule {
-        module_idx: Uint64,
-        module: Module,
-    }
-  }
-```
-{% endtab %}
-
-{% tab title="JSON" %}
-```json
-{
-"alter_module":{
-   "module_idx":"3",
-   "module":{
-          "module_type": "receipt",
-          "instantiate":{
-          "address":"terra1..."
-          },
-     "is_mutable": true, 
-        }
-    }
- }
-```
-{% endtab %}
-{% endtabs %}
-
-| Name         | Type                      | Description                        |
-| ------------ | ------------------------- | ---------------------------------- |
-| `module_idx` | Uint64                    | The index of the module to change. |
-| `module`     | [Module](token.md#module) | The new module implement.          |
-
 ### IncreaseAllowance
 
 Sets an `amount` of tokens from the owner that the specified `spender` can interact with.
@@ -637,6 +516,10 @@ UpdateMarketing {
 | `marketing`   | Option\<String> | The address (if any) who can update this data structure.                           |
 
 ### UpdateOwner/UpdateOperators
+
+Check [AndrReceive](andrreceive-andrquery.md).
+
+### RegisterModule/DeregisterModule/AlterModule
 
 Check [AndrReceive](andrreceive-andrquery.md).
 
@@ -1102,7 +985,3 @@ pub struct DownloadLogoResponse {
 | ----------- | ------ | -------------------------- |
 | `mime_type` | String | The MIME type of the logo. |
 | `data`      | Binary | The LOGO data.             |
-
-### Owner/Operators/IsOperator
-
-Check [AndrQuery](andrreceive-andrquery.md).

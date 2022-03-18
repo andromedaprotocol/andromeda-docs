@@ -144,7 +144,7 @@ pub struct InstantiateMsg {
 | -------------------- | ---------------------- | --------------------------------------------------------------------------------------------------------- |
 | `name`               | String                 | The name of the ADO. Has to be between 3 and 30 characters.                                               |
 | `symbol`             | String                 | The symbol of the ADO.                                                                                    |
-| `minter`             | String                 | The address of the ADO minter. Will be assigned as the [contract owner](ado-types/ownership.md).          |
+| `minter`             | String                 | The address of the ADO minter. Will be assigned as the [contract owner](broken-reference).                |
 | `modules`            | Vec\<ModuleDefinition> | A vector of Andromeda Module definitions. The module definitions can be found [here](modules/modules.md). |
 | `primitive_contract` | String                 | The primitive contract address used to retrieve contract addresses.                                       |
 

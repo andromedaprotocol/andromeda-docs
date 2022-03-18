@@ -125,3 +125,12 @@ If `name` is not specified the default key ("default") will be used.
 | ------ | --------------- | ------------------------------------- |
 | `name` | Option\<String> | Optional name for the data to delete. |
 
+### UpdateOwner/UpdateOperators
+
+Check [AndrReceive](../andrreceive-andrquery.md).
+
+## QueryMsg
+
+### Owner/Operators/IsOperator
+
+Check [AndrQuery](../andrreceive-andrquery.md).

@@ -143,6 +143,10 @@ pub enum ExecuteMsg {
 | `receipt`    | [Receipt](receipt.md#receipt) | The receipt to edit.           |
 | `receipt_id` | Uint128                       | The ID of the receipt to edit. |
 
+### UpdateOwner/UpdateOperators
+
+Check [AndrReceive](../andrreceive-andrquery.md).
+
 ## QueryMsg
 
 ### Receipt
@@ -271,3 +275,7 @@ pub struct ContractInfoResponse {
 | Name     | Type   | Description                                  |
 | -------- | ------ | -------------------------------------------- |
 | `minter` | String | The address authorized to mint new receipts. |
+
+### Owner/Operators/IsOperator
+
+Check [AndrQuery](../andrreceive-andrquery.md).

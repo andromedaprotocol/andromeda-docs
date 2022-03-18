@@ -62,9 +62,9 @@ pub enum ExecuteMsg {
 {% endtab %}
 {% endtabs %}
 
-| Name    | Type   | Description                     |
-| ------- | ------ | ------------------------------- |
-| address | String | The address to add to the list. |
+| Name      | Type   | Description                     |
+| --------- | ------ | ------------------------------- |
+| `address` | String | The address to add to the list. |
 
 ### RemoveAddress
 
@@ -95,9 +95,13 @@ pub enum ExecuteMsg {
 {% endtab %}
 {% endtabs %}
 
-| Name    | Type   | Description                          |
-| ------- | ------ | ------------------------------------ |
-| address | String | The address to remove from the list. |
+| Name      | Type   | Description                          |
+| --------- | ------ | ------------------------------------ |
+| `address` | String | The address to remove from the list. |
+
+### UpdateOwner/UpdateOperators
+
+Check [AndrReceive](../andrreceive-andrquery.md).
 
 ## QueryMsg
 
@@ -127,9 +131,9 @@ pub enum QueryMsg {
 {% endtab %}
 {% endtabs %}
 
-| Name    | Type   | Description                               |
-| ------- | ------ | ----------------------------------------- |
-| address | String | The address for which to query inclusion. |
+| Name      | Type   | Description                               |
+| --------- | ------ | ----------------------------------------- |
+| `address` | String | The address for which to query inclusion. |
 
 #### IncludesAddressResponse
 
@@ -152,6 +156,10 @@ pub struct IncludesAddressResponse {
 {% endtab %}
 {% endtabs %}
 
-| Name     | Type | Description                      |
-| -------- | ---- | -------------------------------- |
-| included | Bool | Whether the address is included. |
+| Name       | Type | Description                      |
+| ---------- | ---- | -------------------------------- |
+| `included` | Bool | Whether the address is included. |
+
+### Owner/Operators/IsOperator
+
+Check [AndrQuery](../andrreceive-andrquery.md).

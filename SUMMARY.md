@@ -12,7 +12,6 @@
 * [Address List](ado-types/address-list.md)
 * [Auction](ado-types/auction.md)
 * [Receipt](ado-types/receipt.md)
-* [Ownership](ado-types/ownership.md)
 * [Rates](ado-types/rates.md)
 * [ADO Offers](ado-types/ado-offers.md)
 * [Primitive](ado-types/primitive.md)
