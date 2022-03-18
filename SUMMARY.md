@@ -2,6 +2,7 @@
 
 * [Introduction](README.md)
 * [Andromeda Digital Object](andromeda-digital-object.md)
+* [Token](token.md)
 * [Factory](andromeda-factory.md)
 
 ## ADO Classes <a href="#ado-types" id="ado-types"></a>
@@ -12,6 +13,9 @@
 * [Auction](ado-types/auction.md)
 * [Receipt](ado-types/receipt.md)
 * [Ownership](ado-types/ownership.md)
+* [Rates](ado-types/rates.md)
+* [ADO Offers](ado-types/ado-offers.md)
+* [Primitive](ado-types/primitive.md)
 
 ## Modules
 
@@ -26,6 +30,7 @@
 
 ***
 
+* [AndrReceive/AndrQuery](andrreceive-andrquery.md)
 * [User Docs](user-docs/README.md)
   * [How-To Guides](user-docs/how-to-guides.md)
   * [Glossary](user-docs/glossary.md)
