@@ -177,6 +177,10 @@ pub enum WithdrawalType {
 }
 ```
 
+### Modules
+
+### The following can be executed by the contracts t&#x20;
+
 ### RegisterModule
 
 Adds a module to the contract.
