@@ -1,7 +1,7 @@
 # Table of contents
 
 * [Introduction](README.md)
-* [Andromeda Digital Object](andromeda-digital-object.md)
+* [NFT Collectible](andromeda-digital-object.md)
 * [Factory](andromeda-factory.md)
 
 ## ADO Classes <a href="#ado-types" id="ado-types"></a>

@@ -1,97 +1,10 @@
 ---
-description: The message definitions for the Andromeda Digital Object contract
+description: >-
+  The message definitions for the NFT Collectible contract. Used to generate a
+  custom NFT collection. Can have modules attached to extend utility.
 ---
 
-# Andromeda Digital Object
-
-## Metadata Schema
-
-A token can be minted with rich metadata using the following schema:
-
-```rust
-pub enum MetadataType {
-    Image,
-    Video,
-    Audio,
-    Domain,
-    Json,
-    Other,
-}
-
-pub struct MetadataAttribute {
-    pub key: String,
-    pub value: String,
-    pub display_label: Option<String>,
-}
-
-pub struct TokenMetadata {
-    pub data_type: MetadataType,
-    pub external_url: Option<String>,
-    pub data_url: Option<String>,
-    pub attributes: Option<Vec<MetadataAttribute>>,
-}
-```
-
-### MetadataAttribute
-
-Used to define any rich data attributes related to an ADO.
-
-| Name            | Type            | Description                                                                                                |
-| --------------- | --------------- | ---------------------------------------------------------------------------------------------------------- |
-| `key`           | String          | The associated key for the attribute.                                                                      |
-| `value`         | String          | The value for the attribute.                                                                               |
-| `display_label` | Option\<String> | An optional string for how the key should be displayed. If none is provided the \`key\` field can be used. |
-
-### TokenMetadata
-
-| Name           | Type                             | Description                                                                                                    |
-| -------------- | -------------------------------- | -------------------------------------------------------------------------------------------------------------- |
-| `data_type`    | Metadatatype                     | The type of data related to the token, must be one of the following; Audio, Video, Image, Domain, Json, Other. |
-| `external_url` | Option\<String>                  | An optional link to an external source for the token.                                                          |
-| `data_url`     | Option\<String>                  | An optional link to the ADO's external data. Response should be of the type defined by the `data_type` field.  |
-| `attributes`   | Option\<Vec\<MetadataAttribute>> | An array of rich data attributes. See [MetadataAttribute](andromeda-digital-object.md#metadataattribute).      |
-
-### TransferAgreement
-
-A struct used to represent an agreed transfer of a token. The `purchaser` may use the `Transfer` message for this token as long as funds are provided equaling the `amount` defined in the agreement.
-
-```rust
-pub struct TransferAgreement {
-    pub amount: Coin,
-    pub purchaser: String,
-}
-```
-
-| Name        | Type   | Description                                                               |
-| ----------- | ------ | ------------------------------------------------------------------------- |
-| `amount`    | Coin   | The amount required for the purchaser to transfer ownership of the token. |
-| `purchaser` | String | The address of the purchaser.                                             |
-
-### TokenExtension
-
-Extension that can be added to an ADO when minting.
-
-```rust
-pub struct TokenExtension {
-    pub name: String,
-    pub publisher: String,
-    pub description: Option<String>,
-    pub transfer_agreement: Option<TransferAgreement>,
-    pub metadata: Option<TokenMetadata>,
-    pub archived: bool,
-    pub pricing: Option<Coin>,
-}
-```
-
-| Name                 | Type                                                                       | Description                                         |
-| -------------------- | -------------------------------------------------------------------------- | --------------------------------------------------- |
-| `name`               | String                                                                     | The name of the token.                              |
-| `publisher`          | String                                                                     | The original publisher of the token (immutable).    |
-| `description`        | Option\<String>                                                            | An optional description of the token.               |
-| `transfer_agreement` | Option<[TransferAgreement](andromeda-digital-object.md#transferagreement)> | The transfer agreement of the token (if it exists). |
-| `metadata`           | Option<[TokenMetadata](andromeda-digital-object.md#metadata-schema)>       | The metadata of the token (if it exists)            |
-| `archived`           | bool                                                                       | Whether the token is archived or not.               |
-| `pricing`            | Option\<Coin>                                                              | The current price listing for the token.            |
+# NFT Collectible
 
 ## InstantiateMsg
 
@@ -146,9 +59,100 @@ pub struct InstantiateMsg {
 | `symbol`             | String                 | The symbol of the token.                                                                                  |
 | `minter`             | String                 | The address of the token minter. Will be assigned as the [contract owner](broken-reference).              |
 | `modules`            | Vec\<ModuleDefinition> | A vector of Andromeda Module definitions. The module definitions can be found [here](modules/modules.md). |
-| `primitive_contract` | String                 | The primitive contract address used to retrieve contract addresses.                                       |
+| `primitive_contract` | String                 | The primitive contract address used for address mapping. Used to reference the factory contract.          |
 
 ## ExecuteMsg
+
+## Mint
+
+### TokenExtension
+
+Extension that can be added to an ADO when minting.
+
+```rust
+pub struct TokenExtension {
+    pub name: String,
+    pub publisher: String,
+    pub description: Option<String>,
+    pub transfer_agreement: Option<TransferAgreement>,
+    pub metadata: Option<TokenMetadata>,
+    pub archived: bool,
+    pub pricing: Option<Coin>,
+}
+```
+
+| Name                 | Type                                                                       | Description                                         |
+| -------------------- | -------------------------------------------------------------------------- | --------------------------------------------------- |
+| `name`               | String                                                                     | The name of the token.                              |
+| `publisher`          | String                                                                     | The original publisher of the token (immutable).    |
+| `description`        | Option\<String>                                                            | An optional description of the token.               |
+| `transfer_agreement` | Option<[TransferAgreement](andromeda-digital-object.md#transferagreement)> | The transfer agreement of the token (if it exists). |
+| `metadata`           | Option<[TokenMetadata](andromeda-digital-object.md#metadata-schema)>       | The metadata of the token (if it exists)            |
+| `archived`           | bool                                                                       | Whether the token is archived or not.               |
+| `pricing`            | Option\<Coin>                                                              | The current price listing for the token.            |
+
+### TransferAgreement
+
+A struct used to represent an agreed transfer of a token. The `purchaser` may use the `Transfer` message for this token as long as funds are provided equaling the `amount` defined in the agreement.
+
+```rust
+pub struct TransferAgreement {
+    pub amount: Coin,
+    pub purchaser: String,
+}
+```
+
+| Name        | Type   | Description                                                               |
+| ----------- | ------ | ------------------------------------------------------------------------- |
+| `amount`    | Coin   | The amount required for the purchaser to transfer ownership of the token. |
+| `purchaser` | String | The address of the purchaser.                                             |
+
+### Metadata Schema for Mint
+
+A token can be minted with rich metadata using the following schema:
+
+```rust
+pub enum MetadataType {
+    Image,
+    Video,
+    Audio,
+    Domain,
+    Json,
+    Other,
+}
+
+pub struct MetadataAttribute {
+    pub key: String,
+    pub value: String,
+    pub display_label: Option<String>,
+}
+
+pub struct TokenMetadata {
+    pub data_type: MetadataType,
+    pub external_url: Option<String>,
+    pub data_url: Option<String>,
+    pub attributes: Option<Vec<MetadataAttribute>>,
+}
+```
+
+### MetadataAttribute
+
+Used to define any rich data attributes related to an ADO.
+
+| Name            | Type            | Description                                                                                                |
+| --------------- | --------------- | ---------------------------------------------------------------------------------------------------------- |
+| `key`           | String          | The associated key for the attribute.                                                                      |
+| `value`         | String          | The value for the attribute.                                                                               |
+| `display_label` | Option\<String> | An optional string for how the key should be displayed. If none is provided the \`key\` field can be used. |
+
+### TokenMetadata
+
+| Name           | Type                             | Description                                                                                                    |
+| -------------- | -------------------------------- | -------------------------------------------------------------------------------------------------------------- |
+| `data_type`    | Metadatatype                     | The type of data related to the token, must be one of the following; Audio, Video, Image, Domain, Json, Other. |
+| `external_url` | Option\<String>                  | An optional link to an external source for the token.                                                          |
+| `data_url`     | Option\<String>                  | An optional link to the ADO's external data. Response should be of the type defined by the `data_type` field.  |
+| `attributes`   | Option\<Vec\<MetadataAttribute>> | An array of rich data attributes. See [MetadataAttribute](andromeda-digital-object.md#metadataattribute).      |
 
 ### Mint
 
