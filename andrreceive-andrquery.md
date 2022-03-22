@@ -1,5 +1,5 @@
 ---
-description: Executes commonly found in many of the contracts.
+description: Messages commonly found in many of the contracts.
 ---
 
 # AndrReceive/AndrQuery
@@ -179,7 +179,7 @@ pub enum WithdrawalType {
 
 ### Modules
 
-### The following can be executed by the contracts t&#x20;
+The following can be executed by the contracts that implement modules:
 
 ### RegisterModule
 
@@ -318,6 +318,8 @@ pub enum AndromedaQuery {
     Owner {},
     Operators {},
     IsOperator { address: String },
+    Module { id: Uint64 },
+    ModuleIds {},
 }
 ```
 
@@ -416,7 +418,7 @@ Checks if  the specified `address` is an operator of the contract.
 
 {% tabs %}
 {% tab title="Rust" %}
-```
+```rust
 pub enum AndromedaQuery{
 IsOperators{
   address:String,
@@ -463,3 +465,98 @@ pub struct IsOperatorResponse {
 ```
 {% endtab %}
 {% endtabs %}
+
+## Modules
+
+The following can be executed by the contracts that implement modules:
+
+### Module
+
+Queries a module by its Id.
+
+{% tabs %}
+{% tab title="Rust" %}
+```rust
+pub enum AndromedaQuery{
+Module{
+  id:Uint64,
+  }
+}
+```
+{% endtab %}
+
+{% tab title="JSON" %}
+```json
+{
+"andr_query":{
+"module":{
+  "id":"tokenid",jsn
+     }
+  }
+}
+
+```
+{% endtab %}
+{% endtabs %}
+
+| Name | Type   | Description                    |
+| ---- | ------ | ------------------------------ |
+| `id` | Uint64 | The Id of the module to query. |
+
+#### ModuleInfoWithAddress
+
+Struct used to represent a module and its currently recorded address**.**
+
+{% tabs %}
+{% tab title="Rust" %}
+```rust
+pub struct ModuleInfoWithAddress {
+    pub module: Module,
+    pub address: String,
+}
+```
+{% endtab %}
+
+{% tab title="JSON" %}
+```json
+{
+"module":{
+  "module_type":"address_list",
+  "instantiate":{
+     "address": "terra1...",
+     }
+"address":"terra1...",
+```
+{% endtab %}
+{% endtabs %}
+
+| Name      | Type   | Description                                                 |
+| --------- | ------ | ----------------------------------------------------------- |
+| `module`  | Module | The information of the module are found in a Module struct. |
+| `address` | String | The contract address of the module.                         |
+|           |        |                                                             |
+
+### ModuleIds
+
+Queries all of the module ids.
+
+{% tabs %}
+{% tab title="Rust" %}
+```rust
+pub enum AndromedaQuery{
+ModuleIds{}
+}
+```
+{% endtab %}
+
+{% tab title="JSON" %}
+```json
+{
+"andr_query":{
+"module_ids":{},
+}
+```
+{% endtab %}
+{% endtabs %}
+
+Returns a `Vec<String>` containing the module ids.
