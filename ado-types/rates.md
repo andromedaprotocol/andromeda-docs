@@ -21,12 +21,12 @@ pub struct RateInfo {
 }
 ```
 
-| Name          | Type                       | Description                                                                            |
-| ------------- | -------------------------- | -------------------------------------------------------------------------------------- |
-| `rate`        | [Rate](rates.md#undefined) | The type of rate being taken.                                                          |
-| `is_additive` | bool                       | An indicator to whether the rate being taken is tax. If tax `is_additive` is set to 1. |
-| `description` | Option\<String>            | Optional description for the rate.                                                     |
-| `receivers`   | Vec\<Recipient>            | The addresses to receive the `rate` specified.                                         |
+| Name          | Type                       | Description                                                                                       |
+| ------------- | -------------------------- | ------------------------------------------------------------------------------------------------- |
+| `rate`        | [Rate](rates.md#undefined) | The type of rate being taken.                                                                     |
+| `is_additive` | bool                       | An indicator to whether the rate being taken is tax or royalty. If tax `is_additive` is set to 1. |
+| `description` | Option\<String>            | Optional description for the rate.                                                                |
+| `receivers`   | Vec\<Recipient>            | The addresses to receive the `rate` specified.                                                    |
 
 ### Rate
 
@@ -35,10 +35,42 @@ An enum used to define various types of fees which is used in the RateInfo.
 ```rust
 pub enum Rate {
     Flat(Coin),
-    Percent(Uint128),
+    Percent(PercentRate),
     External(ADORate),
 }
 ```
+
+The Rate can be one of the three option seen above:
+
+* Flat: A fixed amount to be taken. Needs to have an amount and denomination specified.&#x20;
+* Percent: A percentage based rate. Needs to have the percent to take specified.
+* External: This refers to a rate that we want to use which is saved in a primitive contract. Needs the address of the primitive and the key of the stored Rate primitive to be specified.
+
+#### PercentRate
+
+```rust
+pub struct PercentRate {
+    pub percent: Decimal,
+}
+```
+
+| Name      | Type    | Description                     |
+| --------- | ------- | ------------------------------- |
+| `percent` | Decimal | The percentage to take as rate. |
+
+#### ADORate
+
+```rust
+pub struct ADORate {
+    pub address: String,
+    pub key: Option<String>,
+}
+```
+
+| Name      | Type            | Description                            |
+| --------- | --------------- | -------------------------------------- |
+| `address` | String          | The address of the primitive contract. |
+| `key`     | Option\<String> | The key of the stored primitive value. |
 
 ## InstantiateMsg
 
@@ -58,7 +90,8 @@ pub struct InstantiateMsg {
 [
    { 
       "rate":{
-      "percent":"3"
+      "percent":{
+      "percent":"3.5"
       },
       "is_additive": false,
       "receivers":["terra1...","terra2...",...]
@@ -85,10 +118,11 @@ Only the contract owner can execute UpdateRates.
 {% tabs %}
 {% tab title="Rust" %}
 ```rust
-  pub enum ExecuteMsg{
-  UpdateRates {
-   rates: Vec<RateInfo>
-    }
+pub enum ExecuteMsg{
+  UpdateRates{
+    rates: Vec<RateInfo>
+  }
+}
 ```
 {% endtab %}
 
@@ -100,6 +134,7 @@ Only the contract owner can execute UpdateRates.
   [
      { 
       "rate":{
+      "percent":{
       "percent":"3"
       },
       "is_additive": false,
@@ -121,7 +156,7 @@ Only the contract owner can execute UpdateRates.
 
 ### UpdateOwner/UpdateOperators
 
-Check [AndrQuery](../andrreceive-andrquery.md).
+Check [AndrReceive](../andrreceive-andrquery.md).
 
 ## QueryMsg
 

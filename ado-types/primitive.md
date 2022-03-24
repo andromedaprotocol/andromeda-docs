@@ -13,6 +13,7 @@ An enum to specify the type of data you are saving.
 ```rust
 pub enum Primitive {
     Uint128(Uint128),
+    Decimal(Decimal),
     Coin(Coin),
     String(String),
     Bool(bool),
