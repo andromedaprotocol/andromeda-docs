@@ -29,6 +29,10 @@
 * [Tax](modules/tax.md)
 * [Auction](modules/auction.md)
 
+## Andromeda Hooks
+
+* [Hooks](andromeda-hooks/hooks.md)
+
 ***
 
 * [AndrReceive/AndrQuery](andrreceive-andrquery.md)
