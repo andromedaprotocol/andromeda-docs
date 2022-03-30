@@ -49,10 +49,10 @@ pub struct InstantiateMsg {
 
 ### SetValue
 
-Sets a value for the named key.
+Sets a value for the named key. When we need to extract the value that has been saved we would use the key (name).
 
 {% hint style="info" %}
-If `name` is not specified the default key ("default") will be used.
+If `name`is not specified the default key ("default") will be used.
 
 If `SetValue` uses a `name` that is already in use, the old `value` is overwritten by the latest `value`.
 {% endhint %}

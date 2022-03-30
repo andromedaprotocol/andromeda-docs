@@ -53,13 +53,13 @@ pub struct InstantiateMsg {
 {% endtab %}
 {% endtabs %}
 
-| Name                 | Type                   | Description                                                                                               |
-| -------------------- | ---------------------- | --------------------------------------------------------------------------------------------------------- |
-| `name`               | String                 | The name of the token. Has to be between 3 and 30 characters.                                             |
-| `symbol`             | String                 | The symbol of the token.                                                                                  |
-| `minter`             | String                 | The address of the token minter. Will be assigned as the [contract owner](broken-reference).              |
-| `modules`            | Vec\<ModuleDefinition> | A vector of Andromeda Module definitions. The module definitions can be found [here](modules/modules.md). |
-| `primitive_contract` | String                 | The primitive contract address used for address mapping. Used to reference the factory contract.          |
+| Name                 | Type                   | Description                                                                                             |
+| -------------------- | ---------------------- | ------------------------------------------------------------------------------------------------------- |
+| `name`               | String                 | The name of the token. Has to be between 3 and 30 characters.                                           |
+| `symbol`             | String                 | The symbol of the token.                                                                                |
+| `minter`             | String                 | The address of the token minter. Will be assigned as the [contract owner](broken-reference).            |
+| `modules`            | Vec\<ModuleDefinition> | A vector of Andromeda Module definitions. The module definitions can be found [here](broken-reference). |
+| `primitive_contract` | String                 | The primitive contract address used for address mapping. Used to reference the factory contract.        |
 
 ## ExecuteMsg
 

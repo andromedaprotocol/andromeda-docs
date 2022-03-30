@@ -1,5 +1,5 @@
 ---
-description: Messages commonly found in many of the contracts.
+description: Executes commonly found in many of the contracts.
 ---
 
 # AndrReceive/AndrQuery
@@ -58,11 +58,11 @@ Updates the owner of the contract.
 
 {% tabs %}
 {% tab title="Rust" %}
-```
+```rust
 pub enum AndromedaMsg{
- update owner {
- address:String
- }
+   update owner {
+   address:String
+   }
 }
 ```
 {% endtab %}

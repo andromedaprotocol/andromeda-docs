@@ -20,14 +20,15 @@
 
 ## Modules
 
-* [Module Definitions](modules/modules.md)
-* [Address List](modules/address-list/README.md)
-  * [Whitelist](modules/address-list/whitelist.md)
-  * [Blacklist](modules/address-list/blacklist.md)
-* [Royalties](modules/royalties.md)
-* [Receipt](modules/receipt.md)
-* [Tax](modules/tax.md)
-* [Auction](modules/auction.md)
+* [Module Definitions](modules/module-definitions.md)
+* [Rates Module](modules/rates-module.md)
+* [Address List Module](modules/address-list-module.md)
+* [Receipt Module](modules/receipt-module.md)
+* [Offers Module](modules/offers-module.md)
+
+***
+
+* [ADO\_Base](ado\_base.md)
 
 ## Andromeda Hooks
 

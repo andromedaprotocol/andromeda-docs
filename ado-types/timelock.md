@@ -105,9 +105,9 @@ pub struct InstantiateMsg {
 {% endtab %}
 {% endtabs %}
 
-| Name          | Type                                                  | Description                                                       |
-| ------------- | ----------------------------------------------------- | ----------------------------------------------------------------- |
-| address\_list | Option<[AddressListModule](../modules/address-list/)> | An optional address list module to restrict usage of the contract |
+| Name          | Type                                          | Description                                                       |
+| ------------- | --------------------------------------------- | ----------------------------------------------------------------- |
+| address\_list | Option<[AddressListModule](broken-reference)> | An optional address list module to restrict usage of the contract |
 
 ## ExecuteMsg
 
@@ -249,9 +249,9 @@ pub enum ExecuteMsg {
 {% endtab %}
 {% endtabs %}
 
-| Name           | Type                                                  | Description                                                        |
-| -------------- | ----------------------------------------------------- | ------------------------------------------------------------------ |
-| `address_list` | Option<[AddressListModule](../modules/address-list/)> | An optional address list module for limiting authorised addresses. |
+| Name           | Type                                          | Description                                                        |
+| -------------- | --------------------------------------------- | ------------------------------------------------------------------ |
+| `address_list` | Option<[AddressListModule](broken-reference)> | An optional address list module for limiting authorised addresses. |
 
 ### UpdateOwner/UpdateOperators
 
@@ -448,10 +448,10 @@ pub struct GetTimelockConfigResponse {
 {% endtab %}
 {% endtabs %}
 
-| Name                    | Type                                                             | Description                                          |
-| ----------------------- | ---------------------------------------------------------------- | ---------------------------------------------------- |
-| `address_list`          | Option<[AddressListModule](../modules/address-list/#definition)> | The `AddressList` module definition.                 |
-| `address_list_contract` | Option\<String>                                                  | The contract address for the `AddressList` contract. |
+| Name                    | Type                                          | Description                                          |
+| ----------------------- | --------------------------------------------- | ---------------------------------------------------- |
+| `address_list`          | Option<[AddressListModule](broken-reference)> | The `AddressList` module definition.                 |
+| `address_list_contract` | Option\<String>                               | The contract address for the `AddressList` contract. |
 
 ### Owner/Operators/IsOperator
 

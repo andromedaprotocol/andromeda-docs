@@ -66,11 +66,11 @@ pub enum ExecuteMsg {
 {% endtab %}
 {% endtabs %}
 
-| Name      | Type                                        | Description                                     |
-| --------- | ------------------------------------------- | ----------------------------------------------- |
-| `name`    | String                                      | The ADO's name                                  |
-| `symbol`  | String                                      | The ADO's symbol                                |
-| `modules` | Vec<[ModuleDefinition](modules/modules.md)> | Any Andromeda Modules to be attached to the ADO |
+| Name      | Type                                      | Description                                     |
+| --------- | ----------------------------------------- | ----------------------------------------------- |
+| `name`    | String                                    | The ADO's name                                  |
+| `symbol`  | String                                    | The ADO's symbol                                |
+| `modules` | Vec<[ModuleDefinition](broken-reference)> | Any Andromeda Modules to be attached to the ADO |
 
 ### UpdateAddress
 
