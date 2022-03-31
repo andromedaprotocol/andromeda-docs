@@ -36,6 +36,7 @@
 
 ***
 
+* [Recipient](recipient.md)
 * [AndrReceive/AndrQuery](andrreceive-andrquery.md)
 * [User Docs](user-docs/README.md)
   * [How-To Guides](user-docs/how-to-guides.md)

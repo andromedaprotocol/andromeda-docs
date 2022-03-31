@@ -21,7 +21,7 @@ pub struct Splitter {
 | -------------- | ---------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | `recipients`   | Vec<[AdressPercent](andromeda-splitter.md#addresspercent)> | The vector of recipients for the contract. Anytime a `Send` execute message is sent the amount sent will be divided amongst these recipients depending on their assigned percentage. |
 | `locked`       | bool                                                       | Whether or not the contract is currently locked. This restricts updating any config related fields.                                                                                  |
-| `address_list` | Option<[AddressListModule](broken-reference)>              | An optional address list to restrict access to the `Splitter` contract.                                                                                                              |
+| `address_list` | Option<[AddressListModule](../modules/address-list/)>      | An optional address list to restrict access to the `Splitter` contract.                                                                                                              |
 
 ## AddressPercent
 
@@ -103,7 +103,7 @@ pub struct InstantiateMsg {
 
 | Name           | Type                                                        | Description                                                             |
 | -------------- | ----------------------------------------------------------- | ----------------------------------------------------------------------- |
-| `address_list` | Option<[AddressListModule](broken-reference)>               | An optional address list module for limiting authorized addresses.      |
+| `address_list` | Option<[AddressListModule](../modules/address-list/)>       | An optional address list module for limiting authorized addresses.      |
 | `recipients`   | Vec<[AddressPercent](andromeda-splitter.md#addresspercent)> | The recipient list of the splitter. Can be updated after instantiation. |
 
 {% hint style="info" %}
@@ -211,9 +211,9 @@ pub enum ExecuteMsg {
 {% endtab %}
 {% endtabs %}
 
-| Name           | Type                                          | Description                                                        |
-| -------------- | --------------------------------------------- | ------------------------------------------------------------------ |
-| `address_list` | Option<[AddressListModule](broken-reference)> | An optional address list module for limiting authorized addresses. |
+| Name           | Type                                                  | Description                                                        |
+| -------------- | ----------------------------------------------------- | ------------------------------------------------------------------ |
+| `address_list` | Option<[AddressListModule](../modules/address-list/)> | An optional address list module for limiting authorized addresses. |
 
 ### **Send**
 
