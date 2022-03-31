@@ -4,21 +4,6 @@ description: An ADO contract to mint, edit and query receipts containing event d
 
 # Receipt
 
-## Receipt
-
-The receipt structure contains a basic vector of `CosmWasm` events.
-
-```rust
-#[derive(Serialize, Deserialize, Clone, PartialEq, JsonSchema, Debug)]
-pub struct Receipt {
-    pub events: Vec<Event>,
-}
-```
-
-| Name     | Type                                                                              | Description                                |
-| -------- | --------------------------------------------------------------------------------- | ------------------------------------------ |
-| `events` | Vec<[Event](https://docs.rs/cosmwasm-std/0.16.2/cosmwasm\_std/struct.Event.html)> | An array of events related to the receipt. |
-
 ## InstantiateMsg
 
 {% tabs %}
@@ -90,9 +75,24 @@ pub enum ExecuteMsg {
 {% endtab %}
 {% endtabs %}
 
-| Name      | Type                          | Description           |
-| --------- | ----------------------------- | --------------------- |
-| `receipt` | [Receipt](receipt.md#receipt) | The receipt to store. |
+| Name      | Type                            | Description           |
+| --------- | ------------------------------- | --------------------- |
+| `receipt` | [Receipt](receipt.md#receipt-1) | The receipt to store. |
+
+#### Receipt
+
+The receipt structure contains a basic vector of `CosmWasm` events.
+
+```rust
+#[derive(Serialize, Deserialize, Clone, PartialEq, JsonSchema, Debug)]
+pub struct Receipt {
+    pub events: Vec<Event>,
+}
+```
+
+| Name     | Type                                                                              | Description                                |
+| -------- | --------------------------------------------------------------------------------- | ------------------------------------------ |
+| `events` | Vec<[Event](https://docs.rs/cosmwasm-std/0.16.2/cosmwasm\_std/struct.Event.html)> | An array of events related to the receipt. |
 
 ### EditReceipt
 
@@ -138,10 +138,10 @@ pub enum ExecuteMsg {
 {% endtab %}
 {% endtabs %}
 
-| Name         | Type                          | Description                    |
-| ------------ | ----------------------------- | ------------------------------ |
-| `receipt`    | [Receipt](receipt.md#receipt) | The receipt to edit.           |
-| `receipt_id` | Uint128                       | The ID of the receipt to edit. |
+| Name         | Type                            | Description                    |
+| ------------ | ------------------------------- | ------------------------------ |
+| `receipt`    | [Receipt](receipt.md#receipt-1) | The receipt to edit.           |
+| `receipt_id` | Uint128                         | The ID of the receipt to edit. |
 
 ### UpdateOwner/UpdateOperators
 
@@ -214,9 +214,9 @@ pub struct ReceiptResponse {
 {% endtab %}
 {% endtabs %}
 
-| Name      | Type                          | Description       |
-| --------- | ----------------------------- | ----------------- |
-| `receipt` | [Receipt](receipt.md#receipt) | The receipt data. |
+| Name      | Type                            | Description       |
+| --------- | ------------------------------- | ----------------- |
+| `receipt` | [Receipt](receipt.md#receipt-1) | The receipt data. |
 
 ### ContractInfo
 

@@ -6,21 +6,6 @@ description: >-
 
 # Primitive
 
-### Primitive
-
-An enum to specify the type of data you are saving.
-
-```rust
-pub enum Primitive {
-    Uint128(Uint128),
-    Decimal(Decimal),
-    Coin(Coin),
-    String(String),
-    Bool(bool),
-    Vec(Vec<Primitive>),
-}
-```
-
 ## InstantiateMsg
 
 {% tabs %}
@@ -89,7 +74,22 @@ pub enum ExecuteMsg{
 | Name    | Type                                | Description                 |
 | ------- | ----------------------------------- | --------------------------- |
 | `name`  | Option\<String>                     | Optional name for the data. |
-| `value` | [Primitive](primitive.md#undefined) | The value of the data.      |
+| `value` | [Primitive](primitive.md#primitive) | The value of the data.      |
+
+#### Primitive
+
+An enum to specify the type of data you are saving.
+
+```rust
+pub enum Primitive {
+    Uint128(Uint128),
+    Decimal(Decimal),
+    Coin(Coin),
+    String(String),
+    Bool(bool),
+    Vec(Vec<Primitive>),
+}
+```
 
 ### DeleteValue
 

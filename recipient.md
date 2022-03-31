@@ -1,6 +1,6 @@
 # Recipient
 
-### Definition
+## Definition
 
 When building ADOs, the recipient of a function/message could be another ADO or an address. This is why we use the Recipient enum to differentiate between a user recipient and an ADO recipient.
 

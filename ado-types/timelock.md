@@ -4,67 +4,6 @@ description: An ADO contract to hold funds for a set period of time.
 
 # Timelock
 
-## Escrow
-
-The time lock contract uses a basic struct to store a record of funds being held.
-
-```rust
-#[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
-pub struct Escrow {
-    pub coins: Vec<Coin>,
-    pub condition: Option<EscrowCondition>,
-    pub recipient: Recipient,
-}
-```
-
-| Name        | Type                                                   | Description                                               |
-| ----------- | ------------------------------------------------------ | --------------------------------------------------------- |
-| `coins`     | Vec\<Coin>                                             | Funds being held within the Escrow.                       |
-| `condition` | Option<[EscrowCondition](timelock.md#escrowcondition)> | Optional condition for the Escrow.                        |
-| `recipient` | Recipient                                              | The recipient of the funds once `condition` is satisfied. |
-
-#### EscrowCondition
-
-Enum used to specify the condition which must be met in order for the Escrow to unlock.
-
-```rust
-pub enum EscrowCondition {
-    Expiration(Expiration),
-    MinimumFunds(Vec<Coin>),
-}
-```
-
-| EscrowCondition Type | Type       | Description                                         |
-| -------------------- | ---------- | --------------------------------------------------- |
-| Expiration           | Expiration | Requires a given time or block height to be reached |
-| MinimumFunds         | Vec\<Coin> | Requires a minimum amount of funds to be deposited  |
-
-### Recipient
-
-Enum to define the recipient. Can be either an address or another ADO.&#x20;
-
-```rust
-pub enum Recipient {
-    Addr(String),
-    ADO(ADORecipient),
-}
-```
-
-### ADORecipient
-
-Struct used when the recipient is an ADO.
-
-```rust
-pub struct ADORecipient {
-    pub addr: String,
-    pub msg: Option<Binary>,
-}
-```
-
-{% hint style="info" %}
-ADOs use a default Receive message for handling funds, this struct states that the recipient is an ADO and may attach the data field to the Receive message
-{% endhint %}
-
 ## InstantiateMsg
 
 {% tabs %}
@@ -105,9 +44,9 @@ pub struct InstantiateMsg {
 {% endtab %}
 {% endtabs %}
 
-| Name          | Type                                                  | Description                                                       |
-| ------------- | ----------------------------------------------------- | ----------------------------------------------------------------- |
-| address\_list | Option<[AddressListModule](../modules/address-list/)> | An optional address list module to restrict usage of the contract |
+| Name          | Type                       | Description                                                       |
+| ------------- | -------------------------- | ----------------------------------------------------------------- |
+| address\_list | Option\<AddressListModule> | An optional address list module to restrict usage of the contract |
 
 ## ExecuteMsg
 
@@ -146,8 +85,24 @@ pub enum ExecuteMsg {
 
 | Name        | Type                                                   | Description                                                    |
 | ----------- | ------------------------------------------------------ | -------------------------------------------------------------- |
-| `recipient` | Option<[Recipient](timelock.md#recipient)>             | Optional recipient address. If not set defaults to the sender. |
+| `recipient` | Option<[Recipient](../recipient.md)>                   | Optional recipient address. If not set defaults to the sender. |
 | `condition` | Option<[EscrowCondition](timelock.md#escrowcondition)> | An optional condition to unlock the Escrow                     |
+
+#### EscrowCondition
+
+Enum used to specify the condition which must be met in order for the Escrow to unlock.
+
+```rust
+pub enum EscrowCondition {
+    Expiration(Expiration),
+    MinimumFunds(Vec<Coin>),
+}
+```
+
+| EscrowCondition Type | Type       | Description                                         |
+| -------------------- | ---------- | --------------------------------------------------- |
+| `Expiration`         | Expiration | Requires a given time or block height to be reached |
+| `MinimumFunds`       | Vec\<Coin> | Requires a minimum amount of funds to be deposited  |
 
 ### ReleaseFunds
 
@@ -249,9 +204,9 @@ pub enum ExecuteMsg {
 {% endtab %}
 {% endtabs %}
 
-| Name           | Type                                                  | Description                                                        |
-| -------------- | ----------------------------------------------------- | ------------------------------------------------------------------ |
-| `address_list` | Option<[AddressListModule](../modules/address-list/)> | An optional address list module for limiting authorised addresses. |
+| Name           | Type                                          | Description                                                        |
+| -------------- | --------------------------------------------- | ------------------------------------------------------------------ |
+| `address_list` | Option<[AddressListModule](broken-reference)> | An optional address list module for limiting authorised addresses. |
 
 ### UpdateOwner/UpdateOperators
 
@@ -399,6 +354,25 @@ pub struct GetLockedFundsForRecipientResponse {
 | ------- | --------------------------------- | ------------------------------------------------------------ |
 | `funds` | Vec<[Escrow](timelock.md#escrow)> | Optional Escrow with the held funds and related information. |
 
+#### Escrow
+
+The time-lock contract uses a basic struct to store a record of funds being held.
+
+```rust
+#[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
+pub struct Escrow {
+    pub coins: Vec<Coin>,
+    pub condition: Option<EscrowCondition>,
+    pub recipient: Recipient,
+}
+```
+
+| Name        | Type                                                   | Description                                               |
+| ----------- | ------------------------------------------------------ | --------------------------------------------------------- |
+| `coins`     | Vec\<Coin>                                             | Funds being held within the Escrow.                       |
+| `condition` | Option<[EscrowCondition](timelock.md#escrowcondition)> | Optional condition for the Escrow.                        |
+| `recipient` | Recipient                                              | The recipient of the funds once `condition` is satisfied. |
+
 ### GetTimelockConfig
 
 Queries the contract's configuration.
@@ -448,10 +422,10 @@ pub struct GetTimelockConfigResponse {
 {% endtab %}
 {% endtabs %}
 
-| Name                    | Type                                                             | Description                                          |
-| ----------------------- | ---------------------------------------------------------------- | ---------------------------------------------------- |
-| `address_list`          | Option<[AddressListModule](../modules/address-list/#definition)> | The `AddressList` module definition.                 |
-| `address_list_contract` | Option\<String>                                                  | The contract address for the `AddressList` contract. |
+| Name                    | Type                                          | Description                                          |
+| ----------------------- | --------------------------------------------- | ---------------------------------------------------- |
+| `address_list`          | Option<[AddressListModule](broken-reference)> | The `AddressList` module definition.                 |
+| `address_list_contract` | Option\<String>                               | The contract address for the `AddressList` contract. |
 
 ### Owner/Operators/IsOperator
 

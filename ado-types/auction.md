@@ -27,19 +27,6 @@ pub struct TokenAuctionState {
 }
 ```
 
-## Bid
-
-The state for a particular bid is stored in a basic struct.
-
-```rust
-#[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
-pub struct Bid {
-    pub bidder: String,
-    pub amount: Uint128,
-    pub timestamp: Timestamp,
-}
-```
-
 ## InstantiateMsg <a href="#instantiatemsg" id="instantiatemsg"></a>
 
 {% tabs %}
@@ -527,6 +514,19 @@ pub struct BidsResponse {
 | Name   | Type                       | Description         |
 | ------ | -------------------------- | ------------------- |
 | `bids` | Vec<[Bid](auction.md#bid)> | The retrieved bids. |
+
+#### Bid
+
+The state for a particular bid is stored in a basic struct.
+
+```rust
+#[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
+pub struct Bid {
+    pub bidder: String,
+    pub amount: Uint128,
+    pub timestamp: Timestamp,
+}
+```
 
 ### AuctionIds
 

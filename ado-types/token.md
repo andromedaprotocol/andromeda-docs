@@ -4,83 +4,6 @@ description: The message definitions for the Andromeda token contract.
 
 # Token
 
-### InstantiateMarketingInfo
-
-```rust
-pub struct InstantiateMarketingInfo {
-    pub project: Option<String>,
-    pub description: Option<String>,
-    pub marketing: Option<String>,
-    pub logo: Option<Logo>,
-}
-```
-
-| Name          | Type            |                                                                                    |
-| ------------- | --------------- | ---------------------------------------------------------------------------------- |
-| `project`     | Option\<String> | A URL pointing to the project behind this token.                                   |
-| `description` | Option\<String> | A longer description of the token and it's utility. Designed for tooltips or such. |
-| `marketing`   | Option\<String> | The address (if any) who can update this data structure.                           |
-| `logo`        | Option\<Logo>   | A link to the logo, or a comment that there is an on-chain logo stored.            |
-
-### MinterResponse
-
-```rust
-pub struct MinterResponse {
-    pub minter: String,
-    pub cap: Option<Uint128>,
-}
-```
-
-| Name     | Type             | Description                                                 |
-| -------- | ---------------- | ----------------------------------------------------------- |
-| `minter` | String           | The address to assign as a minter.                          |
-| `cap`    | Option\<Uint128> | A hard cap on total supply that can be achieved by minting. |
-
-{% hint style="info" %}
-The cap refers to the total supply. If None, there is unlimited cap.
-{% endhint %}
-
-### Module
-
-A struct describing a token module, provided with the instantiation message this struct uses to record the info about the module and how/if it should be instantiated.
-
-```rust
-pub struct Module {
-    pub module_type: ModuleType,
-    pub instantiate: InstantiateType,
-    pub is_mutable: bool,
-
-```
-
-#### ModuleType
-
-An enum describing the different available modules for any Andromeda Token contract.
-
-```rust
-pub enum ModuleType {
-    Rates,
-    Offers,
-    AddressList,
-    Auction,
-    Receipt,
-    Other,
-}
-```
-
-#### InstantiateType
-
-Modules can be instantiated in two different ways:
-
-* New: Provide an instantiation message for the contract, a new contract will be instantiated and the address recorded
-* &#x20;Address: Provide an address for an already instantiated module contract
-
-```rust
-pub enum InstantiateType {
-    New(Binary),
-    Address(String),
-}
-```
-
 ## InstantiateMsg
 
 {% tabs %}
@@ -130,8 +53,46 @@ pub struct InstantiateMsg {
 | `initial_balances`   | Vec\<Cw20Coin>                                                        | A vector containing a list of addresses and the amount of coin to initialize each.                                                   |
 | `mint`               | Option<[MinterResponse](token.md#undefined)>                          | Optional field to define a minter for the token and an optional  cap for the total supply of tokens that can be minted.              |
 | `marketing`          | Option<[InstantiateMarketingInfo](token.md#instantiatemarketinginfo)> | Optional field to define the marketing information of the project.                                                                   |
-| `modules`            | Option\<Vec\<Module>>                                                 | Optional vector to define any modules to attach to the contract. Each module has an index that can be referenced by other functions. |
+| `modules`            | Option\<Vec<[Module](../modules/module-definitions.md)>>              | Optional vector to define any modules to attach to the contract. Each module has an index that can be referenced by other functions. |
 | `primitive_contract` | String                                                                | The primitive contract used to The primitive contract address used to retrieve contract addresses.                                   |
+
+#### InstantiateMarketingInfo
+
+Struct used to store the marketing related data of the token.&#x20;
+
+```rust
+pub struct InstantiateMarketingInfo {
+    pub project: Option<String>,
+    pub description: Option<String>,
+    pub marketing: Option<String>,
+    pub logo: Option<Logo>,
+}
+```
+
+| Name          | Type            |                                                                                    |
+| ------------- | --------------- | ---------------------------------------------------------------------------------- |
+| `project`     | Option\<String> | A URL pointing to the project behind this token.                                   |
+| `description` | Option\<String> | A longer description of the token and it's utility. Designed for tooltips or such. |
+| `marketing`   | Option\<String> | The address (if any) who can update this data structure.                           |
+| `logo`        | Option\<Logo>   | A link to the logo, or a comment that there is an on-chain logo stored.            |
+
+#### MinterResponse
+
+```rust
+pub struct MinterResponse {
+    pub minter: String,
+    pub cap: Option<Uint128>,
+}
+```
+
+| Name     | Type             | Description                                                 |
+| -------- | ---------------- | ----------------------------------------------------------- |
+| `minter` | String           | The address to assign as a minter.                          |
+| `cap`    | Option\<Uint128> | A hard cap on total supply that can be achieved by minting. |
+
+{% hint style="info" %}
+The cap refers to the total supply. If None, there is unlimited cap.
+{% endhint %}
 
 ## ExecuteMsg
 
