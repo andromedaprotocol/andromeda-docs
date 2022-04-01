@@ -12,7 +12,7 @@ description: >-
 {% tab title="Rust" %}
 ```rust
 pub struct InstantiateMsg {
-    pub token_address: String,
+    pub token_address: AndrAddress,
     pub modules: Option<Vec<Module>>,
     pub primitive_address: String,
 }
@@ -22,45 +22,24 @@ pub struct InstantiateMsg {
 {% tab title="JSON" %}
 ```json
 {
-"token_address":"terra1...",
+"token_address":{
+"identifier":"terra1...",
+   }
 "primitive_address":"terra1..."
 }
 ```
 {% endtab %}
 {% endtabs %}
 
-| Name                | Type                                           | Desctription                                           |
-| ------------------- | ---------------------------------------------- | ------------------------------------------------------ |
-| `token_address`     | String                                         | The contract address of the token.                     |
-| `modules`           | Option\<Vec<[Module](crowdfund.md#undefined)>> | Optional set of modules to attach to the contract.     |
-| `primitive_address` | String                                         | The primitive contract address used to retrieve data.  |
+| Name                | Type                                                                        | Desctription                                           |
+| ------------------- | --------------------------------------------------------------------------- | ------------------------------------------------------ |
+| `token_address`     | [AndrAddress](../modules/module-definitions.md#andradress)                  | The contract address of the token.                     |
+| `modules`           | Option\<Vec<[Module](../modules/module-definitions.md#module-definitions)>> | Optional set of modules to attach to the contract.     |
+| `primitive_address` | String                                                                      | The primitive contract address used to retrieve data.  |
 
-### Module
+###
 
-A struct describing a token module, provided with the instantiation message this struct is used to record the info about the module and how/if it should be instantiated.
-
-```rust
-pub struct Module {
-    pub module_type: String,
-    pub instantiate: InstantiateType,
-    pub is_mutable: bool,
-}
-```
-
-#### InstantiateType
-
-Modules can be instantiated in two different ways:
-
-**New**: Provide an instantiation message for the contract, a new contract will be instantiated and the address recorded.
-
-**Address**: Provide an address for an already instantiated module contract.
-
-```rust
-pub enum InstantiateType {
-    New(Binary),
-    Address(String),
-}
-```
+####
 
 ### ExecuteMsg
 

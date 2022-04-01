@@ -37,8 +37,8 @@ The maximum number of mission components is 50.
 pub struct InstantiateMsg {
     pub operators: Vec<String>,
     pub mission: Vec<MissionComponent>,
-    pub xfer_ado_ownership: bool,
     pub name: String,
+    pub primitive_contract: String
 }
 ```
 {% endtab %}
@@ -59,7 +59,6 @@ pub struct InstantiateMsg {
    ...
    }
  ],
- "xfer_ado_ownership": true,
  "name":"some_mission"
  }
        
@@ -69,12 +68,12 @@ pub struct InstantiateMsg {
 {% endtab %}
 {% endtabs %}
 
-| Name                 | Type                                                 | Description                                                            |
-| -------------------- | ---------------------------------------------------- | ---------------------------------------------------------------------- |
-| `operators`          | Vec\<String>                                         | The operators of the contract.                                         |
-| `mission`            | Vec<[MissionComponent](mission.md#missioncomponent)> | The vector of MissionComponent containing all the ADOs of the mission. |
-| `xfer_ado_ownership` | bool                                                 | A flag to whether to keep the mission contract as the owner            |
-| `name`               | String                                               | The name of the mission.                                               |
+| Name                 | Type                                                 | Description                                                                |
+| -------------------- | ---------------------------------------------------- | -------------------------------------------------------------------------- |
+| `operators`          | Vec\<String>                                         | The operators of the contract.                                             |
+| `mission`            | Vec<[MissionComponent](mission.md#missioncomponent)> | The vector of MissionComponent containing all the ADOs of the mission.     |
+| `name`               | String                                               | The name of the mission.                                                   |
+| `primitive_contract` | String                                               | The address of the `primitve` contract used to supply data to the mission. |
 
 ## ExecuteMsg
 
@@ -120,7 +119,7 @@ AddMissionComponent{
 
 ### ClaimOwnership
 
-Gives ownership of a component owner address instead of the mission contract.
+Gives ownership of a component to the owner address instead of the mission contract.
 
 {% hint style="info" %}
 Only available to the contract owner.
@@ -130,9 +129,9 @@ Only available to the contract owner.
 {% tab title="Rust" %}
 ```rust
 pub enum ExecuteMsg{
-ClaimOwnership { 
-name: Option<String> 
-  }
+   ClaimOwnership { 
+   name: Option<String> 
+   }
 }
 ```
 {% endtab %}
@@ -202,9 +201,9 @@ Sets a new contract address for the ADO with the specified `name`.
 {% tab title="Rust" %}
 ```rust
 pub enum ExecuteMsg {
-UpdateAddress {
- name: String,
- addr: String
+  UpdateAddress {
+     name: String,
+     addr: String
    }
  }
 ```
@@ -352,6 +351,6 @@ pub struct ConfigResponse {
 {% endtab %}
 {% endtabs %}
 
-### Owner/Operators/IsOperator
+### Owner/Operators/IsOperator/
 
 Check [AndrQuery](../andrreceive-andrquery.md).

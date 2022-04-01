@@ -22,17 +22,19 @@ pub enum ExecuteMsg {
 
 ### AndromedaMsg
 
-An enum lisiting the different types of AndromedaMsg.
+An enum lisiting the different types of `AndromedaMsg`.
 
 ```rust
 pub enum AndromedaMsg {
-    /// Standard Messages
     Receive(Option<Binary>),
     UpdateOwner {
         address: String,
     },
     UpdateOperators {
         operators: Vec<String>,
+    },
+    UpdateMissionContract {
+        address: String,
     },
     Withdraw {
         recipient: Option<Recipient>,
@@ -48,8 +50,14 @@ pub enum AndromedaMsg {
         module_idx: Uint64,
         module: Module,
     },
+    RefreshAddress {
+        contract: String,
+    },
+    RefreshAddresses {
+        limit: Option<u32>,
+        start_after: Option<String>,
+    },
 }
-
 ```
 
 ### UpdateOwner
@@ -60,7 +68,7 @@ Updates the owner of the contract.
 {% tab title="Rust" %}
 ```rust
 pub enum AndromedaMsg{
-   update owner {
+   UpdateOwner {
    address:String
    }
 }
@@ -117,9 +125,9 @@ pub enum AndromedaMsg{
 {% endtab %}
 {% endtabs %}
 
-| Name      | Type         | Description                         |
-| --------- | ------------ | ----------------------------------- |
-| operators | Vec\<String> | The new addresses of the operators. |
+| Name        | Type         | Description                         |
+| ----------- | ------------ | ----------------------------------- |
+| `operators` | Vec\<String> | The new addresses of the operators. |
 
 ### Withdraw
 
@@ -177,7 +185,39 @@ pub enum WithdrawalType {
 }
 ```
 
-### Modules
+### UpdateMissionContract
+
+Changes the contract address of the mission contract.&#x20;
+
+{% tabs %}
+{% tab title="Rust" %}
+```rust
+pub enum AndromedaMsg{
+   UpdateMissionContract {
+   address:String
+   }
+}
+```
+{% endtab %}
+
+{% tab title="JSON" %}
+```rust
+{
+ "andr_receive":{
+      "update_mission_contract":{
+            "address":"terra1...",
+     }
+   }
+}
+```
+{% endtab %}
+{% endtabs %}
+
+| Name      | Type   | Description                                         |
+| --------- | ------ | --------------------------------------------------- |
+| `address` | String | The address of the new mission contract to be used. |
+
+## Modules
 
 The following can be executed by the contracts that implement modules:
 
@@ -219,9 +259,9 @@ pub enum ExecuteMsg {
 {% endtab %}
 {% endtabs %}
 
-| Name   | Type                                      | Description         |
-| ------ | ----------------------------------------- | ------------------- |
-| module | [Module](andrreceive-andrquery.md#module) | The module to add.  |
+| Name   | Type                                    | Description         |
+| ------ | --------------------------------------- | ------------------- |
+| module | [Module](modules/module-definitions.md) | The module to add.  |
 
 ### DeregisterModule
 
@@ -297,10 +337,10 @@ pub enum ExecuteMsg{
 {% endtab %}
 {% endtabs %}
 
-| Name         | Type                                      | Description                        |
-| ------------ | ----------------------------------------- | ---------------------------------- |
-| `module_idx` | Uint64                                    | The index of the module to change. |
-| `module`     | [Module](andrreceive-andrquery.md#module) | The new module implement.          |
+| Name         | Type                                    | Description                        |
+| ------------ | --------------------------------------- | ---------------------------------- |
+| `module_idx` | Uint64                                  | The index of the module to change. |
+| `module`     | [Module](modules/module-definitions.md) | The new module implement.          |
 
 ## AndrQuery
 
@@ -530,11 +570,11 @@ pub struct ModuleInfoWithAddress {
 {% endtab %}
 {% endtabs %}
 
-| Name      | Type   | Description                                                 |
-| --------- | ------ | ----------------------------------------------------------- |
-| `module`  | Module | The information of the module are found in a Module struct. |
-| `address` | String | The contract address of the module.                         |
-|           |        |                                                             |
+| Name      | Type                                    | Description                                                 |
+| --------- | --------------------------------------- | ----------------------------------------------------------- |
+| `module`  | [Module](modules/module-definitions.md) | The information of the module are found in a Module struct. |
+| `address` | String                                  | The contract address of the module.                         |
+|           |                                         |                                                             |
 
 ### ModuleIds
 

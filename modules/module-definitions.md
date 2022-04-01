@@ -14,35 +14,32 @@ A struct describing a token module, provided with the instantiation message this
 ```rust
 pub struct Module {
     pub module_type: String,
-    pub instantiate: InstantiateType,
+    pub address: AndrAddress,
     pub is_mutable: bool,
 }
 ```
 
-| Name          | Type                                                     | Description                                                                                                     |
-| ------------- | -------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- |
-| `module_type` | String                                                   | The name of the module to add. Can be set one of the following: "rates", "offers", "address\_list", "receipt" . |
-| `instantiate` | [InstantiateType](module-definitions.md#instantiatetype) | How to instantiate the module.                                                                                  |
-| `is_mutable`  | bool                                                     | Whether the module can be later modified or not.                                                                |
+| Name          | Type                                            | Description                                                                                                     |
+| ------------- | ----------------------------------------------- | --------------------------------------------------------------------------------------------------------------- |
+| `module_type` | String                                          | The name of the module to add. Can be set one of the following: "rates", "offers", "address\_list", "receipt" . |
+| `instantiate` | [AndrAddress](module-definitions.md#andradress) | How to instantiate the module.                                                                                  |
+| `is_mutable`  | bool                                            | Whether the module can be later modified or not.                                                                |
 
 {% hint style="info" %}
 Any ADO that can implement modules uses this `Module` struct in it's Instantiation  to add the modules to the ADO.&#x20;
 {% endhint %}
 
-### InstantiateType
+### AndrAdress
 
-Modules can be instantiated in two different ways:
-
-**New**: Provide an instantiation message for the contract, a new contract will be instantiated and the address recorded&#x20;
-
-**Address:** Provide an address for an already instantiated module contract
+A struct used to reference a another ADO contract. Can be either an address or identifier of an ADO in a mission.&#x20;
 
 ```rust
-pub enum InstantiateType {
-    New(Binary),
-    Address(String),
-}
+pub struct AndrAddress {
+    pub identifier: String,
+ }
 ```
+
+
 
 ## Defining Modules
 
@@ -53,7 +50,7 @@ When instantiating an **Andromeda Digital Object** contract the modules can be d
   "modules": [
         {
           "module_type": "address_list",
-          "instantiate": {
+          "address": {
             "new": toBinary({
               "operators": [],
               "is_inclusive": true,
