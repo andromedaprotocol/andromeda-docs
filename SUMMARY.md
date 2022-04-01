@@ -26,16 +26,13 @@
 * [Receipt Module](modules/receipt-module.md)
 * [Offers Module](modules/offers-module.md)
 
-***
-
-* [ADO\_Base](ado\_base.md)
-
 ## Andromeda Hooks
 
 * [Hooks](andromeda-hooks/hooks.md)
 
 ***
 
+* [ADO\_Base](ado\_base.md)
 * [Recipient](recipient.md)
 * [AndrReceive/AndrQuery](andrreceive-andrquery.md)
 * [User Docs](user-docs/README.md)

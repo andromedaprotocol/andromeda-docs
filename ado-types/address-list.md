@@ -20,7 +20,7 @@ pub struct InstantiateMsg {
 {% tab title="JSON" %}
 ```javascript
 {
-    "operators": ["terra1..."],
+    "operators": ["terra1...","terra...",...],
 }
 ```
 {% endtab %}

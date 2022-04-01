@@ -179,7 +179,7 @@ pub enum QueryMsg {
 | ----------- | ------- | ------------------------------- |
 | receipt\_id | Uint128 | The ID of the receipt to query. |
 
-### ReceiptResponse
+#### ReceiptResponse
 
 {% tabs %}
 {% tab title="Rust" %}

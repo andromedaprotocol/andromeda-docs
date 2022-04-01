@@ -89,13 +89,13 @@ pub enum ExecuteMsg{
 {% endtab %}
 {% endtabs %}
 
-| Name                    | Type             | Description                                                       |
-| ----------------------- | ---------------- | ----------------------------------------------------------------- |
-| `exiration`             | Expiration       | When the sale ends.                                               |
-| `price`                 | Coin             | The price per token.                                              |
-| `min_tokens_sold`       | Uint128          | The minimum amount of tokens sold to go through with the sale.    |
-| `max_amount_per_wallet` | Option\<Uint128> | The amount of tokens a wallet can purchase, default is 1.         |
-| `recipient`             | Recipient        | The recipient of the funds if the sale met the `min_tokens_sold`. |
+| Name                    | Type                         | Description                                                       |
+| ----------------------- | ---------------------------- | ----------------------------------------------------------------- |
+| `exiration`             | Expiration                   | When the sale ends.                                               |
+| `price`                 | Coin                         | The price per token.                                              |
+| `min_tokens_sold`       | Uint128                      | The minimum amount of tokens sold to go through with the sale.    |
+| `max_amount_per_wallet` | Option\<Uint128>             | The amount of tokens a wallet can purchase, default is 1.         |
+| `recipient`             | [Recipient](../recipient.md) | The recipient of the funds if the sale met the `min_tokens_sold`. |
 
 ### Purchase
 

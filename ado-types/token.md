@@ -45,16 +45,16 @@ pub struct InstantiateMsg {
 {% endtab %}
 {% endtabs %}
 
-| Name                 | Type                                                                  | Description                                                                                                                          |
-| -------------------- | --------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------ |
-| `name`               | String                                                                | The name of  the token.                                                                                                              |
-| `symbol`             | String                                                                | The symbol of the token.                                                                                                             |
-| `decimals`           | u8                                                                    | The number of decimals for the token.                                                                                                |
-| `initial_balances`   | Vec\<Cw20Coin>                                                        | A vector containing a list of addresses and the amount of coin to initialize each.                                                   |
-| `mint`               | Option<[MinterResponse](token.md#undefined)>                          | Optional field to define a minter for the token and an optional  cap for the total supply of tokens that can be minted.              |
-| `marketing`          | Option<[InstantiateMarketingInfo](token.md#instantiatemarketinginfo)> | Optional field to define the marketing information of the project.                                                                   |
-| `modules`            | Option\<Vec<[Module](../modules/module-definitions.md)>>              | Optional vector to define any modules to attach to the contract. Each module has an index that can be referenced by other functions. |
-| `primitive_contract` | String                                                                | The primitive contract used to The primitive contract address used to retrieve contract addresses.                                   |
+| Name                 | Type                                                                  | Description                                                                                                              |
+| -------------------- | --------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------ |
+| `name`               | String                                                                | The name of  the token.                                                                                                  |
+| `symbol`             | String                                                                | The symbol of the token.                                                                                                 |
+| `decimals`           | u8                                                                    | The number of decimals for the token.                                                                                    |
+| `initial_balances`   | Vec\<Cw20Coin>                                                        | A vector containing a list of addresses and the amount of coin to initialize each.                                       |
+| `mint`               | Option<[MinterResponse](token.md#undefined)>                          | Optional field to define a minter for the token and an optional  cap for the total supply of tokens that can be minted.  |
+| `marketing`          | Option<[InstantiateMarketingInfo](token.md#instantiatemarketinginfo)> | Optional field to define the marketing information of the project.                                                       |
+| `modules`            | Option\<Vec<[Module](../modules/module-definitions.md)>>              | A vector of Andromeda Module definitions. The module definitions can be found[ here](../modules/module-definitions.md).  |
+| `primitive_contract` | String                                                                | The primitive contract address used to retrieve contract addresses.                                                      |
 
 #### InstantiateMarketingInfo
 
@@ -514,9 +514,9 @@ pub enum QueryMsg {
 {% endtab %}
 {% endtabs %}
 
-| Name    | Type   | Description                        |
-| ------- | ------ | ---------------------------------- |
-| address | String | The address to get the balance of. |
+| Name      | Type   | Description                        |
+| --------- | ------ | ---------------------------------- |
+| `address` | String | The address to get the balance of. |
 
 #### BalanceResponse
 
@@ -539,9 +539,9 @@ pub enum QueryMsg {
 {% endtab %}
 {% endtabs %}
 
-| Name    | Type    | Description                                                        |
-| ------- | ------- | ------------------------------------------------------------------ |
-| balance | Uint128 | The amount of tokens the specified `address` has in their balance. |
+| Name      | Type    | Description                                                        |
+| --------- | ------- | ------------------------------------------------------------------ |
+| `balance` | Uint128 | The amount of tokens the specified `address` has in their balance. |
 
 ### TokenInfo
 
@@ -606,7 +606,7 @@ Returns who can mint and the hard cap on maximum tokens after minting
 {% tab title="Rust" %}
 ```rust
 pub enum ExecuteMsg {
-Minter {}
+    Minter {}
 }
 ```
 {% endtab %}
@@ -674,10 +674,10 @@ pub enum QueryMsg {
 {% endtab %}
 {% endtabs %}
 
-| Name    | Type   | Description                             |
-| ------- | ------ | --------------------------------------- |
-| owner   | String | The address of the owner of the tokens. |
-| spender | String | The address to check the allowance of.  |
+| Name      | Type   | Description                             |
+| --------- | ------ | --------------------------------------- |
+| `owner`   | String | The address of the owner of the tokens. |
+| `spender` | String | The address to check the allowance of.  |
 
 #### AllowanceResponse
 
@@ -946,3 +946,7 @@ pub struct DownloadLogoResponse {
 | ----------- | ------ | -------------------------- |
 | `mime_type` | String | The MIME type of the logo. |
 | `data`      | Binary | The LOGO data.             |
+
+### Owner/Operators/IsOperator/
+
+Check [AndrQuery](../andrreceive-andrquery.md).

@@ -11,42 +11,15 @@ description: An ADO contract to hold funds for a set period of time.
 ```rust
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
 pub struct InstantiateMsg {
-    pub address_list: Option<AddressListModule>,
-}
-```
-{% endtab %}
-
-{% tab title="JSON" %}
-```javascript
-{
-    "address_list": {
-        "code_id": 1,
-        "operators": ["terra1..."],
-        "inclusive": false
-    }
-}
-
-//OR
-
-{
-    "address_list": {
-        "address": "terra1...",
-        "inclusive": false
-    }
-}
-
-//OR
-
-{
-    "address_list": null
+    pub modules: Option<Vec<Module>>,
 }
 ```
 {% endtab %}
 {% endtabs %}
 
-| Name          | Type                       | Description                                                       |
-| ------------- | -------------------------- | ----------------------------------------------------------------- |
-| address\_list | Option\<AddressListModule> | An optional address list module to restrict usage of the contract |
+| Name      | Type                                                     | Description                                                                                                             |
+| --------- | -------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- |
+| `modules` | Option\<Vec<[Module](../modules/module-definitions.md)>> | A vector of Andromeda Module definitions. The module definitions can be found[ here](../modules/module-definitions.md). |
 
 ## ExecuteMsg
 
@@ -71,7 +44,9 @@ pub enum ExecuteMsg {
 ```javascript
 {
     "hold_funds": {
-        "recipient": "terra1...",
+        "recipient":{
+         "addr":"terra1...",
+         }
         "condition": {
             "expiration": {
               "at_height": 1
@@ -172,41 +147,6 @@ ReleaseSpecificFunds {
 | ---------------- | --------------- | -------------------------------------------------------------------------------------------- |
 | `owner`          | String          | The address of the funds to be released.                                                     |
 | `recipient_addr` | Option\<String> | Optional address to receive the released funds. Will default to the sender if not specified. |
-
-### UpdateAddressList
-
-Updates the `address_list` config field.
-
-{% tabs %}
-{% tab title="Rust" %}
-```rust
-#[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
-pub enum ExecuteMsg {
-   UpdateAddressList { 
-      address_list: Option<AddressListModule>
-   },
-}
-```
-{% endtab %}
-
-{% tab title="JSON" %}
-```javascript
-{
-    "updated_address_list": {
-        "address_list": {
-            "code_id": 1,
-            "operators": ["terra1...", "terra1..."]
-            "inlcusive":false,
-        }
-    }
-}
-```
-{% endtab %}
-{% endtabs %}
-
-| Name           | Type                                          | Description                                                        |
-| -------------- | --------------------------------------------- | ------------------------------------------------------------------ |
-| `address_list` | Option<[AddressListModule](broken-reference)> | An optional address list module for limiting authorised addresses. |
 
 ### UpdateOwner/UpdateOperators
 
@@ -316,7 +256,7 @@ pub struct GetLockedFundsResponse {
 | ------------- | --------------- | ------------------------------------------------------------------------------------------------------------- |
 | `recipient`   | String          | The address of the recipient                                                                                  |
 | `start_after` | Option\<String> | An optional address for which to start after, used for pagination.                                            |
-| `limit`       | Option          | Optional limit to the number timelocks to attempt to query. Defaults to 10 and can be set to a maximum of 30. |
+| `limit`       | Option\<u32>    | Optional limit to the number timelocks to attempt to query. Defaults to 10 and can be set to a maximum of 30. |
 
 #### GetLockedFundsForRecipientResponse
 
@@ -371,61 +311,7 @@ pub struct Escrow {
 | ----------- | ------------------------------------------------------ | --------------------------------------------------------- |
 | `coins`     | Vec\<Coin>                                             | Funds being held within the Escrow.                       |
 | `condition` | Option<[EscrowCondition](timelock.md#escrowcondition)> | Optional condition for the Escrow.                        |
-| `recipient` | Recipient                                              | The recipient of the funds once `condition` is satisfied. |
-
-### GetTimelockConfig
-
-Queries the contract's configuration.
-
-{% tabs %}
-{% tab title="Rust" %}
-```rust
-pub enum QueryMsg {
-    GetTimelockConfig {
-    },
-}
-```
-{% endtab %}
-
-{% tab title="JSON" %}
-```javascript
-{
-    "get_timelock_config": {
-    }
-}
-```
-{% endtab %}
-{% endtabs %}
-
-#### GetTimelockConfigResponse
-
-{% tabs %}
-{% tab title="Rust" %}
-```rust
-#[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
-pub struct GetTimelockConfigResponse {
-    pub address_list: Option<AddressListModule>,
-    pub address_list_contract: Option<String>,
-}
-```
-{% endtab %}
-
-{% tab title="JSON" %}
-```javascript
-{
-    "address_list": {
-        "address": "terra1..."
-    },
-    "address_list_contract": "terra1..."
-}
-```
-{% endtab %}
-{% endtabs %}
-
-| Name                    | Type                                          | Description                                          |
-| ----------------------- | --------------------------------------------- | ---------------------------------------------------- |
-| `address_list`          | Option<[AddressListModule](broken-reference)> | The `AddressList` module definition.                 |
-| `address_list_contract` | Option\<String>                               | The contract address for the `AddressList` contract. |
+| `recipient` | [Recipient](../recipient.md)                           | The recipient of the funds once `condition` is satisfied. |
 
 ### Owner/Operators/IsOperator
 

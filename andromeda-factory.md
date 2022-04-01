@@ -29,7 +29,6 @@ pub enum ExecuteMsg {
     Create {
         name: String,
         symbol: String,
-        modules: Vec<ModuleDefinition>,
     }
 }
 ```
@@ -41,36 +40,16 @@ pub enum ExecuteMsg {
     "create": {
         "name": "Example Token",
         "symbol": "ET",
-        "modules": [
-            {
-                "whitelist": {
-                    "moderators": ["terra1..."]
-                }
-            },
-            { 
-                "taxable": {
-                    "rate": {
-                        "flat": {
-                            "amount": 2,
-                            "denom": "uluna"
-                        }
-                    },
-                    "receivers": ["terra1...", "terra1..."],
-                    "description": "Some tax payment to be made to..."
-                }
-            }
-        ],
     }
 }
 ```
 {% endtab %}
 {% endtabs %}
 
-| Name      | Type                                      | Description                                     |
-| --------- | ----------------------------------------- | ----------------------------------------------- |
-| `name`    | String                                    | The ADO's name                                  |
-| `symbol`  | String                                    | The ADO's symbol                                |
-| `modules` | Vec<[ModuleDefinition](broken-reference)> | Any Andromeda Modules to be attached to the ADO |
+| Name     | Type   | Description      |
+| -------- | ------ | ---------------- |
+| `name`   | String | The ADO's name   |
+| `symbol` | String | The ADO's symbol |
 
 ### UpdateAddress
 
