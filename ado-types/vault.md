@@ -35,7 +35,7 @@ pub struct InstantiateMsg {
 {
 "strategies":[
      {
-     "strategy_type":"Anchor",
+     "strategy_type":{"Anchor"}
      "address":"terra1...",
      }
      ...
@@ -91,15 +91,9 @@ pub enum ExecuteMsg{
 }
 ```
 {% endtab %}
-
-{% tab title="JSON" %}
-```
-// Some code
-```
-{% endtab %}
 {% endtabs %}
 
-The `AndromedaMsg`  needs to be of type `receive` and can contain the a strategy if the funds need to be deposited to a certain strategy. It will then execute a [Deposit](vault.md#deposit) with the `recipient` being the sender, the `amount` is the amount of funds sent, and the `strategy`is the one specified in the receive message.
+The [`AndromedaMsg`](../andrreceive-andrquery.md#andromedamsg)  needs to be of type `receive` and can contain the a strategy if the funds need to be deposited to a certain strategy. It will then execute a [Deposit](vault.md#deposit) with the `recipient` being the sender, the `amount` is the amount of funds sent, and the `strategy`is the one specified in the receive message.
 
 ### Deposit
 
@@ -118,15 +112,25 @@ pub enum ExecuteMsg {
 {% endtab %}
 
 {% tab title="JSON" %}
-```
-// Some code
+```json
+{
+"deposit":{
+"recipient":{
+"addr":"terra1...",
+    }
+"strategy":{"anchor"},
+    }
+ }
+ 
+ 
+
 ```
 {% endtab %}
 {% endtabs %}
 
 | Name        | Type                                          | Description                                                                             |
 | ----------- | --------------------------------------------- | --------------------------------------------------------------------------------------- |
-| `recipient` | Option\<Recipient>                            | The recipient of the deposit. Defaults to the sender if not specified.                  |
+| `recipient` | Option<[Recipient](../recipient.md)>          | The recipient of the deposit. Defaults to the sender if not specified.                  |
 | `amount`    | Option\<Coin>                                 | The amount to deposit. If not specified then the sent funds are used as the amount.     |
 | `strategy`  | Option<[StrategyType](vault.md#strategytype)> | The strategy to deposit the funds to. If not specified, the funds will go to the vault. |
 
@@ -148,17 +152,31 @@ pub enum ExecuteMsg{
 {% endtab %}
 
 {% tab title="JSON" %}
-```
-// Some code
+```json
+{
+"withdraw":{
+"recipient":{
+"addr":"terra1...",
+    }
+"withdrawals":[
+     {
+     "token":"UST",
+     "withdrawal_type":{
+      "percentage":"40",
+     }
+     ...
+     ]
+    }
+ }
 ```
 {% endtab %}
 {% endtabs %}
 
-| Name          | Type                  |                                                                                          |
-| ------------- | --------------------- | ---------------------------------------------------------------------------------------- |
-| `recipient`   | Option\<Recipient>    | The address to receive the withdrawn funds.                                              |
-| `withdrawals` | Vec\<Withdrawal>      | The funds to withdraw.                                                                   |
-| `strategy`    | Option\<StrategyType> | The strategy to withdraw from. If not specified, the funds are withdrawn from the vault. |
+| Name          | Type                                 |                                                                                          |
+| ------------- | ------------------------------------ | ---------------------------------------------------------------------------------------- |
+| `recipient`   | Option<[Recipient](../recipient.md)> | The address to receive the withdrawn funds.                                              |
+| `withdrawals` | Vec\<Withdrawal>                     | The funds to withdraw.                                                                   |
+| `strategy`    | Option\<StrategyType>                | The strategy to withdraw from. If not specified, the funds are withdrawn from the vault. |
 
 #### Withdrawal
 
@@ -168,6 +186,11 @@ pub struct Withdrawal {
     pub withdrawal_type: Option<WithdrawalType>,
 }
 ```
+
+| Name              | Type                    | Description                                                                 |
+| ----------------- | ----------------------- | --------------------------------------------------------------------------- |
+| `token`           | String                  | The denom of the funds to withdraw.                                         |
+| `withdrawal_type` | Option\<WithdrawalType> | The type of withdrawal. Can vary between a specific amount or a percentage. |
 
 #### WithdrawalType
 
@@ -180,7 +203,7 @@ pub enum WithdrawalType {
 }
 ```
 
-The rest of the executes can be found in the `AndrReceive` section.
+The rest of the executes can be found in the [`AndrReceive`](../andrreceive-andrquery.md#andrrecieve) section.
 
 ## QueryMsg
 
@@ -202,8 +225,13 @@ pub enum QueryMsg {
 {% endtab %}
 
 {% tab title="JSON" %}
-```
-// Some code
+```json
+{
+"balance":{
+"address":"terra1...",
+"denom":"UST"
+     }
+}
 ```
 {% endtab %}
 {% endtabs %}
@@ -232,8 +260,12 @@ pub enum QueryMsg{
 {% endtab %}
 
 {% tab title="JSON" %}
-```
-// Some code
+```json
+{
+"strategy_address":{
+"strategy":{"Anchor"}
+  }
+}
 ```
 {% endtab %}
 {% endtabs %}
@@ -256,7 +288,10 @@ pub struct StrategyAddressResponse {
 
 {% tab title="JSON" %}
 ```
-// Some code
+{
+"strategy":"Anchor",
+"address":"terra1..."
+}
 ```
 {% endtab %}
 {% endtabs %}
@@ -266,4 +301,4 @@ pub struct StrategyAddressResponse {
 | `strategy` | [StrategyType](vault.md#strategytype) | The strategy we want the address for. |
 | `address`  | String                                | The address of the `strategy`.        |
 
-The rest of the queries can be found in the `AndrQuery` section.
+The rest of the queries can be found in the [`AndrQuery`](../andrreceive-andrquery.md#andrquery) section.
