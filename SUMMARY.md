@@ -12,6 +12,7 @@
 * [Auction](ado-types/auction.md)
 * [Receipt](ado-types/receipt.md)
 * [ADO Offers](ado-types/ado-offers.md)
+* [Vault](ado-types/vault.md)
 * [Primitive](ado-types/primitive.md)
 * [Splitter](ado-types/andromeda-splitter.md)
 * [Rates](ado-types/rates.md)
