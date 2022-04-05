@@ -287,7 +287,7 @@ pub struct StrategyAddressResponse {
 {% endtab %}
 
 {% tab title="JSON" %}
-```
+```json
 {
 "strategy":"Anchor",
 "address":"terra1..."
