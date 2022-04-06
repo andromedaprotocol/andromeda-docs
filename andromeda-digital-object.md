@@ -624,6 +624,20 @@ pub struct OwnerOfResponse {
 | `owner`     | String         | The owner of the queried token.          |
 | `approvals` | Vec\<Approval> | An array of all approvals for the token. |
 
+#### Approval
+
+```rust
+pub struct Approval {
+    pub spender: String,
+    pub expires: Expiration,
+}
+```
+
+| Name      | Type                                    | Description                      |
+| --------- | --------------------------------------- | -------------------------------- |
+| `spender` | String                                  | The address that is approved.    |
+| `expires` | [Expiration](definitions/expiration.md) | The expiration for the approval. |
+
 ### ApprovedForAll
 
 A CW721 compliant "approved for all" query. Queries any operators for a given address.
@@ -690,9 +704,9 @@ pub struct ApprovedForAllResponse {
 {% endtab %}
 {% endtabs %}
 
-| Name        | Type           | Description                                            |
-| ----------- | -------------- | ------------------------------------------------------ |
-| `approvals` | Vec\<Approval> | An array of all approvals for the given owner address. |
+| Name        | Type                                                   | Description                                            |
+| ----------- | ------------------------------------------------------ | ------------------------------------------------------ |
+| `approvals` | Vec<[Approval](andromeda-digital-object.md#undefined)> | An array of all approvals for the given owner address. |
 
 ### NumTokens
 

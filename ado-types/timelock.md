@@ -74,10 +74,10 @@ pub enum EscrowCondition {
 }
 ```
 
-| EscrowCondition Type | Type                                       | Description                                         |
-| -------------------- | ------------------------------------------ | --------------------------------------------------- |
-| `Expiration`         | [Expiration](../definitions/expiration.md) | Requires a given time or block height to be reached |
-| `MinimumFunds`       | Vec\<Coin>                                 | Requires a minimum amount of funds to be deposited  |
+| EscrowCondition Type | Type       | Description                                         |
+| -------------------- | ---------- | --------------------------------------------------- |
+| `Expiration`         | Expiration | Requires a given time or block height to be reached |
+| `MinimumFunds`       | Vec\<Coin> | Requires a minimum amount of funds to be deposited  |
 
 ### ReleaseFunds
 
@@ -91,7 +91,7 @@ pub enum ExecuteMsg {
     ReleaseFunds {
     recipient_addr:Option<String>,
     start_after:Option<String>,
-    limit:Option<u32>
+    limit:Option<32>
     },
 }
 ```
@@ -114,7 +114,7 @@ pub enum ExecuteMsg {
 | ---------------- | --------------- | -------------------------------------------------------------------------------------------------------------- |
 | `recipient_addr` | Option\<String> | Optional address to receive the released funds. Will default to the sender if not specified.                   |
 | `start_after`    | Option\<String> | An optional address for which to start after, used for pagination.                                             |
-| `limit`          | Option\<u32>    | Optional limit to the number timelocks to attempt to unlock. Defaults to 10 and can be set to a maximum of 30. |
+| `limit`          | Option<32>      | Optional limit to the number timelocks to attempt to unlock. Defaults to 10 and can be set to a maximum of 30. |
 
 ### ReleaseSpecificFunds
 
