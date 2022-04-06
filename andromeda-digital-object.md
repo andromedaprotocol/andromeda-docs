@@ -20,8 +20,7 @@ pub struct InstantiateMsg {
     pub name: String,
     pub symbol: String,
     pub minter: String,
-    pub modules: Vec<ModuleDefinition>,
-    pub primitive_contract:String,
+    pub modules: Vec<Module>,
 }
 ```
 {% endtab %}
@@ -53,13 +52,12 @@ pub struct InstantiateMsg {
 {% endtab %}
 {% endtabs %}
 
-| Name                 | Type                   | Description                                                                                                          |
-| -------------------- | ---------------------- | -------------------------------------------------------------------------------------------------------------------- |
-| `name`               | String                 | The name of the token. Has to be between 3 and 30 characters.                                                        |
-| `symbol`             | String                 | The symbol of the token.                                                                                             |
-| `minter`             | String                 | The address of the token minter. Will be assigned as the [contract owner](broken-reference).                         |
-| `modules`            | Vec\<ModuleDefinition> | A vector of Andromeda Module definitions. The module definitions can be found[ here](modules/module-definitions.md). |
-| `primitive_contract` | String                 | The primitive contract address used for address mapping. Used to reference the factory contract.                     |
+| Name      | Type                            | Description                                                                                                          |
+| --------- | ------------------------------- | -------------------------------------------------------------------------------------------------------------------- |
+| `name`    | String                          | The name of the token. Has to be between 3 and 30 characters.                                                        |
+| `symbol`  | String                          | The symbol of the token.                                                                                             |
+| `minter`  | String                          | The address of the token minter. Will be assigned as the [contract owner](broken-reference).                         |
+| `modules` | Vec<[Module](broken-reference)> | A vector of Andromeda Module definitions. The module definitions can be found[ here](modules/module-definitions.md). |
 
 ## ExecuteMsg
 
@@ -370,11 +368,11 @@ pub enum ExecuteMsg {
 {% endtab %}
 {% endtabs %}
 
-| Name       | Type                | Description                                                        |
-| ---------- | ------------------- | ------------------------------------------------------------------ |
-| `spender`  | String              | The address to be authorised as an operator                        |
-| `token_id` | String              | The id of the ADO for which to assign the `spender` as an operator |
-| `expires`  | Option\<Expiration> | An optional expiration for the approval                            |
+| Name       | Type                                            | Description                                                        |
+| ---------- | ----------------------------------------------- | ------------------------------------------------------------------ |
+| `spender`  | String                                          | The address to be authorised as an operator                        |
+| `token_id` | String                                          | The id of the ADO for which to assign the `spender` as an operator |
+| `expires`  | Option<[Expiration](definitions/expiration.md)> | An optional expiration for the approval                            |
 
 ### Revoke
 
@@ -443,10 +441,10 @@ pub enum ExecuteMsg {
 {% endtab %}
 {% endtabs %}
 
-| Name       | Type                | Description                                 |
-| ---------- | ------------------- | ------------------------------------------- |
-| `operator` | String              | The address to be authorised as an operator |
-| `expires`  | Option\<Expiration> | An optional expiration for the approval     |
+| Name       | Type                                            | Description                                 |
+| ---------- | ----------------------------------------------- | ------------------------------------------- |
+| `operator` | String                                          | The address to be authorised as an operator |
+| `expires`  | Option<[Expiration](definitions/expiration.md)> | An optional expiration for the approval     |
 
 ### RevokeAll
 
@@ -692,9 +690,9 @@ pub struct ApprovedForAllResponse {
 {% endtab %}
 {% endtabs %}
 
-| Name        | Type           | Description                                           |
-| ----------- | -------------- | ----------------------------------------------------- |
-| `approvals` | Vec\<Approval> | An array of all approvals for the given owner address |
+| Name        | Type           | Description                                            |
+| ----------- | -------------- | ------------------------------------------------------ |
+| `approvals` | Vec\<Approval> | An array of all approvals for the given owner address. |
 
 ### NumTokens
 

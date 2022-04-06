@@ -83,7 +83,7 @@ To be a valid recipient list the array of `AddressPercent` structs must meet the
 * Have percentage amounts less than or equaling 100
 {% endhint %}
 
-Read more about the recipient struct [here](../definitions/recipient.md).
+Read more about the recipient struct [here](../recipient.md).
 
 ## ExecuteMsg
 

@@ -35,7 +35,7 @@
 ***
 
 * [Definitions](definitions/README.md)
-  * [Recipient](definitions/recipient.md)
+  * [Recipient](recipient.md)
   * [Expiration](definitions/expiration.md)
 * [ADO\_Base](ado\_base.md)
 * [AndrReceive/AndrQuery](andrreceive-andrquery.md)
