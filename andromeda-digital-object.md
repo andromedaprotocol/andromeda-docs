@@ -19,8 +19,8 @@ The defined `minter` address is assigned as the contract owner.
 pub struct InstantiateMsg {
     pub name: String,
     pub symbol: String,
-    pub minter: String,
-    pub modules: Vec<Module>,
+    pub minter: AndrAddress,
+    pub modules: Option<Vec<Module>>,
 }
 ```
 {% endtab %}
@@ -52,12 +52,12 @@ pub struct InstantiateMsg {
 {% endtab %}
 {% endtabs %}
 
-| Name      | Type                            | Description                                                                                                          |
-| --------- | ------------------------------- | -------------------------------------------------------------------------------------------------------------------- |
-| `name`    | String                          | The name of the token. Has to be between 3 and 30 characters.                                                        |
-| `symbol`  | String                          | The symbol of the token.                                                                                             |
-| `minter`  | String                          | The address of the token minter. Will be assigned as the [contract owner](broken-reference).                         |
-| `modules` | Vec<[Module](broken-reference)> | A vector of Andromeda Module definitions. The module definitions can be found[ here](modules/module-definitions.md). |
+| Name      | Type                                     | Description                                                                                                         |
+| --------- | ---------------------------------------- | ------------------------------------------------------------------------------------------------------------------- |
+| `name`    | String                                   | The name of the token. Has to be between 3 and 30 characters.                                                       |
+| `symbol`  | String                                   | The symbol of the token.                                                                                            |
+| `minter`  | [AndrAddress](recipient.md#andraddress)  | The address of the token minter. Will be assigned as the [contract owner](broken-reference).                        |
+| `modules` | Option\<Vec<[Module](broken-reference)>> | An optional vector of Andromeda Modules. The module definitions can be found[ here](modules/module-definitions.md). |
 
 ## ExecuteMsg
 
@@ -1038,3 +1038,4 @@ pub struct CotractInfoResponse {
 | `name`   | String | The name of the contract.            |
 | `symbol` | String | The assigned symbol of the contract. |
 
+The rest of the base Queries are found in [AndrQuery](andrreceive-andrquery.md).

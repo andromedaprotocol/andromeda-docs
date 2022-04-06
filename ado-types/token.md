@@ -17,7 +17,6 @@ pub struct InstantiateMsg {
     pub mint: Option<MinterResponse>,
     pub marketing: Option<InstantiateMarketingInfo>,
     pub modules: Option<Vec<Module>>,
-    pub primitive_contract: String,
 }
 ```
 {% endtab %}
@@ -45,16 +44,15 @@ pub struct InstantiateMsg {
 {% endtab %}
 {% endtabs %}
 
-| Name                 | Type                                                                  | Description                                                                                                              |
-| -------------------- | --------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------ |
-| `name`               | String                                                                | The name of  the token.                                                                                                  |
-| `symbol`             | String                                                                | The symbol of the token.                                                                                                 |
-| `decimals`           | u8                                                                    | The number of decimals for the token.                                                                                    |
-| `initial_balances`   | Vec\<Cw20Coin>                                                        | A vector containing a list of addresses and the amount of coin to initialize each.                                       |
-| `mint`               | Option<[MinterResponse](token.md#undefined)>                          | Optional field to define a minter for the token and an optional  cap for the total supply of tokens that can be minted.  |
-| `marketing`          | Option<[InstantiateMarketingInfo](token.md#instantiatemarketinginfo)> | Optional field to define the marketing information of the project.                                                       |
-| `modules`            | Option\<Vec<[Module](../modules/module-definitions.md)>>              | A vector of Andromeda Module definitions. The module definitions can be found[ here](../modules/module-definitions.md).  |
-| `primitive_contract` | String                                                                | The primitive contract address used to retrieve contract addresses.                                                      |
+| Name               | Type                                                                  | Description                                                                                                              |
+| ------------------ | --------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------ |
+| `name`             | String                                                                | The name of  the token.                                                                                                  |
+| `symbol`           | String                                                                | The symbol of the token.                                                                                                 |
+| `decimals`         | u8                                                                    | The number of decimals for the token.                                                                                    |
+| `initial_balances` | Vec\<Cw20Coin>                                                        | A vector containing a list of addresses and the amount of coin to initialize each.                                       |
+| `mint`             | Option<[MinterResponse](token.md#undefined)>                          | Optional field to define a minter for the token and an optional  cap for the total supply of tokens that can be minted.  |
+| `marketing`        | Option<[InstantiateMarketingInfo](token.md#instantiatemarketinginfo)> | Optional field to define the marketing information of the project.                                                       |
+| `modules`          | Option\<Vec<[Module](../modules/module-definitions.md)>>              | A vector of Andromeda Module definitions. The module definitions can be found[ here](../modules/module-definitions.md).  |
 
 #### Cw20Coin
 
@@ -958,6 +956,4 @@ pub struct DownloadLogoResponse {
 | `mime_type` | String | The MIME type of the logo. |
 | `data`      | Binary | The LOGO data.             |
 
-### Owner/Operators/IsOperator/
-
-Check [AndrQuery](../andrreceive-andrquery.md).
+The rest of the base Queries are found in [AndrQuery](../andrreceive-andrquery.md).
