@@ -87,7 +87,7 @@ pub struct TokenExtension {
 | `transfer_agreement` | Option<[TransferAgreement](andromeda-digital-object.md#transferagreement)> | The transfer agreement of the token (if it exists). |
 | `metadata`           | Option<[TokenMetadata](andromeda-digital-object.md#metadata-schema)>       | The metadata of the token (if it exists)            |
 | `archived`           | bool                                                                       | Whether the token is archived or not.               |
-| `pricing`            | Option\<Coin>                                                              | The current price listing for the token.            |
+| `pricing`            | Option<[Coin](definitions/coin.md)>                                        | The current price listing for the token.            |
 
 ### TransferAgreement
 
@@ -100,10 +100,10 @@ pub struct TransferAgreement {
 }
 ```
 
-| Name        | Type   | Description                                                               |
-| ----------- | ------ | ------------------------------------------------------------------------- |
-| `amount`    | Coin   | The amount required for the purchaser to transfer ownership of the token. |
-| `purchaser` | String | The address of the purchaser.                                             |
+| Name        | Type                        | Description                                                               |
+| ----------- | --------------------------- | ------------------------------------------------------------------------- |
+| `amount`    | [Coin](definitions/coin.md) | The amount required for the purchaser to transfer ownership of the token. |
+| `purchaser` | String                      | The address of the purchaser.                                             |
 
 ### Metadata Schema for Mint
 
@@ -619,10 +619,10 @@ pub struct OwnerOfResponse {
 {% endtab %}
 {% endtabs %}
 
-| Name        | Type           | Description                              |
-| ----------- | -------------- | ---------------------------------------- |
-| `owner`     | String         | The owner of the queried token.          |
-| `approvals` | Vec\<Approval> | An array of all approvals for the token. |
+| Name        | Type                                                  | Description                              |
+| ----------- | ----------------------------------------------------- | ---------------------------------------- |
+| `owner`     | String                                                | The owner of the queried token.          |
+| `approvals` | Vec<[Approval](andromeda-digital-object.md#approval)> | An array of all approvals for the token. |
 
 #### Approval
 
