@@ -6,18 +6,19 @@
 
 ## ADO Classes <a href="#ado-types" id="ado-types"></a>
 
-* [Token](ado-types/token.md)
-* [Timelock](ado-types/timelock.md)
 * [Address List](ado-types/address-list.md)
-* [Auction](ado-types/auction.md)
-* [Receipt](ado-types/receipt.md)
 * [ADO Offers](ado-types/ado-offers.md)
-* [Vault](ado-types/vault.md)
-* [Primitive](ado-types/primitive.md)
-* [Splitter](ado-types/andromeda-splitter.md)
-* [Rates](ado-types/rates.md)
-* [Mission](ado-types/mission.md)
+* [Anchor](ado-types/anchor.md)
+* [Auction](ado-types/auction.md)
 * [Crowdfund](ado-types/crowdfund.md)
+* [Mission](ado-types/mission.md)
+* [Primitive](ado-types/primitive.md)
+* [Rates](ado-types/rates.md)
+* [Receipt](ado-types/receipt.md)
+* [Splitter](ado-types/andromeda-splitter.md)
+* [Timelock](ado-types/timelock.md)
+* [Token](ado-types/token.md)
+* [Vault](ado-types/vault.md)
 
 ## Modules
 
@@ -33,8 +34,10 @@
 
 ***
 
+* [Definitions](definitions/README.md)
+  * [Recipient](definitions/recipient.md)
+  * [Expiration](definitions/expiration.md)
 * [ADO\_Base](ado\_base.md)
-* [Recipient](recipient.md)
 * [AndrReceive/AndrQuery](andrreceive-andrquery.md)
 * [User Docs](user-docs/README.md)
   * [How-To Guides](user-docs/how-to-guides.md)

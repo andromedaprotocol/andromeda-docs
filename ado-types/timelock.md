@@ -60,7 +60,7 @@ pub enum ExecuteMsg {
 
 | Name        | Type                                                   | Description                                                    |
 | ----------- | ------------------------------------------------------ | -------------------------------------------------------------- |
-| `recipient` | Option<[Recipient](../recipient.md)>                   | Optional recipient address. If not set defaults to the sender. |
+| `recipient` | Option<[Recipient](../definitions/recipient.md)>       | Optional recipient address. If not set defaults to the sender. |
 | `condition` | Option<[EscrowCondition](timelock.md#escrowcondition)> | An optional condition to unlock the Escrow                     |
 
 #### EscrowCondition
@@ -311,7 +311,7 @@ pub struct Escrow {
 | ----------- | ------------------------------------------------------ | --------------------------------------------------------- |
 | `coins`     | Vec\<Coin>                                             | Funds being held within the Escrow.                       |
 | `condition` | Option<[EscrowCondition](timelock.md#escrowcondition)> | Optional condition for the Escrow.                        |
-| `recipient` | [Recipient](../recipient.md)                           | The recipient of the funds once `condition` is satisfied. |
+| `recipient` | [Recipient](../definitions/recipient.md)               | The recipient of the funds once `condition` is satisfied. |
 
 ### Owner/Operators/IsOperator
 
