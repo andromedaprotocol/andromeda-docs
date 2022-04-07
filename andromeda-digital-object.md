@@ -19,8 +19,8 @@ The defined `minter` address is assigned as the contract owner.
 pub struct InstantiateMsg {
     pub name: String,
     pub symbol: String,
-    pub minter: AndrAddress,
-    pub modules: Option<Vec<Module>>,
+    pub minter: String,
+    pub modules: Vec<Module>,
 }
 ```
 {% endtab %}
@@ -52,12 +52,12 @@ pub struct InstantiateMsg {
 {% endtab %}
 {% endtabs %}
 
-| Name      | Type                                     | Description                                                                                                         |
-| --------- | ---------------------------------------- | ------------------------------------------------------------------------------------------------------------------- |
-| `name`    | String                                   | The name of the token. Has to be between 3 and 30 characters.                                                       |
-| `symbol`  | String                                   | The symbol of the token.                                                                                            |
-| `minter`  | [AndrAddress](recipient.md#andraddress)  | The address of the token minter. Will be assigned as the [contract owner](broken-reference).                        |
-| `modules` | Option\<Vec<[Module](broken-reference)>> | An optional vector of Andromeda Modules. The module definitions can be found[ here](modules/module-definitions.md). |
+| Name      | Type                            | Description                                                                                                          |
+| --------- | ------------------------------- | -------------------------------------------------------------------------------------------------------------------- |
+| `name`    | String                          | The name of the token. Has to be between 3 and 30 characters.                                                        |
+| `symbol`  | String                          | The symbol of the token.                                                                                             |
+| `minter`  | String                          | The address of the token minter. Will be assigned as the [contract owner](broken-reference).                         |
+| `modules` | Vec<[Module](broken-reference)> | A vector of Andromeda Module definitions. The module definitions can be found[ here](modules/module-definitions.md). |
 
 ## ExecuteMsg
 
@@ -87,7 +87,7 @@ pub struct TokenExtension {
 | `transfer_agreement` | Option<[TransferAgreement](andromeda-digital-object.md#transferagreement)> | The transfer agreement of the token (if it exists). |
 | `metadata`           | Option<[TokenMetadata](andromeda-digital-object.md#metadata-schema)>       | The metadata of the token (if it exists)            |
 | `archived`           | bool                                                                       | Whether the token is archived or not.               |
-| `pricing`            | Option<[Coin](definitions/coin.md)>                                        | The current price listing for the token.            |
+| `pricing`            | Option\<Coin>                                                              | The current price listing for the token.            |
 
 ### TransferAgreement
 
@@ -100,10 +100,10 @@ pub struct TransferAgreement {
 }
 ```
 
-| Name        | Type                        | Description                                                               |
-| ----------- | --------------------------- | ------------------------------------------------------------------------- |
-| `amount`    | [Coin](definitions/coin.md) | The amount required for the purchaser to transfer ownership of the token. |
-| `purchaser` | String                      | The address of the purchaser.                                             |
+| Name        | Type   | Description                                                               |
+| ----------- | ------ | ------------------------------------------------------------------------- |
+| `amount`    | Coin   | The amount required for the purchaser to transfer ownership of the token. |
+| `purchaser` | String | The address of the purchaser.                                             |
 
 ### Metadata Schema for Mint
 
@@ -619,10 +619,10 @@ pub struct OwnerOfResponse {
 {% endtab %}
 {% endtabs %}
 
-| Name        | Type                                                  | Description                              |
-| ----------- | ----------------------------------------------------- | ---------------------------------------- |
-| `owner`     | String                                                | The owner of the queried token.          |
-| `approvals` | Vec<[Approval](andromeda-digital-object.md#approval)> | An array of all approvals for the token. |
+| Name        | Type           | Description                              |
+| ----------- | -------------- | ---------------------------------------- |
+| `owner`     | String         | The owner of the queried token.          |
+| `approvals` | Vec\<Approval> | An array of all approvals for the token. |
 
 #### Approval
 
@@ -1038,4 +1038,3 @@ pub struct CotractInfoResponse {
 | `name`   | String | The name of the contract.            |
 | `symbol` | String | The assigned symbol of the contract. |
 
-The rest of the base Queries are found in [AndrQuery](andrreceive-andrquery.md).

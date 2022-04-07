@@ -222,6 +222,7 @@ pub enum QueryMsg {
 #[derive(Serialize, Deserialize, Clone, PartialEq, JsonSchema)]
 pub struct GetSplitterConfigResponse {
     pub config: Splitter,
+    pub address_list_contract: Option<String>,
 }
 ```
 {% endtab %}
@@ -238,15 +239,19 @@ pub struct GetSplitterConfigResponse {
             ...
         ],
         "locked": true,
+        "address_list_contract": {
+            "address": "terra1..."
+        }
     }
 }
 ```
 {% endtab %}
 {% endtabs %}
 
-| Name     | Type                                       | Description                 |
-| -------- | ------------------------------------------ | --------------------------- |
-| `config` | [Splitter](andromeda-splitter.md#splitter) | The Splitter config struct. |
+| Name                    | Type                                       | Description                                             |
+| ----------------------- | ------------------------------------------ | ------------------------------------------------------- |
+| `config`                | [Splitter](andromeda-splitter.md#splitter) | The Splitter config struct.                             |
+| `address_list_contract` | Option\<String>                            | The contract address for the address list if it exists. |
 
 #### Splitter
 
