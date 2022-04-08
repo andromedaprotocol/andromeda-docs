@@ -1,7 +1,6 @@
 # Table of contents
 
 * [Introduction](README.md)
-* [NFT Collectible](andromeda-digital-object.md)
 * [Factory](andromeda-factory.md)
 
 ## ADO Classes <a href="#ado-types" id="ado-types"></a>
@@ -11,13 +10,14 @@
 * [Anchor](ado-types/anchor.md)
 * [Auction](ado-types/auction.md)
 * [Crowdfund](ado-types/crowdfund.md)
+* [CW20 Token](ado-types/cw20-token.md)
 * [Mission](ado-types/mission.md)
 * [Primitive](ado-types/primitive.md)
+* [NFT Collectible](ado-types/andromeda-digital-object.md)
 * [Rates](ado-types/rates.md)
 * [Receipt](ado-types/receipt.md)
 * [Splitter](ado-types/andromeda-splitter.md)
 * [Timelock](ado-types/timelock.md)
-* [Token](ado-types/token.md)
 * [Vault](ado-types/vault.md)
 
 ## Modules

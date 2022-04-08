@@ -4,6 +4,12 @@ description: An ADO contract to split sent funds amongst predefined addresses.
 
 # Splitter
 
+## Introduction
+
+The **Splitter** ADO is a smart contract used to split funds to a preset number of addresses. Each of the addresses has a specific percentage assigned by the contract owner.&#x20;
+
+The contract supports [modules](broken-reference) to extend its functionality.
+
 ## InstantiateMsg
 
 {% tabs %}
@@ -222,7 +228,6 @@ pub enum QueryMsg {
 #[derive(Serialize, Deserialize, Clone, PartialEq, JsonSchema)]
 pub struct GetSplitterConfigResponse {
     pub config: Splitter,
-    pub address_list_contract: Option<String>,
 }
 ```
 {% endtab %}
@@ -239,19 +244,15 @@ pub struct GetSplitterConfigResponse {
             ...
         ],
         "locked": true,
-        "address_list_contract": {
-            "address": "terra1..."
-        }
     }
 }
 ```
 {% endtab %}
 {% endtabs %}
 
-| Name                    | Type                                       | Description                                             |
-| ----------------------- | ------------------------------------------ | ------------------------------------------------------- |
-| `config`                | [Splitter](andromeda-splitter.md#splitter) | The Splitter config struct.                             |
-| `address_list_contract` | Option\<String>                            | The contract address for the address list if it exists. |
+| Name     | Type                                       | Description                 |
+| -------- | ------------------------------------------ | --------------------------- |
+| `config` | [Splitter](andromeda-splitter.md#splitter) | The Splitter config struct. |
 
 #### Splitter
 

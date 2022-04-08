@@ -4,6 +4,12 @@ description: A contract to facilitate the buying and selling of ADOs.
 
 # ADO Offers
 
+## Introduction
+
+The ADO **Offers** is a smart contract used to buy/sell NFT tokens. It allows users to place offers on a certain token which can then be accepted by the seller if satisfied.
+
+The ADO Offers contract is not built to work as a standalone contract, instead it is implemented as a module for the NFT Collectible ADO facilitating the process of trading NFTs.&#x20;
+
 ## InstantiateMsg
 
 {% tabs %}
@@ -67,11 +73,11 @@ pub enum ExecuteMsg{
 {% endtab %}
 {% endtabs %}
 
-| Name           | Type       | Description                                 |
-| -------------- | ---------- | ------------------------------------------- |
-| `token_id`     | String     | The token id of the ADO to buy.             |
-| `expiration`   | Expiration | An expiration for the offer.                |
-| `offer_amount` | Uint128    | The amount of tokens to offer for the ADO.  |
+| Name           | Type                                       | Description                                 |
+| -------------- | ------------------------------------------ | ------------------------------------------- |
+| `token_id`     | String                                     | The token id of the ADO to buy.             |
+| `expiration`   | [Expiration](../definitions/expiration.md) | An expiration for the offer.                |
+| `offer_amount` | Uint128                                    | The amount of tokens to offer for the ADO.  |
 
 ### CancelOffer
 
@@ -207,14 +213,14 @@ pub struct OfferResponse {
 {% endtab %}
 {% endtabs %}
 
-| Name               | Type       | Description                                                                           |
-| ------------------ | ---------- | ------------------------------------------------------------------------------------- |
-| `denom`            | String     | The denomination of the coin being offered. Currently supports "uusd".                |
-| `offer_amount`     | Uint128    | The amount of coins offered.                                                          |
-| `remaining_amount` | Uint128    | The amount left after any royalties or taxes have been applied to the `offer_amount`. |
-| `tax_amount`       | Uint128    | The amount of coins taken as tax.                                                     |
-| `expiration`       | Expiration | Expiration for the offer.                                                             |
-| `purchaser`        | String     | The address that has placed the offer                                                 |
+| Name               | Type                                       | Description                                                                           |
+| ------------------ | ------------------------------------------ | ------------------------------------------------------------------------------------- |
+| `denom`            | String                                     | The denomination of the coin being offered. Currently supports "uusd".                |
+| `offer_amount`     | Uint128                                    | The amount of coins offered.                                                          |
+| `remaining_amount` | Uint128                                    | The amount left after any royalties or taxes have been applied to the `offer_amount`. |
+| `tax_amount`       | Uint128                                    | The amount of coins taken as tax.                                                     |
+| `expiration`       | [Expiration](../definitions/expiration.md) | Expiration for the offer.                                                             |
+| `purchaser`        | String                                     | The address that has placed the offer                                                 |
 
 ### AllOffers
 

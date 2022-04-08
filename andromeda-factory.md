@@ -19,7 +19,7 @@ pub struct InstantiateMsg {}
 
 ### Create
 
-Creates a new [ADO](andromeda-digital-object.md) contract. The sender of the message is defined as the minter for the ADO contract and as such, the owner of the ADO contract.
+Creates a new [ADO](ado-types/andromeda-digital-object.md) contract. The sender of the message is defined as the minter for the ADO contract and as such, the owner of the ADO contract.
 
 {% tabs %}
 {% tab title="Rust" %}
@@ -122,10 +122,10 @@ pub enum ExecuteMsg {
 {% endtab %}
 {% endtabs %}
 
-| Name              | Type         | Description                                                                |
-| ----------------- | ------------ | -------------------------------------------------------------------------- |
-| `receipt_code_id` | Option\<u64> | Optional new code ID for the [receipt](ado-types/receipt.md) contracts.    |
-| `token_code_id`   | Option\<u64> | Optional new code ID for the [ADO](andromeda-digital-object.md) contracts. |
+| Name              | Type         | Description                                                                          |
+| ----------------- | ------------ | ------------------------------------------------------------------------------------ |
+| `receipt_code_id` | Option\<u64> | Optional new code ID for the [receipt](ado-types/receipt.md) contracts.              |
+| `token_code_id`   | Option\<u64> | Optional new code ID for the [ADO](ado-types/andromeda-digital-object.md) contracts. |
 
 ### UpdateOwner/UpdateOperators
 

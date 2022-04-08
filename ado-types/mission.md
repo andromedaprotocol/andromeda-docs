@@ -7,23 +7,11 @@ description: >-
 
 # Mission
 
-### MissionComponent
+## Introduction
 
-The ADO to be a part of the mission.
+The **Mission** ADO is a smart contract that is used to bundle up contracts that will be interacting with each other into  what we call a  "mission" and would provide a naming system to allow these contracts to reference each other using these names instead of contract addresses. Essentially, a mission would include several contracts that interact to complete a desired goal for the project being built.&#x20;
 
-```rust
-pub struct MissionComponent {
-    pub name: String,
-    pub ado_type: String,
-    pub instantiate_msg: Binary,
-}
-```
-
-| Name              | Type    | Description                                   |
-| ----------------- | ------- | --------------------------------------------- |
-| `name`            | String. | The name of the ADO component.                |
-| `ado_type`        | String  | The type of the ADO.                          |
-| `instantiate_msg` | Binary  | The instantiate message of the ADO component. |
+A contract in the mission is called a `MissionComponent.` Every mission would be composed of many of these components (up to 50). Each component is assigned a name which can be used by other components to reference each other.
 
 ## InstantiateMsg
 
@@ -74,6 +62,24 @@ pub struct InstantiateMsg {
 | `mission`            | Vec<[MissionComponent](mission.md#missioncomponent)> | The vector of MissionComponent containing all the ADOs of the mission.     |
 | `name`               | String                                               | The name of the mission.                                                   |
 | `primitive_contract` | String                                               | The address of the `primitve` contract used to supply data to the mission. |
+
+### MissionComponent
+
+The ADO to be a part of the mission.
+
+```rust
+pub struct MissionComponent {
+    pub name: String,
+    pub ado_type: String,
+    pub instantiate_msg: Binary,
+}
+```
+
+| Name              | Type    | Description                                   |
+| ----------------- | ------- | --------------------------------------------- |
+| `name`            | String. | The name of the ADO component.                |
+| `ado_type`        | String  | The type of the ADO.                          |
+| `instantiate_msg` | Binary  | The instantiate message of the ADO component. |
 
 ## ExecuteMsg
 

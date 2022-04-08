@@ -4,6 +4,17 @@ description: An ADO contract to hold funds for a set period of time.
 
 # Timelock
 
+The **Timelock** ADO or Escrow ADO is a smart contract built to hold funds for a period of time until the set condition is satisfied.&#x20;
+
+There are two main conditions that can be used by the contract:
+
+* **Expiration**: A time expiration to when the funds can be released.
+* **MinimumFunds**: A minimum amount of funds to be deposited before they can be released.
+
+Once a condition is satisfied, the funds can be released
+
+The contract supports [modules](broken-reference) to extend its functionality.
+
 ## InstantiateMsg
 
 {% tabs %}
@@ -74,10 +85,10 @@ pub enum EscrowCondition {
 }
 ```
 
-| EscrowCondition Type | Type       | Description                                         |
-| -------------------- | ---------- | --------------------------------------------------- |
-| `Expiration`         | Expiration | Requires a given time or block height to be reached |
-| `MinimumFunds`       | Vec\<Coin> | Requires a minimum amount of funds to be deposited  |
+| EscrowCondition Type | Type                                       | Description                                         |
+| -------------------- | ------------------------------------------ | --------------------------------------------------- |
+| `Expiration`         | [Expiration](../definitions/expiration.md) | Requires a given time or block height to be reached |
+| `MinimumFunds`       | Vec<[Coin](../definitions/coin.md)>        | Requires a minimum amount of funds to be deposited  |
 
 ### ReleaseFunds
 
@@ -91,7 +102,7 @@ pub enum ExecuteMsg {
     ReleaseFunds {
     recipient_addr:Option<String>,
     start_after:Option<String>,
-    limit:Option<32>
+    limit:Option<u32>
     },
 }
 ```
@@ -114,7 +125,7 @@ pub enum ExecuteMsg {
 | ---------------- | --------------- | -------------------------------------------------------------------------------------------------------------- |
 | `recipient_addr` | Option\<String> | Optional address to receive the released funds. Will default to the sender if not specified.                   |
 | `start_after`    | Option\<String> | An optional address for which to start after, used for pagination.                                             |
-| `limit`          | Option<32>      | Optional limit to the number timelocks to attempt to unlock. Defaults to 10 and can be set to a maximum of 30. |
+| `limit`          | Option\<u32>    | Optional limit to the number timelocks to attempt to unlock. Defaults to 10 and can be set to a maximum of 30. |
 
 ### ReleaseSpecificFunds
 
@@ -309,7 +320,7 @@ pub struct Escrow {
 
 | Name        | Type                                                   | Description                                               |
 | ----------- | ------------------------------------------------------ | --------------------------------------------------------- |
-| `coins`     | Vec\<Coin>                                             | Funds being held within the Escrow.                       |
+| `coins`     | Vec<[Coin](../definitions/coin.md)>                    | Funds being held within the Escrow.                       |
 | `condition` | Option<[EscrowCondition](timelock.md#escrowcondition)> | Optional condition for the Escrow.                        |
 | `recipient` | [Recipient](../recipient.md)                           | The recipient of the funds once `condition` is satisfied. |
 

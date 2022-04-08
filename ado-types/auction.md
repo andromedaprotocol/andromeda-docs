@@ -6,6 +6,10 @@ description: >-
 
 # Auction
 
+## Introduction
+
+The **Auction** ADO is a smart contract that allows performing auctions on NFT tokens. The owner can send an NFT to this contract with the required messages to start an auction on it. Once the auction has started users can place bids on the token until the auction expires. The highest bid will win the auction sending the funds to the seller and receiving the token in return.
+
 ## TokenAuctionState
 
 The state for an auction is stored in a basic struct
@@ -42,7 +46,7 @@ pub struct InstantiateMsg {}
 
 ### ReceiveNft
 
-Receives a token from a [`Send`](../andromeda-digital-object.md#sendnft) and starts an auction based on the given parameters in the [`StartAuction` ](auction.md#startauction)struct. &#x20;
+Receives a token from a [`Send`](andromeda-digital-object.md#sendnft) and starts an auction based on the given parameters in the [`StartAuction` ](auction.md#startauction)struct. &#x20;
 
 {% hint style="info" %}
 The auction information can be modified before it has started but is immutable after that.
@@ -99,12 +103,12 @@ pub enum Cw721HookMsg {
 {% endtab %}
 {% endtabs %}
 
-| Name         | Type                | Description                                                                          |
-| ------------ | ------------------- | ------------------------------------------------------------------------------------ |
-| `start_time` | Expiration          | The start of the auction.                                                            |
-| `end_time`   | Expiration          | The end of the auction.                                                              |
-| `coin_denom` | String              | The native coin denomination to do the auction in.                                   |
-| `whitelist`  | Option\<Vec\<Addr>> | Optional list of addresses to whitelist for the auction. If None, auction is public. |
+| Name         | Type                                       | Description                                                                          |
+| ------------ | ------------------------------------------ | ------------------------------------------------------------------------------------ |
+| `start_time` | [Expiration](../definitions/expiration.md) | The start of the auction.                                                            |
+| `end_time`   | [Expiration](../definitions/expiration.md) | The end of the auction.                                                              |
+| `coin_denom` | String                                     | The native coin denomination to do the auction in.                                   |
+| `whitelist`  | Option\<Vec\<Addr>>                        | Optional list of addresses to whitelist for the auction. If None, auction is public. |
 
 {% hint style="warning" %}
 To be a valid auction the following requirements must be met:
@@ -162,14 +166,14 @@ An auction can be updated only if it has not started yet.&#x20;
 * `start_time` < `end_time`
 {% endhint %}
 
-| Name            | Type                | Description                                                                          |
-| --------------- | ------------------- | ------------------------------------------------------------------------------------ |
-| `token_id`      | String              | The id of the ADO that is being auctioned.                                           |
-| `token_address` | String              | The address of the token contract.                                                   |
-| `start_time`    | Expiration          | The start of the auction.                                                            |
-| `end_time`      | Expiration          | The end of the auction.                                                              |
-| `coin_denom`    | String              | The native coin denomination to do the auction in.                                   |
-| `whitelist`     | Option\<Vec\<Addr>> | Optional list of addresses to whitelist for the auction. If None, auction is public. |
+| Name            | Type                                       | Description                                                                          |
+| --------------- | ------------------------------------------ | ------------------------------------------------------------------------------------ |
+| `token_id`      | String                                     | The id of the ADO that is being auctioned.                                           |
+| `token_address` | String                                     | The address of the token contract.                                                   |
+| `start_time`    | [Expiration](../definitions/expiration.md) | The start of the auction.                                                            |
+| `end_time`      | [Expiration](../definitions/expiration.md) | The end of the auction.                                                              |
+| `coin_denom`    | String                                     | The native coin denomination to do the auction in.                                   |
+| `whitelist`     | Option\<Vec\<Addr>>                        | Optional list of addresses to whitelist for the auction. If None, auction is public. |
 
 ### CancelAuction
 
@@ -386,16 +390,16 @@ pub struct AuctionStateResponse {
 {% endtab %}
 {% endtabs %}
 
-| Name                 | Type                | Description                                                           |
-| -------------------- | ------------------- | --------------------------------------------------------------------- |
-| `start_time`         | Expiration          | The start of the auction.                                             |
-| `end_time`           | Expiration          | The end of the auction.                                               |
-| `high_bidder_addr`   | String              | The terra address of the highest bidder.                              |
-| `high_bidder_amount` | Uint128             | The amount of the highest bid.                                        |
-| `auction_id`         | Uint128             | The id of the auction.                                                |
-| `coin_denom`         | String              | The denom the auction is in.                                          |
-| `is_cancelled`       | bool                | Whether or not the auction has been cancelled.                        |
-| `whitelist`          | Option\<Vec\<Addr>> | The whitelisted addresses if they were specified at time of creation. |
+| Name                 | Type                                       | Description                                                           |
+| -------------------- | ------------------------------------------ | --------------------------------------------------------------------- |
+| `start_time`         | [Expiration](../definitions/expiration.md) | The start of the auction.                                             |
+| `end_time`           | [Expiration](../definitions/expiration.md) | The end of the auction.                                               |
+| `high_bidder_addr`   | String                                     | The terra address of the highest bidder.                              |
+| `high_bidder_amount` | Uint128                                    | The amount of the highest bid.                                        |
+| `auction_id`         | Uint128                                    | The id of the auction.                                                |
+| `coin_denom`         | String                                     | The denom the auction is in.                                          |
+| `is_cancelled`       | bool                                       | Whether or not the auction has been cancelled.                        |
+| `whitelist`          | Option\<Vec\<Addr>>                        | The whitelisted addresses if they were specified at time of creation. |
 
 ### AuctionState
 
@@ -700,6 +704,6 @@ pub struct ContractOwnerResponse {
 {% endtab %}
 {% endtabs %}
 
-| Name    | Type   | Description               |
-| ------- | ------ | ------------------------- |
-| `owner` | String | The owner of the contract |
+| Name    | Type   | Description                |
+| ------- | ------ | -------------------------- |
+| `owner` | String | The owner of the contract. |

@@ -9,11 +9,13 @@ description: >-
 
 ## Introduction
 
-As the name suggests, the crowdfund ADO is a smart contract that allows users to start a crowdfund for their projects.&#x20;
+As the name suggests, the **Crowdfund** ADO is a smart contract that allows users to start a crowdfund for their projects.&#x20;
 
 The owner of the contract can start the crowdfund by executing `StartSale`. Before starting the sale, they can use the contract to mint the tokens from the defined `token_address` in the `InstantiateMsg`. In order to be eligible for the sale, the minter has to be defined as the crowdfund contract.&#x20;
 
 Every sale sets a `min_tokens_sold` which specifies the minimum number of tokens that need to be sold in order for the sale to be considered successful which in turn acts as insurance for the buyers by allowing them to get a refund in case this goal was not achieved.&#x20;
+
+The contract supports [modules](broken-reference) to extend it's functionality.
 
 ## InstantiateMsg
 
@@ -61,6 +63,8 @@ We allow for owners to be other than the contract incase the creator wants to se
 Only the contract owner can execute Mint.
 
 Minting is only allowed before a sale starts.
+
+The limit for the number of `MintMsg` that can be defined at once is 100.
 {% endhint %}
 
 {% tabs %}
@@ -73,7 +77,7 @@ pub enum ExecuteMsg {
 {% endtab %}
 {% endtabs %}
 
-Minting definition is the same as the one defined in the NFT Collectible contract found [here](../andromeda-digital-object.md#mint).
+Minting definition is the same as the one defined in the NFT Collectible contract found [here](andromeda-digital-object.md#mint).
 
 ### StartSale
 

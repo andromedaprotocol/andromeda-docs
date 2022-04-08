@@ -2,7 +2,7 @@
 description: The message definitions for the Andromeda token contract.
 ---
 
-# Token
+# CW20 Token
 
 ## InstantiateMsg
 
@@ -17,7 +17,6 @@ pub struct InstantiateMsg {
     pub mint: Option<MinterResponse>,
     pub marketing: Option<InstantiateMarketingInfo>,
     pub modules: Option<Vec<Module>>,
-    pub primitive_contract: String,
 }
 ```
 {% endtab %}
@@ -45,16 +44,26 @@ pub struct InstantiateMsg {
 {% endtab %}
 {% endtabs %}
 
-| Name                 | Type                                                                  | Description                                                                                                              |
-| -------------------- | --------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------ |
-| `name`               | String                                                                | The name of  the token.                                                                                                  |
-| `symbol`             | String                                                                | The symbol of the token.                                                                                                 |
-| `decimals`           | u8                                                                    | The number of decimals for the token.                                                                                    |
-| `initial_balances`   | Vec\<Cw20Coin>                                                        | A vector containing a list of addresses and the amount of coin to initialize each.                                       |
-| `mint`               | Option<[MinterResponse](token.md#undefined)>                          | Optional field to define a minter for the token and an optional  cap for the total supply of tokens that can be minted.  |
-| `marketing`          | Option<[InstantiateMarketingInfo](token.md#instantiatemarketinginfo)> | Optional field to define the marketing information of the project.                                                       |
-| `modules`            | Option\<Vec<[Module](../modules/module-definitions.md)>>              | A vector of Andromeda Module definitions. The module definitions can be found[ here](../modules/module-definitions.md).  |
-| `primitive_contract` | String                                                                | The primitive contract address used to retrieve contract addresses.                                                      |
+| Name               | Type                                                                       | Description                                                                                                              |
+| ------------------ | -------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------ |
+| `name`             | String                                                                     | The name of  the token.                                                                                                  |
+| `symbol`           | String                                                                     | The symbol of the token.                                                                                                 |
+| `decimals`         | u8                                                                         | The number of decimals for the token.                                                                                    |
+| `initial_balances` | Vec\<Cw20Coin>                                                             | A vector containing a list of addresses and the amount of coin to initialize each.                                       |
+| `mint`             | Option<[MinterResponse](cw20-token.md#undefined)>                          | Optional field to define a minter for the token and an optional  cap for the total supply of tokens that can be minted.  |
+| `marketing`        | Option<[InstantiateMarketingInfo](cw20-token.md#instantiatemarketinginfo)> | Optional field to define the marketing information of the project.                                                       |
+| `modules`          | Option\<Vec<[Module](../modules/module-definitions.md)>>                   | A vector of Andromeda Module definitions. The module definitions can be found[ here](../modules/module-definitions.md).  |
+
+#### Cw20Coin
+
+Struct used to initiate balances for addresses. Contains an address and the amount of tokens for that address.
+
+```rust
+pub struct Cw20Coin {
+    pub address: String,
+    pub amount: Uint128,
+}
+```
 
 #### InstantiateMarketingInfo
 
@@ -266,11 +275,11 @@ Sets an `amount` of tokens from the owner that the specified `spender` can inter
 {% endtab %}
 {% endtabs %}
 
-| Name      | Type                | Description                                            |
-| --------- | ------------------- | ------------------------------------------------------ |
-| `spender` | String              | The address to receive the allowance.                  |
-| `amount`  | Uint128             | The amount of tokens to give the spender access to.    |
-| `expires` | Option\<Expiration> | Optional Expiration for the allowance of the spender.  |
+| Name      | Type                                               | Description                                            |
+| --------- | -------------------------------------------------- | ------------------------------------------------------ |
+| `spender` | String                                             | The address to receive the allowance.                  |
+| `amount`  | Uint128                                            | The amount of tokens to give the spender access to.    |
+| `expires` | Option<[Expiration](../definitions/expiration.md)> | Optional Expiration for the allowance of the spender.  |
 
 ### DecreaseAllowance
 
@@ -310,11 +319,11 @@ If an `Expiration` is set, it will overwrite previously set Expiration
 {% endtab %}
 {% endtabs %}
 
-| Name      | Type                | Description                                           |
-| --------- | ------------------- | ----------------------------------------------------- |
-| `spender` | String              | The address to have their allowance decreased.        |
-| `amount`  | Uint128             | The amount to decrease the allowance by.              |
-| `expires` | Option\<Expiration> | Optional expiration for the allowance of the spender. |
+| Name      | Type                                               | Description                                           |
+| --------- | -------------------------------------------------- | ----------------------------------------------------- |
+| `spender` | String                                             | The address to have their allowance decreased.        |
+| `amount`  | Uint128                                            | The amount to decrease the allowance by.              |
+| `expires` | Option<[Expiration](../definitions/expiration.md)> | Optional expiration for the allowance of the spender. |
 
 ### TransferFrom
 
@@ -704,10 +713,10 @@ pub struct AllowanceResponse {
 {% endtab %}
 {% endtabs %}
 
-| Name        | Type       | Description                                        |
-| ----------- | ---------- | -------------------------------------------------- |
-| `allowance` | Uint128    | The amount of tokens the spender has as allowance. |
-| `expires`   | Expiration | The expiration for the tokens.                     |
+| Name        | Type                                       | Description                                        |
+| ----------- | ------------------------------------------ | -------------------------------------------------- |
+| `allowance` | Uint128                                    | The amount of tokens the spender has as allowance. |
+| `expires`   | [Expiration](../definitions/expiration.md) | The expiration for the tokens.                     |
 
 ### AllAllowanaces
 
@@ -791,11 +800,11 @@ pub struct AllowanceInfo {
 }
 ```
 
-| Name        | Type       | Description                            |
-| ----------- | ---------- | -------------------------------------- |
-| `spender`   | String     | The address that has an allowance.     |
-| `allowance` | Uint128    | The amount of tokens in the allowance. |
-| `expires`   | Expiration | The expiration for the allowance.      |
+| Name        | Type                                       | Description                            |
+| ----------- | ------------------------------------------ | -------------------------------------- |
+| `spender`   | String                                     | The address that has an allowance.     |
+| `allowance` | Uint128                                    | The amount of tokens in the allowance. |
+| `expires`   | [Expiration](../definitions/expiration.md) | The expiration for the allowance.      |
 
 ### AllAccounts
 
@@ -947,6 +956,4 @@ pub struct DownloadLogoResponse {
 | `mime_type` | String | The MIME type of the logo. |
 | `data`      | Binary | The LOGO data.             |
 
-### Owner/Operators/IsOperator/
-
-Check [AndrQuery](../andrreceive-andrquery.md).
+The rest of the base Queries are found in [AndrQuery](../andrreceive-andrquery.md).

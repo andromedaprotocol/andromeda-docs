@@ -4,6 +4,19 @@ description: An ADO contract to store a queryable list of addresses.
 
 # Address List
 
+## Introduction
+
+The **Address List** ADO is a smart contract that can be used to store a list of addresses.&#x20;
+
+These addresses can be set as one of the following:
+
+\
+**Whitelist:** The addresses are given whitelist privilege, allowing them to  interact with it. If a whitelist of addresses is set, then any other address is considered as a blacklist.&#x20;
+
+**Blacklist:** The addresses are give blacklist restriction, preventing them to interact with the contract. If a blacklist of addresses is set, then any other address is considered as a whitelist.
+
+This contract is usually implemented as a module to interact with other contracts setting the whitelist/blacklist for the contract.
+
 ## InstantiateMsg
 
 {% tabs %}
@@ -28,7 +41,7 @@ pub struct InstantiateMsg {
 
 | Name           | Type         | Description                                                                                                                        |
 | -------------- | ------------ | ---------------------------------------------------------------------------------------------------------------------------------- |
-| `operators`    | Vec\<String> | A list of addresses that are authorised to interact with the contract.                                                             |
+| `operators`    | Vec\<String> | A list of addresses that are authorized or unauthorized to interact with the contract.                                             |
 | `is_inclusive` | bool         | Whether or not the address list is inclusive. If `true` the address list is a whitelist, if false the address list is a blacklist. |
 
 ## ExecuteMsg

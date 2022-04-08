@@ -19,11 +19,11 @@ pub struct Module {
 }
 ```
 
-| Name          | Type                                            | Description                                                                                                     |
-| ------------- | ----------------------------------------------- | --------------------------------------------------------------------------------------------------------------- |
-| `module_type` | String                                          | The name of the module to add. Can be set one of the following: "rates", "offers", "address\_list", "receipt" . |
-| `instantiate` | [AndrAddress](module-definitions.md#andradress) | How to instantiate the module.                                                                                  |
-| `is_mutable`  | bool                                            | Whether the module can be later modified or not.                                                                |
+| Name          | Type                                       | Description                                                                                                     |
+| ------------- | ------------------------------------------ | --------------------------------------------------------------------------------------------------------------- |
+| `module_type` | String                                     | The name of the module to add. Can be set one of the following: "rates", "offers", "address\_list", "receipt" . |
+| `instantiate` | [AndrAddress](../recipient.md#andraddress) | How to instantiate the module.                                                                                  |
+| `is_mutable`  | bool                                       | Whether the module can be later modified or not.                                                                |
 
 {% hint style="info" %}
 Any ADO that can implement modules uses this `Module` struct in it's Instantiation  to add the modules to the ADO.&#x20;
