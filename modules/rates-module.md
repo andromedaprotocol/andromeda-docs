@@ -47,14 +47,14 @@ pub struct RateInfo {
 }
 ```
 
-| Name          | Type            | Description                                                                                       |
-| ------------- | --------------- | ------------------------------------------------------------------------------------------------- |
-| `rate`        | Rate            | The type of rate being taken.                                                                     |
-| `is_additive` | bool            | An indicator to whether the rate being taken is tax or royalty. If tax `is_additive` is set to 1. |
-| `description` | Option\<String> | Optional description for the rate.                                                                |
-| `receivers`   | Vec\<Recipient> | The addresses to receive the `rate` specified.                                                    |
+| Name          | Type            | Description                                                                                          |
+| ------------- | --------------- | ---------------------------------------------------------------------------------------------------- |
+| `rate`        | Rate            | The type of rate being taken.                                                                        |
+| `is_additive` | bool            | An indicator to whether the rate being taken is tax or royalty. If tax `is_additive` is set to true. |
+| `description` | Option\<String> | Optional description for the rate.                                                                   |
+| `receivers`   | Vec\<Recipient> | The addresses to receive the `rate` specified.                                                       |
 
-More information on the Rates contract can be found [here](../ado-types/rates.md).
+More information on the Rates contract can be found [here](../ado-classes/rates.md).
 
 ## Hooks
 

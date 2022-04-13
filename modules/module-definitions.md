@@ -22,7 +22,7 @@ pub struct Module {
 | Name          | Type                                       | Description                                                                                                     |
 | ------------- | ------------------------------------------ | --------------------------------------------------------------------------------------------------------------- |
 | `module_type` | String                                     | The name of the module to add. Can be set one of the following: "rates", "offers", "address\_list", "receipt" . |
-| `instantiate` | [AndrAddress](../recipient.md#andraddress) | How to instantiate the module.                                                                                  |
+| `address`     | [AndrAddress](../recipient.md#andraddress) | How to instantiate the module.                                                                                  |
 | `is_mutable`  | bool                                       | Whether the module can be later modified or not.                                                                |
 
 {% hint style="info" %}
@@ -38,8 +38,6 @@ pub struct AndrAddress {
     pub identifier: String,
  }
 ```
-
-
 
 ## Defining Modules
 
@@ -95,19 +93,8 @@ pub enum AndromedaQuery {
 ```
 
 {% hint style="info" %}
-More details about each of these messages can be found in [AndrReceive/AndrQuery](../andrreceive-andrquery.md)
+More details about each of these messages can be found in [AndrReceive/AndrQuery](../ado\_base/andrreceive-andrquery.md)
 {% endhint %}
-
-### Storing Modules
-
-Struct used to represent a module and its currently recorded address.
-
-```rust
-pub struct ModuleInfoWithAddress {
-    pub module: Module,
-    pub address: String,
-}
-```
 
 ### Validating Modules
 

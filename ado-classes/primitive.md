@@ -136,10 +136,10 @@ If `name` is not specified the default key ("default") will be used.
 
 ### UpdateOwner/UpdateOperators
 
-Check [AndrReceive](../andrreceive-andrquery.md).
+Check [AndrReceive](../ado\_base/andrreceive-andrquery.md).
 
 ## QueryMsg
 
 ### Owner/Operators/IsOperator
 
-Check [AndrQuery](../andrreceive-andrquery.md).
+Check [AndrQuery](../ado\_base/andrreceive-andrquery.md).

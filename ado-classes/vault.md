@@ -93,7 +93,7 @@ pub enum ExecuteMsg{
 {% endtab %}
 {% endtabs %}
 
-The [`AndromedaMsg`](../andrreceive-andrquery.md#andromedamsg)  needs to be of type `receive` and can contain the a strategy if the funds need to be deposited to a certain strategy. It will then execute a [Deposit](vault.md#deposit) with the `recipient` being the sender, the `amount` is the amount of funds sent, and the `strategy`is the one specified in the receive message.
+The [`AndromedaMsg`](../ado\_base/andrreceive-andrquery.md#andromedamsg)  needs to be of type `receive` and can contain the a strategy if the funds need to be deposited to a certain strategy. It will then execute a [Deposit](vault.md#deposit) with the `recipient` being the sender, the `amount` is the amount of funds sent, and the `strategy`is the one specified in the receive message.
 
 ### Deposit
 
@@ -203,7 +203,7 @@ pub enum WithdrawalType {
 }
 ```
 
-The rest of the executes can be found in the [`AndrReceive`](../andrreceive-andrquery.md#andrrecieve) section.
+The rest of the executes can be found in the [`AndrReceive`](../ado\_base/andrreceive-andrquery.md#andrrecieve) section.
 
 ## QueryMsg
 
@@ -301,4 +301,4 @@ pub struct StrategyAddressResponse {
 | `strategy` | [StrategyType](vault.md#strategytype) | The strategy we want the address for. |
 | `address`  | String                                | The address of the `strategy`.        |
 
-The rest of the queries can be found in the [`AndrQuery`](../andrreceive-andrquery.md#andrquery) section.
+The rest of the queries can be found in the [`AndrQuery`](../ado\_base/andrreceive-andrquery.md#andrquery) section.

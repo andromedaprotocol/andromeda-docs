@@ -217,7 +217,7 @@ Ends the sale. In the case that the minimum sold is not achieved, refunds are se
 
 ### UpdateOwner/UpdateOperators
 
-Check [AndrReceive](../andrreceive-andrquery.md).
+Check [AndrReceive](../ado\_base/andrreceive-andrquery.md).
 
 ## QueryMsg
 
@@ -347,4 +347,4 @@ pub struct Config {
 
 ### Owner/Operators/IsOperator
 
-Check [AndrQuery](../andrreceive-andrquery.md).
+Check [AndrQuery](../ado\_base/andrreceive-andrquery.md).

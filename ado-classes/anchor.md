@@ -232,7 +232,7 @@ RepayLoan {}
 {% endtab %}
 {% endtabs %}
 
-The rest of the executes can be found in the [`AndrReceive`](../andrreceive-andrquery.md#andrrecieve) section.
+The rest of the executes can be found in the [`AndrReceive`](../ado\_base/andrreceive-andrquery.md#andrrecieve) section.
 
 ## QueryMsg
 

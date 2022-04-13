@@ -487,11 +487,11 @@ UpdateMarketing {
 
 ### UpdateOwner/UpdateOperators
 
-Check [AndrReceive](../andrreceive-andrquery.md).
+Check [AndrReceive](../ado\_base/andrreceive-andrquery.md).
 
 ### RegisterModule/DeregisterModule/AlterModule
 
-Check [AndrReceive](../andrreceive-andrquery.md).
+Check [AndrReceive](../ado\_base/andrreceive-andrquery.md).
 
 ## QueryMsg
 
@@ -956,4 +956,4 @@ pub struct DownloadLogoResponse {
 | `mime_type` | String | The MIME type of the logo. |
 | `data`      | Binary | The LOGO data.             |
 
-The rest of the base Queries are found in [AndrQuery](../andrreceive-andrquery.md).
+The rest of the base Queries are found in [AndrQuery](../ado\_base/andrreceive-andrquery.md).

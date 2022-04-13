@@ -1,24 +1,23 @@
 # Table of contents
 
 * [Introduction](README.md)
-* [Factory](andromeda-factory.md)
-
-## ADO Classes <a href="#ado-types" id="ado-types"></a>
-
-* [Address List](ado-types/address-list.md)
-* [ADO Offers](ado-types/ado-offers.md)
-* [Anchor](ado-types/anchor.md)
-* [Auction](ado-types/auction.md)
-* [Crowdfund](ado-types/crowdfund.md)
-* [CW20 Token](ado-types/cw20-token.md)
-* [Mission](ado-types/mission.md)
-* [Primitive](ado-types/primitive.md)
-* [NFT Collectible](ado-types/andromeda-digital-object.md)
-* [Rates](ado-types/rates.md)
-* [Receipt](ado-types/receipt.md)
-* [Splitter](ado-types/andromeda-splitter.md)
-* [Timelock](ado-types/timelock.md)
-* [Vault](ado-types/vault.md)
+* [ADO Classes](ado-classes/README.md)
+  * [Address List](ado-classes/address-list.md)
+  * [Anchor](ado-classes/anchor.md)
+  * [Auction](ado-classes/auction.md)
+  * [Crowdfund](ado-classes/crowdfund.md)
+  * [CW20 Token](ado-classes/cw20-token.md)
+  * [Factory](ado-classes/andromeda-factory.md)
+  * [Merkle-Airdrop](ado-classes/merkle-airdrop.md)
+  * [Mission](ado-classes/mission.md)
+  * [NFT Collectible](ado-classes/andromeda-digital-object.md)
+  * [Primitive](ado-classes/primitive.md)
+  * [Rates](ado-classes/rates.md)
+  * [Receipt](ado-classes/receipt.md)
+  * [Splitter](ado-classes/andromeda-splitter.md)
+  * [Timelock](ado-classes/timelock.md)
+  * [Vault](ado-classes/vault.md)
+  * [ADO Offers](ado-classes/ado-offers.md)
 
 ## Modules
 
@@ -38,8 +37,8 @@
   * [Recipient](recipient.md)
   * [Coin](definitions/coin.md)
   * [Expiration](definitions/expiration.md)
-* [ADO\_Base](ado\_base.md)
-* [AndrReceive/AndrQuery](andrreceive-andrquery.md)
+* [ADO\_Base](ado\_base/README.md)
+  * [AndrReceive/AndrQuery](ado\_base/andrreceive-andrquery.md)
 * [User Docs](user-docs/README.md)
   * [How-To Guides](user-docs/how-to-guides.md)
   * [Glossary](user-docs/glossary.md)

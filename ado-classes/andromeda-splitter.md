@@ -193,7 +193,7 @@ pub enum ExecuteMsg {
 
 ### UpdateOwner/UpdateOperators
 
-Check [AndrReceive](../andrreceive-andrquery.md).
+Check [AndrReceive](../ado\_base/andrreceive-andrquery.md).
 
 ## QueryMsg
 
@@ -273,4 +273,4 @@ pub struct Splitter {
 
 ### Owner/Operators/IsOperator
 
-Check [AndrQuery](../andrreceive-andrquery.md).
+Check [AndrQuery](../ado\_base/andrreceive-andrquery.md).

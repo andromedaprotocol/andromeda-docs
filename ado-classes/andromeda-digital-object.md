@@ -529,7 +529,7 @@ pub enum ExecuteMsg {
 
 ### UpdateOwner/UpdateOperators
 
-Check [AndrReceive](../andrreceive-andrquery.md).
+Check [AndrReceive](../ado\_base/andrreceive-andrquery.md).
 
 ## QueryMsg
 
@@ -1046,4 +1046,4 @@ pub struct CotractInfoResponse {
 | `name`   | String | The name of the contract.            |
 | `symbol` | String | The assigned symbol of the contract. |
 
-The rest of the base Queries are found in [AndrQuery](../andrreceive-andrquery.md).
+The rest of the base Queries are found in [AndrQuery](../ado\_base/andrreceive-andrquery.md).
