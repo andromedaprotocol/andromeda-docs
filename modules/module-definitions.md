@@ -49,21 +49,19 @@ When instantiating an **Andromeda Digital Object** contract the modules can be d
         {
           "module_type": "address_list",
           "address": {
-            "new": toBinary({
-              "operators": [],
-              "is_inclusive": true,
-            }),
-          },
+          "identifier":"terra1..."
+          }
+          "is_mutable": false
         },
         
          {
           "module_type": "rates",
-          "instantiate": {
-            "address": "terra1...",
+          "address": {
+          "identifier":"my_rates",
           },
           "is_mutable": true,
-        },
-      ],
+        }
+      ]
 }
 ```
 
@@ -93,7 +91,7 @@ pub enum AndromedaQuery {
 ```
 
 {% hint style="info" %}
-More details about each of these messages can be found in [AndrReceive/AndrQuery](../ado\_base/andrreceive-andrquery.md)
+More details about each of these messages can be found in [AndrReceive/AndrQuery](../ado\_base/andrreceive-andrquery.md#modules)
 {% endhint %}
 
 ### Validating Modules

@@ -198,12 +198,12 @@ pub enum ExecuteMsg {
 {% endtab %}
 {% endtabs %}
 
-| Name        | Type              | Description                                                                                                                 |
-| ----------- | ----------------- | --------------------------------------------------------------------------------------------------------------------------- |
-| `token_id`  | String            | The id of the token to be minted.                                                                                           |
-| `owner`     | String            | The address of the token owner.                                                                                             |
-| `token_uri` | Option\<String>   | Universal resource identifier for this token. Should point to a JSON file that conforms to the ERC721 Metadata JSON Schema. |
-| `extension` | T  (Generic type) | Any custom extension used by this contract. Her we use [TokenExtension](andromeda-digital-object.md#tokenextension).        |
+| Name        | Type              | Description                                                                                                                |
+| ----------- | ----------------- | -------------------------------------------------------------------------------------------------------------------------- |
+| `token_id`  | String            | The id of the token to be minted.                                                                                          |
+| `owner`     | String            | The address of the token owner.                                                                                            |
+| `token_uri` | Option\<String>   | Universal resource identifier for this token. Should point to a JSON file that conforms to the CW721 Metadata JSON Schema. |
+| `extension` | T  (Generic type) | Any custom extension used by this contract. Her we use [TokenExtension](andromeda-digital-object.md#tokenextension).       |
 
 ### TransferNft
 
@@ -899,10 +899,10 @@ pub struct AllNftInfoResponse {
 {% endtab %}
 {% endtabs %}
 
-| Name   | Type                                                           | Description                            |
-| ------ | -------------------------------------------------------------- | -------------------------------------- |
-| access | [OwnerOfResponse](andromeda-digital-object.md#ownerofresponse) | The owner of the ADO and any approvals |
-| info   | [NFtInfoResponse](andromeda-digital-object.md#nftinforesponse) | The given ADO's stored information     |
+| Name     | Type                                                           | Description                            |
+| -------- | -------------------------------------------------------------- | -------------------------------------- |
+| `access` | [OwnerOfResponse](andromeda-digital-object.md#ownerofresponse) | The owner of the ADO and any approvals |
+| `info`   | [NFtInfoResponse](andromeda-digital-object.md#nftinforesponse) | The given ADO's stored information     |
 
 ### Tokens
 

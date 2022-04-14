@@ -4,11 +4,11 @@ description: Executes commonly found in many of the contracts.
 
 # AndrReceive/AndrQuery
 
-Many of the contracts will have repeating functionality. To normalize one struct across all contracts we use the AndrRecieve and AndrQuery for certain functionalities that will below. This way each contract doesn't have to independently handle the message.
+Many of the contracts will have repeating functionality. To normalize one struct across all contracts, we use the `AndrRecieve` and `AndrQuery` for certain functionalities that will be shown below. This way each contract doesn't have to independently handle the message.
 
 ### AndrRecieve
 
-Many of the contracts have an `AndrReceive` as an execute.
+All of the contracts have an `AndrReceive` as an execute.
 
 {% tabs %}
 {% tab title="Rust" %}
@@ -22,7 +22,7 @@ pub enum ExecuteMsg {
 
 ### AndromedaMsg
 
-An enum lisiting the different types of `AndromedaMsg`.
+An enum lisiting the different types of `AndromedaMsg`. Not all of these messages can be executed by any contract. Some are specific to ADOs that use modules or primitives.
 
 ```rust
 pub enum AndromedaMsg {
@@ -131,7 +131,7 @@ pub enum AndromedaMsg{
 
 ### Withdraw
 
-Withdraws token to a specified `recipient.`
+Withdraws token to a specified `recipient`. Not common to all ADOs.
 
 {% tabs %}
 {% tab title="Rust" %}
@@ -151,8 +151,7 @@ pub enum AndromedaMsg{
  "andr_receive":{
       "withdraw":{
             "recipient":"terra1...",
-            "tokens_to_withdraw":
-            
+            "tokens_to_withdraw"
      }
    }
 }
@@ -234,7 +233,7 @@ Each module is assigned a u64 index so as it can be unregistered/altered by the 
 {% tabs %}
 {% tab title="Rust" %}
 ```rust
-pub enum ExecuteMsg {
+pub enum AndromedaMsg {
   RegisterModule {
         module: Module,
     }
@@ -251,7 +250,7 @@ pub enum ExecuteMsg {
           "instantiate":{
           "address":"terra1..."
           }
-     "is_mutable": true, 
+     "is_mutable": true
         }
      }
  } 
@@ -274,7 +273,7 @@ Only the owner or an operator can execute `DeregisterModule`.
 {% tabs %}
 {% tab title="Rust" %}
 ```rust
- pub enum ExecuteMsg{
+ pub enum AndromedaMsg{
   DeregisterModule {
         module_idx: Uint64,
     }
@@ -286,7 +285,7 @@ Only the owner or an operator can execute `DeregisterModule`.
 ```json
 {
 "deregistering_module":{
-    "module_idx":"3",
+    "module_idx":"3"
     }
 }
 ```
@@ -310,7 +309,7 @@ Only mutable modules can be altered.
 {% tabs %}
 {% tab title="Rust" %}
 ```rust
-pub enum ExecuteMsg{
+pub enum AndromedaMsg{
  AlterModule {
         module_idx: Uint64,
         module: Module,
@@ -341,6 +340,69 @@ pub enum ExecuteMsg{
 | ------------ | ------------------------------------------ | ---------------------------------- |
 | `module_idx` | Uint64                                     | The index of the module to change. |
 | `module`     | [Module](../modules/module-definitions.md) | The new module implement.          |
+
+### Primitives
+
+The following messages are used by contracts that implement primitives.
+
+### RefreshAddress
+
+Used to save the value for the specified `contract` in the cache to be used later on in the contract. Queries the primitive contract and saves the result in the cache.
+
+{% tabs %}
+{% tab title="Rust" %}
+```rust
+ pub enum AndromedaMsg
+ RefreshAddress {
+        contract: String,
+    }
+```
+{% endtab %}
+
+{% tab title="JSON" %}
+```json
+{
+"refresh_address":"anchor"
+}
+```
+{% endtab %}
+{% endtabs %}
+
+| Name       | Type   | Description                             |
+| ---------- | ------ | --------------------------------------- |
+| `contract` | String | The key used in the primitive contract. |
+
+### RefreshAddresses
+
+Similar to `RefreshAddress`, but is used to save all the values from the primitive to the cache.
+
+{% tabs %}
+{% tab title="Rust" %}
+```rust
+ pub enum AndromedaMsg{
+   RefreshAddresses {
+        limit: Option<u32>,
+        start_after: Option<String>,
+    }
+ }
+```
+{% endtab %}
+
+{% tab title="JSON" %}
+```json
+{
+"refresh_addresses":{
+"limit": 15,
+   }
+}
+```
+{% endtab %}
+{% endtabs %}
+
+| Name          | Type            | Description                                                                                   |
+| ------------- | --------------- | --------------------------------------------------------------------------------------------- |
+| `limit`       | Option<32>      | An optional limit to the number of addresses to refresh. Defaults to 10. The max limit is 20. |
+| `start_after` | Option\<String> | An optional address for which to start after, used for pagination.                            |
 
 ## AndrQuery
 
@@ -394,7 +456,7 @@ Owner{}
 {% tab title="Rust" %}
 ```rust
 pub struct ContractOwnerResponse {
-    pub owner: String,
+    pub owner: String
 }
 ```
 {% endtab %}
@@ -480,8 +542,6 @@ IsOperators{
 {% endtab %}
 {% endtabs %}
 
-
-
 | Name      | Type   | Description                       |
 | --------- | ------ | --------------------------------- |
 | `address` | String | The address to check as operator. |
@@ -530,7 +590,7 @@ Module{
 {
 "andr_query":{
 "module":{
-  "id":"tokenid",jsn
+  "id":"tokenid"
      }
   }
 }
