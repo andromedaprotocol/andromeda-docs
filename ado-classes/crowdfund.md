@@ -83,7 +83,7 @@ Minting definition is the same as the one defined in the NFT Collectible contrac
 
 Initiates a new crowdfund with the specified information.
 
-{% hint style="info" %}
+{% hint style="warning" %}
 Only available to the contract owner.
 
 An Expiration must be set (cannot be never) and not in past date.
@@ -138,7 +138,7 @@ pub enum ExecuteMsg{
 
 Purchases the token with the specified `token_id`.
 
-{% hint style="info" %}
+{% hint style="warning" %}
 A sale needs to be in progress in order to purchase a token.
 {% endhint %}
 

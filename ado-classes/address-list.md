@@ -49,7 +49,7 @@ pub struct InstantiateMsg {
 
 Adds an address to the address list.
 
-{% hint style="info" %}
+{% hint style="warning" %}
 Only Owner/Operators can execute AddAddress.
 {% endhint %}
 
@@ -82,7 +82,7 @@ pub enum ExecuteMsg {
 
 Removes an address from the address list.
 
-{% hint style="info" %}
+{% hint style="warning" %}
 Only Owner/Operators can execute RemoveAddress.
 {% endhint %}
 

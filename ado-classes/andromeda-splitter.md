@@ -55,7 +55,7 @@ pub struct InstantiateMsg {
 | `Modules`    | Option<[Module](../modules/module-definitions.md)>          | A vector of Andromeda Module definitions. The module definitions can be found[ here](../modules/module-definitions.md). |
 | `recipients` | Vec<[AddressPercent](andromeda-splitter.md#addresspercent)> | The recipient list of the splitter. Can be updated after instantiation.                                                 |
 
-{% hint style="info" %}
+{% hint style="warning" %}
 Anytime a [`Send`](andromeda-splitter.md#send) execute message is sent the amount sent will be divided amongst the recipients depending on their assigned percentage.
 {% endhint %}
 

@@ -16,7 +16,7 @@ In addition to the offers module, the contract has implemented a custom `Transfe
 
 ## InstantiateMsg
 
-{% hint style="info" %}
+{% hint style="warning" %}
 The defined `minter` address is assigned as the contract owner.
 {% endhint %}
 
@@ -206,7 +206,7 @@ Used to define any rich data attributes related to an ADO.
 
 A CW721 compliant transfer method. Transfers ownership of a minted token. Only available to the token owner, an approved operator or the purchaser in a `TransferAgreement` for the given token.
 
-{% hint style="info" %}
+{% hint style="warning" %}
 Archived tokens cannot be transferred.
 {% endhint %}
 

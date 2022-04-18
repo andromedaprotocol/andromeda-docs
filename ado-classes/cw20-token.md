@@ -99,7 +99,7 @@ pub struct MinterResponse {
 | `minter` | String           | The address to assign as a minter.                          |
 | `cap`    | Option\<Uint128> | A hard cap on total supply that can be achieved by minting. |
 
-{% hint style="info" %}
+{% hint style="warning" %}
 The cap refers to the total supply. If None, there is unlimited cap.
 {% endhint %}
 
@@ -142,7 +142,7 @@ Only with the "mint" extension. If authorized, creates amount new tokens and add
 
 Transfer is a base message to move tokens to another account without triggering actions.
 
-{% hint style="info" %}
+{% hint style="warning" %}
 The `amount` sent might be affected depending on the attached modules.
 {% endhint %}
 
@@ -179,8 +179,10 @@ pub enum ExecuteMsg {
 
 Send is a base message to transfer tokens to a contract and trigger an action on the receiving contract.
 
-{% hint style="info" %}
+{% hint style="warning" %}
 The `amount` sent might be affected depending on the attached modules.
+
+The `msg` should be base64 encoded and not raw binary.
 {% endhint %}
 
 {% tabs %}
@@ -285,7 +287,7 @@ Sets an `amount` of tokens from the owner that the specified `spender` can inter
 
 Decreases the allowance set for the `spender` by the set `amount.`&#x20;
 
-{% hint style="info" %}
+{% hint style="warning" %}
 The amount specified in `DecreaseAllowance` does not replace the old amount but is subtracted from it. If the result is 0 or less, then the spender no longer has an Allowance from the owner.
 
 If an `Expiration` is set, it will overwrite previously set Expiration
@@ -329,7 +331,7 @@ If an `Expiration` is set, it will overwrite previously set Expiration
 
 Transfers the `amount` of tokens from the `owner` address to the `recipient.`
 
-{% hint style="info" %}
+{% hint style="warning" %}
 The `amount specified` cannot exceed the allowance of the address executing `TransferFrom.`&#x20;
 {% endhint %}
 
@@ -370,8 +372,10 @@ pub enum ExecuteMsg {
 
 Sends the  `amount` of tokens from the `owner` address to the `contract` address. Can use a msg to trigger an action on the receiving contract.
 
-{% hint style="info" %}
+{% hint style="warning" %}
 The `amount specified` cannot exceed the allowance of the address executing `TransferFrom.`&#x20;
+
+The `msg` should be base64 encoded and not raw binary.
 {% endhint %}
 
 {% tabs %}
@@ -413,7 +417,7 @@ The `amount specified` cannot exceed the allowance of the address executing `Tra
 
 Burns a specified `amount` of tokens from the `owner` address.
 
-{% hint style="info" %}
+{% hint style="warning" %}
 The `amount specified` cannot exceed the allowance of the address executing `BurnFrom.`
 {% endhint %}
 
@@ -450,7 +454,7 @@ pub enum ExecuteMsg{
 
 Updates the marketing information if instantiated.&#x20;
 
-{% hint style="info" %}
+{% hint style="warning" %}
 Setting None/null for any of these will leave it unchanged
 {% endhint %}
 

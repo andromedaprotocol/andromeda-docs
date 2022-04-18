@@ -40,7 +40,7 @@ pub struct InstantiateMsg {
 
 Places an offer on the ADO with the specified `token_id.`
 
-{% hint style="info" %}
+{% hint style="warning" %}
 The ADO owner is not allowed to place an offer on their ADO.
 {% endhint %}
 
@@ -113,7 +113,7 @@ pub enum ExecuteMsg{
 
 Accepts an offer that is placed on your ADO.&#x20;
 
-{% hint style="info" %}
+{% hint style="warning" %}
 Only the `andromeda_cw721_contract` can accept offers.
 {% endhint %}
 

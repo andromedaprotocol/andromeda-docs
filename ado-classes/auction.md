@@ -49,7 +49,7 @@ pub struct InstantiateMsg {}
 
 Receives a token from a [`Send`](andromeda-digital-object.md#sendnft) and starts an auction based on the given parameters in the [`StartAuction` ](auction.md#startauction)struct. &#x20;
 
-{% hint style="info" %}
+{% hint style="warning" %}
 The auction information can be modified before it has started but is immutable after that.
 
 Only the ADO owner can start the auction.

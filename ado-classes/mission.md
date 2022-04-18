@@ -15,7 +15,7 @@ A contract in the mission is called a `MissionComponent.` Every mission would be
 
 ## InstantiateMsg
 
-{% hint style="info" %}
+{% hint style="warning" %}
 The maximum number of mission components is 50.
 {% endhint %}
 
@@ -68,7 +68,7 @@ pub struct InstantiateMsg {
 
 The ADO to be a part of the mission.&#x20;
 
-{% hint style="info" %}
+{% hint style="warning" %}
 The `instantiate_msg` should be base64 encoded and not raw binary.
 {% endhint %}
 
@@ -92,7 +92,7 @@ pub struct MissionComponent {
 
 Adds an ADO component to the mission.
 
-{% hint style="info" %}
+{% hint style="warning" %}
 Only available to the contract owner.
 {% endhint %}
 
@@ -132,7 +132,7 @@ AddMissionComponent{
 
 Gives ownership of a component to the owner address instead of the mission contract.
 
-{% hint style="info" %}
+{% hint style="warning" %}
 Only available to the contract owner.
 {% endhint %}
 
@@ -166,7 +166,7 @@ pub enum ExecuteMsg{
 
 Sends a message to the ADO with the specified `name`. This is used in the case the mission contract has specific operation privileges over a component.
 
-{% hint style="info" %}
+{% hint style="warning" %}
 Only available to the contract owner.
 {% endhint %}
 
@@ -199,10 +199,10 @@ Only available to the contract owner.
 {% endtab %}
 {% endtabs %}
 
-| Name   | Type   | Description                        |
-| ------ | ------ | ---------------------------------- |
-| `name` | String | The name of the ADO to execute on. |
-| `msg`  | Binary | The msg to excecute.               |
+| Name   | Type   | Description                           |
+| ------ | ------ | ------------------------------------- |
+| `name` | String | The name of the ADO to execute on.    |
+| `msg`  | Binary | The msg to excecute (Base 64 binary). |
 
 ### UpdateAddress
 

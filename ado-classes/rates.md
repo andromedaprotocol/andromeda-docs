@@ -125,7 +125,7 @@ pub struct ADORate {
 
 ### UpdateRates
 
-{% hint style="info" %}
+{% hint style="warning" %}
 Only the contract owner can execute UpdateRates.
 {% endhint %}
 

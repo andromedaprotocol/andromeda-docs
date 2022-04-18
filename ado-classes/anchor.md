@@ -81,7 +81,7 @@ pub enum Cw20HookMsg {
 
 Deposit LUNA as collateral which will be converted to bLUNA. The collateral funds are then deposited to anchor by executing `DepositCollateralToAnchor`.
 
-{% hint style="info" %}
+{% hint style="warning" %}
 Only the owner or an operator of the contract can execute `DepositCollateral`.
 
 Only "uluna" can be used as collateral.
