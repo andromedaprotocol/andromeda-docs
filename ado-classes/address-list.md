@@ -10,10 +10,8 @@ The **Address List** ADO is a smart contract that can be used to store a list of
 
 These addresses can be set as one of the following:
 
-\
-**Whitelist:** The addresses are given whitelist privilege, allowing them to  interact with it. If a whitelist of addresses is set, then any other address is considered as a blacklist.&#x20;
-
-**Blacklist:** The addresses are give blacklist restriction, preventing them to interact with the contract. If a blacklist of addresses is set, then any other address is considered as a whitelist.
+* **Whitelist:** The addresses are given whitelist privilege, allowing them to  interact with it. If a whitelist of addresses is set, then any other address is considered as a blacklist.
+* **Blacklist:** The addresses are give blacklist restriction, preventing them to interact with the contract. If a blacklist of addresses is set, then any other address is considered as a whitelist.
 
 This contract is usually implemented as a module to interact with other contracts setting the whitelist/blacklist for the contract.
 
@@ -34,6 +32,7 @@ pub struct InstantiateMsg {
 ```javascript
 {
     "operators": ["terra1...","terra...",...],
+    "is_inclusive": false
 }
 ```
 {% endtab %}
@@ -112,9 +111,9 @@ pub enum ExecuteMsg {
 | --------- | ------ | ------------------------------------ |
 | `address` | String | The address to remove from the list. |
 
-### UpdateOwner/UpdateOperators
+### AndrReceive
 
-Check [AndrReceive](../ado\_base/andrreceive-andrquery.md).
+Check [AndrReceive](../ado\_base/andrreceive-andrquery.md#andrrecieve).
 
 ## QueryMsg
 
@@ -173,6 +172,6 @@ pub struct IncludesAddressResponse {
 | ---------- | ---- | -------------------------------- |
 | `included` | Bool | Whether the address is included. |
 
-### Owner/Operators/IsOperator
+### AndrQuery
 
-Check [AndrQuery](../ado\_base/andrreceive-andrquery.md).
+Check[ AndrQuery](../ado\_base/andrreceive-andrquery.md#andrquery).

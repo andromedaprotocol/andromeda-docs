@@ -38,7 +38,7 @@ pub struct InstantiateMsg {
        "minter":"terra1...",
        "cap": "1000000",
       },
-  "primitive_contract":"terra1...",
+  "primitive_contract":"terra1..."
  }  
 ```
 {% endtab %}
@@ -543,7 +543,6 @@ pub enum QueryMsg {
 {
 "balance":"100"
 }
-
 ```
 {% endtab %}
 {% endtabs %}
@@ -644,7 +643,7 @@ pub struct MinterResponse {
 ```json
 {
 "minter":"terra1...",
-"cap":"1000000",
+"cap":"1000000"
 }
 ```
 {% endtab %}
@@ -708,7 +707,6 @@ pub struct AllowanceResponse {
   "at_height":"500"
     }
 }   
-
 ```
 {% endtab %}
 {% endtabs %}
@@ -738,10 +736,10 @@ Returns all the allowances that the specified `owner` has given along with the i
 {% tab title="JSON" %}
 ```json
 {
-"all_allowances"{
+"all_allowances":{
   "owner":"terra1...",
   "limit": 20,
-  "start_after": 4,
+  "start_after": 4
     }
 }
 ```
@@ -780,8 +778,7 @@ pub struct AllAllowancesResponse {
            ...
            }
         ]
-  }
-     
+  }   
 ```
 {% endtab %}
 {% endtabs %}
@@ -796,7 +793,7 @@ pub struct AllAllowancesResponse {
 pub struct AllowanceInfo {
     pub spender: String,
     pub allowance: Uint128,
-    pub expires: Expiration,
+    pub expires: Expiration
 }
 ```
 
@@ -925,7 +922,6 @@ Downloads the embedded logo data (if stored on chain). Errors if no logo data st
 pub enum ExecuteMsg {
 DownloadLogo {}
   }
-
 ```
 {% endtab %}
 
@@ -956,4 +952,4 @@ pub struct DownloadLogoResponse {
 | `mime_type` | String | The MIME type of the logo. |
 | `data`      | Binary | The LOGO data.             |
 
-The rest of the base Queries are found in [AndrQuery](../ado\_base/andrreceive-andrquery.md).
+The rest of the base Queries are found in [AndrQuery](../ado\_base/andrreceive-andrquery.md#andrquery).

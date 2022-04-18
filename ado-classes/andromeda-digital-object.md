@@ -38,24 +38,23 @@ pub struct InstantiateMsg {
 {
     "name": "Example Token",
     "symbol": "ET",
-    "minter": "terra1...",
-    "modules": [
-        "whitelist": {
-            "moderators": ["terra1..."]
+    "minter":{
+        "addr":"terra1..."
         },
-        "taxable": {
-            "rate": {
-                "flat": {
-                    "amount": 2,
-                    "denom": "uluna"
-                }
-            },
-            "receivers": ["terra1...", "terra1..."],
-            "description": "Some tax payment to be made to..."
+   "modules": [
+        {
+          "module_type": "address_list",
+          "address": {
+          "identifier":"terra1..."
+          }
+          "is_mutable": false
+        },
+        {
+        ...
         }
-    ],
-    "primitive_contract":"terra1...",
-}
+      ]
+  }
+        
 ```
 {% endtab %}
 {% endtabs %}
@@ -70,6 +69,49 @@ pub struct InstantiateMsg {
 ## ExecuteMsg
 
 ## Mint
+
+Mints a new ADO, only available to the defined `minter` in the contract's `InstantiateMsg`
+
+{% tabs %}
+{% tab title="Rust" %}
+```rust
+pub struct MintMsg<T> {
+    pub token_id: String,
+    pub owner: String,
+    pub token_uri: Option<String>,
+    pub extension: T,
+}
+
+pub enum ExecuteMsg {
+    Mint(box<MintMsg<TokenExtension>>)
+}
+```
+{% endtab %}
+
+{% tab title="JSON" %}
+```javascript
+{
+    "mint": {
+        "token_id": "anewtoken",
+        "owner": "terra1...",
+        "extension":{
+         "name":"mytoken",
+         "publisher":"publisher",
+         "description":"This token ....",
+         "archived": false
+        }
+    }
+}
+```
+{% endtab %}
+{% endtabs %}
+
+| Name        | Type              | Description                                                                                                                |
+| ----------- | ----------------- | -------------------------------------------------------------------------------------------------------------------------- |
+| `token_id`  | String            | The id of the token to be minted.                                                                                          |
+| `owner`     | String            | The address of the token owner.                                                                                            |
+| `token_uri` | Option\<String>   | Universal resource identifier for this token. Should point to a JSON file that conforms to the CW721 Metadata JSON Schema. |
+| `extension` | T  (Generic type) | Any custom extension used by this contract. Her we use [TokenExtension](andromeda-digital-object.md#tokenextension).       |
 
 ### TokenExtension
 
@@ -159,51 +201,6 @@ Used to define any rich data attributes related to an ADO.
 | `external_url` | Option\<String>                  | An optional link to an external source for the token.                                                          |
 | `data_url`     | Option\<String>                  | An optional link to the ADO's external data. Response should be of the type defined by the `data_type` field.  |
 | `attributes`   | Option\<Vec\<MetadataAttribute>> | An array of rich data attributes. See [MetadataAttribute](andromeda-digital-object.md#metadataattribute).      |
-
-### Mint
-
-Mints a new ADO, only available to the defined `minter` in the contract's `InstantiateMsg`
-
-{% tabs %}
-{% tab title="Rust" %}
-```rust
-pub struct MintMsg<T> {
-    pub token_id: String,
-    pub owner: String,
-    pub token_uri: Option<String>,
-    pub extension: T,
-}
-
-pub enum ExecuteMsg {
-    Mint(box<MintMsg<TokenExtension>>)
-}
-```
-{% endtab %}
-
-{% tab title="JSON" %}
-```javascript
-{
-    "mint": {
-        "token_id": "anewtoken",
-        "owner": "terra1...",
-        "extension":{
-         "name":"mytoken",
-         "publisher":"publisher",
-         "description":"This token ....",
-         "archived": false,
-        }
-    }
-}
-```
-{% endtab %}
-{% endtabs %}
-
-| Name        | Type              | Description                                                                                                                |
-| ----------- | ----------------- | -------------------------------------------------------------------------------------------------------------------------- |
-| `token_id`  | String            | The id of the token to be minted.                                                                                          |
-| `owner`     | String            | The address of the token owner.                                                                                            |
-| `token_uri` | Option\<String>   | Universal resource identifier for this token. Should point to a JSON file that conforms to the CW721 Metadata JSON Schema. |
-| `extension` | T  (Generic type) | Any custom extension used by this contract. Her we use [TokenExtension](andromeda-digital-object.md#tokenextension).       |
 
 ### TransferNft
 
@@ -326,7 +323,7 @@ Cannot be undone
 pub enum ExecuteMsg {
     Archive {
         token_id: String,
-    },
+    }
 }
 ```
 {% endtab %}
@@ -527,7 +524,7 @@ pub enum ExecuteMsg {
 | `token_id`  | String                                                             | The id of the token for which the agreement is made.            |
 | `agreement` | Option<[TransferAgreement](andromeda-digital-object.md#undefined)> | See [TransferAgreement](andromeda-digital-object.md#undefined). |
 
-### UpdateOwner/UpdateOperators
+### AndrReceive
 
 Check [AndrReceive](../ado\_base/andrreceive-andrquery.md).
 
@@ -539,8 +536,8 @@ Queries the current minter of the contract.
 
 ```rust
 pub enum QueryMsg{
-Minter{},
-}
+    Minter{},
+ }
 ```
 
 #### MinterResponse
@@ -549,7 +546,7 @@ Minter{},
 {% tab title="Rust" %}
 ```rust
 pub struct MinterResponse{
- minter:String,
+minter:String,
  }
 ```
 {% endtab %}
@@ -584,7 +581,7 @@ pub enum QueryMsg {
 {
     "owner_of": {
         "token_id": "anewtoken"
-        "include_expired": false,
+        "include_expired": false
     }
 }
 ```
@@ -834,7 +831,7 @@ A CW721 compliant "all nft info" query. Queries all stored info of an token.
 pub enum QueryMsg {
     AllNftInfo {
         token_id: String,
-        include_expired:String,
+        include_expired: Option<bool>
     }
 }
 ```
@@ -844,17 +841,18 @@ pub enum QueryMsg {
 ```javascript
 {
     "all_nft_info": {
-        "token_id": "anewtoken"
+        "token_id": "anewtoken",
+        "include_expired": false
     }
 }
 ```
 {% endtab %}
 {% endtabs %}
 
-| Name              | Type   | Description                               |
-| ----------------- | ------ | ----------------------------------------- |
-| `token_id`        | String | The id of the ADO                         |
-| `include_expired` | String | Whether to include any expired approvals. |
+| Name              | Type          | Description                               |
+| ----------------- | ------------- | ----------------------------------------- |
+| `token_id`        | String        | The id of the ADO                         |
+| `include_expired` | Option\<bool> | Whether to include any expired approvals. |
 
 #### AllNftInfoResponse
 

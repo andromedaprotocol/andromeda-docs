@@ -51,7 +51,7 @@ Mint a new receipt. Only executable by the assigned `minter` address. Generates 
 pub enum ExecuteMsg {
     StoreReceipt {
         receipt: Receipt,
-    },
+    }
 }
 ```
 {% endtab %}
@@ -149,7 +149,7 @@ pub enum ExecuteMsg {
 | `receipt`    | [Receipt](receipt.md#receipt-1) | The receipt to edit.           |
 | `receipt_id` | Uint128                         | The ID of the receipt to edit. |
 
-### UpdateOwner/UpdateOperators
+### AndrReceive
 
 Check [AndrReceive](../ado\_base/andrreceive-andrquery.md).
 
@@ -165,7 +165,9 @@ Queries a receipt by its ID.
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
 #[serde(rename_all = "snake_case")]
 pub enum QueryMsg {
-    Receipt { receipt_id: Uint128 },
+    Receipt {
+     receipt_id: Uint128
+      }
 }
 ```
 {% endtab %}
@@ -181,9 +183,9 @@ pub enum QueryMsg {
 {% endtab %}
 {% endtabs %}
 
-| Name        | Type    | Description                     |
-| ----------- | ------- | ------------------------------- |
-| receipt\_id | Uint128 | The ID of the receipt to query. |
+| Name         | Type    | Description                     |
+| ------------ | ------- | ------------------------------- |
+| `receipt_id` | Uint128 | The ID of the receipt to query. |
 
 #### ReceiptResponse
 
@@ -234,7 +236,7 @@ Queries the contract's configuration.
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
 #[serde(rename_all = "snake_case")]
 pub enum QueryMsg {
-    ContractInfo { },
+    ContractInfo {},
 }
 ```
 {% endtab %}
@@ -271,7 +273,7 @@ pub struct ContractInfoResponse {
 ```rust
 {
     "config": {
-        "minter": "terra1...",
+        "minter": "terra1..."
     }
 }
 ```
@@ -282,6 +284,6 @@ pub struct ContractInfoResponse {
 | -------- | ------ | -------------------------------------------- |
 | `minter` | String | The address authorized to mint new receipts. |
 
-### Owner/Operators/IsOperator
+### AndrQuery
 
-Check [AndrQuery](../ado\_base/andrreceive-andrquery.md).
+Check[ AndrQuery](../ado\_base/andrreceive-andrquery.md#andromedaquery).

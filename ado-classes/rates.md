@@ -34,11 +34,17 @@ pub struct InstantiateMsg {
       "percent":"3.5"
       },
       "is_additive": false,
-      "receivers":["terra1...","terra2...",...]
+      "receivers":[{
+         "addr":"terra1..."
+            },
+         {
+         "addr":"terra..."
+         }
+         ]
       },
-      ...
-      ] 
-   }
+    ...
+   ] 
+}
 ```
 {% endtab %}
 {% endtabs %}
@@ -146,14 +152,20 @@ pub enum ExecuteMsg{
       "percent":"3"
       },
       "is_additive": false,
-      "receivers":["terra1...","terra2...",...]
+      "receivers":[
+         {
+         "addr":"terra1..."
+         },
+         {
+         "addr":"terra..."
+         },
+         ...
+         ]
       },
       ...
       ] 
     }
   }
-  
-
 ```
 {% endtab %}
 {% endtabs %}
@@ -162,7 +174,7 @@ pub enum ExecuteMsg{
 | ------- | ---------------------------------- | ------------------------------------------------------------------ |
 | `rates` | Vec<[RateInfo](rates.md#rateinfo)> | A vector containing the new `RateInfo` to be used by the contract. |
 
-### UpdateOwner/UpdateOperators
+### AndrReceive
 
 Check [AndrReceive](../ado\_base/andrreceive-andrquery.md).
 
@@ -211,7 +223,15 @@ pub struct PaymentsResponse {
       "percent":"3"
       },
       "is_additive": false,
-      "receivers":["terra1...","terra2...",...]
+      "receivers":[
+         {
+         "addr":"terra1..."
+         },
+         {
+         "addr":"terra..."
+         },
+         ...
+         ]
       },
       ...
       ] 
@@ -226,6 +246,6 @@ pub struct PaymentsResponse {
 | ---------- | ---------------------------------- | --------------------------------------------------------- |
 | `payments` | Vec<[RateInfo](rates.md#rateinfo)> | A vector of the `RatInfo` currently used by the contract. |
 
-### Owner/Operators/IsOperator
+### AndrQuery
 
-Check [AndrQuery](../ado\_base/andrreceive-andrquery.md).
+Check[ AndrQuery](../ado\_base/andrreceive-andrquery.md#andrquery).

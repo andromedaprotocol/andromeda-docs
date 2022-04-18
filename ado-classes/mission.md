@@ -47,7 +47,8 @@ pub struct InstantiateMsg {
    ...
    }
  ],
- "name":"some_mission"
+ "name":"some_mission",
+ "primitive_contract":"terra1..."
  }
        
      
@@ -56,12 +57,12 @@ pub struct InstantiateMsg {
 {% endtab %}
 {% endtabs %}
 
-| Name                 | Type                                                  | Description                                                                |
-| -------------------- | ----------------------------------------------------- | -------------------------------------------------------------------------- |
-| `operators`          | Vec\<String>                                          | The operators of the contract.                                             |
-| `mission`            | Vec<[MissionComponent](missions.md#missioncomponent)> | The vector of MissionComponent containing all the ADOs of the mission.     |
-| `name`               | String                                                | The name of the mission.                                                   |
-| `primitive_contract` | String                                                | The address of the `primitve` contract used to supply data to the mission. |
+| Name                 | Type                                                 | Description                                                                |
+| -------------------- | ---------------------------------------------------- | -------------------------------------------------------------------------- |
+| `operators`          | Vec\<String>                                         | The operators of the contract.                                             |
+| `mission`            | Vec<[MissionComponent](mission.md#missioncomponent)> | The vector of MissionComponent containing all the ADOs of the mission.     |
+| `name`               | String                                               | The name of the mission.                                                   |
+| `primitive_contract` | String                                               | The address of the `primitve` contract used to supply data to the mission. |
 
 ### MissionComponent
 
@@ -123,9 +124,9 @@ AddMissionComponent{
 {% endtab %}
 {% endtabs %}
 
-| Name      | Type                                             | Description                              |
-| --------- | ------------------------------------------------ | ---------------------------------------- |
-| component | [MissionComponent](missions.md#missioncomponent) | The ADO component to add to the mission. |
+| Name      | Type                                            | Description                              |
+| --------- | ----------------------------------------------- | ---------------------------------------- |
+| component | [MissionComponent](mission.md#missioncomponent) | The ADO component to add to the mission. |
 
 ### ClaimOwnership
 
@@ -239,7 +240,7 @@ pub enum ExecuteMsg {
 
 ### UpdateOwner/UpdateOperators
 
-Check [AndrReceive](ado\_base/andrreceive-andrquery.md).
+Check [AndrReceive](../ado\_base/andrreceive-andrquery.md).
 
 ## QueryMsg
 
@@ -315,7 +316,7 @@ pub enum QueryMsg{
 {% endtab %}
 {% endtabs %}
 
-Returns a `Vec<`[`MissionComponent`](missions.md#missioncomponent)`>` which contains all the components of the mission.
+Returns a `Vec<`[`MissionComponent`](mission.md#missioncomponent)`>` which contains all the components of the mission.
 
 ### Config
 
@@ -363,4 +364,4 @@ pub struct ConfigResponse {
 
 ### Owner/Operators/IsOperator/
 
-Check [AndrQuery](ado\_base/andrreceive-andrquery.md).
+Check [AndrQuery](../ado\_base/andrreceive-andrquery.md).

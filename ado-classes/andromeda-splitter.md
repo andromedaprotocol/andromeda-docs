@@ -28,8 +28,11 @@ pub struct InstantiateMsg {
 {
     "recipients": [
                {
-    "recipient":"terra1...", 
-     "percent":20
+                "recipient":
+                {
+                "addr":"terra1...", 
+                },
+                "percent":20
      },
      ...
     ],
@@ -74,7 +77,9 @@ pub struct AddressPercent {
 {% tab title="JSON" %}
 ```javascript
 {
-    "recipient": "terra1...",
+    "recipient":{
+    "addr":"terra1...",
+     },
     "percent": "50"
 }
 
@@ -184,14 +189,13 @@ pub enum ExecuteMsg {
 {% tab title="JSON" %}
 ```javascript
 {
-    "send": {
-    }
+"send": {}
 }
 ```
 {% endtab %}
 {% endtabs %}
 
-### UpdateOwner/UpdateOperators
+### AndrReceive
 
 Check [AndrReceive](../ado\_base/andrreceive-andrquery.md).
 
@@ -213,8 +217,7 @@ pub enum QueryMsg {
 {% tab title="JSON" %}
 ```javascript
 {
-    "get_splitter_config": {
-    }
+"get_splitter_config": {}
 }
 ```
 {% endtab %}
@@ -238,12 +241,15 @@ pub struct GetSplitterConfigResponse {
     "config": {
         "recipients": [
             {
-                "recipient": "terra1...",
+                "recipient":
+                { 
+                "terra1..."
+                },
                 "percent": "50",
             },
             ...
         ],
-        "locked": true,
+        "locked": true
     }
 }
 ```
@@ -271,6 +277,6 @@ pub struct Splitter {
 | `recipients` | Vec<[AdressPercent](andromeda-splitter.md#addresspercent)> | The vector of recipients for the contract. Anytime a `Send` execute message is sent the amount sent will be divided amongst these recipients depending on their assigned percentage. |
 | `locked`     | bool                                                       | Whether or not the contract is currently locked. This restricts updating any config related fields.                                                                                  |
 
-### Owner/Operators/IsOperator
+### AndrQuery
 
-Check [AndrQuery](../ado\_base/andrreceive-andrquery.md).
+Check[ AndrQuery](../ado\_base/andrreceive-andrquery.md#andrquery).

@@ -135,7 +135,7 @@ Only addresses found in the Merkle-Root can claim tokens.
 Burn the remaining tokens (unclaimed) after expire time for the specified `stage`.
 
 {% hint style="warning" %}
-Only the owner can execute Burn.
+Only the owner can execute `Burn`.
 {% endhint %}
 
 {% tabs %}
@@ -163,6 +163,10 @@ Only the owner can execute Burn.
 | Name    | Type | Description                                                                |
 | ------- | ---- | -------------------------------------------------------------------------- |
 | `stage` | u8   | The stage of the airdrop used to specify which airdrop to execute burn on. |
+
+### AndrReceive
+
+Check [AndrReceive](../ado\_base/andrreceive-andrquery.md#andrrecieve)
 
 ## Query
 
@@ -272,7 +276,7 @@ pub struct MerkleRootResponse {
 "stage":2,
 "merkle_root":"876dd0a3ef4a2816ffd1c12ab649825a958b0f",
 "expiration": {
-"at_height": 500,
+"at_height": 500
  },
  "total_amount":"1000000"
  }
@@ -435,3 +439,7 @@ pub struct TotalClaimedResponse {
 | Name            | Type    | Description                            |
 | --------------- | ------- | -------------------------------------- |
 | `total_claimed` | Uint128 | The stage to check the amount claimed. |
+
+### AndrQuery
+
+Check [AndrQuery](../ado\_base/andrreceive-andrquery.md#andrquery).

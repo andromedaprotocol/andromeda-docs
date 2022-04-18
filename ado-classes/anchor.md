@@ -1,5 +1,9 @@
 # Anchor
 
+## Introduction
+
+The Anchor ADO is a smart contract that allows users to deposit funds to utilize the functionalities used by anchor protocol. For now, the ADO supports depositing to anchor and borrowing. For more information on what is anchor protocol refer to their docs found [here](https://docs.anchorprotocol.com/smart-contracts/deployed-contracts).
+
 ## InstantiateMsg
 
 {% tabs %}
@@ -60,7 +64,7 @@ pub struct Cw20ReceiveMsg {
 ```
 
 {% hint style="info" %}
-The message in Cw20ReceiveMsg should be a Cw20HookMsg of type `DepositCollateral`&#x20;
+The message in Cw20ReceiveMsg should be a Cw20HookMsg of type `DepositCollateral.`
 {% endhint %}
 
 #### Cw20HookMsg
@@ -198,7 +202,7 @@ pub enum ExecuteMsg{
 "borrow":{
 "desired_ltv_ration": "0.8",
 "recipient":{
-"addr":"terra1...",
+"addr":"terra1..."
   }
 }
 ```
@@ -271,11 +275,11 @@ pub struct PositionResponse {
 {
 "recipient":{
 "addr":"terra1...",
-   }
-"aust_amount":"10000",
+  }
+"aust_amount":"10000"
 }
 ```
 {% endtab %}
 {% endtabs %}
 
-The rest of the base queries can be found in [AndrQuery](anchor.md#andrquery) section.
+The rest of the base queries can be found in [AndrQuery](../ado\_base/andrreceive-andrquery.md#andromedaquery) section.

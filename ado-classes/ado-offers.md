@@ -204,7 +204,7 @@ pub struct OfferResponse {
 "expiration":{
   "at_height": 500
     },
-  "purchaser":"terra1...",
+  "purchaser":"terra1..."
 }
 
 
@@ -281,7 +281,7 @@ pub struct AllOffersResponse {
 "expiration":{
   "at_height": 500
     },
-  "purchaser":"terra1...",
+  "purchaser":"terra1..."
 },
 ...
 ]

@@ -36,7 +36,7 @@ pub struct InstantiateMsg {
 "strategies":[
      {
      "strategy_type":{"Anchor"}
-     "address":"terra1...",
+     "address":"terra1..."
      }
      ...
      ],
@@ -65,7 +65,7 @@ pub struct YieldStrategy {
 | Name            | Type         | Description                                                               |
 | --------------- | ------------ | ------------------------------------------------------------------------- |
 | `strategy_type` | StrategyType | The type of strategy to use. Currently only anchor strategy is available. |
-| `address`       | String       | The contract address anchor strategy.                                     |
+| `address`       | String       | The contract address for the strategy.                                    |
 
 #### StrategyType
 
@@ -115,15 +115,15 @@ pub enum ExecuteMsg {
 ```json
 {
 "deposit":{
-"recipient":{
-"addr":"terra1...",
-    }
-"strategy":{"anchor"},
+"recipient":
+   {
+   "addr":"terra1...",
+   },
+   
+"strategy":{"anchor"}
+
     }
  }
- 
- 
-
 ```
 {% endtab %}
 {% endtabs %}
@@ -156,13 +156,13 @@ pub enum ExecuteMsg{
 {
 "withdraw":{
 "recipient":{
-"addr":"terra1...",
+"addr":"terra1..."
     }
 "withdrawals":[
      {
      "token":"UST",
      "withdrawal_type":{
-      "percentage":"40",
+      "percentage":"40"
      }
      ...
      ]
@@ -263,8 +263,10 @@ pub enum QueryMsg{
 ```json
 {
 "strategy_address":{
-"strategy":{"Anchor"}
-  }
+"strategy":{
+             "Anchor"
+           }
+       }
 }
 ```
 {% endtab %}
@@ -289,7 +291,9 @@ pub struct StrategyAddressResponse {
 {% tab title="JSON" %}
 ```json
 {
-"strategy":"Anchor",
+"strategy":{
+            "Anchor"
+            },
 "address":"terra1..."
 }
 ```
@@ -301,4 +305,6 @@ pub struct StrategyAddressResponse {
 | `strategy` | [StrategyType](vault.md#strategytype) | The strategy we want the address for. |
 | `address`  | String                                | The address of the `strategy`.        |
 
-The rest of the queries can be found in the [`AndrQuery`](../ado\_base/andrreceive-andrquery.md#andrquery) section.
+### AndrQuery
+
+Check [AndrQuery](../ado\_base/andrreceive-andrquery.md#andromedaquery).

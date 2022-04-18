@@ -20,7 +20,8 @@ pub struct TokenAuctionState {
     pub start_time: Expiration,
     pub end_time: Expiration,
     pub high_bidder_addr: Addr,
-    pub high_bidder_amount: Uint128,
+    pub high_bidder_amount: Uint128
+    ,
     pub coin_denom: String,
     pub auction_id: Uint128,
     pub whitelist: Option<Vec<Addr>>

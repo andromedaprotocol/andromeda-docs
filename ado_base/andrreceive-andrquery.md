@@ -150,7 +150,9 @@ pub enum AndromedaMsg{
 {
  "andr_receive":{
       "withdraw":{
-            "recipient":"terra1...",
+            "recipient":{
+            "addr":"terra1...",
+            }
             "tokens_to_withdraw"
      }
    }
@@ -328,7 +330,7 @@ pub enum AndromedaMsg{
           "instantiate":{
           "address":"terra1..."
           },
-     "is_mutable": true, 
+     "is_mutable": true
         }
     }
  }

@@ -112,7 +112,7 @@ If `name` is not specified the default key ("default") will be used.
 ```rust
    pub enum ExecuteMsg{
    DeleteValue {
-        name: Option<String>,
+        key: Option<String>,
     }
  }
 ```
@@ -130,16 +130,16 @@ If `name` is not specified the default key ("default") will be used.
 {% endtab %}
 {% endtabs %}
 
-| Name   | Type            | Description                           |
-| ------ | --------------- | ------------------------------------- |
-| `name` | Option\<String> | Optional name for the data to delete. |
+| Name  | Type            | Description                                                                          |
+| ----- | --------------- | ------------------------------------------------------------------------------------ |
+| `key` | Option\<String> | Optional key for the data to delete. If not specified, the default key will be used. |
 
-### UpdateOwner/UpdateOperators
+### AndrReceive
 
 Check [AndrReceive](../ado\_base/andrreceive-andrquery.md).
 
 ## QueryMsg
 
-### Owner/Operators/IsOperator
+### AndrQuery
 
-Check [AndrQuery](../ado\_base/andrreceive-andrquery.md).
+Check [AndrQuery](../ado\_base/andrreceive-andrquery.md#andrquery).

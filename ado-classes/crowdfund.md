@@ -118,7 +118,8 @@ pub enum ExecuteMsg{
     },
   "min_tokens_sold":"1000",
   "max_amount_per_wallet":"10",
-  "recipient":"terra1..."
+  "recipient":{
+   "addr":"terra1..."
   }
 }
 ```
@@ -215,9 +216,9 @@ Ends the sale. In the case that the minimum sold is not achieved, refunds are se
 | ------- | ------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `limit` | Option\<u32>> | An optional limit on the number of transferred tokens in case the sale was a success, or the number of refunds to issue in case the sale did not succeed (min amount not reached). |
 
-### UpdateOwner/UpdateOperators
+### AndrReceive
 
-Check [AndrReceive](../ado\_base/andrreceive-andrquery.md).
+Check [AndrReceive](../ado\_base/andrreceive-andrquery.md#andrrecieve).
 
 ## QueryMsg
 
@@ -249,7 +250,6 @@ pub enum QueryMsg {
 {% tab title="Rust" %}
 ```rust
 pub struct State {
-    
     pub expiration: Expiration,
     pub price: Coin,
     pub min_tokens_sold: Uint128,
@@ -276,8 +276,9 @@ pub struct State {
   "max_amount_per_wallet":"10",
   "amount_sold":"600",
   "amount_to_send":"100000",
-  "amount_transferred":"300"
-  "recipient":"terra1..."
+  "amount_transferred":"300",
+  "recipient":{
+  "addr":"terra1..."
   }
 }
 ```
@@ -305,7 +306,6 @@ Queries the configuration of the contract.
 pub enum QueryMsg {
     Config {},
 }
-
 ```
 {% endtab %}
 
@@ -334,7 +334,7 @@ pub struct Config {
 ```json
 {
 "token_address":"terra1...",
-"can_mint_after_sale": true,
+"can_mint_after_sale": true
 }
 ```
 {% endtab %}
@@ -345,6 +345,6 @@ pub struct Config {
 | `token_address`       | Addr | The address of the token contract whose tokens are being sold.                         |
 | `can_mint_after_sale` | bool | Whether or not the owner can mint additional tokens after the sale has been conducted. |
 
-### Owner/Operators/IsOperator
+### AndrQuery
 
-Check [AndrQuery](../ado\_base/andrreceive-andrquery.md).
+Check[ AndrQuery](../ado\_base/andrreceive-andrquery.md#andrquery).

@@ -39,7 +39,7 @@ pub enum ExecuteMsg {
 {
     "create": {
         "name": "Example Token",
-        "symbol": "ET",
+        "symbol": "ET"
     }
 }
 ```
@@ -115,19 +115,19 @@ pub enum ExecuteMsg {
 {
     "update_code_id": {
         "code_id_key": "adress_list",
-        "code_id": 2,
+        "code_id": 2
     }
 }
 ```
 {% endtab %}
 {% endtabs %}
 
-| Name              | Type         | Description                                                                |
-| ----------------- | ------------ | -------------------------------------------------------------------------- |
-| `receipt_code_id` | Option\<u64> | Optional new code ID for the [receipt](receipt.md) contracts.              |
-| `token_code_id`   | Option\<u64> | Optional new code ID for the [ADO](andromeda-digital-object.md) contracts. |
+| Name          | Type   | Description                        |
+| ------------- | ------ | ---------------------------------- |
+| `code_id_key` | String | The key of the code\_id to update. |
+| `code_id`     | u64    | The new code id.                   |
 
-### UpdateOwner/UpdateOperators
+### AndrReceive
 
 Check [AndrReceive](../ado\_base/andrreceive-andrquery.md).
 
@@ -178,7 +178,7 @@ pub struct AddressResponse {
 {% tab title="JSON" %}
 ```javascript
 {
-    "address": "terra1..."
+ "address": "terra1..."
 }
 ```
 {% endtab %}
@@ -218,8 +218,8 @@ pub enum QueryMsg {
 | ----- | ------ | ----------------------------------------------------- |
 | `key` | String | The key of the contract which we want the code id of. |
 
-Returns a u64 which represents the code\_id.
+Returns a u64 which represents the `code_id`.
 
-### Owner/Operators/IsOperator
+### AndrQuery
 
 Check [AndrQuery](../ado\_base/andrreceive-andrquery.md).

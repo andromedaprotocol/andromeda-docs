@@ -11,7 +11,7 @@ There are two main conditions that can be used by the contract:
 * **Expiration**: A time expiration to when the funds can be released.
 * **MinimumFunds**: A minimum amount of funds to be deposited before they can be released.
 
-Once a condition is satisfied, the funds can be released
+Once a condition is satisfied, the funds can be released.
 
 The contract supports [modules](broken-reference) to extend its functionality.
 
@@ -56,7 +56,7 @@ pub enum ExecuteMsg {
 {
     "hold_funds": {
         "recipient":{
-         "addr":"terra1...",
+         "addr":"terra1..."
          }
         "condition": {
             "expiration": {
@@ -147,8 +147,8 @@ ReleaseSpecificFunds {
 "release_specific_funds": {
    "owner":"terra1...",
    "recipient_addr": "terra1..."
-        }
      }
+ }
   
 ```
 {% endtab %}
@@ -159,7 +159,7 @@ ReleaseSpecificFunds {
 | `owner`          | String          | The address of the funds to be released.                                                     |
 | `recipient_addr` | Option\<String> | Optional address to receive the released funds. Will default to the sender if not specified. |
 
-### UpdateOwner/UpdateOperators
+### AndrReceive
 
 Check [AndrReceive](../ado\_base/andrreceive-andrquery.md).
 
@@ -185,7 +185,7 @@ pub enum QueryMsg {
 ```javascript
 {
     "get_locked_funds": {
-        "owner": "terra1..."
+        "owner": "terra1...",
         "recipient":"terra1..."
     }
 }
@@ -193,10 +193,10 @@ pub enum QueryMsg {
 {% endtab %}
 {% endtabs %}
 
-| Name        | Type   | Description                               |
-| ----------- | ------ | ----------------------------------------- |
-| `owner`     | String | The address of the owner of the funds     |
-| `recipient` | String | The address of the recipient of the funds |
+| Name        | Type   | Description                                |
+| ----------- | ------ | ------------------------------------------ |
+| `owner`     | String | The address of the owner of the funds      |
+| `recipient` | String | The address of the recipient of the funds. |
 
 #### GetLockedFundsResponse
 
@@ -288,7 +288,9 @@ pub struct GetLockedFundsForRecipientResponse {
             "uluna": 1000
         },
         
-        "recipient": "terra1...",
+        "recipient":{
+        "addr":"terra1..."
+        }
         
         "condition": {
             "expiration": {
@@ -324,6 +326,6 @@ pub struct Escrow {
 | `condition` | Option<[EscrowCondition](timelock.md#escrowcondition)> | Optional condition for the Escrow.                        |
 | `recipient` | [Recipient](../recipient.md)                           | The recipient of the funds once `condition` is satisfied. |
 
-### Owner/Operators/IsOperator
+### AndrQuery
 
-Check [AndrQuery](../ado\_base/andrreceive-andrquery.md).
+Check[ AndrQuery](../ado\_base/andrreceive-andrquery.md#andrquery).

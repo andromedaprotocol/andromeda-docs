@@ -17,7 +17,7 @@
   * [Timelock](ado-classes/timelock.md)
   * [Vault](ado-classes/vault.md)
   * [ADO Offers](ado-classes/ado-offers.md)
-* [Missions](missions.md)
+* [Missions](ado-classes/mission.md)
 
 ## Modules
 
