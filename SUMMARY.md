@@ -9,7 +9,6 @@
   * [CW20 Token](ado-classes/cw20-token.md)
   * [Factory](ado-classes/andromeda-factory.md)
   * [Merkle-Airdrop](ado-classes/merkle-airdrop.md)
-  * [Mission](ado-classes/mission.md)
   * [NFT Collectible](ado-classes/andromeda-digital-object.md)
   * [Primitive](ado-classes/primitive.md)
   * [Rates](ado-classes/rates.md)
@@ -18,6 +17,7 @@
   * [Timelock](ado-classes/timelock.md)
   * [Vault](ado-classes/vault.md)
   * [ADO Offers](ado-classes/ado-offers.md)
+* [Missions](missions.md)
 
 ## Modules
 

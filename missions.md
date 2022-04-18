@@ -5,7 +5,7 @@ description: >-
   allows then to query these addresses by name.
 ---
 
-# Mission
+# Missions
 
 ## Introduction
 
@@ -56,16 +56,20 @@ pub struct InstantiateMsg {
 {% endtab %}
 {% endtabs %}
 
-| Name                 | Type                                                 | Description                                                                |
-| -------------------- | ---------------------------------------------------- | -------------------------------------------------------------------------- |
-| `operators`          | Vec\<String>                                         | The operators of the contract.                                             |
-| `mission`            | Vec<[MissionComponent](mission.md#missioncomponent)> | The vector of MissionComponent containing all the ADOs of the mission.     |
-| `name`               | String                                               | The name of the mission.                                                   |
-| `primitive_contract` | String                                               | The address of the `primitve` contract used to supply data to the mission. |
+| Name                 | Type                                                  | Description                                                                |
+| -------------------- | ----------------------------------------------------- | -------------------------------------------------------------------------- |
+| `operators`          | Vec\<String>                                          | The operators of the contract.                                             |
+| `mission`            | Vec<[MissionComponent](missions.md#missioncomponent)> | The vector of MissionComponent containing all the ADOs of the mission.     |
+| `name`               | String                                                | The name of the mission.                                                   |
+| `primitive_contract` | String                                                | The address of the `primitve` contract used to supply data to the mission. |
 
 ### MissionComponent
 
-The ADO to be a part of the mission.
+The ADO to be a part of the mission.&#x20;
+
+{% hint style="info" %}
+The `instantiate_msg` should be base64 encoded and not raw binary.
+{% endhint %}
 
 ```rust
 pub struct MissionComponent {
@@ -119,9 +123,9 @@ AddMissionComponent{
 {% endtab %}
 {% endtabs %}
 
-| Name      | Type                                            | Description                              |
-| --------- | ----------------------------------------------- | ---------------------------------------- |
-| component | [MissionComponent](mission.md#missioncomponent) | The ADO component to add to the mission. |
+| Name      | Type                                             | Description                              |
+| --------- | ------------------------------------------------ | ---------------------------------------- |
+| component | [MissionComponent](missions.md#missioncomponent) | The ADO component to add to the mission. |
 
 ### ClaimOwnership
 
@@ -235,7 +239,7 @@ pub enum ExecuteMsg {
 
 ### UpdateOwner/UpdateOperators
 
-Check [AndrReceive](../ado\_base/andrreceive-andrquery.md).
+Check [AndrReceive](ado\_base/andrreceive-andrquery.md).
 
 ## QueryMsg
 
@@ -311,7 +315,7 @@ pub enum QueryMsg{
 {% endtab %}
 {% endtabs %}
 
-Returns a `Vec<`[`MissionComponent`](mission.md#missioncomponent)`>` which contains all the components of the mission.
+Returns a `Vec<`[`MissionComponent`](missions.md#missioncomponent)`>` which contains all the components of the mission.
 
 ### Config
 
@@ -359,4 +363,4 @@ pub struct ConfigResponse {
 
 ### Owner/Operators/IsOperator/
 
-Check [AndrQuery](../ado\_base/andrreceive-andrquery.md).
+Check [AndrQuery](ado\_base/andrreceive-andrquery.md).
