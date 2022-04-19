@@ -6,7 +6,7 @@ description: An ADO contract to mint, edit and query receipts containing event d
 
 ## Introduction
 
-The `Receipt` ADO is a smart contract that is used to print receipts for transactions done by our ADOs.&#x20;
+The **Receipt** ADO is a smart contract that is used to print receipts for transactions done by our ADOs.&#x20;
 
 This contract is implemented as a module and added to ADOs that implement modules.  When we have some transfer of funds, the receipt contract is automatically called and the `events` of the transaction are saved in the `Receipt` struct.
 

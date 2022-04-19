@@ -1,9 +1,3 @@
----
-description: >-
-  The message definitions for the NFT Collectible contract. Used to generate a
-  custom NFT collection. Can have modules attached to extend utility.
----
-
 # NFT Collectible
 
 ## Introduction

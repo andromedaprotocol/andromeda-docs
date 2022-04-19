@@ -35,9 +35,9 @@ pub struct InstantiateMsg {
 ```json
 {
 "token_address":{
-   "identifier":"terra1...",
+   "identifier":"terra1..."
    }
-"primitive_address":"terra1..."
+"primitive_address":"terra1...",
 "can_mint_after_sale": true
 }
 ```

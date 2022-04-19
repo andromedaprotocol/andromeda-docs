@@ -20,7 +20,7 @@ pub struct InstantiateMsg {
 {
 "asset_info":{
 "asset_info_unchecked":{
- "Cw20":"terra1..."
+ "cw20":"terra1..."
    }
  }
 }
@@ -204,7 +204,7 @@ pub struct ConfigResponse {
 {% tab title="JSON" %}
 ```rust
 {
-"AssetInfo":{
+"asset_info":{
  "Cw20":"terra1..."
    }
  }

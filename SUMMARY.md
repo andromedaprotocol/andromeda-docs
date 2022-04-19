@@ -14,6 +14,7 @@
   * [Rates](ado-classes/rates.md)
   * [Receipt](ado-classes/receipt.md)
   * [Splitter](ado-classes/andromeda-splitter.md)
+  * [Swapper](ado-classes/swapper.md)
   * [Timelock](ado-classes/timelock.md)
   * [Vault](ado-classes/vault.md)
   * [ADO Offers](ado-classes/ado-offers.md)
