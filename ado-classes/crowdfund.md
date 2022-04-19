@@ -38,7 +38,7 @@ pub struct InstantiateMsg {
    "identifier":"terra1...",
    }
 "primitive_address":"terra1..."
-"can_mint_after_sale": true,
+"can_mint_after_sale": true
 }
 ```
 {% endtab %}
@@ -108,9 +108,9 @@ pub enum ExecuteMsg{
 {% tab title="JSON" %}
 ```rust
 {
-"start_sale"{
+"start_sale":{
  "expiration":{
-  "at_height": 550,
+  "at_height": 550
   },
   "price":{
     "denom":"uusd",
@@ -157,7 +157,7 @@ A sale needs to be in progress in order to purchase a token.
 ```json
 {
 "purchase":{
-  "token_id":"atoken",
+  "token_id":"atoken"
     }
 }
 ```
@@ -205,7 +205,7 @@ Ends the sale. In the case that the minimum sold is not achieved, refunds are se
 ```json
 {
 "end_sale":{
-  "limit": 200,
+  "limit": 200
   }
  }
 ```

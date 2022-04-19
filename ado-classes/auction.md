@@ -97,7 +97,7 @@ pub enum Cw721HookMsg {
           "start_time": { "at_height": 500 },
           "end_time": { "at_height": 600 },
           "coin_denom": "uusd",
-          "whitelist": ["terra1...", "terra1...", ...],
+          "whitelist": ["terra1...", "terra1...", ...]
     }
 }
 ```
@@ -154,7 +154,7 @@ An auction can be updated only if it has not started yet.&#x20;
    "start_time": { "at_height": 500 },
    "end_time": { "at_height": 600 },
    "coin_denom": "uusd",
-   "whitelist": ["terra1...", "terra1...", ...],
+   "whitelist": ["terra1...", "terra1...", ...]
     }
  }
 ```
@@ -197,7 +197,7 @@ pub enum ExecuteMsg {
 {
   "cancel_auction": {
     "token_id":"token_001",
-    "token_address":"terra1...",
+    "token_address":"terra1..."
   }
 }
 ```
@@ -230,7 +230,7 @@ pub enum ExecuteMsg {
 {
     "place_bid": {
         "token_id": "token_001",
-        "token_address":"terra1...",
+        "token_address":"terra1..."
     }
 }
 ```
@@ -342,7 +342,7 @@ pub enum QueryMsg {
 {
     "latest_auction_state": {
         "token_id": "token_001",
-        "token_address":"tera1...",
+        "token_address":"tera1..."
     }
 }
 ```
@@ -384,7 +384,7 @@ pub struct AuctionStateResponse {
           "auction_id": "0",
           "coin_denom": "uusd",
           "claimed": false,
-          "whitelist": ["terra1...", "terra1...", ...],
+          "whitelist": ["terra1...", "terra1...", ...]
     }
 }
 ```
@@ -462,7 +462,7 @@ pub enum QueryMsg {
  "bids":{
     "auction_id": "4",
     "start_after": 3,
-    "limit": 25,
+    "limit": 25
     }
  }
     
@@ -616,7 +616,7 @@ pub struct AuctionIdsResponse {
 "auction_infos_for_address":{
        "token_address":"terra1...",
        "start_after":"3",
-       "limit": 15,
+       "limit": 15
        }
 }
 ```

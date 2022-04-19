@@ -151,7 +151,7 @@ pub enum ExecuteMsg{
 ```json
 {
 "claim_ownership":{
-  "name":"mycomponent",
+  "name":"mycomponent"
   }
 }
 ```
@@ -225,7 +225,7 @@ pub enum ExecuteMsg {
 {
 "update_address":{
  "name":"componentname",
- "addr":"terra1...",
+ "addr":"terra1..."
   }
  }
 
@@ -238,7 +238,7 @@ pub enum ExecuteMsg {
 | `name` | String | The name of the ADO.                   |
 | `addr` | String | The new contract address for the ADO.  |
 
-### UpdateOwner/UpdateOperators
+### AndrReceive
 
 Check [AndrReceive](../ado\_base/andrreceive-andrquery.md).
 
@@ -356,12 +356,12 @@ pub struct ConfigResponse {
 ```json
 {
 "name":"mymission",
-"owner":"terra1...",
+"owner":"terra1..."
 }
 ```
 {% endtab %}
 {% endtabs %}
 
-### Owner/Operators/IsOperator/
+### AndrQuery
 
-Check [AndrQuery](../ado\_base/andrreceive-andrquery.md).
+Check [AndrQuery](../ado\_base/andrreceive-andrquery.md#andrquery).

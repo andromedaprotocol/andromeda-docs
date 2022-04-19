@@ -43,8 +43,10 @@ pub struct InstantiateMsg {
           "address": {
             "identifier": "my_address_list",
           },
-          "is_mutable": true,
+          "is_mutable": true
         },
+        ...
+    ]
 }
 ```
 {% endtab %}
@@ -78,7 +80,7 @@ pub struct AddressPercent {
 ```javascript
 {
     "recipient":{
-    "addr":"terra1...",
+    "addr":"terra1..."
      },
     "percent": "50"
 }
@@ -121,9 +123,9 @@ pub enum ExecuteMsg {
         "recipients": [
             {
                 "recipient":{
-                "addr":"terra1...",
+                "addr":"terra1..."
                 }
-                "percent": "50",
+                "percent": "50"
             },
             ...
         ]
@@ -245,7 +247,7 @@ pub struct GetSplitterConfigResponse {
                 { 
                 "terra1..."
                 },
-                "percent": "50",
+                "percent": "50"
             },
             ...
         ],

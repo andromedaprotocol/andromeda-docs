@@ -35,9 +35,9 @@ pub struct InstantiateMsg {
 {
 "strategies":[
      {
-     "strategy_type":{"Anchor"}
+     "strategy_type":{"Anchor"},
      "address":"terra1..."
-     }
+     },
      ...
      ],
 "operators":["terra1...","terra1...",...]
@@ -163,7 +163,7 @@ pub enum ExecuteMsg{
      "token":"UST",
      "withdrawal_type":{
       "percentage":"40"
-     }
+     },
      ...
      ]
     }

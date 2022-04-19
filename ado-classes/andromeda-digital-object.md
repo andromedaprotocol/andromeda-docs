@@ -504,14 +504,14 @@ pub enum ExecuteMsg {
 {% tab title="JSON" %}
 ```javascript
 {
-    "transfer_agreement": {
-        "token_id": "anewtoken",
-        "agreement":{
-         "amount":{
-           "denom":"uusd",
-           "amount":"1000",
+"transfer_agreement": {
+      "token_id": "anewtoken",
+      "agreement":{
+          "amount":{
+             "denom":"uusd",
+             "amount":"1000"
            }
-           "purchaser":"terra1...",
+           "purchaser":"terra1..."
            }
     }
 }
@@ -580,7 +580,7 @@ pub enum QueryMsg {
 ```javascript
 {
     "owner_of": {
-        "token_id": "anewtoken"
+        "token_id": "anewtoken",
         "include_expired": false
     }
 }
@@ -809,7 +809,7 @@ pub struct NftInfoResponse<T> {
          "name":"mytoken",
          "publisher":"publisher",
          "description":"This token ....",
-         "archived": false,
+         "archived": false
         }
  }
 ```
@@ -924,7 +924,7 @@ pub enum QueryMsg {
 {
 "tokens": {
             "owner":"terra1...",
-            "limit": 25,
+            "limit": 25
             }
     }
 

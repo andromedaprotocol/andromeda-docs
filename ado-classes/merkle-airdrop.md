@@ -117,7 +117,7 @@ Only addresses found in the Merkle-Root can claim tokens.
 {
 "claim":{
  "stage": 3,
- "amount":"10000"
+ "amount":"10000",
  "proof":["876dd0a3ef4a28","..."]
 }
 ```

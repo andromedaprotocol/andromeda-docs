@@ -128,7 +128,7 @@ DepositCollateralToAnchor {
 ```json
 {
 "deposit_collateral_to_anchor":{
-"collateral_addr":"terra1...",
+"collateral_addr":"terra1..."
    }
 }
 ```
@@ -165,7 +165,7 @@ pub enum ExecuteMsg {
 "amount":"10000",
 "unbond": false,
 "recipient":{
-"addr":"terra1...",
+        "addr":"terra1..."
         }
     }
 }

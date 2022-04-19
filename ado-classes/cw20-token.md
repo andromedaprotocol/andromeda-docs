@@ -163,7 +163,7 @@ pub enum ExecuteMsg {
 {
  "transfer":{
       "recipient":"terra1...",
-      "amount": "100",
+      "amount": "100"
       }
  }
 ```
@@ -269,7 +269,7 @@ Sets an `amount` of tokens from the owner that the specified `spender` can inter
 {
  "increase_allowance":{
      "spender":"terra1...",
-     "amount":"1000",
+     "amount":"1000"
      }
  }
      
@@ -354,7 +354,7 @@ pub enum ExecuteMsg {
  "transfer_from":{
    "owner":"terra1...",
    "recipient":"terra1...",
-   "amount":"50",
+   "amount":"50"
      }
  }
  
@@ -438,7 +438,7 @@ pub enum ExecuteMsg{
 {
  "burn_from":{
    "owner":"terra1...",
-   "amount": "100",
+   "amount": "100"
      }
  }
 ```
@@ -519,7 +519,7 @@ pub enum QueryMsg {
 ```json
 {
 "balance":{
-    "address":"terra1...",
+    "address":"terra1..."
    }
  }
  
@@ -827,7 +827,7 @@ Returns all the addresses that have a balance.
 ```json
 {
 "all_accounts":{
- "limit": 25,
+ "limit": 25
 }
 ```
 {% endtab %}

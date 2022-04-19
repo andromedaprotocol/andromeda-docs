@@ -27,7 +27,7 @@ pub struct InstantiateMsg {
 ```javascript
 {
     "minter": "terra1...",
-    "operators": ["terra1...", ...],
+    "operators": ["terra1...", ...]
 }
 ```
 {% endtab %}
@@ -176,7 +176,7 @@ pub enum QueryMsg {
 ```rust
 {
     "receipt": {
-        "receipt_id": "1",
+        "receipt_id": "1"
     }
 }
 ```
@@ -209,7 +209,7 @@ pub struct ReceiptResponse {
                 "attributes": [
                     {
                         "key": "payment",
-                        "value": "terra1...<100uluna",
+                        "value": "terra1...<100uluna"
                     },
                     ...
                 ]
