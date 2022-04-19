@@ -19,7 +19,7 @@ pub struct InstantiateMsg {}
 
 ### Create
 
-Creates a new [ADO](andromeda-digital-object.md) contract. The sender of the message is defined as the minter for the ADO contract and as such, the owner of the ADO contract.
+Creates a new [ADO](ado-classes/andromeda-digital-object.md) contract. The sender of the message is defined as the minter for the ADO contract and as such, the owner of the ADO contract.
 
 {% tabs %}
 {% tab title="Rust" %}
@@ -28,7 +28,7 @@ Creates a new [ADO](andromeda-digital-object.md) contract. The sender of the mes
 pub enum ExecuteMsg {
     Create {
         name: String,
-        symbol: String,
+        symbol: String
     }
 }
 ```
@@ -39,7 +39,7 @@ pub enum ExecuteMsg {
 {
     "create": {
         "name": "Example Token",
-        "symbol": "ET"
+        "symbol": "ET",
     }
 }
 ```
@@ -122,14 +122,14 @@ pub enum ExecuteMsg {
 {% endtab %}
 {% endtabs %}
 
-| Name          | Type   | Description                        |
-| ------------- | ------ | ---------------------------------- |
-| `code_id_key` | String | The key of the code\_id to update. |
-| `code_id`     | u64    | The new code id.                   |
+| Name              | Type         | Description                                                                            |
+| ----------------- | ------------ | -------------------------------------------------------------------------------------- |
+| `receipt_code_id` | Option\<u64> | Optional new code ID for the [receipt](ado-classes/receipt.md) contracts.              |
+| `token_code_id`   | Option\<u64> | Optional new code ID for the [ADO](ado-classes/andromeda-digital-object.md) contracts. |
 
 ### AndrReceive
 
-Check [AndrReceive](../ado\_base/andrreceive-andrquery.md).
+Check [AndrReceive](ado\_base/andrreceive-andrquery.md).
 
 ## QueryMsg
 
@@ -222,4 +222,4 @@ Returns a u64 which represents the `code_id`.
 
 ### AndrQuery
 
-Check [AndrQuery](../ado\_base/andrreceive-andrquery.md).
+Check [AndrQuery](ado\_base/andrreceive-andrquery.md).
