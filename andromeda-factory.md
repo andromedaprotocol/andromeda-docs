@@ -19,7 +19,7 @@ pub struct InstantiateMsg {}
 
 ### Create
 
-Creates a new [ADO](ado-classes/andromeda-digital-object.md) contract. The sender of the message is defined as the minter for the ADO contract and as such, the owner of the ADO contract.
+Creates a new [ADO](andromeda-digital-object.md) contract. The sender of the message is defined as the minter for the ADO contract and as such, the owner of the ADO contract.
 
 {% tabs %}
 {% tab title="Rust" %}
@@ -28,7 +28,7 @@ Creates a new [ADO](ado-classes/andromeda-digital-object.md) contract. The sende
 pub enum ExecuteMsg {
     Create {
         name: String,
-        symbol: String
+        symbol: String,
     }
 }
 ```
@@ -115,21 +115,21 @@ pub enum ExecuteMsg {
 {
     "update_code_id": {
         "code_id_key": "adress_list",
-        "code_id": 2
+        "code_id": 2,
     }
 }
 ```
 {% endtab %}
 {% endtabs %}
 
-| Name              | Type         | Description                                                                            |
-| ----------------- | ------------ | -------------------------------------------------------------------------------------- |
-| `receipt_code_id` | Option\<u64> | Optional new code ID for the [receipt](ado-classes/receipt.md) contracts.              |
-| `token_code_id`   | Option\<u64> | Optional new code ID for the [ADO](ado-classes/andromeda-digital-object.md) contracts. |
+| Name              | Type         | Description                                                                |
+| ----------------- | ------------ | -------------------------------------------------------------------------- |
+| `receipt_code_id` | Option\<u64> | Optional new code ID for the [receipt](ado-types/receipt.md) contracts.    |
+| `token_code_id`   | Option\<u64> | Optional new code ID for the [ADO](andromeda-digital-object.md) contracts. |
 
-### AndrReceive
+### UpdateOwner/UpdateOperators
 
-Check [AndrReceive](ado\_base/andrreceive-andrquery.md).
+Check [AndrReceive](andrreceive-andrquery.md).
 
 ## QueryMsg
 
@@ -178,7 +178,7 @@ pub struct AddressResponse {
 {% tab title="JSON" %}
 ```javascript
 {
- "address": "terra1..."
+    "address": "terra1..."
 }
 ```
 {% endtab %}
@@ -218,8 +218,8 @@ pub enum QueryMsg {
 | ----- | ------ | ----------------------------------------------------- |
 | `key` | String | The key of the contract which we want the code id of. |
 
-Returns a u64 which represents the `code_id`.
+Returns a u64 which represents the code\_id.
 
-### AndrQuery
+### Owner/Operators/IsOperator
 
-Check [AndrQuery](ado\_base/andrreceive-andrquery.md).
+Check [AndrQuery](andrreceive-andrquery.md).

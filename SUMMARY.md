@@ -3,6 +3,7 @@
 * [Introduction](README.md)
 * [ADO Classes](ado-classes/README.md)
   * [Address List](ado-classes/address-list.md)
+  * [ADO Offers](ado-classes/ado-offers.md)
   * [Anchor](ado-classes/anchor.md)
   * [Auction](ado-classes/auction.md)
   * [Crowdfund](ado-classes/crowdfund.md)
@@ -17,7 +18,7 @@
   * [Swapper](ado-classes/swapper.md)
   * [Timelock](ado-classes/timelock.md)
   * [Vault](ado-classes/vault.md)
-  * [ADO Offers](ado-classes/ado-offers.md)
+  * [Wrapped-Cw721](ado-classes/wrapped-cw721.md)
 * [Missions](ado-classes/mission.md)
 
 ## Modules

@@ -32,7 +32,7 @@ pub struct InstantiateMsg {
 "instantiate_type":{
   "address":"terra1..."
     }
-   }
+ },
    "primitive_contract":"terra1..."
  }
 ```
@@ -67,7 +67,7 @@ pub enum InstantiateType {
 }
 ```
 
-* **New**: A new contract that would be instantiated using a binary message.
+* **New**: A new contract that would be instantiated using a base64 encoded binary message.
 * **Address**: An existing contract that will be referenced by the contract address.&#x20;
 
 ## ExecuteMsg
@@ -181,7 +181,7 @@ Represents the type of an fungible asset. Each asset info instance can be one of
 
 ### Send
 
-Send is an internal function that sends funds to the recipient.
+Send is an **internal** function that sends funds to the recipient.
 
 {% tabs %}
 {% tab title="Rust" %}

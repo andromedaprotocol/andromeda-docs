@@ -27,7 +27,7 @@ pub struct InstantiateMsg {
 | `operators`    | Vec\<String> | A list of addresses that are authorised to interact with the contract.                                                             |
 | `is_inclusive` | bool         | Whether or not the address list is inclusive. If `true` the address list is a whitelist, if false the address list is a blacklist. |
 
-More information about the address list contract can be found [here](../ado-classes/address-list.md).
+More information about the address list contract can be found [here](../ado-types/address-list.md).
 
 ## Hooks
 
