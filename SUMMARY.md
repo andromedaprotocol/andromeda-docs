@@ -19,7 +19,7 @@
   * [Timelock](ado-classes/timelock.md)
   * [Vault](ado-classes/vault.md)
   * [Wrapped-Cw721](ado-classes/wrapped-cw721.md)
-* [Missions](ado-classes/mission.md)
+* [Mission](mission.md)
 
 ## Modules
 

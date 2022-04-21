@@ -26,7 +26,6 @@ pub struct InstantiateMsg {
     pub token_address: AndrAddress,
     pub can_mint_after_sale: bool,
     pub modules: Option<Vec<Module>>,
-    pub primitive_address: String,
 }
 ```
 {% endtab %}
@@ -48,7 +47,6 @@ pub struct InstantiateMsg {
 | --------------------- | --------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- |
 | `token_address`       | [AndrAddress](../modules/module-definitions.md#andradress)                  | The contract address of the token.                                                                         |
 | `modules`             | Option\<Vec<[Module](../modules/module-definitions.md#module-definitions)>> | Optional set of modules to attach to the contract.                                                         |
-| `primitive_address`   | String                                                                      | The primitive contract address used to retrieve data.                                                      |
 | `can_mint_after_sale` | bool                                                                        | A flag to whether minting is allowed after a sale has been done. Minting is never allowed during a sale.   |
 
 ## ExecuteMsg
@@ -71,13 +69,49 @@ The limit for the number of `MintMsg` that can be defined at once is 100.
 {% tab title="Rust" %}
 ```rust
 pub enum ExecuteMsg {
- Mint(Vec<MintMsg<TokenExtension>>),
+ Mint(Vec<CrowdfundMintMsg>),
  }
+```
+{% endtab %}
+
+{% tab title="JSON" %}
+```json
+{
+"mint":[
+ {
+ "token_id":"myid",
+ "owner":"terra1...",
+  "extension":{
+         "name":"mytoken",
+         "publisher":"publisher",
+         "description":"This token ....",
+         "archived": false
+        }
+      },
+     ...
+    ]
+  }
 ```
 {% endtab %}
 {% endtabs %}
 
-Minting definition is the same as the one defined in the NFT Collectible contract found [here](andromeda-digital-object.md#mint).
+#### CrowdfundMintMsg
+
+```rust
+pub struct CrowdfundMintMsg {
+    pub token_id: String,
+    pub owner: Option<String>,
+    pub token_uri: Option<String>,
+    pub extension: TokenExtension,
+}
+```
+
+| Name        | Type                                                         | Description                                                                                                                |
+| ----------- | ------------------------------------------------------------ | -------------------------------------------------------------------------------------------------------------------------- |
+| `token_id`  | String                                                       | Unique Id of the NFT.                                                                                                      |
+| `owner`     | Option\<String>                                              | The owner of the newly minted NFT.                                                                                         |
+| `token_uri` | Option\<String>                                              |  Universal resource identifier for this NFT  Should point to a JSON file that conforms to the CW721  Metadata JSON Schema. |
+| `extension` | [TokenExtension](andromeda-digital-object.md#tokenextension) | Any custom extension used by this contract.                                                                                |
 
 ### StartSale
 
@@ -136,10 +170,10 @@ pub enum ExecuteMsg{
 
 ### Purchase
 
-Purchases the token with the specified `token_id`.
+Purchases tokens based on the specified limit or amount of funds sent.
 
 {% hint style="warning" %}
-A sale needs to be in progress in order to purchase a token.
+A sale needs to be in progress in order to purchase tokens.
 {% endhint %}
 
 {% tabs %}
@@ -147,7 +181,7 @@ A sale needs to be in progress in order to purchase a token.
 ```rust
  pub enum ExecuteMsg{
  Purchase {
-        token_id: String,
+     number_of_tokens: Option<u32>,
     }
   }
 ```
@@ -163,6 +197,40 @@ A sale needs to be in progress in order to purchase a token.
 ```
 {% endtab %}
 {% endtabs %}
+
+| Name               | Type         | Description                                                                                                                                       |
+| ------------------ | ------------ | ------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `number_of_tokens` | Option\<u32> | An optional limit to the number of tokens to purchase. If not specified, the maximum number of tokens are purchased based on the funds allocated. |
+
+### PurchaseByTokenId
+
+Purchases a token with the specified `token_id`.
+
+{% tabs %}
+{% tab title="Rust" %}
+```rust
+ pub enum Execute {
+ PurchaseByTokenId {
+        token_id: String,
+    },
+ }
+```
+{% endtab %}
+
+{% tab title="JSON" %}
+```json
+{
+"purchase_token_by_id":{
+    "token_id":"myid"
+    }
+}
+```
+{% endtab %}
+{% endtabs %}
+
+| Name       | Type   | Descripton                           |
+| ---------- | ------ | ------------------------------------ |
+| `token_id` | String | The token id of the NFT to purchase. |
 
 ### ClaimRefund
 
@@ -344,6 +412,70 @@ pub struct Config {
 | --------------------- | ---- | -------------------------------------------------------------------------------------- |
 | `token_address`       | Addr | The address of the token contract whose tokens are being sold.                         |
 | `can_mint_after_sale` | bool | Whether or not the owner can mint additional tokens after the sale has been conducted. |
+
+### AvailableTokens
+
+Queries the available tokens for sale.
+
+{% tabs %}
+{% tab title="Rust" %}
+```rust
+pub enum QueryMsg {
+     AvailableTokens {
+            start_after: Option<String>,
+            limit: Option<u32>,
+        }
+ }
+```
+{% endtab %}
+
+{% tab title="JSON" %}
+```json
+{
+"available_tokens":{}
+}
+```
+{% endtab %}
+{% endtabs %}
+
+| Name          | Type            | Description                                                                                                             |
+| ------------- | --------------- | ----------------------------------------------------------------------------------------------------------------------- |
+| `start_after` | Option\<String> | Optional parameter to specify which Token to start from. If none specified index `0` will be used. Used for pagination. |
+| `limit`       | Option\<u32>    | Limit to number of available tokens to query.                                                                           |
+
+Returns a `Vec<String>` containing the token ids of the available NFTs for sale.
+
+### IsTokenAvailable
+
+Checks if the token with the specified `token_id` is available for sale.
+
+{% tabs %}
+{% tab title="Rust" %}
+```rust
+pub enum QueryMsg {
+  IsTokenAvailable {
+        id: String,
+    }
+}
+```
+{% endtab %}
+
+{% tab title="JSON" %}
+```json
+{
+"is_token_available":{
+    "id":"token_id"
+    }
+ }
+```
+{% endtab %}
+{% endtabs %}
+
+| Name | Type   | Description                   |
+| ---- | ------ | ----------------------------- |
+| `id` | String | The id of the token to check. |
+
+Returns a `bool` response specifying whether the token is available for purchase or not.
 
 ### AndrQuery
 

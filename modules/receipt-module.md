@@ -8,7 +8,7 @@ description: >-
 
 ## Definition
 
-The `Receipt` module uses the [`Receipt`](../ado-types/receipt.md) contract to mint receipts.
+The `Receipt` module uses the [`Receipt`](../ado-classes/receipt.md) contract to mint receipts.
 
 ### InstantiateMsg
 
@@ -27,7 +27,7 @@ pub struct InstantiateMsg {
 | `minter`    | String                | The address authorized to mint new receipts                                                      |
 | `operators` | Option\<Vec\<String>> | Optional list of moderating addresses authorized to update receipts, defaults to an empty vector |
 
-More information on the Receipt contract can be found [here](../ado-types/receipt.md).
+More information on the Receipt contract can be found [here](../ado-classes/receipt.md).
 
 ## Hooks
 

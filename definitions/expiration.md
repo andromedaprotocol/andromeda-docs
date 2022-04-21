@@ -31,14 +31,14 @@ pub enum Expiration {
 ```json
 {
 "expiration":{
-"at_height": 500,
+"at_height": 500
 }
 
 or
 
 {
 "expiration":{
-"at_time":"124655832",
+"at_time":"124655832"
 }
 
 ```

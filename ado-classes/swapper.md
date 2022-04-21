@@ -2,7 +2,7 @@
 
 ## Introduction
 
-The **Swapper** ADO allows us to add swapping functionality to any [mission](mission.md) very easily, along with being able to choose the Automated Market Maker(AMM) that does the swapping.
+The **Swapper** ADO allows us to add swapping functionality to any [mission](../mission.md) very easily, along with being able to choose the Automated Market Maker(AMM) that does the swapping.
 
 This is done by implementing a common `Swap` message on each possible engine such that the `Swapper` will not care what the underlying contract is. Currently, the only swapping engine that can be used is Astroport, but we intend to add more in the future.
 

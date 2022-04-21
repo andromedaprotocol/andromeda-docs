@@ -1,11 +1,4 @@
----
-description: >-
-  Each mission is made up of mission components (ADO contracts) which will be
-  provided a name. This name will be linked to the ADO contract address. It
-  allows then to query these addresses by name.
----
-
-# Missions
+# Mission
 
 ## Introduction
 
@@ -240,7 +233,7 @@ pub enum ExecuteMsg {
 
 ### AndrReceive
 
-Check [AndrReceive](../ado\_base/andrreceive-andrquery.md).
+Check [AndrReceive](ado\_base/andrreceive-andrquery.md).
 
 ## QueryMsg
 
@@ -272,7 +265,29 @@ pub enum QueryMsg{
 | ------ | ------ | ---------------------------------------------------------- |
 | `name` | String | The name of the component to get the contract address for. |
 
-Returns the contract address as a string.
+Returns a `Vec<ComponentAddress>`.
+
+#### ComponentAddress
+
+{% tabs %}
+{% tab title="Rust" %}
+```rust
+pub struct ComponentAddress {
+    pub name: String,
+    pub address: String,
+}
+```
+{% endtab %}
+
+{% tab title="JSON" %}
+```json
+{
+"name":"componentname",
+"address":"terra1..."
+}
+```
+{% endtab %}
+{% endtabs %}
 
 ### GetAddresses
 
@@ -364,4 +379,34 @@ pub struct ConfigResponse {
 
 ### AndrQuery
 
-Check [AndrQuery](../ado\_base/andrreceive-andrquery.md#andrquery).
+```rust
+pub enum QueryMsg {
+    AndrQuery(AndromedaQuery),
+}
+```
+
+If the [`AndromedaQuery`](ado\_base/andrreceive-andrquery.md#andromedaquery) is of type `Get` , the contract will query address of the specified name (data) . If no data is supplied in the Get, an error will occur.
+
+```rust
+fn handle_andromeda_query(
+    deps: Deps,
+    env: Env,
+    msg: AndromedaQuery,
+) -> Result<Binary, ContractError> {
+    match msg {
+        AndromedaQuery::Get(data) => match data {
+            None => Err(ContractError::ParsingError {
+                err: String::from("No data passed with AndrGet query"),
+            }),
+            Some(_) => {
+                //Default to get address for given ADO name
+                let name: String = parse_message(&data)?;
+                encode_binary(&query_component_address(deps, name)?)
+            }
+        },
+        _ => ADOContract::default().query(deps, env, msg, query),
+    }
+}
+```
+
+Check [AndrQuery](ado\_base/andrreceive-andrquery.md#andrquery) for the rest of the default queries.

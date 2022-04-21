@@ -22,7 +22,7 @@ pub struct InstantiateMsg {
 | -------------------------- | ------ | ---------------------------------------------- |
 | `andromeda_cw721_contract` | String | The address of the contract to give offers to. |
 
-More information on the Offers contract can be found [here](../ado-types/ado-offers.md).
+More information on the Offers contract can be found [here](../ado-classes/ado-offers.md).
 
 ## Hooks
 

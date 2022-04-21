@@ -119,7 +119,7 @@ pub struct TokenExtension {
     pub transfer_agreement: Option<TransferAgreement>,
     pub metadata: Option<TokenMetadata>,
     pub archived: bool,
-    pub pricing: Option<Coin>,
+  
 }
 ```
 

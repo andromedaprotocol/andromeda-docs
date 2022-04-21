@@ -55,7 +55,7 @@ If `SetValue` uses a `name` that is already in use, the old `value` is overwritt
 ```rust
 pub enum ExecuteMsg{
   SetValue {
-        name: Option<String>,
+        key: Option<String>,
         value: Primitive,
     }
   }
@@ -66,7 +66,7 @@ pub enum ExecuteMsg{
 ```json
 {
   "set_value": {
-    "name": "rate_name",
+    "key": "rate_name",
     "value": {
       "coin": {
         "denom": "uusd",
@@ -122,7 +122,7 @@ If `name` is not specified the default key ("default") will be used.
 ```json
 {
 "delete_value":{
- "name":"rate_name"
+ "key":"rate_name"
     }
  }
 
@@ -142,4 +142,32 @@ Check [AndrReceive](../ado\_base/andrreceive-andrquery.md).
 
 ### AndrQuery
 
-Check [AndrQuery](../ado\_base/andrreceive-andrquery.md#andrquery).
+```rust
+pub enum QueryMsg {
+    AndrQuery(AndromedaQuery),
+}
+```
+
+If the [`AndromedaQuery`](../ado\_base/andrreceive-andrquery.md#andromedaquery) is of type `Get` , the contract will query the value of the specified key (data). If no data is supplied in the Get, then the contract will query the default key value.
+
+```rust
+fn handle_andromeda_query(
+    deps: Deps,
+    env: Env,
+    msg: AndromedaQuery,
+) -> Result<Binary, ContractError> {
+    match msg {
+        AndromedaQuery::Get(data) => match data {
+            // Treat no binary as request to get value with default key.
+            None => encode_binary(&query_value(deps, None)?),
+            Some(_) => {
+                let name: String = parse_message(&data)?;
+                encode_binary(&query_value(deps, Some(name))?)
+            }
+        },
+        _ => ADOContract::default().query(deps, env, msg, query),
+    }
+}
+```
+
+Check [AndrQuery](../ado\_base/andrreceive-andrquery.md#andrquery) for the rest of the default queries.
