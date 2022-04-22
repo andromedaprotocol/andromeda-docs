@@ -35,10 +35,10 @@
 
 ***
 
-* [Definitions](definitions/README.md)
-  * [Recipient](recipient.md)
-  * [Coin](definitions/coin.md)
-  * [Expiration](definitions/expiration.md)
+* [Common Types](common-types/README.md)
+  * [Recipient](common-types/recipient.md)
+  * [Coin](common-types/coin.md)
+  * [Expiration](common-types/expiration.md)
 * [ADO\_Base](ado\_base.md)
   * [AndrReceive/AndrQuery](ado\_base/andrreceive-andrquery.md)
 * [User Docs](user-docs/README.md)

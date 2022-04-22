@@ -37,8 +37,26 @@ pub struct ADORecipient {
 
 A struct used to reference another ADO contract. Can be either an address or identifier of an ADO in a mission.&#x20;
 
+{% tabs %}
+{% tab title="Rust" %}
 ```rust
 pub struct AndrAddress {
     pub identifier: String,
  }
 ```
+{% endtab %}
+
+{% tab title="JSON" %}
+```json
+{
+"identifier":"terra1..."
+}
+
+or
+
+{
+"identifier":"rates"
+}
+```
+{% endtab %}
+{% endtabs %}

@@ -106,11 +106,11 @@ pub enum ExecuteMsg {
 {% endtab %}
 {% endtabs %}
 
-| Name        | Type                                          | Description                                                                             |
-| ----------- | --------------------------------------------- | --------------------------------------------------------------------------------------- |
-| `recipient` | Option<[Recipient](../recipient.md)>          | The recipient of the deposit. Defaults to the sender if not specified.                  |
-| `amount`    | Option<[Coin](../definitions/coin.md)>        | The amount to deposit. If not specified then the sent funds are used as the amount.     |
-| `strategy`  | Option<[StrategyType](vault.md#strategytype)> | The strategy to deposit the funds to. If not specified, the funds will go to the vault. |
+| Name        | Type                                              | Description                                                                             |
+| ----------- | ------------------------------------------------- | --------------------------------------------------------------------------------------- |
+| `recipient` | Option<[Recipient](../common-types/recipient.md)> | The recipient of the deposit. Defaults to the sender if not specified.                  |
+| `amount`    | Option<[Coin](../common-types/coin.md)>           | The amount to deposit. If not specified then the sent funds are used as the amount.     |
+| `strategy`  | Option<[StrategyType](vault.md#strategytype)>     | The strategy to deposit the funds to. If not specified, the funds will go to the vault. |
 
 #### StrategyType
 
@@ -158,11 +158,11 @@ pub enum ExecuteMsg{
 {% endtab %}
 {% endtabs %}
 
-| Name          | Type                                          |                                                                                          |
-| ------------- | --------------------------------------------- | ---------------------------------------------------------------------------------------- |
-| `recipient`   | Option<[Recipient](../recipient.md)>          | The address to receive the withdrawn funds.                                              |
-| `withdrawals` | Vec\<Withdrawal>                              | The funds to withdraw.                                                                   |
-| `strategy`    | Option<[StrategyType](vault.md#strategytype)> | The strategy to withdraw from. If not specified, the funds are withdrawn from the vault. |
+| Name          | Type                                              |                                                                                          |
+| ------------- | ------------------------------------------------- | ---------------------------------------------------------------------------------------- |
+| `recipient`   | Option<[Recipient](../common-types/recipient.md)> | The address to receive the withdrawn funds.                                              |
+| `withdrawals` | Vec\<Withdrawal>                                  | The funds to withdraw.                                                                   |
+| `strategy`    | Option<[StrategyType](vault.md#strategytype)>     | The strategy to withdraw from. If not specified, the funds are withdrawn from the vault. |
 
 #### Withdrawal
 
@@ -219,10 +219,10 @@ Updates the contract address used for the specified strategy.
 {% endtab %}
 {% endtabs %}
 
-| Name       | Type                                       | Description                                     |
-| ---------- | ------------------------------------------ | ----------------------------------------------- |
-| `strategy` | [StrategyType](vault.md#strategytype-1)    | The strategy to set a new contract address for. |
-| `address`  | [AndrAddress](../recipient.md#andraddress) | The new contract address                        |
+| Name       | Type                                                    | Description                                     |
+| ---------- | ------------------------------------------------------- | ----------------------------------------------- |
+| `strategy` | [StrategyType](vault.md#strategytype-1)                 | The strategy to set a new contract address for. |
+| `address`  | [AndrAddress](../common-types/recipient.md#andraddress) | The new contract address                        |
 
 ## QueryMsg
 

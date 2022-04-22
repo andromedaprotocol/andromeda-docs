@@ -152,10 +152,10 @@ pub enum ExecuteMsg{
 {% endtab %}
 {% endtabs %}
 
-| Name             | Type                                 | Description                                                                                                             |
-| ---------------- | ------------------------------------ | ----------------------------------------------------------------------------------------------------------------------- |
-| `ask_asset_info` | AssetInfo                            | The asset to be converted to. If we want to convert any sent funds to 'UST' the we would define `ask_asset_info` as UST |
-| `recipient`      | Option<[Recipient](../recipient.md)> | The recipient of the swapped funds.                                                                                     |
+| Name             | Type                                              | Description                                                                                                             |
+| ---------------- | ------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- |
+| `ask_asset_info` | AssetInfo                                         | The asset to be converted to. If we want to convert any sent funds to 'UST' the we would define `ask_asset_info` as UST |
+| `recipient`      | Option<[Recipient](../common-types/recipient.md)> | The recipient of the swapped funds.                                                                                     |
 
 #### AssetInfo
 
@@ -196,10 +196,10 @@ pub enum ExecuteMsg {
 {% endtab %}
 {% endtabs %}
 
-| Name             | Type                         | Description                                                                                                             |
-| ---------------- | ---------------------------- | ----------------------------------------------------------------------------------------------------------------------- |
-| `ask_info_asset` | AssetInfo                    | The asset to be converted to. If we want to convert any sent funds to 'UST' the we would define `ask_asset_info` as UST |
-| `recipient`      | [Recipient](../recipient.md) | The recipient of the swapped funds.                                                                                     |
+| Name             | Type                                      | Description                                                                                                             |
+| ---------------- | ----------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- |
+| `ask_info_asset` | AssetInfo                                 | The asset to be converted to. If we want to convert any sent funds to 'UST' the we would define `ask_asset_info` as UST |
+| `recipient`      | [Recipient](../common-types/recipient.md) | The recipient of the swapped funds.                                                                                     |
 
 ### AndrReceive
 

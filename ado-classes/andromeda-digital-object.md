@@ -53,12 +53,12 @@ pub struct InstantiateMsg {
 {% endtab %}
 {% endtabs %}
 
-| Name      | Type                                       | Description                                                                                                            |
-| --------- | ------------------------------------------ | ---------------------------------------------------------------------------------------------------------------------- |
-| `name`    | String                                     | The name of the token. Has to be between 3 and 30 characters.                                                          |
-| `symbol`  | String                                     | The symbol of the token.                                                                                               |
-| `minter`  | [AndrAddress](../recipient.md#andraddress) | The address of the token minter. Will be assigned as the [contract owner](broken-reference).                           |
-| `modules` | Option\<Vec<[Module](broken-reference)>>   | An optional vector of Andromeda Modules. The module definitions can be found[ here](../modules/module-definitions.md). |
+| Name      | Type                                                    | Description                                                                                                            |
+| --------- | ------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------- |
+| `name`    | String                                                  | The name of the token. Has to be between 3 and 30 characters.                                                          |
+| `symbol`  | String                                                  | The symbol of the token.                                                                                               |
+| `minter`  | [AndrAddress](../common-types/recipient.md#andraddress) | The address of the token minter. Will be assigned as the [contract owner](broken-reference).                           |
+| `modules` | Option\<Vec<[Module](broken-reference)>>                | An optional vector of Andromeda Modules. The module definitions can be found[ here](../modules/module-definitions.md). |
 
 ## ExecuteMsg
 
@@ -131,7 +131,7 @@ pub struct TokenExtension {
 | `transfer_agreement` | Option<[TransferAgreement](andromeda-digital-object.md#transferagreement)> | The transfer agreement of the token (if it exists). |
 | `metadata`           | Option<[TokenMetadata](andromeda-digital-object.md#metadata-schema)>       | The metadata of the token (if it exists)            |
 | `archived`           | bool                                                                       | Whether the token is archived or not.               |
-| `pricing`            | Option<[Coin](../definitions/coin.md)>                                     | The current price listing for the token.            |
+| `pricing`            | Option<[Coin](../common-types/coin.md)>                                    | The current price listing for the token.            |
 
 ### TransferAgreement
 
@@ -144,10 +144,10 @@ pub struct TransferAgreement {
 }
 ```
 
-| Name        | Type                           | Description                                                               |
-| ----------- | ------------------------------ | ------------------------------------------------------------------------- |
-| `amount`    | [Coin](../definitions/coin.md) | The amount required for the purchaser to transfer ownership of the token. |
-| `purchaser` | String                         | The address of the purchaser.                                             |
+| Name        | Type                            | Description                                                               |
+| ----------- | ------------------------------- | ------------------------------------------------------------------------- |
+| `amount`    | [Coin](../common-types/coin.md) | The amount required for the purchaser to transfer ownership of the token. |
+| `purchaser` | String                          | The address of the purchaser.                                             |
 
 ### Metadata Schema for Mint
 
@@ -367,11 +367,11 @@ pub enum ExecuteMsg {
 {% endtab %}
 {% endtabs %}
 
-| Name       | Type                                               | Description                                                        |
-| ---------- | -------------------------------------------------- | ------------------------------------------------------------------ |
-| `spender`  | String                                             | The address to be authorised as an operator                        |
-| `token_id` | String                                             | The id of the ADO for which to assign the `spender` as an operator |
-| `expires`  | Option<[Expiration](../definitions/expiration.md)> | An optional expiration for the approval                            |
+| Name       | Type                                                | Description                                                        |
+| ---------- | --------------------------------------------------- | ------------------------------------------------------------------ |
+| `spender`  | String                                              | The address to be authorised as an operator                        |
+| `token_id` | String                                              | The id of the ADO for which to assign the `spender` as an operator |
+| `expires`  | Option<[Expiration](../common-types/expiration.md)> | An optional expiration for the approval                            |
 
 ### Revoke
 
@@ -440,10 +440,10 @@ pub enum ExecuteMsg {
 {% endtab %}
 {% endtabs %}
 
-| Name       | Type                                               | Description                                 |
-| ---------- | -------------------------------------------------- | ------------------------------------------- |
-| `operator` | String                                             | The address to be authorised as an operator |
-| `expires`  | Option<[Expiration](../definitions/expiration.md)> | An optional expiration for the approval     |
+| Name       | Type                                                | Description                                 |
+| ---------- | --------------------------------------------------- | ------------------------------------------- |
+| `operator` | String                                              | The address to be authorised as an operator |
+| `expires`  | Option<[Expiration](../common-types/expiration.md)> | An optional expiration for the approval     |
 
 ### RevokeAll
 
@@ -632,10 +632,10 @@ pub struct Approval {
 }
 ```
 
-| Name      | Type                                       | Description                      |
-| --------- | ------------------------------------------ | -------------------------------- |
-| `spender` | String                                     | The address that is approved.    |
-| `expires` | [Expiration](../definitions/expiration.md) | The expiration for the approval. |
+| Name      | Type                                        | Description                      |
+| --------- | ------------------------------------------- | -------------------------------- |
+| `spender` | String                                      | The address that is approved.    |
+| `expires` | [Expiration](../common-types/expiration.md) | The expiration for the approval. |
 
 ### ApprovedForAll
 

@@ -73,11 +73,11 @@ pub enum ExecuteMsg{
 {% endtab %}
 {% endtabs %}
 
-| Name           | Type                                       | Description                                 |
-| -------------- | ------------------------------------------ | ------------------------------------------- |
-| `token_id`     | String                                     | The token id of the ADO to buy.             |
-| `expiration`   | [Expiration](../definitions/expiration.md) | An expiration for the offer.                |
-| `offer_amount` | Uint128                                    | The amount of tokens to offer for the ADO.  |
+| Name           | Type                                        | Description                                 |
+| -------------- | ------------------------------------------- | ------------------------------------------- |
+| `token_id`     | String                                      | The token id of the ADO to buy.             |
+| `expiration`   | [Expiration](../common-types/expiration.md) | An expiration for the offer.                |
+| `offer_amount` | Uint128                                     | The amount of tokens to offer for the ADO.  |
 
 ### CancelOffer
 
@@ -213,14 +213,14 @@ pub struct OfferResponse {
 {% endtab %}
 {% endtabs %}
 
-| Name               | Type                                       | Description                                                                           |
-| ------------------ | ------------------------------------------ | ------------------------------------------------------------------------------------- |
-| `denom`            | String                                     | The denomination of the coin being offered. Currently supports "uusd".                |
-| `offer_amount`     | Uint128                                    | The amount of coins offered.                                                          |
-| `remaining_amount` | Uint128                                    | The amount left after any royalties or taxes have been applied to the `offer_amount`. |
-| `tax_amount`       | Uint128                                    | The amount of coins taken as tax.                                                     |
-| `expiration`       | [Expiration](../definitions/expiration.md) | Expiration for the offer.                                                             |
-| `purchaser`        | String                                     | The address that has placed the offer                                                 |
+| Name               | Type                                        | Description                                                                           |
+| ------------------ | ------------------------------------------- | ------------------------------------------------------------------------------------- |
+| `denom`            | String                                      | The denomination of the coin being offered. Currently supports "uusd".                |
+| `offer_amount`     | Uint128                                     | The amount of coins offered.                                                          |
+| `remaining_amount` | Uint128                                     | The amount left after any royalties or taxes have been applied to the `offer_amount`. |
+| `tax_amount`       | Uint128                                     | The amount of coins taken as tax.                                                     |
+| `expiration`       | [Expiration](../common-types/expiration.md) | Expiration for the offer.                                                             |
+| `purchaser`        | String                                      | The address that has placed the offer                                                 |
 
 ### AllOffers
 

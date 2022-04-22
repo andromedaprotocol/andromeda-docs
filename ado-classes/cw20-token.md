@@ -277,11 +277,11 @@ Sets an `amount` of tokens from the owner that the specified `spender` can inter
 {% endtab %}
 {% endtabs %}
 
-| Name      | Type                                               | Description                                            |
-| --------- | -------------------------------------------------- | ------------------------------------------------------ |
-| `spender` | String                                             | The address to receive the allowance.                  |
-| `amount`  | Uint128                                            | The amount of tokens to give the spender access to.    |
-| `expires` | Option<[Expiration](../definitions/expiration.md)> | Optional Expiration for the allowance of the spender.  |
+| Name      | Type                                                | Description                                            |
+| --------- | --------------------------------------------------- | ------------------------------------------------------ |
+| `spender` | String                                              | The address to receive the allowance.                  |
+| `amount`  | Uint128                                             | The amount of tokens to give the spender access to.    |
+| `expires` | Option<[Expiration](../common-types/expiration.md)> | Optional Expiration for the allowance of the spender.  |
 
 ### DecreaseAllowance
 
@@ -321,11 +321,11 @@ If an `Expiration` is set, it will overwrite previously set Expiration
 {% endtab %}
 {% endtabs %}
 
-| Name      | Type                                               | Description                                           |
-| --------- | -------------------------------------------------- | ----------------------------------------------------- |
-| `spender` | String                                             | The address to have their allowance decreased.        |
-| `amount`  | Uint128                                            | The amount to decrease the allowance by.              |
-| `expires` | Option<[Expiration](../definitions/expiration.md)> | Optional expiration for the allowance of the spender. |
+| Name      | Type                                                | Description                                           |
+| --------- | --------------------------------------------------- | ----------------------------------------------------- |
+| `spender` | String                                              | The address to have their allowance decreased.        |
+| `amount`  | Uint128                                             | The amount to decrease the allowance by.              |
+| `expires` | Option<[Expiration](../common-types/expiration.md)> | Optional expiration for the allowance of the spender. |
 
 ### TransferFrom
 
@@ -715,10 +715,10 @@ pub struct AllowanceResponse {
 {% endtab %}
 {% endtabs %}
 
-| Name        | Type                                       | Description                                        |
-| ----------- | ------------------------------------------ | -------------------------------------------------- |
-| `allowance` | Uint128                                    | The amount of tokens the spender has as allowance. |
-| `expires`   | [Expiration](../definitions/expiration.md) | The expiration for the tokens.                     |
+| Name        | Type                                        | Description                                        |
+| ----------- | ------------------------------------------- | -------------------------------------------------- |
+| `allowance` | Uint128                                     | The amount of tokens the spender has as allowance. |
+| `expires`   | [Expiration](../common-types/expiration.md) | The expiration for the tokens.                     |
 
 ### AllAllowanaces
 
@@ -801,11 +801,11 @@ pub struct AllowanceInfo {
 }
 ```
 
-| Name        | Type                                       | Description                            |
-| ----------- | ------------------------------------------ | -------------------------------------- |
-| `spender`   | String                                     | The address that has an allowance.     |
-| `allowance` | Uint128                                    | The amount of tokens in the allowance. |
-| `expires`   | [Expiration](../definitions/expiration.md) | The expiration for the allowance.      |
+| Name        | Type                                        | Description                            |
+| ----------- | ------------------------------------------- | -------------------------------------- |
+| `spender`   | String                                      | The address that has an allowance.     |
+| `allowance` | Uint128                                     | The amount of tokens in the allowance. |
+| `expires`   | [Expiration](../common-types/expiration.md) | The expiration for the allowance.      |
 
 ### AllAccounts
 
