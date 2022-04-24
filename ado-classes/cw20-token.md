@@ -50,7 +50,7 @@ pub struct InstantiateMsg {
 | `symbol`           | String                                                                     | The symbol of the token.                                                                                                 |
 | `decimals`         | u8                                                                         | The number of decimals for the token.                                                                                    |
 | `initial_balances` | Vec\<Cw20Coin>                                                             | A vector containing a list of addresses and the amount of coin to initialize each.                                       |
-| `mint`             | Option<[MinterResponse](cw20-token.md#undefined)>                          | Optional field to define a minter for the token and an optional  cap for the total supply of tokens that can be minted.  |
+| `mint`             | Option<[MinterResponse](cw20-token.md#minterresponse)>                     | Optional field to define a minter for the token and an optional  cap for the total supply of tokens that can be minted.  |
 | `marketing`        | Option<[InstantiateMarketingInfo](cw20-token.md#instantiatemarketinginfo)> | Optional field to define the marketing information of the project.                                                       |
 | `modules`          | Option\<Vec<[Module](../modules/module-definitions.md)>>                   | A vector of Andromeda Module definitions. The module definitions can be found[ here](../modules/module-definitions.md).  |
 
@@ -84,6 +84,35 @@ pub struct InstantiateMarketingInfo {
 | `description` | Option\<String> | A longer description of the token and it's utility. Designed for tooltips or such. |
 | `marketing`   | Option\<String> | The address (if any) who can update this data structure.                           |
 | `logo`        | Option\<Logo>   | A link to the logo, or a comment that there is an on-chain logo stored.            |
+
+#### Logo
+
+```rust
+pub enum Logo {
+ Url(String),
+ Embedded(EmbeddedLogo),
+}
+```
+
+* **Url**: A reference to an externally hosted logo. Must be a valid HTTP or HTTPS URL.
+* **Embedded**: Logo content stored on the blockchain. Enforce maximum size of 5KB on all variants
+
+#### EmbeddedLogo
+
+```
+pub enum EmbeddedLogo {
+    /// Store the Logo as an SVG file. The content must conform to the spec
+    /// at https://en.wikipedia.org/wiki/Scalable_Vector_Graphics
+    /// (The contract should do some light-weight sanity-check validation)
+    Svg(Binary),
+    /// Store the Logo as a PNG file. This will likely only support up to 64x64 or so
+    /// within the 5KB limit.
+    Png(Binary),
+}
+```
+
+* **Svg**: Store the Logo as an SVG file. The content must conform to the specifications found [here](https://en.wikipedia.org/wiki/Scalable\_Vector\_Graphics). (The contract should do some light-weight sanity-check validation).
+* **Png:** Store the Logo as  a PNG file. This will likely only support up to 64x64 or so within the 5KB limit.
 
 #### MinterResponse
 
@@ -251,6 +280,10 @@ Burn is a base message to destroy tokens forever
 
 Sets an `amount` of tokens from the owner that the specified `spender` can interact with.
 
+{% hint style="info" %}
+A new Expiration will overwrite a previous one.
+{% endhint %}
+
 {% tabs %}
 {% tab title="Rust" %}
 ```rust
@@ -415,7 +448,7 @@ The `msg` should be base64 encoded and not raw binary.
 
 ### BurnFrom
 
-Burns a specified `amount` of tokens from the `owner` address.
+Burns a specified `amount` of tokens from the `owner` address **forever**.
 
 {% hint style="warning" %}
 The `amount specified` cannot exceed the allowance of the address executing `BurnFrom.`
