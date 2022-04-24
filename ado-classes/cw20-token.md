@@ -99,14 +99,9 @@ pub enum Logo {
 
 #### EmbeddedLogo
 
-```
+```rust
 pub enum EmbeddedLogo {
-    /// Store the Logo as an SVG file. The content must conform to the spec
-    /// at https://en.wikipedia.org/wiki/Scalable_Vector_Graphics
-    /// (The contract should do some light-weight sanity-check validation)
     Svg(Binary),
-    /// Store the Logo as a PNG file. This will likely only support up to 64x64 or so
-    /// within the 5KB limit.
     Png(Binary),
 }
 ```
