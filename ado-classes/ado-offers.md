@@ -62,7 +62,7 @@ pub enum ExecuteMsg{
 {
 "place_offer":{
   "token_id":"terra1...",
-  "expiratation":{
+  "expiration":{
      "at_height": 300,
      }
   "offer_amount": "200"

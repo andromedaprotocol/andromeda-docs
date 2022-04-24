@@ -32,7 +32,7 @@ pub struct InstantiateMsg {
                 {
                 "addr":"terra1...", 
                 },
-                "percent":20
+                "percent":"20"
      },
      ...
     ],
