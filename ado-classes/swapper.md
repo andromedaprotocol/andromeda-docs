@@ -90,7 +90,7 @@ pub enum ExecuteMsg {
 "cw20_receive_msg":{
 "sender":"terra1...",
 "amount":"100",
-"msg":"eyJvcGVyYXRvcnMiOltdLCJpc19pbmNsdXNpdmUiOnRydWV9"
+"msg":"eyJvcGVyYXRvcnMiOltdLCJpc19pbmNsdXNpdmUiOnRydWV9="
     }
   }
 }

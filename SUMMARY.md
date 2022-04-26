@@ -5,6 +5,7 @@
   * [Address List](ado-classes/address-list.md)
   * [ADO Offers](ado-classes/ado-offers.md)
   * [Anchor](ado-classes/anchor.md)
+  * [Astroport](ado-classes/astroport.md)
   * [Auction](ado-classes/auction.md)
   * [Crowdfund](ado-classes/crowdfund.md)
   * [CW20 Token](ado-classes/cw20-token.md)
@@ -13,12 +14,12 @@
   * [NFT Collectible](ado-classes/andromeda-digital-object.md)
   * [Primitive](ado-classes/primitive.md)
   * [Rates](ado-classes/rates.md)
-  * [Receipt](ado-classes/receipt.md)
   * [Splitter](ado-classes/andromeda-splitter.md)
   * [Swapper](ado-classes/swapper.md)
   * [Timelock](ado-classes/timelock.md)
   * [Vault](ado-classes/vault.md)
   * [Wrapped-Cw721](ado-classes/wrapped-cw721.md)
+  * [Receipt](ado-classes/receipt.md)
 * [Mission](mission.md)
 
 ## Modules
