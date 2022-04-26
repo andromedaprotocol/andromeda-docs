@@ -696,7 +696,8 @@ pub struct ApprovedForAllResponse {
             "expires": {
                 "never": {}
             }
-        }
+        },
+      ...
     ]
 }
 ```
