@@ -137,6 +137,8 @@ pub struct TokenExtension {
 
 A struct used to represent an agreed transfer of a token. The `purchaser` may use the `Transfer` message for this token as long as funds are provided equaling the `amount` defined in the agreement.
 
+If the `purchaser` is set to `"*"` then anyone can complete the `TransferAgreement` (Anyone can buy the token)
+
 ```rust
 pub struct TransferAgreement {
     pub amount: Coin,

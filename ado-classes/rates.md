@@ -31,7 +31,7 @@ pub struct InstantiateMsg {
    { 
       "rate":{
       "percent":{
-      "percent":"3.5"
+      "percent":"0.1"
       },
       "is_additive": false,
       "receivers":[{
@@ -149,7 +149,7 @@ pub enum ExecuteMsg{
      { 
       "rate":{
       "percent":{
-      "percent":"3"
+      "percent":"0.1"
       },
       "is_additive": false,
       "receivers":[
@@ -220,7 +220,7 @@ pub struct PaymentsResponse {
  [
      { 
       "rate":{
-      "percent":"3"
+      "percent":"0.3"
       },
       "is_additive": false,
       "receivers":[

@@ -32,7 +32,7 @@ pub struct InstantiateMsg {
                 {
                 "addr":"terra1...", 
                 },
-                "percent":"20"
+                "percent":"0.2"
      },
      ...
     ],
@@ -82,7 +82,7 @@ pub struct AddressPercent {
     "recipient":{
     "addr":"terra1..."
      },
-    "percent": "50"
+    "percent": "0.5"
 }
 
 ```
@@ -93,7 +93,7 @@ pub struct AddressPercent {
 To be a valid recipient list the array of `AddressPercent` structs must meet the following requirements:
 
 * Be non-empty
-* Have percentage amounts less than or equaling 100
+* Have percentage amounts less than or equaling 1
 {% endhint %}
 
 Read more about the recipient struct [here](../common-types/recipient.md).
@@ -125,7 +125,7 @@ pub enum ExecuteMsg {
                 "recipient":{
                 "addr":"terra1..."
                 }
-                "percent": "50"
+                "percent": "0.5"
             },
             ...
         ]
@@ -247,7 +247,7 @@ pub struct GetSplitterConfigResponse {
                 { 
                 "terra1..."
                 },
-                "percent": "50"
+                "percent": "0.5"
             },
             ...
         ],

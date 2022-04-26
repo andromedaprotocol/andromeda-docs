@@ -34,7 +34,7 @@ pub struct InstantiateMsg {
 {
 "strategies":[
      {
-     "strategy_type":{"Anchor"},
+     "strategy_type":"Anchor",
      "address":"terra1..."
      },
      ...
@@ -98,7 +98,7 @@ pub enum ExecuteMsg {
    "addr":"terra1...",
    },
    
-"strategy":{"anchor"}
+"strategy":"anchor"
 
     }
  }
@@ -209,7 +209,7 @@ Updates the contract address used for the specified strategy.
 ```json
 {
 "update_strategy":{
-    "strategy":{"anchor"},
+    "strategy":"anchor",
     "address":{
         "identifier":"terra1..."
         }
@@ -282,9 +282,8 @@ pub enum QueryMsg{
 ```json
 {
 "strategy_address":{
-"strategy":{
-             "Anchor"
-           }
+           "strategy":"Anchor"
+           
        }
 }
 ```
