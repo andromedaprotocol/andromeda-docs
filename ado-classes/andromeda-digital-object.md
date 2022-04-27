@@ -10,10 +10,6 @@ In addition to the offers module, the contract has implemented a custom `Transfe
 
 ## InstantiateMsg
 
-{% hint style="warning" %}
-The defined `minter` address is assigned as the contract owner.
-{% endhint %}
-
 {% tabs %}
 {% tab title="Rust" %}
 ```rust
@@ -57,7 +53,7 @@ pub struct InstantiateMsg {
 | --------- | ------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------- |
 | `name`    | String                                                  | The name of the token. Has to be between 3 and 30 characters.                                                          |
 | `symbol`  | String                                                  | The symbol of the token.                                                                                               |
-| `minter`  | [AndrAddress](../common-types/recipient.md#andraddress) | The address of the token minter. Will be assigned as the [contract owner](broken-reference).                           |
+| `minter`  | [AndrAddress](../common-types/recipient.md#andraddress) | The address of the token minter.                                                                                       |
 | `modules` | Option\<Vec<[Module](broken-reference)>>                | An optional vector of Andromeda Modules. The module definitions can be found[ here](../modules/module-definitions.md). |
 
 ## ExecuteMsg
@@ -119,7 +115,6 @@ pub struct TokenExtension {
     pub transfer_agreement: Option<TransferAgreement>,
     pub metadata: Option<TokenMetadata>,
     pub archived: bool,
-  
 }
 ```
 
@@ -131,7 +126,6 @@ pub struct TokenExtension {
 | `transfer_agreement` | Option<[TransferAgreement](andromeda-digital-object.md#transferagreement)> | The transfer agreement of the token (if it exists). |
 | `metadata`           | Option<[TokenMetadata](andromeda-digital-object.md#metadata-schema)>       | The metadata of the token (if it exists)            |
 | `archived`           | bool                                                                       | Whether the token is archived or not.               |
-| `pricing`            | Option<[Coin](../common-types/coin.md)>                                    | The current price listing for the token.            |
 
 ### TransferAgreement
 

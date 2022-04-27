@@ -10,6 +10,7 @@
   * [Crowdfund](ado-classes/crowdfund.md)
   * [CW20 Token](ado-classes/cw20-token.md)
   * [Factory](andromeda-factory.md)
+  * [Lockdrop](ado-classes/lockdrop.md)
   * [Merkle-Airdrop](ado-classes/merkle-airdrop.md)
   * [NFT Collectible](ado-classes/andromeda-digital-object.md)
   * [Primitive](ado-classes/primitive.md)

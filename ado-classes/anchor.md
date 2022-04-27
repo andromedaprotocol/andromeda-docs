@@ -29,7 +29,7 @@ pub struct InstantiateMsg {
 | -------------------- | ------ | --------------------------------------------------------------------------------- |
 | `primitive_contract` | String | The primitive contract that would contain all the anchor addresses needed for the |
 
-The primitive contract will have all the anchor addresses needed  before working with the anchor contract. These include the contract addresses for:
+The primitive contract will have all the anchor addresses needed stored before working with the anchor contract. These include the contract addresses for:
 
 ```rust
 pub const ANCHOR_MARKET: &str = "anchor_market_contract";
@@ -40,18 +40,6 @@ pub const ANCHOR_ORACLE: &str = "anchor_oracle_contract";
 pub const ANCHOR_AUST: &str = "anchor_aust_contract";
 pub const ANCHOR_BLUNA: &str = "anchor_bluna_contract";
 ```
-
-| Name                   | Description                                                                                                                                                                                     |
-| ---------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `ANCHOR_MARKET`        | Information on the market contract can be found [here](https://docs.anchorprotocol.com/smart-contracts/money-market/market).                                                                    |
-| `ANCHOR_OVERSEER`      | Information on the overseer contract can be found [here](https://docs.anchorprotocol.com/smart-contracts/money-market/overseer).                                                                |
-| `ANCHOR_BLUNA_HUB`     | Information on the bluna hub contract can be found [here](https://docs.terra.lido.fi/contracts/hub/).                                                                                           |
-| `ANCHOR_BLUNA_CUSTODY` | Information on the bluna custody contract can be found here.                                                                                                                                    |
-| `ANCHOR_ORACLE`        | Information on the oracle contract can be found [here](https://docs.anchorprotocol.com/smart-contracts/money-market/oracle).                                                                    |
-| `ANCHOR_AUST`          | Cw20 compliant contract. Contract address of the deployed  anchor AUST contract can be found [here](https://docs.anchorprotocol.com/smart-contracts/deployed-contracts) (money market section). |
-| `ANCHOR_BLUNA`         | Cw20 compliant contract. Contract address of the deployed  anchor AUST contract can be found [here](https://docs.anchorprotocol.com/smart-contracts/deployed-contracts) (money market section). |
-
-The contract addresses of these deployed contracts by anchor can be found [here](https://docs.anchorprotocol.com/smart-contracts/deployed-contracts).
 
 ## ExecuteMsg
 
@@ -185,12 +173,12 @@ pub enum ExecuteMsg {
 {% endtab %}
 {% endtabs %}
 
-| Name              | Type                                              | Description                                                                                                                                              |
-| ----------------- | ------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `collateral_addr` | String                                            | The address of the collateral token, should be the same as the anchor\_bluna token address since it is the only one supported as collateral **for now**. |
-| `amount`          | Option\<Uint256>                                  | The amount of collateral to withdraw.                                                                                                                    |
-| `unbond`          | Option\<bool>                                     | Optional flag to whether to unbond the funds. Defaults to false.                                                                                         |
-| `recipient`       | Option<[Recipient](../common-types/recipient.md)> | Optional Recipient to the withdrawn funds.                                                                                                               |
+| Name              | Type                                 | Description                                                                                                                                              |
+| ----------------- | ------------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `collateral_addr` | String                               | The address of the collateral token, should be the same as the anchor\_bluna token address since it is the only one supported as collateral **for now**. |
+| `amount`          | Option\<Uint256>                     | The amount of collateral to withdraw.                                                                                                                    |
+| `unbond`          | Option\<bool>                        | Optional flag to whether to unbond the funds. Defaults to false.                                                                                         |
+| `recipient`       | Option<[Recipient](../recipient.md)> | Optional Recipient to the withdrawn funds.                                                                                                               |
 
 ### Borrow
 
@@ -221,10 +209,10 @@ pub enum ExecuteMsg{
 {% endtab %}
 {% endtabs %}
 
-| Name                | Type                                              | Description                                                                                                                                                                                                                                                                                             |
-| ------------------- | ------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `desired_ltv_ratio` | Decimal256                                        | The desired loan-to-value ratio. Needs to be less than 1. More info on LTV can be found [here](https://spectrocoin.com/en/faqs/crypto-loans/what-is-ltv-ratio-and-how-to-maintain-it.html#:\~:text=The%20loan%2Dto%2Dvalue%20\(LTV\)%20ratio%20shows%20the,usually%20expressed%20as%20a%20percentage.). |
-| `recipient`         | Option<[Recipient](../common-types/recipient.md)> | The address to receive the funds.                                                                                                                                                                                                                                                                       |
+| Name                | Type                                 | Description                                                                                                                                                                                                                                                                                             |
+| ------------------- | ------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `desired_ltv_ratio` | Decimal256                           | The desired loan-to-value ratio. Needs to be less than 1. More info on LTV can be found [here](https://spectrocoin.com/en/faqs/crypto-loans/what-is-ltv-ratio-and-how-to-maintain-it.html#:\~:text=The%20loan%2Dto%2Dvalue%20\(LTV\)%20ratio%20shows%20the,usually%20expressed%20as%20a%20percentage.). |
+| `recipient`         | Option<[Recipient](../recipient.md)> | The address to receive the funds.                                                                                                                                                                                                                                                                       |
 
 ### RepayLoan
 
@@ -294,4 +282,4 @@ pub struct PositionResponse {
 {% endtab %}
 {% endtabs %}
 
-The rest of the executes can be found in the [`AndrQuery`](../ado\_base/andrreceive-andrquery.md#andrquery) section.
+The rest of the base queries can be found in [AndrQuery](../ado\_base/andrreceive-andrquery.md#andromedaquery) section.
