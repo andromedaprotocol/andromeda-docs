@@ -85,11 +85,11 @@ Only the owner can execute `RegisterMerkleRoot`.
 {% endtab %}
 {% endtabs %}
 
-| Name           | Type                                                | Description                                                                                      |
-| -------------- | --------------------------------------------------- | ------------------------------------------------------------------------------------------------ |
-| `merkle_root`  | String                                              | A hex-encoded Merkle root.                                                                       |
-| `expiration`   | Option<[Expiration](../common-types/expiration.md)> | An optional expiration for the root.                                                             |
-| `total_amount` | Option\<Uint128>                                    | An optional amount to specify the maximum number of tokens that can be claimed from the airdrop. |
+| Name           | Type                                               | Description                                                                                      |
+| -------------- | -------------------------------------------------- | ------------------------------------------------------------------------------------------------ |
+| `merkle_root`  | String                                             | A hex-encoded Merkle root.                                                                       |
+| `expiration`   | Option<[Expiration](../definitions/expiration.md)> | An optional expiration for the root.                                                             |
+| `total_amount` | Option\<Uint128>                                   | An optional amount to specify the maximum number of tokens that can be claimed from the airdrop. |
 
 ### Claim
 
@@ -284,12 +284,12 @@ pub struct MerkleRootResponse {
 {% endtab %}
 {% endtabs %}
 
-| Name           | Type                                        | Description                                                         |
-| -------------- | ------------------------------------------- | ------------------------------------------------------------------- |
-| `stage`        | u8                                          | The stage that belongs to this root.                                |
-| `merkle_root`  | String                                      | The Merkle-Root of this stage.                                      |
-| `expiration`   | [Expiration](../common-types/expiration.md) | The expiration for the airdrop of this stage.                       |
-| `total_amount` | Uint128                                     | The total amount of funds to be airdropped belonging to this stage. |
+| Name           | Type                                       | Description                                                         |
+| -------------- | ------------------------------------------ | ------------------------------------------------------------------- |
+| `stage`        | u8                                         | The stage that belongs to this root.                                |
+| `merkle_root`  | String                                     | The Merkle-Root of this stage.                                      |
+| `expiration`   | [Expiration](../definitions/expiration.md) | The expiration for the airdrop of this stage.                       |
+| `total_amount` | Uint128                                    | The total amount of funds to be airdropped belonging to this stage. |
 
 ### LatestStage
 

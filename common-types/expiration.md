@@ -26,14 +26,6 @@ pub enum Expiration {
 
 **Never:** Never will never expire. Used to express the empty variant.
 
-#### Timestamp
-
-A point in time in nanosecond precision.
-
-```rust
-pub struct Timestamp(Uint64)
-```
-
 ### JSON Implementation
 
 ```json

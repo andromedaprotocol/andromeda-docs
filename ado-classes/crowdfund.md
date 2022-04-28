@@ -191,7 +191,7 @@ A sale needs to be in progress in order to purchase tokens.
 ```json
 {
 "purchase":{
-  "number_of_tokens": 10
+  "token_id":"atoken"
     }
 }
 ```

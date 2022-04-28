@@ -12,7 +12,7 @@ The purpose of the vault ADO is to provide central funds for a mission. This mea
 The only yield strategy **currently** available is anchor.
 {% endhint %}
 
-Funds can be deposited to the vault with an attached strategy, in this case the funds will be proxied to the stored contract address for that particular strategy. If no strategy is provided, a record of the deposited funds is stored. Strategies can be added by the contract owner at any point.
+Funds can be deposited to the vault and a record of the deposited funds is stored. Strategies can be added by the contract owner at any point by calling `UpdateStrategy`.
 
 Deposits can be made to yield strategies in partial fashion, sending part of what you would like to deposit and taking the rest from what the vault is currently holding. For example, a wallet could have 10 UST held within the vault, they wish to deposit 50 UST to Anchor, in this case they can send 40 UST with a deposit message and 10 UST will be removed from their deposits and sent to the according Anchor contract.
 
@@ -32,17 +32,8 @@ pub struct InstantiateMsg {
 {% tab title="JSON" %}
 ```rust
 {
-"strategies":[
-     {
-     "strategy_type":"Anchor",
-     "address":"terra1..."
-     },
-     ...
-  ],
 "operators":["terra1...","terra1...",...]
 }
-     
-
 ```
 {% endtab %}
 {% endtabs %}
