@@ -12,6 +12,7 @@
   * [Factory](andromeda-factory.md)
   * [Lockdrop](ado-classes/lockdrop.md)
   * [Merkle-Airdrop](ado-classes/merkle-airdrop.md)
+  * [Mirror](ado-classes/mirror.md)
   * [NFT Collectible](ado-classes/andromeda-digital-object.md)
   * [Primitive](ado-classes/primitive.md)
   * [Rates](ado-classes/rates.md)
