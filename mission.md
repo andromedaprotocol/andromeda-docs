@@ -6,6 +6,13 @@ The **Mission** ADO is a smart contract that is used to bundle up contracts that
 
 A contract in the mission is called a `MissionComponent.` Every mission would be composed of many of these components (up to 50). Each component is assigned a name which can be used by other components to reference each other.
 
+The steps needed to build a full mission are the following:
+
+1. Upload the contracts and get the code IDs.
+2. Instantiate a factory contract and save the code IDs of the contracts in it.
+3. Instantiate a primitive contract and save the factory address as a value under the name "factory".
+4. Instantiate the mission contract and attach the primitive to it (`primitive_contract` field in instantiation)
+
 ## InstantiateMsg
 
 {% hint style="warning" %}
