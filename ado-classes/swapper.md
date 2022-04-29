@@ -28,11 +28,9 @@ pub struct InstantiateMsg {
 ```json
 {
 "swaper_impl":{
-"name":"astroport",
-"instantiate_type":{
-  "address":"terra1..."
-    }
- },
+  "reference":{
+      "identifier":"terra1..."
+      },
    "primitive_contract":"terra1..."
  }
 ```
@@ -47,52 +45,40 @@ pub struct InstantiateMsg {
 #### SwapperImpl
 
 ```rust
-pub struct SwapperImpl {
-    pub name: String,
-    pub instantiate_type: InstantiateType,
+pub enum SwapperImpl {
+    New(InstantiateInfo),
+    Reference(AndrAddress),
 }
 ```
 
-| Name               | Type            | Description                                                                          |
-| ------------------ | --------------- | ------------------------------------------------------------------------------------ |
-| `name`             | String          | The name of the swapper engine to be used.                                           |
-| `instantiate_type` | InstantiateType | How to instantiate the contract. Can be either new, or an existing contract address. |
+* **New**: Specifies the instantiation specification for the swapper implementation
+* **Reference**: Specifies the swapper implementation by reference to an existing contract.    (Check [AndrAddress](../common-types/recipient.md#andraddress))
 
-#### InstantiateType
+#### InstantiateInfo
 
 ```rust
-pub enum InstantiateType {
-    New(Binary),
-    Address(String),
+pub struct InstantiateInfo {
+    pub msg: Binary,
+    pub ado_type: String,
 }
 ```
 
-* **New**: A new contract that would be instantiated using a base64 encoded binary message.
-* **Address**: An existing contract that will be referenced by the contract address.&#x20;
+| Name       | Type   | Description                                 |
+| ---------- | ------ | ------------------------------------------- |
+| `msg`      | Binary | The instantiate message encoded in base64.  |
+| `ado_type` | String | The ADO type. Used to retrieve the code id. |
 
 ## ExecuteMsg
 
 ### Receive
+
+Receive Cw-20 tokens with a swap message attached.
 
 {% tabs %}
 {% tab title="Rust" %}
 ```rust
 pub enum ExecuteMsg {
   Receive(Cw20ReceiveMsg)
-}
-```
-{% endtab %}
-
-{% tab title="JSON" %}
-```json
-{
-"receive":{
-"cw20_receive_msg":{
-"sender":"terra1...",
-"amount":"100",
-"msg":"eyJvcGVyYXRvcnMiOltdLCJpc19pbmNsdXNpdmUiOnRydWV9"
-    }
-  }
 }
 ```
 {% endtab %}
@@ -206,5 +192,29 @@ pub enum ExecuteMsg {
 Check [AndrReceive](../ado\_base/andrreceive-andrquery.md#andrrecieve).
 
 ## QueryMsg
+
+### SwapperImpl
+
+{% tabs %}
+{% tab title="Rust" %}
+```rust
+ pub enum QueryMsg { 
+     SwapperImpl {},
+}
+```
+{% endtab %}
+
+{% tab title="JSON" %}
+```json
+{
+"swaper_iml":{}
+}
+```
+{% endtab %}
+{% endtabs %}
+
+Returns an [AndrAddress](../common-types/recipient.md#andraddress) for the swapper implementation contract.
+
+### AndrQuery
 
 Check [AndrQuery](../ado\_base/andrreceive-andrquery.md#andrquery).

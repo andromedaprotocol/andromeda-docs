@@ -94,7 +94,7 @@ pub enum ExecuteMsg {
 Updates the Code Id of the contract.
 
 {% hint style="info" %}
-Only available to the contract owner.
+Only available to the contract owner/operators.
 {% endhint %}
 
 {% tabs %}

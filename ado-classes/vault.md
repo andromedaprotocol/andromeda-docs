@@ -133,52 +133,28 @@ pub enum ExecuteMsg{
 {
 "withdraw":{
 "recipient":{
-"addr":"terra1..."
-    }
+    "addr":"terra1..."
+    },
 "withdrawals":[
-     {
-     "token":"UST",
-     "withdrawal_type":{
-      "percentage":"40"
-     },
-     ...
-     ]
+                {
+                    "token":"uusd",
+                    "withdrawal_type":{
+                        "percentage":"0.3"
+                        }
+                    },    
+                ...
+          ]          
     }
  }
 ```
 {% endtab %}
 {% endtabs %}
 
-| Name          | Type                                              |                                                                                          |
-| ------------- | ------------------------------------------------- | ---------------------------------------------------------------------------------------- |
-| `recipient`   | Option<[Recipient](../common-types/recipient.md)> | The address to receive the withdrawn funds.                                              |
-| `withdrawals` | Vec\<Withdrawal>                                  | The funds to withdraw.                                                                   |
-| `strategy`    | Option<[StrategyType](vault.md#strategytype)>     | The strategy to withdraw from. If not specified, the funds are withdrawn from the vault. |
-
-#### Withdrawal
-
-```rust
-pub struct Withdrawal {
-    pub token: String,
-    pub withdrawal_type: Option<WithdrawalType>,
-}
-```
-
-| Name              | Type                    | Description                                                                 |
-| ----------------- | ----------------------- | --------------------------------------------------------------------------- |
-| `token`           | String                  | The denom of the funds to withdraw.                                         |
-| `withdrawal_type` | Option\<WithdrawalType> | The type of withdrawal. Can vary between a specific amount or a percentage. |
-
-#### WithdrawalType
-
-Withdrawal can be a certain amount or a percentage of the tokens.
-
-```rust
-pub enum WithdrawalType {
-    Amount(Uint128),
-    Percentage(Uint128),
-}
-```
+| Name          | Type                                                                |                                                                                          |
+| ------------- | ------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
+| `recipient`   | Option<[Recipient](../common-types/recipient.md)>                   | The address to receive the withdrawn funds.                                              |
+| `withdrawals` | Vec<[Withdrawal](../ado\_base/andrreceive-andrquery.md#withdrawal)> | The funds to withdraw.                                                                   |
+| `strategy`    | Option<[StrategyType](vault.md#strategytype)>                       | The strategy to withdraw from. If not specified, the funds are withdrawn from the vault. |
 
 The rest of the executes can be found in the [`AndrReceive`](../ado\_base/andrreceive-andrquery.md#andrrecieve) section.
 

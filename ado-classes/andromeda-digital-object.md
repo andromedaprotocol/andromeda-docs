@@ -135,15 +135,48 @@ If the `purchaser` is set to `"*"` then anyone can complete the `TransferAgreeme
 
 ```rust
 pub struct TransferAgreement {
-    pub amount: Coin,
+    pub amount: Value<Coin>,
     pub purchaser: String,
 }
 ```
 
-| Name        | Type                            | Description                                                               |
-| ----------- | ------------------------------- | ------------------------------------------------------------------------- |
-| `amount`    | [Coin](../common-types/coin.md) | The amount required for the purchaser to transfer ownership of the token. |
-| `purchaser` | String                          | The address of the purchaser.                                             |
+| Name        | Type                                   | Description                                                               |
+| ----------- | -------------------------------------- | ------------------------------------------------------------------------- |
+| `amount`    | Value<[Coin](../common-types/coin.md)> | The amount required for the purchaser to transfer ownership of the token. |
+| `purchaser` | String                                 | The address of the purchaser.                                             |
+
+#### `Value<T>`
+
+```rust
+pub enum Value<T>
+where
+    // This restriction is to ensure that `T` is a type that can be stored as a `Primitive`. It
+    // could work without, but we could easily get cases where `T` cannot be a `Primitive` and this
+    // gives us compile-time insurance.
+    T: Into<Primitive>,
+{
+    /// The raw value.
+    Raw(T),
+    /// The pointer to the primitive. This SHOULD be of the same underlying type as `T`. For
+    /// example, if `T` is `String`, then `PrimitivePointer` should point to a Primitive::String(..).
+    /// This cannot be enforced at compile time though, so it is up to the discretion of the user.
+    Pointer(PrimitivePointer),
+}
+```
+
+#### PrimitivePointer
+
+```rust
+pub struct PrimitivePointer {
+    pub address: AndrAddress,
+    pub key: Option<String>,
+}
+```
+
+| Name      | Type                                                    | Description                            |
+| --------- | ------------------------------------------------------- | -------------------------------------- |
+| `address` | [AndrAddress](../common-types/recipient.md#andraddress) | The address of the primitive contract. |
+| `key`     | Option\<String>                                         | The optional key for the stored data.  |
 
 ### Metadata Schema for Mint
 
@@ -498,21 +531,41 @@ pub enum ExecuteMsg {
       "token_id": "anewtoken",
       "agreement":{
           "amount":{
-             "denom":"uusd",
-             "amount":"1000"
+            "raw":{
+                   "denom":"uusd",
+                   "amount":"100000"
            }
+   },
            "purchaser":"terra1..."
            }
     }
 }
+
+or
+
+{
+"transfer_agreement": {
+      "token_id": "anewtoken",
+      "agreement":{
+          "amount":{
+            "pointer":{
+                   "address":"terra1...",
+                   "key":"price"
+           }
+   },
+           "purchaser":"terra1..."
+           }
+    }
+}
+
 ```
 {% endtab %}
 {% endtabs %}
 
-| Name        | Type                                                               | Description                                                     |
-| ----------- | ------------------------------------------------------------------ | --------------------------------------------------------------- |
-| `token_id`  | String                                                             | The id of the token for which the agreement is made.            |
-| `agreement` | Option<[TransferAgreement](andromeda-digital-object.md#undefined)> | See [TransferAgreement](andromeda-digital-object.md#undefined). |
+| Name        | Type                                                                       | Description                                                     |
+| ----------- | -------------------------------------------------------------------------- | --------------------------------------------------------------- |
+| `token_id`  | String                                                                     | The id of the token for which the agreement is made.            |
+| `agreement` | Option<[TransferAgreement](andromeda-digital-object.md#transferagreement)> | See [TransferAgreement](andromeda-digital-object.md#undefined). |
 
 ### AndrReceive
 

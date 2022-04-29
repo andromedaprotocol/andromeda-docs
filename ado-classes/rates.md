@@ -85,13 +85,13 @@ An enum used to define various types of fees which is used in the RateInfo.
 pub enum Rate {
     Flat(Coin),
     Percent(PercentRate),
-    External(ADORate),
+    External(PrimitivePointer),
 }
 ```
 
 The Rate can be one of the three option seen above:
 
-* Flat: A fixed amount to be taken. Needs to have an amount and denomination specified.&#x20;
+* Flat: A fixed amount to be taken ([Coin](../common-types/coin.md)). Needs to have an amount and denomination specified.&#x20;
 * Percent: A percentage based rate. Needs to have the percent to take specified.
 * External: This refers to a rate that we want to use which is saved in a primitive contract. Needs the address of the primitive and the key of the stored Rate primitive to be specified.
 
@@ -107,19 +107,19 @@ pub struct PercentRate {
 | --------- | ------- | ------------------------------- |
 | `percent` | Decimal | The percentage to take as rate. |
 
-**ADORate**
+**PrimitivePointer**
 
 ```rust
-pub struct ADORate {
-    pub address: String,
+pub struct PrimitivePointer {
+    pub address: AndrAddress,
     pub key: Option<String>,
 }
 ```
 
-| Name      | Type            | Description                            |
-| --------- | --------------- | -------------------------------------- |
-| `address` | String          | The address of the primitive contract. |
-| `key`     | Option\<String> | The key of the stored primitive value. |
+| Name      | Type                                                    | Description                            |
+| --------- | ------------------------------------------------------- | -------------------------------------- |
+| `address` | [AndrAddress](../common-types/recipient.md#andraddress) | The address of the primitive contract. |
+| `key`     | Option\<String>                                         | The optional key for the stored data.  |
 
 ## ExecuteMsg
 
@@ -148,15 +148,15 @@ pub enum ExecuteMsg{
   [
      { 
       "rate":{
-      "percent":{
-      "percent":"0.1"
+         "percent":{
+            "percent":"0.1"
       },
-      "is_additive": false,
-      "receivers":[
-         {
-         "addr":"terra1..."
+         "is_additive": false,
+         "receivers":[
+            {
+            "addr":"terra1..."
          },
-         {
+            {
          "addr":"terra..."
          },
          ...
@@ -220,14 +220,15 @@ pub struct PaymentsResponse {
  [
      { 
       "rate":{
-      "percent":"0.3"
+      "percent":{
+         "percent":"0.3"
       },
       "is_additive": false,
       "receivers":[
-         {
+            {
          "addr":"terra1..."
          },
-         {
+            {
          "addr":"terra..."
          },
          ...

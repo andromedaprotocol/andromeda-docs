@@ -151,20 +151,27 @@ pub enum AndromedaMsg{
  "andr_receive":{
       "withdraw":{
             "recipient":{
-            "addr":"terra1...",
-            }
-            "tokens_to_withdraw"
-     }
+                  "addr":"terra1...",
+              }
+            "tokens_to_withdraw":[
+                {
+                    "token":"uusd",
+                    "withdrawal_type":{
+                        "percentage":"0.3"
+                        }
+                    },
+                ...
+          ]          
    }
 }
 ```
 {% endtab %}
 {% endtabs %}
 
-| Name                 | Type                     | Description                 |
-| -------------------- | ------------------------ | --------------------------- |
-| `recipient`          | Option\<Recipient>       | The recipient of the funds. |
-| `tokens_to_withdraw` | Option\<Vec\<Withdrawal> | The tokens to withdraw.     |
+| Name                 | Type                                              | Description                 |
+| -------------------- | ------------------------------------------------- | --------------------------- |
+| `recipient`          | Option<[Recipient](../common-types/recipient.md)> | The recipient of the funds. |
+| `tokens_to_withdraw` | Option\<Vec\<Withdrawal>                          | The tokens to withdraw.     |
 
 #### Withdrawal
 
@@ -182,7 +189,7 @@ Withdrawal can be a certain amount or a percentage of the tokens.
 ```rust
 pub enum WithdrawalType {
     Amount(Uint128),
-    Percentage(Uint128),
+    Percentage(Decimal),
 }
 ```
 
