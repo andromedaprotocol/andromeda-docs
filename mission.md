@@ -384,6 +384,36 @@ pub struct ConfigResponse {
 {% endtab %}
 {% endtabs %}
 
+### ComponentExists
+
+Checks if a component with the specified `name` exists.
+
+{% tabs %}
+{% tab title="Rust" %}
+```rust
+pub enum QueryMsg {
+    ComponentExists { name: String },
+    }
+```
+{% endtab %}
+
+{% tab title="JSON" %}
+```json
+{
+"component_exists":{
+    "name":"mycomponent"
+    }
+}
+```
+{% endtab %}
+{% endtabs %}
+
+| Name   | Type   | Description                         |
+| ------ | ------ | ----------------------------------- |
+| `name` | String | The name of the component to check. |
+
+Returns a bool response.
+
 ### AndrQuery
 
 ```rust

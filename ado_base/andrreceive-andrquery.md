@@ -36,6 +36,7 @@ pub enum AndromedaMsg {
     UpdateMissionContract {
         address: String,
     },
+    ValidateAndrAddresses {},
     Withdraw {
         recipient: Option<Recipient>,
         tokens_to_withdraw: Option<Vec<Withdrawal>>,
@@ -224,6 +225,28 @@ pub enum AndromedaMsg{
 | Name      | Type   | Description                                         |
 | --------- | ------ | --------------------------------------------------- |
 | `address` | String | The address of the new mission contract to be used. |
+
+### ValidateAndrAddress
+
+Called after `UpdateMissionContract` to ensure that all `AndrAddress` instances are valid.
+
+{% tabs %}
+{% tab title="Rust" %}
+```rust
+pub enum AndromedaMsg {
+     ValidateAndrAddresses {},
+     }
+```
+{% endtab %}
+
+{% tab title="JSON" %}
+```json
+{
+"validate_andr_address":{}
+}
+```
+{% endtab %}
+{% endtabs %}
 
 ## Modules
 

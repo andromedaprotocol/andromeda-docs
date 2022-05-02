@@ -44,15 +44,15 @@ pub struct InstantiateMsg {
 {% endtab %}
 {% endtabs %}
 
-| Name               | Type                                                                        | Description                                                                                                              |
-| ------------------ | --------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------ |
-| `name`             | String                                                                      | The name of  the token.                                                                                                  |
-| `symbol`           | String                                                                      | The symbol of the token.                                                                                                 |
-| `decimals`         | u8                                                                          | The number of decimals for the token.                                                                                    |
-| `initial_balances` | Vec<[Cw20Coin](cw-20-token.md#cw20coin)>                                    | A vector containing a list of addresses and the amount of coin to initialize each.                                       |
-| `mint`             | Option<[MinterResponse](cw-20-token.md#minterresponse)>                     | Optional field to define a minter for the token and an optional  cap for the total supply of tokens that can be minted.  |
-| `marketing`        | Option<[InstantiateMarketingInfo](cw-20-token.md#instantiatemarketinginfo)> | Optional field to define the marketing information of the project.                                                       |
-| `modules`          | Option\<Vec<[Module](../modules/module-definitions.md)>>                    | A vector of Andromeda Module definitions. The module definitions can be found[ here](../modules/module-definitions.md).  |
+| Name               | Type                                                                       | Description                                                                                                              |
+| ------------------ | -------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------ |
+| `name`             | String                                                                     | The name of  the token.                                                                                                  |
+| `symbol`           | String                                                                     | The symbol of the token.                                                                                                 |
+| `decimals`         | u8                                                                         | The number of decimals for the token.                                                                                    |
+| `initial_balances` | Vec<[Cw20Coin](cw20-token.md#cw20coin)>                                    | A vector containing a list of addresses and the amount of coin to initialize each.                                       |
+| `mint`             | Option<[MinterResponse](cw20-token.md#minterresponse)>                     | Optional field to define a minter for the token and an optional  cap for the total supply of tokens that can be minted.  |
+| `marketing`        | Option<[InstantiateMarketingInfo](cw20-token.md#instantiatemarketinginfo)> | Optional field to define the marketing information of the project.                                                       |
+| `modules`          | Option\<Vec<[Module](../modules/module-definitions.md)>>                   | A vector of Andromeda Module definitions. The module definitions can be found[ here](../modules/module-definitions.md).  |
 
 #### Cw20Coin
 
