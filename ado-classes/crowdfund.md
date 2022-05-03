@@ -174,6 +174,8 @@ Purchases tokens based on the specified limit or amount of funds sent.
 
 {% hint style="warning" %}
 A sale needs to be in progress in order to purchase tokens.
+
+If `number_of_tokens` is not specified, the maximum number of tokens are purchased based on the funds allocated (Unless we reach the maximum allowed).
 {% endhint %}
 
 {% tabs %}
@@ -198,9 +200,9 @@ A sale needs to be in progress in order to purchase tokens.
 {% endtab %}
 {% endtabs %}
 
-| Name               | Type         | Description                                                                                                                                       |
-| ------------------ | ------------ | ------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `number_of_tokens` | Option\<u32> | An optional limit to the number of tokens to purchase. If not specified, the maximum number of tokens are purchased based on the funds allocated. |
+| Name               | Type         | Description                                                                                                                                                                             |
+| ------------------ | ------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `number_of_tokens` | Option\<u32> | An optional limit to the number of tokens to purchase. If not specified, the maximum number of tokens are purchased based on the funds allocated (Unless we reach the maximum allowed). |
 
 ### PurchaseByTokenId
 
