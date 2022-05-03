@@ -2,11 +2,11 @@
 description: A contract to facilitate the buying and selling of ADOs.
 ---
 
-# ADO Offers
+# NFT Offers
 
 ## Introduction
 
-The ADO **Offers** is a smart contract used to buy/sell NFT tokens. It allows users to place offers on a certain token which can then be accepted by the seller if satisfied.
+The ADO **Offers** is a smart contract used to buy/sell NFT tokens. It allows users to place offers on a certain token which can then be accepted by the seller if satisfied. Once an offer is placed, funds are allocated for the purchase until the offer is expired, accepted, canceled, or a higher offer has been made.
 
 The ADO Offers contract is not built to work as a standalone contract, instead it is implemented as a module for the NFT Collectible ADO facilitating the process of trading NFTs.&#x20;
 
@@ -38,10 +38,14 @@ pub struct InstantiateMsg {
 
 ### PlaceOffer
 
-Places an offer on the ADO with the specified `token_id.`
+Places an offer on the ADO with the specified `token_id`. When an offer is placed, the funds are taken and returned in the case of a higher offer or cancelation.
 
 {% hint style="warning" %}
 The ADO owner is not allowed to place an offer on their ADO.
+
+Only "uusd" denom is only accepted for now as funds.
+
+`offer_amount` needs to exceed the previous highest offer.
 {% endhint %}
 
 {% tabs %}
@@ -65,7 +69,7 @@ pub enum ExecuteMsg{
   "expiration":{
      "at_height": 300,
      }
-  "offer_amount": "200"
+  "offer_amount": "200000"
   }
 }
   
@@ -81,7 +85,7 @@ pub enum ExecuteMsg{
 
 ### CancelOffer
 
-Cancels an offer previously placed.
+Cancels an offer previously placed by a purchaser.
 
 {% tabs %}
 {% tab title="Rust" %}
@@ -115,6 +119,8 @@ Accepts an offer that is placed on your ADO.&#x20;
 
 {% hint style="warning" %}
 Only the `andromeda_cw721_contract` can accept offers.
+
+Cannot accept an offer that has a current [TransferAgreement](andromeda-digital-object.md#transferagreement-1).
 {% endhint %}
 
 {% tabs %}
@@ -143,7 +149,7 @@ pub enum ExecuteMsg{
 
 | Name        | Type   | Description                                    |
 | ----------- | ------ | ---------------------------------------------- |
-| `token_id`  | String | The Id of  the token to accept the offer on.   |
+| `token_id`  | String | The Id of the token to accept the offer on.    |
 | `recipient` | String | The address to receive the funds of the offer. |
 
 ## QueryMsg
@@ -291,4 +297,4 @@ pub struct AllOffersResponse {
 
 | Name   | Type                                              | Description                                                                   |
 | ------ | ------------------------------------------------- | ----------------------------------------------------------------------------- |
-| offers | Vec<[OfferResponse](ado-offers.md#offerresponse)> | A vector of OfferResponse containing each offer with the related information. |
+| offers | Vec<[OfferResponse](nft-offers.md#offerresponse)> | A vector of OfferResponse containing each offer with the related information. |

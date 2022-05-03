@@ -3,7 +3,7 @@
 * [Introduction](README.md)
 * [ADO Classes](ado-classes/README.md)
   * [Address List](ado-classes/address-list.md)
-  * [ADO Offers](ado-classes/ado-offers.md)
+  * [NFT Offers](ado-classes/nft-offers.md)
   * [Anchor](ado-classes/anchor.md)
   * [Astroport](ado-classes/astroport.md)
   * [Auction](ado-classes/auction.md)
@@ -22,7 +22,6 @@
   * [Timelock](ado-classes/timelock.md)
   * [Vault](ado-classes/vault.md)
   * [Wrapped-Cw721](ado-classes/wrapped-cw721.md)
-  * [Receipt](ado-classes/receipt.md)
 * [Mission](mission.md)
 
 ## Modules
@@ -30,7 +29,8 @@
 * [Module Definitions](modules/module-definitions.md)
 * [Rates Module](modules/rates-module.md)
 * [Address List Module](modules/address-list-module.md)
-* [Receipt Module](modules/receipt-module.md)
+* [Receipt Module](modules/receipt-module/README.md)
+  * [Receipt Contract](modules/receipt-module/receipt-contract.md)
 * [Offers Module](modules/offers-module.md)
 
 ## Andromeda Hooks

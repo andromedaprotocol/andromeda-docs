@@ -2,7 +2,7 @@
 description: An ADO contract to mint, edit and query receipts containing event data.
 ---
 
-# Receipt
+# Receipt Contract
 
 ## Introduction
 
@@ -42,7 +42,13 @@ pub struct InstantiateMsg {
 
 ### StoreReceipt
 
-Mint a new receipt. Only executable by the assigned `minter` address. Generates a receipt ID.
+Creates a new receipt. Generates a receipt ID.
+
+{% hint style="info" %}
+Only executable by the assigned minter address.
+
+Usually called automatically by the receipt module after generating the receipt.
+{% endhint %}
 
 {% tabs %}
 {% tab title="Rust" %}
@@ -81,9 +87,9 @@ pub enum ExecuteMsg {
 {% endtab %}
 {% endtabs %}
 
-| Name      | Type                            | Description           |
-| --------- | ------------------------------- | --------------------- |
-| `receipt` | [Receipt](receipt.md#receipt-1) | The receipt to store. |
+| Name      | Type                                     | Description           |
+| --------- | ---------------------------------------- | --------------------- |
+| `receipt` | [Receipt](receipt-contract.md#receipt-1) | The receipt to store. |
 
 #### Receipt
 
@@ -144,14 +150,14 @@ pub enum ExecuteMsg {
 {% endtab %}
 {% endtabs %}
 
-| Name         | Type                            | Description                    |
-| ------------ | ------------------------------- | ------------------------------ |
-| `receipt`    | [Receipt](receipt.md#receipt-1) | The receipt to edit.           |
-| `receipt_id` | Uint128                         | The ID of the receipt to edit. |
+| Name         | Type                                     | Description                    |
+| ------------ | ---------------------------------------- | ------------------------------ |
+| `receipt`    | [Receipt](receipt-contract.md#receipt-1) | The receipt to edit.           |
+| `receipt_id` | Uint128                                  | The ID of the receipt to edit. |
 
 ### AndrReceive
 
-Check [AndrReceive](../ado\_base/andrreceive-andrquery.md).
+Check [AndrReceive](../../ado\_base/andrreceive-andrquery.md).
 
 ## QueryMsg
 
@@ -222,9 +228,9 @@ pub struct ReceiptResponse {
 {% endtab %}
 {% endtabs %}
 
-| Name      | Type                            | Description       |
-| --------- | ------------------------------- | ----------------- |
-| `receipt` | [Receipt](receipt.md#receipt-1) | The receipt data. |
+| Name      | Type                                     | Description       |
+| --------- | ---------------------------------------- | ----------------- |
+| `receipt` | [Receipt](receipt-contract.md#receipt-1) | The receipt data. |
 
 ### ContractInfo
 
@@ -286,4 +292,4 @@ pub struct ContractInfoResponse {
 
 ### AndrQuery
 
-Check[ AndrQuery](../ado\_base/andrreceive-andrquery.md#andromedaquery).
+Check[ AndrQuery](../../ado\_base/andrreceive-andrquery.md#andromedaquery).

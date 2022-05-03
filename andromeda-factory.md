@@ -122,10 +122,10 @@ pub enum ExecuteMsg {
 {% endtab %}
 {% endtabs %}
 
-| Name              | Type         | Description                                                                            |
-| ----------------- | ------------ | -------------------------------------------------------------------------------------- |
-| `receipt_code_id` | Option\<u64> | Optional new code ID for the [receipt](ado-classes/receipt.md) contracts.              |
-| `token_code_id`   | Option\<u64> | Optional new code ID for the [ADO](ado-classes/andromeda-digital-object.md) contracts. |
+| Name              | Type         | Description                                                                                   |
+| ----------------- | ------------ | --------------------------------------------------------------------------------------------- |
+| `receipt_code_id` | Option\<u64> | Optional new code ID for the [receipt](modules/receipt-module/receipt-contract.md) contracts. |
+| `token_code_id`   | Option\<u64> | Optional new code ID for the [ADO](ado-classes/andromeda-digital-object.md) contracts.        |
 
 ### AndrReceive
 

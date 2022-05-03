@@ -18,11 +18,11 @@ pub struct InstantiateMsg {
 }
 ```
 
-| Name                       | Type   | Description                                    |
-| -------------------------- | ------ | ---------------------------------------------- |
-| `andromeda_cw721_contract` | String | The address of the contract to give offers to. |
+| Name                       | Type   | Description                                                                                        |
+| -------------------------- | ------ | -------------------------------------------------------------------------------------------------- |
+| `andromeda_cw721_contract` | String | The address of the contract to give offers to. Needs to be an already instantiated cw721 contract. |
 
-More information on the Offers contract can be found [here](../ado-classes/ado-offers.md).
+More information on the Offers contract can be found [here](../ado-classes/nft-offers.md).
 
 ## Hooks
 
