@@ -133,7 +133,7 @@ pub enum ExecuteMsg{
         expiration: Expiration,
         price: Coin,
         min_tokens_sold: Uint128,
-        max_amount_per_wallet: Option<Uint128>,
+        max_amount_per_wallet: Option<u32>,
         recipient: Recipient,
     },
 ```
@@ -151,7 +151,7 @@ pub enum ExecuteMsg{
     "amount":"10000"
     },
   "min_tokens_sold":"1000",
-  "max_amount_per_wallet":"10",
+  "max_amount_per_wallet":10,
   "recipient":{
    "addr":"terra1..."
   }
@@ -165,7 +165,7 @@ pub enum ExecuteMsg{
 | `exiration`             | [Expiration](../common-types/expiration.md) | When the sale ends.                                               |
 | `price`                 | [Coin](../common-types/coin.md)             | The price per token.                                              |
 | `min_tokens_sold`       | Uint128                                     | The minimum amount of tokens sold to go through with the sale.    |
-| `max_amount_per_wallet` | Option\<Uint128>                            | The amount of tokens a wallet can purchase, default is 1.         |
+| `max_amount_per_wallet` | Option\<u32>                                | The amount of tokens a wallet can purchase, default is 1.         |
 | `recipient`             | [Recipient](../common-types/recipient.md)   | The recipient of the funds if the sale met the `min_tokens_sold`. |
 
 ### Purchase
@@ -321,7 +321,7 @@ pub struct State {
     pub expiration: Expiration,
     pub price: Coin,
     pub min_tokens_sold: Uint128,
-    pub max_amount_per_wallet: Uint128,
+    pub max_amount_per_wallet: u32,
     pub amount_sold: Uint128,
     pub amount_to_send: Uint128, 
     pub amount_transferred: Uint128,
@@ -341,7 +341,7 @@ pub struct State {
     "amount":"10000"
     },
   "min_tokens_sold":"1000",
-  "max_amount_per_wallet":"10",
+  "max_amount_per_wallet":10,
   "amount_sold":"600",
   "amount_to_send":"100000",
   "amount_transferred":"300",
@@ -358,7 +358,7 @@ pub struct State {
 | `expiration`            | [Expiration](../common-types/expiration.md) | The expiration denoting when the sale ends.                                                                           |
 | `price`                 | [Coin](../common-types/coin.md)             | The price of each token.                                                                                              |
 | `min_tokens_sold`       | Uint128                                     | The minimum number of tokens sold for the sale to go through.                                                         |
-| `max_amount_per_wallet` | Uint128                                     | The max number of tokens allowed per wallet.                                                                          |
+| `max_amount_per_wallet` | u32                                         | The max number of tokens allowed per wallet.                                                                          |
 | `amount_sold`           | Uint128                                     | Number of tokens sold.                                                                                                |
 | `amount_to_send`        | Uint128                                     | The amount of funds to send to recipient if sale successful. This already takes into account the royalties and taxes. |
 | `amount_transferred`    | Uint128                                     | Number of tokens transferred to purchasers if sale was successful.                                                    |
