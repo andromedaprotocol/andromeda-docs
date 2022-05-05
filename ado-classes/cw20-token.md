@@ -517,11 +517,11 @@ UpdateMarketing {
 | `description` | Option\<String> | A longer description of the token and it's utility. Designed for tooltips or such. |
 | `marketing`   | Option\<String> | The address (if any) who can update this data structure.                           |
 
-### UpdateOwner/UpdateOperators
+### AndrReceive
 
-Check [AndrReceive](../ado\_base/andrreceive-andrquery.md).
-
-### RegisterModule/DeregisterModule/AlterModule
+{% hint style="info" %}
+Uses the modules feature.
+{% endhint %}
 
 Check [AndrReceive](../ado\_base/andrreceive-andrquery.md).
 

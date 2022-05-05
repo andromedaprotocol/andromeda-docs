@@ -13,8 +13,6 @@ There are two main conditions that can be used by the contract:
 
 Once a condition is satisfied, the funds can be released.
 
-The contract supports [modules](broken-reference) to extend its functionality.
-
 ## InstantiateMsg
 
 {% tabs %}
@@ -160,6 +158,10 @@ ReleaseSpecificFunds {
 | `recipient_addr` | Option\<String> | Optional address to receive the released funds. Will default to the sender if not specified. |
 
 ### AndrReceive
+
+{% hint style="info" %}
+Uses the modules feature.
+{% endhint %}
 
 Check [AndrReceive](../ado\_base/andrreceive-andrquery.md).
 

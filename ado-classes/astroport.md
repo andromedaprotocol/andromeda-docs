@@ -478,6 +478,10 @@ Information on the Factory contract execute messages can be found in the Astropo
 
 ### AndrReceive
 
+{% hint style="info" %}
+Uses withdraw and primitive features.
+{% endhint %}
+
 Check [AndrReceive](../ado\_base/andrreceive-andrquery.md#andrrecieve).
 
 ## QueryMsg

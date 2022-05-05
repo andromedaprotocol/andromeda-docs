@@ -47,7 +47,7 @@ The contract addresses of these deployed contracts by anchor can be found [here]
 
 ### AndrReceive
 
-Deposits stable assets to get interest or withdraw funds from position. Depends on the attached message.
+Deposits stable assets to get interest or withdraw funds from position. Depends on the attached message. Also can be used to execute the rest of the `AndrReceive` messages.
 
 ```rust
 pub enum ExecuteMsg {
@@ -67,6 +67,10 @@ pub enum AndromedaMsg {
         tokens_to_withdraw: Option<Vec<Withdrawal>>,
     },
 ```
+
+{% hint style="info" %}
+Uses the primitive feature.
+{% endhint %}
 
 For the rest of the `AndromedaMsg` check [`AndrReceive`](../ado\_base/andrreceive-andrquery.md#andromedamsg).
 
@@ -114,7 +118,7 @@ The receive message can be empty or contain a recipient to get the position.
 "andr_receive": {
     "receive":{
         "recipient":{
-            "addr":"terra1... 
+            "addr":"terra1..." 
         }
     }
  }

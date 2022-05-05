@@ -8,8 +8,6 @@ description: An ADO contract to split sent funds amongst predefined addresses.
 
 The **Splitter** ADO is a smart contract used to split funds to a preset number of addresses. Each of the addresses has a specific percentage assigned by the contract owner.&#x20;
 
-The contract supports [modules](broken-reference) to extend its functionality.
-
 ## InstantiateMsg
 
 {% tabs %}
@@ -198,6 +196,10 @@ pub enum ExecuteMsg {
 {% endtabs %}
 
 ### AndrReceive
+
+{% hint style="info" %}
+Uses the modules feature.
+{% endhint %}
 
 Check [AndrReceive](../ado\_base/andrreceive-andrquery.md).
 

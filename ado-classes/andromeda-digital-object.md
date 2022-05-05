@@ -569,6 +569,10 @@ or
 
 ### AndrReceive
 
+{% hint style="info" %}
+Uses the modules feature.
+{% endhint %}
+
 Check [AndrReceive](../ado\_base/andrreceive-andrquery.md).
 
 ## QueryMsg

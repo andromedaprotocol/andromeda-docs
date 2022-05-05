@@ -288,6 +288,10 @@ Ends the sale. In the case that the minimum sold is not achieved, refunds are se
 
 ### AndrReceive
 
+{% hint style="info" %}
+Uses the modules feature.
+{% endhint %}
+
 Check [AndrReceive](../ado\_base/andrreceive-andrquery.md#andrrecieve).
 
 ## QueryMsg

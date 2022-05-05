@@ -4,7 +4,7 @@
 * [ADO Classes](ado-classes/README.md)
   * [Address List](ado-classes/address-list.md)
   * [NFT Offers](ado-classes/nft-offers.md)
-  * [Anchor Lend](ado-classes/anchor-lend.md)
+  * [Anchor Lend](ado-classes/anchor.md)
   * [Anchor Earn](ado-classes/anchor-earn.md)
   * [Astroport](ado-classes/astroport.md)
   * [Auction](ado-classes/auction.md)

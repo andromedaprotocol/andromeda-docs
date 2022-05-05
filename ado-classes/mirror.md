@@ -372,6 +372,10 @@ Documentation for the different messages can be found [here](https://docs.mirror
 
 ### AndrReceive
 
+{% hint style="info" %}
+Uses withdraw and primitive features.
+{% endhint %}
+
 Check [AndrReceive](../ado\_base/andrreceive-andrquery.md#andrrecieve).
 
 ## QueryMsg

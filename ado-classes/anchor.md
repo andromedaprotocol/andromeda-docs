@@ -383,6 +383,10 @@ pub enum ExecuteMsg {
 
 ### AndrReceive
 
+{% hint style="info" %}
+Uses the withdraw and primitive features.
+{% endhint %}
+
 Check[ AndrReceive](../ado\_base/andrreceive-andrquery.md#andrrecieve).
 
 ## QueryMsg

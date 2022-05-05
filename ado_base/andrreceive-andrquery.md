@@ -22,7 +22,26 @@ pub enum ExecuteMsg {
 
 ### AndromedaMsg
 
-An enum lisiting the different types of `AndromedaMsg`. Not all of these messages can be executed by any contract. Some are specific to ADOs that use modules or primitives.
+An enum lisiting the different types of `AndromedaMsg`. Not all of these messages can be executed by any contract.&#x20;
+
+The withdraw feature should be enabled in order to execute:
+
+* `Withdraw`
+
+The modules feature should be enabled in order to execute:
+
+* `RegisterModule`
+* `DeregisterModule`
+* `AlterModule`
+
+The primitive feature should be enabled in order to execute:
+
+* `RefreshAddress`
+* `RefreshAddresses`
+
+{% hint style="info" %}
+To check if an ADO uses a certain feature, check the AndrReceive section in that contract's documentation. If nothing is specified then the feature is not available.
+{% endhint %}
 
 ```rust
 pub enum AndromedaMsg {
@@ -132,7 +151,7 @@ pub enum AndromedaMsg{
 
 ### Withdraw
 
-Withdraws token to a specified `recipient`. Not common to all ADOs.
+Withdraws token to a specified `recipient`. Not common to all ADOs, but only to the ones with withdraw feature enabled.
 
 {% tabs %}
 {% tab title="Rust" %}
