@@ -12,7 +12,7 @@ The **Primitive ADO** is a smart contract that is used to store data for another
 
 The primitive contract is used in situations where data will most likely be used several times saving us the cost of redefining it every single time. Instead the primitive contract address can be added to the ADOs that utilize it (Found in the `InstantiationMsg` of the ADO).&#x20;
 
-An example on this would be our CDP ADOs such as [**Anchor**](anchor.md) and **Mirror.** These contracts need to have the smart contract addresses used by these protocols saved to be able to function. Since these addresses will rarely or never change, we would save them in a primitive contract saving us the hassle to redefine them whenever we want to Instantiate a new Anchor/Mirror contract.  &#x20;
+An example on this would be our CDP ADOs such as [**Anchor**](anchor-lend.md) and **Mirror.** These contracts need to have the smart contract addresses used by these protocols saved to be able to function. Since these addresses will rarely or never change, we would save them in a primitive contract saving us the hassle to redefine them whenever we want to Instantiate a new Anchor/Mirror contract.  &#x20;
 
 ## InstantiateMsg
 

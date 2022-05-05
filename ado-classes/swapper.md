@@ -8,7 +8,7 @@ This is done by implementing a common `Swap` message on each possible engine suc
 
 #### Example:
 
-The functionality is best explained with an example. Suppose we had an [`Anchor`](anchor.md) contract that expects UST to be deposited. We also want to support LUNA deposits. This can be done by setting up a `Swapper` in a mission between the `Rates` and `Anchor` contracts with an `ask_asset` of UST. If the `Swapper` receives LUNA, or any other asset, it will swap it to UST and send it along to the `Anchor` contract. If it receives UST, it will send that as is to the `Anchor` contract without swapping. So what we have achieved here is effectively a normalization of assets: many types can go in and only a single one comes out.
+The functionality is best explained with an example. Suppose we had an [`Anchor`](anchor-lend.md) contract that expects UST to be deposited. We also want to support LUNA deposits. This can be done by setting up a `Swapper` in a mission between the `Rates` and `Anchor` contracts with an `ask_asset` of UST. If the `Swapper` receives LUNA, or any other asset, it will swap it to UST and send it along to the `Anchor` contract. If it receives UST, it will send that as is to the `Anchor` contract without swapping. So what we have achieved here is effectively a normalization of assets: many types can go in and only a single one comes out.
 
 The engine implementation in Astroport uses the [`Router` ](https://docs.astroport.fi/astroport/smart-contracts/router)contract Astroport has provided.
 

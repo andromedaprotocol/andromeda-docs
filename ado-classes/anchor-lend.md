@@ -1,8 +1,10 @@
-# Anchor
+# Anchor Lend
 
 ## Introduction
 
-The Anchor ADO is a smart contract that allows users to deposit funds to utilize the functionalities used by anchor protocol. For now, the ADO supports depositing to anchor, borrowing, and staking. For more information on what is anchor protocol refer to their docs found [here](https://docs.anchorprotocol.com/smart-contracts/deployed-contracts).
+The Anchor Lend ADO is a smart contract that allows users to deposit funds to utilize the functionalities used by anchor protocol.&#x20;
+
+For now, the ADO supports depositing to anchor, borrowing, and staking. For more information on what is anchor protocol refer to their docs found [here](https://docs.anchorprotocol.com/smart-contracts/deployed-contracts).
 
 ## InstantiateMsg
 
@@ -37,7 +39,6 @@ pub const ANCHOR_OVERSEER: &str = "anchor_overseer_contract";
 pub const ANCHOR_BLUNA_HUB: &str = "anchor_bluna_hub_contract";
 pub const ANCHOR_BLUNA_CUSTODY: &str = "anchor_bluna_custody_contract";
 pub const ANCHOR_ORACLE: &str = "anchor_oracle_contract";
-pub const ANCHOR_AUST: &str = "anchor_aust_contract";
 pub const ANCHOR_BLUNA: &str = "anchor_bluna_contract";
 pub const ANCHOR_GOV: &str = "anchor_gov_contract";
 pub const ANCHOR_ANC: &str = "anchor_anc_contract";
@@ -388,44 +389,4 @@ Check[ AndrReceive](../ado\_base/andrreceive-andrquery.md#andrrecieve).
 
 ### AndrQuery
 
-```rust
-fn handle_andromeda_query(
-    deps: Deps,
-    env: Env,
-    msg: AndromedaQuery,
-) -> Result<Binary, ContractError> {
-    match msg {
-        AndromedaQuery::Get(data) => {
-            let recipient: String = parse_message(&data)?;
-            encode_binary(&query_position(deps, recipient)?)
-        }
-        _ => ADOContract::default().query(deps, env, msg, query),
-    }
-}
-```
-
-If the type is a `Get`, it will query the current anchor position and return a `PositionResponse`:
-
-{% tabs %}
-{% tab title="Rust" %}
-```rust
-pub struct PositionResponse {
-    pub recipient: Recipient,
-    pub aust_amount: Uint128,
-}
-```
-{% endtab %}
-
-{% tab title="JSON" %}
-```json
-{
-"recipient":{
-"addr":"terra1...",
-  }
-"aust_amount":"10000"
-}
-```
-{% endtab %}
-{% endtabs %}
-
-The rest of the executes can be found in the [`AndrQuery`](../ado\_base/andrreceive-andrquery.md#andrquery) section.
+Check [AndrQuery](../ado\_base/andrreceive-andrquery.md#andrquery).
