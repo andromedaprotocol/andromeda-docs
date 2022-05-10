@@ -115,6 +115,10 @@ pub enum StrategyType {
 
 Withdraw funds from the vault or one of the strategies.
 
+{% hint style="info" %}
+The `recipient` field is not used if withdrawing from a strategy.
+{% endhint %}
+
 {% tabs %}
 {% tab title="Rust" %}
 ```rust
@@ -150,17 +154,21 @@ pub enum ExecuteMsg{
 {% endtab %}
 {% endtabs %}
 
-| Name          | Type                                                                |                                                                                          |
-| ------------- | ------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
-| `recipient`   | Option<[Recipient](../common-types/recipient.md)>                   | The address to receive the withdrawn funds.                                              |
-| `withdrawals` | Vec<[Withdrawal](../ado\_base/andrreceive-andrquery.md#withdrawal)> | The funds to withdraw.                                                                   |
-| `strategy`    | Option<[StrategyType](vault.md#strategytype)>                       | The strategy to withdraw from. If not specified, the funds are withdrawn from the vault. |
+| Name          | Type                                                                |                                                                                                                                      |
+| ------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------ |
+| `recipient`   | Option<[Recipient](../common-types/recipient.md)>                   | The address to receive the withdrawn funds when withdrawing from vault. Defaults to the sender. Not used if a strategy is specified. |
+| `withdrawals` | Vec<[Withdrawal](../ado\_base/andrreceive-andrquery.md#withdrawal)> | The funds to withdraw.                                                                                                               |
+| `strategy`    | Option<[StrategyType](vault.md#strategytype)>                       | The strategy to withdraw from. If not specified, the funds are withdrawn from the vault.                                             |
 
 The rest of the executes can be found in the [`AndrReceive`](../ado\_base/andrreceive-andrquery.md#andrrecieve) section.
 
 ### UpdateStrategy
 
 Updates the contract address used for the specified strategy.
+
+{% hint style="warning" %}
+The Vault needs to be an operator of the strategy contract.
+{% endhint %}
 
 {% tabs %}
 {% tab title="Rust" %}

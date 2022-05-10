@@ -1,6 +1,7 @@
 # Table of contents
 
 * [Overview](README.md)
+* [Deployed Contracts](deployed-contracts.md)
 * [ADO Classes](ado-classes/README.md)
   * [Address List](ado-classes/address-list.md)
   * [NFT Offers](ado-classes/nft-offers.md)
