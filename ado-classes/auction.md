@@ -316,6 +316,10 @@ pub enum ExecuteMsg {
 | --------- | ------ | ----------------------------- |
 | `address` | String | The address of the new owner. |
 
+### AndrRecieve
+
+Check [AndrReceive](../ado\_base/andrreceive-andrquery.md#andrrecieve).
+
 ## QueryMsg
 
 ### LatestAuctionState
@@ -713,3 +717,7 @@ pub struct ContractOwnerResponse {
 | Name    | Type   | Description                |
 | ------- | ------ | -------------------------- |
 | `owner` | String | The owner of the contract. |
+
+### AndrQuery
+
+Check [AndrQuery](../ado\_base/andrreceive-andrquery.md#andrquery).
