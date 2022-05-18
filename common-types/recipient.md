@@ -19,7 +19,7 @@ pub enum Recipient {
 
 #### **ADORecipient**
 
-The address can be either a contract address or the human-readable identifier used in a mission contract.
+The address can be either a contract address or the human-readable identifier used in an app contract.
 
 ```rust
 pub struct ADORecipient {
@@ -35,7 +35,7 @@ pub struct ADORecipient {
 
 ### AndrAddress
 
-A struct used to reference another ADO contract. Can be either an address or identifier of an ADO in a mission.&#x20;
+A struct used to reference another ADO contract. Can be either an address or identifier of an ADO in an app.
 
 {% tabs %}
 {% tab title="Rust" %}

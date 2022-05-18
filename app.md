@@ -1,22 +1,22 @@
-# Mission
+# App
 
 ## Introduction
 
-The **Mission** ADO is a smart contract that is used to bundle up contracts that will be interacting with each other into  what we call a  "mission" and would provide a naming system to allow these contracts to reference each other using these names instead of contract addresses. Essentially, a mission would include several contracts that interact to complete a desired goal for the project being built.&#x20;
+The **App** ADO is a smart contract that is used to bundle up contracts that will be interacting with each other into  what we call an  "App" and would provide a naming system to allow these contracts to reference each other using these names instead of contract addresses. Essentially, an App would include several contracts that interact to complete a desired goal for the project being built.&#x20;
 
-A contract in the mission is called a `MissionComponent.` Every mission would be composed of many of these components (up to 50). Each component is assigned a name which can be used by other components to reference each other.
+A contract in the App is called a AppComponent. Every app would be composed of many of these components (up to 50). Each component is assigned a name which can be used by other components to reference each other.
 
-The steps needed to build a full mission are the following:
+The steps needed to build a full app are the following:
 
 1. Upload the contracts and get the code IDs.
 2. Instantiate a factory contract and save the code IDs of the contracts in it.
 3. Instantiate a primitive contract and save the factory address as a value under the name "factory".
-4. Instantiate the mission contract and attach the primitive to it (`primitive_contract` field in instantiation)
+4. Instantiate the app contract and attach the primitive to it (`primitive_contract` field in instantiation)
 
 ## InstantiateMsg
 
 {% hint style="warning" %}
-The maximum number of mission components is 50.
+The maximum number of app components is 50.
 {% endhint %}
 
 {% tabs %}
@@ -24,7 +24,7 @@ The maximum number of mission components is 50.
 ```rust
 pub struct InstantiateMsg {
     pub operators: Vec<String>,
-    pub mission: Vec<MissionComponent>,
+    pub app: Vec<AppComponent>,
     pub name: String,
     pub primitive_contract: String
 }
@@ -35,7 +35,7 @@ pub struct InstantiateMsg {
 ```rust
 {
 "operators":["terra1...","terra1...","terra1...",....],
-"mission":[
+"app":[
      {
        "name":"fundsplitter",
        "ado_type":"splitter",
@@ -47,7 +47,7 @@ pub struct InstantiateMsg {
    ...
    }
  ],
- "name":"some_mission",
+ "name":"some_app",
  "primitive_contract":"terra1..."
  }
        
@@ -57,23 +57,23 @@ pub struct InstantiateMsg {
 {% endtab %}
 {% endtabs %}
 
-| Name                 | Type                                                 | Description                                                                |
-| -------------------- | ---------------------------------------------------- | -------------------------------------------------------------------------- |
-| `operators`          | Vec\<String>                                         | The operators of the contract.                                             |
-| `mission`            | Vec<[MissionComponent](mission.md#missioncomponent)> | The vector of MissionComponent containing all the ADOs of the mission.     |
-| `name`               | String                                               | The name of the mission.                                                   |
-| `primitive_contract` | String                                               | The address of the `primitve` contract used to supply data to the mission. |
+| Name                 | Type                                         | Description                                                            |
+| -------------------- | -------------------------------------------- | ---------------------------------------------------------------------- |
+| `operators`          | Vec\<String>                                 | The operators of the contract.                                         |
+| `App`                | Vec<[AppComponent](app.md#missioncomponent)> | The vector of AppComponent containing all the ADOs of the app.         |
+| `name`               | String                                       | The name of the app.                                                   |
+| `primitive_contract` | String                                       | The address of the `primitve` contract used to supply data to the app. |
 
-### MissionComponent
+### AppComponent
 
-The ADO to be a part of the mission.&#x20;
+The ADO to be a part of the App.&#x20;
 
 {% hint style="warning" %}
 The `instantiate_msg` should be base64 encoded and not raw binary.
 {% endhint %}
 
 ```rust
-pub struct MissionComponent {
+pub struct AppComponent {
     pub name: String,
     pub ado_type: String,
     pub instantiate_msg: Binary,
@@ -88,9 +88,9 @@ pub struct MissionComponent {
 
 ## ExecuteMsg
 
-### AddMissionComponent
+### AddAppComponent
 
-Adds an ADO component to the mission.
+Adds an ADO component to the app.
 
 {% hint style="warning" %}
 Only available to the contract owner.
@@ -100,8 +100,8 @@ Only available to the contract owner.
 {% tab title="Rust" %}
 ```rust
 pub enum ExecuteMsg {
-AddMissionComponent{
- component: MissionComponent,
+AddAppComponent{
+ component: AppComponent,
    }
 }
 ```
@@ -110,7 +110,7 @@ AddMissionComponent{
 {% tab title="JSON" %}
 ```json
 {
-"add_mission_component":{
+"add_app_component":{
  "component":{
        "name":"fundsplitter",
        "ado_type":"splitter",
@@ -124,13 +124,13 @@ AddMissionComponent{
 {% endtab %}
 {% endtabs %}
 
-| Name      | Type                                            | Description                              |
-| --------- | ----------------------------------------------- | ---------------------------------------- |
-| component | [MissionComponent](mission.md#missioncomponent) | The ADO component to add to the mission. |
+| Name        | Type                                    | Description                          |
+| ----------- | --------------------------------------- | ------------------------------------ |
+| `component` | [AppComponent](app.md#missioncomponent) | The ADO component to add to the app. |
 
 ### ClaimOwnership
 
-Gives ownership of a component to the owner address instead of the mission contract.
+Gives ownership of a component to the owner address instead of the app contract.
 
 {% hint style="warning" %}
 Only available to the contract owner.
@@ -158,13 +158,13 @@ pub enum ExecuteMsg{
 {% endtab %}
 {% endtabs %}
 
-| Name   | Type            | Description                                                                                         |
-| ------ | --------------- | --------------------------------------------------------------------------------------------------- |
-| `name` | Option\<String> | Optional name for the component to claim. If not set, will claim all ADO components in the mission. |
+| Name   | Type            | Description                                                                                     |
+| ------ | --------------- | ----------------------------------------------------------------------------------------------- |
+| `name` | Option\<String> | Optional name for the component to claim. If not set, will claim all ADO components in the app. |
 
 ### ProxyMessage
 
-Sends a message to the ADO with the specified `name`. This is used in the case the mission contract has specific operation privileges over a component.
+Sends a message to the ADO with the specified `name`. This is used in the case the app contract has specific operation privileges over a component.
 
 {% hint style="warning" %}
 Only available to the contract owner.
@@ -272,7 +272,29 @@ pub enum QueryMsg{
 | ------ | ------ | ---------------------------------------------------------- |
 | `name` | String | The name of the component to get the contract address for. |
 
-Returns a `Vec<ComponentAddress>`.
+Returns a `String` of the component address.
+
+### GetAddresses
+
+{% tabs %}
+{% tab title="Rust" %}
+```rust
+pub enum QueryMsg{
+   GetAddresses {}
+}
+```
+{% endtab %}
+
+{% tab title="JSON" %}
+```json
+{
+"get_addresses":{}
+ }
+```
+{% endtab %}
+{% endtabs %}
+
+Returns a `Vec<ComponentAddress>` containing the name and address of each component.
 
 #### ComponentAddress
 
@@ -296,28 +318,6 @@ pub struct ComponentAddress {
 {% endtab %}
 {% endtabs %}
 
-### GetAddresses
-
-{% tabs %}
-{% tab title="Rust" %}
-```rust
-pub enum QueryMsg{
-   GetAddresses {}
-}
-```
-{% endtab %}
-
-{% tab title="JSON" %}
-```json
-{
-"get_addresses":{}
- }
-```
-{% endtab %}
-{% endtabs %}
-
-Returns a `Vec<Addr>` containing the different contract addresses of the components.
-
 ### GetComponents
 
 {% tabs %}
@@ -338,11 +338,11 @@ pub enum QueryMsg{
 {% endtab %}
 {% endtabs %}
 
-Returns a `Vec<`[`MissionComponent`](mission.md#missioncomponent)`>` which contains all the components of the mission.
+Returns a `Vec<`[`AppComponent`](app.md#missioncomponent)`>` which contains all the components of the app.
 
 ### Config
 
-Queries the configuration of the mission.
+Queries the configuration of the app.
 
 {% tabs %}
 {% tab title="Rust" %}
@@ -377,7 +377,7 @@ pub struct ConfigResponse {
 {% tab title="JSON" %}
 ```json
 {
-"name":"mymission",
+"name":"myapp",
 "owner":"terra1..."
 }
 ```
@@ -427,7 +427,7 @@ If the [`AndromedaQuery`](ado\_base/andrreceive-andrquery.md#andromedaquery) is 
 ```rust
 fn handle_andromeda_query(
     deps: Deps,
-    env: Env,
+    env: Env,-
     msg: AndromedaQuery,
 ) -> Result<Binary, ContractError> {
     match msg {

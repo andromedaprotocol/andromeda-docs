@@ -52,7 +52,7 @@ pub enum AndromedaMsg {
     UpdateOperators {
         operators: Vec<String>,
     },
-    UpdateMissionContract {
+    UpdateAppContract {
         address: String,
     },
     Withdraw {
@@ -212,9 +212,9 @@ pub enum WithdrawalType {
 }
 ```
 
-### UpdateMissionContract
+### UpdateAppContract
 
-Changes the contract address of the mission contract.&#x20;
+Changes the contract address of the app contract.&#x20;
 
 {% tabs %}
 {% tab title="Rust" %}
@@ -231,8 +231,8 @@ pub enum AndromedaMsg{
 ```rust
 {
  "andr_receive":{
-      "update_mission_contract":{
-            "address":"terra1...",
+      "update_app_contract":{
+            "address":"terra1..."
      }
    }
 }
@@ -240,13 +240,13 @@ pub enum AndromedaMsg{
 {% endtab %}
 {% endtabs %}
 
-| Name      | Type   | Description                                         |
-| --------- | ------ | --------------------------------------------------- |
-| `address` | String | The address of the new mission contract to be used. |
+| Name      | Type   | Description                                     |
+| --------- | ------ | ----------------------------------------------- |
+| `address` | String | The address of the new app contract to be used. |
 
 ### ValidateAndrAddress
 
-Called after `UpdateMissionContract` to ensure that all `AndrAddress` instances are valid.
+Called after `UpdateAppContract` to ensure that all `AndrAddress` instances are valid.
 
 {% tabs %}
 {% tab title="Rust" %}
@@ -380,7 +380,7 @@ pub enum AndromedaMsg{
           },
      "is_mutable": true
         }
-    }
+    } 
  }
 ```
 {% endtab %}

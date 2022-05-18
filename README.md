@@ -1,3 +1,8 @@
+---
+cover: .gitbook/assets/Cover.png
+coverY: -172.99610894941634
+---
+
 # Overview
 
 ### Mission

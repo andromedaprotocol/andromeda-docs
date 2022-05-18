@@ -2,13 +2,13 @@
 
 ## Introduction
 
-The **Swapper** ADO allows us to add swapping functionality to any [mission](../mission.md) very easily, along with being able to choose the Automated Market Maker(AMM) that does the swapping.
+The **Swapper** ADO allows us to add swapping functionality to any [app](../app.md) very easily, along with being able to choose the Automated Market Maker(AMM) that does the swapping.
 
 This is done by implementing a common `Swap` message on each possible engine such that the `Swapper` will not care what the underlying contract is. Currently, the only swapping engine that can be used is Astroport, but we intend to add more in the future.
 
 #### Example:
 
-The functionality is best explained with an example. Suppose we had an [`Anchor`](anchor.md) contract that expects UST to be deposited. We also want to support LUNA deposits. This can be done by setting up a `Swapper` in a mission between the `Rates` and `Anchor` contracts with an `ask_asset` of UST. If the `Swapper` receives LUNA, or any other asset, it will swap it to UST and send it along to the `Anchor` contract. If it receives UST, it will send that as is to the `Anchor` contract without swapping. So what we have achieved here is effectively a normalization of assets: many types can go in and only a single one comes out.
+The functionality is best explained with an example. Suppose we had an [`Anchor`](anchor.md) contract that expects UST to be deposited. We also want to support LUNA deposits. This can be done by setting up a `Swapper` in an app between the `Rates` and `Anchor` contracts with an `ask_asset` of UST. If the `Swapper` receives LUNA, or any other asset, it will swap it to UST and send it along to the `Anchor` contract. If it receives UST, it will send that as is to the `Anchor` contract without swapping. So what we have achieved here is effectively a normalization of assets: many types can go in and only a single one comes out.
 
 The engine implementation in Astroport uses the [`Router` ](https://docs.astroport.fi/astroport/smart-contracts/router)contract Astroport has provided.
 

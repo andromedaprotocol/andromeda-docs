@@ -31,7 +31,7 @@ Any ADO that can implement modules uses this `Module` struct in it's Instantiati
 
 ### AndrAdress
 
-A struct used to reference a another ADO contract. Can be either an address, or identifier of an ADO in a mission.&#x20;
+A struct used to reference  another ADO contract. Can be either an address, or identifier of an ADO in an app.&#x20;
 
 ```rust
 pub struct AndrAddress {

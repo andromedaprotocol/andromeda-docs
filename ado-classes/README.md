@@ -23,7 +23,7 @@ pub struct ADOContract<'a> {
     pub(crate) owner: Item<'a, Addr>,
     pub(crate) operators: Map<'a, &'a str, bool>,
     pub(crate) ado_type: Item<'a, String>,
-    pub(crate) mission_contract: Item<'a, Addr>,
+    pub(crate) app_contract: Item<'a, Addr>,
     #[cfg(feature = "primitive")]
     pub(crate) primitive_contract: Item<'a, Addr>,
     #[cfg(feature = "primitive")]
@@ -34,7 +34,7 @@ pub struct ADOContract<'a> {
     pub(crate) module_idx: Item<'a, u64>,
     #[cfg(feature = "withdraw")]
     pub withdrawable_tokens: Map<'a, &'a str, AssetInfo>,
-
+}
 ```
 
 To avoid defining these fields for every single contract, we have decided to bundle them in a struct that can be used by all ADOs. There are also [ado-base messages](../ado\_base/andrreceive-andrquery.md) which are the messages that can be called by any ADO (Unless they require a certain feature enabled) that will be further discussed later on.

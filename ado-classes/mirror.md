@@ -2,7 +2,7 @@
 
 ## Introduction
 
-The Mirror ADO allows users to use Mirror Protocol functionality in an ADO. If not familiar with mirror and what they offer refer to their docs found [here](https://docs.mirror.finance).
+The Mirror ADO allows users to use Mirror Protocol functionality in an ADO. If not familiar with mirror and what they offer refer to their docs found [here](https://docs.mirror.finance/).
 
 The following mirror contracts are supported by our ADO:
 
