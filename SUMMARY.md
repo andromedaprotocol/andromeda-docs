@@ -24,6 +24,7 @@
   * [Swapper](ado-classes/swapper.md)
   * [Timelock](ado-classes/timelock.md)
   * [Vault](ado-classes/vault.md)
+  * [Vesting ADO](ado-classes/vesting-ado.md)
   * [Wrapped-Cw721](ado-classes/wrapped-cw721.md)
 * [App](app.md)
 
