@@ -204,8 +204,8 @@ pub enum ExecuteMsg {
 {% endtab %}
 
 {% tab title="JSON" %}
-```
-// Some code
+```rust
+"update_global_indexes":{}
 ```
 {% endtab %}
 {% endtabs %}

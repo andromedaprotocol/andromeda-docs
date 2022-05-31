@@ -17,6 +17,7 @@ The ADO Offers contract is not built to work as a standalone contract, instead i
 ```rust
 pub struct InstantiateMsg {
     pub andromeda_cw721_contract: String,
+    pub valid_demoms: Vec<String>,
 }
 ```
 {% endtab %}
@@ -24,15 +25,17 @@ pub struct InstantiateMsg {
 {% tab title="JSON" %}
 ```json
 {
-"andromeda_cw721_contract"
+"andromeda_cw721_contract":"terra1...",
+"valid_denoms":["uusd","ujuno","..."]
 }
 ```
 {% endtab %}
 {% endtabs %}
 
-| Name                       | Type   | Description                                    |
-| -------------------------- | ------ | ---------------------------------------------- |
-| `andromeda_cw721_contract` | String | The address of the contract to give offers to. |
+| Name                       | Type         | Description                                    |
+| -------------------------- | ------------ | ---------------------------------------------- |
+| `andromeda_cw721_contract` | String       | The address of the contract to give offers to. |
+| `valid_denoms`             | Vec\<String> | The denoms allowed in offers.                  |
 
 ## ExecuteMsg
 
