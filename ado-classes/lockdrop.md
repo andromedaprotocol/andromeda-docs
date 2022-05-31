@@ -12,6 +12,8 @@ The second phase is the withdrawal phase, in which for the first half, users can
 
 After the deposit phase is over, each user gets the token in proportion to how much UST they put in (claims need to be enabled first). This contract also has an optional relationship with an LP bootstrapping contract which would allow users to deposit parts of their purchased tokens and UST to bootstrap a liquidity pool.&#x20;
 
+**Ado\_type**: lockdrop
+
 ## InstantiateMsg
 
 {% hint style="warning" %}

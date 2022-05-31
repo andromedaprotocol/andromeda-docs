@@ -6,6 +6,8 @@ The Anchor Lend ADO is a smart contract that allows users to deposit funds to ut
 
 For now, the ADO supports depositing to anchor, borrowing, and staking. For more information on what is anchor protocol refer to their docs found [here](https://docs.anchorprotocol.com/smart-contracts/deployed-contracts).
 
+**Ado\_type**: anchor-lend
+
 ## InstantiateMsg
 
 {% tabs %}
@@ -226,10 +228,10 @@ pub enum ExecuteMsg{
 {% endtab %}
 {% endtabs %}
 
-| Name                | Type                                              | Description                                                                                                                                                                                                                                                                                             |
-| ------------------- | ------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `desired_ltv_ratio` | Decimal256                                        | The desired loan-to-value ratio. Needs to be less than 1. More info on LTV can be found [here](https://spectrocoin.com/en/faqs/crypto-loans/what-is-ltv-ratio-and-how-to-maintain-it.html#:\~:text=The%20loan%2Dto%2Dvalue%20\(LTV\)%20ratio%20shows%20the,usually%20expressed%20as%20a%20percentage.). |
-| `recipient`         | Option<[Recipient](../common-types/recipient.md)> | The address to receive the funds.                                                                                                                                                                                                                                                                       |
+| Name                | Type                                              | Description                                                                                                                                                                                 |
+| ------------------- | ------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `desired_ltv_ratio` | Decimal256                                        | The desired loan-to-value ratio. Needs to be less than 1. More info on LTV can be found [here](https://spectrocoin.com/en/faqs/crypto-loans/what-is-ltv-ratio-and-how-to-maintain-it.html). |
+| `recipient`         | Option<[Recipient](../common-types/recipient.md)> | The address to receive the funds.                                                                                                                                                           |
 
 ### RepayLoan
 

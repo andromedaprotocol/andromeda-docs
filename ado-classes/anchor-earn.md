@@ -4,6 +4,8 @@
 
 The Anchor ADO is a smart contract that allows users to deposit funds to utilize the functionalities used by anchor protocol. Anchor Earn allows depositing funds into Anchor and earning an APY.
 
+**Adotype**: anchor\_earn
+
 ## InstantiateMsg
 
 {% tabs %}

@@ -11,6 +11,8 @@ The following mirror contracts are supported by our ADO:
 * Gov&#x20;
 * Lock
 
+**Ado\_type**: mirror
+
 ## InstantiateMsg
 
 {% tabs %}

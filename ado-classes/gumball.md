@@ -12,6 +12,8 @@ The contract can be in 2 different modes:
 
 Upon instantiation, the contract is set to minting mode. To change the mode, we execute `SwitchStatus`.
 
+**Ado\_type**: gumball
+
 ## InstantiateMsg
 
 {% tabs %}

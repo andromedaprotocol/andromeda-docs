@@ -8,6 +8,8 @@ description: An ADO contract to split sent funds amongst predefined addresses.
 
 The **Splitter** ADO is a smart contract used to split funds to a preset number of addresses. Each of the addresses has a specific percentage assigned by the contract owner.&#x20;
 
+**Ado\_type**: splitter
+
 ## InstantiateMsg
 
 {% tabs %}

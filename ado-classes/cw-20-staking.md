@@ -4,6 +4,8 @@
 
 This contract allows users to stake a specified token and to receive rewards in any number of other tokens in proportion to their share. The reward token does not need to be the token they stake with but it can be.
 
+**Ado\_type**: cw20\_staking
+
 ## InstantiateMsg
 
 {% hint style="info" %}

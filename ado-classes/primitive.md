@@ -14,6 +14,8 @@ The primitive contract is used in situations where data will most likely be used
 
 An example on this would be our CDP ADOs such as [**Anchor**](anchor.md) and **Mirror.** These contracts need to have the smart contract addresses used by these protocols saved to be able to function. Since these addresses will rarely or never change, we would save them in a primitive contract saving us the hassle to redefine them whenever we want to Instantiate a new Anchor/Mirror contract.  &#x20;
 
+**Ado\_type**: primitive
+
 ## InstantiateMsg
 
 {% tabs %}

@@ -4,6 +4,8 @@
 
 The Merkle-Airdrop ADO is a smart contract that allows projects to launch airdrops using the Merkle-tree (hashing). If you do not know what is a Merkle-airdrop and how it is different from a normal airdrop, please refer to the following [article](https://medium.com/mochilab/merkle-airdrop-one-of-the-best-airdrop-solution-for-token-issues-e2279df1c5c1).
 
+**Ado\_type**: merkle\_airdrop
+
 ## InstantiateMsg
 
 {% tabs %}

@@ -12,6 +12,8 @@ There are two types of rates which we explain in the [Rates Module](../modules/r
 
 This contract is implemented as a module and attached to other contracts which would apply the specified rates on any fund transfers. A small example on this would be putting rates on an NFT Collectible, sending a percentage as royalty to the original owner.
 
+**Ado\_type**: rates
+
 ## InstantiateMsg
 
 {% tabs %}

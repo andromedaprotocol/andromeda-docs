@@ -10,6 +10,8 @@ The **Receipt** ADO is a smart contract that is used to print receipts for trans
 
 This contract is implemented as a module and added to ADOs that implement modules.  When we have some transfer of funds, the receipt contract is automatically called and the `events` of the transaction are saved in the `Receipt` struct.
 
+**Ado\_type**: receipt
+
 ## InstantiateMsg
 
 {% tabs %}

@@ -4,6 +4,12 @@ description: A factory contract for generating Andromeda Digital Objects
 
 # Factory
 
+## Introduction
+
+The **Factory** ADO is a smart contract that is primarily used to store code ids for contracts when creating Andromeda [Apps](app.md).
+
+**Ado\_type**: factory
+
 ## InstantiateMsg
 
 {% tabs %}

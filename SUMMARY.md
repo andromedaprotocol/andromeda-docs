@@ -33,8 +33,8 @@
 * [Address List Module](modules/address-list-module.md)
 * [Receipt Module](modules/receipt-module/README.md)
   * [Receipt Contract](modules/receipt-module/receipt-contract.md)
-* [Offers Module](modules/offers-module/README.md)
-  * [NFT Offers](modules/offers-module/nft-offers.md)
+* [Offers Module](modules/offers-module.md)
+  * [NFT Offers](ado-classes/nft-offers.md)
 
 ## Andromeda Hooks
 

@@ -12,6 +12,8 @@ The functionality is best explained with an example. Suppose we had an [`Anchor`
 
 The engine implementation in Astroport uses the [`Router` ](https://docs.astroport.fi/astroport/smart-contracts/router)contract Astroport has provided.
 
+**Ado\_type**: swapper
+
 ## InstantiateMsg
 
 {% tabs %}

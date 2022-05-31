@@ -41,6 +41,8 @@ To avoid defining these fields for every single contract, we have decided to bun
 
 As we can see not all ADOs use all the fields. Some require that the ADO have the modules, primitive, or withdraw feature which will be stated in that ADO documentation.&#x20;
 
+Each ADO has a type which will be specified contract's page.
+
 ### What's Next
 
 In the following sections we will be going through each of our unique ADOs.&#x20;

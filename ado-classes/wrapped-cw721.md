@@ -6,6 +6,8 @@ The `Wrapped-Cw721` ADO is a smart contract that wraps CW721 tokens. This makes 
 
 The user can deposit any cw721 token and get back a "wrapped" version which can utilize our modules. They can also be "unwrapped" back to  the underlying token by depositing the wrapped token in the contract (the creator of the contract can specify if unwrapping should be allowed or not as there are some instances where they may want to permanently wrap a token).
 
+**Ado\_type**: wrapped\_cw721
+
 ## InstantiateMsg
 
 {% tabs %}

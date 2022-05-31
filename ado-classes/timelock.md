@@ -13,6 +13,8 @@ There are two main conditions that can be used by the contract:
 
 Once a condition is satisfied, the funds can be released.
 
+**Ado\_type**: timelock
+
 ## InstantiateMsg
 
 {% tabs %}

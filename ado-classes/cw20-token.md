@@ -4,6 +4,12 @@ description: The message definitions for the Andromeda token contract.
 
 # Cw-20 Token
 
+## Introduction
+
+The Cw-20 Token ADO is a smart contract to initiate a standard cw20 coin.&#x20;
+
+**Ado\_type**: cw20
+
 ## InstantiateMsg
 
 {% tabs %}

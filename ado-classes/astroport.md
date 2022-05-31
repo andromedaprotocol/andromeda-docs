@@ -1,5 +1,7 @@
 # Astroport
 
+**Ado\_type**: astroport
+
 ## InstantiateMsg
 
 {% tabs %}
@@ -216,11 +218,11 @@ pub enum ExecuteMsg {
 {% endtab %}
 {% endtabs %}
 
-| Name                 | Type                        | Description                                                                                                                                                                                                                             |
-| -------------------- | --------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `assets`             | Vector of 2 AssetUnchecked  | The pair of assets we want to provide liquidity for.                                                                                                                                                                                    |
-| `slippage_tolerance` | Optional\<Decimal>          | The slippage tolerance. If not familiar, definition can be found [here](https://docs.coin98.com/products/coin98-super-app/faqs/slippage-tolerance#:\~:text=Slippage%20Tolerance%20is%20the%20pricing,of%20the%20total%20swap%20value.). |
-| `auto_stake`         | Option\<bool>               | Whether to automatically stake the funds.                                                                                                                                                                                               |
+| Name                 | Type                        | Description                                                                                                                                         |
+| -------------------- | --------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `assets`             | Vector of 2 AssetUnchecked  | The pair of assets we want to provide liquidity for.                                                                                                |
+| `slippage_tolerance` | Optional\<Decimal>          | The slippage tolerance. If not familiar, definition can be found [here](https://docs.coin98.com/products/coin98-super-app/faqs/slippage-tolerance). |
+| `auto_stake`         | Option\<bool>               | Whether to automatically stake the funds.                                                                                                           |
 
 ### WithdrawLiquidity
 

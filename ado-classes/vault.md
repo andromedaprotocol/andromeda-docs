@@ -18,6 +18,8 @@ Deposits can be made to yield strategies in partial fashion, sending part of wha
 
 Withdrawals are done in similar fashion using our `Withdrawal` struct. Withdrawals can be made from the vault itself or from its according yield strategies.
 
+**Ado\_type**: vault
+
 ## InstantiateMsg
 
 {% tabs %}

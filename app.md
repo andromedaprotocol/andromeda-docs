@@ -13,6 +13,8 @@ The steps needed to build a full app are the following:
 3. Instantiate a primitive contract and save the factory address as a value under the name "factory".
 4. Instantiate the app contract and attach the primitive to it (`primitive_contract` field in instantiation)
 
+**Ado\_type**: app
+
 ## InstantiateMsg
 
 {% hint style="warning" %}
