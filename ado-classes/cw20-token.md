@@ -29,16 +29,16 @@ pub struct InstantiateMsg {
  "decimals": 6,
  "initial_balances":[
                 {
-              "address":"terra1...",
+              "address":"juno1...",
               "amount":"500",
           }
               ...
         ],
  "mint":{
-       "minter":"terra1...",
+       "minter":"juno1...",
        "cap": "1000000",
       },
-  "primitive_contract":"terra1..."
+  "primitive_contract":"juno1..."
  }  
 ```
 {% endtab %}
@@ -149,7 +149,7 @@ Only with the "mint" extension. If authorized, creates amount new tokens and add
 ```json
 { 
  "mint":{
-    "recipient":"terra1...",
+    "recipient":"juno1...",
     "amount": "100"
     }
  }
@@ -186,7 +186,7 @@ pub enum ExecuteMsg {
 ```json
 {
  "transfer":{
-      "recipient":"terra1...",
+      "recipient":"juno1...",
       "amount": "100"
       }
  }
@@ -226,7 +226,7 @@ pub enum ExecuteMsg {
 ```json
 {
  "send":{
-    "contract":"terra1...",
+    "contract":"juno1...",
     "amount":"100",
     "msg": null
     }
@@ -296,7 +296,7 @@ A new Expiration will overwrite a previous one.
 ```json
 {
  "increase_allowance":{
-     "spender":"terra1...",
+     "spender":"juno1...",
      "amount":"1000"
      }
  }
@@ -338,7 +338,7 @@ If an `Expiration` is set, it will overwrite previously set Expiration
 ```json
 {
  "decrease_allowance": {
-    "spender":"terra1...",
+    "spender":"juno1...",
     "amount":"100",
     "expires": {
       "at_height": "500"
@@ -380,8 +380,8 @@ pub enum ExecuteMsg {
 ```json
 {
  "transfer_from":{
-   "owner":"terra1...",
-   "recipient":"terra1...",
+   "owner":"juno1...",
+   "recipient":"juno1...",
    "amount":"50"
      }
  }
@@ -424,8 +424,8 @@ The `msg` should be base64 encoded and not raw binary.
 ```json
 {
  "send_from":{
-    "owner":"terra1...",
-    "contract":"terra1...",
+    "owner":"juno1...",
+    "contract":"juno1...",
     "amount":"100",
     "msg": null
     }
@@ -465,7 +465,7 @@ pub enum ExecuteMsg{
 ```json
 {
  "burn_from":{
-   "owner":"terra1...",
+   "owner":"juno1...",
    "amount": "100"
      }
  }
@@ -504,7 +504,7 @@ UpdateMarketing {
 {
  "update_marketing":{
   "project":"http..."
-  "marketing":"terra1..."
+  "marketing":"juno1..."
     }
  }
 ```
@@ -539,7 +539,6 @@ pub enum QueryMsg {
     address:String,
      }
  }
-
 ```
 {% endtab %}
 
@@ -547,7 +546,7 @@ pub enum QueryMsg {
 ```json
 {
 "balance":{
-    "address":"terra1..."
+    "address":"juno1..."
    }
  }
  
@@ -674,7 +673,7 @@ pub struct MinterResponse {
 {% tab title="JSON" %}
 ```json
 {
-"minter":"terra1...",
+"minter":"juno1...",
 "cap":"1000000"
 }
 ```
@@ -706,8 +705,8 @@ pub enum QueryMsg {
 ```json
 {
 "allowance": {
-   "owner":"terra1...",
-   "spender":"terra1..."
+   "owner":"juno1...",
+   "spender":"juno1..."
    }
 }
 ```
@@ -769,7 +768,7 @@ Returns all the allowances that the specified `owner` has given along with the i
 ```json
 {
 "all_allowances":{
-  "owner":"terra1...",
+  "owner":"juno1...",
   "limit": 20,
   "start_after": 4
     }
@@ -800,7 +799,7 @@ pub struct AllAllowancesResponse {
 {
 "allowances":[
      { 
-        "spender":"terra1...",
+        "spender":"juno1...",
         "allowance":"1000",
         "expires":{
               "never":{}
@@ -880,7 +879,7 @@ pub struct AllAccountsResponse {
 {% tab title="JSON" %}
 ```json
 {
-"accounts":["terra1...","terra2...",...]
+"accounts":["juno1...","juno1...",...]
 }
 ```
 {% endtab %}
@@ -931,7 +930,7 @@ pub struct MarketingInfoResponse {
 {
 "project":"http:...",
 "description":" This project ...",
-"marketing":"terra1..."
+"marketing":"juno1..."
 }
 ```
 {% endtab %}

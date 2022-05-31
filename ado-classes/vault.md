@@ -32,7 +32,7 @@ pub struct InstantiateMsg {
 {% tab title="JSON" %}
 ```rust
 {
-"operators":["terra1...","terra1...",...]
+"operators":["juno1...","juno1...",...]
 }
 ```
 {% endtab %}
@@ -86,7 +86,7 @@ pub enum ExecuteMsg {
 "deposit":{
 "recipient":
    {
-   "addr":"terra1...",
+   "addr":"juno1...",
    },
    
 "strategy":"anchor"
@@ -137,7 +137,7 @@ pub enum ExecuteMsg{
 {
 "withdraw":{
 "recipient":{
-    "addr":"terra1..."
+    "addr":"juno1..."
     },
 "withdrawals":[
                 {
@@ -186,7 +186,7 @@ The Vault needs to be an operator of the strategy contract.
 "update_strategy":{
     "strategy":"anchor",
     "address":{
-        "identifier":"terra1..."
+        "identifier":"juno1..."
         }
     }
 }
@@ -222,7 +222,7 @@ pub enum QueryMsg {
 ```json
 {
 "balance":{
-"address":"terra1...",
+"address":"juno1...",
 "denom":"UST"
      }
 }
@@ -269,7 +269,7 @@ pub enum QueryMsg{
 | ---------- | ------------------------------------- | ----------------------------------- |
 | `Strategy` | [StrategyType](vault.md#strategytype) | The strategy to get the address of. |
 
-#### StrategyAddresResponse
+#### StrategyAddressResponse
 
 {% tabs %}
 {% tab title="Rust" %}
@@ -287,7 +287,7 @@ pub struct StrategyAddressResponse {
 "strategy":{
             "Anchor"
             },
-"address":"terra1..."
+"address":"juno1..."
 }
 ```
 {% endtab %}

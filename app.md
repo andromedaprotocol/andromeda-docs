@@ -34,7 +34,7 @@ pub struct InstantiateMsg {
 {% tab title="JSON" %}
 ```rust
 {
-"operators":["terra1...","terra1...","terra1...",....],
+"operators":["juno1...","juno1...","juno1...",...],
 "app":[
      {
        "name":"fundsplitter",
@@ -48,7 +48,7 @@ pub struct InstantiateMsg {
    }
  ],
  "name":"some_app",
- "primitive_contract":"terra1..."
+ "primitive_contract":"juno1..."
  }
        
      
@@ -225,7 +225,7 @@ pub enum ExecuteMsg {
 {
 "update_address":{
  "name":"componentname",
- "addr":"terra1..."
+ "addr":"juno1..."
   }
  }
 
@@ -312,7 +312,7 @@ pub struct ComponentAddress {
 ```json
 {
 "name":"componentname",
-"address":"terra1..."
+"address":"juno1..."
 }
 ```
 {% endtab %}
@@ -378,7 +378,7 @@ pub struct ConfigResponse {
 ```json
 {
 "name":"myapp",
-"owner":"terra1..."
+"owner":"juno1..."
 }
 ```
 {% endtab %}

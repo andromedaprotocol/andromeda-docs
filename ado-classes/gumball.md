@@ -28,9 +28,9 @@ pub struct InstantiateMsg {
 ```json
 {
 "andromeda_cw721_contract":{
-    "identifier":"terra1..."
+    "identifier":"juno1..."
     },
-"randomness_source":"terra1..."
+"randomness_source":"juno1..."
 }
 ```
 {% endtab %}
@@ -67,7 +67,7 @@ pub enum ExecuteMsg {
 {
     "mint": [{
         "token_id": "anewtoken",
-        "owner": "terra1...",
+        "owner": "juno1...",
         "extension":{
          "name":"mytoken",
          "publisher":"publisher",
@@ -150,7 +150,7 @@ pub enum ExecuteMsg {
         },
     "max_amount_per_wallet":"50",
     "recipient":{
-        "addr":"terra1..."
+        "addr":"juno1..."
         }
 }   
 ```
@@ -282,7 +282,7 @@ pub struct State {
         },
     "max_amount_per_wallet":"50",
     "recipient":{
-        "addr":"terr1..."
+        "addr":"juno1..."
         }
 }  
 ```

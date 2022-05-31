@@ -77,7 +77,7 @@ pub enum ExecuteMsg {
 {
     "update_address": {
         "symbol": "ET",
-        "new_address" : "terra1..."
+        "new_address" : "juno1..."
     }
 }
 ```
@@ -178,7 +178,7 @@ pub struct AddressResponse {
 {% tab title="JSON" %}
 ```javascript
 {
- "address": "terra1..."
+ "address": "juno1..."
 }
 ```
 {% endtab %}

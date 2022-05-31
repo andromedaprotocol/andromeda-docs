@@ -24,7 +24,7 @@ pub struct InstantiateMsg {
 ```json
 {
 "staking_token":{
-          "identifier":"terra1..."
+          "identifier":"juno1..."
               },
 "additional_rewards":[
                      {"native":"uusd"}
@@ -260,7 +260,7 @@ pub struct Config {
 ```json
 {
 "staking_token":{
-        "identifier":"terra1..."
+        "identifier":"juno1..."
         },
 "additional_rewards_tokens":[
                      {"native":"uusd"}
@@ -342,7 +342,7 @@ pub enum QueryMsg {
 ```json
 {
 "staker":{
-    "address":"terra1..."
+    "address":"juno1..."
     }
 }
 ```
@@ -369,7 +369,7 @@ pub struct StakerResponse {
 {% tab title="JSON" %}
 ```json
 {
-    "address": "terra1...",
+    "address": "juno1...",
     "share": "10000000",
     "pending_rewards": [
       [

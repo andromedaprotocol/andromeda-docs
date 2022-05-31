@@ -99,7 +99,7 @@ pub enum AndromedaMsg{
 {
  "andr_receive":{
       "update_owner":{
-            "address":"terra1..."
+            "address":"juno1..."
      }
    }
 }
@@ -136,7 +136,7 @@ pub enum AndromedaMsg{
 {
  "andr_receive":{
       "update_operators":{
-            "operators":["terra1...","terra1...",...]
+            "operators":["juno1...","juno1...",...]
      }
    }
 }
@@ -170,7 +170,7 @@ pub enum AndromedaMsg{
  "andr_receive":{
       "withdraw":{
             "recipient":{
-                  "addr":"terra1...",
+                  "addr":"juno1...",
               }
             "tokens_to_withdraw":[
                 {
@@ -232,7 +232,7 @@ pub enum AndromedaMsg{
 {
  "andr_receive":{
       "update_app_contract":{
-            "address":"terra1..."
+            "address":"juno1..."
      }
    }
 }
@@ -298,7 +298,7 @@ pub enum AndromedaMsg {
       "module":{
           "module_type": "receipt"
           "instantiate":{
-          "address":"terra1..."
+          "address":"juno1..."
           }
      "is_mutable": true
         }
@@ -376,7 +376,7 @@ pub enum AndromedaMsg{
    "module":{
           "module_type": "receipt",
           "instantiate":{
-          "address":"terra1..."
+          "address":"juno1..."
           },
      "is_mutable": true
         }
@@ -495,7 +495,6 @@ Owner{}
 "owner":{}
   }
 }
-
 ```
 {% endtab %}
 {% endtabs %}
@@ -514,7 +513,7 @@ pub struct ContractOwnerResponse {
 {% tab title="JSON" %}
 ```json
 {
-"owner":"terra1..."
+"owner":"juno1..."
 }
 ```
 {% endtab %}
@@ -558,7 +557,7 @@ pub struct OperatorsResponse {
 {% tab title="JSON" %}
 ```json
 {
-"operators":["terra1...","terra1...",...]
+"operators":["juno1...","juno1...",...]
 }
 ```
 {% endtab %}
@@ -584,7 +583,7 @@ IsOperators{
 {
 "andr_query":{
 "is_operators":{
-  "address":"terra1...",
+  "address":"juno1...",
      }
   }
 }
@@ -673,9 +672,9 @@ pub struct ModuleInfoWithAddress {
 "module":{
   "module_type":"address_list",
   "instantiate":{
-     "address": "terra1...",
+     "address": "juno1...",
      }
-"address":"terra1...",
+"address":"juno1...",
 ```
 {% endtab %}
 {% endtabs %}

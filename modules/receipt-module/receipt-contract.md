@@ -26,8 +26,8 @@ pub struct InstantiateMsg {
 {% tab title="JSON" %}
 ```javascript
 {
-    "minter": "terra1...",
-    "operators": ["terra1...", ...]
+    "minter": "juno1...",
+    "operators": ["juno1...", ...]
 }
 ```
 {% endtab %}
@@ -73,7 +73,7 @@ pub enum ExecuteMsg {
                     "attributes": [
                         {
                             "key": "payment",
-                            "value": "terra1...<100uluna",
+                            "value": "juno1...<100uluna",
                         },
                         ...
                     ]
@@ -136,7 +136,7 @@ pub enum ExecuteMsg {
                     "attributes": [
                         {
                             "key": "payment",
-                            "value": "terra1...<100uluna",
+                            "value": "juno1...<100uluna",
                         },
                         ...
                     ]
@@ -215,7 +215,7 @@ pub struct ReceiptResponse {
                 "attributes": [
                     {
                         "key": "payment",
-                        "value": "terra1...<100uluna"
+                        "value": "juno1...<100uluna"
                     },
                     ...
                 ]
@@ -279,7 +279,7 @@ pub struct ContractInfoResponse {
 ```rust
 {
     "config": {
-        "minter": "terra1..."
+        "minter": "juno1..."
     }
 }
 ```

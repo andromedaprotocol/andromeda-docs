@@ -42,7 +42,7 @@ pub struct InstantiateMsg {
 "native_denom":"uusd",
 "deposit_window":600,
 "init_timestamp":1649877513,
-"incentive_token":"terra1...",
+"incentive_token":"juno1...",
 "withdrawal_window":400
 }
 ```
@@ -242,8 +242,10 @@ pub enum ExecuteMsg {
 {% endtab %}
 
 {% tab title="JSON" %}
-```
-// Some code
+```json
+{
+"claim_rewards":{}
+}
 ```
 {% endtab %}
 {% endtabs %}
@@ -271,7 +273,7 @@ pub enum ExecuteMsg {
 ```json
 {
 "withdraw_proceeds":{
-    "recipient":"terra1..."
+    "recipient":"juno1..."
     }
 }
 ```
@@ -401,7 +403,7 @@ pub enum QueryMsg {
 ```rust
 {
 "user_info": {
-    "address":"terra1..."
+    "address":"juno1..."
     }
 }
 ```

@@ -22,7 +22,7 @@ pub struct InstantiateMsg {
 ```json
 {
 "recipient":{
-    "addr":"terra1..."
+    "addr":"juno1..."
     },
 "is_multi_batch_enabled": true,
 "denom":"uusd",
@@ -305,7 +305,7 @@ pub struct Config {
 ```json
 {
 "recipient":{
-    "addr":"terra1..."
+    "addr":"juno1..."
     },
 "is_multi_batch_enabled": true,
 "denom":"uusd",

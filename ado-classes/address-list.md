@@ -31,7 +31,7 @@ pub struct InstantiateMsg {
 {% tab title="JSON" %}
 ```javascript
 {
-    "operators": ["terra1...","terra...",...],
+    "operators": ["juno1...","juno1...",...],
     "is_inclusive": false
 }
 ```
@@ -67,7 +67,7 @@ pub enum ExecuteMsg {
 ```javascript
 {
     "add_address": {
-        "address": "terra1..."
+        "address": "juno1..."
     }    
 }
 ```
@@ -100,7 +100,7 @@ pub enum ExecuteMsg {
 ```javascript
 {
     "remove_address": {
-        "address": "terra1..."
+        "address": "juno1..."
     }
 }
 ```
@@ -136,7 +136,7 @@ pub enum QueryMsg {
 ```javascript
 {
     "includes_address": {
-        "address": "terra1..."
+        "address": "juno1..."
     }
 }
 ```

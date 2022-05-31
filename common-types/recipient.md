@@ -49,7 +49,7 @@ pub struct AndrAddress {
 {% tab title="JSON" %}
 ```json
 {
-"identifier":"terra1..."
+"identifier":"juno1..."
 }
 
 or

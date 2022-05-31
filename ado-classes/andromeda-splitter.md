@@ -28,7 +28,7 @@ pub struct InstantiateMsg {
                {
                 "recipient":
                 {
-                "addr":"terra1...", 
+                "addr":"juno1...", 
                 },
                 "percent":"0.2"
      },
@@ -78,7 +78,7 @@ pub struct AddressPercent {
 ```javascript
 {
     "recipient":{
-    "addr":"terra1..."
+    "addr":"juno1..."
      },
     "percent": "0.5"
 }
@@ -121,7 +121,7 @@ pub enum ExecuteMsg {
         "recipients": [
             {
                 "recipient":{
-                "addr":"terra1..."
+                "addr":"juno1..."
                 }
                 "percent": "0.5"
             },
@@ -247,7 +247,7 @@ pub struct GetSplitterConfigResponse {
             {
                 "recipient":
                 { 
-                "terra1..."
+                "juno1..."
                 },
                 "percent": "0.5"
             },

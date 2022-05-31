@@ -4,7 +4,7 @@
 
 The **NFT Collectible** ADO is a smart contract to allow users to launch their own custom NFT projects. In addition to the standard CW721 messages, we have added some custom logic to further extend the utility and function of the contract.&#x20;
 
-It supports the use of all our [modules ](../modules/module-definitions.md#module-definitions)that can be attached to the contract upon instantiation and modified to satisfy the project needs. The [Offers](../modules/offers-module.md) Module is specifically created to work with this contract to facilitate the process of buying/selling the tokens.
+It supports the use of all our [modules ](../modules/module-definitions.md#module-definitions)that can be attached to the contract upon instantiation and modified to satisfy the project needs. The [Offers](../modules/offers-module/) Module is specifically created to work with this contract to facilitate the process of buying/selling the tokens.
 
 In addition to the offers module, the contract has implemented a custom `TransferAgreement` message to allow the buying/selling of tokens between two parties if the Offers module is not to be used.
 
@@ -29,13 +29,13 @@ pub struct InstantiateMsg {
     "name": "Example Token",
     "symbol": "ET",
     "minter":{
-        "addr":"terra1..."
+        "addr":"juno1..."
         },
    "modules": [
         {
           "module_type": "address_list",
           "address": {
-          "identifier":"terra1..."
+          "identifier":"juno1..."
           }
           "is_mutable": false
         },
@@ -83,7 +83,7 @@ pub enum ExecuteMsg {
 {
     "mint": {
         "token_id": "anewtoken",
-        "owner": "terra1...",
+        "owner": "juno1...",
         "extension":{
          "name":"mytoken",
          "publisher":"publisher",
@@ -249,7 +249,7 @@ pub enum ExecuteMsg {
 ```javascript
 {
     "transfer_nft": {
-        "recipient": "terra1...",
+        "recipient": "juno1...",
         "token_id": "anewtoken"
     }
 }
@@ -283,7 +283,7 @@ pub enum ExecuteMsg {
 ```javascript
 {
     "send_nft": {
-        "contract": "terra1...",
+        "contract": "juno1...",
         "token_id": "anewtoken",
         "msg": null
     }
@@ -387,7 +387,7 @@ pub enum ExecuteMsg {
 ```javascript
 {
     "approve": {
-        "spender": "terra1...",
+        "spender": "juno1...",
         "token_id": "anewtoken",
         "expires": null
     }
@@ -422,7 +422,7 @@ pub enum ExecuteMsg {
 ```javascript
 {
     "revoke": {
-        "spender": "terra1...",
+        "spender": "juno1...",
         "token_id": "anewtoken"
     }
 }
@@ -459,7 +459,7 @@ pub enum ExecuteMsg {
 ```javascript
 {
     "approve_all": {
-        "operator": "terra1...",
+        "operator": "juno1...",
         "expires": {
             "never": {}
         }
@@ -493,7 +493,7 @@ pub enum ExecuteMsg {
 ```javascript
 {
     "revoke_all": {
-        "operator": "terra1..."
+        "operator": "juno1..."
     }
 }
 ```
@@ -536,7 +536,7 @@ pub enum ExecuteMsg {
                    "amount":"100000"
            }
    },
-           "purchaser":"terra1..."
+           "purchaser":"juno1..."
            }
     }
 }
@@ -549,11 +549,11 @@ or
       "agreement":{
           "amount":{
             "pointer":{
-                   "address":"terra1...",
+                   "address":"juno1...",
                    "key":"price"
            }
    },
-           "purchaser":"terra1..."
+           "purchaser":"juno1..."
            }
     }
 }
@@ -601,7 +601,7 @@ minter:String,
 {% tab title="JSON" %}
 ```json
 {
-"minter":"terra1..."
+"minter":"juno1..."
 }
 ```
 {% endtab %}
@@ -657,10 +657,10 @@ pub struct OwnerOfResponse {
 {% tab title="JSON" %}
 ```javascript
 {
-    "owner": "terra1...",
+    "owner": "juno1...",
     "approvals": [
         {
-            "spender": "terra1...",
+            "spender": "juno1...",
             "expires": {
                 "never": {}
             }
@@ -712,7 +712,7 @@ pub enum QueryMsg {
 ```javascript
 {
     "approved_for_all": {
-        "owner": "terra1...",
+        "owner": "juno1...",
         "include_expired": true,
         "limit": 10
     }
@@ -745,7 +745,7 @@ pub struct ApprovedForAllResponse {
 {
     "operators": [
         {
-            "spender": "terra1...",
+            "spender": "juno1...",
             "expires": {
                 "never": {}
             }
@@ -918,10 +918,10 @@ pub struct AllNftInfoResponse {
 ```javascript
 {
     "access": {
-        "owner": "terra1...",
+        "owner": "juno1...",
         "approvals": [
             {
-                "spender": "terra1...",
+                "spender": "juno1...",
                 "expires": {
                     "never": {}
                 }
@@ -935,7 +935,7 @@ pub struct AllNftInfoResponse {
             "archived": false,
             "metadata": "{ \"some_json_field\": \"some_json_value\" }",
             "agreement": {
-                "purchaser": "terra1...",
+                "purchaser": "juno1...",
                 "amount": "100uluna"
             }
         }
@@ -971,7 +971,7 @@ pub enum QueryMsg {
 ```json
 {
 "tokens": {
-            "owner":"terra1...",
+            "owner":"juno1...",
             "limit": 25
             }
     }
@@ -1021,9 +1021,6 @@ Queries the tokens minted by the contract.
           
           }
   }
-  
-
- 
 ```
 {% endtab %}
 {% endtabs %}

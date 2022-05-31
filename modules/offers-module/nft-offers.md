@@ -25,7 +25,7 @@ pub struct InstantiateMsg {
 {% tab title="JSON" %}
 ```json
 {
-"andromeda_cw721_contract":"terra1...",
+"andromeda_cw721_contract":"juno1...",
 "valid_denoms":["uusd","ujuno","..."]
 }
 ```
@@ -68,7 +68,7 @@ pub enum ExecuteMsg{
 ```json
 {
 "place_offer":{
-  "token_id":"terra1...",
+  "token_id":"juno1...",
   "expiration":{
      "at_height": 300,
      }
@@ -80,11 +80,11 @@ pub enum ExecuteMsg{
 {% endtab %}
 {% endtabs %}
 
-| Name           | Type                                        | Description                                 |
-| -------------- | ------------------------------------------- | ------------------------------------------- |
-| `token_id`     | String                                      | The token id of the ADO to buy.             |
-| `expiration`   | [Expiration](../common-types/expiration.md) | An expiration for the offer.                |
-| `offer_amount` | Uint128                                     | The amount of tokens to offer for the ADO.  |
+| Name           | Type                                           | Description                                 |
+| -------------- | ---------------------------------------------- | ------------------------------------------- |
+| `token_id`     | String                                         | The token id of the ADO to buy.             |
+| `expiration`   | [Expiration](../../common-types/expiration.md) | An expiration for the offer.                |
+| `offer_amount` | Uint128                                        | The amount of tokens to offer for the ADO.  |
 
 ### CancelOffer
 
@@ -123,7 +123,7 @@ Accepts an offer that is placed on your ADO.&#x20;
 {% hint style="warning" %}
 Only the `andromeda_cw721_contract` can accept offers.
 
-Cannot accept an offer that has a current [TransferAgreement](andromeda-digital-object.md#transferagreement-1).
+Cannot accept an offer that has a current [TransferAgreement](../../ado-classes/andromeda-digital-object.md#transferagreement-1).
 {% endhint %}
 
 {% tabs %}
@@ -143,7 +143,7 @@ pub enum ExecuteMsg{
 {
 "accept_offer":{
  "token_id":"anewtoken",
- "recipient":"terra1..."
+ "recipient":"juno1..."
    }
  }
 ```
@@ -213,7 +213,7 @@ pub struct OfferResponse {
 "expiration":{
   "at_height": 500
     },
-  "purchaser":"terra1..."
+  "purchaser":"juno1..."
 }
 
 
@@ -222,14 +222,14 @@ pub struct OfferResponse {
 {% endtab %}
 {% endtabs %}
 
-| Name               | Type                                        | Description                                                                           |
-| ------------------ | ------------------------------------------- | ------------------------------------------------------------------------------------- |
-| `denom`            | String                                      | The denomination of the coin being offered. Currently supports "uusd".                |
-| `offer_amount`     | Uint128                                     | The amount of coins offered.                                                          |
-| `remaining_amount` | Uint128                                     | The amount left after any royalties or taxes have been applied to the `offer_amount`. |
-| `tax_amount`       | Uint128                                     | The amount of coins taken as tax.                                                     |
-| `expiration`       | [Expiration](../common-types/expiration.md) | Expiration for the offer.                                                             |
-| `purchaser`        | String                                      | The address that has placed the offer                                                 |
+| Name               | Type                                           | Description                                                                           |
+| ------------------ | ---------------------------------------------- | ------------------------------------------------------------------------------------- |
+| `denom`            | String                                         | The denomination of the coin being offered. Currently supports "uusd".                |
+| `offer_amount`     | Uint128                                        | The amount of coins offered.                                                          |
+| `remaining_amount` | Uint128                                        | The amount left after any royalties or taxes have been applied to the `offer_amount`. |
+| `tax_amount`       | Uint128                                        | The amount of coins taken as tax.                                                     |
+| `expiration`       | [Expiration](../../common-types/expiration.md) | Expiration for the offer.                                                             |
+| `purchaser`        | String                                         | The address that has placed the offer                                                 |
 
 ### AllOffers
 
@@ -252,7 +252,7 @@ Returns all the offers of a certain purchaser.
 ```json
 {
 "all_offers":{
- "purchaser":"terra1...",
+ "purchaser":"juno1...",
  "limit": 15
     }
  }
@@ -290,7 +290,7 @@ pub struct AllOffersResponse {
 "expiration":{
   "at_height": 500
     },
-  "purchaser":"terra1..."
+  "purchaser":"juno1..."
 },
 ...
 ]

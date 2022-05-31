@@ -20,7 +20,7 @@ pub struct InstantiateMsg {
 {
 "asset_info":{
 "asset_info_unchecked":{
- "cw20":"terra1..."
+ "cw20":"juno1..."
    }
  }
 }
@@ -205,7 +205,7 @@ pub struct ConfigResponse {
 ```rust
 {
 "asset_info":{
- "Cw20":"terra1..."
+ "Cw20":"juno1..."
    }
  }
 ```
@@ -353,7 +353,7 @@ pub enum QueryMsg {
 ```json
 {
 "is_claimed": 2,
-"address":"terra1..."
+"address":"juno1..."
 }
 ```
 {% endtab %}

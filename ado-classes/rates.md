@@ -35,10 +35,10 @@ pub struct InstantiateMsg {
       },
       "is_additive": false,
       "receivers":[{
-         "addr":"terra1..."
+         "addr":"juno1..."
             },
          {
-         "addr":"terra..."
+         "addr":"juno1..."
          }
          ]
       },
@@ -154,10 +154,10 @@ pub enum ExecuteMsg{
          "is_additive": false,
          "receivers":[
             {
-            "addr":"terra1..."
+            "addr":"juno1..."
          },
             {
-         "addr":"terra..."
+         "addr":"juno1..."
          },
          ...
          ]
@@ -226,10 +226,10 @@ pub struct PaymentsResponse {
       "is_additive": false,
       "receivers":[
             {
-         "addr":"terra1..."
+         "addr":"juno1..."
          },
             {
-         "addr":"terra..."
+         "addr":"juno1..."
          },
          ...
          ]

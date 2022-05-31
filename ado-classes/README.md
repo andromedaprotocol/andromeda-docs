@@ -4,7 +4,7 @@
 
 #### ADOs
 
-Each of our individual contracts is referred to an ADO. Each ADO has a specific purpose and custom messages.&#x20;
+Each of our individual contracts is referred to as an ADO. Each ADO has a specific purpose and custom messages.&#x20;
 
 #### Modules
 

@@ -54,7 +54,7 @@ pub enum ExecuteMsg {
 {
     "hold_funds": {
         "recipient":{
-         "addr":"terra1..."
+         "addr":"juno1..."
          }
         "condition": {
             "expiration": {
@@ -111,7 +111,7 @@ pub enum ExecuteMsg {
 {
     "release_funds": {
     
-       "recipient_addr":"terra1...",
+       "recipient_addr":"juno1...",
        "limit":"15"
     }
 }
@@ -143,8 +143,8 @@ ReleaseSpecificFunds {
 ```json
 {
 "release_specific_funds": {
-   "owner":"terra1...",
-   "recipient_addr": "terra1..."
+   "owner":"juno1...",
+   "recipient_addr": "juno1..."
      }
  }
   
@@ -187,8 +187,8 @@ pub enum QueryMsg {
 ```javascript
 {
     "get_locked_funds": {
-        "owner": "terra1...",
-        "recipient":"terra1..."
+        "owner": "juno1...",
+        "recipient":"juno1..."
     }
 }
 ```
@@ -220,7 +220,7 @@ pub struct GetLockedFundsResponse {
             "uluna": 1000
         },
         
-        "recipient": "terra1...",
+        "recipient": "juno1...",
         
         "condition": {
             "expiration": {
@@ -256,7 +256,7 @@ pub struct GetLockedFundsResponse {
 ```json
 {
  "get_locked_funds_for_recipient":{
-   "recipient":"terra1...",
+   "recipient":"juno1...",
    "limit":"15"
    }
  }
@@ -291,7 +291,7 @@ pub struct GetLockedFundsForRecipientResponse {
         },
         
         "recipient":{
-        "addr":"terra1..."
+        "addr":"juno1..."
         }
         
         "condition": {

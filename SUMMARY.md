@@ -1,10 +1,8 @@
 # Table of contents
 
 * [Overview](README.md)
-* [Deployed Contracts](deployed-contracts.md)
 * [ADO Classes](ado-classes/README.md)
   * [Address List](ado-classes/address-list.md)
-  * [NFT Offers](ado-classes/nft-offers.md)
   * [Anchor Lend](ado-classes/anchor.md)
   * [Anchor Earn](ado-classes/anchor-earn.md)
   * [Astroport](ado-classes/astroport.md)
@@ -35,7 +33,8 @@
 * [Address List Module](modules/address-list-module.md)
 * [Receipt Module](modules/receipt-module/README.md)
   * [Receipt Contract](modules/receipt-module/receipt-contract.md)
-* [Offers Module](modules/offers-module.md)
+* [Offers Module](modules/offers-module/README.md)
+  * [NFT Offers](modules/offers-module/nft-offers.md)
 
 ## Andromeda Hooks
 

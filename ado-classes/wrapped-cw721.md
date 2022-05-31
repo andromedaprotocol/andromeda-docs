@@ -22,9 +22,9 @@ pub struct InstantiateMsg {
 {% tab title="JSON" %}
 ```json
 {
-"primitive_contract":"terra1...",
+"primitive_contract":"juno1...",
 "cw721_instantiate_type":{
-  "address":"terra1..."
+  "address":"juno1..."
    },
  "can_unwrap": true
 }
@@ -86,7 +86,7 @@ pub enum ExecuteMsg {
 {
 "receive_nft":{
 "cw721_receive_msg":{
-"sender":"terra1...",
+"sender":"juno1...",
 "token_id":"my_token_id",
 "msg":"sakdfKSDGFH978sDF7sDGdsf"
    }

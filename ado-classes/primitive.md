@@ -28,7 +28,7 @@ pub struct InstantiateMsg {
 {% tab title="JSON" %}
 ```json
 {
-"operators":["terra1...","terra1...","..."]
+"operators":["juno1...","juno1...","..."]
 }
 ```
 {% endtab %}

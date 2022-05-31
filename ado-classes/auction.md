@@ -96,7 +96,7 @@ pub enum Cw721HookMsg {
           "start_time": { "at_height": 500 },
           "end_time": { "at_height": 600 },
           "coin_denom": "uusd",
-          "whitelist": ["terra1...", "terra1...", ...]
+          "whitelist": ["juno1...", "juno1...", ...]
     }
 }
 ```
@@ -149,11 +149,11 @@ An auction can be updated only if it has not started yet.&#x20;
 {
   "update_auction": {
   "token_id":"token_001",
-   "token_address":"terra1...",
+   "token_address":"juno1...",
    "start_time": { "at_height": 500 },
    "end_time": { "at_height": 600 },
    "coin_denom": "uusd",
-   "whitelist": ["terra1...", "terra1...", ...]
+   "whitelist": ["juno1...", "juno1...", ...]
     }
  }
 ```
@@ -196,7 +196,7 @@ pub enum ExecuteMsg {
 {
   "cancel_auction": {
     "token_id":"token_001",
-    "token_address":"terra1..."
+    "token_address":"juno1..."
   }
 }
 ```
@@ -229,7 +229,7 @@ pub enum ExecuteMsg {
 {
     "place_bid": {
         "token_id": "token_001",
-        "token_address":"terra1..."
+        "token_address":"juno1..."
     }
 }
 ```
@@ -271,7 +271,7 @@ pub enum ExecuteMsg {
 {
     "claim": {
         "token_id": "token_001",
-        "token_address":"terra1..."
+        "token_address":"juno1..."
     }
 }
 ```
@@ -304,7 +304,7 @@ pub enum ExecuteMsg {
 ```json
 {
   "update_owner": {
-      "address": "terra1..."
+      "address": "juno1..."
       }
   }
        
@@ -345,7 +345,7 @@ pub enum QueryMsg {
 {
     "latest_auction_state": {
         "token_id": "token_001",
-        "token_address":"tera1..."
+        "token_address":"juno1..."
     }
 }
 ```
@@ -382,12 +382,12 @@ pub struct AuctionStateResponse {
     "auction_state_response": {
           "start_time": { "at_height": 500 },
           "end_time": { "at_height": 600 },
-          "high_bidder_addr": "terra1...",
+          "high_bidder_addr": "juno1...",
           "high_bidder_amount": "50",
           "auction_id": "0",
           "coin_denom": "uusd",
           "claimed": false,
-          "whitelist": ["terra1...", "terra1...", ...]
+          "whitelist": ["juno1...", "juno1...", ...]
     }
 }
 ```
@@ -468,8 +468,6 @@ pub enum QueryMsg {
     "limit": 25
     }
  }
-    
- 
 ```
 {% endtab %}
 {% endtabs %}
@@ -508,7 +506,7 @@ pub struct BidsResponse {
     "bids_response": {
         "bids": [ 
             { 
-                "bidder": "terra1...",
+                "bidder": "juno1...",
                 "amount": "500",
                 "timestamp": "60"
             }
@@ -565,7 +563,7 @@ pub enum QueryMsg {
 {
     "auction_ids": {
         "token_id": "token_001",
-        "token_address":"terra1..."
+        "token_address":"juno1..."
     }
 }
 ```
@@ -623,7 +621,7 @@ pub struct AuctionIdsResponse {
 ```json
 {
 "auction_infos_for_address":{
-       "token_address":"terra1...",
+       "token_address":"juno1...",
        "start_after":"3",
        "limit": 15
        }
@@ -659,7 +657,7 @@ pub struct AuctionInfo {
 
 "auction_info" {
    "auction_ids": ["0","1",...],
-   "token_address":"terra1...",
+   "token_address":"juno1...",
    "token_id":"token_001"
    }
 }
@@ -708,7 +706,7 @@ pub struct ContractOwnerResponse {
 {% tab title="JSON" %}
 ```json
 {
-"owner":"terra1..."
+"owner":"juno1..."
 }
 ```
 {% endtab %}

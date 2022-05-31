@@ -29,9 +29,9 @@ pub struct InstantiateMsg {
 {
 "swaper_impl":{
   "reference":{
-      "identifier":"terra1..."
+      "identifier":"juno1..."
       },
-   "primitive_contract":"terra1..."
+   "primitive_contract":"juno1..."
  }
 ```
 {% endtab %}
@@ -128,10 +128,10 @@ pub enum ExecuteMsg{
 {
 "swap":{
 "ask_asset_info":{
-   "cw20":"terra1..."
+   "cw20":"juno1..."
     },
 "recipient"{
-    "addr":"terra1..."
+    "addr":"juno1..."
      }
   }
 ```

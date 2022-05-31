@@ -34,9 +34,9 @@ pub struct InstantiateMsg {
 ```json
 {
 "token_address":{
-   "identifier":"terra1..."
+   "identifier":"juno1..."
    }
-"primitive_address":"terra1...",
+"primitive_address":"juno1...",
 "can_mint_after_sale": true
 }
 ```
@@ -80,7 +80,7 @@ pub enum ExecuteMsg {
 "mint":[
  {
  "token_id":"myid",
- "owner":"terra1...",
+ "owner":"juno1...",
   "extension":{
          "name":"mytoken",
          "publisher":"publisher",
@@ -153,7 +153,7 @@ pub enum ExecuteMsg{
   "min_tokens_sold":"1000",
   "max_amount_per_wallet":10,
   "recipient":{
-   "addr":"terra1..."
+   "addr":"juno1..."
   }
 }
 ```
@@ -352,7 +352,7 @@ pub struct State {
   "amount_to_send":"100000",
   "amount_transferred":"300",
   "recipient":{
-  "addr":"terra1..."
+  "addr":"juno1..."
   }
 }
 ```
@@ -407,7 +407,7 @@ pub struct Config {
 {% tab title="JSON" %}
 ```json
 {
-"token_address":"terra1...",
+"token_address":"juno1...",
 "can_mint_after_sale": true
 }
 ```
