@@ -207,7 +207,7 @@ Check [AndrReceive](../ado\_base/andrreceive-andrquery.md).
 
 ### GetSplitterConfig
 
-Query the address of a given symbol.
+The current config of the Splitter contract.
 
 {% tabs %}
 {% tab title="Rust" %}
