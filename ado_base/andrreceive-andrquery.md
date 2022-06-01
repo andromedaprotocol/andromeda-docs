@@ -1,5 +1,5 @@
 ---
-description: Executes commonly found in many of the contracts.
+description: Executes and Queries commonly found in many of the contracts.
 ---
 
 # AndrReceive/AndrQuery
