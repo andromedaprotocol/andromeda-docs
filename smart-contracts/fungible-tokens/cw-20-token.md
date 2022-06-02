@@ -523,6 +523,32 @@ UpdateMarketing {
 | `description` | Option\<String> | A longer description of the token and it's utility. Designed for tooltips or such. |
 | `marketing`   | Option\<String> | The address (if any) who can update this data structure.                           |
 
+### UploadLogo
+
+Uploads a Logo for the token.
+
+{% tabs %}
+{% tab title="Rust" %}
+```rust
+pub enum ExecuteMsg {
+    UploadLogo(Logo),
+ }
+```
+{% endtab %}
+
+{% tab title="JSON" %}
+```json
+{
+"upload_logo":{
+    "url":"https://www..."
+    }
+}
+```
+{% endtab %}
+{% endtabs %}
+
+Check [Logo](cw-20-token.md#logo).
+
 ### AndrReceive
 
 {% hint style="info" %}
@@ -942,12 +968,12 @@ pub struct MarketingInfoResponse {
 {% endtab %}
 {% endtabs %}
 
-| Name          | Type            | Description                                                                        |
-| ------------- | --------------- | ---------------------------------------------------------------------------------- |
-| `project`     | Option\<String> | A URL pointing to the project behind this token.                                   |
-| `description` | Option\<String> | A longer description of the token and it's utility. Designed for tooltips or such. |
-| `logo`        | Option\<String> | A link to the logo, or a comment there is an on-chain logo stored.                 |
-| `marketing`   | Option\<Addr>   | The address (if any) who can update this data structure.                           |
+| Name          | Type              | Description                                                                        |
+| ------------- | ----------------- | ---------------------------------------------------------------------------------- |
+| `project`     | Option\<String>   | A URL pointing to the project behind this token.                                   |
+| `description` | Option\<String>   | A longer description of the token and it's utility. Designed for tooltips or such. |
+| `logo`        | Option\<LogoInfo> | A link to the logo, or a comment there is an on-chain logo stored.                 |
+| `marketing`   | Option\<Addr>     | The address (if any) who can update this data structure.                           |
 
 ### DownloadLogo
 
@@ -989,4 +1015,6 @@ pub struct DownloadLogoResponse {
 | `mime_type` | String | The MIME type of the logo. |
 | `data`      | Binary | The LOGO data.             |
 
-The rest of the base Queries are found in [AndrQuery](../../ado\_base/andrreceive-andrquery.md#andrquery).
+### AndrQuery
+
+Check [AndrQuery](../../ado\_base/andrreceive-andrquery.md#andrquery).
