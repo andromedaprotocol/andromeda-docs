@@ -692,7 +692,7 @@ pub struct Approval {
 | `spender` | String                                         | The address that is approved.    |
 | `expires` | [Expiration](../../common-types/expiration.md) | The expiration for the approval. |
 
-### ApprovedForAll
+### AllOperators
 
 A CW721 compliant "approved for all" query. Queries any operators for a given address.
 
@@ -700,7 +700,7 @@ A CW721 compliant "approved for all" query. Queries any operators for a given ad
 {% tab title="Rust" %}
 ```rust
 pub enum QueryMsg {
-    ApprovedForAll {
+    AllOperators {
         owner: String,
         include_expired: bool,
         start_after: Option<String>,
@@ -713,7 +713,7 @@ pub enum QueryMsg {
 {% tab title="JSON" %}
 ```javascript
 {
-    "approved_for_all": {
+    "all_operators": {
         "owner": "juno1...",
         "include_expired": true,
         "limit": 10
@@ -1092,3 +1092,151 @@ pub struct CotractInfoResponse {
 | `symbol` | String | The assigned symbol of the contract. |
 
 The rest of the base Queries are found in [AndrQuery](../../ado\_base/andrreceive-andrquery.md).
+
+
+
+### Approval
+
+Queries the spender's approval to check for the expiration.
+
+{% tabs %}
+{% tab title="Rust" %}
+```rust
+ pub enum QueryMsg {
+ Approval {
+        token_id: String,
+        spender: String,
+        include_expired: Option<bool>,
+    }
+ }
+```
+{% endtab %}
+
+{% tab title="JSON" %}
+```json
+{
+"approval":{
+    "token_id":"my_token";
+    "spender":"juno1...";
+    "include_expired": true
+    }
+} 
+```
+{% endtab %}
+{% endtabs %}
+
+| Name              | Type          | Description                                                        |
+| ----------------- | ------------- | ------------------------------------------------------------------ |
+| `token_id`        | String        | The token Id of the NFT to check.                                  |
+| `spender`         | String        | The address to check the approvals.                                |
+| `include_expired` | Option\<bool> | Optional flag to include the expired approvals. Defaults to false. |
+
+#### ApprovalResponse
+
+{% tabs %}
+{% tab title="Rust" %}
+```rust
+pub struct ApprovalResponse {
+    pub approval: Approval,
+}
+```
+{% endtab %}
+
+{% tab title="JSON" %}
+```json
+{
+"spender":"juno1...";
+"expires":{
+    "at_height": 500
+    }
+}
+```
+{% endtab %}
+{% endtabs %}
+
+| Name       | Type     | Description                                               |
+| ---------- | -------- | --------------------------------------------------------- |
+| `approval` | Approval | The approved spender and the expiration for the approval. |
+
+```rust
+pub struct Approval {
+    pub spender: String,
+    pub expires: Expiration,
+}
+```
+
+| Name      | Type                                           | Description                                            |
+| --------- | ---------------------------------------------- | ------------------------------------------------------ |
+| `spender` | String                                         | Account that can transfer/send the token               |
+| `expires` | [Expiration](../../common-types/expiration.md) | When the Approval expires. Might be Expiration::never. |
+
+### Approvals
+
+Returns all the approvals a token has.
+
+{% tabs %}
+{% tab title="Rust" %}
+```rust
+pub enum QueryMsg{
+  Approvals {
+        token_id: String,
+        include_expired: Option<bool>,
+    }
+ }
+```
+{% endtab %}
+
+{% tab title="JSON" %}
+```json
+{
+"approval":{
+    "token_id":"my_token";
+    "include_expired": true
+    }
+}
+```
+{% endtab %}
+{% endtabs %}
+
+| Name              | Type          | Description                                                        |
+| ----------------- | ------------- | ------------------------------------------------------------------ |
+| `token_id`        | String        | The token Id of the NFT to get approvals for.                      |
+| `include_expired` | Option\<bool> | Optional flag to include the expired approvals. Defaults to false. |
+
+#### ApprovalsResponse
+
+{% tabs %}
+{% tab title="Rust" %}
+```rust
+pub struct ApprovalsResponse {
+    pub approvals: Vec<Approval>,
+}
+```
+{% endtab %}
+
+{% tab title="JSON" %}
+```json
+{
+"approvals":[    
+                {
+                    "spender":"juno1...";
+                    "expires":{
+                        "at_height": 500
+                         }
+                    },
+                    {
+                    "spender":"juno1...";
+                    "expires":{
+                        "at_height": 500
+                        }
+                    },
+                    ...
+            ]
+}
+```
+{% endtab %}
+{% endtabs %}
+
+### AndrQuery
+
+Check [AndrQuery](../../ado\_base/andrreceive-andrquery.md#andrquery).

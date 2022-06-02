@@ -158,7 +158,6 @@ Only available to the contract owner.
 pub enum ExecuteMsg {
      ClaimAll {
         up_to_time: Option<u64>,
-        start_after: Option<u64>,
         limit: Option<u32>,
     },
  }
