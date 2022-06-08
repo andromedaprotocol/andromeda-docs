@@ -19,7 +19,7 @@ The ADO Offers contract is not built to work as a standalone contract, instead i
 ```rust
 pub struct InstantiateMsg {
     pub andromeda_cw721_contract: String,
-    pub valid_demoms: Vec<String>,
+    pub valid_demom: String,
 }
 ```
 {% endtab %}
@@ -28,7 +28,7 @@ pub struct InstantiateMsg {
 ```json
 {
 "andromeda_cw721_contract":"juno1...",
-"valid_denoms":["uusd","ujuno","..."]
+"valid_denoms":"ujuno"
 }
 ```
 {% endtab %}
