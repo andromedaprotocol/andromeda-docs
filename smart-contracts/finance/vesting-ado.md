@@ -253,10 +253,126 @@ pub enum ExecuteMsg {
 
 
 
-| Name        | Type             | Description                                                               |
-| ----------- | ---------------- | ------------------------------------------------------------------------- |
-| `amount`    | Option\<Uint128> | Optional amount to undelegate. Takes the maximum amount if not specified. |
-| `validator` | String           | The validator to delegate to.                                             |
+| Name        | Type             | Description                                                                                                                                                                        |
+| ----------- | ---------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `amount`    | Option\<Uint128> | Optional amount to undelegate. Takes the maximum amount if not specified. Also takes the max amount if the amount specified is greater than the actual amount of tokens delegated. |
+| `validator` | String           | The validator to delegate to.                                                                                                                                                      |
+
+### Redelegate
+
+Redelegates the given amount of tokens, or all from the `from` validator to the `to` validator.
+
+{% hint style="warning" %}
+Only available to the contract owner.
+{% endhint %}
+
+{% tabs %}
+{% tab title="Rust" %}
+```rust
+pub enum ExecuteMsg {
+     Redelegate {
+        amount: Option<Uint128>,
+        from: String,
+        to: String,
+    }
+ }
+```
+{% endtab %}
+
+{% tab title="JSON" %}
+```json
+{
+"redelegate":{
+    "amount": "4000",
+    "from":"juno1...",
+    "to":"juno1..."
+    }
+}
+```
+{% endtab %}
+{% endtabs %}
+
+| Name     | Type             | Description                                                                                                                                                               |
+| -------- | ---------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `amount` | Option\<Uint128> | The amount to redelegate. Takes the max amount if not specified. Also takes the max amount if the amount specified is greater than the actual amount of tokens delegated. |
+| `from`   | String           | The validator to take the tokens from.                                                                                                                                    |
+| `to`     | String           | The new validator to delegate tokens to.                                                                                                                                  |
+
+### Vote
+
+Votes on the specified proposal with the specified vote.
+
+{% hint style="warning" %}
+Only available to the contract owner.
+{% endhint %}
+
+{% tabs %}
+{% tab title="Rust" %}
+```rust
+pub enum ExecuteMsg {
+    Vote {
+        proposal_id: u64,
+        vote: VoteOption,
+    }
+}
+```
+{% endtab %}
+
+{% tab title="JSON" %}
+```json
+{
+"vote":{
+    "proposal_id": 4,
+    "vote": "no"
+    }
+}
+```
+{% endtab %}
+{% endtabs %}
+
+| Name          | Type       | Description             |
+| ------------- | ---------- | ----------------------- |
+| `proposal_id` | u64        | The id of the proposal. |
+| `vote`        | VoteOption | The vote.               |
+
+#### VoteOption
+
+Enum with the types of votes.
+
+```rust
+pub enum VoteOption {
+    Yes,
+    No,
+    Abstain,
+    NoWithVeto,
+}
+```
+
+### WithdrawRewards
+
+Withdraws rewards from all delegations to the sender.
+
+{% hint style="warning" %}
+Only available to the contract owner.&#x20;
+{% endhint %}
+
+{% tabs %}
+{% tab title="Rust" %}
+```rust
+pub enum ExecuteMsg {
+    WithdrawRewards {}
+    }
+```
+{% endtab %}
+
+{% tab title="JSON" %}
+```json
+{
+"withdraw_rewards":{}
+}
+```
+{% endtab %}
+{% endtabs %}
 
 ### AndrReceive
 
