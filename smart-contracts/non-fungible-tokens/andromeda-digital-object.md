@@ -6,7 +6,7 @@ The **NFT Collectible** ADO is a smart contract to allow users to launch their o
 
 It supports the use of all our [modules ](../../modules/module-definitions.md#module-definitions)that can be attached to the contract upon instantiation and modified to satisfy the project needs. The [Offers](../../modules/offers-module.md) Module is specifically created to work with this contract to facilitate the process of buying/selling the tokens.
 
-In addition to the offers module, the contract has implemented a custom `TransferAgreement` message to allow the buying/selling of tokens between two parties if the Offers module is not to be used.
+In addition to the offers module, the contract has implemented a custom `TransferAgreement` message to allow the buying/selling of tokens between two parties if the user does not want to add the offers module.
 
 **Ado\_type**: cw721
 
@@ -62,7 +62,7 @@ pub struct InstantiateMsg {
 
 ## Mint
 
-Mints a new ADO, only available to the defined `minter` in the contract's `InstantiateMsg`
+Mints a new ADO, only available to the defined `minter` in the contract's `InstantiateMsg`.
 
 {% tabs %}
 {% tab title="Rust" %}
@@ -103,7 +103,7 @@ pub enum ExecuteMsg {
 | `token_id`  | String            | The id of the token to be minted.                                                                                          |
 | `owner`     | String            | The address of the token owner.                                                                                            |
 | `token_uri` | Option\<String>   | Universal resource identifier for this token. Should point to a JSON file that conforms to the CW721 Metadata JSON Schema. |
-| `extension` | T  (Generic type) | Any custom extension used by this contract. Her we use [TokenExtension](andromeda-digital-object.md#tokenextension).       |
+| `extension` | T  (Generic type) | Any custom extension used by this contract. Here we use [TokenExtension](andromeda-digital-object.md#tokenextension).      |
 
 ### TokenExtension
 
@@ -126,7 +126,7 @@ pub struct TokenExtension {
 | `publisher`          | String                                                                     | The original publisher of the token (immutable).    |
 | `description`        | Option\<String>                                                            | An optional description of the token.               |
 | `transfer_agreement` | Option<[TransferAgreement](andromeda-digital-object.md#transferagreement)> | The transfer agreement of the token (if it exists). |
-| `metadata`           | Option<[TokenMetadata](andromeda-digital-object.md#metadata-schema)>       | The metadata of the token (if it exists)            |
+| `metadata`           | Option<[TokenMetadata](andromeda-digital-object.md#tokenmetadata)>         | The metadata of the token (if it exists)            |
 | `archived`           | bool                                                                       | Whether the token is archived or not.               |
 
 ### TransferAgreement
@@ -266,7 +266,11 @@ pub enum ExecuteMsg {
 
 ### SendNft
 
-A CW721 compliant send method. Sends ownership of a minted token to an external contract. Only available to the token owner or an approved operator for the given token.
+A CW721 compliant send method. Sends ownership of a minted token to an external contract.
+
+{% hint style="warning" %}
+Only available to the contract owner/operator/approved address.
+{% endhint %}
 
 {% tabs %}
 {% tab title="Rust" %}
@@ -302,10 +306,12 @@ pub enum ExecuteMsg {
 
 ### Burn <a href="#mintmsg" id="mintmsg"></a>
 
-Destroys any token data related to an token id. Only available to the token owner.
+Destroys any token data related to an token id. The ID of the token is still reserved.
 
-{% hint style="danger" %}
-Cannot be undone
+{% hint style="warning" %}
+Cannot be undone.
+
+Only available to the contract owner.
 {% endhint %}
 
 {% tabs %}
@@ -336,10 +342,12 @@ pub enum ExecuteMsg {
 
 ### Archive <a href="#mintmsg" id="mintmsg"></a>
 
-Archives an token, making it immutable in any respect. Once an token is archived it cannot be edited, transferred or burnt. Only available to the token owner.
+Archives an token, making it immutable in any respect. Once an token is archived it cannot be edited, transferred or burnt.&#x20;
 
-{% hint style="danger" %}
-Cannot be undone
+{% hint style="warning" %}
+Cannot be undone.
+
+Only available to the contract owner.
 {% endhint %}
 
 {% tabs %}
@@ -353,7 +361,7 @@ pub enum ExecuteMsg {
 ```
 {% endtab %}
 
-{% tab title="Json" %}
+{% tab title="JSON" %}
 ```javascript
 {
     "archive": {
@@ -370,7 +378,11 @@ pub enum ExecuteMsg {
 
 ### Approve
 
-A CW721 compliant approve method. Approves a given address as an operator for the token, allowing them to transfer, burn or archive the token. Only available to the token owner.
+A CW721 compliant approve method. Approves a given address as an operator for the token, allowing them to transfer, burn or archive the token.
+
+{% hint style="warning" %}
+Only available to the token owner/operator.
+{% endhint %}
 
 {% tabs %}
 {% tab title="Rust" %}
@@ -406,7 +418,11 @@ pub enum ExecuteMsg {
 
 ### Revoke
 
-A CW721 compliant revoke method. Revokes operator privileges for a given address. Only available to the token owner.
+A CW721 compliant revoke method. Revokes operator privileges for a given address.&#x20;
+
+{% hint style="warning" %}
+Only available to the token owner/operator.
+{% endhint %}
 
 {% tabs %}
 {% tab title="Rust" %}
@@ -512,6 +528,8 @@ Allows a token owner to generate a transfer agreement for an owned token. This a
 
 {% hint style="warning" %}
 Will overwrite any current transfer agreement for the token.
+
+Only available to the token owner.
 {% endhint %}
 
 {% tabs %}
@@ -595,7 +613,7 @@ pub enum QueryMsg{
 {% tab title="Rust" %}
 ```rust
 pub struct MinterResponse{
-minter:String,
+        minter:String,
  }
 ```
 {% endtab %}
@@ -673,10 +691,10 @@ pub struct OwnerOfResponse {
 {% endtab %}
 {% endtabs %}
 
-| Name        | Type                                                  | Description                              |
-| ----------- | ----------------------------------------------------- | ---------------------------------------- |
-| `owner`     | String                                                | The owner of the queried token.          |
-| `approvals` | Vec<[Approval](andromeda-digital-object.md#approval)> | An array of all approvals for the token. |
+| Name        | Type                                                    | Description                              |
+| ----------- | ------------------------------------------------------- | ---------------------------------------- |
+| `owner`     | String                                                  | The owner of the queried token.          |
+| `approvals` | Vec<[Approval](andromeda-digital-object.md#approval-1)> | An array of all approvals for the token. |
 
 #### Approval
 
