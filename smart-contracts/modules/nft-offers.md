@@ -34,10 +34,10 @@ pub struct InstantiateMsg {
 {% endtab %}
 {% endtabs %}
 
-| Name                       | Type         | Description                                    |
-| -------------------------- | ------------ | ---------------------------------------------- |
-| `andromeda_cw721_contract` | String       | The address of the contract to give offers to. |
-| `valid_denoms`             | Vec\<String> | The denoms allowed in offers.                  |
+| Name                       | Type   | Description                                    |
+| -------------------------- | ------ | ---------------------------------------------- |
+| `andromeda_cw721_contract` | String | The address of the contract to give offers to. |
+| `valid_denom`              | String | The denom allowed in offers.                   |
 
 ## ExecuteMsg
 
@@ -120,7 +120,7 @@ pub enum ExecuteMsg{
 
 ### AcceptOffer
 
-Accepts an offer that is placed on your ADO.&#x20;
+Accepts an offer that is placed on your NFT.&#x20;
 
 {% hint style="warning" %}
 Only the `andromeda_cw721_contract` can accept offers.

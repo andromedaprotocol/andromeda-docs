@@ -62,7 +62,7 @@ pub struct InstantiateMsg {
 
 ## Mint
 
-Mints a new ADO, only available to the defined `minter` in the contract's `InstantiateMsg`.
+Mints a new NFT, only available to the defined `minter` in the contract's `InstantiateMsg`.
 
 {% tabs %}
 {% tab title="Rust" %}
@@ -83,14 +83,21 @@ pub enum ExecuteMsg {
 {% tab title="JSON" %}
 ```javascript
 {
-    "mint": {
-        "token_id": "anewtoken",
-        "owner": "juno1...",
-        "extension":{
-         "name":"mytoken",
-         "publisher":"publisher",
-         "description":"This token ....",
-         "archived": false
+"mint": {                                                                                                                             
+    "token_id": "1",
+    "owner": "juno1...",
+    "extension": {
+            "name": "Some token",
+            "publisher": "juno1...",
+            "description": "A minted token for testing",
+            "attributes": [
+                {
+                    "trait_type": "Trait One",
+                    "value": "ABC",
+                    "display_type": "String"
+                }
+            ],
+            "image": "https://google.com"
         }
     }
 }
@@ -98,40 +105,107 @@ pub enum ExecuteMsg {
 {% endtab %}
 {% endtabs %}
 
-| Name        | Type              | Description                                                                                                                |
-| ----------- | ----------------- | -------------------------------------------------------------------------------------------------------------------------- |
-| `token_id`  | String            | The id of the token to be minted.                                                                                          |
-| `owner`     | String            | The address of the token owner.                                                                                            |
-| `token_uri` | Option\<String>   | Universal resource identifier for this token. Should point to a JSON file that conforms to the CW721 Metadata JSON Schema. |
-| `extension` | T  (Generic type) | Any custom extension used by this contract. Here we use [TokenExtension](andromeda-digital-object.md#tokenextension).      |
+| Name        | Type              | Description                                                                                                                 |
+| ----------- | ----------------- | --------------------------------------------------------------------------------------------------------------------------- |
+| `token_id`  | String            | The id of the token to be minted.                                                                                           |
+| `owner`     | String            | The address of the token owner.                                                                                             |
+| `token_uri` | Option\<String>   | Universal resource identifier for this token. Should point to a JSON file that conforms to the ERC721 Metadata JSON Schema. |
+| `extension` | T  (Generic type) | Any custom extension used by this contract. Here we use [TokenExtension](andromeda-digital-object.md#tokenextension).       |
 
 ### TokenExtension
 
-Extension that can be added to an ADO when minting.
+Extension that can be added to an NFT when minting.
 
 ```rust
 pub struct TokenExtension {
     pub name: String,
     pub publisher: String,
     pub description: Option<String>,
-    pub transfer_agreement: Option<TransferAgreement>,
-    pub metadata: Option<TokenMetadata>,
-    pub archived: bool,
+    pub attributes: Vec<MetadataAttribute>,
+    pub image: String,
+    pub image_data: Option<String>,
+    pub external_url: Option<String>,
+    pub animation_url: Option<String>,
+    pub youtube_url: Option<String>,
 }
 ```
 
-| Name                 | Type                                                                       | Description                                         |
-| -------------------- | -------------------------------------------------------------------------- | --------------------------------------------------- |
-| `name`               | String                                                                     | The name of the token.                              |
-| `publisher`          | String                                                                     | The original publisher of the token (immutable).    |
-| `description`        | Option\<String>                                                            | An optional description of the token.               |
-| `transfer_agreement` | Option<[TransferAgreement](andromeda-digital-object.md#transferagreement)> | The transfer agreement of the token (if it exists). |
-| `metadata`           | Option<[TokenMetadata](andromeda-digital-object.md#tokenmetadata)>         | The metadata of the token (if it exists)            |
-| `archived`           | bool                                                                       | Whether the token is archived or not.               |
+| Name            | Type                    | Description                                      |
+| --------------- | ----------------------- | ------------------------------------------------ |
+| `name`          | String                  | The name of the token.                           |
+| `publisher`     | String                  | The original publisher of the token (immutable). |
+| `description`   | Option\<String>         | An optional description of the token.            |
+| `attributes`    | Vec\<MetadataAttribute> | The metadata of the token if it exists.          |
+| `image`         | String                  | URL to the token image.                          |
+| `image_data`    | Option\<String>         | Raw SVG image data                               |
+| `external_url`  | Option\<String>         | A URL to the token's source.                     |
+| `animation_url` | Option\<String>         | A URL to any multi-media attachments.            |
+| `youtube_url`   | Option\<String>         | A URL to a related Youtube video.                |
+
+#### MetadataAttribute
+
+```rust
+pub struct MetadataAttribute {
+    pub trait_type: String,
+    pub value: String,
+    pub display_type: Option<String>,
+}
+```
+
+| Name           | Type            | Description                                                                                       |
+| -------------- | --------------- | ------------------------------------------------------------------------------------------------- |
+| `trait_type`   | String          | The key for the attribute.                                                                        |
+| `value`        | String          | The value for the attribute                                                                       |
+| `display_type` | Option\<String> | The string used to display the attribute, if none is provided the `trait_type` field can be used. |
 
 ### TransferAgreement
 
-A struct used to represent an agreed transfer of a token. The `purchaser` may use the `Transfer` message for this token as long as funds are provided equaling the `amount` defined in the agreement.
+Assigns a `TransferAgreement` for a token. If the `agreement` field is not set, the message will remove any previously set agreements on the token ( Instead of making a new RemoveAgreement message).
+
+{% hint style="warning" %}
+Only available to the token owner.
+{% endhint %}
+
+{% tabs %}
+{% tab title="Rust" %}
+```rust
+pub enum ExecuteMsg {
+       TransferAgreement {
+           token_id: String,
+           agreement: Option<TransferAgreement>,
+        }
+  }
+```
+{% endtab %}
+
+{% tab title="JSON" %}
+```json
+{
+"transfer_agreement":{
+    "token_id":"1",
+    "agreement":{
+        "amount":{
+            "raw"{
+                "denom":"ujuno",
+                "amount":"1000000"
+                }
+            },
+         "purchaser":"juno1..."
+         }
+   }
+ }
+```
+{% endtab %}
+{% endtabs %}
+
+| Name        | Type                       | Description                                                                                                                                                                           |
+| ----------- | -------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `token_id`  | String                     | The token id of the NFT we want to add an agreement for.                                                                                                                              |
+| `agreement` | Option\<TransferAgreement> | The agreement for the token containing the selling price and the address allowed to purchase the token. If not specified then any previously set agreement is removed from the token. |
+
+#### TransferAgreement
+
+The `purchaser` may use the `Transfer` message for this token as long as funds are provided equaling the `amount` defined in the agreement.
 
 If the `purchaser` is set to `"*"` then anyone can complete the `TransferAgreement` (Anyone can buy the token)
 
@@ -179,53 +253,6 @@ pub struct PrimitivePointer {
 | --------- | ---------------------------------------------------------- | -------------------------------------- |
 | `address` | [AndrAddress](../../common-types/recipient.md#andraddress) | The address of the primitive contract. |
 | `key`     | Option\<String>                                            | The optional key for the stored data.  |
-
-### Metadata Schema for Mint
-
-A token can be minted with rich metadata using the following schema:
-
-```rust
-pub enum MetadataType {
-    Image,
-    Video,
-    Audio,
-    Domain,
-    Json,
-    Other,
-}
-
-pub struct MetadataAttribute {
-    pub key: String,
-    pub value: String,
-    pub display_label: Option<String>,
-}
-
-pub struct TokenMetadata {
-    pub data_type: MetadataType,
-    pub external_url: Option<String>,
-    pub data_url: Option<String>,
-    pub attributes: Option<Vec<MetadataAttribute>>,
-}
-```
-
-### MetadataAttribute
-
-Used to define any rich data attributes related to an ADO.
-
-| Name            | Type            | Description                                                                                                |
-| --------------- | --------------- | ---------------------------------------------------------------------------------------------------------- |
-| `key`           | String          | The associated key for the attribute.                                                                      |
-| `value`         | String          | The value for the attribute.                                                                               |
-| `display_label` | Option\<String> | An optional string for how the key should be displayed. If none is provided the \`key\` field can be used. |
-
-### TokenMetadata
-
-| Name           | Type                             | Description                                                                                                    |
-| -------------- | -------------------------------- | -------------------------------------------------------------------------------------------------------------- |
-| `data_type`    | Metadatatype                     | The type of data related to the token, must be one of the following; Audio, Video, Image, Domain, Json, Other. |
-| `external_url` | Option\<String>                  | An optional link to an external source for the token.                                                          |
-| `data_url`     | Option\<String>                  | An optional link to the ADO's external data. Response should be of the type defined by the `data_type` field.  |
-| `attributes`   | Option\<Vec\<MetadataAttribute>> | An array of rich data attributes. See [MetadataAttribute](andromeda-digital-object.md#metadataattribute).      |
 
 ### TransferNft
 
@@ -969,6 +996,70 @@ pub struct AllNftInfoResponse {
 | -------- | -------------------------------------------------------------- | -------------------------------------- |
 | `access` | [OwnerOfResponse](andromeda-digital-object.md#ownerofresponse) | The owner of the ADO and any approvals |
 | `info`   | [NFtInfoResponse](andromeda-digital-object.md#nftinforesponse) | The given ADO's stored information     |
+
+### IsArchived
+
+Checks if the token with the specified `token_id` is archived.
+
+{% tabs %}
+{% tab title="Rust" %}
+```rust
+pub enum QueryMsg {
+      IsArchived {
+         token_id: String,
+    }
+ }
+```
+{% endtab %}
+
+{% tab title="JSON" %}
+```json
+{
+"is_archived":{
+    "token_id":"3"
+    }
+}
+```
+{% endtab %}
+{% endtabs %}
+
+| Name       | Type   | Description                                |
+| ---------- | ------ | ------------------------------------------ |
+| `token_id` | String | The token\_id of the nft we want to check. |
+
+**Returns a bool value.**
+
+### TransferAgreement
+
+Checks if the token has a [TransferAgreement ](andromeda-digital-object.md#transferagreement).
+
+{% tabs %}
+{% tab title="Rust" %}
+```rust
+pub enum QueryMsg {
+      TransferAgreement {
+        token_id: String,
+    }
+}
+```
+{% endtab %}
+
+{% tab title="JSON" %}
+```rust
+{
+"transfer_agreement":{
+    "token_id":"3"
+    }
+}
+```
+{% endtab %}
+{% endtabs %}
+
+| Name       | Type   | Description                                |
+| ---------- | ------ | ------------------------------------------ |
+| `token_id` | String | The token\_id of the nft we want to check. |
+
+#### Returns None if no TransferAgreement is found, and the [TransferAgreement](andromeda-digital-object.md#transferagreement) struct otherwise.
 
 ### Tokens
 

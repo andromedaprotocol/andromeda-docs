@@ -15,7 +15,7 @@ pub struct Coin {
 {% tab title="JSON" %}
 ```json
 {
-"denom":"uust",
+"denom":"ujuno",
 "amount":"1000000"
 }
 ```
