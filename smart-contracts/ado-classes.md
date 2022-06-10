@@ -8,7 +8,7 @@ Each of our individual contracts is referred to as an ADO. Each ADO has a specif
 
 #### Modules
 
-Modules are ADOs that can be attached to other ADOs to extend functionality. Modules can be standalone contracts but most of the time are used as additions to other more complex ADOs. An example of a module would be our [rates ](../modules/rates-module/)module that can apply rates automatically on any ADO that implements buying/ selling, or the [address list](../modules/address-list-module/) module that can whitelist addresses to interact with another ADO. Only ADOs that logically benefit from the addition of modules have the modules feature enabled. If an ADO can attach modules then it would be an optional field in the instantiation message. Modules are implemented using [hooks ](broken-reference)and queries that will be further explained in other sections.&#x20;
+Modules are ADOs that can be attached to other ADOs to extend functionality. Modules can be standalone contracts but most of the time are used as additions to other more complex ADOs. An example of a module would be our [rates ](../modules/rates-module.md)module that can apply rates automatically on any ADO that implements buying/ selling, or the [address list](../modules/address-list-module.md) module that can whitelist addresses to interact with another ADO. Only ADOs that logically benefit from the addition of modules have the modules feature enabled. If an ADO can attach modules then it would be an optional field in the instantiation message. Modules are implemented using [hooks ](broken-reference)and queries that will be further explained in other sections.&#x20;
 
 #### Prtimitive
 
@@ -16,7 +16,7 @@ A primitive is an ADO whos sole purpose is to store values. Primitives are attac
 
 #### ADO-Base
 
-Upon instantiating any ADO, a `ADOOontract` struct is instantiated that holds key information on the contract:
+Upon instantiating any ADO, a `ADOOontract` struct is instantiated that holds key information on the ADO:
 
 ```rust
 pub struct ADOContract<'a> {
@@ -39,9 +39,9 @@ pub struct ADOContract<'a> {
 
 To avoid defining these fields for every single contract, we have decided to bundle them in a struct that can be used by all ADOs. There are also [ado-base messages](../ado\_base/andrreceive-andrquery.md) which are the messages that can be called by any ADO (Unless they require a certain feature enabled) that will be further discussed later on.
 
-As we can see not all ADOs use all the fields. Some require that the ADO have the modules, primitive, or withdraw feature which will be stated in that ADO documentation.&#x20;
+As we can see, not all ADOs use all the fields. Some require that the ADO have the modules, primitive, or withdraw feature which will be stated in that ADO documentation.&#x20;
 
-Each ADO has a type which will be specified contract's page.
+Each ADO has a type which will be specified in the contract's page.
 
 ### What's Next
 
@@ -53,3 +53,4 @@ We will provide the following for each ADO:
 * Contract messages ( Instantiation, Executes, Queries).
 * &#x20;Rust and JSON representation along with explanations and field definitions for each of the messages.
 
+The ADOs are split into ADO classes that bundle up the similar ADOs together.&#x20;

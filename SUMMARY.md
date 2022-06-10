@@ -42,14 +42,10 @@
 ## Modules
 
 * [Module Definitions](modules/module-definitions.md)
-* [Rates Module](modules/rates-module/README.md)
-  * [Rates](modules/rates-module/rates.md)
-* [Address List Module](modules/address-list-module/README.md)
-  * [Address List](modules/address-list-module/address-list.md)
-* [Receipt Module](modules/receipt-module/README.md)
-  * [Receipt Contract](modules/receipt-module/receipt-contract.md)
+* [Rates Module](modules/rates-module.md)
+* [Address List Module](modules/address-list-module.md)
+* [Receipt Module](modules/receipt-module.md)
 * [Offers Module](modules/offers-module.md)
-  * [NFT Offers](ado-classes/nft-offers.md)
 
 ## Andromeda Hooks
 
@@ -63,9 +59,7 @@
   * [Expiration](common-types/expiration.md)
 * [ADO\_Base](ado\_base.md)
   * [AndrReceive/AndrQuery](ado\_base/andrreceive-andrquery.md)
-* [User Docs](user-docs/README.md)
-  * [How-To Guides](user-docs/how-to-guides.md)
-  * [Glossary](user-docs/glossary.md)
+* [User Docs](user-docs.md)
 * [GitHub](https://github.com/andromedaprotocol)
 * [Website](https://andromedaprotocol.io/)
 * [White Paper](https://static1.squarespace.com/static/60b85587d5bf80784bda317f/t/61698246efa74863509bacd8/1634304583185/ANDROMEDA+PROTOCOL.pdf)

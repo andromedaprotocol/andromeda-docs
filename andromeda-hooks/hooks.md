@@ -111,7 +111,7 @@ pub struct OnFundsTransferResponse {
 | `leftover_funds` | Funds        | The funds that are left after any deductions are made by the module        |
 
 {% hint style="info" %}
-This function also ensures that the [`Receipt`](../modules/receipt-module/receipt-contract.md) module is invoked last if it exists, since it needs all of the previous events to create a complete receipt.
+This function also ensures that the [`Receipt`](broken-reference) module is invoked last if it exists, since it needs all of the previous events to create a complete receipt.
 {% endhint %}
 
 Here is an example of how this hook gets called for a `TransferAgreement:`

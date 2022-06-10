@@ -54,7 +54,7 @@ pub struct RateInfo {
 | `description` | Option\<String> | Optional description for the rate.                                                                   |
 | `receivers`   | Vec\<Recipient> | The addresses to receive the `rate` specified.                                                       |
 
-More information on the Rates contract can be found [here](rates.md).
+More information on the Rates contract can be found [here](../smart-contracts/modules/rates.md).
 
 ## Hooks
 

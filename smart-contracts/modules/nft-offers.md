@@ -8,7 +8,7 @@ description: A contract to facilitate the buying and selling of ADOs.
 
 The ADO **Offers** is a smart contract used to buy/sell NFT tokens. It allows users to place offers on a certain token which can then be accepted by the seller if satisfied. Once an offer is placed, funds are allocated for the purchase until the offer is expired, accepted, canceled, or a higher offer has been made.
 
-The ADO Offers contract is not built to work as a standalone contract, instead it is implemented as a module for the NFT Collectible ADO facilitating the process of trading NFTs.&#x20;
+The ADO Offers contract is not built to work as a standalone contract, instead it is implemented as a [module](../../modules/offers-module.md) for the NFT Collectible ADO facilitating the process of trading NFTs.&#x20;
 
 **Ado\_type**: offers
 

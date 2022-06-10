@@ -423,7 +423,7 @@ pub enum QueryMsg {
 | `start_after` | Option\<String> | An optional ID to start after. Used for pagination.                                                    |
 | `limit`       | Optional\<u32>  | An optional limit to the number of stakers to query. Defaults to 10 and can be set to a maximum of 30. |
 
-Returns a vector of [StakerResponse](cw-20-staking.md#undefined).
+Returns a vector of [StakerResponse](cw-20-staking.md#stakerresponse).
 
 ### AndrQuery
 

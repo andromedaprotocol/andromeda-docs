@@ -13,7 +13,7 @@ These addresses can be set as one of the following:
 * **Whitelist:** The addresses are given whitelist privilege, allowing them to  interact with it. If a whitelist of addresses is set, then any other address is considered as a blacklist.
 * **Blacklist:** The addresses are give blacklist restriction, preventing them to interact with the contract. If a blacklist of addresses is set, then any other address is considered as a whitelist.
 
-This contract is usually implemented as a module to interact with other contracts setting the whitelist/blacklist for the contract.
+This contract is usually implemented as a [module ](../../modules/address-list-module.md)to interact with other contracts setting the whitelist/blacklist for the contract.
 
 **Ado\_type:** address\_list
 
