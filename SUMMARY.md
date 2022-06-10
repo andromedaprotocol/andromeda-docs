@@ -4,6 +4,7 @@
 
 ## Smart Contracts
 
+* [Deployed Contracts](smart-contracts/deployed-contracts.md)
 * [ADO Classes](smart-contracts/ado-classes.md)
 * [Fungible Tokens](smart-contracts/fungible-tokens/README.md)
   * [Cw-20 Token](smart-contracts/fungible-tokens/cw-20-token.md)
