@@ -51,12 +51,12 @@ pub struct InstantiateMsg {
 {% endtab %}
 {% endtabs %}
 
-| Name      | Type                                                       | Description                                                                                                               |
-| --------- | ---------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------- |
-| `name`    | String                                                     | The name of the token. Has to be between 3 and 30 characters.                                                             |
-| `symbol`  | String                                                     | The symbol of the token.                                                                                                  |
-| `minter`  | [AndrAddress](../../common-types/recipient.md#andraddress) | The address of the token minter.                                                                                          |
-| `modules` | Option\<Vec<[Module](broken-reference)>>                   | An optional vector of Andromeda Modules. The module definitions can be found[ here](../../modules/module-definitions.md). |
+| Name      | Type                                                       | Description                                                                                                  |
+| --------- | ---------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------ |
+| `name`    | String                                                     | The name of the token. Has to be between 3 and 30 characters.                                                |
+| `symbol`  | String                                                     | The symbol of the token.                                                                                     |
+| `minter`  | [AndrAddress](../../common-types/recipient.md#andraddress) | The address of the token minter.                                                                             |
+| `modules` | Option\<Vec<[Module](broken-reference)>>                   | An optional vector of Andromeda Modules. "rates", "offers", "address\_list", "receipt" modules can be added. |
 
 ## ExecuteMsg
 

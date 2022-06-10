@@ -45,11 +45,11 @@ pub struct InstantiateMsg {
 {% endtab %}
 {% endtabs %}
 
-| Name                  | Type                                                                           | Desctription                                                                                               |
-| --------------------- | ------------------------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------- |
-| `token_address`       | [AndrAddress](../../modules/module-definitions.md#andradress)                  | The contract address of the token.                                                                         |
-| `modules`             | Option\<Vec<[Module](../../modules/module-definitions.md#module-definitions)>> | Optional set of modules to attach to the contract.                                                         |
-| `can_mint_after_sale` | bool                                                                           | A flag to whether minting is allowed after a sale has been done. Minting is never allowed during a sale.   |
+| Name                  | Type                                                                           | Desctription                                                                                                 |
+| --------------------- | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------ |
+| `token_address`       | [AndrAddress](../../modules/module-definitions.md#andradress)                  | The contract address of the token.                                                                           |
+| `modules`             | Option\<Vec<[Module](../../modules/module-definitions.md#module-definitions)>> | An optional vector of Andromeda Modules. "rates", "offers", "address\_list", "receipt" modules can be added. |
+| `can_mint_after_sale` | bool                                                                           | A flag to whether minting is allowed after a sale has been done. Minting is never allowed during a sale.     |
 
 ## ExecuteMsg
 

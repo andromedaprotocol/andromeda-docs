@@ -8,7 +8,7 @@ Each of our individual contracts is referred to as an ADO. Each ADO has a specif
 
 #### Modules
 
-Modules are ADOs that can be attached to other ADOs to extend functionality. Modules can be standalone contracts but most of the time are used as additions to other more complex ADOs. An example of a module would be our [rates ](../modules/rates-module.md)module that can apply rates automatically on any ADO that implements buying/ selling, or the [address list](../modules/address-list-module.md) module that can whitelist addresses to interact with another ADO. Only ADOs that logically benefit from the addition of modules have the modules feature enabled. If an ADO can attach modules then it would be an optional field in the instantiation message. Modules are implemented using [hooks ](broken-reference)and queries that will be further explained in other sections.&#x20;
+Modules are ADOs that can be attached to other ADOs to extend functionality. Modules can be standalone contracts but most of the time are used as additions to other more complex ADOs. An example of a module would be our [rates ](../modules/rates-module.md)module that can apply rates automatically on any ADO that implements buying/ selling, or the [address list](../modules/address-list-module/) module that can whitelist addresses to interact with another ADO. Only ADOs that logically benefit from the addition of modules have the modules feature enabled. If an ADO can attach modules then it would be an optional field in the instantiation message. Modules are implemented using [hooks ](broken-reference)and queries that will be further explained in other sections.&#x20;
 
 #### Prtimitive
 

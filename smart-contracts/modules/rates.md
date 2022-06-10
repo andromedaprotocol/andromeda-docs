@@ -222,23 +222,23 @@ pub struct PaymentsResponse {
  [
      { 
       "rate":{
-      "percent":{
-         "percent":"0.3"
-      },
+         "percent":{
+              "percent":"0.3"
+              }
+       },
       "is_additive": false,
       "receivers":[
-            {
-         "addr":"juno1..."
-         },
-            {
-         "addr":"juno1..."
-         },
+                     {
+                     "addr":"juno1..."
+                  },
+                     {
+                     "addr":"juno1..."
+                  },
          ...
          ]
       },
       ...
       ] 
-    }
   }
 
 ```

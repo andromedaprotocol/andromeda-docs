@@ -28,9 +28,9 @@ pub struct InstantiateMsg {
 {% endtab %}
 {% endtabs %}
 
-| Name      | Type                                                        | Description                                                                                                                |
-| --------- | ----------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------- |
-| `modules` | Option\<Vec<[Module](../../modules/module-definitions.md)>> | A vector of Andromeda Module definitions. The module definitions can be found[ here](../../modules/module-definitions.md). |
+| Name      | Type                                                        | Description                                                                    |
+| --------- | ----------------------------------------------------------- | ------------------------------------------------------------------------------ |
+| `modules` | Option\<Vec<[Module](../../modules/module-definitions.md)>> | An optional vector of Andromeda Modules.  "address\_list" module can be added. |
 
 ## ExecuteMsg
 

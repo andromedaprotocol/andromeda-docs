@@ -43,8 +43,8 @@
 
 * [Module Definitions](modules/module-definitions.md)
 * [Rates Module](modules/rates-module.md)
-* [Address List Module](modules/address-list-module.md)
-* [Receipt Module](modules/receipt-module.md)
+* [Address List Module](modules/address-list-module/README.md)
+* [Receipt Module](modules/receipt-module/README.md)
 * [Offers Module](modules/offers-module.md)
 
 ## Andromeda Hooks
