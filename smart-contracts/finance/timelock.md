@@ -11,7 +11,7 @@ There are two main conditions that can be used by the contract:
 * **Expiration**: A time expiration to when the funds can be released.
 * **MinimumFunds**: A minimum amount of funds to be deposited before they can be released.
 
-Once a condition is satisfied, the funds can be released.
+Once a condition is satisfied, the funds can be released by anyone.
 
 **Ado\_type**: timelock
 
@@ -69,10 +69,10 @@ pub enum ExecuteMsg {
 {% endtab %}
 {% endtabs %}
 
-| Name        | Type                                                   | Description                                                    |
-| ----------- | ------------------------------------------------------ | -------------------------------------------------------------- |
-| `recipient` | Option<[Recipient](../../common-types/recipient.md)>   | Optional recipient address. If not set defaults to the sender. |
-| `condition` | Option<[EscrowCondition](timelock.md#escrowcondition)> | An optional condition to unlock the Escrow                     |
+| Name        | Type                                                   | Description                                                     |
+| ----------- | ------------------------------------------------------ | --------------------------------------------------------------- |
+| `recipient` | Option<[Recipient](../../common-types/recipient.md)>   | Optional recipient address. If not set, defaults to the sender. |
+| `condition` | Option<[EscrowCondition](timelock.md#escrowcondition)> | An optional condition to unlock the Escrow                      |
 
 #### EscrowCondition
 
@@ -92,7 +92,7 @@ pub enum EscrowCondition {
 
 ### ReleaseFunds
 
-Releases any held funds for the sender.
+Releases any held funds of the specified recipient.
 
 {% tabs %}
 {% tab title="Rust" %}
@@ -121,13 +121,15 @@ pub enum ExecuteMsg {
 {% endtab %}
 {% endtabs %}
 
-| Name             | Type            | Description                                                                                                    |
-| ---------------- | --------------- | -------------------------------------------------------------------------------------------------------------- |
-| `recipient_addr` | Option\<String> | Optional address to receive the released funds. Will default to the sender if not specified.                   |
-| `start_after`    | Option\<String> | An optional address for which to start after, used for pagination.                                             |
-| `limit`          | Option\<u32>    | Optional limit to the number timelocks to attempt to unlock. Defaults to 10 and can be set to a maximum of 30. |
+| Name             | Type            | Description                                                                                                       |
+| ---------------- | --------------- | ----------------------------------------------------------------------------------------------------------------- |
+| `recipient_addr` | Option\<String> | Optional address release the funds for. Will default to the sender if not specified.                              |
+| `start_after`    | Option\<String> | An optional address for which to start after, used for pagination.                                                |
+| `limit`          | Option\<u32>    | Optional limit to the number of timelocks to attempt to unlock. Defaults to 10 and can be set to a maximum of 30. |
 
 ### ReleaseSpecificFunds
+
+Release funds held by the `owner` to the `recipient`. (The recipient has to be the same as the one defined when the owner executed `HoldFunds`)
 
 {% tabs %}
 {% tab title="Rust" %}
