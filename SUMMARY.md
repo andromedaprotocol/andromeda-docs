@@ -55,6 +55,7 @@
 
 ***
 
+* [Deploying Apps](deploying-apps.md)
 * [Common Types](common-types/README.md)
   * [Recipient](common-types/recipient.md)
   * [Coin](common-types/coin.md)

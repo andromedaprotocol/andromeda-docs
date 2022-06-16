@@ -6,6 +6,36 @@ When building ADOs, the recipient of a function/message could be another ADO or 
 
 The `Recipient` enum looks as follows:&#x20;
 
+{% tabs %}
+{% tab title="Rust" %}
+```rust
+pub enum Recipient {
+    Addr(String),
+    ADO(ADORecipient),
+}
+```
+{% endtab %}
+
+{% tab title="JSON" %}
+```json
+{
+"addr":"juno1..."
+}
+
+or
+
+{
+"a_d_o":{
+    "address":{
+        "identifier":" splitter contract"
+        }
+    }
+}
+    
+```
+{% endtab %}
+{% endtabs %}
+
 ```rust
 pub enum Recipient {
     Addr(String),
