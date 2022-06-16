@@ -83,16 +83,22 @@ pub enum ExecuteMsg {
  {
  "token_id":"myid",
  "owner":"juno1...",
-  "extension":{
-         "name":"mytoken",
-         "publisher":"publisher",
-         "description":"This token ....",
-         "archived": false
+  "extension": {
+            "name": "Some token",
+            "publisher": "juno1...",
+            "description": "A minted token for testing",
+            "attributes": [
+                {
+                    "trait_type": "Trait One",
+                    "value": "ABC",
+                    "display_type": "String"
+                }
+            ],
+            "image": "https://google.com"
         }
-      },
-     ...
-    ]
-  }
+     }
+  ]
+ }
 ```
 {% endtab %}
 {% endtabs %}
