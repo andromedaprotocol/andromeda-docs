@@ -63,12 +63,12 @@ pub struct InstantiateMsg {
 {% endtab %}
 {% endtabs %}
 
-| Name                 | Type                                         | Description                                                            |
-| -------------------- | -------------------------------------------- | ---------------------------------------------------------------------- |
-| `operators`          | Vec\<String>                                 | The operators of the contract.                                         |
-| `App`                | Vec<[AppComponent](app.md#missioncomponent)> | The vector of AppComponent containing all the ADOs of the app.         |
-| `name`               | String                                       | The name of the app.                                                   |
-| `primitive_contract` | String                                       | The address of the `primitve` contract used to supply data to the app. |
+| Name                 | Type                                     | Description                                                            |
+| -------------------- | ---------------------------------------- | ---------------------------------------------------------------------- |
+| `operators`          | Vec\<String>                             | The operators of the contract.                                         |
+| `App`                | Vec<[AppComponent](app.md#appcomponent)> | The vector of AppComponent containing all the ADOs of the app.         |
+| `name`               | String                                   | The name of the app.                                                   |
+| `primitive_contract` | String                                   | The address of the `primitve` contract used to supply data to the app. |
 
 ### AppComponent
 
@@ -130,9 +130,9 @@ AddAppComponent{
 {% endtab %}
 {% endtabs %}
 
-| Name        | Type                                    | Description                          |
-| ----------- | --------------------------------------- | ------------------------------------ |
-| `component` | [AppComponent](app.md#missioncomponent) | The ADO component to add to the app. |
+| Name        | Type                                | Description                          |
+| ----------- | ----------------------------------- | ------------------------------------ |
+| `component` | [AppComponent](app.md#appcomponent) | The ADO component to add to the app. |
 
 ### ClaimOwnership
 

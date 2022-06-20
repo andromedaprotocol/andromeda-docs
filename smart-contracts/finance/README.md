@@ -1,5 +1,5 @@
 ---
-description: ADOs related to
+description: ADOs related to finance and funds.
 ---
 
 # Finance
