@@ -59,7 +59,7 @@ pub enum ExecuteMsg {
 
 ### AndrReceive
 
-Check [AndrReceive](../ado\_base/andrreceive-andrquery.md).
+Check [AndrReceive](../../ado\_base/andrreceive-andrquery.md).
 
 ## QueryMsg
 
@@ -97,4 +97,4 @@ Returns a u64 which represents the `code_id`.
 
 ### AndrQuery
 
-Check [AndrQuery](../ado\_base/andrreceive-andrquery.md).
+Check [AndrQuery](../../ado\_base/andrreceive-andrquery.md).

@@ -120,10 +120,10 @@ pub enum Cw721HookMsg {
 
 ### AndrReceive&#x20;
 
-Check [AndrReceive](../ado\_base/andrreceive-andrquery.md#andrrecieve).
+Check [AndrReceive](../../ado\_base/andrreceive-andrquery.md#andrrecieve).
 
 ## QueryMsg
 
 ### AndrQuery
 
-Check [AndrQuery](../ado\_base/andrreceive-andrquery.md#andrquery).
+Check [AndrQuery](../../ado\_base/andrreceive-andrquery.md#andrquery).

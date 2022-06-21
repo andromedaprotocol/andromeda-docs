@@ -72,12 +72,12 @@ pub struct RateInfo {
 }
 ```
 
-| Name          | Type                                           | Description                                                                            |
-| ------------- | ---------------------------------------------- | -------------------------------------------------------------------------------------- |
-| `rate`        | [Rate](rates.md#rate)                          | The type of rate being taken.                                                          |
-| `is_additive` | bool                                           | An indicator to whether the rate being taken is tax. If tax `is_additive` is set to 1. |
-| `description` | Option\<String>                                | Optional description for the rate.                                                     |
-| `receivers`   | Vec<[Recipient](../common-types/recipient.md)> | The addresses to receive the `rate` specified.                                         |
+| Name          | Type                                              | Description                                                                            |
+| ------------- | ------------------------------------------------- | -------------------------------------------------------------------------------------- |
+| `rate`        | [Rate](rates.md#rate)                             | The type of rate being taken.                                                          |
+| `is_additive` | bool                                              | An indicator to whether the rate being taken is tax. If tax `is_additive` is set to 1. |
+| `description` | Option\<String>                                   | Optional description for the rate.                                                     |
+| `receivers`   | Vec<[Recipient](../../common-types/recipient.md)> | The addresses to receive the `rate` specified.                                         |
 
 #### Rate
 
@@ -93,7 +93,7 @@ pub enum Rate {
 
 The Rate can be one of the three option seen above:
 
-* Flat: A fixed amount to be taken ([Coin](../common-types/coin.md)). Needs to have an amount and denomination specified.&#x20;
+* Flat: A fixed amount to be taken ([Coin](../../common-types/coin.md)). Needs to have an amount and denomination specified.&#x20;
 * Percent: A percentage based rate. Needs to have the percent to take specified.
 * External: This refers to a rate that we want to use which is saved in a primitive contract. Needs the address of the primitive and the key of the stored Rate primitive to be specified.
 
@@ -118,10 +118,10 @@ pub struct PrimitivePointer {
 }
 ```
 
-| Name      | Type                                                    | Description                            |
-| --------- | ------------------------------------------------------- | -------------------------------------- |
-| `address` | [AndrAddress](../common-types/recipient.md#andraddress) | The address of the primitive contract. |
-| `key`     | Option\<String>                                         | The optional key for the stored data.  |
+| Name      | Type                                                       | Description                            |
+| --------- | ---------------------------------------------------------- | -------------------------------------- |
+| `address` | [AndrAddress](../../common-types/recipient.md#andraddress) | The address of the primitive contract. |
+| `key`     | Option\<String>                                            | The optional key for the stored data.  |
 
 ## ExecuteMsg
 
@@ -178,7 +178,7 @@ pub enum ExecuteMsg{
 
 ### AndrReceive
 
-Check [AndrReceive](../ado\_base/andrreceive-andrquery.md).
+Check [AndrReceive](../../ado\_base/andrreceive-andrquery.md).
 
 ## QueryMsg
 
@@ -251,4 +251,4 @@ pub struct PaymentsResponse {
 
 ### AndrQuery
 
-Check[ AndrQuery](../ado\_base/andrreceive-andrquery.md#andrquery).
+Check[ AndrQuery](../../ado\_base/andrreceive-andrquery.md#andrquery).

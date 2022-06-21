@@ -51,14 +51,14 @@ pub struct InstantiateMsg {
 {% endtab %}
 {% endtabs %}
 
-| Name                 | Type                                                            | Description                                                     |
-| -------------------- | --------------------------------------------------------------- | --------------------------------------------------------------- |
-| `bootstrap_contract` | Option<[AndrAddress](../common-types/recipient.md#andraddress)> | Optional bootstrap contract to be used in the second phase.     |
-| `init_timestamp`     | u64                                                             | Timestamp till when deposits can be made.                       |
-| `deposit_window`     | u64                                                             | Number of seconds for which lockup deposits will be accepted.   |
-| `withdrawal_window`  | u64                                                             | Number of seconds for which lockup withdrawals will be allowed. |
-| `incentive_token`    | String                                                          | The token being given as incentive.                             |
-| `native_denom`       | String                                                          | The native token being deposited.                               |
+| Name                 | Type                                                               | Description                                                     |
+| -------------------- | ------------------------------------------------------------------ | --------------------------------------------------------------- |
+| `bootstrap_contract` | Option<[AndrAddress](../../common-types/recipient.md#andraddress)> | Optional bootstrap contract to be used in the second phase.     |
+| `init_timestamp`     | u64                                                                | Timestamp till when deposits can be made.                       |
+| `deposit_window`     | u64                                                                | Number of seconds for which lockup deposits will be accepted.   |
+| `withdrawal_window`  | u64                                                                | Number of seconds for which lockup withdrawals will be allowed. |
+| `incentive_token`    | String                                                             | The token being given as incentive.                             |
+| `native_denom`       | String                                                             | The native token being deposited.                               |
 
 ## ExecuteMsg
 
@@ -288,7 +288,7 @@ pub enum ExecuteMsg {
 
 ### AndrReceive
 
-Check [AndrReceive](../ado\_base/andrreceive-andrquery.md#andrrecieve).
+Check [AndrReceive](../../ado\_base/andrreceive-andrquery.md#andrrecieve).
 
 ## QueryMsg
 
@@ -480,4 +480,4 @@ Returns a number of type Decimal representing the percentage allowed to withdraw
 
 ### AndrQuery
 
-Check [AndrQuery](../ado\_base/andrreceive-andrquery.md#andrquery).
+Check [AndrQuery](../../ado\_base/andrreceive-andrquery.md#andrquery).

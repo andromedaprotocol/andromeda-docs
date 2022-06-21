@@ -74,11 +74,11 @@ pub enum AndromedaMsg {
 Uses the primitive feature.
 {% endhint %}
 
-For the rest of the `AndromedaMsg` check [`AndrReceive`](../ado\_base/andrreceive-andrquery.md#andromedamsg).
+For the rest of the `AndromedaMsg` check [`AndrReceive`](../../ado\_base/andrreceive-andrquery.md#andromedamsg).
 
 ### Receive
 
-Deposits funds into an anchor position for the [`recipient`](../common-types/recipient.md) if specified and the sender if not.
+Deposits funds into an anchor position for the [`recipient`](../../common-types/recipient.md) if specified and the sender if not.
 
 {% hint style="warning" %}
 Exactly 1 type of native coin should be deposited.
@@ -151,10 +151,10 @@ Only "uusd" or "aust" can be withdrawn.
   }
 ```
 
-| Name                 | Type                                              | Description                                                              |
-| -------------------- | ------------------------------------------------- | ------------------------------------------------------------------------ |
-| `recipient`          | Option<[Recipient](../common-types/recipient.md)> | The address to withdraw funds from. Defaults to sender if not specified. |
-| `tokens_to_withdraw` | Option\<Withdrawal>                               | The tokens to withdraw.                                                  |
+| Name                 | Type                                                 | Description                                                              |
+| -------------------- | ---------------------------------------------------- | ------------------------------------------------------------------------ |
+| `recipient`          | Option<[Recipient](../../common-types/recipient.md)> | The address to withdraw funds from. Defaults to sender if not specified. |
+| `tokens_to_withdraw` | Option\<Withdrawal>                                  | The tokens to withdraw.                                                  |
 
 #### Withdrawal
 
@@ -245,4 +245,4 @@ pub struct PositionResponse {
 {% endtab %}
 {% endtabs %}
 
-The rest of the executes can be found in the [`AndrQuery`](../ado\_base/andrreceive-andrquery.md#andrquery) section.
+The rest of the executes can be found in the [`AndrQuery`](../../ado\_base/andrreceive-andrquery.md#andrquery) section.

@@ -8,7 +8,7 @@ This is done by implementing a common `Swap` message on each possible engine suc
 
 #### Example:
 
-The functionality is best explained with an example. Suppose we had an [`Anchor`](anchor-lend.md) contract that expects UST to be deposited. We also want to support LUNA deposits. This can be done by setting up a `Swapper` in an app between the `Rates` and `Anchor` contracts with an `ask_asset` of UST. If the `Swapper` receives LUNA, or any other asset, it will swap it to UST and send it along to the `Anchor` contract. If it receives UST, it will send that as is to the `Anchor` contract without swapping. So what we have achieved here is effectively a normalization of assets: many types can go in and only a single one comes out.
+The functionality is best explained with an example. Suppose we had an [`Anchor`](../pending/anchor-lend.md) contract that expects UST to be deposited. We also want to support LUNA deposits. This can be done by setting up a `Swapper` in an app between the `Rates` and `Anchor` contracts with an `ask_asset` of UST. If the `Swapper` receives LUNA, or any other asset, it will swap it to UST and send it along to the `Anchor` contract. If it receives UST, it will send that as is to the `Anchor` contract without swapping. So what we have achieved here is effectively a normalization of assets: many types can go in and only a single one comes out.
 
 The engine implementation in Astroport uses the [`Router` ](https://docs.astroport.fi/astroport/smart-contracts/router)contract Astroport has provided.
 
@@ -54,7 +54,7 @@ pub enum SwapperImpl {
 ```
 
 * **New**: Specifies the instantiation specification for the swapper implementation
-* **Reference**: Specifies the swapper implementation by reference to an existing contract.    (Check [AndrAddress](../common-types/recipient.md#andraddress))
+* **Reference**: Specifies the swapper implementation by reference to an existing contract.    (Check [AndrAddress](../../common-types/recipient.md#andraddress))
 
 #### InstantiateInfo
 
@@ -140,10 +140,10 @@ pub enum ExecuteMsg{
 {% endtab %}
 {% endtabs %}
 
-| Name             | Type                                              | Description                                                                                                             |
-| ---------------- | ------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- |
-| `ask_asset_info` | AssetInfo                                         | The asset to be converted to. If we want to convert any sent funds to 'UST' the we would define `ask_asset_info` as UST |
-| `recipient`      | Option<[Recipient](../common-types/recipient.md)> | The recipient of the swapped funds.                                                                                     |
+| Name             | Type                                                 | Description                                                                                                             |
+| ---------------- | ---------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- |
+| `ask_asset_info` | AssetInfo                                            | The asset to be converted to. If we want to convert any sent funds to 'UST' the we would define `ask_asset_info` as UST |
+| `recipient`      | Option<[Recipient](../../common-types/recipient.md)> | The recipient of the swapped funds.                                                                                     |
 
 #### AssetInfo
 
@@ -184,14 +184,14 @@ pub enum ExecuteMsg {
 {% endtab %}
 {% endtabs %}
 
-| Name             | Type                                      | Description                                                                                                             |
-| ---------------- | ----------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- |
-| `ask_info_asset` | AssetInfo                                 | The asset to be converted to. If we want to convert any sent funds to 'UST' the we would define `ask_asset_info` as UST |
-| `recipient`      | [Recipient](../common-types/recipient.md) | The recipient of the swapped funds.                                                                                     |
+| Name             | Type                                         | Description                                                                                                             |
+| ---------------- | -------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- |
+| `ask_info_asset` | AssetInfo                                    | The asset to be converted to. If we want to convert any sent funds to 'UST' the we would define `ask_asset_info` as UST |
+| `recipient`      | [Recipient](../../common-types/recipient.md) | The recipient of the swapped funds.                                                                                     |
 
 ### AndrReceive
 
-Check [AndrReceive](../ado\_base/andrreceive-andrquery.md#andrrecieve).
+Check [AndrReceive](../../ado\_base/andrreceive-andrquery.md#andrrecieve).
 
 ## QueryMsg
 
@@ -215,8 +215,8 @@ Check [AndrReceive](../ado\_base/andrreceive-andrquery.md#andrrecieve).
 {% endtab %}
 {% endtabs %}
 
-Returns an [AndrAddress](../common-types/recipient.md#andraddress) for the swapper implementation contract.
+Returns an [AndrAddress](../../common-types/recipient.md#andraddress) for the swapper implementation contract.
 
 ### AndrQuery
 
-Check [AndrQuery](../ado\_base/andrreceive-andrquery.md#andrquery).
+Check [AndrQuery](../../ado\_base/andrreceive-andrquery.md#andrquery).

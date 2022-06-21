@@ -71,7 +71,7 @@ pub enum ExecuteMsg {
 
 | Name        | Type                                                   | Description                                                     |
 | ----------- | ------------------------------------------------------ | --------------------------------------------------------------- |
-| `recipient` | Option<[Recipient](../common-types/recipient.md)>      | Optional recipient address. If not set, defaults to the sender. |
+| `recipient` | Option<[Recipient](../../common-types/recipient.md)>   | Optional recipient address. If not set, defaults to the sender. |
 | `condition` | Option<[EscrowCondition](timelock.md#escrowcondition)> | An optional condition to unlock the Escrow                      |
 
 #### EscrowCondition
@@ -85,10 +85,10 @@ pub enum EscrowCondition {
 }
 ```
 
-| EscrowCondition Type | Type                                        | Description                                         |
-| -------------------- | ------------------------------------------- | --------------------------------------------------- |
-| `Expiration`         | [Expiration](../common-types/expiration.md) | Requires a given time or block height to be reached |
-| `MinimumFunds`       | Vec<[Coin](../common-types/coin.md)>        | Requires a minimum amount of funds to be deposited  |
+| EscrowCondition Type | Type                                           | Description                                         |
+| -------------------- | ---------------------------------------------- | --------------------------------------------------- |
+| `Expiration`         | [Expiration](../../common-types/expiration.md) | Requires a given time or block height to be reached |
+| `MinimumFunds`       | Vec<[Coin](../../common-types/coin.md)>        | Requires a minimum amount of funds to be deposited  |
 
 ### ReleaseFunds
 
@@ -167,7 +167,7 @@ ReleaseSpecificFunds {
 Uses the modules feature.
 {% endhint %}
 
-Check [AndrReceive](../ado\_base/andrreceive-andrquery.md).
+Check [AndrReceive](../../ado\_base/andrreceive-andrquery.md).
 
 ## QueryMsg
 
@@ -328,10 +328,10 @@ pub struct Escrow {
 
 | Name        | Type                                                   | Description                                               |
 | ----------- | ------------------------------------------------------ | --------------------------------------------------------- |
-| `coins`     | Vec<[Coin](../common-types/coin.md)>                   | Funds being held within the Escrow.                       |
+| `coins`     | Vec<[Coin](../../common-types/coin.md)>                | Funds being held within the Escrow.                       |
 | `condition` | Option<[EscrowCondition](timelock.md#escrowcondition)> | Optional condition for the Escrow.                        |
-| `recipient` | [Recipient](../common-types/recipient.md)              | The recipient of the funds once `condition` is satisfied. |
+| `recipient` | [Recipient](../../common-types/recipient.md)           | The recipient of the funds once `condition` is satisfied. |
 
 ### AndrQuery
 
-Check[ AndrQuery](../ado\_base/andrreceive-andrquery.md#andrquery).
+Check[ AndrQuery](../../ado\_base/andrreceive-andrquery.md#andrquery).
