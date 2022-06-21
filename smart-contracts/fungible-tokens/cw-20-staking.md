@@ -36,10 +36,10 @@ pub struct InstantiateMsg {
 {% endtab %}
 {% endtabs %}
 
-| Name                 | Type                                                       | Description                                                                               |
-| -------------------- | ---------------------------------------------------------- | ----------------------------------------------------------------------------------------- |
-| `staking_token`      | [AndrAddress](../../common-types/recipient.md#andraddress) | The cw20 token that can be staked                                                         |
-| `additional_rewards` | Option\<Vec\<AssetInfoUnchecked>>                          | Any rewards in addition to the staking token. This list cannot include the staking token. |
+| Name                 | Type                                                    | Description                                                                               |
+| -------------------- | ------------------------------------------------------- | ----------------------------------------------------------------------------------------- |
+| `staking_token`      | [AndrAddress](../common-types/recipient.md#andraddress) | The cw20 token that can be staked                                                         |
+| `additional_rewards` | Option\<Vec\<AssetInfoUnchecked>>                       | Any rewards in addition to the staking token. This list cannot include the staking token. |
 
 #### AssetInfoUnchecked
 
@@ -218,7 +218,7 @@ pub enum ExecuteMsg {
 
 ### AndrReceive
 
-Check [AndrReceive](../../ado\_base/andrreceive-andrquery.md#andrrecieve).
+Check [AndrReceive](../ado\_base/andrreceive-andrquery.md#andrrecieve).
 
 ## QueryMsg
 
@@ -272,10 +272,10 @@ pub struct Config {
 {% endtab %}
 {% endtabs %}
 
-| Name                       | Type            | Description                                                               |
-| -------------------------- | --------------- | ------------------------------------------------------------------------- |
-| `staking_token`            | AndrAddress     | The token accepted for staking.                                           |
-| `additional_reward_tokens` | Vec\<AssetInfo> | Any additional tokens used for rewards. Cannot include the staking token. |
+| Name                       | Type                                                    | Description                                                               |
+| -------------------------- | ------------------------------------------------------- | ------------------------------------------------------------------------- |
+| `staking_token`            | [AndrAddress](../common-types/recipient.md#andraddress) | The token accepted for staking.                                           |
+| `additional_reward_tokens` | Vec\<AssetInfo>                                         | Any additional tokens used for rewards. Cannot include the staking token. |
 
 ### State
 
@@ -427,4 +427,4 @@ Returns a vector of [StakerResponse](cw-20-staking.md#stakerresponse).
 
 ### AndrQuery
 
-Check [AndrQuery](../../ado\_base/andrreceive-andrquery.md#andrquery).
+Check [AndrQuery](../ado\_base/andrreceive-andrquery.md#andrquery).

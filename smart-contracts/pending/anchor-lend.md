@@ -192,12 +192,12 @@ pub enum ExecuteMsg {
 {% endtab %}
 {% endtabs %}
 
-| Name              | Type                                                 | Description                                                                                                                                              |
-| ----------------- | ---------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `collateral_addr` | String                                               | The address of the collateral token, should be the same as the anchor\_bluna token address since it is the only one supported as collateral **for now**. |
-| `amount`          | Option\<Uint256>                                     | The amount of collateral to withdraw.                                                                                                                    |
-| `unbond`          | Option\<bool>                                        | Optional flag to whether to unbond the funds. Defaults to false.                                                                                         |
-| `recipient`       | Option<[Recipient](../../common-types/recipient.md)> | Optional Recipient to the withdrawn funds.                                                                                                               |
+| Name              | Type                                              | Description                                                                                                                                              |
+| ----------------- | ------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `collateral_addr` | String                                            | The address of the collateral token, should be the same as the anchor\_bluna token address since it is the only one supported as collateral **for now**. |
+| `amount`          | Option\<Uint256>                                  | The amount of collateral to withdraw.                                                                                                                    |
+| `unbond`          | Option\<bool>                                     | Optional flag to whether to unbond the funds. Defaults to false.                                                                                         |
+| `recipient`       | Option<[Recipient](../common-types/recipient.md)> | Optional Recipient to the withdrawn funds.                                                                                                               |
 
 ### Borrow
 
@@ -228,10 +228,10 @@ pub enum ExecuteMsg{
 {% endtab %}
 {% endtabs %}
 
-| Name                | Type                                                 | Description                                                                                                                                                                                 |
-| ------------------- | ---------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `desired_ltv_ratio` | Decimal256                                           | The desired loan-to-value ratio. Needs to be less than 1. More info on LTV can be found [here](https://spectrocoin.com/en/faqs/crypto-loans/what-is-ltv-ratio-and-how-to-maintain-it.html). |
-| `recipient`         | Option<[Recipient](../../common-types/recipient.md)> | The address to receive the funds.                                                                                                                                                           |
+| Name                | Type                                              | Description                                                                                                                                                                                 |
+| ------------------- | ------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `desired_ltv_ratio` | Decimal256                                        | The desired loan-to-value ratio. Needs to be less than 1. More info on LTV can be found [here](https://spectrocoin.com/en/faqs/crypto-loans/what-is-ltv-ratio-and-how-to-maintain-it.html). |
+| `recipient`         | Option<[Recipient](../common-types/recipient.md)> | The address to receive the funds.                                                                                                                                                           |
 
 ### RepayLoan
 
@@ -389,10 +389,10 @@ pub enum ExecuteMsg {
 Uses the withdraw and primitive features.
 {% endhint %}
 
-Check[ AndrReceive](../../ado\_base/andrreceive-andrquery.md#andrrecieve).
+Check[ AndrReceive](../ado\_base/andrreceive-andrquery.md#andrrecieve).
 
 ## QueryMsg
 
 ### AndrQuery
 
-Check [AndrQuery](../../ado\_base/andrreceive-andrquery.md#andrquery).
+Check [AndrQuery](../ado\_base/andrreceive-andrquery.md#andrquery).

@@ -378,10 +378,10 @@ Documentation for the different messages can be found [here](https://docs.mirror
 Uses withdraw and primitive features.
 {% endhint %}
 
-Check [AndrReceive](../../ado\_base/andrreceive-andrquery.md#andrrecieve).
+Check [AndrReceive](../ado\_base/andrreceive-andrquery.md#andrrecieve).
 
 ## QueryMsg
 
 ### AndrQuery
 
-Check [AndrQuery](../../ado\_base/andrreceive-andrquery.md#andrquery).
+Check [AndrQuery](../ado\_base/andrreceive-andrquery.md#andrquery).

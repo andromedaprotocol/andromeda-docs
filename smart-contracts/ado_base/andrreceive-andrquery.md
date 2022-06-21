@@ -308,9 +308,9 @@ pub enum AndromedaMsg {
 {% endtab %}
 {% endtabs %}
 
-| Name   | Type                                       | Description         |
-| ------ | ------------------------------------------ | ------------------- |
-| module | [Module](../modules/module-definitions.md) | The module to add.  |
+| Name   | Type                                          | Description         |
+| ------ | --------------------------------------------- | ------------------- |
+| module | [Module](../../modules/module-definitions.md) | The module to add.  |
 
 ### DeregisterModule
 
@@ -386,10 +386,10 @@ pub enum AndromedaMsg{
 {% endtab %}
 {% endtabs %}
 
-| Name         | Type                                       | Description                        |
-| ------------ | ------------------------------------------ | ---------------------------------- |
-| `module_idx` | Uint64                                     | The index of the module to change. |
-| `module`     | [Module](../modules/module-definitions.md) | The new module implement.          |
+| Name         | Type                                          | Description                        |
+| ------------ | --------------------------------------------- | ---------------------------------- |
+| `module_idx` | Uint64                                        | The index of the module to change. |
+| `module`     | [Module](../../modules/module-definitions.md) | The new module implement.          |
 
 ### Primitives
 
@@ -679,11 +679,11 @@ pub struct ModuleInfoWithAddress {
 {% endtab %}
 {% endtabs %}
 
-| Name      | Type                                       | Description                                                 |
-| --------- | ------------------------------------------ | ----------------------------------------------------------- |
-| `module`  | [Module](../modules/module-definitions.md) | The information of the module are found in a Module struct. |
-| `address` | String                                     | The contract address of the module.                         |
-|           |                                            |                                                             |
+| Name      | Type                                          | Description                                                 |
+| --------- | --------------------------------------------- | ----------------------------------------------------------- |
+| `module`  | [Module](../../modules/module-definitions.md) | The information of the module are found in a Module struct. |
+| `address` | String                                        | The contract address of the module.                         |
+|           |                                               |                                                             |
 
 ### ModuleIds
 

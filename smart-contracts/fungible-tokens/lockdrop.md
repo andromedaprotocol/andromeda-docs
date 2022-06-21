@@ -6,11 +6,11 @@ This ADO is another part of the toolkit of allowing a user to setup their own to
 
 There are two phases:
 
-The first phase is the deposit phase in which users can deposit UST. They can also freely withdraw in this time.
+The first phase is the deposit phase in which users can deposit a native denom. They can also freely withdraw in this time.
 
 The second phase is the withdrawal phase, in which for the first half, users can withdraw up to half of their deposit, and in the second half, the amount they can withdraw decreases linearly from 50% to 0%. Users can only withdraw once during the withdrawal phase.
 
-After the deposit phase is over, each user gets the token in proportion to how much UST they put in (claims need to be enabled first). This contract also has an optional relationship with an LP bootstrapping contract which would allow users to deposit parts of their purchased tokens and UST to bootstrap a liquidity pool.&#x20;
+After the deposit phase is over, each user gets the token in proportion to how much of the native denom they put in (claims need to be enabled first). This contract also has an optional relationship with an LP bootstrapping contract which would allow users to deposit parts of their purchased tokens and UST to bootstrap a liquidity pool.&#x20;
 
 **Ado\_type**: lockdrop
 
@@ -41,7 +41,7 @@ pub struct InstantiateMsg {
 {% tab title="JSON" %}
 ```json
 {
-"native_denom":"uusd",
+"native_denom":"ujuno",
 "deposit_window":600,
 "init_timestamp":1649877513,
 "incentive_token":"juno1...",
@@ -51,14 +51,14 @@ pub struct InstantiateMsg {
 {% endtab %}
 {% endtabs %}
 
-| Name                 | Type                                                               | Description                                                     |
-| -------------------- | ------------------------------------------------------------------ | --------------------------------------------------------------- |
-| `bootstrap_contract` | Option<[AndrAddress](../../common-types/recipient.md#andraddress)> | Optional bootstrap contract to be used in the second phase.     |
-| `init_timestamp`     | u64                                                                | Timestamp till when deposits can be made.                       |
-| `deposit_window`     | u64                                                                | Number of seconds for which lockup deposits will be accepted.   |
-| `withdrawal_window`  | u64                                                                | Number of seconds for which lockup withdrawals will be allowed. |
-| `incentive_token`    | String                                                             | The token being given as incentive.                             |
-| `native_denom`       | String                                                             | The native token being deposited.                               |
+| Name                 | Type                                                            | Description                                                     |
+| -------------------- | --------------------------------------------------------------- | --------------------------------------------------------------- |
+| `bootstrap_contract` | Option<[AndrAddress](../common-types/recipient.md#andraddress)> | Optional bootstrap contract to be used in the second phase.     |
+| `init_timestamp`     | u64                                                             | Timestamp till when deposits can be made.                       |
+| `deposit_window`     | u64                                                             | Number of seconds for which lockup deposits will be accepted.   |
+| `withdrawal_window`  | u64                                                             | Number of seconds for which lockup withdrawals will be allowed. |
+| `incentive_token`    | String                                                          | The token being given as incentive.                             |
+| `native_denom`       | String                                                          | The native token being deposited.                               |
 
 ## ExecuteMsg
 
@@ -288,7 +288,7 @@ pub enum ExecuteMsg {
 
 ### AndrReceive
 
-Check [AndrReceive](../../ado\_base/andrreceive-andrquery.md#andrrecieve).
+Check [AndrReceive](../ado\_base/andrreceive-andrquery.md#andrrecieve).
 
 ## QueryMsg
 
@@ -480,4 +480,4 @@ Returns a number of type Decimal representing the percentage allowed to withdraw
 
 ### AndrQuery
 
-Check [AndrQuery](../../ado\_base/andrreceive-andrquery.md#andrquery).
+Check [AndrQuery](../ado\_base/andrreceive-andrquery.md#andrquery).

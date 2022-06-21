@@ -23,7 +23,6 @@
   * [Vesting ADO](smart-contracts/finance/vesting-ado.md)
   * [Weighted Splitter](smart-contracts/finance/weighted-splitter.md)
 * [Ecosystem](smart-contracts/ecosystem/README.md)
-  * [Swapper](smart-contracts/ecosystem/swapper.md)
   * [Vault](smart-contracts/ecosystem/vault.md)
 * [Data Storage](smart-contracts/data-storage/README.md)
   * [Primitive](smart-contracts/data-storage/primitive.md)
@@ -35,11 +34,18 @@
   * [NFT Offers](smart-contracts/modules/nft-offers.md)
   * [Rates](smart-contracts/modules/rates.md)
   * [Receipt Contract](smart-contracts/modules/receipt-contract.md)
+* [ADO\_Base](smart-contracts/ado\_base/README.md)
+  * [AndrReceive/AndrQuery](smart-contracts/ado\_base/andrreceive-andrquery.md)
+* [Common Types](smart-contracts/common-types/README.md)
+  * [Recipient](smart-contracts/common-types/recipient.md)
+  * [Coin](smart-contracts/common-types/coin.md)
+  * [Expiration](smart-contracts/common-types/expiration.md)
 * [Pending](smart-contracts/pending/README.md)
   * [Anchor Earn](smart-contracts/pending/anchor-earn.md)
   * [Anchor Lend](smart-contracts/pending/anchor-lend.md)
   * [Astroport](smart-contracts/pending/astroport.md)
   * [Mirror](smart-contracts/pending/mirror.md)
+  * [Swapper](smart-contracts/pending/swapper.md)
 
 ## Modules
 
@@ -53,16 +59,16 @@
 
 * [Hooks](andromeda-hooks/hooks.md)
 
-***
+## Deploying Andromeda Apps
 
-* [Deploying Apps](deploying-apps.md)
-* [Common Types](common-types/README.md)
-  * [Recipient](common-types/recipient.md)
-  * [Coin](common-types/coin.md)
-  * [Expiration](common-types/expiration.md)
-* [ADO\_Base](ado\_base.md)
-  * [AndrReceive/AndrQuery](ado\_base/andrreceive-andrquery.md)
-* [User Docs](user-docs.md)
+* [App 1](deploying-andromeda-apps/app-1.md)
+
+## User Docs
+
+* [User Docs](user-docs/user-docs.md)
+
+## Additional Resources
+
 * [GitHub](https://github.com/andromedaprotocol)
 * [Website](https://andromedaprotocol.io/)
 * [White Paper](https://static1.squarespace.com/static/60b85587d5bf80784bda317f/t/61698246efa74863509bacd8/1634304583185/ANDROMEDA+PROTOCOL.pdf)

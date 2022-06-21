@@ -95,7 +95,7 @@ To be a valid recipient list the array of `AddressPercent` structs must meet the
 * Have percentage amounts less than or equaling 1
 {% endhint %}
 
-Read more about the recipient struct [here](../../common-types/recipient.md).
+Read more about the recipient struct [here](../common-types/recipient.md).
 
 ## ExecuteMsg
 
@@ -202,7 +202,7 @@ pub enum ExecuteMsg {
 Uses the modules feature.
 {% endhint %}
 
-Check [AndrReceive](../../ado\_base/andrreceive-andrquery.md).
+Check [AndrReceive](../ado\_base/andrreceive-andrquery.md).
 
 ## QueryMsg
 
@@ -284,4 +284,4 @@ pub struct Splitter {
 
 ### AndrQuery
 
-Check[ AndrQuery](../../ado\_base/andrreceive-andrquery.md#andrquery).
+Check[ AndrQuery](../ado\_base/andrreceive-andrquery.md#andrquery).

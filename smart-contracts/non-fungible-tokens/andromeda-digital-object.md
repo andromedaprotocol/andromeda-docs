@@ -51,12 +51,12 @@ pub struct InstantiateMsg {
 {% endtab %}
 {% endtabs %}
 
-| Name      | Type                                                       | Description                                                                                                  |
-| --------- | ---------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------ |
-| `name`    | String                                                     | The name of the token. Has to be between 3 and 30 characters.                                                |
-| `symbol`  | String                                                     | The symbol of the token.                                                                                     |
-| `minter`  | [AndrAddress](../../common-types/recipient.md#andraddress) | The address of the token minter.                                                                             |
-| `modules` | Option\<Vec<[Module](broken-reference)>>                   | An optional vector of Andromeda Modules. "rates", "offers", "address\_list", "receipt" modules can be added. |
+| Name      | Type                                                    | Description                                                                                                  |
+| --------- | ------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------ |
+| `name`    | String                                                  | The name of the token. Has to be between 3 and 30 characters.                                                |
+| `symbol`  | String                                                  | The symbol of the token.                                                                                     |
+| `minter`  | [AndrAddress](../common-types/recipient.md#andraddress) | The address of the token minter.                                                                             |
+| `modules` | Option\<Vec<[Module](broken-reference)>>                | An optional vector of Andromeda Modules. "rates", "offers", "address\_list", "receipt" modules can be added. |
 
 ## ExecuteMsg
 
@@ -216,10 +216,10 @@ pub struct TransferAgreement {
 }
 ```
 
-| Name        | Type                                      | Description                                                               |
-| ----------- | ----------------------------------------- | ------------------------------------------------------------------------- |
-| `amount`    | Value<[Coin](../../common-types/coin.md)> | The amount required for the purchaser to transfer ownership of the token. |
-| `purchaser` | String                                    | The address of the purchaser.                                             |
+| Name        | Type                                   | Description                                                               |
+| ----------- | -------------------------------------- | ------------------------------------------------------------------------- |
+| `amount`    | Value<[Coin](../common-types/coin.md)> | The amount required for the purchaser to transfer ownership of the token. |
+| `purchaser` | String                                 | The address of the purchaser.                                             |
 
 #### `Value<T>`
 
@@ -249,10 +249,10 @@ pub struct PrimitivePointer {
 }
 ```
 
-| Name      | Type                                                       | Description                            |
-| --------- | ---------------------------------------------------------- | -------------------------------------- |
-| `address` | [AndrAddress](../../common-types/recipient.md#andraddress) | The address of the primitive contract. |
-| `key`     | Option\<String>                                            | The optional key for the stored data.  |
+| Name      | Type                                                    | Description                            |
+| --------- | ------------------------------------------------------- | -------------------------------------- |
+| `address` | [AndrAddress](../common-types/recipient.md#andraddress) | The address of the primitive contract. |
+| `key`     | Option\<String>                                         | The optional key for the stored data.  |
 
 ### TransferNft
 
@@ -437,11 +437,11 @@ pub enum ExecuteMsg {
 {% endtab %}
 {% endtabs %}
 
-| Name       | Type                                                   | Description                                                        |
-| ---------- | ------------------------------------------------------ | ------------------------------------------------------------------ |
-| `spender`  | String                                                 | The address to be authorised as an operator                        |
-| `token_id` | String                                                 | The id of the ADO for which to assign the `spender` as an operator |
-| `expires`  | Option<[Expiration](../../common-types/expiration.md)> | An optional expiration for the approval                            |
+| Name       | Type                                                | Description                                                        |
+| ---------- | --------------------------------------------------- | ------------------------------------------------------------------ |
+| `spender`  | String                                              | The address to be authorised as an operator                        |
+| `token_id` | String                                              | The id of the ADO for which to assign the `spender` as an operator |
+| `expires`  | Option<[Expiration](../common-types/expiration.md)> | An optional expiration for the approval                            |
 
 ### Revoke
 
@@ -514,10 +514,10 @@ pub enum ExecuteMsg {
 {% endtab %}
 {% endtabs %}
 
-| Name       | Type                                                   | Description                                 |
-| ---------- | ------------------------------------------------------ | ------------------------------------------- |
-| `operator` | String                                                 | The address to be authorised as an operator |
-| `expires`  | Option<[Expiration](../../common-types/expiration.md)> | An optional expiration for the approval     |
+| Name       | Type                                                | Description                                 |
+| ---------- | --------------------------------------------------- | ------------------------------------------- |
+| `operator` | String                                              | The address to be authorised as an operator |
+| `expires`  | Option<[Expiration](../common-types/expiration.md)> | An optional expiration for the approval     |
 
 ### RevokeAll
 
@@ -620,7 +620,7 @@ or
 Uses the modules feature.
 {% endhint %}
 
-Check [AndrReceive](../../ado\_base/andrreceive-andrquery.md).
+Check [AndrReceive](../ado\_base/andrreceive-andrquery.md).
 
 ## QueryMsg
 
@@ -732,10 +732,10 @@ pub struct Approval {
 }
 ```
 
-| Name      | Type                                           | Description                      |
-| --------- | ---------------------------------------------- | -------------------------------- |
-| `spender` | String                                         | The address that is approved.    |
-| `expires` | [Expiration](../../common-types/expiration.md) | The expiration for the approval. |
+| Name      | Type                                        | Description                      |
+| --------- | ------------------------------------------- | -------------------------------- |
+| `spender` | String                                      | The address that is approved.    |
+| `expires` | [Expiration](../common-types/expiration.md) | The expiration for the approval. |
 
 ### AllOperators
 
@@ -1200,7 +1200,7 @@ pub struct CotractInfoResponse {
 | `name`   | String | The name of the contract.            |
 | `symbol` | String | The assigned symbol of the contract. |
 
-The rest of the base Queries are found in [AndrQuery](../../ado\_base/andrreceive-andrquery.md).
+The rest of the base Queries are found in [AndrQuery](../ado\_base/andrreceive-andrquery.md).
 
 
 
@@ -1274,10 +1274,10 @@ pub struct Approval {
 }
 ```
 
-| Name      | Type                                           | Description                                            |
-| --------- | ---------------------------------------------- | ------------------------------------------------------ |
-| `spender` | String                                         | Account that can transfer/send the token               |
-| `expires` | [Expiration](../../common-types/expiration.md) | When the Approval expires. Might be Expiration::never. |
+| Name      | Type                                        | Description                                            |
+| --------- | ------------------------------------------- | ------------------------------------------------------ |
+| `spender` | String                                      | Account that can transfer/send the token               |
+| `expires` | [Expiration](../common-types/expiration.md) | When the Approval expires. Might be Expiration::never. |
 
 ### Approvals
 
@@ -1348,4 +1348,4 @@ pub struct ApprovalsResponse {
 
 ### AndrQuery
 
-Check [AndrQuery](../../ado\_base/andrreceive-andrquery.md#andrquery).
+Check [AndrQuery](../ado\_base/andrreceive-andrquery.md#andrquery).

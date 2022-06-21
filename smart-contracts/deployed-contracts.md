@@ -10,3 +10,7 @@ The following section contains our deployed contracts:
 | **Registry/Primitive** | juno144r95jrnk5erqhpuepe5mwz33e5mns7yuyhmxw7fmfx8w0duqwws9qd36x |
 {% endtab %}
 {% endtabs %}
+
+{% hint style="warning" %}
+These addresses will come in hand when deploying Andromeda Apps.
+{% endhint %}

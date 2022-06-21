@@ -14,7 +14,7 @@ The steps needed to build a full app from scratch are the following:
 4. Instantiate the app contract and attach the primitive to it (`primitive_contract` field in instantiation)
 
 {% hint style="warning" %}
-Andromeda has a list of deployed addresses that include the Factory with the code ids of all the contracts and a primitive linked to it. This means that the first three steps are already covered if you use our [deployed contracts](../deployed-contracts.md). All that is needed is step 4. You can learn to deploy your first app [here](../../deploying-apps.md).
+Andromeda has a list of deployed addresses that include the Factory with the code ids of all the contracts and a primitive linked to it. This means that the first three steps are already covered if you use our [deployed contracts](../deployed-contracts.md). All that is needed is step 4. You can learn to deploy your first app [here](../../deploying-andromeda-apps/app-1.md).
 {% endhint %}
 
 **Ado\_type**: app
@@ -246,7 +246,7 @@ pub enum ExecuteMsg {
 
 ### AndrReceive
 
-Check [AndrReceive](../../ado\_base/andrreceive-andrquery.md).
+Check [AndrReceive](../ado\_base/andrreceive-andrquery.md).
 
 ## QueryMsg
 
@@ -344,7 +344,7 @@ pub enum QueryMsg{
 {% endtab %}
 {% endtabs %}
 
-Returns a `Vec<`[`AppComponent`](app.md#missioncomponent)`>` which contains all the components of the app.
+Returns a `Vec<`[`AppComponent`](app.md#appcomponent)`>` which contains all the components of the app.
 
 ### Config
 
@@ -428,7 +428,7 @@ pub enum QueryMsg {
 }
 ```
 
-If the [`AndromedaQuery`](../../ado\_base/andrreceive-andrquery.md#andromedaquery) is of type `Get` , the contract will query address of the specified name (data) . If no data is supplied in the Get, an error will occur.
+If the [`AndromedaQuery`](../ado\_base/andrreceive-andrquery.md#andromedaquery) is of type `Get` , the contract will query address of the specified name (data) . If no data is supplied in the Get, an error will occur.
 
 ```rust
 fn handle_andromeda_query(
@@ -452,4 +452,4 @@ fn handle_andromeda_query(
 }
 ```
 
-Check [AndrQuery](../../ado\_base/andrreceive-andrquery.md#andrquery) for the rest of the default queries.
+Check [AndrQuery](../ado\_base/andrreceive-andrquery.md#andrquery) for the rest of the default queries.

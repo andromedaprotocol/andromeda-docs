@@ -14,6 +14,8 @@ On instantiation, the following weights are assigned:
 
 Then the total weight is 12 and A receives 5/12 of the funds, B receives 3/12 of the funds and C receives 4/12 of the funds. If a recipient is then added, the total weight is increased and the percentages are recalculated.
 
+**ado\_type:** weighted-splitter
+
 ## InstantiateMsg
 
 {% tabs %}
@@ -202,9 +204,9 @@ pub enum ExecuteMsg {
 
 
 
-| Name        | Type                                         | Description                            |
-| ----------- | -------------------------------------------- | -------------------------------------- |
-| `recipient` | [Recipient](../../common-types/recipient.md) | The recipient to remove from the list. |
+| Name        | Type                                      | Description                            |
+| ----------- | ----------------------------------------- | -------------------------------------- |
+| `recipient` | [Recipient](../common-types/recipient.md) | The recipient to remove from the list. |
 
 ### UpdateLock
 
@@ -314,7 +316,7 @@ pub enum ExecuteMsg {
 This contract uses the modules feature
 {% endhint %}
 
-Check [AndrReceive](../../ado\_base/andrreceive-andrquery.md#andrrecieve).
+Check [AndrReceive](../ado\_base/andrreceive-andrquery.md#andrrecieve).
 
 ## QueryMsg
 
@@ -398,7 +400,7 @@ pub struct Splitter {
 | Name         | Type                                                     | Description                                                                                                                                                                                                                   |
 | ------------ | -------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `recipients` | Vec<[AddressWeight](weighted-splitter.md#addressweight)> | The vector of recipients for the contract. Anytime a `Send` execute message is sent the amount sent will be divided amongst these recipients depending on their assigned weight.                                              |
-| `locked`     | [Expiration](../../common-types/expiration.md)           | The expiration time of the lock. Will return an epoc time which is equal to the current\_time _+_ lock\_time taken at the point of setting the lock. (Current time refers to the time the lock was set and not the time now.) |
+| `locked`     | [Expiration](../common-types/expiration.md)              | The expiration time of the lock. Will return an epoc time which is equal to the current\_time _+_ lock\_time taken at the point of setting the lock. (Current time refers to the time the lock was set and not the time now.) |
 
 ### GetUserWeight
 
@@ -448,4 +450,4 @@ pub struct GetUserWeightResponse {
 
 ### AndrQuery
 
-Check [AndrQuery](../../ado\_base/andrreceive-andrquery.md#andrquery).
+Check [AndrQuery](../ado\_base/andrreceive-andrquery.md#andrquery).

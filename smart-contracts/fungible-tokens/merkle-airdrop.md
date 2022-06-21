@@ -22,10 +22,10 @@ pub struct InstantiateMsg {
 {
 "asset_info":{
 "asset_info_unchecked":{
- "cw20":"juno1..."
+    "cw20":"juno1..."
+     }
    }
- }
-}
+} 
 ```
 {% endtab %}
 {% endtabs %}
@@ -43,7 +43,7 @@ pub type AssetInfoUnchecked = AssetInfoBase<String>;
 Represents the type of an fungible asset. Each asset info instance can be one of two variants:&#x20;
 
 * **CW20 tokens**: To create an **** asset info instance of this type, provide the contract address of the token.
-* &#x20;**Native SDK coins**: To create an asset info instance of this type, provide the denomination ("uluna","uatom").
+* &#x20;**Native SDK coins**: To create an asset info instance of this type, provide the denomination ("ujuno","uatom").
 
 ```rust
 pub enum AssetInfoBase<T> {
@@ -87,11 +87,11 @@ Only the owner can execute `RegisterMerkleRoot`.
 {% endtab %}
 {% endtabs %}
 
-| Name           | Type                                                   | Description                                                                                      |
-| -------------- | ------------------------------------------------------ | ------------------------------------------------------------------------------------------------ |
-| `merkle_root`  | String                                                 | A hex-encoded Merkle root.                                                                       |
-| `expiration`   | Option<[Expiration](../../common-types/expiration.md)> | An optional expiration for the root.                                                             |
-| `total_amount` | Option\<Uint128>                                       | An optional amount to specify the maximum number of tokens that can be claimed from the airdrop. |
+| Name           | Type                                                | Description                                                                                      |
+| -------------- | --------------------------------------------------- | ------------------------------------------------------------------------------------------------ |
+| `merkle_root`  | String                                              | A hex-encoded Merkle root.                                                                       |
+| `expiration`   | Option<[Expiration](../common-types/expiration.md)> | An optional expiration for the root.                                                             |
+| `total_amount` | Option\<Uint128>                                    | An optional amount to specify the maximum number of tokens that can be claimed from the airdrop. |
 
 ### Claim
 
@@ -168,7 +168,7 @@ Only the owner can execute `Burn`.
 
 ### AndrReceive
 
-Check [AndrReceive](../../ado\_base/andrreceive-andrquery.md#andrrecieve)
+Check [AndrReceive](../ado\_base/andrreceive-andrquery.md#andrrecieve)
 
 ## Query
 
@@ -286,12 +286,12 @@ pub struct MerkleRootResponse {
 {% endtab %}
 {% endtabs %}
 
-| Name           | Type                                           | Description                                                         |
-| -------------- | ---------------------------------------------- | ------------------------------------------------------------------- |
-| `stage`        | u8                                             | The stage that belongs to this root.                                |
-| `merkle_root`  | String                                         | The Merkle-Root of this stage.                                      |
-| `expiration`   | [Expiration](../../common-types/expiration.md) | The expiration for the airdrop of this stage.                       |
-| `total_amount` | Uint128                                        | The total amount of funds to be airdropped belonging to this stage. |
+| Name           | Type                                        | Description                                                         |
+| -------------- | ------------------------------------------- | ------------------------------------------------------------------- |
+| `stage`        | u8                                          | The stage that belongs to this root.                                |
+| `merkle_root`  | String                                      | The Merkle-Root of this stage.                                      |
+| `expiration`   | [Expiration](../common-types/expiration.md) | The expiration for the airdrop of this stage.                       |
+| `total_amount` | Uint128                                     | The total amount of funds to be airdropped belonging to this stage. |
 
 ### LatestStage
 
@@ -444,4 +444,4 @@ pub struct TotalClaimedResponse {
 
 ### AndrQuery
 
-Check [AndrQuery](../../ado\_base/andrreceive-andrquery.md#andrquery).
+Check [AndrQuery](../ado\_base/andrreceive-andrquery.md#andrquery).

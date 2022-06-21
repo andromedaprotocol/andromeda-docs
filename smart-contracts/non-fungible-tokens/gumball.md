@@ -38,10 +38,10 @@ pub struct InstantiateMsg {
 {% endtab %}
 {% endtabs %}
 
-| Name                       | Type                                                       | Description                                                               |
-| -------------------------- | ---------------------------------------------------------- | ------------------------------------------------------------------------- |
-| `andromeda_cw721_contract` | [AndrAddress](../../common-types/recipient.md#andraddress) | The contract address of the NFT contract.                                 |
-| `randomness_source`        | String                                                     | The contract address for source of randomness. (Currently using Terrand). |
+| Name                       | Type                                                    | Description                                                               |
+| -------------------------- | ------------------------------------------------------- | ------------------------------------------------------------------------- |
+| `andromeda_cw721_contract` | [AndrAddress](../common-types/recipient.md#andraddress) | The contract address of the NFT contract.                                 |
+| `randomness_source`        | String                                                  | The contract address for source of randomness. (Currently using Terrand). |
 
 ## ExecuteMsg
 
@@ -159,11 +159,11 @@ pub enum ExecuteMsg {
 {% endtab %}
 {% endtabs %}
 
-| Name                    | Type                                         | Description                                                |
-| ----------------------- | -------------------------------------------- | ---------------------------------------------------------- |
-| `price`                 | [Coin](../../common-types/coin.md)           | The price of the token.                                    |
-| `max_amount_per_wallet` | Option\<Uint128>                             | The amount of tokens a wallet can purchase, defaults to 1. |
-| `recipient`             | [Recipient](../../common-types/recipient.md) | The recipient of the funds.                                |
+| Name                    | Type                                      | Description                                                |
+| ----------------------- | ----------------------------------------- | ---------------------------------------------------------- |
+| `price`                 | [Coin](../common-types/coin.md)           | The price of the token.                                    |
+| `max_amount_per_wallet` | Option\<Uint128>                          | The amount of tokens a wallet can purchase, defaults to 1. |
+| `recipient`             | [Recipient](../common-types/recipient.md) | The recipient of the funds.                                |
 
 ### SwitchStatus
 
@@ -189,7 +189,7 @@ Automatically switches to opposite status. True means buying is allowed and mint
 
 ### AndrReceive
 
-Check [AndrReceive](../../ado\_base/andrreceive-andrquery.md#andrrecieve).
+Check [AndrReceive](../ado\_base/andrreceive-andrquery.md#andrrecieve).
 
 ## QueryMsg
 
@@ -291,11 +291,11 @@ pub struct State {
 {% endtab %}
 {% endtabs %}
 
-| Name                    | Type                                         | Description                                 |
-| ----------------------- | -------------------------------------------- | ------------------------------------------- |
-| `price`                 | [Coin](../../common-types/coin.md)           | The price of each token.                    |
-| `max_amount_per_wallet` | Uint128                                      | The max number o tokens allowed per wallet. |
-| `recipient`             | [Recipient](../../common-types/recipient.md) | The recipient of the funds upon sale.       |
+| Name                    | Type                                      | Description                                 |
+| ----------------------- | ----------------------------------------- | ------------------------------------------- |
+| `price`                 | [Coin](../common-types/coin.md)           | The price of each token.                    |
+| `max_amount_per_wallet` | Uint128                                   | The max number o tokens allowed per wallet. |
+| `recipient`             | [Recipient](../common-types/recipient.md) | The recipient of the funds upon sale.       |
 
 ### Status
 
@@ -343,4 +343,4 @@ pub struct StatusResponse {
 
 ### AndrQuery
 
-Check [AndrQuery](../../ado\_base/andrreceive-andrquery.md#andrquery).
+Check [AndrQuery](../ado\_base/andrreceive-andrquery.md#andrquery).

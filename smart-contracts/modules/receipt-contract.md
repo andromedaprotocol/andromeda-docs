@@ -159,7 +159,7 @@ pub enum ExecuteMsg {
 
 ### AndrReceive
 
-Check [AndrReceive](../../ado\_base/andrreceive-andrquery.md).
+Check [AndrReceive](../ado\_base/andrreceive-andrquery.md).
 
 ## QueryMsg
 
@@ -294,4 +294,4 @@ pub struct ContractInfoResponse {
 
 ### AndrQuery
 
-Check[ AndrQuery](../../ado\_base/andrreceive-andrquery.md#andromedaquery).
+Check[ AndrQuery](../ado\_base/andrreceive-andrquery.md#andromedaquery).

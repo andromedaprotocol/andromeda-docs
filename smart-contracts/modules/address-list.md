@@ -115,7 +115,7 @@ pub enum ExecuteMsg {
 
 ### AndrReceive
 
-Check [AndrReceive](../../ado\_base/andrreceive-andrquery.md#andrrecieve).
+Check [AndrReceive](../ado\_base/andrreceive-andrquery.md#andrrecieve).
 
 ## QueryMsg
 
@@ -176,4 +176,4 @@ pub struct IncludesAddressResponse {
 
 ### AndrQuery
 
-Check[ AndrQuery](../../ado\_base/andrreceive-andrquery.md#andrquery).
+Check[ AndrQuery](../ado\_base/andrreceive-andrquery.md#andrquery).

@@ -105,12 +105,12 @@ pub enum Cw721HookMsg {
 {% endtab %}
 {% endtabs %}
 
-| Name         | Type                                           | Description                                                                          |
-| ------------ | ---------------------------------------------- | ------------------------------------------------------------------------------------ |
-| `start_time` | [Expiration](../../common-types/expiration.md) | The start of the auction.                                                            |
-| `end_time`   | [Expiration](../../common-types/expiration.md) | The end of the auction.                                                              |
-| `coin_denom` | String                                         | The native coin denomination to do the auction in.                                   |
-| `whitelist`  | Option\<Vec\<Addr>>                            | Optional list of addresses to whitelist for the auction. If None, auction is public. |
+| Name         | Type                                        | Description                                                                          |
+| ------------ | ------------------------------------------- | ------------------------------------------------------------------------------------ |
+| `start_time` | [Expiration](../common-types/expiration.md) | The start of the auction.                                                            |
+| `end_time`   | [Expiration](../common-types/expiration.md) | The end of the auction.                                                              |
+| `coin_denom` | String                                      | The native coin denomination to do the auction in.                                   |
+| `whitelist`  | Option\<Vec\<Addr>>                         | Optional list of addresses to whitelist for the auction. If None, auction is public. |
 
 {% hint style="warning" %}
 To be a valid auction the following requirements must be met:
@@ -168,14 +168,14 @@ An auction can be updated only if it has not started yet.&#x20;
 * `start_time` < `end_time`
 {% endhint %}
 
-| Name            | Type                                           | Description                                                                          |
-| --------------- | ---------------------------------------------- | ------------------------------------------------------------------------------------ |
-| `token_id`      | String                                         | The id of the ADO that is being auctioned.                                           |
-| `token_address` | String                                         | The address of the token contract.                                                   |
-| `start_time`    | [Expiration](../../common-types/expiration.md) | The start of the auction.                                                            |
-| `end_time`      | [Expiration](../../common-types/expiration.md) | The end of the auction.                                                              |
-| `coin_denom`    | String                                         | The native coin denomination to do the auction in.                                   |
-| `whitelist`     | Option\<Vec\<Addr>>                            | Optional list of addresses to whitelist for the auction. If None, auction is public. |
+| Name            | Type                                        | Description                                                                          |
+| --------------- | ------------------------------------------- | ------------------------------------------------------------------------------------ |
+| `token_id`      | String                                      | The id of the ADO that is being auctioned.                                           |
+| `token_address` | String                                      | The address of the token contract.                                                   |
+| `start_time`    | [Expiration](../common-types/expiration.md) | The start of the auction.                                                            |
+| `end_time`      | [Expiration](../common-types/expiration.md) | The end of the auction.                                                              |
+| `coin_denom`    | String                                      | The native coin denomination to do the auction in.                                   |
+| `whitelist`     | Option\<Vec\<Addr>>                         | Optional list of addresses to whitelist for the auction. If None, auction is public. |
 
 ### CancelAuction
 
@@ -320,7 +320,7 @@ pub enum ExecuteMsg {
 
 ### AndrRecieve
 
-Check [AndrReceive](../../ado\_base/andrreceive-andrquery.md#andrrecieve).
+Check [AndrReceive](../ado\_base/andrreceive-andrquery.md#andrrecieve).
 
 ## QueryMsg
 
@@ -396,16 +396,16 @@ pub struct AuctionStateResponse {
 {% endtab %}
 {% endtabs %}
 
-| Name                 | Type                                           | Description                                                           |
-| -------------------- | ---------------------------------------------- | --------------------------------------------------------------------- |
-| `start_time`         | [Expiration](../../common-types/expiration.md) | The start of the auction.                                             |
-| `end_time`           | [Expiration](../../common-types/expiration.md) | The end of the auction.                                               |
-| `high_bidder_addr`   | String                                         | The terra address of the highest bidder.                              |
-| `high_bidder_amount` | Uint128                                        | The amount of the highest bid.                                        |
-| `auction_id`         | Uint128                                        | The id of the auction.                                                |
-| `coin_denom`         | String                                         | The denom the auction is in.                                          |
-| `is_cancelled`       | bool                                           | Whether or not the auction has been cancelled.                        |
-| `whitelist`          | Option\<Vec\<Addr>>                            | The whitelisted addresses if they were specified at time of creation. |
+| Name                 | Type                                        | Description                                                           |
+| -------------------- | ------------------------------------------- | --------------------------------------------------------------------- |
+| `start_time`         | [Expiration](../common-types/expiration.md) | The start of the auction.                                             |
+| `end_time`           | [Expiration](../common-types/expiration.md) | The end of the auction.                                               |
+| `high_bidder_addr`   | String                                      | The terra address of the highest bidder.                              |
+| `high_bidder_amount` | Uint128                                     | The amount of the highest bid.                                        |
+| `auction_id`         | Uint128                                     | The id of the auction.                                                |
+| `coin_denom`         | String                                      | The denom the auction is in.                                          |
+| `is_cancelled`       | bool                                        | Whether or not the auction has been cancelled.                        |
+| `whitelist`          | Option\<Vec\<Addr>>                         | The whitelisted addresses if they were specified at time of creation. |
 
 ### AuctionState
 
@@ -536,11 +536,11 @@ pub struct Bid {
 }
 ```
 
-| Name        | Type                                                    |                            |
-| ----------- | ------------------------------------------------------- | -------------------------- |
-| `bidder`    | String                                                  | The address of the bidder. |
-| `amount`    | Uint128                                                 | The amount of funds bid.   |
-| `timestamp` | [TimeStamp](../../common-types/expiration.md#timestamp) | The time of the bid.       |
+| Name        | Type                                                 |                            |
+| ----------- | ---------------------------------------------------- | -------------------------- |
+| `bidder`    | String                                               | The address of the bidder. |
+| `amount`    | Uint128                                              | The amount of funds bid.   |
+| `timestamp` | [TimeStamp](../common-types/expiration.md#timestamp) | The time of the bid.       |
 
 ### AuctionIds
 
@@ -720,4 +720,4 @@ pub struct ContractOwnerResponse {
 
 ### AndrQuery
 
-Check [AndrQuery](../../ado\_base/andrreceive-andrquery.md#andrquery).
+Check [AndrQuery](../ado\_base/andrreceive-andrquery.md#andrquery).

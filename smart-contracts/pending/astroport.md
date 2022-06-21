@@ -256,11 +256,11 @@ pub enum ExecuteMsg {
 {% endtab %}
 {% endtabs %}
 
-| Name           | Type                                                 | Description                                                         |
-| -------------- | ---------------------------------------------------- | ------------------------------------------------------------------- |
-| `pair_address` | String                                               | The contract address of the  asset pair to withdraw liquidity from. |
-| `amount`       | Option\<Uint128>                                     | The amount of liquidity to withdraw. Defaults to the total amount.  |
-| `recipient`    | Option<[Recipient](../../common-types/recipient.md)> | The address to receive the funds. Defaults to the sender.           |
+| Name           | Type                                              | Description                                                         |
+| -------------- | ------------------------------------------------- | ------------------------------------------------------------------- |
+| `pair_address` | String                                            | The contract address of the  asset pair to withdraw liquidity from. |
+| `amount`       | Option\<Uint128>                                  | The amount of liquidity to withdraw. Defaults to the total amount.  |
+| `recipient`    | Option<[Recipient](../common-types/recipient.md)> | The address to receive the funds. Defaults to the sender.           |
 
 ### StakeLp
 
@@ -484,10 +484,10 @@ Information on the Factory contract execute messages can be found in the Astropo
 Uses withdraw and primitive features.
 {% endhint %}
 
-Check [AndrReceive](../../ado\_base/andrreceive-andrquery.md#andrrecieve).
+Check [AndrReceive](../ado\_base/andrreceive-andrquery.md#andrrecieve).
 
 ## QueryMsg
 
 ### AndrQuery
 
-Check [AndrQuery](../../ado\_base/andrreceive-andrquery.md#andromedaquery).
+Check [AndrQuery](../ado\_base/andrreceive-andrquery.md#andromedaquery).

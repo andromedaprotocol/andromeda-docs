@@ -36,12 +36,12 @@ pub struct InstantiateMsg {
 {% endtab %}
 {% endtabs %}
 
-| Name                     | Type                                         | Description                                          |
-| ------------------------ | -------------------------------------------- | ---------------------------------------------------- |
-| `recipient`              | [Recipient](../../common-types/recipient.md) | The recipient of all funds locked in this contract.  |
-| `is_multi_batch_enabled` | bool                                         | Whether or not multi-batching has been enabled.      |
-| `denom`                  | String                                       | The denom of the coin being vested.                  |
-| `unbonding_duration`     | Duration                                     | The unbonding duration of the native staking module. |
+| Name                     | Type                                      | Description                                          |
+| ------------------------ | ----------------------------------------- | ---------------------------------------------------- |
+| `recipient`              | [Recipient](../common-types/recipient.md) | The recipient of all funds locked in this contract.  |
+| `is_multi_batch_enabled` | bool                                      | Whether or not multi-batching has been enabled.      |
+| `denom`                  | String                                    | The denom of the coin being vested.                  |
+| `unbonding_duration`     | Duration                                  | The unbonding duration of the native staking module. |
 
 #### Duration
 
@@ -100,12 +100,12 @@ pub enum ExecuteMsg {
 {% endtab %}
 {% endtabs %}
 
-| Name                       | Type                                                                      | Description                                                                                                                               |
-| -------------------------- | ------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------- |
-| `lockup_duration`          | Option\<u64>                                                              | Specifying None would mean no lock up period and funds start vesting right away.                                                          |
-| `release_unit`             | u64                                                                       | How often releases occur in seconds.                                                                                                      |
-| `release_amount`           | [WithdrawalType](../../ado\_base/andrreceive-andrquery.md#withdrawaltype) | Specifies how much is to be released after each `release_unit`. If it is a percentage, it would be the percentage of the original amount. |
-| `validator_to_delegate_to` | Option\<String>                                                           | Optional validator to delegate to. If specified, funds will be automatically delegated to them.                                           |
+| Name                       | Type                                                                   | Description                                                                                                                               |
+| -------------------------- | ---------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------- |
+| `lockup_duration`          | Option\<u64>                                                           | Specifying None would mean no lock up period and funds start vesting right away.                                                          |
+| `release_unit`             | u64                                                                    | How often releases occur in seconds.                                                                                                      |
+| `release_amount`           | [WithdrawalType](../ado\_base/andrreceive-andrquery.md#withdrawaltype) | Specifies how much is to be released after each `release_unit`. If it is a percentage, it would be the percentage of the original amount. |
+| `validator_to_delegate_to` | Option\<String>                                                        | Optional validator to delegate to. If specified, funds will be automatically delegated to them.                                           |
 
 ### Claim
 
@@ -376,7 +376,7 @@ pub enum ExecuteMsg {
 
 ### AndrReceive
 
-Check[ AndrReceive](../../ado\_base/andrreceive-andrquery.md#andrrecieve).
+Check[ AndrReceive](../ado\_base/andrreceive-andrquery.md#andrrecieve).
 
 ## QueryMsg
 
@@ -509,17 +509,17 @@ pub struct BatchResponse {
 {% endtab %}
 {% endtabs %}
 
-| Name                         | Type                                                                      | Description                                                                                                                               |
-| ---------------------------- | ------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------- |
-| `id`                         | u64                                                                       | The id of the batch.                                                                                                                      |
-| `amount`                     | Uint128                                                                   | The amount of tokens in the batch.                                                                                                        |
-| `amount_claimed`             | Uint128                                                                   | The amount of tokens that have been already claimed.                                                                                      |
-| `amount_available_to_claim`  | Uint128                                                                   | The amount of tokens available to claim right now.                                                                                        |
-| `number_of_available_claims` | Uint128                                                                   | The number of available claims now.                                                                                                       |
-| `lockup_end`                 | u64                                                                       | When the lockup ends.                                                                                                                     |
-| `release_unit`               | u64                                                                       | How often releases occur in seconds.                                                                                                      |
-| `release_amount`             | [WithdrawalType](../../ado\_base/andrreceive-andrquery.md#withdrawaltype) | Specifies how much is to be released after each `release_unit`. If it is a percentage, it would be the percentage of the original amount. |
-| `last_claimed_release_time`  | u64                                                                       | The time at which the last claim took place.                                                                                              |
+| Name                         | Type                                                                   | Description                                                                                                                               |
+| ---------------------------- | ---------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------- |
+| `id`                         | u64                                                                    | The id of the batch.                                                                                                                      |
+| `amount`                     | Uint128                                                                | The amount of tokens in the batch.                                                                                                        |
+| `amount_claimed`             | Uint128                                                                | The amount of tokens that have been already claimed.                                                                                      |
+| `amount_available_to_claim`  | Uint128                                                                | The amount of tokens available to claim right now.                                                                                        |
+| `number_of_available_claims` | Uint128                                                                | The number of available claims now.                                                                                                       |
+| `lockup_end`                 | u64                                                                    | When the lockup ends.                                                                                                                     |
+| `release_unit`               | u64                                                                    | How often releases occur in seconds.                                                                                                      |
+| `release_amount`             | [WithdrawalType](../ado\_base/andrreceive-andrquery.md#withdrawaltype) | Specifies how much is to be released after each `release_unit`. If it is a percentage, it would be the percentage of the original amount. |
+| `last_claimed_release_time`  | u64                                                                    | The time at which the last claim took place.                                                                                              |
 
 ### Batches
 
@@ -557,4 +557,4 @@ Returns a Vec<[BatchResponse](vesting-ado.md#batchresponse)>.
 
 ### AndrQuery
 
-Check [AndrQuery](../../ado\_base/andrreceive-andrquery.md#andrquery).
+Check [AndrQuery](../ado\_base/andrreceive-andrquery.md#andrquery).
