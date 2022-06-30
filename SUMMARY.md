@@ -26,20 +26,14 @@
   * [Vault](smart-contracts/ecosystem/vault.md)
 * [Data Storage](smart-contracts/data-storage/README.md)
   * [Primitive](smart-contracts/data-storage/primitive.md)
-* [Andromeda Apps](smart-contracts/andromeda-apps/README.md)
-  * [App](smart-contracts/andromeda-apps/app.md)
-  * [Factory](smart-contracts/andromeda-apps/andromeda-factory.md)
 * [Modules](smart-contracts/modules/README.md)
   * [Address List](smart-contracts/modules/address-list.md)
   * [NFT Offers](smart-contracts/modules/nft-offers.md)
   * [Rates](smart-contracts/modules/rates.md)
   * [Receipt Contract](smart-contracts/modules/receipt-contract.md)
-* [ADO\_Base](ado\_base.md)
-  * [AndrReceive/AndrQuery](ado\_base/andrreceive-andrquery.md)
-* [Common Types](common-types/README.md)
-  * [Recipient](common-types/recipient.md)
-  * [Coin](common-types/coin.md)
-  * [Expiration](common-types/expiration.md)
+* [Andromeda Apps](smart-contracts/andromeda-apps/README.md)
+  * [App](smart-contracts/andromeda-apps/app.md)
+  * [Factory](smart-contracts/andromeda-apps/andromeda-factory.md)
 * [Pending](smart-contracts/pending/README.md)
   * [Anchor Earn](smart-contracts/pending/anchor-earn.md)
   * [Anchor Lend](smart-contracts/pending/anchor-lend.md)
@@ -61,11 +55,21 @@
 
 ## Deploying Andromeda Apps
 
-* [App 1](deploying-apps.md)
+* [Crowdfunding App](deploying-andromeda-apps/crowdfunding-app.md)
+* [Auctioning App](deploying-andromeda-apps/auctioning-app.md)
 
 ## User Docs
 
 * [User Docs](user-docs.md)
+
+***
+
+* [ADO\_Base](ado\_base/README.md)
+  * [AndrReceive/AndrQuery](ado\_base/andrreceive-andrquery.md)
+* [Common Types](common-types/README.md)
+  * [Recipient](common-types/recipient.md)
+  * [Coin](common-types/coin.md)
+  * [Expiration](common-types/expiration.md)
 
 ## Additional Resources
 

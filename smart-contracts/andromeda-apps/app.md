@@ -14,7 +14,7 @@ The steps needed to build a full app from scratch are the following:
 4. Instantiate the app contract and attach the primitive to it (`primitive_contract` field in instantiation)
 
 {% hint style="warning" %}
-Andromeda has a list of deployed addresses that include the Factory with the code ids of all the contracts and a primitive linked to it. This means that the first three steps are already covered if you use our [deployed contracts](../deployed-contracts.md). All that is needed is step 4. You can learn to deploy your first app [here](../../deploying-apps.md).
+Andromeda has a list of deployed addresses that include the Factory with the code ids of all the contracts and a primitive linked to it. This means that the first three steps are already covered if you use our [deployed contracts](../deployed-contracts.md). All that is needed is step 4. You can learn to deploy your first app [here](../../deploying-andromeda-apps/crowdfunding-app.md).
 {% endhint %}
 
 **Ado\_type**: app

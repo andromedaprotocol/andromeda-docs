@@ -170,7 +170,7 @@ An auction can be updated only if it has not started yet.&#x20;
 
 | Name            | Type                                           | Description                                                                          |
 | --------------- | ---------------------------------------------- | ------------------------------------------------------------------------------------ |
-| `token_id`      | String                                         | The id of the ADO that is being auctioned.                                           |
+| `token_id`      | String                                         | The id of the NFT that is being auctioned.                                           |
 | `token_address` | String                                         | The address of the token contract.                                                   |
 | `start_time`    | [Expiration](../../common-types/expiration.md) | The start of the auction.                                                            |
 | `end_time`      | [Expiration](../../common-types/expiration.md) | The end of the auction.                                                              |
@@ -207,7 +207,7 @@ pub enum ExecuteMsg {
 
 | Name            | Type   | Description                                       |
 | --------------- | ------ | ------------------------------------------------- |
-| `token_id`      | String | The id of the ADO in the auction to be cancelled. |
+| `token_id`      | String | The id of the NFT in the auction to be cancelled. |
 | `token_address` | String | The address of the token contract.                |
 
 ### PlaceBid
@@ -240,7 +240,7 @@ pub enum ExecuteMsg {
 
 | Name            | Type   | Description                          |
 | --------------- | ------ | ------------------------------------ |
-| `token_id`      | String | The id of the ADO to place a bid on. |
+| `token_id`      | String | The id of the NFT to place a bid on. |
 | `token_address` | String | The address of the token contract.   |
 
 {% hint style="warning" %}
@@ -356,7 +356,7 @@ pub enum QueryMsg {
 
 | Name            | Type   | Description                                             |
 | --------------- | ------ | ------------------------------------------------------- |
-| `token_id`      | String | The id of the ADO that we want to query the auction of. |
+| `token_id`      | String | The id of the NFT that we want to query the auction of. |
 | `token_address` | String | The address of the token contract.                      |
 
 #### AuctionStateResponse
@@ -410,6 +410,12 @@ pub struct AuctionStateResponse {
 ### AuctionState
 
 Gets the auction state for a particular `auction_id`.
+
+{% hint style="warning" %}
+Each Auction has an auction\_id which starts at 1 and increments every new auction.
+
+To get the auction\_id of a particular token, use LatestAuctionState
+{% endhint %}
 
 {% tabs %}
 {% tab title="Rust" %}

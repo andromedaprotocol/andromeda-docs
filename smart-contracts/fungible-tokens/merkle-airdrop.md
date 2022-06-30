@@ -126,11 +126,11 @@ Only addresses found in the Merkle-Root can claim tokens.
 {% endtab %}
 {% endtabs %}
 
-| Name     | Type         | Description                                                                                                                                                                                                                                                             |
-| -------- | ------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `stage`  | u8           | Stage is used to index which airdrop to claim from. There can be more than one airdrop and each is referenced by it's designated stage.                                                                                                                                 |
-| `amount` | Uint128      | The amount of tokens to claim.                                                                                                                                                                                                                                          |
-| `proof`  | Vec\<String> | Hex-encoded Merkle proof that proves that the address claiming the tokens from the airdrop is found in the Merkle-Root. Needs to be calculated similar to [this](https://github.com/CosmWasm/cw-tokens/blob/main/contracts/cw20-merkle-airdrop/helpers/src/airdrop.ts). |
+| Name     | Type         | Description                                                                                                                                                                                                                                             |
+| -------- | ------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `stage`  | u8           | Stage is used to index which airdrop to claim from. There can be more than one airdrop and each is referenced by it's designated stage.                                                                                                                 |
+| `amount` | Uint128      | The amount of tokens to claim.                                                                                                                                                                                                                          |
+| `proof`  | Vec\<String> | Hex-encoded Merkle proof that proves that the address claiming the tokens from the airdrop is found in the Merkle-Root. Needs to be calculated similar to [this](https://github.com/CosmWasm/cw-plus/tree/0.9.x/contracts/cw20-merkle-airdrop/helpers). |
 
 ### Burn
 

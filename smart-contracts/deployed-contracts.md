@@ -12,5 +12,5 @@ The following section contains our deployed contracts:
 {% endtabs %}
 
 {% hint style="warning" %}
-These addresses will be used when deployinh Andromeda Apps
+These addresses will be used when deploying Andromeda Apps
 {% endhint %}

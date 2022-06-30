@@ -1,6 +1,6 @@
 ---
-cover: .gitbook/assets/Andromeda-logo.jpg
-coverY: -175.77092511013217
+cover: .gitbook/assets/Documentation_Header.jpeg
+coverY: 0
 ---
 
 # Overview
