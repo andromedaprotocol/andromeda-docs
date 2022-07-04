@@ -6,11 +6,19 @@ description: An ADO contract to split sent funds amongst predefined addresses.
 
 ## Introduction
 
-The **Splitter** ADO is a smart contract used to split funds to a preset number of addresses. Each of the addresses has a specific percentage assigned by the contract owner.&#x20;
+The **Splitter** ADO is a smart contract used to split funds to a preset number of addresses. Each of the addresses has a specific percentage assigned by the contract owner. The splitter can be locked for a specified time as a kind of insurance for recipients that their weights will not be changed for a certain period of time.
 
 **Ado\_type**: splitter
 
 ## InstantiateMsg
+
+{% hint style="warning" %}
+A maximum of 100 recipients can be set.&#x20;
+
+The minimum time that can be set is 86,400 which is 1 day.
+
+The maximum time that can be set is 31,536,000 which is 1 year.
+{% endhint %}
 
 {% tabs %}
 {% tab title="Rust" %}
@@ -18,6 +26,7 @@ The **Splitter** ADO is a smart contract used to split funds to a preset number 
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
 pub struct InstantiateMsg {
     pub recipients: Vec<AddressPercent>,
+    pub lock_time: Option<u64>
     pub modules: Option<Module>,
 }
 ```
@@ -51,10 +60,11 @@ pub struct InstantiateMsg {
 {% endtab %}
 {% endtabs %}
 
-| Name         | Type                                                        | Description                                                                    |
-| ------------ | ----------------------------------------------------------- | ------------------------------------------------------------------------------ |
-| `Modules`    | Option<[Module](../../modules/module-definitions.md)>       | An optional vector of Andromeda Modules.  "address\_list" module can be added. |
-| `recipients` | Vec<[AddressPercent](andromeda-splitter.md#addresspercent)> | The recipient list of the splitter. Can be updated after instantiation.        |
+| Name         | Type                                                        | Description                                                                       |
+| ------------ | ----------------------------------------------------------- | --------------------------------------------------------------------------------- |
+| `Modules`    | Option<[Module](../../modules/module-definitions.md)>       | An optional vector of Andromeda Modules.  "address\_list" module can be added.    |
+| `lock_time`  | Option\<u64>                                                | How long the splitter is locked. When locked, no recipients can be added/changed. |
+| `recipients` | Vec<[AddressPercent](andromeda-splitter.md#addresspercent)> | The recipient list of the splitter. Can be updated after instantiation.           |
 
 {% hint style="warning" %}
 Anytime a [`Send`](andromeda-splitter.md#send) execute message is sent the amount sent will be divided amongst the recipients depending on their assigned percentage.
@@ -103,6 +113,10 @@ Read more about the recipient struct [here](../../common-types/recipient.md).
 
 Updates the recipients of the splitter contract. Only executable by the contract owner when the contract is not locked.
 
+{% hint style="warning" %}
+Only available to the contract owner/operator when the contract is not locked.
+{% endhint %}
+
 {% tabs %}
 {% tab title="Rust" %}
 ```rust
@@ -140,7 +154,15 @@ pub enum ExecuteMsg {
 
 ### UpdateLock
 
-Sets a lock on the contract, disallowing editing of any other config fields.
+Used to lock the contract for a certain period of time making it unmodifiable in any way. This can serve as a way to ensure for recipients that their weights from the splitter are fixed for a certain amount of time. The time is calculated in seconds.
+
+{% hint style="warning" %}
+Only available to the contract owner/operator when the contract is not already locked.
+
+The minimum time that can be set is 86,400 which is 1 day.
+
+The maximum time that can be set is 31,536,000 which is 1 year.
+{% endhint %}
 
 {% tabs %}
 {% tab title="Rust" %}
@@ -148,7 +170,7 @@ Sets a lock on the contract, disallowing editing of any other config fields.
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
 pub enum ExecuteMsg {
     UpdateLock {
-        lock: bool,
+        lock_time: u64,
     },
 }
 ```
@@ -158,16 +180,16 @@ pub enum ExecuteMsg {
 ```javascript
 {
     "update_lock": {
-        "lock": true
+        "lock_time": 200000
     }
 }
 ```
 {% endtab %}
 {% endtabs %}
 
-| Name   | Type | Description                            |
-| ------ | ---- | -------------------------------------- |
-| `lock` | bool | Whether the contract should be locked. |
+| Name        | Type | Description                                                                       |
+| ----------- | ---- | --------------------------------------------------------------------------------- |
+| `lock_time` | u64  | How long the splitter is locked. When locked, no recipients can be added/changed. |
 
 ### **Send**
 
@@ -214,7 +236,7 @@ The current config of the Splitter contract.
 {% tab title="Rust" %}
 ```rust
 pub enum QueryMsg {
-    GetSplitterConfig{},
+    GetSplitterConfig {},
 }
 ```
 {% endtab %}
@@ -254,7 +276,10 @@ pub struct GetSplitterConfigResponse {
             },
             ...
         ],
-        "locked": true
+        "locked": {
+            "at_time": "1655212973"
+        }
+            
     }
 }
 ```
@@ -273,14 +298,14 @@ The splitter's config is stored in a basic struct.
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
 pub struct Splitter {
     pub recipients: Vec<AddressPercent>, 
-    pub locked: bool,                   
+    pub lock: Expiration,                   
 }
 ```
 
-| Name         | Type                                                       | Description                                                                                                                                                                          |
-| ------------ | ---------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `recipients` | Vec<[AdressPercent](andromeda-splitter.md#addresspercent)> | The vector of recipients for the contract. Anytime a `Send` execute message is sent the amount sent will be divided amongst these recipients depending on their assigned percentage. |
-| `locked`     | bool                                                       | Whether or not the contract is currently locked. This restricts updating any config related fields.                                                                                  |
+| Name         | Type                                                       | Description                                                                                                                                                                                                                   |
+| ------------ | ---------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `recipients` | Vec<[AdressPercent](andromeda-splitter.md#addresspercent)> | The vector of recipients for the contract. Anytime a `Send` execute message is sent the amount sent will be divided amongst these recipients depending on their assigned percentage.                                          |
+| `locked`     | Expiration                                                 | The expiration time of the lock. Will return an epoc time which is equal to the current\_time _+_ lock\_time taken at the point of setting the lock. (Current time refers to the time the lock was set and not the time now.) |
 
 ### AndrQuery
 

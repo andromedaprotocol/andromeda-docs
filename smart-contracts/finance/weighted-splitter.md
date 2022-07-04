@@ -2,7 +2,7 @@
 
 ## Introduction
 
-The **Weighted-Splitter** ADO is a smart contract to split funds among a set of defined recipients. Each of  the recipients is assigned a weight which is divided by the total weight to get the percentage of each of the recipients. Whenever the splitter receives funds by executing a `send` it automatically splits the funds to the defined recipients. The splitter can be locked for a certain time as a kind of insurance for recipients that their weights will not be changed for a certain period of time.
+The **Weighted-Splitter** ADO is a smart contract to split funds among a set of defined recipients. Each of  the recipients is assigned a weight which is divided by the total weight to get the percentage of each of the recipients. Whenever the splitter receives funds by executing a `send` it automatically splits the funds to the defined recipients. The splitter can be locked for a specified time as a kind of insurance for recipients that their weights will not be changed for a certain period of time.
 
 #### Example:
 
@@ -18,12 +18,20 @@ Then the total weight is 12 and A receives 5/12 of the funds, B receives 3/12 of
 
 ## InstantiateMsg
 
+{% hint style="warning" %}
+A maximum of 100 recipients can be set.&#x20;
+
+The minimum time that can be set is 86,400 which is 1 day.
+
+The maximum time that can be set is 31,536,000 which is 1 year.
+{% endhint %}
+
 {% tabs %}
 {% tab title="Rust" %}
 ```rust
 pub struct InstantiateMsg {
     pub recipients: Vec<AddressWeight>,
-    pub lock_time: u64,
+    pub lock_time: Option<u64>,
     pub modules: Option<Vec<Module>>,
 }
 ```
@@ -52,9 +60,7 @@ pub struct InstantiateMsg {
                   "weight": 2
                   }
                 ]
-}
-                  
-
+     }
 ```
 {% endtab %}
 {% endtabs %}
@@ -62,7 +68,7 @@ pub struct InstantiateMsg {
 | Name         | Type                                     | Description                                                                                                                                                                       |
 | ------------ | ---------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `recipients` | Vec\<AddressWeight>                      | The vector of recipients for the contract. Anytime a `Send` execute message is sent the amount sent will be divided amongst these recipients depending on their assigned weight.  |
-| `lock_time`  | u64                                      | How long the splitter is locked. When locked, no recipients/weights can be added/changed.                                                                                         |
+| `lock_time`  | Option\<u64>                             | How long the splitter is locked. When locked, no recipients/weights can be added/changed.                                                                                         |
 | `modules`    | Option\<Vec<[Module](broken-reference)>> | A vector of Andromeda Module definitions. The module definitions can be found[ here](../../modules/module-definitions.md).                                                        |
 
 #### AddressWeight
@@ -83,7 +89,7 @@ pub struct AddressWeight {
 Updates the recipients of the splitter. When executed, the previous recipients and distribution are replaced by the new list.
 
 {% hint style="warning" %}
-Only available to the contracts owner when the contract is not locked.
+Only available to the contract owner/operator when the contract is not locked.
 {% endhint %}
 
 {% tabs %}
@@ -136,7 +142,7 @@ pub enum ExecuteMsg {
 Add a recipient to the list.&#x20;
 
 {% hint style="warning" %}
-Only available to the contract owner.
+Only available to the contract owner/operator.
 
 When a recipient is added, the total weight is changed and all the weights are recalculated appropriately.
 {% endhint %}
@@ -174,10 +180,10 @@ pub enum ExecuteMsg {
 ### RemoveRecipient
 
 {% hint style="warning" %}
-Only available to the contracts owner.
+Only available to the contract owner/ operator.
 {% endhint %}
 
-Remove a recipients from the distribution.
+Remove a recipient from the distribution.
 
 {% tabs %}
 {% tab title="Rust" %}
@@ -213,7 +219,7 @@ pub enum ExecuteMsg {
 Used to lock the contract for a certain period of time making it unmodifiable in any way. This can serve as a way to ensure for recipients that their weights from the splitter are fixed for a certain amount of time. The time is calculated in seconds.
 
 {% hint style="warning" %}
-Only available to the contracts owner.
+Only available to the contract owner/operator.
 
 The minimum time that can be set is 86,400 which is 1 day.
 
@@ -251,7 +257,7 @@ pub enum ExecuteMsg {
 Updates the weight of a specific recipient from the list of recipients.
 
 {% hint style="warning" %}
-Only available to the contract owner.
+Only available to the contract owner/operator.
 {% endhint %}
 
 {% tabs %}
@@ -377,7 +383,7 @@ pub struct GetSplitterConfigResponse {
                   "weight": 12
                   }
                 ],
-    "locked": {
+    "lock": {
         "at_time": "1655212973"
         }
           
@@ -393,7 +399,7 @@ pub struct GetSplitterConfigResponse {
 ```rust
 pub struct Splitter {
     pub recipients: Vec<AddressWeight>,
-    pub locked: Expiration,
+    pub lock: Expiration,
 }
 ```
 

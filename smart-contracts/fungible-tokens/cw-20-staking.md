@@ -2,13 +2,19 @@
 
 ## Introduction
 
-This contract allows users to stake a specified token and to receive rewards in any number of other tokens in proportion to their share. The reward token does not need to be the token they stake with but it can be.
+This contract allows users to stake a specified token and to receive rewards in any number of other tokens in proportion to their share. The reward token does not need to be the token they stake with but it can be. The contract allows for two types of rewards:
+
+* non-allocated rewards: These are rewards that get deposited periodically into the contract and get distributed proportionally to stakers.
+* Allocated rewards:  The owner deposits a number of tokens to be distributed over the course of a set time. The rewards get distributed the same way, except all of the reward tokens are already deposited in the contract.
+
+\
+
 
 **Ado\_type**: cw20\_staking
 
 ## InstantiateMsg
 
-{% hint style="info" %}
+{% hint style="warning" %}
 The additional rewards should not include the staking token.
 {% endhint %}
 
@@ -16,8 +22,8 @@ The additional rewards should not include the staking token.
 {% tab title="Rust" %}
 ```rust
 pub struct InstantiateMsg {
-    pub staking_token: AndrAddress,
-    pub additional_rewards: Option<Vec<AssetInfoUnchecked>>,
+  pub staking_token: AndrAddress,
+  pub additional_rewards: Option<Vec<RewardTokenUnchecked>>,
 }
 ```
 {% endtab %}
@@ -28,18 +34,40 @@ pub struct InstantiateMsg {
 "staking_token":{
           "identifier":"juno1..."
               },
-"additional_rewards":[
-                     {"native":"uusd"}
-                     ]
-}
+"additional_rewards": [{
+          "asset_info":{
+              "cw-20":"juno1..."
+              },
+          "allocation_config":{
+              "init_timestamp": 104329432,
+              "till_timestamp": 104334432,
+              "cycle_rewards":"300",
+              "cycle duration":"400",
+              }
+          }]
+     }
 ```
 {% endtab %}
 {% endtabs %}
 
-| Name                 | Type                                                       | Description                                                                               |
-| -------------------- | ---------------------------------------------------------- | ----------------------------------------------------------------------------------------- |
-| `staking_token`      | [AndrAddress](../../common-types/recipient.md#andraddress) | The cw20 token that can be staked                                                         |
-| `additional_rewards` | Option\<Vec\<AssetInfoUnchecked>>                          | Any rewards in addition to the staking token. This list cannot include the staking token. |
+| Name                 | Type                                                       | Description                                                                                                                       |
+| -------------------- | ---------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------- |
+| `staking_token`      | [AndrAddress](../../common-types/recipient.md#andraddress) | The cw20 token that can be staked                                                                                                 |
+| `additional_rewards` | Option\<Vec\<RewardTokenUnchecked>>                        | Any rewards in addition to the staking token. This list cannot include the staking token. Can have a maximum of 10 reward tokens. |
+
+#### RewardTokenUnchecked
+
+```rust
+pub struct RewardTokenUnchecked {
+    pub asset_info: AssetInfoUnchecked,
+    pub allocation_config: Option<AllocationConfig>,
+}
+```
+
+|                     |                                                        |                                                                                                            |
+| ------------------- | ------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------- |
+| `asset_info`        | AssetInfoUnchecked                                     | The asset used as a reward.                                                                                |
+| `allocation_config` | Option<[AllocationConfig](cw-20-staking.md#undefined)> | How to allocate the `asset_info` as rewards. If not set, then the rewards are of the "non-allocated" type. |
 
 #### AssetInfoUnchecked
 
@@ -59,11 +87,31 @@ pub enum AssetInfoBase<T> {
 * **Cw20**: To create an asset info instance of this type, provide the contract address.
 * **Native**: To create an asset info instance of this type, provide the denomination.
 
+#### AllocationConfig
+
+```rust
+pub struct AllocationConfig {
+    pub init_timestamp: u64,
+    pub till_timestamp: u64,
+    pub cycle_rewards: Uint128,
+    pub cycle_duration: u64,
+    pub reward_increase: Option<Decimal>,
+}
+```
+
+| Name              | Type               |                                                                                                     |
+| ----------------- | ------------------ | --------------------------------------------------------------------------------------------------- |
+| `init_timestamp`  | u64                | Timestamp from which Rewards will start getting accrued against the staked LP tokens.               |
+| `till_timestamp`  | u64                | Timestamp till which Rewards will be accrued. No staking rewards are accrued beyond this timestamp. |
+| `cycle_rewards`   | Uint128            | Rewards distributed during the 1st cycle.                                                           |
+| `cycle_duration`  | u64                | Cycle duration in seconds.                                                                          |
+| `reward_increase` | Optional\<Decimal> | Percent increase in Rewards per cycle.                                                              |
+
 ## ExecuteMsg
 
 ### Receive
 
-Receives Cw20 tokens which can be staked, or used to update the global index depending on the attached Cw20HookMsg
+Receives Cw-20 tokens which can be staked, or used to update the global index depending on the attached Cw20HookMsg
 
 ```rust
 pub enum ExecuteMsg {
@@ -98,10 +146,10 @@ pub enum Cw20HookMsg {
 
 ### AddRewardToken
 
-Add `asset_info` as another reward token.&#x20;
+Add `reward_token` as another reward token. A maximum of 10 reward tokens can be added.&#x20;
 
-{% hint style="info" %}
-Only available to the contract owner.
+{% hint style="warning" %}
+Only available to the contract owner/operator.
 {% endhint %}
 
 {% tabs %}
@@ -109,7 +157,7 @@ Only available to the contract owner.
 ```rust
 pub enum ExecuteMsg {
       AddRewardToken {
-        asset_info: AssetInfoUnchecked,
+        reward_token: RewardInfoUnchecked,
     },
 }
 ```
@@ -119,16 +167,18 @@ pub enum ExecuteMsg {
 ```json
 {
 "add_reward_token":{
-     "native":"uusd"
+        "reward_token":{
+                "cw20":"juno1...",
+                }
      }
 } 
 ```
 {% endtab %}
 {% endtabs %}
 
-| Name         | Type                                                      | Description                        |
-| ------------ | --------------------------------------------------------- | ---------------------------------- |
-| `asset_info` | [AssetInfoUnchecked](cw-20-staking.md#assetinfounchecked) | The token to be added as a reward. |
+| Name           | Type                                                         | Description                        |
+| -------------- | ------------------------------------------------------------ | ---------------------------------- |
+| `reward_token` | [RewardInfoUnchecked](cw-20-staking.md#rewardtokenunchecked) | The token to be added as a reward. |
 
 ### UnstakeTokens
 
@@ -184,15 +234,7 @@ pub enum ExecuteMsg {
 
 ### UpdateGlobalIndexes
 
-Updates the global reward index for the specified assets or all of the specified ones if none is specified. Funds may be sent along with this.
-
-The Global index is updated according to the following formula:
-
-```
-global_index = global_index + deposited_amount / total_share
-```
-
-Here `deposited_amount` is the amount of reward tokens deposited since the last update of the index.
+Updates the global reward index for the specified assets or all of the specified ones if none is specified. Funds may be sent along with this. Usually called when new allocated rewards are deposited to update the rewards accordingly.
 
 {% tabs %}
 {% tab title="Rust" %}
@@ -212,9 +254,9 @@ pub enum ExecuteMsg {
 {% endtab %}
 {% endtabs %}
 
-| Name          | Type                              | Description                                                            |
-| ------------- | --------------------------------- | ---------------------------------------------------------------------- |
-| `asset_infos` | Option\<Vec\<AssetInfoUnchecked>> | Optional vector to specify the assets to update the global index for.  |
+| Name          | Type                                                                    | Description                                                            |
+| ------------- | ----------------------------------------------------------------------- | ---------------------------------------------------------------------- |
+| `asset_infos` | Option\<Vec<[AssetInfoUnchecked](cw-20-staking.md#assetinfounchecked)>> | Optional vector to specify the assets to update the global index for.  |
 
 ### AndrReceive
 
@@ -253,7 +295,7 @@ Returns the config structure.
 ```rust
 pub struct Config {
     pub staking_token: AndrAddress,
-    pub additional_reward_tokens: Vec<AssetInfo>,
+    pub number_of_reward_tokens: u32,
 }
 ```
 {% endtab %}
@@ -264,18 +306,16 @@ pub struct Config {
 "staking_token":{
         "identifier":"juno1..."
         },
-"additional_rewards_tokens":[
-                     {"native":"uusd"}
-                     ]
+"number_of_rewards_tokens": 7                   
 }
 ```
 {% endtab %}
 {% endtabs %}
 
-| Name                       | Type                                                       | Description                                                               |
-| -------------------------- | ---------------------------------------------------------- | ------------------------------------------------------------------------- |
-| `staking_token`            | [AndrAddress](../../common-types/recipient.md#andraddress) | The token accepted for staking.                                           |
-| `additional_reward_tokens` | Vec\<AssetInfo>                                            | Any additional tokens used for rewards. Cannot include the staking token. |
+| Name                      | Type                                                       | Description                                                           |
+| ------------------------- | ---------------------------------------------------------- | --------------------------------------------------------------------- |
+| `staking_token`           | [AndrAddress](../../common-types/recipient.md#andraddress) | The token accepted for staking.                                       |
+| `number_of_reward_tokens` | u32                                                        | The current number of reward tokens, cannot exceed the maximum of 10. |
 
 ### State
 
@@ -363,6 +403,7 @@ pub enum QueryMsg {
 pub struct StakerResponse {
     pub address: String,
     pub share: Uint128,
+    pub balance: Uint128,
     pub pending_rewards: Vec<(String, Uint128)>,
 }
 ```
@@ -385,11 +426,12 @@ pub struct StakerResponse {
 {% endtab %}
 {% endtabs %}
 
-| Name              | Type               | Description                                       |
-| ----------------- | ------------------ | ------------------------------------------------- |
-| `address`         | String             | The address of the staker.                        |
-| `share`           | Uint128            | The share of the staker.                          |
-| `pending_rewards` | Vec<(String,Uint)> | The rewards of the stakers for each reward token. |
+| Name              | Type               | Description                                                                                       |
+| ----------------- | ------------------ | ------------------------------------------------------------------------------------------------- |
+| `address`         | String             | The address of the staker.                                                                        |
+| `share`           | Uint128            | The staker's share of the staked tokens.                                                          |
+| `balance`         | Uint128            | How many staking tokens the user has.                                                             |
+| `pending_rewards` | Vec<(String,Uint)> |  The staker's pending rewards represented as \[(token\_1, amount\_1), ..., (token\_n, amount\_n)] |
 
 ### Stakers
 
@@ -424,6 +466,31 @@ pub enum QueryMsg {
 | `limit`       | Optional\<u32>  | An optional limit to the number of stakers to query. Defaults to 10 and can be set to a maximum of 30. |
 
 Returns a vector of [StakerResponse](cw-20-staking.md#stakerresponse).
+
+### Timestamp
+
+Queries the current timestamp in seconds.
+
+{% tabs %}
+{% tab title="Rust" %}
+```rust
+pub enum QueryMsg {
+       Timestamp {},
+    }
+}
+```
+{% endtab %}
+
+{% tab title="JSON" %}
+```json
+{
+"timestamp":{}
+}
+```
+{% endtab %}
+{% endtabs %}
+
+Returns a u64 with the current timestamp in seconds.
 
 ### AndrQuery
 
