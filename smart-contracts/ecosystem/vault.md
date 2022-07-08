@@ -178,7 +178,7 @@ The Vault needs to be an operator of the strategy contract.
   UpdateStrategy {
         strategy: StrategyType,
         address: AndrAddress,
-    },
+    }
 ```
 {% endtab %}
 
