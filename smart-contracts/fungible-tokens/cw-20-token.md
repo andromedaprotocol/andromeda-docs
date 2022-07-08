@@ -36,28 +36,28 @@ pub struct InstantiateMsg {
  "initial_balances":[
                 {
               "address":"juno1...",
-              "amount":"500",
+              "amount":"500"
           }
               ...
         ],
  "mint":{
        "minter":"juno1...",
-       "cap": "1000000",
+       "cap": "1000000"
       }
  }  
 ```
 {% endtab %}
 {% endtabs %}
 
-| Name               | Type                                                                        | Description                                                                                                              |
-| ------------------ | --------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------ |
-| `name`             | String                                                                      | The name of  the token.                                                                                                  |
-| `symbol`           | String                                                                      | The symbol of the token.                                                                                                 |
-| `decimals`         | u8                                                                          | The number of decimals for the token.                                                                                    |
-| `initial_balances` | Vec<[Cw20Coin](cw-20-token.md#cw20coin)>                                    | A vector containing a list of addresses and the amount of coin to initialize each.                                       |
-| `mint`             | Option<[MinterResponse](cw-20-token.md#minterresponse)>                     | Optional field to define a minter for the token and an optional  cap for the total supply of tokens that can be minted.  |
-| `marketing`        | Option<[InstantiateMarketingInfo](cw-20-token.md#instantiatemarketinginfo)> | Optional field to define the marketing information of the project.                                                       |
-| `modules`          | Option\<Vec<[Module](../../modules/module-definitions.md)>>                 | A vector of Andromeda Module definitions. "rates",  "address\_list", and "receipt" modules can be added.                 |
+| Name               | Type                                                                        | Description                                                                                                                                                                 |
+| ------------------ | --------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `name`             | String                                                                      | The name of  the token.                                                                                                                                                     |
+| `symbol`           | String                                                                      | The symbol of the token.                                                                                                                                                    |
+| `decimals`         | u8                                                                          | The number of decimals for the token.                                                                                                                                       |
+| `initial_balances` | Vec<[Cw20Coin](cw-20-token.md#cw20coin)>                                    | A vector containing a list of addresses and the amount of coin to initialize each.                                                                                          |
+| `mint`             | Option<[MinterResponse](cw-20-token.md#minterresponse)>                     | Optional field to define a minter for the token and an optional  cap for the total supply of tokens that can be minted. If not defined, additional tokens cannot be minted. |
+| `marketing`        | Option<[InstantiateMarketingInfo](cw-20-token.md#instantiatemarketinginfo)> | Optional field to define the marketing information of the project.                                                                                                          |
+| `modules`          | Option\<Vec<[Module](../../modules/module-definitions.md)>>                 | A vector of Andromeda Module definitions. "rates",  "address\_list", and "receipt" modules can be added.                                                                    |
 
 #### Cw20Coin
 

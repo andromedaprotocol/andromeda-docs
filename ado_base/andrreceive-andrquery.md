@@ -39,7 +39,7 @@ The primitive feature should be enabled in order to execute:
 * `RefreshAddress`
 * `RefreshAddresses`
 
-{% hint style="info" %}
+{% hint style="warning" %}
 To check if an ADO uses a certain feature, check the AndrReceive section in that contract's documentation. If nothing is specified then the feature is not available.
 {% endhint %}
 
@@ -51,9 +51,6 @@ pub enum AndromedaMsg {
     },
     UpdateOperators {
         operators: Vec<String>,
-    },
-    UpdateAppContract {
-        address: String,
     },
     Withdraw {
         recipient: Option<Recipient>,
@@ -82,6 +79,10 @@ pub enum AndromedaMsg {
 ### UpdateOwner
 
 Updates the owner of the contract.
+
+{% hint style="warning" %}
+Only available to the contract owner.
+{% endhint %}
 
 {% tabs %}
 {% tab title="Rust" %}
@@ -116,8 +117,10 @@ pub enum AndromedaMsg{
 
 Updates the assigned operators of the contract.
 
-{% hint style="info" %}
+{% hint style="warning" %}
 Removes previous list of operators.
+
+Only available to the contract owner.
 {% endhint %}
 
 {% tabs %}
@@ -170,8 +173,8 @@ pub enum AndromedaMsg{
  "andr_receive":{
       "withdraw":{
             "recipient":{
-                  "addr":"juno1...",
-              }
+                  "addr":"juno1..."
+              },
             "tokens_to_withdraw":[
                 {
                     "token":"uusd",
@@ -187,10 +190,10 @@ pub enum AndromedaMsg{
 {% endtab %}
 {% endtabs %}
 
-| Name                 | Type                                              | Description                 |
-| -------------------- | ------------------------------------------------- | --------------------------- |
-| `recipient`          | Option<[Recipient](../common-types/recipient.md)> | The recipient of the funds. |
-| `tokens_to_withdraw` | Option\<Vec\<Withdrawal>                          | The tokens to withdraw.     |
+| Name                 | Type                                              | Description                                                        |
+| -------------------- | ------------------------------------------------- | ------------------------------------------------------------------ |
+| `recipient`          | Option<[Recipient](../common-types/recipient.md)> | The recipient of the funds.                                        |
+| `tokens_to_withdraw` | Option\<Vec\<Withdrawal>                          | The tokens to withdraw. If not specified all tokens are withdrawn. |
 
 #### Withdrawal
 
@@ -212,60 +215,6 @@ pub enum WithdrawalType {
 }
 ```
 
-### UpdateAppContract
-
-Changes the contract address of the app contract.&#x20;
-
-{% tabs %}
-{% tab title="Rust" %}
-```rust
-pub enum AndromedaMsg{
-   UpdateMissionContract {
-   address:String
-   }
-}
-```
-{% endtab %}
-
-{% tab title="JSON" %}
-```rust
-{
- "andr_receive":{
-      "update_app_contract":{
-            "address":"juno1..."
-     }
-   }
-}
-```
-{% endtab %}
-{% endtabs %}
-
-| Name      | Type   | Description                                     |
-| --------- | ------ | ----------------------------------------------- |
-| `address` | String | The address of the new app contract to be used. |
-
-### ValidateAndrAddress
-
-Called after `UpdateAppContract` to ensure that all `AndrAddress` instances are valid.
-
-{% tabs %}
-{% tab title="Rust" %}
-```rust
-pub enum AndromedaMsg {
-     ValidateAndrAddresses {},
-     }
-```
-{% endtab %}
-
-{% tab title="JSON" %}
-```json
-{
-"validate_andr_address":{}
-}
-```
-{% endtab %}
-{% endtabs %}
-
 ## Modules
 
 The following can be executed by the contracts that implement modules:
@@ -274,10 +223,12 @@ The following can be executed by the contracts that implement modules:
 
 Adds a module to the contract.
 
-{% hint style="info" %}
+{% hint style="warning" %}
 Only the owner or an operator can execute RegisterModule.
 
 Each module is assigned a u64 index so as it can be unregistered/altered by the owner.
+
+Only available to the contract owner/operators.
 {% endhint %}
 
 {% tabs %}
@@ -296,10 +247,10 @@ pub enum AndromedaMsg {
 {
  "register_module": {
       "module":{
-          "module_type": "receipt"
+          "module_type": "receipt",
           "instantiate":{
           "address":"juno1..."
-          }
+          },
      "is_mutable": true
         }
      }
@@ -316,8 +267,8 @@ pub enum AndromedaMsg {
 
 Removes a module from the contract.
 
-{% hint style="info" %}
-Only the owner or an operator can execute `DeregisterModule`.
+{% hint style="warning" %}
+Only available to the contract owner/operators.
 {% endhint %}
 
 {% tabs %}
@@ -350,8 +301,8 @@ Only the owner or an operator can execute `DeregisterModule`.
 
 Changes a module to a new one specified.
 
-{% hint style="info" %}
-Only the owner or an operator can execute `AlterModule`.
+{% hint style="warning" %}
+Only available to the contract owner/operators.
 
 Only mutable modules can be altered.
 {% endhint %}
@@ -442,7 +393,7 @@ Similar to `RefreshAddress`, but is used to save all the values from the primiti
 ```json
 {
 "refresh_addresses":{
-"limit": 15,
+"limit": 15
    }
 }
 ```

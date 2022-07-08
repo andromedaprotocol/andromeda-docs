@@ -4,11 +4,37 @@
 
 This contract allows users to stake a specified token and to receive rewards in any number of other tokens in proportion to their share. The reward token does not need to be the token they stake with but it can be. The contract allows for two types of rewards:
 
-* non-allocated rewards: These are rewards that get deposited periodically into the contract and get distributed proportionally to stakers.
+* non-allocated rewards: These are rewards that get deposited periodically into the contract and get distributed proportionally to stakers. Rewards that are deposited are instantly granted to the stakers.&#x20;
 * Allocated rewards:  The owner deposits a number of tokens to be distributed over the course of a set time. The rewards get distributed the same way, except all of the reward tokens are already deposited in the contract.
 
-\
+The added rewards are distributed proportionally between the stakers that are already staked.
 
+#### Example
+
+We assume that we instantiated the contract and there are no stakers as of yet. Then the following series of events happen:
+
+1. First user stakes 100 tokens
+2. Second user stakes 500 tokens
+3. Third user stakes 400 tokens
+4. 100 tokens are sent to the contract as rewards&#x20;
+5. Fourth user stakes 1000 tokens&#x20;
+6. 1000 tokens are sent as rewards&#x20;
+
+In this case, when the 100 coins are sent the pending rewards are as following for each user:
+
+* 10 tokens for user 1
+* 50 tokens for user 2
+* 40 tokens for user 3&#x20;
+* 0 tokens for user 4 since he staked after the rewards were sent
+
+After the 1000 tokens are sent to the contract as rewards, it is split as follows:
+
+* 50 tokens for user 1 (60 in total)
+* 250 tokens for user 2 (300 in total)
+* 200 tokens for user 3 (240 in total)
+* 500 tokens for user 4 (500 in total since did not receive rewards from first batch)
+
+After the rewards have been sent, the stakers would not receive any extra rewards until a next batch of rewards are sent.
 
 **Ado\_type**: cw20\_staking
 
@@ -42,7 +68,7 @@ pub struct InstantiateMsg {
               "init_timestamp": 104329432,
               "till_timestamp": 104334432,
               "cycle_rewards":"300",
-              "cycle duration":"400",
+              "cycle duration":"400"
               }
           }]
      }
@@ -50,10 +76,10 @@ pub struct InstantiateMsg {
 {% endtab %}
 {% endtabs %}
 
-| Name                 | Type                                                       | Description                                                                                                                       |
-| -------------------- | ---------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------- |
-| `staking_token`      | [AndrAddress](../../common-types/recipient.md#andraddress) | The cw20 token that can be staked                                                                                                 |
-| `additional_rewards` | Option\<Vec\<RewardTokenUnchecked>>                        | Any rewards in addition to the staking token. This list cannot include the staking token. Can have a maximum of 10 reward tokens. |
+| Name                 | Type                                                       | Description                                                                                                                                                               |
+| -------------------- | ---------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `staking_token`      | [AndrAddress](../../common-types/recipient.md#andraddress) | The cw20 token that can be staked                                                                                                                                         |
+| `additional_rewards` | Option\<Vec\<RewardTokenUnchecked>>                        | Any rewards in addition to the staking token. This list cannot include the staking token since it is used as a reward by default. Can have a maximum of 10 reward tokens. |
 
 #### RewardTokenUnchecked
 
@@ -64,7 +90,7 @@ pub struct RewardTokenUnchecked {
 }
 ```
 
-|                     |                                                        |                                                                                                            |
+| Name                | Type                                                   | Description                                                                                                |
 | ------------------- | ------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------- |
 | `asset_info`        | AssetInfoUnchecked                                     | The asset used as a reward.                                                                                |
 | `allocation_config` | Option<[AllocationConfig](cw-20-staking.md#undefined)> | How to allocate the `asset_info` as rewards. If not set, then the rewards are of the "non-allocated" type. |
@@ -99,7 +125,7 @@ pub struct AllocationConfig {
 }
 ```
 
-| Name              | Type               |                                                                                                     |
+| Name              | Type               | Description                                                                                         |
 | ----------------- | ------------------ | --------------------------------------------------------------------------------------------------- |
 | `init_timestamp`  | u64                | Timestamp from which Rewards will start getting accrued against the staked LP tokens.               |
 | `till_timestamp`  | u64                | Timestamp till which Rewards will be accrued. No staking rewards are accrued beyond this timestamp. |
@@ -168,7 +194,7 @@ pub enum ExecuteMsg {
 {
 "add_reward_token":{
         "reward_token":{
-                "cw20":"juno1...",
+                "cw20":"juno1..."
                 }
      }
 } 
@@ -361,9 +387,9 @@ pub struct State {
 {% endtab %}
 {% endtabs %}
 
-| Name          | Type    | Description                                           |
-| ------------- | ------- | ----------------------------------------------------- |
-| `total_share` | Uint128 | The total share of the staking token in the contract. |
+| Name          | Type    | Description                                                  |
+| ------------- | ------- | ------------------------------------------------------------ |
+| `total_share` | Uint128 | The total share/amount of the staking token in the contract. |
 
 ### Staker
 
@@ -430,7 +456,7 @@ pub struct StakerResponse {
 | ----------------- | ------------------ | ------------------------------------------------------------------------------------------------- |
 | `address`         | String             | The address of the staker.                                                                        |
 | `share`           | Uint128            | The staker's share of the staked tokens.                                                          |
-| `balance`         | Uint128            | How many staking tokens the user has.                                                             |
+| `balance`         | Uint128            | How many staking tokens the user has which is the staked amount + rewarded tokens.                |
 | `pending_rewards` | Vec<(String,Uint)> |  The staker's pending rewards represented as \[(token\_1, amount\_1), ..., (token\_n, amount\_n)] |
 
 ### Stakers

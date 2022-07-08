@@ -55,8 +55,9 @@
 
 ## Deploying Andromeda Apps
 
-* [Crowdfunding App](deploying-andromeda-apps/crowdfunding-app.md)
+* [Crowdfunding App](deploying-apps.md)
 * [Auctioning App](deploying-andromeda-apps/auctioning-app.md)
+* [Cw-20 Staking App](deploying-andromeda-apps/cw-20-staking-app.md)
 
 ## User Docs
 
