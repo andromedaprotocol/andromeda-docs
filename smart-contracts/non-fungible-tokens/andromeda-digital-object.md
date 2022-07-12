@@ -1,4 +1,4 @@
-# NFT Collectible
+# Cw721 Token (NFT)
 
 ## Introduction
 
@@ -296,7 +296,7 @@ pub enum ExecuteMsg {
 A CW721 compliant send method. Sends ownership of a minted token to an external contract.
 
 {% hint style="warning" %}
-Only available to the contract owner/operator/approved address.
+Only available to the token owner/operator/approved address.
 {% endhint %}
 
 {% tabs %}
@@ -338,7 +338,7 @@ Destroys any token data related to an token id. The ID of the token is still res
 {% hint style="warning" %}
 Cannot be undone.
 
-Only available to the contract owner.
+Only available to the token owner.
 {% endhint %}
 
 {% tabs %}
@@ -374,7 +374,7 @@ Archives an token, making it immutable in any respect. Once an token is archived
 {% hint style="warning" %}
 Cannot be undone.
 
-Only available to the contract owner.
+Only available to the token owner.
 {% endhint %}
 
 {% tabs %}
