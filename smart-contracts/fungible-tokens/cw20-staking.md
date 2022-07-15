@@ -1,4 +1,4 @@
-# Cw-20 Staking
+# CW20 Staking
 
 ## Introduction
 
@@ -90,10 +90,10 @@ pub struct RewardTokenUnchecked {
 }
 ```
 
-| Name                | Type                                                   | Description                                                                                                |
-| ------------------- | ------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------- |
-| `asset_info`        | AssetInfoUnchecked                                     | The asset used as a reward.                                                                                |
-| `allocation_config` | Option<[AllocationConfig](cw-20-staking.md#undefined)> | How to allocate the `asset_info` as rewards. If not set, then the rewards are of the "non-allocated" type. |
+| Name                | Type                                                  | Description                                                                                                |
+| ------------------- | ----------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| `asset_info`        | AssetInfoUnchecked                                    | The asset used as a reward.                                                                                |
+| `allocation_config` | Option<[AllocationConfig](cw20-staking.md#undefined)> | How to allocate the `asset_info` as rewards. If not set, then the rewards are of the "non-allocated" type. |
 
 #### AssetInfoUnchecked
 
@@ -202,9 +202,9 @@ pub enum ExecuteMsg {
 {% endtab %}
 {% endtabs %}
 
-| Name           | Type                                                         | Description                        |
-| -------------- | ------------------------------------------------------------ | ---------------------------------- |
-| `reward_token` | [RewardInfoUnchecked](cw-20-staking.md#rewardtokenunchecked) | The token to be added as a reward. |
+| Name           | Type                                                        | Description                        |
+| -------------- | ----------------------------------------------------------- | ---------------------------------- |
+| `reward_token` | [RewardInfoUnchecked](cw20-staking.md#rewardtokenunchecked) | The token to be added as a reward. |
 
 ### UnstakeTokens
 
@@ -280,9 +280,9 @@ pub enum ExecuteMsg {
 {% endtab %}
 {% endtabs %}
 
-| Name          | Type                                                                    | Description                                                            |
-| ------------- | ----------------------------------------------------------------------- | ---------------------------------------------------------------------- |
-| `asset_infos` | Option\<Vec<[AssetInfoUnchecked](cw-20-staking.md#assetinfounchecked)>> | Optional vector to specify the assets to update the global index for.  |
+| Name          | Type                                                                   | Description                                                            |
+| ------------- | ---------------------------------------------------------------------- | ---------------------------------------------------------------------- |
+| `asset_infos` | Option\<Vec<[AssetInfoUnchecked](cw20-staking.md#assetinfounchecked)>> | Optional vector to specify the assets to update the global index for.  |
 
 ### AndrReceive
 
@@ -491,7 +491,7 @@ pub enum QueryMsg {
 | `start_after` | Option\<String> | An optional ID to start after. Used for pagination.                                                    |
 | `limit`       | Optional\<u32>  | An optional limit to the number of stakers to query. Defaults to 10 and can be set to a maximum of 30. |
 
-Returns a vector of [StakerResponse](cw-20-staking.md#stakerresponse).
+Returns a vector of [StakerResponse](cw20-staking.md#stakerresponse).
 
 ### Timestamp
 

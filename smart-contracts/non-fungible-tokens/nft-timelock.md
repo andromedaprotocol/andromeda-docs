@@ -2,6 +2,8 @@
 
 Lock an NFT with a contract for a certain amount of time (currently between one day & one year). Once the timelock has expired, anyone can call the `claim` function which will send the NFT to the defined recipient.&#x20;
 
+**Ado\_type:** nft-timelock
+
 ## InstantiateMsg
 
 {% tabs %}

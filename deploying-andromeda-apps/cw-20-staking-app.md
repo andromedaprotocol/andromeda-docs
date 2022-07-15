@@ -26,8 +26,8 @@ The steps we will perform:&#x20;
 
 The components/ADOs we would need:
 
-* [Cw-20 token](../smart-contracts/fungible-tokens/cw-20-token.md)
-* [Cw-20 staking](../smart-contracts/fungible-tokens/cw-20-staking.md)
+* [Cw-20 token](../smart-contracts/fungible-tokens/cw20-token.md)
+* [Cw-20 staking](../smart-contracts/fungible-tokens/cw20-staking.md)
 
 {% hint style="warning" %}
 Although not necessary, if you are unfamiliar with these ADOs, it is suggested to read through each of the them before deploying an app.&#x20;
