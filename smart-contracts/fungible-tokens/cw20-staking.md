@@ -36,7 +36,7 @@ After the 1000 tokens are sent to the contract as rewards, it is split as follow
 
 After the rewards have been sent, the stakers would not receive any extra rewards until a next batch of rewards are sent.
 
-**Ado\_type**: cw20\_staking
+**Ado\_type**: cw20-staking
 
 ## InstantiateMsg
 

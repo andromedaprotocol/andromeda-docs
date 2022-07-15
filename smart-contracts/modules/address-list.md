@@ -15,7 +15,7 @@ These addresses can be set as one of the following:
 
 This contract is usually implemented as a [module ](../../modules/address-list-module/)to interact with other contracts setting the whitelist/blacklist for the contract.
 
-**Ado\_type:** address\_list
+**Ado\_type:** address-list
 
 ## InstantiateMsg
 
