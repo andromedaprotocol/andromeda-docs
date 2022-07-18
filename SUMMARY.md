@@ -15,6 +15,7 @@
   * [Auction](smart-contracts/non-fungible-tokens/auction.md)
   * [Crowdfund](smart-contracts/non-fungible-tokens/crowdfund.md)
   * [CW721 Token (NFT)](smart-contracts/non-fungible-tokens/andromeda-digital-object.md)
+  * [CW721 Staking](smart-contracts/non-fungible-tokens/cw721-staking.md)
   * [Gumball](smart-contracts/non-fungible-tokens/gumball.md)
   * [NFT Timelock](smart-contracts/non-fungible-tokens/nft-timelock.md)
   * [Wrapped-CW721](smart-contracts/non-fungible-tokens/wrapped-cw721.md)
