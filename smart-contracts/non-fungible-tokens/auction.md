@@ -289,35 +289,6 @@ pub enum ExecuteMsg {
 Can only be done when the `end_time` has been passed. If no bids has been placed the original owner retains the token.
 {% endhint %}
 
-### UpdateOwner
-
-{% tabs %}
-{% tab title="Rust" %}
-```rust
-pub enum ExecuteMsg {
-    UpdateOwner {
-        address: String,
-    }
-}
-```
-{% endtab %}
-
-{% tab title="JSON" %}
-```json
-{
-  "update_owner": {
-      "address": "juno1..."
-      }
-  }
-       
-```
-{% endtab %}
-{% endtabs %}
-
-| Name      | Type   | Description                   |
-| --------- | ------ | ----------------------------- |
-| `address` | String | The address of the new owner. |
-
 ### AndrRecieve
 
 Check [AndrReceive](../../ado\_base/andrreceive-andrquery.md#andrrecieve).
