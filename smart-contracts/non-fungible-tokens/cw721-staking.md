@@ -1,5 +1,7 @@
 # CW721 Staking
 
+## Introduction
+
 The **CW721 Staking** ADO is a smart contract that allows users stake, unstake, and claim their NFT alongside an accrued reward after surpassing the unbonding period.
 
 Note:

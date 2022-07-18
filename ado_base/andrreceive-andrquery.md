@@ -420,9 +420,13 @@ pub enum AndromedaQuery {
     Get(Option<Binary>),
     Owner {},
     Operators {},
+    Type {},
+    OriginalPublisher {},
+    BlockHeightUponCreation {},
     IsOperator { address: String },
     Module { id: Uint64 },
     ModuleIds {},
+    Version {},
 }
 ```
 
@@ -565,6 +569,190 @@ pub struct IsOperatorResponse {
 ```
 {% endtab %}
 {% endtabs %}
+
+### Type
+
+Queries the Ado\_type.&#x20;
+
+{% tabs %}
+{% tab title="Rust" %}
+```rust
+pub enum AndromedaQuery {
+    Type {}
+}
+```
+{% endtab %}
+
+{% tab title="JSON" %}
+```json
+{
+"type":{}
+}
+```
+{% endtab %}
+{% endtabs %}
+
+#### TypeResponse
+
+{% tabs %}
+{% tab title="Rust" %}
+```rust
+pub struct TypeResponse {
+    pub ado_type: String,
+    }
+```
+{% endtab %}
+
+{% tab title="JSON" %}
+```json
+{
+"ado_type":"gumball"
+}
+```
+{% endtab %}
+{% endtabs %}
+
+| Name       | Type   | Description          |
+| ---------- | ------ | -------------------- |
+| `ado_type` | String | The type of the ado. |
+
+### BlockHeightUponCreation
+
+Queries the block height when the ADO was created.
+
+{% tabs %}
+{% tab title="Rust" %}
+```rust
+pub enum AndromedaQuery{
+      BlockHeightUponCreation {},
+      }
+```
+{% endtab %}
+
+{% tab title="JSON" %}
+```json
+{
+"block_height_upon_creation":{}
+}
+```
+{% endtab %}
+{% endtabs %}
+
+#### BlockHeightResponse
+
+{% tabs %}
+{% tab title="Rust" %}
+```rust
+pub struct BlockHeightResponse {
+    pub block_height: u64,
+}
+```
+{% endtab %}
+
+{% tab title="JSON" %}
+```json
+{
+"block_height": 200134
+}
+```
+{% endtab %}
+{% endtabs %}
+
+| Name           | Type | Description                                          |
+| -------------- | ---- | ---------------------------------------------------- |
+| `block_height` | u64  | The block height at the time of creation of the ADO. |
+
+### Version
+
+Queries the version of the ADO.&#x20;
+
+{% tabs %}
+{% tab title="Rust" %}
+```rust
+pub enum AndromedaQuery {
+     Version {}
+     }
+```
+{% endtab %}
+
+{% tab title="JSON" %}
+```json
+{
+"version":{}
+}
+```
+{% endtab %}
+{% endtabs %}
+
+#### VersionResponse
+
+{% tabs %}
+{% tab title="Rust" %}
+```rust
+pub struct VersionResponse {
+    pub version: String,
+}
+```
+{% endtab %}
+
+{% tab title="JSON" %}
+```json
+{
+"version": "0.1.0"
+}
+```
+{% endtab %}
+{% endtabs %}
+
+| Name      | Type   | Descripton               |
+| --------- | ------ | ------------------------ |
+| `version` | String | The version of the ADO.  |
+
+### OriginalPublisher
+
+Queries the orginal address that published/instantiated the ADO.
+
+{% tabs %}
+{% tab title="Rust " %}
+```rust
+pub enum AndromedaQuery {
+    OriginalPublisher {}
+    }
+```
+{% endtab %}
+
+{% tab title="JSON" %}
+```json
+{
+"original_publisher":{}
+}
+```
+{% endtab %}
+{% endtabs %}
+
+#### PublisherResponse
+
+{% tabs %}
+{% tab title="Rust" %}
+```rust
+pub struct PublisherResponse {
+    pub original_publisher: String,
+}
+```
+{% endtab %}
+
+{% tab title="JSON" %}
+```json
+{
+"original_publisher":" juno1..."
+}
+```
+{% endtab %}
+{% endtabs %}
+
+| Name                 | Type   | Description                                               |
+| -------------------- | ------ | --------------------------------------------------------- |
+| `original_publisher` | String | The original address that instantiated/published the ADO. |
 
 ## Modules
 
