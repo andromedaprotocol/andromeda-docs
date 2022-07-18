@@ -22,6 +22,7 @@ Upon instantiation, the contract is set to minting mode. To change the mode, we 
 pub struct InstantiateMsg {
     pub andromeda_cw721_contract: AndrAddress,
     pub randomness_source: String,
+    pub required_coin: String
 }
 ```
 {% endtab %}
@@ -42,6 +43,7 @@ pub struct InstantiateMsg {
 | -------------------------- | ---------------------------------------------------------- | ------------------------------------------------------------------------- |
 | `andromeda_cw721_contract` | [AndrAddress](../../common-types/recipient.md#andraddress) | The contract address of the NFT contract.                                 |
 | `randomness_source`        | String                                                     | The contract address for source of randomness. (Currently using Terrand). |
+| `required_coin`            | String                                                     | The denom of the acceptable coin to buy with.                             |
 
 ## ExecuteMsg
 
@@ -129,6 +131,10 @@ Only one type of funds should be sent which is "uusd" for now.
 
 Sets the price of the each token, the maximum amount of tokens that a single address can buy, and the recipient of the funds of the sale.
 
+{% hint style="warning" %}
+Only available to the contract owner.
+{% endhint %}
+
 {% tabs %}
 {% tab title="Rust" %}
 ```rust
@@ -137,7 +143,7 @@ pub enum ExecuteMsg {
         price: Coin,
         max_amount_per_wallet: Option<Uint128>,
         recipient: Recipient,
-    },
+    }
   }
 ```
 {% endtab %}
@@ -169,6 +175,10 @@ pub enum ExecuteMsg {
 
 Automatically switches to opposite status. True means buying is allowed and minting is halted. False means the opposite. The status starts as false.
 
+{% hint style="warning" %}
+Only available to the contract owner.
+{% endhint %}
+
 {% tabs %}
 {% tab title="Rust" %}
 ```rust
@@ -186,6 +196,40 @@ Automatically switches to opposite status. True means buying is allowed and mint
 ```
 {% endtab %}
 {% endtabs %}
+
+### UpdateRequiredCoin
+
+Updates the required denom to buy with.
+
+{% hint style="warning" %}
+Only available to the contract owner/operator.
+{% endhint %}
+
+{% tabs %}
+{% tab title="Rust" %}
+```rust
+pub enum ExecuteMsg {
+     UpdateRequiredCoin {
+        new_coin: String,
+    }
+}
+```
+{% endtab %}
+
+{% tab title="JSON" %}
+```json
+{
+"update_required_coin":{
+    "new_coin":"ujunox"
+    }
+}
+```
+{% endtab %}
+{% endtabs %}
+
+| Name       | Type   | Description                                      |
+| ---------- | ------ | ------------------------------------------------ |
+| `new_coin` | String | The new denom that can be used to purchase NFTs. |
 
 ### AndrReceive
 
@@ -337,9 +381,33 @@ pub struct StatusResponse {
 {% endtab %}
 {% endtabs %}
 
-| Name   | Type | Description                                                     |
-| ------ | ---- | --------------------------------------------------------------- |
-| status | bool | True if in buying mode. False if minting mode. Starts as false. |
+| Name     | Type | Description                                                     |
+| -------- | ---- | --------------------------------------------------------------- |
+| `status` | bool | True if in buying mode. False if minting mode. Starts as false. |
+
+### RequiredCoin
+
+Queries the denom that can be used to buy NFTs.
+
+{% tabs %}
+{% tab title="Rust" %}
+```rust
+pub enum QueryMsg{
+     RequiredCoin {}
+}
+```
+{% endtab %}
+
+{% tab title="JSON" %}
+```json
+{
+"required_coin":{}
+}
+```
+{% endtab %}
+{% endtabs %}
+
+Returns a string containing the denom such as "ujunox" or "uusd" ect...
 
 ### AndrQuery
 
