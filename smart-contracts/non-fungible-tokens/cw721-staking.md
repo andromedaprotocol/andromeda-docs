@@ -360,7 +360,7 @@ pub struct StakedNft {
 | `time_of_staking`   | Timestamp                                  | The time of staking. Epoch time in seconds.               |
 | `time_of_unbonding` | Option\<Timestamp>                         | Optional time of unbonding if the NFT has been unstaked.  |
 | `rewards`           | [Coin](../../common-types/coin.md)         | The rewards being distributed per second.                 |
-| `accrued_reward`    | Option<[Coin](../../common-types/coin.md)> | Optional amount of rewards  from staking.                 |
+| `accrued_reward`    | Option<[Coin](../../common-types/coin.md)> | The amount of rewards accumulated from staking.           |
 
 ### AllowedContracts
 
