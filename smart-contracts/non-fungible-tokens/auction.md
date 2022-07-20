@@ -549,10 +549,10 @@ pub enum QueryMsg {
 {% endtab %}
 {% endtabs %}
 
-| Name            | Type   | Description                        |
-| --------------- | ------ | ---------------------------------- |
-| `token_id`      | String | The ADO id.                        |
-| `token_address` | String | The address of the token contract. |
+| Name            | Type   | Description                            |
+| --------------- | ------ | -------------------------------------- |
+| `token_id`      | String | The id of the token/NFT.               |
+| `token_address` | String | The address of the token/NFT contract. |
 
 #### AuctionIdsResponse
 
