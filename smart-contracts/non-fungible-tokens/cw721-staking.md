@@ -435,6 +435,8 @@ pub enum QueryMsg {
 {% endtab %}
 {% endtabs %}
 
+Returns a type [Coin](../../common-types/coin.md) with the amount and denom of the reward being distributed per second.
+
 ### AndrQuery
 
 Check [AndrQuery](../../ado\_base/andrreceive-andrquery.md#andrquery).

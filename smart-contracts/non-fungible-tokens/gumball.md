@@ -385,30 +385,6 @@ pub struct StatusResponse {
 | -------- | ---- | --------------------------------------------------------------- |
 | `status` | bool | True if in buying mode. False if minting mode. Starts as false. |
 
-### RequiredCoin
-
-Queries the denom that can be used to buy NFTs.
-
-{% tabs %}
-{% tab title="Rust" %}
-```rust
-pub enum QueryMsg{
-     RequiredCoin {}
-}
-```
-{% endtab %}
-
-{% tab title="JSON" %}
-```json
-{
-"required_coin":{}
-}
-```
-{% endtab %}
-{% endtabs %}
-
-Returns a string containing the denom such as "ujunox" or "uusd" ect...
-
 ### AndrQuery
 
 Check [AndrQuery](../../ado\_base/andrreceive-andrquery.md#andrquery).
