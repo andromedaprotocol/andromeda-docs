@@ -43,7 +43,7 @@ pub struct InstantiateMsg {
 
 ### PlaceOffer
 
-Places an offer on the ADO with the specified `token_id`. When an offer is placed, the funds are taken and returned in the case of a higher offer or cancelation.
+Places an offer on the token with the specified `token_id`. When an offer is placed, the funds are taken and returned in the case of a higher offer or cancelation.
 
 {% hint style="warning" %}
 The ADO owner is not allowed to place an offer on their ADO.
@@ -82,11 +82,11 @@ pub enum ExecuteMsg{
 {% endtab %}
 {% endtabs %}
 
-| Name           | Type                                           | Description                                 |
-| -------------- | ---------------------------------------------- | ------------------------------------------- |
-| `token_id`     | String                                         | The token id of the ADO to buy.             |
-| `expiration`   | [Expiration](../../common-types/expiration.md) | An expiration for the offer.                |
-| `offer_amount` | Uint128                                        | The amount of tokens to offer for the ADO.  |
+| Name           | Type                                           | Description                                  |
+| -------------- | ---------------------------------------------- | -------------------------------------------- |
+| `token_id`     | String                                         | The token id of the token/NFT to buy.        |
+| `expiration`   | [Expiration](../../common-types/expiration.md) | An expiration for the offer.                 |
+| `offer_amount` | Uint128                                        | The amount of funds to offer for the token.  |
 
 ### CancelOffer
 
@@ -114,9 +114,9 @@ pub enum ExecuteMsg{
 {% endtab %}
 {% endtabs %}
 
-| Name       | Type   | Description                               |
-| ---------- | ------ | ----------------------------------------- |
-| `token_id` | String | The id of the ADO to remove an offer on.  |
+| Name       | Type   | Description                                 |
+| ---------- | ------ | ------------------------------------------- |
+| `token_id` | String | The id of the token to remove an offer on.  |
 
 ### AcceptOffer
 
@@ -161,7 +161,7 @@ pub enum ExecuteMsg{
 
 ### Offer
 
-Returns the latest offer of the ADO with the given `token_id`.
+Returns the latest offer of the token with the given `token_id`.
 
 {% tabs %}
 {% tab title="Rust" %}
@@ -185,9 +185,9 @@ pub enum QueryMsg{
 {% endtab %}
 {% endtabs %}
 
-| Name       | Type   | Description                                     |
-| ---------- | ------ | ----------------------------------------------- |
-| `token_id` | String | The id of the ADO to get the latest  offer on.  |
+| Name       | Type   | Description                                           |
+| ---------- | ------ | ----------------------------------------------------- |
+| `token_id` | String | The id of the token/NFT to get the latest  offer on.  |
 
 #### OfferResponse
 
