@@ -10,7 +10,7 @@ The ADO **Offers** is a smart contract used to buy/sell NFT tokens. It allows us
 
 The ADO Offers contract is not built to work as a standalone contract, instead it is implemented as a [module](../../modules/offers-module.md) for the NFT Collectible ADO facilitating the process of trading NFTs.&#x20;
 
-**Ado\_type**: offers
+**Ado\_type**: cw721-offers
 
 ## InstantiateMsg
 
@@ -48,9 +48,9 @@ Places an offer on the ADO with the specified `token_id`. When an offer is place
 {% hint style="warning" %}
 The ADO owner is not allowed to place an offer on their ADO.
 
-Only "uusd" denom is only accepted for now as funds.
-
 `offer_amount` needs to exceed the previous highest offer.
+
+The funds must much the specified `valid_denom` in instantiation.
 {% endhint %}
 
 {% tabs %}
@@ -226,7 +226,7 @@ pub struct OfferResponse {
 
 | Name               | Type                                           | Description                                                                           |
 | ------------------ | ---------------------------------------------- | ------------------------------------------------------------------------------------- |
-| `denom`            | String                                         | The denomination of the coin being offered. Currently supports "uusd".                |
+| `denom`            | String                                         | The denomination of the coin being offered.                                           |
 | `offer_amount`     | Uint128                                        | The amount of coins offered.                                                          |
 | `remaining_amount` | Uint128                                        | The amount left after any royalties or taxes have been applied to the `offer_amount`. |
 | `tax_amount`       | Uint128                                        | The amount of coins taken as tax.                                                     |
