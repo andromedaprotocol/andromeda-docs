@@ -17,7 +17,7 @@ Every sale sets a `min_tokens_sold` which specifies the minimum number of tokens
 
 The contract supports [modules](broken-reference) to extend it's functionality.
 
-**Ado\_type**: Crowdfund
+**Ado\_type**: crowdfund
 
 ## InstantiateMsg
 
