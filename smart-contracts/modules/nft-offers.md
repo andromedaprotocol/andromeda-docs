@@ -28,7 +28,7 @@ pub struct InstantiateMsg {
 ```json
 {
 "andromeda_cw721_contract":"juno1...",
-"valid_denoms":"ujuno"
+"valid_denom":"ujuno"
 }
 ```
 {% endtab %}
