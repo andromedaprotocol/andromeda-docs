@@ -24,7 +24,6 @@ This contract is usually implemented as a [module ](../../modules/address-list-m
 ```rust
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
 pub struct InstantiateMsg {
-    pub operators: Vec<String>,
     pub is_inclusive: bool,
 }
 ```
@@ -33,17 +32,15 @@ pub struct InstantiateMsg {
 {% tab title="JSON" %}
 ```javascript
 {
-    "operators": ["juno1...","juno1...",...],
-    "is_inclusive": false
+"is_inclusive": false
 }
 ```
 {% endtab %}
 {% endtabs %}
 
-| Name           | Type         | Description                                                                                                                        |
-| -------------- | ------------ | ---------------------------------------------------------------------------------------------------------------------------------- |
-| `operators`    | Vec\<String> | A list of addresses that are authorized or unauthorized to interact with the contract.                                             |
-| `is_inclusive` | bool         | Whether or not the address list is inclusive. If `true` the address list is a whitelist, if false the address list is a blacklist. |
+| Name           | Type | Description                                                                                                                        |
+| -------------- | ---- | ---------------------------------------------------------------------------------------------------------------------------------- |
+| `is_inclusive` | bool | Whether or not the address list is inclusive. If `true` the address list is a whitelist, if false the address list is a blacklist. |
 
 ## ExecuteMsg
 

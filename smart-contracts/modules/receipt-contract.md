@@ -20,7 +20,6 @@ This contract is implemented as a [module](../../modules/receipt-module/) and ad
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
 pub struct InstantiateMsg {
     pub minter: String,
-    pub operators: Option<Vec<String>>,
 }
 ```
 {% endtab %}
@@ -29,16 +28,14 @@ pub struct InstantiateMsg {
 ```javascript
 {
     "minter": "juno1...",
-    "operators": ["juno1...", ...]
 }
 ```
 {% endtab %}
 {% endtabs %}
 
-| Name        | Type                  | Description                                                                                      |
-| ----------- | --------------------- | ------------------------------------------------------------------------------------------------ |
-| `minter`    | String                | The address authorized to mint new receipts                                                      |
-| `operators` | Option\<Vec\<String>> | Optional list of moderating addresses authorized to update receipts, defaults to an empty vector |
+| Name     | Type   | Description                                 |
+| -------- | ------ | ------------------------------------------- |
+| `minter` | String | The address authorized to mint new receipts |
 
 ## ExecuteMsg
 

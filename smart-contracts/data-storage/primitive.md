@@ -21,17 +21,7 @@ The primitive is also used to save the factory contract address for our Andromed
 {% tabs %}
 {% tab title="Rust" %}
 ```rust
-pub struct InstantiateMsg {
-    pub operators: Vec<String>,
-}
-```
-{% endtab %}
-
-{% tab title="JSON" %}
-```json
-{
-"operators":["juno1...","juno1...","..."]
-}
+pub struct InstantiateMsg {}
 ```
 {% endtab %}
 {% endtabs %}
@@ -50,6 +40,8 @@ Sets a value for the named key. When we need to extract the value that has been 
 If `name`is not specified the default key ("default") will be used.
 
 If `SetValue` uses a `name` that is already in use, the old `value` is overwritten by the latest `value`.
+
+Only available to contract owner/operator.
 {% endhint %}
 
 {% tabs %}

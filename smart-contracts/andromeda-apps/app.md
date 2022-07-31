@@ -29,7 +29,6 @@ The maximum number of app components is 50.
 {% tab title="Rust" %}
 ```rust
 pub struct InstantiateMsg {
-    pub operators: Vec<String>,
     pub app: Vec<AppComponent>,
     pub name: String,
     pub primitive_contract: String
@@ -40,14 +39,11 @@ pub struct InstantiateMsg {
 {% tab title="JSON" %}
 ```rust
 {
-"operators":["juno1...","juno1...","juno1...",...],
 "app":[
      {
        "name":"fundsplitter",
        "ado_type":"splitter",
-       "instantiate_msg":{
-       ...
-       }
+       "instantiate_msg":"eyJtaW50ZXIiOiAianVubzE3OX..."
      },
    {
    ...
@@ -65,7 +61,6 @@ pub struct InstantiateMsg {
 
 | Name                 | Type                                     | Description                                                            |
 | -------------------- | ---------------------------------------- | ---------------------------------------------------------------------- |
-| `operators`          | Vec\<String>                             | The operators of the contract.                                         |
 | `App`                | Vec<[AppComponent](app.md#appcomponent)> | The vector of AppComponent containing all the ADOs of the app.         |
 | `name`               | String                                   | The name of the app.                                                   |
 | `primitive_contract` | String                                   | The address of the `primitve` contract used to supply data to the app. |
@@ -193,12 +188,7 @@ Only available to the contract owner.
 {
 "proxy_message":{
  "name":"componentname",
- "msg":{
-   "update":{
-     ...
-        }
-   
-      }
+ "msg":"eyJtaW50ZXIiOiAianVubzE3OX..."
     }
 }
 ```

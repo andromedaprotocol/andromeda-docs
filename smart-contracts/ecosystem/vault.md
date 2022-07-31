@@ -25,24 +25,10 @@ Withdrawals are done in similar fashion using our `Withdrawal` struct. Withdrawa
 {% tabs %}
 {% tab title="Rust" %}
 ```rust
-pub struct InstantiateMsg {
-    pub operators: Option<Vec<String>>,
-}
-```
-{% endtab %}
-
-{% tab title="JSON" %}
-```rust
-{
-"operators":["juno1...","juno1...",...]
-}
+pub struct InstantiateMsg {}
 ```
 {% endtab %}
 {% endtabs %}
-
-| Name        | Type                  | Description                                                        |
-| ----------- | --------------------- | ------------------------------------------------------------------ |
-| `operators` | Option\<Vec\<String>> | An optional list of addresses to act as operators on the contract. |
 
 ### ExecuteMsg
 
