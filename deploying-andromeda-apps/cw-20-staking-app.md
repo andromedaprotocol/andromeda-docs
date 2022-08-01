@@ -1,6 +1,8 @@
 # Cw-20 Staking App
 
+{% hint style="info" %}
 If unfimailar with the steps of deploying an app, go back to the App 1 example where we explain in detail all the different parts of deploying an App.
+{% endhint %}
 
 For this app we are using the following deployed contracts:
 

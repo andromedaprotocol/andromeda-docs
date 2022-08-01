@@ -60,6 +60,7 @@
 * [Crowdfunding App](deploying-apps.md)
 * [Auctioning App](deploying-andromeda-apps/auctioning-app.md)
 * [Cw-20 Staking App](deploying-andromeda-apps/cw-20-staking-app.md)
+* [Wrapped-NFT App](deploying-andromeda-apps/wrapped-nft-app.md)
 
 ## User Docs
 
