@@ -20,6 +20,7 @@
   * [NFT Timelock](smart-contracts/non-fungible-tokens/nft-timelock.md)
   * [Wrapped-CW721](smart-contracts/non-fungible-tokens/wrapped-cw721.md)
 * [Finance](smart-contracts/finance/README.md)
+  * [Rate Limiting Withdrawals](smart-contracts/finance/rate-limiting-withdrawals.md)
   * [Splitter](smart-contracts/finance/andromeda-splitter.md)
   * [Timelock](smart-contracts/finance/timelock.md)
   * [Vesting ADO](smart-contracts/finance/vesting-ado.md)
