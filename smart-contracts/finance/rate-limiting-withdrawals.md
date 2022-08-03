@@ -15,8 +15,7 @@ Either the minimal\_withdrawal\_frequency __ or contract\_key should be set and 
 ```rust
 pub struct InstantiateMsg {
     pub allowed_coin: CoinAndLimit,
-    pub minimal_withdrawal_frequency: Option<Uint128>,
-    pub contract_key: Option<ContractAndKey>,
+    pub minimal_withdrawal_frequency: MinimumFrequency,
     pub modules: Option<Vec<Module>>,
 }
 ```
@@ -35,12 +34,11 @@ pub struct InstantiateMsg {
 {% endtab %}
 {% endtabs %}
 
-| Name                           | Type                    | Description                                                                                                                              |
-| ------------------------------ | ----------------------- | ---------------------------------------------------------------------------------------------------------------------------------------- |
-| `allowed_coin`                 | CoinAndLimit            | Set the allowed coin denom and the maximum amount allowed to withdraw.                                                                   |
-| `minimal_withdrawal_frequency` | Option\<Uint128>        | The time required between withdrawals. Specified in seconds. Cannot be 0.                                                                |
-| `contract_key`                 | Option\<ContractAndKey> | The minimal\_withdrawal\_frequency can be set using a primitve. To do so, we specify the primitive address and key of the value we want. |
-| `modules`                      | Option\<Vec\<Module>>   | An optional vector of Andromeda Modules. "Address-list" module can be added.                                                             |
+| Name                           | Type                                                            | Description                                                                  |
+| ------------------------------ | --------------------------------------------------------------- | ---------------------------------------------------------------------------- |
+| `allowed_coin`                 | [CoinAndLimit](rate-limiting-withdrawals.md#coinandlimit)       | Set the allowed coin denom and the maximum amount allowed to withdraw.       |
+| `minimal_withdrawal_frequency` | [MinimumFrequency](rate-limiting-withdrawals.md#contractandkey) | The time required between withdrawals. Specified in seconds. Cannot be 0.    |
+| `modules`                      | Option\<Vec\<Module>>                                           | An optional vector of Andromeda Modules. "Address-list" module can be added. |
 
 #### CoinAndLimit
 
@@ -55,6 +53,19 @@ pub struct CoinAndLimit {
 | ------- | ------- | --------------------------------------------- |
 | `coin`  | String  | Sets the accepted coin denom.                 |
 | `limit` | Uint128 | Sets the withdrawal limit in terms of amount. |
+
+#### MinimumFrequency
+
+```rust
+pub enum MinimumFrequency {
+     Time { time: Uint128 },
+     AddressAndKey { address_and_key: ContractAndKey },
+```
+
+The minimum withdrawal frequency can be set in two ways:
+
+* Time: A time in seconds. For example 3600 would specify that each the user needs to wait 3600 seconds between withdrawals.
+* AddressAndKey: Takes the value from a primitive. Need to specify the contract address of the primitive and the key associated to the value we want.&#x20;
 
 #### ContractAndKey
 
@@ -137,47 +148,6 @@ pub enum ExecuteMsg{
 | Name     | Type    | Description                      |
 | -------- | ------- | -------------------------------- |
 | `amount` | Uint128 | The amount of coins to withdraw. |
-
-### UpdateAllowedCoin
-
-Update the allowed coin to deposit and withdraw along the other parameters instantiated. Overwrites the previous options.
-
-{% hint style="warning" %}
-Only available to the contract owner/operator
-{% endhint %}
-
-{% tabs %}
-{% tab title="Rust" %}
-```rust
-pub enum ExecuteMsg{
-     UpdateAllowedCoin {
-        allowed_coin: CoinAndLimit,
-        minimal_withdrawal_frequency: Option<Uint128>,
-        contract_key: Option<ContractAndKey>,
-    }
- }
-```
-{% endtab %}
-
-{% tab title="JSON" %}
-```json
-{
-"update_allowed_coin":{
-    "allowed_coin":{
-        "coin":"ujunox",
-        "amount":"500"
-    },
-"minimal_withdrawal_frequency":"5000"
-}
-```
-{% endtab %}
-{% endtabs %}
-
-| Name                           | Type                    | Description                                                                                                                              |
-| ------------------------------ | ----------------------- | ---------------------------------------------------------------------------------------------------------------------------------------- |
-| `allowed_coin`                 | CoinAndLimit            | Set the allowed coin denom and the maximum amount allowed to withdraw.                                                                   |
-| `minimal_withdrawal_frequency` | Option\<Uint128>        | The time required between withdrawals. Specified in seconds. Cannot be 0.                                                                |
-| `contract_key`                 | Option\<ContractAndKey> | The minimal\_withdrawal\_frequency can be set using a primitve. To do so, we specify the primitive address and key of the value we want. |
 
 ### AndrReceive
 
