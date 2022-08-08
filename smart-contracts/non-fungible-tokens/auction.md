@@ -212,7 +212,7 @@ pub enum ExecuteMsg {
 
 ### PlaceBid
 
-Places a bid for the auction for the given ADO id. The bid must be sent as native funds along with this message. The previous largest bid gets automatically sent back to the bidder when they are outbid.
+Places a bid for the auction for the given NFT id. The bid must be sent as native funds along with this message. The previous largest bid gets automatically sent back to the bidder when they are outbid.
 
 {% tabs %}
 {% tab title="Rust" %}
@@ -254,7 +254,7 @@ The following criteria must be met for the bid to be placed:
 
 ### Claim
 
-Sends the winner of the auction the ADO and the funds to the ADO owner  when the auction has finished. Anyone is allowed to execute this message.
+Sends the winner of the auction the NFT and the funds to the NFT owner  when the auction has finished. Anyone is allowed to execute this message.
 
 {% tabs %}
 {% tab title="Rust" %}
