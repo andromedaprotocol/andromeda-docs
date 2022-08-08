@@ -43,7 +43,7 @@ Keep in mind that the app takes these messages as base64 encoded.
 
 #### Cw-20 Token
 
-I will start out by giving 10000 tokens to three addresses. We have not set a minter, meaning no additional tokens can never be minted.
+I will start out by giving 10000 tokens to three addresses. We have not set a minter, meaning no additional tokens can ever be minted.
 
 ```json
 {
@@ -292,4 +292,4 @@ As we can see each of the stakers got the amount proportional to the amount stak
 
 #### Conclusion
 
-This was a very simple App that showcases our cw20\_staking contract. If you want to play around with it more, you can built it using the allocated rewards and add up to 10 different token rewards. It would also allow you to spread the rewards distribution to be in cycles instead of instant as we got here. This App although simple, is needed in most web3 projects that launch their own token. With Andromeda, you can have it all setup easily like we saw in this example or even using our no-code builder App which takes minutes.
+This was a very simple App that showcases our cw20-staking contract. If you want to play around with it more, you can built it using the allocated rewards and add up to 10 different token rewards. It would also allow you to spread the rewards distribution to be in cycles instead of instant as we got here. This App although simple, is needed in most web3 projects that launch their own token. With Andromeda, you can have it all setup easily like we saw in this example or even using our no-code builder App which takes minutes.
