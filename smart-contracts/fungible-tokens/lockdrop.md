@@ -2,7 +2,7 @@
 
 ## Introduction
 
-This ADO is another part of the toolkit of allowing a user to setup their own token. The lockdrop ADO allows users to deposit UST in exchange for a given CW20 token (like a crowdfund). This ADO was heavily inspired by the [MARS lockdrop contract](https://github.com/mars-protocol/mars-periphery/tree/main/contracts/lockdrop).&#x20;
+This ADO is another part of the toolkit of allowing a user to setup their own token. The lockdrop ADO allows users to deposit a native token in exchange for a given CW20 token (like a crowdfund). This ADO was heavily inspired by the [MARS lockdrop contract](https://github.com/mars-protocol/mars-periphery/tree/main/contracts/lockdrop).&#x20;
 
 There are two phases:
 
@@ -10,7 +10,7 @@ The first phase is the deposit phase in which users can deposit a native denom. 
 
 The second phase is the withdrawal phase, in which for the first half, users can withdraw up to half of their deposit, and in the second half, the amount they can withdraw decreases linearly from 50% to 0%. Users can only withdraw once during the withdrawal phase.
 
-After the deposit phase is over, each user gets the token in proportion to how much of the native denom they put in (claims need to be enabled first). This contract also has an optional relationship with an LP bootstrapping contract which would allow users to deposit parts of their purchased tokens and UST to bootstrap a liquidity pool.&#x20;
+After the deposit phase is over, each user gets the token in proportion to how much of the native denom they put in (claims need to be enabled first). This contract also has an optional relationship with an LP bootstrapping contract which would allow users to deposit parts of their purchased tokens and native tokens to bootstrap a liquidity pool.&#x20;
 
 **Ado\_type**: lockdrop
 
