@@ -63,30 +63,6 @@
 * [Cw-20 Staking App](deploying-andromeda-apps/cw-20-staking-app.md)
 * [Wrapped-NFT App](deploying-andromeda-apps/wrapped-nft-app.md)
 
-## Andromeda.js
-
-* [Andromeda.js](andromeda.js/andromeda.js/README.md)
-  * [AndromedaClient Class](andromeda.js/andromeda.js/andromedaclient-class.md)
-  * [Wallet Class](andromeda.js/andromeda.js/wallet-class.md)
-  * [WalletStore Class](andromeda.js/andromeda.js/walletstore-class.md)
-  * [ADO Class](andromeda.js/andromeda.js/ado-class.md)
-  * [GraphQL Queries](andromeda.js/andromeda.js/graphql-queries.md)
-  * [Query Types](andromeda.js/andromeda.js/query-types/README.md)
-    * [AddressList](andromeda.js/andromeda.js/query-types/addresslist.md)
-    * [App](andromeda.js/andromeda.js/query-types/app.md)
-    * [Auction](andromeda.js/andromeda.js/query-types/auction.md)
-    * [Crowdfund](andromeda.js/andromeda.js/query-types/crowdfund.md)
-    * [CW20](andromeda.js/andromeda.js/query-types/cw20.md)
-    * [CW721](andromeda.js/andromeda.js/query-types/cw721.md)
-    * [CW721 Offers](andromeda.js/andromeda.js/query-types/cw721-offers.md)
-    * [Primitive](andromeda.js/andromeda.js/query-types/primitive.md)
-    * [Rates](andromeda.js/andromeda.js/query-types/rates.md)
-    * [Receipts](andromeda.js/andromeda.js/query-types/receipts.md)
-    * [Splitter](andromeda.js/andromeda.js/query-types/splitter.md)
-    * [Timelock](andromeda.js/andromeda.js/query-types/timelock.md)
-    * [Transanctions](andromeda.js/andromeda.js/query-types/transanctions.md)
-    * [Vault](andromeda.js/andromeda.js/query-types/vault.md)
-
 ## User Docs
 
 * [User Docs](user-docs.md)
