@@ -179,6 +179,10 @@ An auction can be updated only if it has not started yet.&#x20;
 
 ### CancelAuction
 
+{% hint style="info" %}
+Only the owner of the auction can execute `CancelAuction`.
+{% endhint %}
+
 Cancels the auction of a token.
 
 {% tabs %}
