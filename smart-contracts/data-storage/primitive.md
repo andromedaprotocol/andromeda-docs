@@ -90,6 +90,7 @@ pub enum Primitive {
     String(String),
     Bool(bool),
     Vec(Vec<Primitive>),
+    Binary(Binary)
 }
 ```
 
