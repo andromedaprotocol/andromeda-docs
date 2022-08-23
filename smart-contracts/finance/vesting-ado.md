@@ -102,7 +102,7 @@ pub enum ExecuteMsg {
 
 | Name                       | Type                                                                      | Description                                                                                                                               |
 | -------------------------- | ------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------- |
-| `lockup_duration`          | Option\<u64>                                                              | Specifying None would mean no lock up period and funds start vesting right away.                                                          |
+| `lockup_duration`          | Option\<u64>                                                              | A lockup period before vesting starts. Specifying None would mean no lock up period and funds start vesting right away.                   |
 | `release_unit`             | u64                                                                       | How often releases occur in seconds.                                                                                                      |
 | `release_amount`           | [WithdrawalType](../../ado\_base/andrreceive-andrquery.md#withdrawaltype) | Specifies how much is to be released after each `release_unit`. If it is a percentage, it would be the percentage of the original amount. |
 | `validator_to_delegate_to` | Option\<String>                                                           | Optional validator to delegate to. If specified, funds will be automatically delegated to them.                                           |
