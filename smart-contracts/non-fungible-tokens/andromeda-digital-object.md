@@ -1,4 +1,4 @@
-# Cw721 Token (NFT)
+# CW721 Token (NFT)
 
 ## Introduction
 
@@ -157,6 +157,70 @@ pub struct MetadataAttribute {
 | `trait_type`   | String          | The key for the attribute.                                                                        |
 | `value`        | String          | The value for the attribute                                                                       |
 | `display_type` | Option\<String> | The string used to display the attribute, if none is provided the `trait_type` field can be used. |
+
+### BatchMint
+
+Mint several NFTs at once.&#x20;
+
+{% tabs %}
+{% tab title="Rust" %}
+```rust
+pub enum ExecuteMsg {
+     BatchMint {
+         tokens: Vec<MintMsg<TokenExtension>>,
+     }
+ }
+```
+{% endtab %}
+
+{% tab title="JSON" %}
+```json
+{
+  "batch_mint": {
+    "tokens": [
+      {
+        "token_id": "1",
+        "owner": "juno1...",
+        "extension": {
+          "name": "Token 1",
+          "publisher": "juno1...",
+          "attributes": [],
+          "archived": false,
+          "image": "https://pic.onlinewebfonts.com/svg/img_522399.png"
+        }
+      },
+      {
+        "token_id": "2",
+        "owner": "juno1...",
+        "extension": {
+          "name": "Token 2",
+          "publisher": "juno1...",
+          "attributes": [],
+          "archived": false,
+          "image": "https://pic.onlinewebfonts.com/svg/img_522399.png"
+        }
+      },
+      {
+        "token_id": "3",
+        "owner": "juno1...",
+        "extension": {
+          "name": "Token 3",
+          "publisher": "juno1...",
+          "attributes": [],
+          "archived": false,
+          "image": "https://pic.onlinewebfonts.com/svg/img_522399.png"
+        }
+      }
+    ]
+  }
+}
+```
+{% endtab %}
+{% endtabs %}
+
+| Name     | Type                                                               | Description                                                                                    |
+| -------- | ------------------------------------------------------------------ | ---------------------------------------------------------------------------------------------- |
+| `tokens` | Vec[\<MintMsg\<TokenExtension>>](andromeda-digital-object.md#mint) | Vector of MintMsg. Similar to minting one token, but allows minting of many tokens in one go.  |
 
 ### TransferAgreement
 
