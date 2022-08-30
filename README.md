@@ -1,9 +1,13 @@
 ---
+description: >-
+  Welcome to the Andromeda docs! Here you can find anything and everything
+  related to Andromeda, how we operate, our system architecture, contracts, and
+  much more. So get ready and enjoy the ride.
 cover: .gitbook/assets/Documentation_Header.jpeg
 coverY: 0
 ---
 
-# Overview
+# Introduction
 
 ### Mission
 

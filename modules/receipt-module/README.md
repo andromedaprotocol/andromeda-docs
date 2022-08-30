@@ -18,16 +18,14 @@ The Instantiate message for the receipt contract.
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
 pub struct InstantiateMsg {
     pub minter: String,
-    pub operators: Option<Vec<String>>,
 }
 ```
 
-| Name        | Type                  | Description                                                                                       |
-| ----------- | --------------------- | ------------------------------------------------------------------------------------------------- |
-| `minter`    | String                | The address authorized to mint new receipts.                                                      |
-| `operators` | Option\<Vec\<String>> | Optional list of moderating addresses authorized to update receipts, defaults to an empty vector. |
+| Name     | Type   | Description                                  |
+| -------- | ------ | -------------------------------------------- |
+| `minter` | String | The address authorized to mint new receipts. |
 
-More information on the Receipt contract can be found [here](../../smart-contracts/modules/receipt-contract.md).
+More information on the Receipt contract can be found [here](../../andromeda-digital-objects/receipt.md).
 
 ## Hooks
 

@@ -17,17 +17,15 @@ The Instantiation message for the Address List contract.
 ```rust
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
 pub struct InstantiateMsg {
-    pub operators: Vec<String>,
     pub is_inclusive: bool,
 }
 ```
 
-| Name           | Type         | Description                                                                                                                        |
-| -------------- | ------------ | ---------------------------------------------------------------------------------------------------------------------------------- |
-| `operators`    | Vec\<String> | A list of addresses that are authorised to interact with the contract.                                                             |
-| `is_inclusive` | bool         | Whether or not the address list is inclusive. If `true` the address list is a whitelist, if false the address list is a blacklist. |
+| Name           | Type | Description                                                                                                                        |
+| -------------- | ---- | ---------------------------------------------------------------------------------------------------------------------------------- |
+| `is_inclusive` | bool | Whether or not the address list is inclusive. If `true` the address list is a whitelist, if false the address list is a blacklist. |
 
-More information about the address list contract can be found [here](../../smart-contracts/modules/address-list.md).
+More information about the address list contract can be found [here](../../andromeda-digital-objects/address-list.md).
 
 ## Hooks
 

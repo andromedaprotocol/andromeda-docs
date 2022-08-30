@@ -1,42 +1,43 @@
 # Table of contents
 
-* [Overview](README.md)
+## Platform and Framework
 
-## Smart Contracts
+* [Introduction](README.md)
+* [ADO Classes](platform-and-framework/ado-classes.md)
+* [ADO\_Base](platform-and-framework/ado\_base.md)
+* [Hooks](platform-and-framework/hooks.md)
+* [Common Types](platform-and-framework/common-types/README.md)
+  * [Recipient](platform-and-framework/common-types/recipient.md)
+  * [Coin](platform-and-framework/common-types/coin.md)
+  * [Expiration](platform-and-framework/common-types/expiration.md)
+* [Deployed Contracts](platform-and-framework/deployed-contracts.md)
 
-* [Deployed Contracts](smart-contracts/deployed-contracts.md)
-* [ADO Classes](smart-contracts/ado-classes.md)
-* [Fungible Tokens](smart-contracts/fungible-tokens/README.md)
-  * [CW20 Staking](smart-contracts/fungible-tokens/cw20-staking.md)
-  * [CW20 Token](smart-contracts/fungible-tokens/cw20-token.md)
-  * [Lockdrop](smart-contracts/fungible-tokens/lockdrop.md)
-  * [Merkle-Airdrop](smart-contracts/fungible-tokens/merkle-airdrop.md)
-* [Non-Fungible Tokens](smart-contracts/non-fungible-tokens/README.md)
-  * [Auction](smart-contracts/non-fungible-tokens/auction.md)
-  * [Crowdfund](smart-contracts/non-fungible-tokens/crowdfund.md)
-  * [CW721 Token (NFT)](smart-contracts/non-fungible-tokens/andromeda-digital-object.md)
-  * [CW721 Staking](smart-contracts/non-fungible-tokens/cw721-staking.md)
-  * [Gumball](smart-contracts/non-fungible-tokens/gumball.md)
-  * [NFT Timelock](smart-contracts/non-fungible-tokens/nft-timelock.md)
-  * [Wrapped-CW721](smart-contracts/non-fungible-tokens/wrapped-cw721.md)
-* [Finance](smart-contracts/finance/README.md)
-  * [Rate Limiting Withdrawals](smart-contracts/finance/rate-limiting-withdrawals.md)
-  * [Splitter](smart-contracts/finance/andromeda-splitter.md)
-  * [Timelock](smart-contracts/finance/timelock.md)
-  * [Vesting ADO](smart-contracts/finance/vesting-ado.md)
-  * [Weighted Splitter](smart-contracts/finance/weighted-splitter.md)
-* [Data Storage](smart-contracts/data-storage/README.md)
-  * [Primitive](smart-contracts/data-storage/primitive.md)
-* [Ecosystem](smart-contracts/ecosystem/README.md)
-  * [Vault](smart-contracts/ecosystem/vault.md)
-* [Modules](smart-contracts/modules/README.md)
-  * [Address List](smart-contracts/modules/address-list.md)
-  * [NFT Offers](smart-contracts/modules/nft-offers.md)
-  * [Rates](smart-contracts/modules/rates.md)
-  * [Receipt Contract](smart-contracts/modules/receipt-contract.md)
-* [Andromeda Apps](smart-contracts/andromeda-apps/README.md)
-  * [App](smart-contracts/andromeda-apps/app.md)
-  * [Factory](smart-contracts/andromeda-apps/andromeda-factory.md)
+## Andromeda Digital Objects
+
+* [Address List](andromeda-digital-objects/address-list.md)
+* [Auction](andromeda-digital-objects/auction.md)
+* [App](andromeda-digital-objects/app.md)
+* [Crowdfund](andromeda-digital-objects/crowdfund.md)
+* [CW20 Staking](andromeda-digital-objects/cw20-staking.md)
+* [CW20 Token](andromeda-digital-objects/cw20-token.md)
+* [CW721 Token (NFT)](andromeda-digital-objects/andromeda-digital-object.md)
+* [Factory](andromeda-digital-objects/andromeda-factory.md)
+* [Gumball](andromeda-digital-objects/gumball.md)
+* [Lockdrop](andromeda-digital-objects/lockdrop.md)
+* [Merkle-Airdrop](andromeda-digital-objects/merkle-airdrop.md)
+* [NFT Offers](andromeda-digital-objects/nft-offers.md)
+* [NFT Staking](andromeda-digital-objects/nft-staking.md)
+* [NFT Timelock](andromeda-digital-objects/nft-timelock.md)
+* [Primitive](andromeda-digital-objects/primitive.md)
+* [Rates](andromeda-digital-objects/rates.md)
+* [Rate Limiting Withdrawals](andromeda-digital-objects/rate-limiting-withdrawals.md)
+* [Receipt](andromeda-digital-objects/receipt.md)
+* [Splitter](andromeda-digital-objects/andromeda-splitter.md)
+* [Timelock](andromeda-digital-objects/timelock.md)
+* [Weighted Splitter](andromeda-digital-objects/weighted-splitter.md)
+* [Wrapped-CW721](andromeda-digital-objects/wrapped-cw721.md)
+* [Vault](andromeda-digital-objects/vault.md)
+* [Vesting ADO](andromeda-digital-objects/vesting-ado.md)
 
 ## Modules
 
@@ -46,29 +47,17 @@
 * [Receipt Module](modules/receipt-module/README.md)
 * [Offers Module](modules/offers-module.md)
 
-## Andromeda Hooks
+## Andromeda Apps
 
-* [Hooks](andromeda-hooks/hooks.md)
-
-## Deploying Andromeda Apps
-
-* [Crowdfunding App](deploying-apps.md)
-* [Auctioning App](deploying-andromeda-apps/auctioning-app.md)
-* [Cw-20 Staking App](deploying-andromeda-apps/cw-20-staking-app.md)
-* [Wrapped-NFT App](deploying-andromeda-apps/wrapped-nft-app.md)
+* [Introduction to Apps](andromeda-apps/introduction-to-apps.md)
+* [Crowdfunding App](andromeda-apps/crowdfunding-app.md)
+* [Auctioning App](andromeda-apps/auctioning-app.md)
+* [Cw-20 Staking App](andromeda-apps/cw-20-staking-app.md)
+* [Wrapped-NFT App](andromeda-apps/wrapped-nft-app.md)
 
 ## User Docs
 
 * [User Docs](user-docs.md)
-
-***
-
-* [ADO\_Base](ado\_base/README.md)
-  * [AndrReceive/AndrQuery](ado\_base/andrreceive-andrquery.md)
-* [Common Types](common-types/README.md)
-  * [Recipient](common-types/recipient.md)
-  * [Coin](common-types/coin.md)
-  * [Expiration](common-types/expiration.md)
 
 ## Additional Resources
 
