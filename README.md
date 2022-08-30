@@ -13,7 +13,7 @@ coverY: 0
 
 At their core, these ADOs are a collection of smart contracts that have been designed to work together and are built for scalable interoperability and updating.
 
-Standalone, these contracts serve one strict purpose or none at all, but when combined with other ADOs, they can achieve endless utility. This is where our Apps come into play. Andromeda technology allows bundling multiple ADOs in one App contract to build the project the user desires. All of this and more will be available to do on a friendly user interface with a few clicks.
+Standalone, these contracts serve one strict purpose or none at all, but when combined with other ADOs, they can achieve endless utility. This is where our Apps come into play. Andromeda technology allows bundling multiple ADOs into one App to build the project the user desires. All of this and more will be available to do on a friendly user interface with a few clicks.
 
 We have a very wide variety of ADOs that are expanding on the daily, from very simple escrows to complex Defi contracts.
 

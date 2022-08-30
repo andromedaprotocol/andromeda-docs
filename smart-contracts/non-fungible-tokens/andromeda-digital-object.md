@@ -31,7 +31,7 @@ pub struct InstantiateMsg {
     "name": "Example Token",
     "symbol": "ET",
     "minter":{
-        "addr":"juno1..."
+        "identifier":"juno1..."
         },
    "modules": [
         {

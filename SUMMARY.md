@@ -25,10 +25,10 @@
   * [Timelock](smart-contracts/finance/timelock.md)
   * [Vesting ADO](smart-contracts/finance/vesting-ado.md)
   * [Weighted Splitter](smart-contracts/finance/weighted-splitter.md)
-* [Ecosystem](smart-contracts/ecosystem/README.md)
-  * [Vault](smart-contracts/ecosystem/vault.md)
 * [Data Storage](smart-contracts/data-storage/README.md)
   * [Primitive](smart-contracts/data-storage/primitive.md)
+* [Ecosystem](smart-contracts/ecosystem/README.md)
+  * [Vault](smart-contracts/ecosystem/vault.md)
 * [Modules](smart-contracts/modules/README.md)
   * [Address List](smart-contracts/modules/address-list.md)
   * [NFT Offers](smart-contracts/modules/nft-offers.md)
@@ -37,12 +37,6 @@
 * [Andromeda Apps](smart-contracts/andromeda-apps/README.md)
   * [App](smart-contracts/andromeda-apps/app.md)
   * [Factory](smart-contracts/andromeda-apps/andromeda-factory.md)
-* [Pending](smart-contracts/pending/README.md)
-  * [Anchor Earn](smart-contracts/pending/anchor-earn.md)
-  * [Anchor Lend](smart-contracts/pending/anchor-lend.md)
-  * [Astroport](smart-contracts/pending/astroport.md)
-  * [Mirror](smart-contracts/pending/mirror.md)
-  * [Swapper](smart-contracts/ecosystem/swapper.md)
 
 ## Modules
 
