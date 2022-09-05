@@ -19,11 +19,11 @@ pub struct Module {
 }
 ```
 
-| Name          | Type                                                                           | Description                                                                                                     |
-| ------------- | ------------------------------------------------------------------------------ | --------------------------------------------------------------------------------------------------------------- |
-| `module_type` | String                                                                         | The name of the module to add. Can be set one of the following: "rates", "offers", "address\_list", "receipt" . |
-| `address`     | [AndrAddress](../platform-and-framework/common-types/recipient.md#andraddress) | How to instantiate the module.                                                                                  |
-| `is_mutable`  | bool                                                                           | Whether the module can be later modified or not.                                                                |
+| Name          | Type                                                    | Description                                                                                                    |
+| ------------- | ------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------- |
+| `module_type` | String                                                  | The name of the module to add. Can be set one of the following: "rates", "offers", "address-list", "receipt" . |
+| `address`     | [AndrAddress](../common-types/recipient.md#andraddress) | How to instantiate the module.                                                                                 |
+| `is_mutable`  | bool                                                    | Whether the module can be later modified or not.                                                               |
 
 {% hint style="warning" %}
 Any ADO that can implement modules uses this `Module` struct in its instantiation  to add the modules to the ADO.&#x20;
@@ -91,7 +91,7 @@ pub enum AndromedaQuery {
 ```
 
 {% hint style="info" %}
-More details about each of these messages can be found in [AndrReceive/AndrQuery](../platform-and-framework/ado\_base.md#modules)
+More details about each of these messages can be found in [AndrReceive/AndrQuery](../ado\_base/andrreceive-andrquery.md#modules)
 {% endhint %}
 
 ### Validating Modules

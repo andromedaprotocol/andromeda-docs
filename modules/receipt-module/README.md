@@ -25,7 +25,7 @@ pub struct InstantiateMsg {
 | -------- | ------ | -------------------------------------------- |
 | `minter` | String | The address authorized to mint new receipts. |
 
-More information on the Receipt contract can be found [here](../../andromeda-digital-objects/receipt.md).
+More information on the Receipt contract can be found [here](../../smart-contracts/modules/receipt-contract.md).
 
 ## Hooks
 

@@ -43,7 +43,7 @@ pub struct RateInfo {
     pub rate: Rate,
     pub is_additive: bool,
     pub description: Option<String>,
-    pub receivers: Vec<Recipient>,
+    pub recipients: Vec<Recipient>,
 }
 ```
 
@@ -52,9 +52,9 @@ pub struct RateInfo {
 | `rate`        | Rate            | The type of rate being taken.                                                                        |
 | `is_additive` | bool            | An indicator to whether the rate being taken is tax or royalty. If tax `is_additive` is set to true. |
 | `description` | Option\<String> | Optional description for the rate.                                                                   |
-| `receivers`   | Vec\<Recipient> | The addresses to receive the `rate` specified.                                                       |
+| `recipients`  | Vec\<Recipient> | The addresses to receive the `rate` specified.                                                       |
 
-More information on the Rates contract can be found [here](../andromeda-digital-objects/rates.md).
+More information on the Rates contract can be found [here](../smart-contracts/modules/rates.md).
 
 ## Hooks
 
