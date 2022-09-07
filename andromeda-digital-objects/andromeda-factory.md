@@ -81,7 +81,7 @@ pub enum QueryMsg {
 {% tab title="JSON" %}
 ```javascript
 {
-    "code_ids": {
+    "code_id": {
     "key": "..."
     }
 }
