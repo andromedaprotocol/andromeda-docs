@@ -26,10 +26,6 @@ pub struct InstantiateMsg {}
 {% endtab %}
 {% endtabs %}
 
-| Name        | Type         | Description                                                                      |
-| ----------- | ------------ | -------------------------------------------------------------------------------- |
-| `operators` | Vec\<String> | A vector containing the addresses to be assigned as operators over the contract. |
-
 ## ExecuteMsg
 
 ### SetValue
