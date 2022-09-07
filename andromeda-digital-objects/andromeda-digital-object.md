@@ -420,7 +420,7 @@ pub enum ExecuteMsg {
 ```javascript
 {
     "burn": {
-        "token_id": "anewtoken",
+        "token_id": "anewtoken"
     }
 }
 ```
@@ -456,7 +456,7 @@ pub enum ExecuteMsg {
 ```javascript
 {
     "archive": {
-        "token_id": "anewtoken",
+        "token_id": "anewtoken"
     }
 }
 ```
@@ -493,7 +493,7 @@ pub enum ExecuteMsg {
 {
     "approve": {
         "spender": "juno1...",
-        "token_id": "anewtoken",
+        "token_id": "anewtoken"
     }
 }
 ```

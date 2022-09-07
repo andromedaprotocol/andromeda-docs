@@ -233,7 +233,7 @@ pub enum ExecuteMsg {
  "send":{
     "contract":"juno1...",
     "amount":"100",
-    "msg": null
+    "msg":""
     }
  }
 ```
@@ -432,7 +432,7 @@ The `msg` should be base64 encoded and not raw binary.
     "owner":"juno1...",
     "contract":"juno1...",
     "amount":"100",
-    "msg": null
+    "msg": ""
     }
  }
 ```
@@ -508,7 +508,7 @@ UpdateMarketing {
 ```json
 {
  "update_marketing":{
-  "project":"http..."
+  "project":"http...",
   "marketing":"juno1..."
     }
  }
@@ -885,7 +885,7 @@ Returns all the addresses that have a balance.
 ```json
 {
 "all_accounts":{
- "limit": 25
+    "limit": 25
 }
 ```
 {% endtab %}

@@ -27,7 +27,7 @@ pub struct InstantiateMsg {
 {% tab title="JSON" %}
 ```javascript
 {
-    "minter": "juno1...",
+    "minter": "juno1..."
 }
 ```
 {% endtab %}
@@ -72,7 +72,7 @@ pub enum ExecuteMsg {
                     "attributes": [
                         {
                             "key": "payment",
-                            "value": "juno1...<100uluna",
+                            "value": "juno1...<100uluna"
                         },
                         ...
                     ]
@@ -135,7 +135,7 @@ pub enum ExecuteMsg {
                     "attributes": [
                         {
                             "key": "payment",
-                            "value": "juno1...<100uluna",
+                            "value": "juno1...<100uluna"
                         },
                         ...
                     ]

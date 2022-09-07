@@ -190,8 +190,8 @@ Returns the rates used by the contract in a vector of `RateInfo`.
 {% tab title="Rust" %}
 ```rust
 pub enum QueryMsg{
-Payments {}
-}
+    Payments {}
+ }
 ```
 {% endtab %}
 

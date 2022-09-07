@@ -284,7 +284,7 @@ Ends the sale. In the case that the minimum sold is not achieved, refunds are se
 {
 "end_sale":{
   "limit": 200
-  }
+    }
  }
 ```
 {% endtab %}
@@ -348,7 +348,7 @@ pub struct State {
 ```json
 {
  "expiration":{
-  "at_height": 550,
+  "at_height": 550
   },
   "price":{
     "denom":"uusd",
@@ -360,7 +360,7 @@ pub struct State {
   "amount_to_send":"100000",
   "amount_transferred":"300",
   "recipient":{
-  "addr":"juno1..."
+    "addr":"juno1..."
   }
 }
 ```

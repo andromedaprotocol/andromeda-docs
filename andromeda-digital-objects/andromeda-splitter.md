@@ -38,7 +38,7 @@ pub struct InstantiateMsg {
     "recipients": [
                {
                 "recipient":{
-                    "addr":"juno1...", 
+                    "addr":"juno1..."
                 },
                 "percent":"0.2"
      },
@@ -49,7 +49,7 @@ pub struct InstantiateMsg {
         {
           "module_type": "address_list",
           "address": {
-             "identifier": "my_address_list",
+             "identifier": "my_address_list"
           },
           "is_mutable": true
         },
@@ -270,8 +270,8 @@ pub struct GetSplitterConfigResponse {
             {
                 "recipient":
                 { 
-                "juno1..."
-                },
+                    "juno1..."
+                    },
                 "percent": "0.5"
             },
             ...
