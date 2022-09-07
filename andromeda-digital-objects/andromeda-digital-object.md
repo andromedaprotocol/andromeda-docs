@@ -382,7 +382,7 @@ pub enum ExecuteMsg {
     "send_nft": {
         "contract": "juno1...",
         "token_id": "anewtoken",
-        "msg": null
+        "msg":""
     }
 }
 ```
@@ -494,7 +494,6 @@ pub enum ExecuteMsg {
     "approve": {
         "spender": "juno1...",
         "token_id": "anewtoken",
-        "expires": null
     }
 }
 ```
