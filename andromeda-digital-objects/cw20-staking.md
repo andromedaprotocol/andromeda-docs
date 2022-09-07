@@ -76,10 +76,10 @@ pub struct InstantiateMsg {
 {% endtab %}
 {% endtabs %}
 
-| Name                 | Type                                                       | Description                                                                                                                                                               |
-| -------------------- | ---------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `staking_token`      | [AndrAddress](../../common-types/recipient.md#andraddress) | The cw20 token that can be staked                                                                                                                                         |
-| `additional_rewards` | Option\<Vec\<RewardTokenUnchecked>>                        | Any rewards in addition to the staking token. This list cannot include the staking token since it is used as a reward by default. Can have a maximum of 10 reward tokens. |
+| Name                 | Type                                                                           | Description                                                                                                                                                               |
+| -------------------- | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `staking_token`      | [AndrAddress](../platform-and-framework/common-types/recipient.md#andraddress) | The cw20 token that can be staked                                                                                                                                         |
+| `additional_rewards` | Option\<Vec\<RewardTokenUnchecked>>                                            | Any rewards in addition to the staking token. This list cannot include the staking token since it is used as a reward by default. Can have a maximum of 10 reward tokens. |
 
 #### RewardTokenUnchecked
 
@@ -286,7 +286,7 @@ pub enum ExecuteMsg {
 
 ### AndrReceive
 
-Check [AndrReceive](../../ado\_base/andrreceive-andrquery.md#andrrecieve).
+Check [AndrReceive](../platform-and-framework/ado\_base.md#andrrecieve).
 
 ## QueryMsg
 
@@ -338,10 +338,10 @@ pub struct Config {
 {% endtab %}
 {% endtabs %}
 
-| Name                      | Type                                                       | Description                                                           |
-| ------------------------- | ---------------------------------------------------------- | --------------------------------------------------------------------- |
-| `staking_token`           | [AndrAddress](../../common-types/recipient.md#andraddress) | The token accepted for staking.                                       |
-| `number_of_reward_tokens` | u32                                                        | The current number of reward tokens, cannot exceed the maximum of 10. |
+| Name                      | Type                                                                           | Description                                                           |
+| ------------------------- | ------------------------------------------------------------------------------ | --------------------------------------------------------------------- |
+| `staking_token`           | [AndrAddress](../platform-and-framework/common-types/recipient.md#andraddress) | The token accepted for staking.                                       |
+| `number_of_reward_tokens` | u32                                                                            | The current number of reward tokens, cannot exceed the maximum of 10. |
 
 ### State
 
@@ -520,4 +520,4 @@ Returns a u64 with the current timestamp in seconds.
 
 ### AndrQuery
 
-Check [AndrQuery](../../ado\_base/andrreceive-andrquery.md#andrquery).
+Check [AndrQuery](../platform-and-framework/ado\_base.md#andrquery).

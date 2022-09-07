@@ -8,7 +8,7 @@ description: >-
 
 ## Definition
 
-The `Receipt` module creates a [receipt ](broken-reference)contract to generate receipts that store the events activity.
+The `Receipt` module creates a [receipt ](../../andromeda-digital-objects/receipt.md)contract to generate receipts that store the events activity.
 
 ### InstantiateMsg
 
@@ -25,7 +25,7 @@ pub struct InstantiateMsg {
 | -------- | ------ | -------------------------------------------- |
 | `minter` | String | The address authorized to mint new receipts. |
 
-More information on the Receipt contract can be found [here](../../smart-contracts/modules/receipt-contract.md).
+More information on the Receipt contract can be found [here](../../andromeda-digital-objects/receipt.md).
 
 ## Hooks
 

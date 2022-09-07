@@ -256,7 +256,7 @@ pub enum ExecuteMsg {
 
 ### AndrReceive
 
-Check [AndrReceive](../../ado\_base/andrreceive-andrquery.md#andrrecieve).
+Check [AndrReceive](../../platform-and-framework/ado\_base.md#andrrecieve).
 
 ## QueryMsg
 
@@ -447,4 +447,4 @@ Returns a number of type Decimal representing the percentage allowed to withdraw
 
 ### AndrQuery
 
-Check [AndrQuery](../../ado\_base/andrreceive-andrquery.md#andrquery).
+Check [AndrQuery](../../platform-and-framework/ado\_base.md#andrquery).

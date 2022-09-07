@@ -8,7 +8,7 @@ description: A contract to facilitate the buying and selling of ADOs.
 
 The ADO **Offers** is a smart contract used to buy/sell NFT tokens. It allows users to place offers on a certain token which can then be accepted by the seller if satisfied. Once an offer is placed, funds are allocated for the purchase until the offer is expired, accepted, canceled, or a higher offer has been made.
 
-The ADO Offers contract is not built to work as a standalone contract, instead it is implemented as a [module](../../modules/offers-module.md) for the NFT Collectible ADO facilitating the process of trading NFTs.&#x20;
+The ADO Offers contract is not built to work as a standalone contract, instead it is implemented as a [module](../modules/offers-module.md) for the NFT Collectible ADO facilitating the process of trading NFTs.&#x20;
 
 **Ado\_type**: cw721-offers
 
@@ -82,11 +82,11 @@ pub enum ExecuteMsg{
 {% endtab %}
 {% endtabs %}
 
-| Name           | Type                                           | Description                                  |
-| -------------- | ---------------------------------------------- | -------------------------------------------- |
-| `token_id`     | String                                         | The token id of the token/NFT to buy.        |
-| `expiration`   | [Expiration](../../common-types/expiration.md) | An expiration for the offer.                 |
-| `offer_amount` | Uint128                                        | The amount of funds to offer for the token.  |
+| Name           | Type                                                               | Description                                  |
+| -------------- | ------------------------------------------------------------------ | -------------------------------------------- |
+| `token_id`     | String                                                             | The token id of the token/NFT to buy.        |
+| `expiration`   | [Expiration](../platform-and-framework/common-types/expiration.md) | An expiration for the offer.                 |
+| `offer_amount` | Uint128                                                            | The amount of funds to offer for the token.  |
 
 ### CancelOffer
 
@@ -125,7 +125,7 @@ Accepts an offer that is placed on your NFT.&#x20;
 {% hint style="warning" %}
 Only the `andromeda_cw721_contract` can accept offers.
 
-Cannot accept an offer that has a current [TransferAgreement](../non-fungible-tokens/andromeda-digital-object.md#transferagreement-1).
+Cannot accept an offer that has a current [TransferAgreement](andromeda-digital-object.md#transferagreement-1).
 {% endhint %}
 
 {% tabs %}
@@ -224,14 +224,14 @@ pub struct OfferResponse {
 {% endtab %}
 {% endtabs %}
 
-| Name               | Type                                           | Description                                                                           |
-| ------------------ | ---------------------------------------------- | ------------------------------------------------------------------------------------- |
-| `denom`            | String                                         | The denomination of the coin being offered.                                           |
-| `offer_amount`     | Uint128                                        | The amount of coins offered.                                                          |
-| `remaining_amount` | Uint128                                        | The amount left after any royalties or taxes have been applied to the `offer_amount`. |
-| `tax_amount`       | Uint128                                        | The amount of coins taken as tax.                                                     |
-| `expiration`       | [Expiration](../../common-types/expiration.md) | Expiration for the offer.                                                             |
-| `purchaser`        | String                                         | The address that has placed the offer                                                 |
+| Name               | Type                                                               | Description                                                                           |
+| ------------------ | ------------------------------------------------------------------ | ------------------------------------------------------------------------------------- |
+| `denom`            | String                                                             | The denomination of the coin being offered.                                           |
+| `offer_amount`     | Uint128                                                            | The amount of coins offered.                                                          |
+| `remaining_amount` | Uint128                                                            | The amount left after any royalties or taxes have been applied to the `offer_amount`. |
+| `tax_amount`       | Uint128                                                            | The amount of coins taken as tax.                                                     |
+| `expiration`       | [Expiration](../platform-and-framework/common-types/expiration.md) | Expiration for the offer.                                                             |
+| `purchaser`        | String                                                             | The address that has placed the offer                                                 |
 
 ### AllOffers
 

@@ -39,11 +39,11 @@ pub struct InstantiateMsg {
 {% endtab %}
 {% endtabs %}
 
-| Name               | Type                               | Description                                                                                |
-| ------------------ | ---------------------------------- | ------------------------------------------------------------------------------------------ |
-| nft\_contract      | Vec\<String>                       | The contract addresses of the NFT contracts that can stake their NFTs using this contract. |
-| `unbonding_period` | u64                                | The unbonding period (time to unstake) of the NFTs in seconds.                             |
-| `reward`           | [Coin](../../common-types/coin.md) | The rewards to be distributed per second.                                                  |
+| Name               | Type                                                   | Description                                                                                |
+| ------------------ | ------------------------------------------------------ | ------------------------------------------------------------------------------------------ |
+| nft\_contract      | Vec\<String>                                           | The contract addresses of the NFT contracts that can stake their NFTs using this contract. |
+| `unbonding_period` | u64                                                    | The unbonding period (time to unstake) of the NFTs in seconds.                             |
+| `reward`           | [Coin](../platform-and-framework/common-types/coin.md) | The rewards to be distributed per second.                                                  |
 
 ## ExecuteMsg
 
@@ -285,7 +285,7 @@ pub enum ExecuteMsg {
 
 ### AndrReceive
 
-Check [AndrReceive](../../ado\_base/andrreceive-andrquery.md#andrrecieve).
+Check [AndrReceive](../platform-and-framework/ado\_base.md#andrrecieve).
 
 ## QueryMsg
 
@@ -352,15 +352,15 @@ pub struct StakedNft {
 {% endtab %}
 {% endtabs %}
 
-| Name                | Type                                       | Description                                               |
-| ------------------- | ------------------------------------------ | --------------------------------------------------------- |
-| `owner`             | String                                     | The owner of the token.                                   |
-| `id`                | String                                     | The token id.                                             |
-| `contract_address`  | String                                     | The NFT contract address.                                 |
-| `time_of_staking`   | Timestamp                                  | The time of staking. Epoch time in seconds.               |
-| `time_of_unbonding` | Option\<Timestamp>                         | Optional time of unbonding if the NFT has been unstaked.  |
-| `rewards`           | [Coin](../../common-types/coin.md)         | The rewards being distributed per second.                 |
-| `accrued_reward`    | Option<[Coin](../../common-types/coin.md)> | The amount of rewards accumulated from staking.           |
+| Name                | Type                                                           | Description                                               |
+| ------------------- | -------------------------------------------------------------- | --------------------------------------------------------- |
+| `owner`             | String                                                         | The owner of the token.                                   |
+| `id`                | String                                                         | The token id.                                             |
+| `contract_address`  | String                                                         | The NFT contract address.                                 |
+| `time_of_staking`   | Timestamp                                                      | The time of staking. Epoch time in seconds.               |
+| `time_of_unbonding` | Option\<Timestamp>                                             | Optional time of unbonding if the NFT has been unstaked.  |
+| `rewards`           | [Coin](../platform-and-framework/common-types/coin.md)         | The rewards being distributed per second.                 |
+| `accrued_reward`    | Option<[Coin](../platform-and-framework/common-types/coin.md)> | The amount of rewards accumulated from staking.           |
 
 ### AllowedContracts
 
@@ -435,8 +435,8 @@ pub enum QueryMsg {
 {% endtab %}
 {% endtabs %}
 
-Returns a type [Coin](../../common-types/coin.md) with the amount and denom of the reward being distributed per second.
+Returns a type [Coin](../platform-and-framework/common-types/coin.md) with the amount and denom of the reward being distributed per second.
 
 ### AndrQuery
 
-Check [AndrQuery](../../ado\_base/andrreceive-andrquery.md#andrquery).
+Check [AndrQuery](../platform-and-framework/ado\_base.md#andrquery).

@@ -8,7 +8,7 @@ description: An ADO contract to mint, edit and query receipts containing event d
 
 The **Receipt** ADO is a smart contract that is used to print receipts for transactions done by our ADOs.&#x20;
 
-This contract is implemented as a [module](../../modules/receipt-module/) and added to ADOs that implement modules.  When we have some transfer of funds, the receipt contract is automatically called and the `events` of the transaction are saved in the `Receipt` struct.
+This contract is implemented as a [module](../modules/receipt-module/) and added to ADOs that implement modules.  When we have some transfer of funds, the receipt contract is automatically called and the `events` of the transaction are saved in the `Receipt` struct.
 
 **Ado\_type**: receipt
 
@@ -86,9 +86,9 @@ pub enum ExecuteMsg {
 {% endtab %}
 {% endtabs %}
 
-| Name      | Type                                     | Description           |
-| --------- | ---------------------------------------- | --------------------- |
-| `receipt` | [Receipt](receipt-contract.md#receipt-1) | The receipt to store. |
+| Name      | Type                            | Description           |
+| --------- | ------------------------------- | --------------------- |
+| `receipt` | [Receipt](receipt.md#receipt-1) | The receipt to store. |
 
 #### Receipt
 
@@ -149,14 +149,14 @@ pub enum ExecuteMsg {
 {% endtab %}
 {% endtabs %}
 
-| Name         | Type                                     | Description                    |
-| ------------ | ---------------------------------------- | ------------------------------ |
-| `receipt`    | [Receipt](receipt-contract.md#receipt-1) | The receipt to edit.           |
-| `receipt_id` | Uint128                                  | The ID of the receipt to edit. |
+| Name         | Type                            | Description                    |
+| ------------ | ------------------------------- | ------------------------------ |
+| `receipt`    | [Receipt](receipt.md#receipt-1) | The receipt to edit.           |
+| `receipt_id` | Uint128                         | The ID of the receipt to edit. |
 
 ### AndrReceive
 
-Check [AndrReceive](../../ado\_base/andrreceive-andrquery.md).
+Check [AndrReceive](../platform-and-framework/ado\_base.md).
 
 ## QueryMsg
 
@@ -227,9 +227,9 @@ pub struct ReceiptResponse {
 {% endtab %}
 {% endtabs %}
 
-| Name      | Type                                     | Description       |
-| --------- | ---------------------------------------- | ----------------- |
-| `receipt` | [Receipt](receipt-contract.md#receipt-1) | The receipt data. |
+| Name      | Type                            | Description       |
+| --------- | ------------------------------- | ----------------- |
+| `receipt` | [Receipt](receipt.md#receipt-1) | The receipt data. |
 
 ### ContractInfo
 
@@ -291,4 +291,4 @@ pub struct ContractInfoResponse {
 
 ### AndrQuery
 
-Check[ AndrQuery](../../ado\_base/andrreceive-andrquery.md#andromedaquery).
+Check[ AndrQuery](../platform-and-framework/ado\_base.md#andromedaquery).

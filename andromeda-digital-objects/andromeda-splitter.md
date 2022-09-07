@@ -62,7 +62,7 @@ pub struct InstantiateMsg {
 
 | Name         | Type                                                        | Description                                                                       |
 | ------------ | ----------------------------------------------------------- | --------------------------------------------------------------------------------- |
-| `Modules`    | Option<[Module](../../modules/module-definitions.md)>       | An optional vector of Andromeda Modules.  "address\_list" module can be added.    |
+| `Modules`    | Option<[Module](../modules/module-definitions.md)>          | An optional vector of Andromeda Modules.  "address\_list" module can be added.    |
 | `lock_time`  | Option\<u64>                                                | How long the splitter is locked. When locked, no recipients can be added/changed. |
 | `recipients` | Vec<[AddressPercent](andromeda-splitter.md#addresspercent)> | The recipient list of the splitter. Can be updated after instantiation.           |
 
@@ -105,7 +105,7 @@ To be a valid recipient list the array of `AddressPercent` structs must meet the
 * Have percentage amounts less than or equaling 1
 {% endhint %}
 
-Read more about the recipient struct [here](../../common-types/recipient.md).
+Read more about the recipient struct [here](../platform-and-framework/common-types/recipient.md).
 
 ## ExecuteMsg
 
@@ -224,7 +224,7 @@ pub enum ExecuteMsg {
 Uses the modules feature.
 {% endhint %}
 
-Check [AndrReceive](../../ado\_base/andrreceive-andrquery.md).
+Check [AndrReceive](../platform-and-framework/ado\_base.md).
 
 ## QueryMsg
 
@@ -309,4 +309,4 @@ pub struct Splitter {
 
 ### AndrQuery
 
-Check[ AndrQuery](../../ado\_base/andrreceive-andrquery.md#andrquery).
+Check[ AndrQuery](../platform-and-framework/ado\_base.md#andrquery).

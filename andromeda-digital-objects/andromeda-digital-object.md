@@ -4,7 +4,7 @@
 
 The **NFT Collectible** ADO is a smart contract to allow users to launch their own custom NFT projects. In addition to the standard CW721 messages, we have added some custom logic to further extend the utility and function of the contract.&#x20;
 
-It supports the use of all our [modules ](../../modules/module-definitions.md#module-definitions)that can be attached to the contract upon instantiation and modified to satisfy the project needs. The [Offers](../../modules/offers-module.md) Module is specifically created to work with this contract to facilitate the process of buying/selling the tokens.
+It supports the use of all our [modules ](../modules/module-definitions.md#module-definitions)that can be attached to the contract upon instantiation and modified to satisfy the project needs. The [Offers](../modules/offers-module.md) Module is specifically created to work with this contract to facilitate the process of buying/selling the tokens.
 
 In addition to the offers module, the contract has implemented a custom `TransferAgreement` message to allow the buying/selling of tokens between two parties if the user does not want to add the offers module.
 
@@ -51,12 +51,12 @@ pub struct InstantiateMsg {
 {% endtab %}
 {% endtabs %}
 
-| Name      | Type                                                       | Description                                                                                                  |
-| --------- | ---------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------ |
-| `name`    | String                                                     | The name of the token. Has to be between 3 and 30 characters.                                                |
-| `symbol`  | String                                                     | The symbol of the token.                                                                                     |
-| `minter`  | [AndrAddress](../../common-types/recipient.md#andraddress) | The address of the token minter.                                                                             |
-| `modules` | Option\<Vec<[Module](broken-reference)>>                   | An optional vector of Andromeda Modules. "rates", "offers", "address\_list", "receipt" modules can be added. |
+| Name      | Type                                                                           | Description                                                                                                  |
+| --------- | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------ |
+| `name`    | String                                                                         | The name of the token. Has to be between 3 and 30 characters.                                                |
+| `symbol`  | String                                                                         | The symbol of the token.                                                                                     |
+| `minter`  | [AndrAddress](../platform-and-framework/common-types/recipient.md#andraddress) | The address of the token minter.                                                                             |
+| `modules` | Option\<Vec<[Module](broken-reference)>>                                       | An optional vector of Andromeda Modules. "rates", "offers", "address\_list", "receipt" modules can be added. |
 
 ## ExecuteMsg
 
@@ -280,10 +280,10 @@ pub struct TransferAgreement {
 }
 ```
 
-| Name        | Type                                      | Description                                                               |
-| ----------- | ----------------------------------------- | ------------------------------------------------------------------------- |
-| `amount`    | Value<[Coin](../../common-types/coin.md)> | The amount required for the purchaser to transfer ownership of the token. |
-| `purchaser` | String                                    | The address of the purchaser.                                             |
+| Name        | Type                                                          | Description                                                               |
+| ----------- | ------------------------------------------------------------- | ------------------------------------------------------------------------- |
+| `amount`    | Value<[Coin](../platform-and-framework/common-types/coin.md)> | The amount required for the purchaser to transfer ownership of the token. |
+| `purchaser` | String                                                        | The address of the purchaser.                                             |
 
 #### `Value<T>`
 
@@ -313,10 +313,10 @@ pub struct PrimitivePointer {
 }
 ```
 
-| Name      | Type                                                       | Description                            |
-| --------- | ---------------------------------------------------------- | -------------------------------------- |
-| `address` | [AndrAddress](../../common-types/recipient.md#andraddress) | The address of the primitive contract. |
-| `key`     | Option\<String>                                            | The optional key for the stored data.  |
+| Name      | Type                                                                           | Description                            |
+| --------- | ------------------------------------------------------------------------------ | -------------------------------------- |
+| `address` | [AndrAddress](../platform-and-framework/common-types/recipient.md#andraddress) | The address of the primitive contract. |
+| `key`     | Option\<String>                                                                | The optional key for the stored data.  |
 
 ### TransferNft
 
@@ -501,11 +501,11 @@ pub enum ExecuteMsg {
 {% endtab %}
 {% endtabs %}
 
-| Name       | Type                                                   | Description                                                        |
-| ---------- | ------------------------------------------------------ | ------------------------------------------------------------------ |
-| `spender`  | String                                                 | The address to be authorised as an operator                        |
-| `token_id` | String                                                 | The id of the ADO for which to assign the `spender` as an operator |
-| `expires`  | Option<[Expiration](../../common-types/expiration.md)> | An optional expiration for the approval                            |
+| Name       | Type                                                                       | Description                                                        |
+| ---------- | -------------------------------------------------------------------------- | ------------------------------------------------------------------ |
+| `spender`  | String                                                                     | The address to be authorised as an operator                        |
+| `token_id` | String                                                                     | The id of the ADO for which to assign the `spender` as an operator |
+| `expires`  | Option<[Expiration](../platform-and-framework/common-types/expiration.md)> | An optional expiration for the approval                            |
 
 ### Revoke
 
@@ -578,10 +578,10 @@ pub enum ExecuteMsg {
 {% endtab %}
 {% endtabs %}
 
-| Name       | Type                                                   | Description                                 |
-| ---------- | ------------------------------------------------------ | ------------------------------------------- |
-| `operator` | String                                                 | The address to be authorised as an operator |
-| `expires`  | Option<[Expiration](../../common-types/expiration.md)> | An optional expiration for the approval     |
+| Name       | Type                                                                       | Description                                 |
+| ---------- | -------------------------------------------------------------------------- | ------------------------------------------- |
+| `operator` | String                                                                     | The address to be authorised as an operator |
+| `expires`  | Option<[Expiration](../platform-and-framework/common-types/expiration.md)> | An optional expiration for the approval     |
 
 ### RevokeAll
 
@@ -609,74 +609,9 @@ pub enum ExecuteMsg {
 {% endtab %}
 {% endtabs %}
 
-| Name       | Type   | Description                                                |
-| ---------- | ------ | ---------------------------------------------------------- |
-| `operator` | String | The address of the operator for which to revoke privileges |
-
-### TransferAgreement
-
-Allows a token owner to generate a transfer agreement for an owned token. This agreement allows the purchaser to transfer ownership of the token provided the correct funds are provided in a `TransferNft` message from the purchaser. The current owner of the token will receive the sent funds minus any required financial payments assigned to the contract via modules.
-
-{% hint style="warning" %}
-Will overwrite any current transfer agreement for the token.
-
-Only available to the token owner.
-{% endhint %}
-
-{% tabs %}
-{% tab title="Rust" %}
-```rust
-pub enum ExecuteMsg {
-    TransferAgreement {
-        token_id: String,
-        agreement:Option<TransferAgreement>,
-    }
-}
-```
-{% endtab %}
-
-{% tab title="JSON" %}
-```javascript
-{
-"transfer_agreement": {
-      "token_id": "anewtoken",
-      "agreement":{
-          "amount":{
-            "raw":{
-                   "denom":"uusd",
-                   "amount":"100000"
-           }
-   },
-           "purchaser":"juno1..."
-           }
-    }
-}
-
-or
-
-{
-"transfer_agreement": {
-      "token_id": "anewtoken",
-      "agreement":{
-          "amount":{
-            "pointer":{
-                   "address":"juno1...",
-                   "key":"price"
-           }
-   },
-           "purchaser":"juno1..."
-           }
-    }
-}
-
-```
-{% endtab %}
-{% endtabs %}
-
-| Name        | Type                                                                       | Description                                                     |
-| ----------- | -------------------------------------------------------------------------- | --------------------------------------------------------------- |
-| `token_id`  | String                                                                     | The id of the token for which the agreement is made.            |
-| `agreement` | Option<[TransferAgreement](andromeda-digital-object.md#transferagreement)> | See [TransferAgreement](andromeda-digital-object.md#undefined). |
+| Name       | Type   | Description                                                 |
+| ---------- | ------ | ----------------------------------------------------------- |
+| `operator` | String | The address of the operator for which to revoke privileges. |
 
 ### AndrReceive
 
@@ -684,7 +619,7 @@ or
 Uses the modules feature.
 {% endhint %}
 
-Check [AndrReceive](../../ado\_base/andrreceive-andrquery.md).
+Check [AndrReceive](../platform-and-framework/ado\_base.md).
 
 ## QueryMsg
 
@@ -796,10 +731,10 @@ pub struct Approval {
 }
 ```
 
-| Name      | Type                                           | Description                      |
-| --------- | ---------------------------------------------- | -------------------------------- |
-| `spender` | String                                         | The address that is approved.    |
-| `expires` | [Expiration](../../common-types/expiration.md) | The expiration for the approval. |
+| Name      | Type                                                               | Description                      |
+| --------- | ------------------------------------------------------------------ | -------------------------------- |
+| `spender` | String                                                             | The address that is approved.    |
+| `expires` | [Expiration](../platform-and-framework/common-types/expiration.md) | The expiration for the approval. |
 
 ### AllOperators
 
@@ -1264,7 +1199,7 @@ pub struct CotractInfoResponse {
 | `name`   | String | The name of the contract.            |
 | `symbol` | String | The assigned symbol of the contract. |
 
-The rest of the base Queries are found in [AndrQuery](../../ado\_base/andrreceive-andrquery.md).
+The rest of the base Queries are found in [AndrQuery](../platform-and-framework/ado\_base.md).
 
 
 
@@ -1338,10 +1273,10 @@ pub struct Approval {
 }
 ```
 
-| Name      | Type                                           | Description                                            |
-| --------- | ---------------------------------------------- | ------------------------------------------------------ |
-| `spender` | String                                         | Account that can transfer/send the token               |
-| `expires` | [Expiration](../../common-types/expiration.md) | When the Approval expires. Might be Expiration::never. |
+| Name      | Type                                                               | Description                                            |
+| --------- | ------------------------------------------------------------------ | ------------------------------------------------------ |
+| `spender` | String                                                             | Account that can transfer/send the token               |
+| `expires` | [Expiration](../platform-and-framework/common-types/expiration.md) | When the Approval expires. Might be Expiration::never. |
 
 ### Approvals
 
@@ -1412,4 +1347,4 @@ pub struct ApprovalsResponse {
 
 ### AndrQuery
 
-Check [AndrQuery](../../ado\_base/andrreceive-andrquery.md#andrquery).
+Check [AndrQuery](../platform-and-framework/ado\_base.md#andrquery).

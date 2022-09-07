@@ -52,14 +52,14 @@ pub enum ExecuteMsg {
 {% endtab %}
 {% endtabs %}
 
-| Name              | Type         | Description                                                                       |
-| ----------------- | ------------ | --------------------------------------------------------------------------------- |
-| `receipt_code_id` | Option\<u64> | Optional new code ID for the [receipt](../modules/receipt-contract.md) contracts. |
-| `token_code_id`   | Option\<u64> | Optional new code ID for the contract.                                            |
+| Name              | Type         | Description                                                   |
+| ----------------- | ------------ | ------------------------------------------------------------- |
+| `receipt_code_id` | Option\<u64> | Optional new code ID for the [receipt](receipt.md) contracts. |
+| `token_code_id`   | Option\<u64> | Optional new code ID for the contract.                        |
 
 ### AndrReceive
 
-Check [AndrReceive](../../ado\_base/andrreceive-andrquery.md).
+Check [AndrReceive](../platform-and-framework/ado\_base.md).
 
 ## QueryMsg
 
@@ -97,4 +97,4 @@ Returns a u64 which represents the `code_id`.
 
 ### AndrQuery
 
-Check [AndrQuery](../../ado\_base/andrreceive-andrquery.md).
+Check [AndrQuery](../platform-and-framework/ado\_base.md).

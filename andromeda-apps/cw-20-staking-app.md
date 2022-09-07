@@ -11,7 +11,7 @@ Factory: **juno1alwx0jf72y366627gavklj6rte6ygdm4kw0ctqjrr4qg4y74h84sdfct3g**
 Registry: **juno144r95jrnk5erqhpuepe5mwz33e5mns7yuyhmxw7fmfx8w0duqwws9qd36x**
 
 {% hint style="warning" %}
-If the current [deployed contracts](../smart-contracts/deployed-contracts.md) are not the same as the ones above, or any of the messages in this example do not work, you might want to cross reference the messages with the ADO classes section which always contains the latest ADO versions to make sure they are correct. Other than that the logic will remain the same.
+If the current [deployed contracts](../platform-and-framework/deployed-contracts.md) are not the same as the ones above, or any of the messages in this example do not work, you might want to cross reference the messages with the ADO classes section which always contains the latest ADO versions to make sure they are correct. Other than that the logic will remain the same.
 {% endhint %}
 
 ### Defining our App
@@ -28,8 +28,8 @@ The steps we will perform:&#x20;
 
 The components/ADOs we would need:
 
-* [Cw-20 token](../smart-contracts/fungible-tokens/cw20-token.md)
-* [Cw-20 staking](../smart-contracts/fungible-tokens/cw20-staking.md)
+* [Cw-20 token](../andromeda-digital-objects/cw20-token.md)
+* [Cw-20 staking](../andromeda-digital-objects/cw20-staking.md)
 
 {% hint style="warning" %}
 Although not necessary, if you are unfamiliar with these ADOs, it is suggested to read through each of the them before deploying an app.&#x20;

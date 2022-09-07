@@ -25,7 +25,7 @@ pub struct InstantiateMsg {
 | -------------- | ---- | ---------------------------------------------------------------------------------------------------------------------------------- |
 | `is_inclusive` | bool | Whether or not the address list is inclusive. If `true` the address list is a whitelist, if false the address list is a blacklist. |
 
-More information about the address list contract can be found [here](../../smart-contracts/modules/address-list.md).
+More information about the address list contract can be found [here](../../andromeda-digital-objects/address-list.md).
 
 ## Hooks
 

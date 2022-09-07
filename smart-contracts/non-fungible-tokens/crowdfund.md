@@ -114,12 +114,12 @@ pub struct CrowdfundMintMsg {
 }
 ```
 
-| Name        | Type                                                         | Description                                                                                                                               |
-| ----------- | ------------------------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------- |
-| `token_id`  | String                                                       | Unique Id of the NFT.                                                                                                                     |
-| `owner`     | Option\<String>                                              | The owner of the newly minted NFT. In order to be included in the sale, the owner must not be specified or set as the crowdfund contract. |
-| `token_uri` | Option\<String>                                              |  Universal resource identifier for this NFT  Should point to a JSON file that conforms to the CW721  Metadata JSON Schema.                |
-| `extension` | [TokenExtension](andromeda-digital-object.md#tokenextension) | Any custom extension used by this contract.                                                                                               |
+| Name        | Type                                                                                         | Description                                                                                                                               |
+| ----------- | -------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------- |
+| `token_id`  | String                                                                                       | Unique Id of the NFT.                                                                                                                     |
+| `owner`     | Option\<String>                                                                              | The owner of the newly minted NFT. In order to be included in the sale, the owner must not be specified or set as the crowdfund contract. |
+| `token_uri` | Option\<String>                                                                              |  Universal resource identifier for this NFT  Should point to a JSON file that conforms to the CW721  Metadata JSON Schema.                |
+| `extension` | [TokenExtension](../../andromeda-digital-objects/andromeda-digital-object.md#tokenextension) | Any custom extension used by this contract.                                                                                               |
 
 ### StartSale
 
@@ -168,13 +168,13 @@ pub enum ExecuteMsg{
 {% endtab %}
 {% endtabs %}
 
-| Name                    | Type                                           | Description                                                       |
-| ----------------------- | ---------------------------------------------- | ----------------------------------------------------------------- |
-| `exiration`             | [Expiration](../../common-types/expiration.md) | When the sale ends.                                               |
-| `price`                 | [Coin](../../common-types/coin.md)             | The price per token.                                              |
-| `min_tokens_sold`       | Uint128                                        | The minimum amount of tokens sold to go through with the sale.    |
-| `max_amount_per_wallet` | Option\<u32>                                   | The amount of tokens a wallet can purchase, default is 1.         |
-| `recipient`             | [Recipient](../../common-types/recipient.md)   | The recipient of the funds if the sale met the `min_tokens_sold`. |
+| Name                    | Type                                                                  | Description                                                       |
+| ----------------------- | --------------------------------------------------------------------- | ----------------------------------------------------------------- |
+| `exiration`             | [Expiration](../../platform-and-framework/common-types/expiration.md) | When the sale ends.                                               |
+| `price`                 | [Coin](../../platform-and-framework/common-types/coin.md)             | The price per token.                                              |
+| `min_tokens_sold`       | Uint128                                                               | The minimum amount of tokens sold to go through with the sale.    |
+| `max_amount_per_wallet` | Option\<u32>                                                          | The amount of tokens a wallet can purchase, default is 1.         |
+| `recipient`             | [Recipient](../../platform-and-framework/common-types/recipient.md)   | The recipient of the funds if the sale met the `min_tokens_sold`. |
 
 ### Purchase
 
@@ -300,7 +300,7 @@ Ends the sale. In the case that the minimum sold is not achieved, refunds are se
 Uses the modules feature.
 {% endhint %}
 
-Check [AndrReceive](../../ado\_base/andrreceive-andrquery.md#andrrecieve).
+Check [AndrReceive](../../platform-and-framework/ado\_base.md#andrrecieve).
 
 ## QueryMsg
 
@@ -367,16 +367,16 @@ pub struct State {
 {% endtab %}
 {% endtabs %}
 
-| Name                    | Type                                           | Description                                                                                                           |
-| ----------------------- | ---------------------------------------------- | --------------------------------------------------------------------------------------------------------------------- |
-| `expiration`            | [Expiration](../../common-types/expiration.md) | The expiration denoting when the sale ends.                                                                           |
-| `price`                 | [Coin](../../common-types/coin.md)             | The price of each token.                                                                                              |
-| `min_tokens_sold`       | Uint128                                        | The minimum number of tokens sold for the sale to go through.                                                         |
-| `max_amount_per_wallet` | u32                                            | The max number of tokens allowed per wallet.                                                                          |
-| `amount_sold`           | Uint128                                        | Number of tokens sold.                                                                                                |
-| `amount_to_send`        | Uint128                                        | The amount of funds to send to recipient if sale successful. This already takes into account the royalties and taxes. |
-| `amount_transferred`    | Uint128                                        | Number of tokens transferred to purchasers if sale was successful.                                                    |
-| `recipient`             | [Recipient](../../common-types/recipient.md)   | The recipient of the raised funds if the sale is successful.                                                          |
+| Name                    | Type                                                                  | Description                                                                                                           |
+| ----------------------- | --------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------- |
+| `expiration`            | [Expiration](../../platform-and-framework/common-types/expiration.md) | The expiration denoting when the sale ends.                                                                           |
+| `price`                 | [Coin](../../platform-and-framework/common-types/coin.md)             | The price of each token.                                                                                              |
+| `min_tokens_sold`       | Uint128                                                               | The minimum number of tokens sold for the sale to go through.                                                         |
+| `max_amount_per_wallet` | u32                                                                   | The max number of tokens allowed per wallet.                                                                          |
+| `amount_sold`           | Uint128                                                               | Number of tokens sold.                                                                                                |
+| `amount_to_send`        | Uint128                                                               | The amount of funds to send to recipient if sale successful. This already takes into account the royalties and taxes. |
+| `amount_transferred`    | Uint128                                                               | Number of tokens transferred to purchasers if sale was successful.                                                    |
+| `recipient`             | [Recipient](../../platform-and-framework/common-types/recipient.md)   | The recipient of the raised funds if the sale is successful.                                                          |
 
 ### Config
 
@@ -493,4 +493,4 @@ Returns a `bool` response specifying whether the token is available for purchase
 
 ### AndrQuery
 
-Check[ AndrQuery](../../ado\_base/andrreceive-andrquery.md#andrquery).
+Check[ AndrQuery](../../platform-and-framework/ado\_base.md#andrquery).

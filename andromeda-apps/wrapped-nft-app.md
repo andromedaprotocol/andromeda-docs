@@ -11,12 +11,12 @@ Factory: **juno1alwx0jf72y366627gavklj6rte6ygdm4kw0ctqjrr4qg4y74h84sdfct3g**
 Registry: **juno144r95jrnk5erqhpuepe5mwz33e5mns7yuyhmxw7fmfx8w0duqwws9qd36x**
 
 {% hint style="warning" %}
-If the current [deployed contracts](../smart-contracts/deployed-contracts.md) are not the same as the ones above, or any of the messages in this example do not work, you might want to cross reference the messages with the ADO classes section which always contains the latest ADO versions to make sure they are correct. Other than that the logic will remain the same.
+If the current [deployed contracts](../platform-and-framework/deployed-contracts.md) are not the same as the ones above, or any of the messages in this example do not work, you might want to cross reference the messages with the ADO classes section which always contains the latest ADO versions to make sure they are correct. Other than that the logic will remain the same.
 {% endhint %}
 
 ### **Defining our App**
 
-For this example, we will be utilizing our [wrapped-nft ADO](../smart-contracts/non-fungible-tokens/wrapped-cw721.md) to wrap a cw721-base nft and leverage the andromeda [TransferAgreement](../smart-contracts/non-fungible-tokens/andromeda-digital-object.md#transferagreement-1) functionality to sell the token.&#x20;
+For this example, we will be utilizing our [wrapped-nft ADO](../andromeda-digital-objects/wrapped-cw721.md) to wrap a cw721-base nft and leverage the andromeda [TransferAgreement](../andromeda-digital-objects/andromeda-digital-object.md#transferagreement-1) functionality to sell the token.&#x20;
 
 {% hint style="info" %}
 We will not build this example using the App contract.
@@ -32,8 +32,8 @@ The steps we will perform:&#x20;
 
 We will need to use the following andromeda contracts in addition to the base-nft contract:
 
-* [Andromeda wrapped-nft ](../smart-contracts/non-fungible-tokens/wrapped-cw721.md)
-* [Andromeda cw721](../smart-contracts/non-fungible-tokens/andromeda-digital-object.md)
+* [Andromeda wrapped-nft ](../andromeda-digital-objects/wrapped-cw721.md)
+* [Andromeda cw721](../andromeda-digital-objects/andromeda-digital-object.md)
 
 ### Instantiating the CW-721 base NFT
 

@@ -131,7 +131,7 @@ If `name` is not specified the default key ("default") will be used.
 
 ### AndrReceive
 
-Check [AndrReceive](../../ado\_base/andrreceive-andrquery.md).
+Check [AndrReceive](../../platform-and-framework/ado\_base.md).
 
 ## QueryMsg
 
@@ -143,7 +143,7 @@ pub enum QueryMsg {
 }
 ```
 
-If the [`AndromedaQuery`](../../ado\_base/andrreceive-andrquery.md#andromedaquery) is of type `Get` , the contract will query the value of the specified key (data). If no data is supplied in the Get, then the contract will query the default key value.
+If the [`AndromedaQuery`](../../platform-and-framework/ado\_base.md#andromedaquery) is of type `Get` , the contract will query the value of the specified key (data). If no data is supplied in the Get, then the contract will query the default key value.
 
 ```rust
 fn handle_andromeda_query(
@@ -165,4 +165,4 @@ fn handle_andromeda_query(
 }
 ```
 
-Check [AndrQuery](../../ado\_base/andrreceive-andrquery.md#andrquery) for the rest of the default queries.
+Check [AndrQuery](../../platform-and-framework/ado\_base.md#andrquery) for the rest of the default queries.

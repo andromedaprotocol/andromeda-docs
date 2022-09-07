@@ -62,11 +62,11 @@ pub struct Cw721Specification {
 }
 ```
 
-| Name      | Type                                                        | Description                                                                                                               |
-| --------- | ----------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------- |
-| `name`    | String                                                      | Name of the NFT.                                                                                                          |
-| `symbol`  | String                                                      | Symbol of the NFT.                                                                                                        |
-| `modules` | Option\<Vec<[Module](../../modules/module-definitions.md)>> | An optional vector of Andromeda Modules. The module definitions can be found[ here](../../modules/module-definitions.md). |
+| Name      | Type                                                     | Description                                                                                                            |
+| --------- | -------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------- |
+| `name`    | String                                                   | Name of the NFT.                                                                                                       |
+| `symbol`  | String                                                   | Symbol of the NFT.                                                                                                     |
+| `modules` | Option\<Vec<[Module](../modules/module-definitions.md)>> | An optional vector of Andromeda Modules. The module definitions can be found[ here](../modules/module-definitions.md). |
 
 ## ExecuteMsg
 
@@ -120,10 +120,10 @@ pub enum Cw721HookMsg {
 
 ### AndrReceive&#x20;
 
-Check [AndrReceive](../../ado\_base/andrreceive-andrquery.md#andrrecieve).
+Check [AndrReceive](../platform-and-framework/ado\_base.md#andrrecieve).
 
 ## QueryMsg
 
 ### AndrQuery
 
-Check [AndrQuery](../../ado\_base/andrreceive-andrquery.md#andrquery).
+Check [AndrQuery](../platform-and-framework/ado\_base.md#andrquery).

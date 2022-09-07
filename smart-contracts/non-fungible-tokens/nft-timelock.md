@@ -20,7 +20,7 @@ pub struct InstantiateMsg {}
 
 ### ReceiveNft
 
-Receives a token from a [`Send`](andromeda-digital-object.md#sendnft) and locks it based on the parameters defined in the `StartLock` hook message.
+Receives a token from a [`Send`](../../andromeda-digital-objects/andromeda-digital-object.md#sendnft) and locks it based on the parameters defined in the `StartLock` hook message.
 
 {% tabs %}
 {% tab title="Rust" %}
@@ -113,7 +113,7 @@ pub enum ExecuteMsg {
 
 ### AndrReceive
 
-Check [AndrReceive](../../ado\_base/andrreceive-andrquery.md#andrrecieve).
+Check [AndrReceive](../../platform-and-framework/ado\_base.md#andrrecieve).
 
 ## QueryMsg
 
@@ -175,13 +175,13 @@ pub struct LockDetails {
 {% endtab %}
 {% endtabs %}
 
-| Name           | Type                                           | Description                                                      |
-| -------------- | ---------------------------------------------- | ---------------------------------------------------------------- |
-| `recipient`    | String                                         | The recipient of the NFT once the lock time has passed.          |
-| `expiration`   | [Expiration](../../common-types/expiration.md) | When the lock time will be completed and the NFT can be claimed. |
-| `nft_id`       | String                                         | The id of the NFT.                                               |
-| `nft_contract` | String                                         | The address of the NFT contract.                                 |
+| Name           | Type                                                                  | Description                                                      |
+| -------------- | --------------------------------------------------------------------- | ---------------------------------------------------------------- |
+| `recipient`    | String                                                                | The recipient of the NFT once the lock time has passed.          |
+| `expiration`   | [Expiration](../../platform-and-framework/common-types/expiration.md) | When the lock time will be completed and the NFT can be claimed. |
+| `nft_id`       | String                                                                | The id of the NFT.                                               |
+| `nft_contract` | String                                                                | The address of the NFT contract.                                 |
 
 ### AndrQuery
 
-Check [AndrQuery](../../ado\_base/andrreceive-andrquery.md#andrquery).
+Check [AndrQuery](../../platform-and-framework/ado\_base.md#andrquery).

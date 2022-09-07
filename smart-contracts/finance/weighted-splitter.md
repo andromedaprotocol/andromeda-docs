@@ -210,9 +210,9 @@ pub enum ExecuteMsg {
 
 
 
-| Name        | Type                                         | Description                            |
-| ----------- | -------------------------------------------- | -------------------------------------- |
-| `recipient` | [Recipient](../../common-types/recipient.md) | The recipient to remove from the list. |
+| Name        | Type                                                                | Description                            |
+| ----------- | ------------------------------------------------------------------- | -------------------------------------- |
+| `recipient` | [Recipient](../../platform-and-framework/common-types/recipient.md) | The recipient to remove from the list. |
 
 ### UpdateLock
 
@@ -322,7 +322,7 @@ pub enum ExecuteMsg {
 This contract uses the modules feature
 {% endhint %}
 
-Check [AndrReceive](../../ado\_base/andrreceive-andrquery.md#andrrecieve).
+Check [AndrReceive](../../platform-and-framework/ado\_base.md#andrrecieve).
 
 ## QueryMsg
 
@@ -403,10 +403,10 @@ pub struct Splitter {
 }
 ```
 
-| Name         | Type                                                     | Description                                                                                                                                                                                                                   |
-| ------------ | -------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `recipients` | Vec<[AddressWeight](weighted-splitter.md#addressweight)> | The vector of recipients for the contract. Anytime a `Send` execute message is sent the amount sent will be divided amongst these recipients depending on their assigned weight.                                              |
-| `locked`     | [Expiration](../../common-types/expiration.md)           | The expiration time of the lock. Will return an epoc time which is equal to the current\_time _+_ lock\_time taken at the point of setting the lock. (Current time refers to the time the lock was set and not the time now.) |
+| Name         | Type                                                                  | Description                                                                                                                                                                                                                   |
+| ------------ | --------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `recipients` | Vec<[AddressWeight](weighted-splitter.md#addressweight)>              | The vector of recipients for the contract. Anytime a `Send` execute message is sent the amount sent will be divided amongst these recipients depending on their assigned weight.                                              |
+| `locked`     | [Expiration](../../platform-and-framework/common-types/expiration.md) | The expiration time of the lock. Will return an epoc time which is equal to the current\_time _+_ lock\_time taken at the point of setting the lock. (Current time refers to the time the lock was set and not the time now.) |
 
 ### GetUserWeight
 
@@ -456,4 +456,4 @@ pub struct GetUserWeightResponse {
 
 ### AndrQuery
 
-Check [AndrQuery](../../ado\_base/andrreceive-andrquery.md#andrquery).
+Check [AndrQuery](../../platform-and-framework/ado\_base.md#andrquery).

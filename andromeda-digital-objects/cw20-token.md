@@ -57,7 +57,7 @@ pub struct InstantiateMsg {
 | `initial_balances` | Vec<[Cw20Coin](cw20-token.md#cw20coin)>                                    | A vector containing a list of addresses and the amount of coin to initialize each.                                                                                          |
 | `mint`             | Option<[MinterResponse](cw20-token.md#minterresponse)>                     | Optional field to define a minter for the token and an optional  cap for the total supply of tokens that can be minted. If not defined, additional tokens cannot be minted. |
 | `marketing`        | Option<[InstantiateMarketingInfo](cw20-token.md#instantiatemarketinginfo)> | Optional field to define the marketing information of the project.                                                                                                          |
-| `modules`          | Option\<Vec<[Module](../../modules/module-definitions.md)>>                | A vector of Andromeda Module definitions. "rates",  "address\_list", and "receipt" modules can be added.                                                                    |
+| `modules`          | Option\<Vec<[Module](../modules/module-definitions.md)>>                   | A vector of Andromeda Module definitions. "rates",  "address\_list", and "receipt" modules can be added.                                                                    |
 
 #### Cw20Coin
 
@@ -310,11 +310,11 @@ A new Expiration will overwrite a previous one.
 {% endtab %}
 {% endtabs %}
 
-| Name      | Type                                                   | Description                                            |
-| --------- | ------------------------------------------------------ | ------------------------------------------------------ |
-| `spender` | String                                                 | The address to receive the allowance.                  |
-| `amount`  | Uint128                                                | The amount of tokens to give the spender access to.    |
-| `expires` | Option<[Expiration](../../common-types/expiration.md)> | Optional Expiration for the allowance of the spender.  |
+| Name      | Type                                                                       | Description                                            |
+| --------- | -------------------------------------------------------------------------- | ------------------------------------------------------ |
+| `spender` | String                                                                     | The address to receive the allowance.                  |
+| `amount`  | Uint128                                                                    | The amount of tokens to give the spender access to.    |
+| `expires` | Option<[Expiration](../platform-and-framework/common-types/expiration.md)> | Optional Expiration for the allowance of the spender.  |
 
 ### DecreaseAllowance
 
@@ -354,11 +354,11 @@ If an `Expiration` is set, it will overwrite previously set Expiration
 {% endtab %}
 {% endtabs %}
 
-| Name      | Type                                                   | Description                                           |
-| --------- | ------------------------------------------------------ | ----------------------------------------------------- |
-| `spender` | String                                                 | The address to have their allowance decreased.        |
-| `amount`  | Uint128                                                | The amount to decrease the allowance by.              |
-| `expires` | Option<[Expiration](../../common-types/expiration.md)> | Optional expiration for the allowance of the spender. |
+| Name      | Type                                                                       | Description                                           |
+| --------- | -------------------------------------------------------------------------- | ----------------------------------------------------- |
+| `spender` | String                                                                     | The address to have their allowance decreased.        |
+| `amount`  | Uint128                                                                    | The amount to decrease the allowance by.              |
+| `expires` | Option<[Expiration](../platform-and-framework/common-types/expiration.md)> | Optional expiration for the allowance of the spender. |
 
 ### TransferFrom
 
@@ -554,7 +554,7 @@ Check [Logo](cw20-token.md#logo).
 Uses the modules feature.
 {% endhint %}
 
-Check [AndrReceive](../../ado\_base/andrreceive-andrquery.md).
+Check [AndrReceive](../platform-and-framework/ado\_base.md).
 
 ## QueryMsg
 
@@ -773,10 +773,10 @@ pub struct AllowanceResponse {
 {% endtab %}
 {% endtabs %}
 
-| Name        | Type                                           | Description                                        |
-| ----------- | ---------------------------------------------- | -------------------------------------------------- |
-| `allowance` | Uint128                                        | The amount of tokens the spender has as allowance. |
-| `expires`   | [Expiration](../../common-types/expiration.md) | The expiration for the tokens.                     |
+| Name        | Type                                                               | Description                                        |
+| ----------- | ------------------------------------------------------------------ | -------------------------------------------------- |
+| `allowance` | Uint128                                                            | The amount of tokens the spender has as allowance. |
+| `expires`   | [Expiration](../platform-and-framework/common-types/expiration.md) | The expiration for the tokens.                     |
 
 ### AllAllowanaces
 
@@ -859,11 +859,11 @@ pub struct AllowanceInfo {
 }
 ```
 
-| Name        | Type                                           | Description                            |
-| ----------- | ---------------------------------------------- | -------------------------------------- |
-| `spender`   | String                                         | The address that has an allowance.     |
-| `allowance` | Uint128                                        | The amount of tokens in the allowance. |
-| `expires`   | [Expiration](../../common-types/expiration.md) | The expiration for the allowance.      |
+| Name        | Type                                                               | Description                            |
+| ----------- | ------------------------------------------------------------------ | -------------------------------------- |
+| `spender`   | String                                                             | The address that has an allowance.     |
+| `allowance` | Uint128                                                            | The amount of tokens in the allowance. |
+| `expires`   | [Expiration](../platform-and-framework/common-types/expiration.md) | The expiration for the allowance.      |
 
 ### AllAccounts
 
@@ -1016,4 +1016,4 @@ pub struct DownloadLogoResponse {
 
 ### AndrQuery
 
-Check [AndrQuery](../../ado\_base/andrreceive-andrquery.md#andrquery).
+Check [AndrQuery](../platform-and-framework/ado\_base.md#andrquery).
