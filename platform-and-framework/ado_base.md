@@ -273,11 +273,12 @@ pub enum AndromedaMsg {
 {% tab title="JSON" %}
 ```rust
 {
- "register_module": {
-      "module":{
-          "module_type": "receipt",
-          "instantiate":{
-          "address":"juno1..."
+ "andr_receive":{
+     "register_module": {
+          "module":{
+               "module_type": "receipt",
+               "instantiate":{
+               "address":"juno1..."
           },
      "is_mutable": true
         }
@@ -313,8 +314,10 @@ Only available to the contract owner/operators.
 {% tab title="JSON" %}
 ```json
 {
-"deregistering_module":{
+"andr_receive":{
+    "deregistering_module":{
     "module_idx":"3"
+        }
     }
 }
 ```
@@ -350,15 +353,17 @@ pub enum AndromedaMsg{
 {% tab title="JSON" %}
 ```json
 {
-"alter_module":{
-   "module_idx":"3",
-   "module":{
-          "module_type": "receipt",
-          "instantiate":{
-          "address":"juno1..."
+"andr_receive":{
+       "alter_module":{
+          "module_idx":"3",
+          "module":{
+             "module_type": "receipt",
+             "instantiate":{
+             "address":"juno1..."
           },
      "is_mutable": true
         }
+      }
     } 
  }
 ```
@@ -418,13 +423,13 @@ Similar to `RefreshAddress`, but is used to save all the values from the primiti
 {% endtab %}
 
 {% tab title="JSON" %}
-```json
-{
-"refresh_addresses":{
-"limit": 15
+<pre class="language-json"><code class="lang-json">{
+"andr_receive":{
+   "refresh_addresses":{
+<strong>      "limit": 15
+</strong>     }
    }
-}
-```
+}</code></pre>
 {% endtab %}
 {% endtabs %}
 
@@ -475,7 +480,7 @@ Owner{}
 ```json
 {
 "andr_query":{
-"owner":{}
+  "owner":{}
   }
 }
 ```
@@ -519,7 +524,7 @@ Operators{}
 ```json
 {
 "andr_query":{
-"operators":{}
+  "operators":{}
   }
 }
 ```
@@ -565,8 +570,8 @@ IsOperators{
 ```json
 {
 "andr_query":{
-"is_operators":{
-  "address":"juno1...",
+   "is_operators":{
+     "address":"juno1...",
      }
   }
 }
@@ -805,8 +810,8 @@ Module{
 ```json
 {
 "andr_query":{
-"module":{
-  "id":"tokenid"
+   "module":{
+     "id":"tokenid"
      }
   }
 }
@@ -869,7 +874,7 @@ ModuleIds{}
 ```json
 {
 "andr_query":{
-"module_ids":{},
+    "module_ids":{},
 }
 ```
 {% endtab %}
