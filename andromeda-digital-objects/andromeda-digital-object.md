@@ -1,8 +1,8 @@
-# CW721 Token (NFT)
+# CW721
 
 ## Introduction
 
-The **NFT Collectible** ADO is a smart contract to allow users to launch their own custom NFT projects. In addition to the standard CW721 messages, we have added some custom logic to further extend the utility and function of the contract.&#x20;
+The **CW721** ADO is a smart contract to allow users to launch their own custom NFT projects. In addition to the standard CW721 messages, we have added some custom logic to further extend the utility and function of the contract.&#x20;
 
 It supports the use of all our [modules ](../modules/module-definitions.md#module-definitions)that can be attached to the contract upon instantiation and modified to satisfy the project needs. The [Offers](../modules/offers-module.md) Module is specifically created to work with this contract to facilitate the process of buying/selling the tokens.
 

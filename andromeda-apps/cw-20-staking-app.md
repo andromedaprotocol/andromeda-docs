@@ -28,7 +28,7 @@ The steps we will perform:&#x20;
 
 The components/ADOs we would need:
 
-* [Cw-20 token](../andromeda-digital-objects/cw20-token.md)
+* [Cw-20 token](../andromeda-digital-objects/cw20.md)
 * [Cw-20 staking](../andromeda-digital-objects/cw20-staking.md)
 
 {% hint style="warning" %}

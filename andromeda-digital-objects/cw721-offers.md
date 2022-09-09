@@ -2,7 +2,7 @@
 description: A contract to facilitate the buying and selling of ADOs.
 ---
 
-# NFT Offers
+# cw721 Offers
 
 ## Introduction
 
@@ -300,6 +300,6 @@ pub struct AllOffersResponse {
 {% endtab %}
 {% endtabs %}
 
-| Name   | Type                                              | Description                                                                   |
-| ------ | ------------------------------------------------- | ----------------------------------------------------------------------------- |
-| offers | Vec<[OfferResponse](nft-offers.md#offerresponse)> | A vector of OfferResponse containing each offer with the related information. |
+| Name   | Type                                                | Description                                                                   |
+| ------ | --------------------------------------------------- | ----------------------------------------------------------------------------- |
+| offers | Vec<[OfferResponse](cw721-offers.md#offerresponse)> | A vector of OfferResponse containing each offer with the related information. |

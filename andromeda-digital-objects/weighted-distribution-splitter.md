@@ -1,4 +1,4 @@
-# Weighted Splitter
+# Weighted Distribution Splitter
 
 ## Introduction
 
@@ -69,7 +69,7 @@ pub struct InstantiateMsg {
 | ------------ | ---------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `recipients` | Vec\<AddressWeight>                      | The vector of recipients for the contract. Anytime a `Send` execute message is sent the amount sent will be divided amongst these recipients depending on their assigned weight.  |
 | `lock_time`  | Option\<u64>                             | How long the splitter is locked. When locked, no recipients/weights can be added/changed.                                                                                         |
-| `modules`    | Option\<Vec<[Module](broken-reference)>> | A vector of Andromeda Module definitions. The module definitions can be found[ here](../../modules/module-definitions.md).                                                        |
+| `modules`    | Option\<Vec<[Module](broken-reference)>> | A vector of Andromeda Module definitions. The module definitions can be found[ here](../modules/module-definitions.md).                                                           |
 
 #### AddressWeight
 
@@ -133,9 +133,9 @@ pub enum ExecuteMsg {
 {% endtab %}
 {% endtabs %}
 
-| Name         | Type                                                     | Description                                                        |
-| ------------ | -------------------------------------------------------- | ------------------------------------------------------------------ |
-| `recipients` | Vec<[AddressWeight](weighted-splitter.md#addressweight)> | The new recipients of the split funds with their assigned weights. |
+| Name         | Type                                                                  | Description                                                        |
+| ------------ | --------------------------------------------------------------------- | ------------------------------------------------------------------ |
+| `recipients` | Vec<[AddressWeight](weighted-distribution-splitter.md#addressweight)> | The new recipients of the split funds with their assigned weights. |
 
 ### AddRecipient
 
@@ -173,9 +173,9 @@ pub enum ExecuteMsg {
 {% endtab %}
 {% endtabs %}
 
-| Name        | Type                                                | Description                                               |
-| ----------- | --------------------------------------------------- | --------------------------------------------------------- |
-| `recipient` | [AddressWeight](weighted-splitter.md#addressweight) | The recipient to add along with the corresponding weight. |
+| Name        | Type                                                             | Description                                               |
+| ----------- | ---------------------------------------------------------------- | --------------------------------------------------------- |
+| `recipient` | [AddressWeight](weighted-distribution-splitter.md#addressweight) | The recipient to add along with the corresponding weight. |
 
 ### RemoveRecipient
 
@@ -210,9 +210,9 @@ pub enum ExecuteMsg {
 
 
 
-| Name        | Type                                                                | Description                            |
-| ----------- | ------------------------------------------------------------------- | -------------------------------------- |
-| `recipient` | [Recipient](../../platform-and-framework/common-types/recipient.md) | The recipient to remove from the list. |
+| Name        | Type                                                             | Description                            |
+| ----------- | ---------------------------------------------------------------- | -------------------------------------- |
+| `recipient` | [Recipient](../platform-and-framework/common-types/recipient.md) | The recipient to remove from the list. |
 
 ### UpdateLock
 
@@ -286,9 +286,9 @@ Only available to the contract owner/operator.
 {% endtab %}
 {% endtabs %}
 
-| Name        | Type                                                | Description                       |
-| ----------- | --------------------------------------------------- | --------------------------------- |
-| `recipient` | [AddressWeight](weighted-splitter.md#addressweight) | The new weight for the recipient. |
+| Name        | Type                                                             | Description                       |
+| ----------- | ---------------------------------------------------------------- | --------------------------------- |
+| `recipient` | [AddressWeight](weighted-distribution-splitter.md#addressweight) | The new weight for the recipient. |
 
 ### Send
 
@@ -322,7 +322,7 @@ pub enum ExecuteMsg {
 This contract uses the modules feature
 {% endhint %}
 
-Check [AndrReceive](../../platform-and-framework/ado\_base.md#andrrecieve).
+Check [AndrReceive](../platform-and-framework/ado\_base.md#andrrecieve).
 
 ## QueryMsg
 
@@ -405,8 +405,8 @@ pub struct Splitter {
 
 | Name         | Type                                                                  | Description                                                                                                                                                                                                                   |
 | ------------ | --------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `recipients` | Vec<[AddressWeight](weighted-splitter.md#addressweight)>              | The vector of recipients for the contract. Anytime a `Send` execute message is sent the amount sent will be divided amongst these recipients depending on their assigned weight.                                              |
-| `locked`     | [Expiration](../../platform-and-framework/common-types/expiration.md) | The expiration time of the lock. Will return an epoc time which is equal to the current\_time _+_ lock\_time taken at the point of setting the lock. (Current time refers to the time the lock was set and not the time now.) |
+| `recipients` | Vec<[AddressWeight](weighted-distribution-splitter.md#addressweight)> | The vector of recipients for the contract. Anytime a `Send` execute message is sent the amount sent will be divided amongst these recipients depending on their assigned weight.                                              |
+| `locked`     | [Expiration](../platform-and-framework/common-types/expiration.md)    | The expiration time of the lock. Will return an epoc time which is equal to the current\_time _+_ lock\_time taken at the point of setting the lock. (Current time refers to the time the lock was set and not the time now.) |
 
 ### GetUserWeight
 
@@ -456,4 +456,4 @@ pub struct GetUserWeightResponse {
 
 ### AndrQuery
 
-Check [AndrQuery](../../platform-and-framework/ado\_base.md#andrquery).
+Check [AndrQuery](../platform-and-framework/ado\_base.md#andrquery).

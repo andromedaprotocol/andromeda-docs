@@ -6,9 +6,8 @@ The **Gumball** ADO is a smart contract that allows users to buy an NFT randomly
 
 The contract can be in 2 different modes:
 
-**Buying mode:** Where people can buy the NFTs from the gumball contract and minting is halted.
-
-**Minting mode:** Where owners can mint new NFTs for the gumball contract and buying is halted.
+* **Buying mode:** Where people can buy the NFTs from the gumball contract and minting is halted.
+* **Minting mode:** Where owners can mint new NFTs for the gumball contract and buying is halted.
 
 Upon instantiation, the contract is set to minting mode. To change the mode, we execute `SwitchStatus`.
 

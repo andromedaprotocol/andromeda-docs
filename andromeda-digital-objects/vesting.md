@@ -1,4 +1,4 @@
-# Vesting ADO
+# Vesting
 
 The **Vesting** ADO allows the vesting of tokens for one recipient which is fixed upon instantiation. The tokens can be set to release in one batch (All at once) or multiple batches which is specified by `is_multi_batch_enabled` upon instantiation.
 
@@ -434,12 +434,12 @@ pub struct Config {
 {% endtab %}
 {% endtabs %}
 
-| Name                     | Type                                 | Description                                          |
-| ------------------------ | ------------------------------------ | ---------------------------------------------------- |
-| `recipient`              | Recipient                            | The recipient of each batch.                         |
-| `is_multi_batch_enabled` | bool                                 | Whether or not multiple batches are supported.       |
-| `denom`                  | String                               | The denom of the coin being vested.                  |
-| `unbonding_duration`     | [Duration](vesting-ado.md#undefined) | The unbonding duration of the native staking module. |
+| Name                     | Type                             | Description                                          |
+| ------------------------ | -------------------------------- | ---------------------------------------------------- |
+| `recipient`              | Recipient                        | The recipient of each batch.                         |
+| `is_multi_batch_enabled` | bool                             | Whether or not multiple batches are supported.       |
+| `denom`                  | String                           | The denom of the coin being vested.                  |
+| `unbonding_duration`     | [Duration](vesting.md#undefined) | The unbonding duration of the native staking module. |
 
 ### Batch
 
@@ -553,7 +553,7 @@ pub enum QueryMsg {
 | `start_after` | Option\<u64> | Optional Id used for pagination.                                                      |
 | `limit`       | Option\<u32> | The number of batches to claim from. Defaults to 10 and can be set to a maximum of 30 |
 
-Returns a Vec<[BatchResponse](vesting-ado.md#batchresponse)>.
+Returns a Vec<[BatchResponse](vesting.md#batchresponse)>.
 
 ### AndrQuery
 
