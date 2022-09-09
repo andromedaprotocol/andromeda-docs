@@ -82,7 +82,7 @@ pub enum QueryMsg {
 ```javascript
 {
     "code_id": {
-    "key": "..."
+        "key": "..."
     }
 }
 ```

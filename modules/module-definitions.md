@@ -57,9 +57,9 @@ When instantiating an **Andromeda Digital Object** contract the modules can be d
          {
           "module_type": "rates",
           "address": {
-          "identifier":"my_rates",
+          "identifier":"my_rates"
           },
-          "is_mutable": true,
+          "is_mutable": true
         }
       ]
 }

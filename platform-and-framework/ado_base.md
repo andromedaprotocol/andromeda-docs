@@ -277,12 +277,13 @@ pub enum AndromedaMsg {
      "register_module": {
           "module":{
                "module_type": "receipt",
-               "instantiate":{
-               "address":"juno1..."
-          },
-     "is_mutable": true
+               "address":{
+                    "identifier":"juno1..."
+                    }
+               "is_mutable": true
         }
      }
+   }
  } 
 ```
 {% endtab %}
@@ -316,7 +317,7 @@ Only available to the contract owner/operators.
 {
 "andr_receive":{
     "deregistering_module":{
-    "module_idx":"3"
+        "module_idx":"3"
         }
     }
 }
@@ -358,10 +359,10 @@ pub enum AndromedaMsg{
           "module_idx":"3",
           "module":{
              "module_type": "receipt",
-             "instantiate":{
-             "address":"juno1..."
-          },
-     "is_mutable": true
+             "address":{
+                "identifier":"juno1..."
+                }
+             "is_mutable": false
         }
       }
     } 
