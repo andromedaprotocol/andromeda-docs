@@ -249,7 +249,7 @@ pub enum ExecuteMsg {
     "token_id":"1",
     "agreement":{
         "amount":{
-            "raw"{
+            "raw":{
                 "denom":"ujuno",
                 "amount":"1000000"
                 }

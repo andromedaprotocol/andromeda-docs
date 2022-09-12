@@ -72,7 +72,7 @@ pub enum ExecuteMsg{
 "place_offer":{
   "token_id":"juno1...",
   "expiration":{
-     "at_height": 300,
+     "at_height": 300
      }
   "offer_amount": "200000"
   }
@@ -254,8 +254,8 @@ Returns all the offers of a certain purchaser.
 ```json
 {
 "all_offers":{
- "purchaser":"juno1...",
- "limit": 15
+  "purchaser":"juno1...",
+  "limit": 15
     }
  }
   
@@ -281,22 +281,21 @@ pub struct AllOffersResponse {
 {% endtab %}
 
 {% tab title="JSON" %}
-```json
-{
+<pre class="language-json"><code class="lang-json">{
 "offers":[ 
  {
-"denom":"uusd",
-"offer_amount":"1000",
-"remaining_amount":"997",
-"tax_amount":"2",
-"expiration":{
-  "at_height": 500
+  "denom":"uusd",
+  "offer_amount":"1000",
+  "remaining_amount":"997",
+  "tax_amount":"2",
+<strong>  "expiration":{
+</strong>    "at_height": 500
     },
   "purchaser":"juno1..."
 },
 ...
-]
-```
+<strong>  ]
+</strong><strong>}</strong></code></pre>
 {% endtab %}
 {% endtabs %}
 
