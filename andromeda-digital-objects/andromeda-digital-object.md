@@ -51,12 +51,12 @@ pub struct InstantiateMsg {
 {% endtab %}
 {% endtabs %}
 
-| Name      | Type                                                                           | Description                                                                                                  |
-| --------- | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------ |
-| `name`    | String                                                                         | The name of the token. Has to be between 3 and 30 characters.                                                |
-| `symbol`  | String                                                                         | The symbol of the token.                                                                                     |
-| `minter`  | [AndrAddress](../platform-and-framework/common-types/recipient.md#andraddress) | The address of the token minter.                                                                             |
-| `modules` | Option\<Vec<[Module](broken-reference)>>                                       | An optional vector of Andromeda Modules. "rates", "offers", "address\_list", "receipt" modules can be added. |
+| Name      | Type                                                                           | Description                                                                                                                                                               |
+| --------- | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `name`    | String                                                                         | The name of the token. Has to be between 3 and 30 characters.                                                                                                             |
+| `symbol`  | String                                                                         | The symbol of the token.                                                                                                                                                  |
+| `minter`  | [AndrAddress](../platform-and-framework/common-types/recipient.md#andraddress) | The address of the token minter.                                                                                                                                          |
+| `modules` | Option\<Vec<[Module](broken-reference)>>                                       | An optional vector of Andromeda[ Modules](broken-reference) that can be attached to the contract. "rates", "address-list", "offers", and  "receipt" modules can be added. |
 
 ## ExecuteMsg
 
@@ -224,7 +224,7 @@ pub enum ExecuteMsg {
 
 ### TransferAgreement
 
-Assigns a `TransferAgreement` for a token. If the `agreement` field is not set, the message will remove any previously set agreements on the token ( Instead of making a new RemoveAgreement message).
+Assigns a `TransferAgreement` for a token. If the `agreement` field is not set, the message will remove any previously set agreements on the token (Instead of making a new RemoveAgreement message).
 
 {% hint style="warning" %}
 Only available to the token owner.
@@ -269,7 +269,7 @@ pub enum ExecuteMsg {
 
 #### TransferAgreement
 
-The `purchaser` may use the `Transfer` message for this token as long as funds are provided equaling the `amount` defined in the agreement.
+The `purchaser` may use the `TransferNft` message for this token as long as funds are provided equaling the `amount` defined in the agreement.
 
 If the `purchaser` is set to `"*"` then anyone can complete the `TransferAgreement` (Anyone can buy the token)
 

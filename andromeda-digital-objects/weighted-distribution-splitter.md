@@ -69,7 +69,7 @@ pub struct InstantiateMsg {
 | ------------ | ---------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `recipients` | Vec\<AddressWeight>                      | The vector of recipients for the contract. Anytime a `Send` execute message is sent the amount sent will be divided amongst these recipients depending on their assigned weight.  |
 | `lock_time`  | Option\<u64>                             | How long the splitter is locked. When locked, no recipients/weights can be added/changed.                                                                                         |
-| `modules`    | Option\<Vec<[Module](broken-reference)>> | A vector of Andromeda Module definitions. The module definitions can be found[ here](../modules/module-definitions.md).                                                           |
+| `modules`    | Option\<Vec<[Module](broken-reference)>> | An optional vector of Andromeda[ Modules](broken-reference) that can be attached to the contract."address-list" module can be added.                                              |
 
 #### AddressWeight
 

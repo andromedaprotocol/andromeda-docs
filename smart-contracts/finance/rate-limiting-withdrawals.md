@@ -40,11 +40,11 @@ pub struct InstantiateMsg {
 {% endtab %}
 {% endtabs %}
 
-| Name                           | Type                                                            | Description                                                                  |
-| ------------------------------ | --------------------------------------------------------------- | ---------------------------------------------------------------------------- |
-| `allowed_coin`                 | [CoinAndLimit](rate-limiting-withdrawals.md#coinandlimit)       | Set the allowed coin denom and the maximum amount allowed to withdraw.       |
-| `minimal_withdrawal_frequency` | [MinimumFrequency](rate-limiting-withdrawals.md#contractandkey) | The time required between withdrawals. Specified in seconds. Cannot be 0.    |
-| `modules`                      | Option\<Vec\<Module>>                                           | An optional vector of Andromeda Modules. "Address-list" module can be added. |
+| Name                           | Type                                                            | Description                                                                                                                           |
+| ------------------------------ | --------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------- |
+| `allowed_coin`                 | [CoinAndLimit](rate-limiting-withdrawals.md#coinandlimit)       | Set the allowed coin denom and the maximum amount allowed to withdraw.                                                                |
+| `minimal_withdrawal_frequency` | [MinimumFrequency](rate-limiting-withdrawals.md#contractandkey) | The time required between withdrawals. Specified in seconds. Cannot be 0.                                                             |
+| `modules`                      | Option\<Vec\<Module>>                                           | An optional vector of Andromeda[ Modules](broken-reference) that can be attached to the contract. "address-list" module can be added. |
 
 #### CoinAndLimit
 

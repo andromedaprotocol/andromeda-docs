@@ -60,11 +60,11 @@ pub struct InstantiateMsg {
 {% endtab %}
 {% endtabs %}
 
-| Name         | Type                                                        | Description                                                                       |
-| ------------ | ----------------------------------------------------------- | --------------------------------------------------------------------------------- |
-| `Modules`    | Option<[Module](../modules/module-definitions.md)>          | An optional vector of Andromeda Modules.  "address\_list" module can be added.    |
-| `lock_time`  | Option\<u64>                                                | How long the splitter is locked. When locked, no recipients can be added/changed. |
-| `recipients` | Vec<[AddressPercent](andromeda-splitter.md#addresspercent)> | The recipient list of the splitter. Can be updated after instantiation.           |
+| Name         | Type                                                        | Description                                                                                                                           |
+| ------------ | ----------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------- |
+| `Modules`    | Option<[Module](../modules/module-definitions.md)>          | An optional vector of Andromeda[ Modules](broken-reference) that can be attached to the contract. "address-list" module can be added. |
+| `lock_time`  | Option\<u64>                                                | How long the splitter is locked. When locked, no recipients can be added/changed.                                                     |
+| `recipients` | Vec<[AddressPercent](andromeda-splitter.md#addresspercent)> | The recipient list of the splitter. Can be updated after instantiation.                                                               |
 
 {% hint style="warning" %}
 Anytime a [`Send`](andromeda-splitter.md#send) execute message is sent the amount sent will be divided amongst the recipients depending on their assigned percentage.

@@ -44,20 +44,20 @@ pub struct InstantiateMsg {
 {% endtab %}
 {% endtabs %}
 
-| Name      | Type                  | Description                                                                                       |
-| --------- | --------------------- | ------------------------------------------------------------------------------------------------- |
-| `modules` | Option\<Vec\<Module>> | An optional vector of Andromeda [Modules](broken-reference) that can be attached to the contract. |
+| Name      | Type                  | Description                                                                                                                                                     |
+| --------- | --------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `modules` | Option\<Vec\<Module>> | An optional vector of Andromeda[ Modules](broken-reference) that can be attached to the contract. "rates", "address-list", and  "receipt" modules can be added. |
 
 ## ExecuteMsg
 
 ### ReceiveNft
 
-Receives a token from a [`Send`](../../andromeda-digital-objects/andromeda-digital-object.md#sendnft) and starts an auction based on the given parameters in the [`StartAuction` ](auction.md#startauction)struct. &#x20;
+Receives a token from a [`SendNft`](../../andromeda-digital-objects/andromeda-digital-object.md#sendnft) and starts an auction based on the given parameters in the [`StartAuction` ](auction.md#startauction)struct. &#x20;
 
 {% hint style="warning" %}
 The auction information can be modified before it has started but is immutable after that.
 
-Only the ADO owner can start the auction.
+Only the NFT owner can send the NFT and start the auction.
 {% endhint %}
 
 {% tabs %}
@@ -619,11 +619,11 @@ pub struct AuctionIdsResponse {
 {% endtab %}
 {% endtabs %}
 
-| Name            | Type            | Description                                                                                                     |
-| --------------- | --------------- | --------------------------------------------------------------------------------------------------------------- |
-| `token_address` | String          | The address of the token contract                                                                               |
-| `start_after`   | Option\<String> | Optional parameter to specify which `AuctionInfo` to start from. If none specified index `0` will be used.      |
-| `limit`         | Option\<u64>    | Optional parameter to specify how many `AuctionInfo` to query. If none specified a default limit of 10 is used. |
+| Name            | Type            | Description                                                                                                                              |
+| --------------- | --------------- | ---------------------------------------------------------------------------------------------------------------------------------------- |
+| `token_address` | String          | The address of the token contract                                                                                                        |
+| `start_after`   | Option\<String> | Optional parameter to specify which `AuctionInfo` to start from. If none specified index `0` will be used.                               |
+| `limit`         | Option\<u64>    | Optional parameter to specify how many `AuctionInfo` to query. If none specified a default limit of 10 is used. The maximum limit is 30. |
 
 #### AuctionInfosForAddressResponse
 

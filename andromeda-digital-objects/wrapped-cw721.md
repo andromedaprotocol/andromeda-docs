@@ -1,4 +1,4 @@
-# Wrapped-CW721
+# Wrapped CW721
 
 ## Introduction
 
@@ -80,19 +80,6 @@ Receives the NFT sent by the user from the CW721 contract defined in the `Instan
 pub enum ExecuteMsg {
     ReceiveNft(Cw721ReceiveMsg),
     }
-```
-{% endtab %}
-
-{% tab title="JSON" %}
-```json
-{
-"receive_nft":{
-"cw721_receive_msg":{
-"sender":"juno1...",
-"token_id":"my_token_id",
-"msg":"sakdfKSDGFH978sDF7sDGdsf"
-   }
-}
 ```
 {% endtab %}
 {% endtabs %}
