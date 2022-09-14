@@ -72,18 +72,17 @@ pub enum AndromedaHook {
 This would trigger the address list contract to handle this hook message returning a default response or an error if the address is not authorized to perform the execute.
 
 ```rust
-fn handle_andr_hook(deps: Deps, msg: AndromedaHook) -> Result<Response, ContractError> {
+fn handle_andr_hook(deps: Deps, msg: AndromedaHook) -> Result<Binary, ContractError> {
     match msg {
         AndromedaHook::OnExecute { sender, .. } => {
             let is_included = includes_address(deps.storage, &sender)?;
             let is_inclusive = IS_INCLUSIVE.load(deps.storage)?;
             if is_included != is_inclusive {
-                Err(ContractError::InvalidAddress {})
+                Err(ContractError::Unauthorized {})
             } else {
-                Ok(Response::default())
+                Ok(to_binary(&None::<Response>)?)
             }
         }
-        _ => Err(ContractError::UnsupportedOperation {}),
+        _ => Ok(to_binary(&None::<Response>)?),
     }
-}
 ```

@@ -58,7 +58,7 @@ fn handle_andr_hook(deps: Deps, env: Env, msg: AndromedaHook) -> Result<Binary, 
                         msg: encode_binary(&ExecuteMsg::AcceptOffer {
                             token_id,
                             // We require a recipient since the owner of the token will have
-                            // changed once this message gets executed. Sender is assuemd to be the
+                            // changed once this message gets executed. Sender is assumed to be the
                             // orignal owner of the token.
                             recipient: sender,
                         })?,
@@ -71,5 +71,5 @@ fn handle_andr_hook(deps: Deps, env: Env, msg: AndromedaHook) -> Result<Binary, 
         }
         _ => Err(ContractError::UnsupportedOperation {}),
     }
-}r
+}
 ```

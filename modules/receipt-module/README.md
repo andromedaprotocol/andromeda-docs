@@ -32,23 +32,26 @@ More information on the Receipt contract can be found [here](../../andromeda-dig
 When we have a transfer of funds of some sort we call the `OnFundsTransfer` function to send the provided hook message to all registered modules.&#x20;
 
 ```rust
-pub fn on_funds_transfer(
+ pub fn on_funds_transfer(
         &self,
         storage: &dyn Storage,
-        querier: QuerierWrapper,
+        api: &dyn Api,
+        querier: &QuerierWrapper,
         sender: String,
         amount: Funds,
         msg: Binary,
     ) -> Result<(Vec<SubMsg>, Vec<Event>, Funds), ContractError> {
-        let modules: Vec<ModuleInfoWithAddress> = self.load_modules_with_address(storage)?;
+        let modules: Vec<Module> = self.load_modules(storage)?;
         let mut remainder = amount;
         let mut msgs: Vec<SubMsg> = Vec::new();
         let mut events: Vec<Event> = Vec::new();
         let mut receipt_module_address: Option<String> = None;
         for module in modules {
-            if module.module.module_type == RECEIPT {
+            let app_contract = self.get_app_contract(storage)?;
+            let module_address = module.address.get_address(api, querier, app_contract)?;
+            if module.module_type == RECEIPT {
                 // If receipt module exists we want to make sure we do it last.
-                receipt_module_address = Some(module.address.clone());
+                receipt_module_address = Some(module_address);
                 continue;
             }
             let mod_resp: Option<OnFundsTransferResponse> = hook_query(
@@ -58,7 +61,7 @@ pub fn on_funds_transfer(
                     sender: sender.clone(),
                     amount: remainder.clone(),
                 },
-                module.address.clone(),
+                module_address,
             )?;
             if let Some(mod_resp) = mod_resp {
                 remainder = mod_resp.leftover_funds;
@@ -84,7 +87,6 @@ pub fn on_funds_transfer(
 
         Ok((msgs, events, remainder))
     }
-}
 ```
 
 If a receipt module is found it is sent the following hook:

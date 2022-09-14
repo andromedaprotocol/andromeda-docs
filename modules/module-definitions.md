@@ -49,16 +49,16 @@ When instantiating an **Andromeda Digital Object** contract the modules can be d
         {
           "module_type": "address_list",
           "address": {
-          "identifier":"juno1..."
-          }
+            "identifier":"juno1..."
+              }
           "is_mutable": false
         },
         
-         {
+        {
           "module_type": "rates",
           "address": {
-          "identifier":"my_rates"
-          },
+            "identifier":"my_rates"
+            },
           "is_mutable": true
         }
       ]
@@ -94,27 +94,8 @@ pub enum AndromedaQuery {
 More details about each of these messages can be found in [AndrReceive/AndrQuery](../platform-and-framework/ado\_base.md#modules)
 {% endhint %}
 
-### Validating Modules
-
-Validates `self` by checking that it is unique, does not conflict with any other module, and does not conflict with the creating ADO.
-
-```rust
-impl Module {
-    pub fn validate(&self, modules: &[Module], ado_type: &str) -> Result<(), ContractError> {
-        require(self.is_unique(modules), ContractError::ModuleNotUnique {})?;
-
-        if ado_type == "cw20" && contains_module(modules, AUCTION) {
-            return Err(ContractError::IncompatibleModules {
-                msg: "An Auction module cannot be used for a CW20 ADO".to_string(),
-            });
-        }
-
-        Ok(())
-    }
-```
-
 ### Module Usage&#x20;
 
-As we know by now, not all ADOs can have modules added to them. Even the ADOs that accept modules do not necessarily accept all modules. Below is a summary on which ADOs use what modules:
+As we know by now, not all ADOs can have modules added to them. Even the ADOs that accept modules do not necessarily accept all modules. Below is a summary on the modules that can be added to each ADO.
 
 <table><thead><tr><th>ADO</th><th data-type="checkbox">Address List</th><th data-type="checkbox">Receipt</th><th data-type="checkbox">Rates</th><th data-type="checkbox">Offers</th></tr></thead><tbody><tr><td><strong>auction</strong></td><td>true</td><td>true</td><td>true</td><td>false</td></tr><tr><td><strong>cw721</strong></td><td>true</td><td>true</td><td>true</td><td>true</td></tr><tr><td><strong>cw20</strong></td><td>true</td><td>false</td><td>false</td><td>false</td></tr><tr><td><strong>rate-limiting-withdrawals</strong></td><td>true</td><td>false</td><td>false</td><td>false</td></tr><tr><td><strong>splitter</strong></td><td>true</td><td>false</td><td>false</td><td>false</td></tr><tr><td><strong>timelock</strong></td><td>true</td><td>false</td><td>false</td><td>false</td></tr><tr><td><strong>weighted-distribution-splitter</strong></td><td>true</td><td>false</td><td>false</td><td>false</td></tr><tr><td><strong>crowdfund</strong></td><td>true</td><td>true</td><td>true</td><td>false</td></tr><tr><td><strong>marketplace</strong></td><td>true</td><td>true</td><td>true</td><td>false</td></tr></tbody></table>
