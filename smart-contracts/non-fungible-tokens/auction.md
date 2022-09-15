@@ -25,7 +25,8 @@ pub struct TokenAuctionState {
     pub high_bidder_amount: Uint128,
     pub coin_denom: String,
     pub auction_id: Uint128,
-    pub whitelist: Option<Vec<Addr>>
+    pub min_bid:Option<Uint128>,
+    pub whitelist: Option<Vec<Addr>>,
     pub owner: String,
     pub token_id:String,
     pub token_address:String,
@@ -89,6 +90,7 @@ pub enum Cw721HookMsg {
         start_time: Expiration,
         end_time: Expiration,
         coin_denom: String,
+        min_bid: Option<Uint128>
         whitelist: Option<Vec<Addr>>,
     }
 }
@@ -102,6 +104,7 @@ pub enum Cw721HookMsg {
           "start_time": { "at_height": 500 },
           "end_time": { "at_height": 600 },
           "coin_denom": "uusd",
+          "min_bid":"300",
           "whitelist": ["juno1...", "juno1...", ...]
     }
 }
@@ -114,6 +117,7 @@ pub enum Cw721HookMsg {
 | `start_time` | [Expiration](../../platform-and-framework/common-types/expiration.md) | The start of the auction.                                                            |
 | `end_time`   | [Expiration](../../platform-and-framework/common-types/expiration.md) | The end of the auction.                                                              |
 | `coin_denom` | String                                                                | The native coin denomination to do the auction in.                                   |
+| `min_bid`    | Option\<Uint128>                                                      | The minimum bid that can be placed on the auctioned token.                           |
 | `whitelist`  | Option\<Vec\<Addr>>                                                   | Optional list of addresses to whitelist for the auction. If None, auction is public. |
 
 {% hint style="warning" %}
@@ -144,6 +148,7 @@ An auction can be updated only if it has not started yet.&#x20;
         start_time: Expiration,
         end_time: Expiration,
         coin_denom: String,
+        min_bid: Option<Uint128>
         whitelist: Option<Vec<Addr>>,
     }
   }
@@ -159,6 +164,7 @@ An auction can be updated only if it has not started yet.&#x20;
    "start_time": { "at_height": 500 },
    "end_time": { "at_height": 600 },
    "coin_denom": "uusd",
+   "min_bid":"400",
    "whitelist": ["juno1...", "juno1...", ...]
     }
  }
@@ -179,6 +185,7 @@ An auction can be updated only if it has not started yet.&#x20;
 | `start_time`    | [Expiration](../../platform-and-framework/common-types/expiration.md) | The start of the auction.                                                            |
 | `end_time`      | [Expiration](../../platform-and-framework/common-types/expiration.md) | The end of the auction.                                                              |
 | `coin_denom`    | String                                                                | The native coin denomination to do the auction in.                                   |
+| `min_bid`       | Option\<Uint128>                                                      | The minimum bid that can be placed on the auctioned token.                           |
 | `whitelist`     | Option\<Vec\<Addr>>                                                   | Optional list of addresses to whitelist for the auction. If None, auction is public. |
 
 ### CancelAuction
@@ -352,6 +359,7 @@ pub struct AuctionStateResponse {
     pub auction_id: Uint128,
     pub coin_denom: String,
     pub is_cancelled:bool, 
+    pub min_bid: Option<Uint128>,
     pub whitelist: Option<Vec<Addr>>,
 }
 ```
@@ -368,6 +376,7 @@ pub struct AuctionStateResponse {
           "auction_id": "0",
           "coin_denom": "uusd",
           "claimed": false,
+          "min_bid":"300",
           "whitelist": ["juno1...", "juno1...", ...]
     }
 }
@@ -384,6 +393,7 @@ pub struct AuctionStateResponse {
 | `auction_id`         | Uint128                                                               | The id of the auction.                                                |
 | `coin_denom`         | String                                                                | The denom the auction is in.                                          |
 | `is_cancelled`       | bool                                                                  | Whether or not the auction has been cancelled.                        |
+| `min_bid`            | Option\<Uint128>                                                      | The minimum bid that can be placed on the auctioned token.            |
 | `whitelist`          | Option\<Vec\<Addr>>                                                   | The whitelisted addresses if they were specified at time of creation. |
 
 ### AuctionState
