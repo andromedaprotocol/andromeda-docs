@@ -166,7 +166,7 @@ Here is how that looks within the `fn execute` function:
 
 ### Use
 
-The main use for the `OnTransfer` hook currently is the `Offers` module. Transferring an NFT will trigger the `OnTransfer` hook which will be sent to the `Offers` module if found. If the receiver of the NFT had an offer placed on it, then we consider that the offer has been accepted by the seller and the `AcceptOffer` is automatically executed by the contract.
+The main use for the `OnTransfer` hook currently is the `Bids` module. Transferring an NFT will trigger the `OnTransfer` hook which will be sent to the `Bids`module if found. If the receiver of the NFT had a bid placed on it, then we consider that the bid has been accepted by the seller and the `AcceptBid` is automatically executed by the contract.
 
 ## Implementation
 
@@ -245,9 +245,9 @@ fn handle_andr_hook(env: Env, msg: AndromedaHook) -> Result<Binary, ContractErro
 }
 ```
 
-### Offers Module
+### Bids Module
 
-This module only implements the `OnTransfer` hook which it uses to check if the `recipient` of the transfer has an offer placed on the Nft with the `code_id`. If so will execute an AcceptOffer to send the funds of the offer to the seller.&#x20;
+This module only implements the `OnTransfer` hook which it uses to check if the `recipient` of the transfer has a bid placed on the Nft with the `code_id`. If so, it will execute an AcceptBid to send the funds of the bid to the seller.&#x20;
 
 ```rust
 fn handle_andr_hook(deps: Deps, env: Env, msg: AndromedaHook) -> Result<Binary, ContractError> {
@@ -258,17 +258,21 @@ fn handle_andr_hook(deps: Deps, env: Env, msg: AndromedaHook) -> Result<Binary, 
             recipient,
         } => {
             let mut resp: Response = Response::new();
-            let offer = offers().may_load(deps.storage, &token_id)?;
-            if let Some(offer) = offer {
-                if offer.purchaser == recipient {
+            let bid = bids().may_load(deps.storage, &token_id)?;
+            if let Some(bid) = bid {
+                if bid.purchaser == recipient {
                     let msg = CosmosMsg::Wasm(WasmMsg::Execute {
                         contract_addr: env.contract.address.to_string(),
                         funds: vec![],
-                        msg: encode_binary(&ExecuteMsg::AcceptOffer {
+                        // The assumption is that the owner transfering the token to a user that has
+                        // an bid means they want to accept that bid. If the bid is
+                        // expired this message will end up failing and the transfer will not
+                        // happen.
+                        msg: encode_binary(&ExecuteMsg::AcceptBid {
                             token_id,
- // We require a recipient since the owner of the token will have
-// changed once this message gets executed. Sender is assuemd to be the
-// orignal owner of the token.
+                            // We ensure! a recipient since the owner of the token will have
+                            // changed once this message gets executed. Sender is assuemd to be the
+                            // orignal owner of the token.
                             recipient: sender,
                         })?,
                     });
@@ -278,7 +282,7 @@ fn handle_andr_hook(deps: Deps, env: Env, msg: AndromedaHook) -> Result<Binary, 
 
             Ok(encode_binary(&resp)?)
         }
-        _ => Err(ContractError::UnsupportedOperation {}),
+        _ => Ok(encode_binary(&None::<Response>)?),
     }
 }
 ```

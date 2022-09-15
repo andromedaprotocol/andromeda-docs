@@ -4,7 +4,7 @@
 
 The **CW721** ADO is a smart contract to allow users to launch their own custom NFT projects. In addition to the standard CW721 messages, we have added some custom logic to further extend the utility and function of the contract.&#x20;
 
-It supports the use of all our [modules ](../modules/module-definitions.md#module-definitions)that can be attached to the contract upon instantiation and modified to satisfy the project needs. The [Offers](../modules/offers-module.md) Module is specifically created to work with this contract to facilitate the process of buying/selling the tokens.
+It supports the use of all our [modules ](../modules/module-definitions.md#module-definitions)that can be attached to the contract upon instantiation and modified to satisfy the project needs. The [Offers](../modules/cw721-bids-module.md) Module is specifically created to work with this contract to facilitate the process of buying/selling the tokens.
 
 In addition to the offers module, the contract has implemented a custom `TransferAgreement` message to allow the buying/selling of tokens between two parties if the user does not want to add the offers module.
 

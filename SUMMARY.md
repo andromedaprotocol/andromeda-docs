@@ -26,7 +26,7 @@
 * [Lockdrop](smart-contracts/fungible-tokens/lockdrop.md)
 * [Marketplace](andromeda-digital-objects/marketplace.md)
 * [Merkle-Airdrop](andromeda-digital-objects/merkle-airdrop.md)
-* [CW721 Offers](andromeda-digital-objects/cw721-offers.md)
+* [CW721 Bids](andromeda-digital-objects/cw721-bids.md)
 * [NFT Staking](andromeda-digital-objects/nft-staking.md)
 * [CW721 Timelock](andromeda-digital-objects/cw721-timelock.md)
 * [Primitive](smart-contracts/data-storage/primitive.md)
@@ -46,7 +46,7 @@
 * [Rates Module](modules/rates-module.md)
 * [Address List Module](modules/address-list-module/README.md)
 * [Receipt Module](modules/receipt-module/README.md)
-* [Offers Module](modules/offers-module.md)
+* [CW721-Bids Module](modules/cw721-bids-module.md)
 
 ## Andromeda Apps
 
