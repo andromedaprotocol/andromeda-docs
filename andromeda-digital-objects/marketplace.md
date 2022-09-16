@@ -2,7 +2,11 @@
 
 ## Introduction
 
-The **Marketplace** ADO is a smart contract that allows you to sell your NFTs in a marketplace. The seller sends their NFT to the ADO with a custom price and denomination to be used to buy the NFT. Once the NFT is sent, it is up for sale and buyers can pay the price to buy the NFT.&#x20;
+The **Marketplace** ADO is a smart contract that allows you to sell your NFTs in a marketplace. The seller sends their NFT to the ADO with a custom price and denomination to be used to buy the NFT. Once the NFT is sent, it is up for sale and buyers can pay the price to buy the NFT.
+
+{% hint style="warning" %}
+&#x20;Each sale is assigned an Id which starts at 1 and increments for each new sale. .
+{% endhint %}
 
 ## InstantiateMsg
 
@@ -252,7 +256,7 @@ pub struct SaleStateResponse {
 {% tab title="JSON" %}
 ```json
 {
-"sale_id":"1juno1...",
+"sale_id":"3",
 "coin_denom":"juno",
 "price":"100",
 "status":"open"
@@ -263,7 +267,7 @@ pub struct SaleStateResponse {
 
 | Name         | Type    | Description                                                                                                    |
 | ------------ | ------- | -------------------------------------------------------------------------------------------------------------- |
-| `sale_id`    | Uint128 | The id of the sale which is compromised of  the token id concatenated to the token address.                    |
+| `sale_id`    | Uint128 | The id of the sale. The first sale has an Id of 1 and each sale after it increments the Id by 1.               |
 | `coin_denom` | String  | The denom used in the sale.                                                                                    |
 | `price`      | Uint128 | The price of the NFT.                                                                                          |
 | `status`     | Status  | <p>The status of the sale which can be one of three options:</p><p>-Open</p><p>-Executed</p><p>-Cancelled </p> |
@@ -287,16 +291,16 @@ pub enum QueryMsg
 ```json
 {
 "sale_state":{
-    "sale_id":"1juno1..."
+    "sale_id":"1"
     }
 }
 ```
 {% endtab %}
 {% endtabs %}
 
-| Name      | Type    | Description                                                                                         |
-| --------- | ------- | --------------------------------------------------------------------------------------------------- |
-| `sale_id` | Uint128 | The id of the sale to check which is compromised of the token id concatenated to the token address. |
+| Name      | Type    | Description                  |
+| --------- | ------- | ---------------------------- |
+| `sale_id` | Uint128 | The id of the sale to check. |
 
 Returns a [SaleStateResponse](marketplace.md#salestateresponse).
 
