@@ -1,17 +1,9 @@
 # Wrapped-NFT App
 
-{% hint style="info" %}
 If unfimailar with the steps of deploying an app, go back to the App 1 example where we explain in detail all the different parts of deploying an App.
-{% endhint %}
-
-For this app we are using the following deployed contracts:
-
-Factory: **juno1alwx0jf72y366627gavklj6rte6ygdm4kw0ctqjrr4qg4y74h84sdfct3g**
-
-Registry: **juno144r95jrnk5erqhpuepe5mwz33e5mns7yuyhmxw7fmfx8w0duqwws9qd36x**
 
 {% hint style="warning" %}
-If the current [deployed contracts](../platform-and-framework/deployed-contracts.md) are not the same as the ones above, or any of the messages in this example do not work, you might want to cross reference the messages with the ADO classes section which always contains the latest ADO versions to make sure they are correct. Other than that the logic will remain the same.
+If any of the messages in this example do not work, you might want to cross reference the messages with the ADO specific section which always contains the latest ADO versions to make sure they are correct. Other than that the logic will remain the same.
 {% endhint %}
 
 ### **Defining our App**

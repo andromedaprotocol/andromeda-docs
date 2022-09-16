@@ -8,31 +8,9 @@ description: >-
 
 ## Introduction
 
-The **Auction** ADO is a smart contract that allows performing auctions on NFT tokens. The owner can send an NFT to this contract with the required messages to start an auction on it. Once the auction has started users can place bids on the token until the auction expires. The highest bid will win the auction sending the funds to the seller and receiving the token in return.
+The **Auction** ADO is a smart contract that allows performing auctions on NFT tokens. The owner can send an NFT to this contract with the required messages to start an auction on it. Once the auction has started, users can place bids on the token until the auction expires. The highest bid will win the auction sending the funds to the seller and receiving the token in return.
 
 **Ado\_type**: auction
-
-## TokenAuctionState
-
-The state for an auction is stored in a basic struct
-
-```rust
-#[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
-pub struct TokenAuctionState {
-    pub start_time: Expiration,
-    pub end_time: Expiration,
-    pub high_bidder_addr: Addr,
-    pub high_bidder_amount: Uint128,
-    pub coin_denom: String,
-    pub auction_id: Uint128,
-    pub min_bid:Option<Uint128>,
-    pub whitelist: Option<Vec<Addr>>,
-    pub owner: String,
-    pub token_id:String,
-    pub token_address:String,
-    pub is_cancelled:bool,
-}
-```
 
 ## InstantiateMsg <a href="#instantiatemsg" id="instantiatemsg"></a>
 
@@ -87,8 +65,8 @@ In order to start an auction you need to define the message of the `Cw721Receive
 ```rust
 pub enum Cw721HookMsg {
     StartAuction {
-        start_time: Expiration,
-        end_time: Expiration,
+        start_time: u64,
+        duration:u64,
         coin_denom: String,
         min_bid: Option<Uint128>
         whitelist: Option<Vec<Addr>>,
@@ -101,8 +79,8 @@ pub enum Cw721HookMsg {
 ```json
 {
     "start_auction": {
-          "start_time": { "at_height": 500 },
-          "end_time": { "at_height": 600 },
+          "start_time": 1663334970211,
+          "duration": 900000,
           "coin_denom": "uusd",
           "min_bid":"300",
           "whitelist": ["juno1...", "juno1...", ...]
@@ -112,20 +90,16 @@ pub enum Cw721HookMsg {
 {% endtab %}
 {% endtabs %}
 
-| Name         | Type                                                                  | Description                                                                          |
-| ------------ | --------------------------------------------------------------------- | ------------------------------------------------------------------------------------ |
-| `start_time` | [Expiration](../../platform-and-framework/common-types/expiration.md) | The start of the auction.                                                            |
-| `end_time`   | [Expiration](../../platform-and-framework/common-types/expiration.md) | The end of the auction.                                                              |
-| `coin_denom` | String                                                                | The native coin denomination to do the auction in.                                   |
-| `min_bid`    | Option\<Uint128>                                                      | The minimum bid that can be placed on the auctioned token.                           |
-| `whitelist`  | Option\<Vec\<Addr>>                                                   | Optional list of addresses to whitelist for the auction. If None, auction is public. |
+| Name         | Type                | Description                                                                          |
+| ------------ | ------------------- | ------------------------------------------------------------------------------------ |
+| `start_time` | u64                 | Start time in milliseconds since epoch.                                              |
+| `duration`   | u64                 | Duration in milliseconds from the `start_time`.                                      |
+| `coin_denom` | String              | The native coin denomination to do the auction in.                                   |
+| `min_bid`    | Option\<Uint128>    | The minimum bid that can be placed on the auctioned token.                           |
+| `whitelist`  | Option\<Vec\<Addr>> | Optional list of addresses to whitelist for the auction. If None, auction is public. |
 
 {% hint style="warning" %}
-To be a valid auction the following requirements must be met:
-
-* `start_time` occurs not in the past
-* `start_time` and `end_time` use the same variant of `Expiration`, (but not `Expiration::Never {})`
-* `start_time` < `end_time`
+`start_time` should not be a time in the past.
 {% endhint %}
 
 ### UpdateAuction
@@ -145,8 +119,8 @@ An auction can be updated only if it has not started yet.&#x20;
  UpdateAuction {
         token_id: String,
         token_address: String,
-        start_time: Expiration,
-        end_time: Expiration,
+        start_time: u64,
+        duration: u64,
         coin_denom: String,
         min_bid: Option<Uint128>
         whitelist: Option<Vec<Addr>>,
@@ -161,8 +135,8 @@ An auction can be updated only if it has not started yet.&#x20;
   "update_auction": {
   "token_id":"token_001",
    "token_address":"juno1...",
-   "start_time": { "at_height": 500 },
-   "end_time": { "at_height": 600 },
+   "start_time": 1663334970211,
+   "duration": 900000,
    "coin_denom": "uusd",
    "min_bid":"400",
    "whitelist": ["juno1...", "juno1...", ...]
@@ -173,20 +147,18 @@ An auction can be updated only if it has not started yet.&#x20;
 {% endtabs %}
 
 {% hint style="warning" %}
-* `start_time` occurs not in the past
-* `start_time` and `end_time` use the same variant of `Expiration`, (but not `Expiration::Never {})`
-* `start_time` < `end_time`
+`start_time` should not be a time in the past.
 {% endhint %}
 
-| Name            | Type                                                                  | Description                                                                          |
-| --------------- | --------------------------------------------------------------------- | ------------------------------------------------------------------------------------ |
-| `token_id`      | String                                                                | The id of the NFT that is being auctioned.                                           |
-| `token_address` | String                                                                | The address of the token contract.                                                   |
-| `start_time`    | [Expiration](../../platform-and-framework/common-types/expiration.md) | The start of the auction.                                                            |
-| `end_time`      | [Expiration](../../platform-and-framework/common-types/expiration.md) | The end of the auction.                                                              |
-| `coin_denom`    | String                                                                | The native coin denomination to do the auction in.                                   |
-| `min_bid`       | Option\<Uint128>                                                      | The minimum bid that can be placed on the auctioned token.                           |
-| `whitelist`     | Option\<Vec\<Addr>>                                                   | Optional list of addresses to whitelist for the auction. If None, auction is public. |
+| Name            | Type                | Description                                                                          |
+| --------------- | ------------------- | ------------------------------------------------------------------------------------ |
+| `token_id`      | String              | The id of the NFT that is being auctioned.                                           |
+| `token_address` | String              | The address of the token contract.                                                   |
+| `start_time`    | u64                 | Start time in milliseconds since epoch.                                              |
+| `duration`      | u64                 | Duration in milliseconds from the `start_time`.                                      |
+| `coin_denom`    | String              | The native coin denomination to do the auction in.                                   |
+| `min_bid`       | Option\<Uint128>    | The minimum bid that can be placed on the auctioned token.                           |
+| `whitelist`     | Option\<Vec\<Addr>> | Optional list of addresses to whitelist for the auction. If None, auction is public. |
 
 ### CancelAuction
 
