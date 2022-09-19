@@ -77,12 +77,12 @@ pub struct RateInfo {
 }
 ```
 
-| Name          | Type                                                                     | Description                                                                            |
-| ------------- | ------------------------------------------------------------------------ | -------------------------------------------------------------------------------------- |
-| `rate`        | [Rate](rates.md#rate)                                                    | The type of rate being taken.                                                          |
-| `is_additive` | bool                                                                     | An indicator to whether the rate being taken is tax. If tax `is_additive` is set to 1. |
-| `description` | Option\<String>                                                          | Optional description for the rate.                                                     |
-| `recipients`  | Vec<[Recipient](../../platform-and-framework/common-types/recipient.md)> | The addresses to receive the `rate` specified.                                         |
+| Name          | Type                                                                     | Description                                                                               |
+| ------------- | ------------------------------------------------------------------------ | ----------------------------------------------------------------------------------------- |
+| `rate`        | [Rate](rates.md#rate)                                                    | The type of rate being taken.                                                             |
+| `is_additive` | bool                                                                     | An indicator to whether the rate being taken is tax. If tax `is_additive` is set to true. |
+| `description` | Option\<String>                                                          | Optional description for the rate.                                                        |
+| `recipients`  | Vec<[Recipient](../../platform-and-framework/common-types/recipient.md)> | The addresses to receive the `rate` specified.                                            |
 
 #### Rate
 
