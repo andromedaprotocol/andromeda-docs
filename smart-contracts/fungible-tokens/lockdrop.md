@@ -50,13 +50,13 @@ pub struct InstantiateMsg {
 {% endtab %}
 {% endtabs %}
 
-| Name                | Type   | Description                                                     |
-| ------------------- | ------ | --------------------------------------------------------------- |
-| `init_timestamp`    | u64    | Timestamp till when deposits can be made.                       |
-| `deposit_window`    | u64    | Number of seconds for which lockup deposits will be accepted.   |
-| `withdrawal_window` | u64    | Number of seconds for which lockup withdrawals will be allowed. |
-| `incentive_token`   | String | The token being given as incentive.                             |
-| `native_denom`      | String | The native token being deposited.                               |
+| Name                | Type   | Description                                                      |
+| ------------------- | ------ | ---------------------------------------------------------------- |
+| `init_timestamp`    | u64    | Timestamp till when deposits can be made. Provided in seconds.   |
+| `deposit_window`    | u64    | Number of seconds for which lockup deposits will be accepted.    |
+| `withdrawal_window` | u64    | Number of seconds for which lockup withdrawals will be allowed.  |
+| `incentive_token`   | String | The token being given as incentive.                              |
+| `native_denom`      | String | The native token being deposited.                                |
 
 ## ExecuteMsg
 
