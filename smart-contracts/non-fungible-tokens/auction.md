@@ -81,7 +81,7 @@ pub enum Cw721HookMsg {
     "start_auction": {
           "start_time": 1663334970211,
           "duration": 900000,
-          "coin_denom": "uusd",
+          "coin_denom": "ujunox",
           "min_bid":"300",
           "whitelist": ["juno1...", "juno1...", ...]
     }

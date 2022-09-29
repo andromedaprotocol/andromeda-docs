@@ -14,9 +14,9 @@ The steps we will perform:&#x20;
 
 * Mint some coins to different addresses
 * Stake some of the coins for rewards of our choice&#x20;
-* Check that all the results work as intended
+* Check that all the results are what what expected
 
-### Instantiating the App
+### Defining the Messages
 
 The components/ADOs we would need:
 
@@ -44,15 +44,15 @@ I will start out by giving 10000 tokens to three addresses. We have not set a mi
  "decimals":6,
  "initial_balances":[
                 {
-              "address":"juno1hfngwh4f53smthvqde32y07rjcezdsnlztxtll",
+              "address":"juno1zkpthqsz3ud97fm6p4kxcra8ae99jgzauugyem",
               "amount":"10000"
           },
                    {
-              "address":"juno197y44w58djquqkpu8v56pgwvm058f6jswm0jec",
+              "address":"juno1e53vtk7fmqzfttdvpf4a3pyx0e79wkmjzh6qsk",
               "amount":"10000"
           },
                    {
-              "address":"juno1nekdhtj60s692g28e4cq5yvpg9aqd4yeafu07t",
+              "address":"juno19s3l3wh5a3w5dpyv6v2342aej39mwmjea8vpsn",
               "amount":"10000"
           }
              
@@ -63,7 +63,7 @@ I will start out by giving 10000 tokens to three addresses. We have not set a mi
 As Base64:&#x20;
 
 ```
-eyJuYW1lIjogIlN0YWtpbmcgVG9rZW4iLCJzeW1ib2wiOiJTVEsiLCJkZWNpbWFscyI6NiwiaW5pdGlhbF9iYWxhbmNlcyI6W3siYWRkcmVzcyI6Imp1bm8xaGZuZ3doNGY1M3NtdGh2cWRlMzJ5MDdyamNlemRzbmx6dHh0bGwiLCJhbW91bnQiOiIxMDAwMCJ9LHsiYWRkcmVzcyI6Imp1bm8xOTd5NDR3NThkanF1cWtwdTh2NTZwZ3d2bTA1OGY2anN3bTBqZWMiLCJhbW91bnQiOiIxMDAwMCJ9LHsiYWRkcmVzcyI6Imp1bm8xbmVrZGh0ajYwczY5MmcyOGU0Y3E1eXZwZzlhcWQ0eWVhZnUwN3QiLCJhbW91bnQiOiIxMDAwMCJ9IF19ICA=
+eyJuYW1lIjogIlN0YWtpbmcgVG9rZW4iLCJzeW1ib2wiOiJTVEsiLCJkZWNpbWFscyI6NiwiaW5pdGlhbF9iYWxhbmNlcyI6W3siYWRkcmVzcyI6Imp1bm8xemtwdGhxc3ozdWQ5N2ZtNnA0a3hjcmE4YWU5OWpnemF1dWd5ZW0iLCJhbW91bnQiOiIxMDAwMCJ9LHsiYWRkcmVzcyI6Imp1bm8xZTUzdnRrN2ZtcXpmdHRkdnBmNGEzcHl4MGU3OXdrbWp6aDZxc2siLCJhbW91bnQiOiIxMDAwMCJ9LHsiYWRkcmVzcyI6Imp1bm8xOXMzbDN3aDVhM3c1ZHB5djZ2MjM0MmFlajM5bXdtamVhOHZwc24iLCJhbW91bnQiOiIxMDAwMCJ9IF19ICA=
 ```
 
 #### Cw-20 Staking
@@ -95,38 +95,54 @@ eyJzdGFraW5nX3Rva2VuIjp7ImlkZW50aWZpZXIiOiJjdzIwIn19
     {
       "name": "cw20",
       "ado_type": "cw20",
-      "instantiate_msg": "eyJuYW1lIjogIlN0YWtpbmcgVG9rZW4iLCJzeW1ib2wiOiJTVEsiLCJkZWNpbWFscyI6NiwiaW5pdGlhbF9iYWxhbmNlcyI6W3siYWRkcmVzcyI6Imp1bm8xaGZuZ3doNGY1M3NtdGh2cWRlMzJ5MDdyamNlemRzbmx6dHh0bGwiLCJhbW91bnQiOiIxMDAwMCJ9LHsiYWRkcmVzcyI6Imp1bm8xOTd5NDR3NThkanF1cWtwdTh2NTZwZ3d2bTA1OGY2anN3bTBqZWMiLCJhbW91bnQiOiIxMDAwMCJ9LHsiYWRkcmVzcyI6Imp1bm8xbmVrZGh0ajYwczY5MmcyOGU0Y3E1eXZwZzlhcWQ0eWVhZnUwN3QiLCJhbW91bnQiOiIxMDAwMCJ9IF19ICA"
+      "instantiate_msg": "eyJuYW1lIjogIlN0YWtpbmcgVG9rZW4iLCJzeW1ib2wiOiJTVEsiLCJkZWNpbWFscyI6NiwiaW5pdGlhbF9iYWxhbmNlcyI6W3siYWRkcmVzcyI6Imp1bm8xemtwdGhxc3ozdWQ5N2ZtNnA0a3hjcmE4YWU5OWpnemF1dWd5ZW0iLCJhbW91bnQiOiIxMDAwMCJ9LHsiYWRkcmVzcyI6Imp1bm8xZTUzdnRrN2ZtcXpmdHRkdnBmNGEzcHl4MGU3OXdrbWp6aDZxc2siLCJhbW91bnQiOiIxMDAwMCJ9LHsiYWRkcmVzcyI6Imp1bm8xOXMzbDN3aDVhM3c1ZHB5djZ2MjM0MmFlajM5bXdtamVhOHZwc24iLCJhbW91bnQiOiIxMDAwMCJ9IF19ICA="
     },
     {
       "name": "staking",
-      "ado_type": "cw20_staking",
+      "ado_type": "cw20-staking",
       "instantiate_msg": "eyJzdGFraW5nX3Rva2VuIjp7ImlkZW50aWZpZXIiOiJjdzIwIn19"
     }
   ],
   "operators": [],
-  "primitive_contract": "juno144r95jrnk5erqhpuepe5mwz33e5mns7yuyhmxw7fmfx8w0duqwws9qd36x"
+  "primitive_contract": "juno133fdsnvcah870exzcyxknydswyh778jfhwxzlhhgjuagh4482zpqp856dz"
   }
 ```
 
-First let us upload the app contract to JUNO test-net:
+### Instantiating the App
+
+First, let us open the CLI by running `andr` in our terminal. We then need to chose the chain we want to deploy on. For this example I will be using the Juno testnet uni-5:
+
+```
+chain use uni-5
+```
 
 {% hint style="warning" %}
-We dont have to repeat this step for every app we build. We can use the same code-id of other apps, but for the sake of the example, I will be reuploading it as if this is my first app.
+If this is the first time using the CLI make sure to run `"wallets add <wallet-name>"`
+
+in order to create a wallet. Then go to the Juno faucet and request some tokens.
+{% endhint %}
+
+The Andromeda CLI will open and we can now instantiate our App. We will be using our wasm command to instantiate our app:
+
+{% hint style="warning" %}
+I have already uplaoded the App contract to the uni-5 testnet. The code Id to use is 98. If you want to upload a new one to make sure it is the latest version, you need to:
+
+\-Clone our [Repo](https://github.com/andromedaprotocol/andromeda-core) and build the contract&#x20;
+
+\-In artifacts, run `wasm upload andromeda_app_contract.wasm` in CLI
+
+\-You will get a new code Id to use
 {% endhint %}
 
 ```
-junod tx wasm store andromeda_app_contract.wasm  --from juno1hfngwh4f53smthvqde32y07rjcezdsnlztxtll --chain-id=uni-3 --gas-prices 0.1ujunox --gas auto --gas-adjustment 1.3 -b block -y
+wasm instantiate 98 '{"name": "Staking App","app": [{"name": "cw20","ado_type": "cw20","instantiate_msg": "eyJuYW1lIjogIlN0YWtpbmcgVG9rZW4iLCJzeW1ib2wiOiJTVEsiLCJkZWNpbWFscyI6NiwiaW5pdGlhbF9iYWxhbmNlcyI6W3siYWRkcmVzcyI6Imp1bm8xemtwdGhxc3ozdWQ5N2ZtNnA0a3hjcmE4YWU5OWpnemF1dWd5ZW0iLCJhbW91bnQiOiIxMDAwMCJ9LHsiYWRkcmVzcyI6Imp1bm8xZTUzdnRrN2ZtcXpmdHRkdnBmNGEzcHl4MGU3OXdrbWp6aDZxc2siLCJhbW91bnQiOiIxMDAwMCJ9LHsiYWRkcmVzcyI6Imp1bm8xOXMzbDN3aDVhM3c1ZHB5djZ2MjM0MmFlajM5bXdtamVhOHZwc24iLCJhbW91bnQiOiIxMDAwMCJ9IF19ICA="},{"name": "staking","ado_type": "cw20-staking","instantiate_msg": "eyJzdGFraW5nX3Rva2VuIjp7ImlkZW50aWZpZXIiOiJjdzIwIn19"}],"operators": [],"primitive_contract": "juno133fdsnvcah870exzcyxknydswyh778jfhwxzlhhgjuagh4482zpqp856dz"}'
 ```
 
-[Upload the Contract](https://testnet.mintscan.io/juno-testnet/txs/568B5263285613A0569F97B3F997F5926D70F64D714F0AE4DB172A9CB8B38B77)
+[Instantiation](https://testnet.mintscan.io/juno-testnet/txs/1EE4CC4DEB10C568A8D8B6028AAB7727665EBEAAD35C8A561E07C9544CC355B7)
 
-Now let us instantiate the App using its message:
-
-```
-junod tx wasm instantiate 977 '{"name": "Staking App","app": [{"name": "cw20","ado_type": "cw20","instantiate_msg": "eyJuYW1lIjogIlN0YWtpbmcgVG9rZW4iLCJzeW1ib2wiOiJTVEsiLCJkZWNpbWFscyI6NiwiaW5pdGlhbF9iYWxhbmNlcyI6W3siYWRkcmVzcyI6Imp1bm8xaGZuZ3doNGY1M3NtdGh2cWRlMzJ5MDdyamNlemRzbmx6dHh0bGwiLCJhbW91bnQiOiIxMDAwMCJ9LHsiYWRkcmVzcyI6Imp1bm8xOTd5NDR3NThkanF1cWtwdTh2NTZwZ3d2bTA1OGY2anN3bTBqZWMiLCJhbW91bnQiOiIxMDAwMCJ9LHsiYWRkcmVzcyI6Imp1bm8xbmVrZGh0ajYwczY5MmcyOGU0Y3E1eXZwZzlhcWQ0eWVhZnUwN3QiLCJhbW91bnQiOiIxMDAwMCJ9IF19ICA"},{"name": "staking","ado_type": "cw20_staking","instantiate_msg": "eyJzdGFraW5nX3Rva2VuIjp7ImlkZW50aWZpZXIiOiJjdzIwIn19"}],"operators": [],"primitive_contract": "juno144r95jrnk5erqhpuepe5mwz33e5mns7yuyhmxw7fmfx8w0duqwws9qd36x"}' --label "Auction App" --from  juno1hfngwh4f53smthvqde32y07rjcezdsnlztxtll --gas-prices 0.1ujunox --gas auto --gas-adjustment 1.3 -b block -y --no-admin
-```
-
-[Instantiation](https://testnet.mintscan.io/juno-testnet/txs/82368FCE23C3E789F9E7220D78C0C9720BB7BABB500F4495F50A7DED56CE677F)
+{% hint style="warning" %}
+You will be using the contract addresses that were instantiated for you instead of the ones in this tutorial. The addresses are found in the explorer in the "Instantiates" section.
+{% endhint %}
 
 ### Interacting with the App
 
@@ -141,10 +157,10 @@ Andromeda contracts assign the original instantiator as contract owners. Due to 
 ```
 
 ```
-junod tx wasm execute juno1fzkpu2fcppzf8wadurm6sw08pq3ww657r9ggk9z6w6pm9jxa4ckqs45u24 '{"claim_ownership":{}}' --from juno1hfngwh4f53smthvqde32y07rjcezdsnlztxtll --gas-prices 0.1ujunox --gas auto --gas-adjustment 1.3 -b block -y
+ wasm execute juno1mgwet8dksqsjvx2u7evy9wyxwtj5cp8gftw7k4zzh4cqsdmaa38ql7sueh '{"claim_ownership":{}}'
 ```
 
-[Claim Components](https://testnet.mintscan.io/juno-testnet/txs/E04C0CDA3F9677F59DA24AE45C325DDDF390FD8D9F739EE5E29628795726B25F)
+[Claim Components](https://testnet.mintscan.io/juno-testnet/txs/622CC57AE96A031C8169E34DCDE2C1B8ABE5548E90A87E832ACCDB709148BBDA)
 
 #### User 1 stakes tokens
 
@@ -153,7 +169,7 @@ To stake tokens we perform a `send` message from Token contract and attach the `
 ```json
 {
  "send":{
-    "contract":"juno1wf526ma0mjskhlgrun9qkytelnfsl5pny3l2gwvpgjqwhcrx2q8qpqg53f",
+    "contract":"juno15vu55e5hvegppl2nr4dkqrhtmtl4qdspt6vlpld8ult55s95mlgsql7ydu",
     "amount":"3000",
     "msg":"ewogICAgInN0YWtlX3Rva2VucyI6e30KICAgIAp9"
     }
@@ -171,20 +187,24 @@ Here the attached message is:
 Let us execute it:
 
 ```
-junod tx wasm execute juno1cngmjgaf9jqh8ukc6j75ygke6vdajpkx3dkphhus45agghd2tuqs06kut7 '{"send":{"contract":"juno1wf526ma0mjskhlgrun9qkytelnfsl5pny3l2gwvpgjqwhcrx2q8qpqg53f","amount":"3000","msg":"ewogICAgInN0YWtlX3Rva2VucyI6e30KICAgIAp9"}}' --from juno1hfngwh4f53smthvqde32y07rjcezdsnlztxtll --gas-prices 0.1ujunox --gas auto --gas-adjustment 1.3 -b block -y
+wasm execute juno17ssms3dz3n88ltauh2735df6qslxttpxst0njsd8nx3x9vde5yfqyztl5p '{"send":{"contract":"juno15vu55e5hvegppl2nr4dkqrhtmtl4qdspt6vlpld8ult55s95mlgsql7ydu","amount":"3000","msg":"ewogICAgInN0YWtlX3Rva2VucyI6e30KICAgIAp9"}}' 
 ```
 
-[User 1 stakes 3000 tokens](https://testnet.mintscan.io/juno-testnet/txs/4F78DEF5D7F332BAAE6457F18AEF3B3A94730D5CF1276203767C7082C48B0318)
+[User 1 stakes 3000 tokens](https://testnet.mintscan.io/juno-testnet/txs/F61883C135D4C30F9637DE681B01FCD80E1DA4F02B28E42563E84C89C3ECFE66)
 
 We perform the same steps to stake for users 2 and 3:
 
-[User 2 stakes 1000 tokens ](https://testnet.mintscan.io/juno-testnet/txs/5BCDB3A8DC2873C59AE84B989E0781333E00109D2EB8ECFFB229160AC81CDF26)
+{% hint style="warning" %}
+Make sure to change wallet for each user.
+{% endhint %}
 
-[User 3 stakes 6000 tokens](https://testnet.mintscan.io/juno-testnet/txs/756EA49C08FD6E1AEC1012649009A34954C9E8F67E828FF0ABF94D7108F6EC0E)
+[User 2 stakes 1000 tokens ](https://testnet.mintscan.io/juno-testnet/txs/0F5A429161E3497CC3F352BFA4B97F540BE2A564ADD22B255BE1FCD880C18CAA)
+
+[User 3 stakes 6000 tokens](https://testnet.mintscan.io/juno-testnet/txs/83E89F0F8010EF80A9BEA4468B6C2B2D8E1F19F18D7D0D84C469E65EF0D2C847)
 
 #### Checking Pending Rewards
 
-Let us check the staker data:
+Let us check the staker data for user 1:
 
 ```
 junod query wasm contract-state smart juno1wf526ma0mjskhlgrun9qkytelnfsl5pny3l2gwvpgjqwhcrx2q8qpqg53f '{"staker":{"address":"juno197y44w58djquqkpu8v56pgwvm058f6jswm0jec"}}' 
@@ -192,15 +212,15 @@ junod query wasm contract-state smart juno1wf526ma0mjskhlgrun9qkytelnfsl5pny3l2g
 
 #### Result:
 
-data:
-
-address: juno197y44w58djquqkpu8v56pgwvm058f6jswm0jec
-
-&#x20;balance: "1000"&#x20;
-
-pending\_rewards: \[]&#x20;
-
-share: "1000"
+```
+– Querying contract...
+{
+  "address": "juno1zkpthqsz3ud97fm6p4kxcra8ae99jgzauugyem",
+  "share": "3000",
+  "balance": "3000",
+  "pending_rewards": []
+}
+```
 
 {% hint style="warning" %}
 Here we check one of the stakers. As we can see, the pending rewards are empty and the balance is the same as the share.&#x20;
@@ -213,17 +233,17 @@ Now let us send 1000 tokens to the contract. By doing this, we are telling the c
 ```json
 {
  "transfer":{
-      "recipient":"juno1wf526ma0mjskhlgrun9qkytelnfsl5pny3l2gwvpgjqwhcrx2q8qpqg53f",
+      "recipient":"juno15vu55e5hvegppl2nr4dkqrhtmtl4qdspt6vlpld8ult55s95mlgsql7ydu",
       "amount": "1000"
       }
  }
 ```
 
 ```
-junod tx wasm execute juno1cngmjgaf9jqh8ukc6j75ygke6vdajpkx3dkphhus45agghd2tuqs06kut7 '{"transfer":{"recipient":"juno1wf526ma0mjskhlgrun9qkytelnfsl5pny3l2gwvpgjqwhcrx2q8qpqg53f","amount": "1000"}}' --from juno1hfngwh4f53smthvqde32y07rjcezdsnlztxtll --gas-prices 0.1ujunox --gas auto --gas-adjustment 1.3 -b block -y
+ wasm execute juno17ssms3dz3n88ltauh2735df6qslxttpxst0njsd8nx3x9vde5yfqyztl5p '{"transfer":{"recipient":"juno15vu55e5hvegppl2nr4dkqrhtmtl4qdspt6vlpld8ult55s95mlgsql7ydu","amount": "1000"}}' 
 ```
 
-[Transfer Tokens](https://testnet.mintscan.io/juno-testnet/txs/3265827CD049752C9BE85E10DF99D07386472A6EE35314E55747AB27A697FC57)
+[Transfer Tokens](https://testnet.mintscan.io/juno-testnet/txs/B8E6F22D383D14B1365D125AF73CBD38E07BEBDCCB76F0A71E8420DCA99AB92D)
 
 Now since the token we sent is the same one being staked, then the rewards are distributed automatically to the stakers, and there is no need to call `Claim` or `UpdateGlobalIndex`.\
 
@@ -233,52 +253,56 @@ Let us check the new balances of the users:
 #### User 1:
 
 ```
-junod query wasm contract-state smart juno1wf526ma0mjskhlgrun9qkytelnfsl5pny3l2gwvpgjqwhcrx2q8qpqg53f '{"staker":{"address":"juno1hfngwh4f53smthvqde32y07rjcezdsnlztxtll"}}'
+wasm query juno15vu55e5hvegppl2nr4dkqrhtmtl4qdspt6vlpld8ult55s95mlgsql7ydu '{"staker":{"address":"juno1zkpthqsz3ud97fm6p4kxcra8ae99jgzauugyem"}}'
 ```
 
 #### Result:
 
-data:
-
-address: juno1hfngwh4f53smthvqde32y07rjcezdsnlztxtll&#x20;
-
-balance: "3300"
-
-&#x20;pending\_rewards: \[]&#x20;
-
-share: "3000"
+```
+- Querying contract...
+{
+  "address": "juno1zkpthqsz3ud97fm6p4kxcra8ae99jgzauugyem",
+  "share": "3000",
+  "balance": "3300",
+  "pending_rewards": []
+}
+```
 
 #### User 2:
 
 ```
-junod query wasm contract-state smart juno1wf526ma0mjskhlgrun9qkytelnfsl5pny3l2gwvpgjqwhcrx2q8qpqg53f '{"staker":{"address":"juno197y44w58djquqkpu8v56pgwvm058f6jswm0jec"}}' 
+wasm query juno15vu55e5hvegppl2nr4dkqrhtmtl4qdspt6vlpld8ult55s95mlgsql7ydu '{"staker":{"address":"juno1e53vtk7fmqzfttdvpf4a3pyx0e79wkmjzh6qsk"}}' 
 ```
 
 #### Result:
 
-data: address: juno197y44w58djquqkpu8v56pgwvm058f6jswm0jec
-
-balance: "1100"&#x20;
-
-pending\_rewards: \[]&#x20;
-
-share: "1000"
+```
+– Querying contract...
+{
+  "address": "juno1e53vtk7fmqzfttdvpf4a3pyx0e79wkmjzh6qsk",
+  "share": "1000",
+  "balance": "1100",
+  "pending_rewards": []
+}
+```
 
 #### User 3:
 
 ```
-junod query wasm contract-state smart juno1wf526ma0mjskhlgrun9qkytelnfsl5pny3l2gwvpgjqwhcrx2q8qpqg53f '{"staker":{"address":"juno1nekdhtj60s692g28e4cq5yvpg9aqd4yeafu07t"}}' 
+wasm query  juno15vu55e5hvegppl2nr4dkqrhtmtl4qdspt6vlpld8ult55s95mlgsql7ydu '{"staker":{"address":"juno19s3l3wh5a3w5dpyv6v2342aej39mwmjea8vpsn"}}' 
 ```
 
 #### Result:
 
-data: address: juno1nekdhtj60s692g28e4cq5yvpg9aqd4yeafu07t
-
-&#x20;balance: "6600"
-
-&#x20;pending\_rewards: \[]
-
-&#x20;share: "6000
+```
+— Querying contract...
+{
+  "address": "juno19s3l3wh5a3w5dpyv6v2342aej39mwmjea8vpsn",
+  "share": "6000",
+  "balance": "6600",
+  "pending_rewards": []
+}
+```
 
 As we can see each of the stakers got the amount proportional to the amount staked.&#x20;
 

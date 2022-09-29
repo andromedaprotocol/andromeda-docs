@@ -8,7 +8,7 @@ If any of the messages in this example do not work, you might want to cross refe
 
 ### **Defining our App**
 
-For this example, we will be utilizing our [wrapped-nft ADO](../andromeda-digital-objects/wrapped-cw721.md) to wrap a cw721-base nft and leverage the andromeda [TransferAgreement](../andromeda-digital-objects/andromeda-digital-object.md#transferagreement-1) functionality to sell the token.&#x20;
+For this example, we will be utilizing our [wrapped-nft ADO](../andromeda-digital-objects/wrapped-cw721.md) to wrap a cw721-base nft and leverage the andromeda [TransferAgreement](../andromeda-digital-objects/andromeda-digital-object.md#transferagreement-1) functionality to sell the token. We will build our project using our CLI.
 
 {% hint style="info" %}
 We will not build this example using the App contract.
@@ -29,7 +29,7 @@ We will need to use the following andromeda contracts in addition to the base-nf
 
 ### Instantiating the CW-721 base NFT
 
-First we need to mint a regular nft from the cw-nft repo. To do this, we first need to clone the repo, build the contract and upload it to juno uni-3 testnet. I have done this and the code-id you can use is 2240.&#x20;
+First we need to mint a regular nft from the cw-nft repo. To do this, we first need to clone the repo, build the contract and upload it to juno uni-5 testnet. I have done this and the code-id you can use is 201.&#x20;
 
 ### Instantiate
 
@@ -59,11 +59,25 @@ pub struct InstantiateMsg {
 
 #### Instantiate
 
+First, let us open the CLI by running `andr` in our terminal. We then need to chose the chain we want to deploy on. For this example I will be using the Juno testnet uni-5:
+
 ```
-junod tx wasm instantiate 2240 '{"name":"test","symbol":"TST","minter":"juno1hfngwh4f53smthvqde32y07rjcezdsnlztxtll"}' --label "wrapped" --from  juno1hfngwh4f53smthvqde32y07rjcezdsnlztxtll --gas-prices 0.1ujunox --gas auto --gas-adjustment 1.3 -b block -y --no-admin
+chain use uni-5
 ```
 
-[Instantiate nft contract](https://testnet.mintscan.io/juno-testnet/txs/6F0EC3F75CCA38AE9B1D7E881A96FA798DBD2D09AD6D9AB2BD9848AC65EE58B8)
+{% hint style="warning" %}
+If this is the first time using the CLI make sure to run `"wallets add <wallet-name>"`
+
+in order to create a wallet. Then go to the Juno faucet and request some tokens.
+{% endhint %}
+
+Now we can run the following in the CLI:
+
+```
+wasm instantiate 201 '{"name":"test","symbol":"TST","minter":"juno1zkpthqsz3ud97fm6p4kxcra8ae99jgzauugyem"}' 
+```
+
+[Instantiate nft contract](https://testnet.mintscan.io/juno-testnet/txs/A909B7F4D132580E53596209B59875F60A3E69BE6009CA106390C52A0498A1A3)
 
 #### Mint an NFT&#x20;
 
@@ -73,24 +87,24 @@ We will mint an NFT with token\_id specified as 1.
 {
 "mint":{
 "token_id":"1",
-"owner":"juno1hfngwh4f53smthvqde32y07rjcezdsnlztxtll"
+"owner":"juno1zkpthqsz3ud97fm6p4kxcra8ae99jgzauugyem"
    }
 }
 ```
 
 ```
-junod tx wasm execute juno134hgkjxzftmttgg5w5v79wmm0mdwn0y04s5pyy4lwekkk8fsucqsk3xtqc '{"mint":{"token_id":"1","owner":"juno1hfngwh4f53smthvqde32y07rjcezdsnlztxtll"}}'  --from juno1hfngwh4f53smthvqde32y07rjcezdsnlztxtll --gas-prices 0.1ujunox --gas auto --gas-adjustment 1.3 -b block -y
+ wasm execute juno1nqhnl03hwhh4jtdwv6acpex7m54e3ql4sdzjvcyrgu5kgv2sc8js9kqc8c '{"mint":{"token_id":"1","owner":"juno1zkpthqsz3ud97fm6p4kxcra8ae99jgzauugyem"}}'
 ```
 
-[Mint](https://testnet.mintscan.io/juno-testnet/txs/75BF010F64DDDB1C53B0A838DBAF2C58989EC56A5938CFE5683FCB0E3CED22C6)
+[Mint](https://testnet.mintscan.io/juno-testnet/txs/6A37E1E8381896320DC7833EE19608E48357F7068246F8ED6BC1F50CE24FC94C)
 
 ### Instantiate Wrapped-NFT ADO.
 
-We already have uploaded a wrapped-nft ado with code-id 2196. We can instantiate it using the message below.
+I already have uploaded a wrapped-nft ado with code-id 117. We can instantiate it using the message below.
 
 ```json
 {
-"primitive_contract":"juno144r95jrnk5erqhpuepe5mwz33e5mns7yuyhmxw7fmfx8w0duqwws9qd36x",
+"primitive_contract":"juno133fdsnvcah870exzcyxknydswyh778jfhwxzlhhgjuagh4482zpqp856dz",
 "cw721_instantiate_type":{
     "new":{
         "name":"test-wrap",
@@ -102,10 +116,10 @@ We already have uploaded a wrapped-nft ado with code-id 2196. We can instantiate
 ```
 
 ```
-junod tx wasm instantiate 2196 '{"primitive_contract":"juno144r95jrnk5erqhpuepe5mwz33e5mns7yuyhmxw7fmfx8w0duqwws9qd36x","cw721_instantiate_type":{"new":{"name":"test-wrap","symbol":"TST"}},"can_unwrap": true}' --label "wrapped-nft" --from  juno1hfngwh4f53smthvqde32y07rjcezdsnlztxtll --gas-prices 0.1ujunox --gas auto --gas-adjustment 1.3 -b block -y --no-admin
+ wasm instantiate 117 '{"primitive_contract":"juno133fdsnvcah870exzcyxknydswyh778jfhwxzlhhgjuagh4482zpqp856dz","cw721_instantiate_type":{"new":{"name":"test-wrap","symbol":"TST"}},"can_unwrap": true}' 
 ```
 
-[Instantiate wrapped](https://testnet.mintscan.io/juno-testnet/txs/8D4E8728843C26C7C5048958624718441E8297B4895396C1A542ED4F0710D9F0)
+[Instantiate wrapped](https://testnet.mintscan.io/juno-testnet/txs/E8821E83CD0D92B57B0AA882407BF0DB762571E0EDC32185A89CAB4FE6AEC28B)
 
 {% hint style="info" %}
 When we instantiate the wrapped-nft contract, we specified the cw721 type as new which means that we have also instantiated an andromeda cw721 contract.
@@ -115,9 +129,9 @@ When we instantiate the wrapped-nft contract, we specified the cw721 type as new
 
 Let us list the contracts thus far to avoid confusion:
 
-* **cw721-base:** juno134hgkjxzftmttgg5w5v79wmm0mdwn0y04s5pyy4lwekkk8fsucqsk3xtqc
-* **wrapped-ado:** juno1u4jg78rt9ruulptgk5xluz3r2gpt9uurnuvv9h6zedszk6y6qu4qwp43jj
-* **ado-cw721:**juno1q2m6f79j6wpcfw7v4lzlwe5x5u0utptjd28lsvdtl6pslwhur8yqzyvyzj
+* **cw721-base:** juno1nqhnl03hwhh4jtdwv6acpex7m54e3ql4sdzjvcyrgu5kgv2sc8js9kqc8c
+* **wrapped-ado:** juno1wdahcdkalcl3g02sl5qnadh43le60yhndz7mx7f6syfnxce5cg3q6pwkz9
+* **ado-cw721:**juno1z9mzpgrksmlvg62kple37wpr0u9mvv2s725juwecxhfhxkkdfp0qahyqwz
 
 Now we have everything set up, we can send the token we minted earlier to get wrapped by our ADO.&#x20;
 
@@ -126,7 +140,7 @@ Now we have everything set up, we can send the token we minted earlier to get wr
 ```json
 {
     "send_nft": {
-        "contract": "juno1u4jg78rt9ruulptgk5xluz3r2gpt9uurnuvv9h6zedszk6y6qu4qwp43jj",
+        "contract": "juno1wdahcdkalcl3g02sl5qnadh43le60yhndz7mx7f6syfnxce5cg3q6pwkz9",
         "token_id": "1",
         "msg":"eyJ3cmFwIjp7fX0="
     }
@@ -142,25 +156,28 @@ Here the base64 encoded message is the following:
 We run:
 
 ```
-junod tx wasm execute juno134hgkjxzftmttgg5w5v79wmm0mdwn0y04s5pyy4lwekkk8fsucqsk3xtqc '{"send_nft":{"contract":"juno1u4jg78rt9ruulptgk5xluz3r2gpt9uurnuvv9h6zedszk6y6qu4qwp43jj","token_id":"1","msg":"eyJ3cmFwIjp7fX0="}}'  --from juno1hfngwh4f53smthvqde32y07rjcezdsnlztxtll --gas-prices 0.1ujunox --gas auto --gas-adjustment 1.3 -b block -y
+wasm execute juno1nqhnl03hwhh4jtdwv6acpex7m54e3ql4sdzjvcyrgu5kgv2sc8js9kqc8c '{"send_nft":{"contract":"juno1wdahcdkalcl3g02sl5qnadh43le60yhndz7mx7f6syfnxce5cg3q6pwkz9","token_id":"1","msg":"eyJ3cmFwIjp7fX0="}}' 
 ```
 
-[Wrap NFT](https://testnet.mintscan.io/juno-testnet/txs/BF5F8D7B0584DD319573560F162AC8E5E20BECF3513CB20D53C82A7165C1EB27)\
+[Wrap NFT](https://testnet.mintscan.io/juno-testnet/txs/F6B489F324CCA349C7131536F3B18D1AC4EAAD5598C2AD7A85C0D21DEE03936E)\
 
 
-We have wrapped the nft, this means that the andromeda cw721 should have minted a new token for us. Let us check by querying my tokens in the andromeda nft contract.
+We have wrapped the nft, this means that the andromeda cw721 should have minted a new token for us. Let us check by querying our tokens in the andromeda nft contract.
 
 ```
-junod query wasm contract-state smart juno1q2m6f79j6wpcfw7v4lzlwe5x5u0utptjd28lsvdtl6pslwhur8yqzyvyzj '{"tokens":{"owner":"juno1hfngwh4f53smthvqde32y07rjcezdsnlztxtll"}}' 
+wasm query juno1z9mzpgrksmlvg62kple37wpr0u9mvv2s725juwecxhfhxkkdfp0qahyqwz '{"tokens":{"owner":"juno1zkpthqsz3ud97fm6p4kxcra8ae99jgzauugyem"}}' 
 ```
 
-Result:
+**Result:**
 
-data:&#x20;
-
-&#x20;   tokens:
-
-\-"1"
+```
+– Querying contract...
+{
+  "tokens": [
+    "1"
+  ]
+}
+```
 
 ### TransferAgreement
 
@@ -188,32 +205,42 @@ We have specified the purchaser as "\*" which means any address is allowed to pu
 ```
 
 ```
-junod tx wasm execute juno1q2m6f79j6wpcfw7v4lzlwe5x5u0utptjd28lsvdtl6pslwhur8yqzyvyzj '{"transfer_agreement":{"token_id":"1","agreement":{"amount":{"raw":{"amount":"100000","denom":"ujunox"}},"purchaser":"*"}}}'  --from juno1hfngwh4f53smthvqde32y07rjcezdsnlztxtll --gas-prices 0.1ujunox --gas auto --gas-adjustment 1.3 -b block -y
+wasm execute juno1z9mzpgrksmlvg62kple37wpr0u9mvv2s725juwecxhfhxkkdfp0qahyqwz '{"transfer_agreement":{"token_id":"1","agreement":{"amount":{"raw":{"amount":"10000","denom":"ujunox"}},"purchaser":"*"}}}'  
 ```
 
-[Add TransferAgreement ](https://testnet.mintscan.io/juno-testnet/txs/96FB769ED7B1A73E0D35ECB084BF7755DC23B0076D31D70052E34D99720C567D)
+[Add TransferAgreement ](https://testnet.mintscan.io/juno-testnet/txs/1A55E70388DD04FDDEE0BB75D25D5C745ED4390BF42230DF96DAB0D5AE8D5C9F)
 
-Let us query the balances of the seller and purchaser before making the purchase to make sure that correct funds are sent:
+Let us check the balances of the seller and purchaser before making the purchase to make sure that correct funds are sent:
 
-**Seller**
-
-```
-juno query bank balances juno1hfngwh4f53smthvqde32y07rjcezdsnlztxtll
-```
-
-Result:
-
-amount: "10492823" denom: ujunox
-
-**Buyer**
+**Seller:** juno1zkpthqsz3ud97fm6p4kxcra8ae99jgzauugyem
 
 ```
-junod query bank balances juno179rfqj225d5crspna2uujau8003eqtdq2q68hh
+balances:
+- amount: "4105237"
+  denom: ujunox
+- amount: "20000000"
+  denom: uusdcx
+pagination:
+  next_key: null
+  total: "0"
 ```
 
-Result:
+**Buyer:** juno1e53vtk7fmqzfttdvpf4a3pyx0e79wkmjzh6qsk
 
-amount: "1228107361" denom: ujunox
+```
+balances:
+- amount: "9977890"
+  denom: ujunox
+- amount: "10000000"
+  denom: uusdcx
+pagination:
+  next_key: null
+  total: "0"
+```
+
+{% hint style="warning" %}
+To check the balance you can run "junod query bank balances \<address>" in the terminal (Not CLI).&#x20;
+{% endhint %}
 
 ### Buy the NFT&#x20;
 
@@ -222,50 +249,79 @@ If not familiar with our TransferAgreement message, it allows any buyer to trans
 ```json
 {
 "transfer_nft":{
-    "recipient":"juno179rfqj225d5crspna2uujau8003eqtdq2q68hh",
+    "recipient":"juno1e53vtk7fmqzfttdvpf4a3pyx0e79wkmjzh6qsk",
     "token_id":"1"
     }
 }
 ```
 
-We attach 100000 ujunox to the message:
+We attach 10000 ujunox to the message:
 
 ```
-junod tx wasm execute juno1q2m6f79j6wpcfw7v4lzlwe5x5u0utptjd28lsvdtl6pslwhur8yqzyvyzj '{"transfer_nft":{"recipient":"juno179rfqj225d5crspna2uujau8003eqtdq2q68hh","token_id":"1"}}'  --from juno179rfqj225d5crspna2uujau8003eqtdq2q68hh --amount 100000ujunox --gas-prices 0.1ujunox --gas auto --gas-adjustment 1.3 -b block -y
+wasm execute juno1z9mzpgrksmlvg62kple37wpr0u9mvv2s725juwecxhfhxkkdfp0qahyqwz '{"transfer_nft":{"recipient":"juno1e53vtk7fmqzfttdvpf4a3pyx0e79wkmjzh6qsk","token_id":"1"}}' --funds 10000ujunox  
 ```
 
-[Buy the nft using transfer](https://testnet.mintscan.io/juno-testnet/txs/8AB7F25AA53626B398E36C1CA9547157FD9B6C9FECE9C829D27681CA896E9AF1)
+[Buy the nft using transfer](https://testnet.mintscan.io/juno-testnet/txs/D96B58B1CF77C1F842F380716F812C922F203EDC236C315ED67DA8126304A0E0)
 
 Let us check the balances again:
 
-Seller: 10592823ujunox
+**Seller**
 
-Buyer: 1227984518ujunox
+```
+balances:
+- amount: "4115237"
+  denom: ujunox
+- amount: "20000000"
+  denom: uusdcx
+pagination:
+  next_key: null
+  total: "0"
+```
 
-As we can see 100000 ujunox have been transfered and the token is now owned by the buyer address.&#x20;
+**Buyer**
+
+```
+balances:
+- amount: "9962179"
+  denom: ujunox
+- amount: "10000000"
+  denom: uusdcx
+pagination:
+  next_key: null
+  total: "0"
+```
+
+As we can see 10000 ujunox have been transfered and the token is now owned by the buyer address.&#x20;
 
 ### Unwrap the Token
 
 We have minted a cw721-base nft, wrapped it using the andromeda ADOs and sold it using the custom TransferAgreement. Now we will unwrap the token and get the original back.
 
 {% hint style="info" %}
-The buyer of the token is now the owner, so he would be unwrapping the token.&#x20;
+The buyer of the token is now the owner, so he would be unwrapping the token. Make sure you are using the new owner wallet to run the next message.
 {% endhint %}
 
 Let us see our tokens first in the cw721-base contract:
 
 ```
-junod query wasm contract-state smart juno134hgkjxzftmttgg5w5v79wmm0mdwn0y04s5pyy4lwekkk8fsucqsk3xtqc '{"tokens":{"owner":"juno179rfqj225d5crspna2uujau8003eqtdq2q68hh"}}' 
+wasm query juno1nqhnl03hwhh4jtdwv6acpex7m54e3ql4sdzjvcyrgu5kgv2sc8js9kqc8c '{"tokens":{"owner":"juno1e53vtk7fmqzfttdvpf4a3pyx0e79wkmjzh6qsk"}}' 
 ```
 
-Result: tokens: \[].&#x20;
+**Result**
+
+```
+– Querying contract...
+{
+  "tokens": []
+}
+```
 
 As we can see we have no tokens. Now let us unwrap our token:
 
 ```json
 {
 "send_nft":{
-"contract":"juno1u4jg78rt9ruulptgk5xluz3r2gpt9uurnuvv9h6zedszk6y6qu4qwp43jj",
+"contract":"juno1wdahcdkalcl3g02sl5qnadh43le60yhndz7mx7f6syfnxce5cg3q6pwkz9",
 "token_id":"1",
 "msg":"eyJ1bndyYXAiOnt9fQo="
    }
@@ -279,22 +335,27 @@ The base64 message is:
 ```
 
 ```
-junod tx wasm execute  juno1q2m6f79j6wpcfw7v4lzlwe5x5u0utptjd28lsvdtl6pslwhur8yqzyvyzj '{"send_nft":{"contract":"juno1u4jg78rt9ruulptgk5xluz3r2gpt9uurnuvv9h6zedszk6y6qu4qwp43jj","token_id":"1","msg":"eyJ1bndyYXAiOnt9fQo="}}'  --from juno179rfqj225d5crspna2uujau8003eqtdq2q68hh --gas-prices 0.1ujunox --gas auto --gas-adjustment 1.3 -b block -y
+wasm execute juno1z9mzpgrksmlvg62kple37wpr0u9mvv2s725juwecxhfhxkkdfp0qahyqwz '{"send_nft":{"contract":"juno1wdahcdkalcl3g02sl5qnadh43le60yhndz7mx7f6syfnxce5cg3q6pwkz9","token_id":"1","msg":"eyJ1bndyYXAiOnt9fQo="}}'  
 ```
 
-[Unwrap the token.](https://testnet.mintscan.io/juno-testnet/txs/0BD6A4C3F61CD43F9541025414BA5A71A7CCB48F66682C03F7F4415F28E9EEB9)
+[Unwrap the token](https://testnet.mintscan.io/juno-testnet/txs/83401169FAB02034E62E0EC442DDFDC7A9D41791DD50F840A634402CD0B6CE03)
 
 Now let us check again our tokens in the cw721-base contract:
 
 ```
-junod query wasm contract-state smart juno134hgkjxzftmttgg5w5v79wmm0mdwn0y04s5pyy4lwekkk8fsucqsk3xtqc '{"tokens":{"owner":"juno179rfqj225d5crspna2uujau8003eqtdq2q68hh"}}' 
+wasm query juno1nqhnl03hwhh4jtdwv6acpex7m54e3ql4sdzjvcyrgu5kgv2sc8js9kqc8c '{"tokens":{"owner":"juno1e53vtk7fmqzfttdvpf4a3pyx0e79wkmjzh6qsk"}}' 
 ```
 
-Result:
+**Result**
 
-tokens:
-
-\-"1"
+```
+– Querying contract...
+{
+  "tokens": [
+    "1"
+  ]
+}
+```
 
 As we can see, when we unwrapped the token, the wrapped token is removed and the original token is back in our address.&#x20;
 
