@@ -67,7 +67,7 @@
 * [ADO](andromeda-cli/ado.md)
 * [Bank](andromeda-cli/bank.md)
 * [Chain](andromeda-cli/chain.md)
-* [Hubble](andromeda-cli/hubble.md)
+* [Gql](andromeda-cli/gql.md)
 * [Wallets](andromeda-cli/wallets.md)
 * [Wasm](andromeda-cli/wasm.md)
 * [Clear, Exit and Reload](andromeda-cli/clear-exit-and-reload.md)

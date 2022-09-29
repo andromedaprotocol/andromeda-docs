@@ -102,6 +102,10 @@ juno1alwx0jf72y366627gavklj6rte6ygdm4kw0ctqjrr4qg4y74h84sdfct3g
 
 Updates the code ID for a given ADO in the factory.
 
+{% hint style="warning" %}
+For the default chains, this can only be called by an operator of the deployed Andromeda factory contract.
+{% endhint %}
+
 ### Usage
 
 ```
@@ -121,6 +125,22 @@ ado factory updatecodeid <ado key> <code id>
 
 ```
 ado factory updatecodeid auction 367
+```
+
+### Factory Getcodeid
+
+Fetches the code ID for a given ADO.
+
+**Usage**
+
+```
+ado factory getcodeid <ado key>
+```
+
+**Example**
+
+```
+? $main@elgafar-1> () ado factory getcodeid auction
 ```
 
 ## Primitive
