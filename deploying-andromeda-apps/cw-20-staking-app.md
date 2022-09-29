@@ -1,6 +1,6 @@
 # Cw-20 Staking App
 
-If unfimailar with the steps of deploying an app, go back to the [first example](crowdfunding-app.md) where we explain in detail all the different parts of deploying an App.
+If unfimailar with the steps of deploying an app, go back to the [first example](../andromeda-apps/crowdfunding-app.md) where we explain in detail all the different parts of deploying an App.
 
 {% hint style="warning" %}
 If any of the messages in this example do not work, you might want to cross reference the messages with the ADO specific section which always contains the latest ADO versions to make sure they are correct. Other than that the logic will remain the same.

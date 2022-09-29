@@ -16,7 +16,7 @@
 
 * [Address List](andromeda-digital-objects/address-list.md)
 * [Auction](smart-contracts/non-fungible-tokens/auction.md)
-* [App](andromeda-digital-objects/app.md)
+* [App](smart-contracts/andromeda-apps/app.md)
 * [Crowdfund](smart-contracts/non-fungible-tokens/crowdfund.md)
 * [CW20 Staking](andromeda-digital-objects/cw20-staking.md)
 * [CW20](andromeda-digital-objects/cw20.md)
@@ -53,12 +53,24 @@
 * [Introduction to Apps](andromeda-apps/introduction-to-apps.md)
 * [Crowdfunding App](andromeda-apps/crowdfunding-app.md)
 * [Auctioning App](andromeda-apps/auctioning-app.md)
-* [Cw-20 Staking App](andromeda-apps/cw-20-staking-app.md)
+* [Cw-20 Staking App](deploying-andromeda-apps/cw-20-staking-app.md)
 * [Wrapped-NFT App](andromeda-apps/wrapped-nft-app.md)
 
 ## User Docs
 
 * [User Docs](user-docs.md)
+
+## Andromeda CLI
+
+* [Introduction](andromeda-cli/introduction.md)
+* [Help and Shortcuts](andromeda-cli/help-and-shortcuts.md)
+* [ADO](andromeda-cli/ado.md)
+* [Bank](andromeda-cli/bank.md)
+* [Chain](andromeda-cli/chain.md)
+* [Hubble](andromeda-cli/hubble.md)
+* [Wallets](andromeda-cli/wallets.md)
+* [Wasm](andromeda-cli/wasm.md)
+* [Clear, Exit and Reload](andromeda-cli/clear-exit-and-reload.md)
 
 ## Additional Resources
 

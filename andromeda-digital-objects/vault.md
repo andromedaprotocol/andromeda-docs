@@ -6,7 +6,7 @@ description: The messages to interact with the Vault ADO.
 
 ## Introduction
 
-The purpose of the vault ADO is to provide central funds for an [app](app.md). This means, it will allow the app to deposit funds to the vault, and these funds can be proxied to various yield strategies.
+The purpose of the vault ADO is to provide central funds for an [app](../smart-contracts/andromeda-apps/app.md). This means, it will allow the app to deposit funds to the vault, and these funds can be proxied to various yield strategies.
 
 {% hint style="warning" %}
 Since the Terra crash, no yield strategies are currently available.

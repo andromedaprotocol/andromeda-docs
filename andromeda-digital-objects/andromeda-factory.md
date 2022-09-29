@@ -2,7 +2,7 @@
 
 ## Introduction
 
-The **Factory** ADO is a smart contract that is primarily used to store code ids for contracts when creating Andromeda [Apps](app.md).
+The **Factory** ADO is a smart contract that is primarily used to store code ids for contracts when creating Andromeda [Apps](../smart-contracts/andromeda-apps/app.md).
 
 **Ado\_type**: factory
 
@@ -82,7 +82,7 @@ pub enum QueryMsg {
 ```javascript
 {
     "code_id": {
-        "key": "..."
+    "key": "..."
     }
 }
 ```

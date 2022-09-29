@@ -66,6 +66,8 @@ The information about the rates is stored in a `RateInfo` struct.
 
 {% hint style="warning" %}
 Each of the recipients will receive the rate imposed. ( The rate is 3% and we have 5 recipients then 15 % would go to them in total.)
+
+Taxes are added to the selling price (Paid by buyer) while royalties are deducted from the price (Paid by seller).
 {% endhint %}
 
 ```rust

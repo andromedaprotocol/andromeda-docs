@@ -35,9 +35,9 @@ Sets a value for the named key. When we need to extract the value that has been 
 {% hint style="warning" %}
 If `name`is not specified the default key ("default") will be used.
 
-If `SetValue` uses a `name` that is already in use, the old `value` is overwritten by the latest `value`.
+If `SetValue` uses a `name` that is already in use, the old `value` is overwritten by the latest `value.`
 
-Only available to contract owner/operator.
+Only available to the contract owner/operator.
 {% endhint %}
 
 {% tabs %}
@@ -96,6 +96,8 @@ Deletes the data attached to the specified `name`.
 
 {% hint style="warning" %}
 If `name` is not specified the default key ("default") will be used.
+
+Only available to the contract owner/operator
 {% endhint %}
 
 {% tabs %}
