@@ -6,14 +6,13 @@ description: Send CosmWasm messages to the chain.
 
 ### Available Commands
 
-| Command         | Description                               |
-| --------------- | ----------------------------------------- |
-| **execute**     | Executes a wasm message.                  |
-| **instantiate** | Instantiates a contract by code ID.       |
-| **migrate**     | Migrate a contract.                       |
-| **query**       | Queries a contract.                       |
-| **upload**      | Upload a contract wasm.                   |
-| **tx**          | Gets transaction info from provided hash. |
+| Command         | Description                         |
+| --------------- | ----------------------------------- |
+| **execute**     | Executes a wasm message.            |
+| **instantiate** | Instantiates a contract by code ID. |
+| **migrate**     | Migrate a contract.                 |
+| **query**       | Queries a contract.                 |
+| **upload**      | Upload a contract wasm.             |
 
 ## Execute
 
@@ -136,7 +135,7 @@ Upload a contract wasm.
 #### Usage
 
 ```
-wasm upload <wasm file> <memo>
+wasm upload <wasm file> 
 ```
 
 #### Example
@@ -144,21 +143,3 @@ wasm upload <wasm file> <memo>
 ```
 wam upload andromeda_app_contract.wasm
 ```
-
-### Tx
-
-Gets transaction info from provided hash.
-
-#### Usage
-
-```
-wasm tx <txhash>
-```
-
-#### Example
-
-```
-wasm tx A6085E55DC3B8CDD13C83B641C1A360D72DA83DFAB2AE96A18145D3E563BB66D
-```
-
-All the transaction information is returned.

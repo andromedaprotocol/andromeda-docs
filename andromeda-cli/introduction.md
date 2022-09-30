@@ -62,17 +62,17 @@ help
 
 You will get a list of available commands to use:
 
-| Command     | Description                         |
-| ----------- | ----------------------------------- |
-| **ado**     | Query and execute on an ADO         |
-| **chain**   | Manage Chain Config                 |
-| **clear**   | Clears the terminal                 |
-| **exit**    | Exits the CLI                       |
-| **help**    | Lists all valid commands            |
-| **hubble**  | Query using the Hubble service      |
-| **reload**  | Prints previous commands            |
-| **wallets** | Manage wallets                      |
-| **wasm**    | Send CosmWasm messages to the chain |
+| Command     | Description                               |
+| ----------- | ----------------------------------------- |
+| **ado**     | Query and execute on an ADO               |
+| **chain**   | Manage Chain Config                       |
+| **clear**   | Clears the terminal                       |
+| **exit**    | Exits the CLI                             |
+| **gql**     | Query using the Andromeda GraphQL service |
+| **help**    | Lists all valid commands                  |
+| **tx**      | Query transactions                        |
+| **wallets** | Manage wallets                            |
+| **wasm**    | Send CosmWasm messages to the chain       |
 
 {% hint style="warning" %}
 It is important to note that the CLI has been designed to promt the user for the required fields in each command. This means that it is sufficient to write the command without the fields and the CLI will prompt you to fill in the inputs one by one instead of throwing an error.&#x20;

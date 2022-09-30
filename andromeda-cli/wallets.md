@@ -12,8 +12,8 @@ description: >-
 | -------- | ------------------------------- |
 | **add**  | Adds a new wallet               |
 | **list** | Lists all added wallets         |
-| **use**  | Sets the default wallet to use  |
 | **rm**   | Removes a wallet by address     |
+| **use**  | Sets the default wallet to use  |
 
 ## Wallets Add
 

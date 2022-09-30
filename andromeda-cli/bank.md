@@ -2,11 +2,32 @@
 
 ### Available Commands
 
-| Command  | Description                      |
-| -------- | -------------------------------- |
-| **send** | Sends tokens to another address. |
+| Command     | Description                      |
+| ----------- | -------------------------------- |
+| **balance** | Gets the balance for an address. |
+| **send**    | Sends tokens to another address. |
 
-### send
+## Bank
+
+Gets the balance for an address.
+
+#### Usage
+
+```
+bank balance <denom?> <address>
+```
+
+#### Example
+
+```
+? $main@uni-5> bank balance ujunox juno1zkpthqsz3ud97fm6p4kxcra8ae99jgzauugyem
+
+Balance
+ujunox: 3598667
+? $main@uni-5> () 
+```
+
+## Send
 
 Sends tokens to another address.
 

@@ -9,15 +9,15 @@ description: Manage Chain Config.
 | Command    | Description                             |
 | ---------- | --------------------------------------- |
 | **config** | Displays current chain config.          |
+| **copy**   | Creates a copy of a current config.     |
 | **get**    | Displays current value for a given key. |
 | **list**   | Lists all the currently saved configs.  |
 | **new**    | Creates a new config.                   |
-| **copy**   | Creates a copy of a current config.     |
 | **rm**     | Removes a config by name or chain ID.   |
 | **set**    | Sets the value for a given config key.  |
 | **use**    | Swap to a saved config.                 |
 
-## Chain Config
+## Config
 
 Displays the config of the chain.
 
@@ -65,86 +65,7 @@ chainType                 testnet                                               
 iconUrl                   [object Object]                                                                               
 ```
 
-## Chain Get
-
-Gets the value for the specified key. The keys are the ones found above when we call chain config (chainId, chainUrl, ect...)
-
-#### Usage
-
-```
-chain get <key>
-```
-
-{% hint style="warning" %}
-If the \<key> is not specified, then the entire config will be fetched.
-{% endhint %}
-
-#### Example
-
-```
-//Get the chainName of the chain
-
-? $main@elgafar-1> chain get chainName
-Current chain config
-
-Key       Value    Description          
-chainName Stargaze The name of the chain
-
-```
-
-## Chain List
-
-Lists all the saved configs.
-
-#### Usage
-
-```
-chain list
-```
-
-#### Example
-
-```
-? $main@uni-3> chain list
-Chain ID 
-uni-3    
-galileo-2
-elgafar-1
-```
-
-{% hint style="warning" %}
-The chain currently is use is highlighted in green.
-{% endhint %}
-
-## Chain New
-
-Creates a new config.
-
-#### Usage:
-
-```
-chain new <name>
-```
-
-#### Example:
-
-```
-? $main@elgafar-1> chain new tutorial
-```
-
-You will be prompted to enter the required config fields. We can then query the configs:&#x20;
-
-```
-? $main@elgafar-1> chain list
-Name     Chain ID 
-uni3     uni-3    
-elgafar1 elgafar-1
-galileo2 galileo-2
-pisco1   pisco-1  
-tutorial elgafar-1
-```
-
-## Chain Copy
+## Copy
 
 Creates a copy of a current config.&#x20;
 
@@ -174,7 +95,111 @@ test     elgafar-1
 When you copy a config, the wallets from the copied config are also copied to the new one.&#x20;
 {% endhint %}
 
-## Chain Set
+## Get
+
+Gets the value for the specified key. The keys are the ones found above when we call chain config (chainId, chainUrl, ect...)
+
+#### Usage
+
+```
+chain get <key>
+```
+
+{% hint style="warning" %}
+If the \<key> is not specified, then the entire config will be fetched.
+{% endhint %}
+
+#### Example
+
+```
+//Get the chainName of the chain
+
+? $main@elgafar-1> chain get chainName
+Current chain config
+
+Key       Value    Description          
+chainName Stargaze The name of the chain
+
+```
+
+## List
+
+Lists all the saved configs.
+
+#### Usage
+
+```
+chain list
+```
+
+#### Example
+
+```
+? $main@uni-3> chain list
+Chain ID 
+uni-3    
+galileo-2
+elgafar-1
+```
+
+{% hint style="warning" %}
+The chain currently is use is highlighted in green.
+{% endhint %}
+
+## New
+
+Creates a new config.
+
+#### Usage:
+
+```
+chain new <name>
+```
+
+#### Example:
+
+```
+? $main@elgafar-1> chain new tutorial
+```
+
+You will be prompted to enter the required config fields. We can then query the configs:&#x20;
+
+```
+? $main@elgafar-1> chain list
+Name     Chain ID 
+uni3     uni-3    
+elgafar1 elgafar-1
+galileo2 galileo-2
+pisco1   pisco-1  
+tutorial elgafar-1
+```
+
+## Rm
+
+Removes a config by name or chain ID.
+
+{% hint style="warning" %}
+You can only remove configs that have been added and not default configs.
+{% endhint %}
+
+#### Usage
+
+```
+chain rm <config name>
+```
+
+#### Example
+
+```
+? $main@uni-5> chain rm copyofjuno
+? Select new config to use: (Use arrow keys)
+❯ junotestnet 
+  elgafar1 
+  galileo2 
+  pisco1 
+```
+
+## Set
 
 Sets the value for a given config key.
 
@@ -199,7 +224,7 @@ Change some of the values in the config:
 
 Run `chain config` to see the changes in the config.&#x20;
 
-## Chain Use
+## Use
 
 Swaps to one of the saved configs.
 
@@ -234,6 +259,4 @@ Config loaded!
 Config loaded!
 – Connecting client...
 ? $main@galileo-2> () 
-
-
 ```

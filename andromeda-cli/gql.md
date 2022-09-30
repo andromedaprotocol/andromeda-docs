@@ -18,7 +18,7 @@ Queries details about an app.
 #### Usage
 
 ```
-hubble app <contract address>
+gql app <contract address>
 ```
 
 #### Example

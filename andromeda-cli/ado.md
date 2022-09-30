@@ -6,14 +6,14 @@ description: Query and execute on an ADO.
 
 ### Available commands
 
-| Command       | Description                                        |
-| ------------- | -------------------------------------------------- |
-| **create**    | Creates an ADO by given type.                      |
-| **execute**   | Executes a message on an ADO by given address.     |
-| **factory**   | Allows executing and querying for a Factory ADO.   |
-| **primitive** | Allows executing and querying for a Primitive ADO. |
-| **query**     | Queries an ADO by given address.                   |
-| **type**      | Queries the type of ADO for a given address.       |
+| Command     | Description                                                             |
+| ----------- | ----------------------------------------------------------------------- |
+| **create**  | Creates an ADO by given type.                                           |
+| **execute** | Executes a message on an ADO by given address.                          |
+| **factory** | Allows executing and querying for a Factory ADO.                        |
+| **list**    | Queries details about your deployed apps and ADOs for the current chain |
+| **query**   | Queries an ADO by given address.                                        |
+| **type**    | Queries the type of ADO for a given address.                            |
 
 ## Create
 
@@ -131,97 +131,52 @@ ado factory updatecodeid auction 367
 
 Fetches the code ID for a given ADO.
 
-**Usage**
+**Usage:**
 
 ```
 ado factory getcodeid <ado key>
 ```
 
-**Example**
+**Example:**
 
 ```
 ? $main@elgafar-1> () ado factory getcodeid auction
 ```
 
-## Primitive
+## List
 
-Allows executing and querying for a Primitive ADO.
+Queries details about your deployed apps and ADOs for the current chain.
 
-| Command    | Description                       |
-| ---------- | --------------------------------- |
-| **create** | Creates a primitive contract.     |
-| **get**    | Get the value for a given key.    |
-| **set**    | Sets the value for the given key. |
-
-### Primitive Create
-
-Creates a primitive contract.
-
-#### Usage
+#### Usage:
 
 ```
-ado primitive create <operators>
+ado list
 ```
 
-Here we can specify the operators by providing comma seperated addresses.
-
-| Flag    | Description                                                           | Usage                            |
-| ------- | --------------------------------------------------------------------- | -------------------------------- |
-| label   | Used to provide a label assigned to the instantiation.                | --label 'Wow what a great label' |
-| admin   | Used to provide an alternative admin address for the contract.        | --admin juno1...                 |
-| factory | Used to provide an alternative factory address for the instantiation. | --factory juno1...               |
-| help    | Displays info about the current command.                              | --help                           |
-
-#### Example
+#### Example:
 
 ```
-// Command
-? $test@uni-3> ado primitive create juno17xc85tk5ty96slk5hdp7nf4mlwdadlqph5z5nlm0dd2tjmgsuc9s4zcyjp
-- Creating your primitive...
-Primitive created!
-
-// Link to transaction details in explorer 
-https://testnet.mintscan.io/juno-testnet/txs/C1FD1E094F6880861C5BA3A25AAD97F3B87FCDDECCCA2D50325064B7F51F54C7
-
-// Address of the created contract
-Address: juno14qjfl4phwgckxg0pxzj629qfhf82slff2dp292vus70e6kg2sxcsx4r53k
+ $main@uni-5> ado list
+⠂ Searching the Cosmos...
+Address                                                         ADO Type      App Contract                                                   
+juno1xg3c9lx8554s44umj6f9x4tknn9yyv8v0yfwys4y4l4xgdjc6fysl374p2 app                                                                          
+juno12rldgl4x4clvkgmw6npjy5htupp24gercczjsr3d97hcte3vsj0q4fvs63 app                                                                          
+juno1fehkdr6w47w35ux6npv3hqhhctt9fcllxt4ccswj53800n4c80gqjrnu0d app                                                                          
+juno1dxw33nhqz5v4ht2xu5y73y3r3epcwffqccwnnjnvkd7pl5dgxv2szumd7a app                                                                          
+juno1fjd5qr83hdkfayqaejphp2vvjacw3fye6gpl79jp5zhujtr5m3gsxgp4c8 crowdfund     juno1fjd5qr83hdkfayqaejphp2vvjacw3fye6gpl79jp5zhujtr5m3gsxgp4c8
+juno14g7rcqe0vwsf8pgaz2dg77p5mm08hvhwwfu73653406rhzh3rdgqckhq5g cw721         juno14g7rcqe0vwsf8pgaz2dg77p5mm08hvhwwfu73653406rhzh3rdgqckhq5g
+juno1khsspglsfgkhxpsyfkzd3a2cdf7d8mngpvt22m4y0uznz24mjesq3kzawz vault         juno1khsspglsfgkhxpsyfkzd3a2cdf7d8mngpvt22m4y0uznz24mjesq3kzawz
+juno1w23ad8kkfk7g7gc5cgce9c6lwnvvn4kur7ycxjkt3kfdngjkyvyskajhur vault         juno1w23ad8kkfk7g7gc5cgce9c6lwnvvn4kur7ycxjkt3kfdngjkyvyskajhur
+juno1a7arcy7k0ral0sgqncs9adgzwv8z6zvpfxggta32wauwpj2x8xksv42upn splitter    
+? $main@uni-5> () 
 ```
 
-### Primitive Get
+#### Flags
 
-Get the value for a given key.
-
-#### Usage
-
-```
-ado primitive get <contract address> <key>
-```
-
-#### Example
-
-```
-// Command
-? $test@uni-3> ado primitive get juno144r95jrnk5erqhpuepe5mwz33e5mns7yuyhmxw7fmfx8w0duqwws9qd36x factory
-
-//The value for the "factory" key is returned
-juno1alwx0jf72y366627gavklj6rte6ygdm4kw0ctqjrr4qg4y74h84sdfct3g
-```
-
-### Primitive Set
-
-Sets the value for the given key.
-
-#### Usage
-
-```
-ado primitive set <contract address> <key> <value> <valuetype>
-```
-
-#### Example
-
-```
-ado primitve set juno1mm3lykw9dzvfwd7cq5hxkgnhzyheprs856v7av5uaukn3ax3p6gs3er96c test testing string
-```
+| Flag     | Description                             |              |
+| -------- | --------------------------------------- | ------------ |
+| **type** | Filter assets by ADO type               | --type cw721 |
+| **help** | Displays info about the current command | --help       |
 
 ## Query
 
