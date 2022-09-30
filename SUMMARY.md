@@ -22,7 +22,6 @@
 * [CW20](andromeda-digital-objects/cw20.md)
 * [CW721](andromeda-digital-objects/andromeda-digital-object.md)
 * [Factory](andromeda-digital-objects/andromeda-factory.md)
-* [Gumball](andromeda-digital-objects/gumball.md)
 * [Lockdrop](smart-contracts/fungible-tokens/lockdrop.md)
 * [Marketplace](andromeda-digital-objects/marketplace.md)
 * [Merkle-Airdrop](andromeda-digital-objects/merkle-airdrop.md)
