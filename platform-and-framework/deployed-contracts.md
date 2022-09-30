@@ -39,6 +39,17 @@ These addresses will be used when deploying Andromeda Apps
 {% endtab %}
 {% endtabs %}
 
+### Terra
+
+{% tabs %}
+{% tab title="Testnet (pisco-1)" %}
+| Contract               | Address                                                          | Description                                                                  |
+| ---------------------- | ---------------------------------------------------------------- | ---------------------------------------------------------------------------- |
+| **Factory**            | terra1zjk5njg80ccw7t22jxdukhdmjjagqe2w546k8svzuue80y4uzpfsagw7ph | Contract used to store the code IDs of all the other ADOs.                   |
+| **Registry/Primitive** | terra1d29xk5fenxj2039fklmy57qcajwcpwe2lj2vspku82wh53cn39sssuzavq | Contract used to save the factory address and connect it to Andromeda Apps.  |
+{% endtab %}
+{% endtabs %}
+
 ### What's Next
 
 In the following sections we will be going through each of our unique ADOs.
