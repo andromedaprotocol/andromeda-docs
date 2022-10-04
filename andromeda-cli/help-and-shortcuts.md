@@ -115,17 +115,13 @@ andr chain list
 
 #### Result
 
-```
-⠂ Loading config...
-⠂ Loading wallets...
-⠂ Connecting client...(node:11208) ExperimentalWarning: The Fetch API is an experimental feature. This feature could change at any time
-(Use `node --trace-warnings ...` to show where the warning was created)
+<pre><code><strong>⠂ Loading config...
+</strong>⠂ Loading wallets...
 – Connecting client...
 Name        Chain ID 
 junotestnet uni-5    
 elgafar1    elgafar-1
 galileo2    galileo-2
-pisco1      pisco-1  
-```
+pisco1      pisco-1  </code></pre>
 
 The command runs and the result is displayed but we are still in the parent shell.&#x20;
