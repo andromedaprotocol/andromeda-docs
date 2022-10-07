@@ -4,6 +4,8 @@
 
 The Rate Limiting Withdrawals ADO acts as a bank account that limits the frequency and size of an account holder's withdrawals. Only one type of coin can be used.
 
+The contract supports [modules](broken-reference) to extend it's functionality.
+
 **Ado\_type**: rate-limiting-withdrawals
 
 ## InstantiateMsg

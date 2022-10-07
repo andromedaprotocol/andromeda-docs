@@ -4,6 +4,8 @@
 
 The **Marketplace** ADO is a smart contract that allows you to sell your NFTs in a marketplace. The seller sends their NFT to the ADO with a custom price and denomination to be used to buy the NFT. Once the NFT is sent, it is up for sale and buyers can pay the price to buy the NFT.
 
+The contract supports [modules](broken-reference) to extend it's functionality.
+
 {% hint style="warning" %}
 &#x20;Each sale is assigned an Id which starts at 1 and increments for each new sale. .
 {% endhint %}

@@ -10,6 +10,8 @@ description: >-
 
 The **Auction** ADO is a smart contract that allows performing auctions on NFT tokens. The owner can send an NFT to this contract with the required messages to start an auction on it. Once the auction has started, users can place bids on the token until the auction expires. The highest bid will win the auction sending the funds to the seller and receiving the token in return.
 
+The contract supports [modules](broken-reference) to extend it's functionality.
+
 **Ado\_type**: auction
 
 ## InstantiateMsg <a href="#instantiatemsg" id="instantiatemsg"></a>

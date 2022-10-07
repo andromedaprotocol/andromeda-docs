@@ -13,6 +13,8 @@ There are two main conditions that can be used by the contract:
 
 Once a condition is satisfied, the funds can be released by anyone.
 
+The contract supports [modules](broken-reference) to extend it's functionality.
+
 **Ado\_type**: timelock
 
 ## InstantiateMsg

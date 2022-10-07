@@ -14,6 +14,8 @@ On instantiation, the following weights are assigned:
 
 Then the total weight is 12 and A receives 5/12 of the funds, B receives 3/12 of the funds and C receives 4/12 of the funds. If a recipient is then added, the total weight is increased and the percentages are recalculated.
 
+The contract supports [modules](broken-reference) to extend it's functionality.
+
 **ado\_type:** weighted-distribution-splitter
 
 ## InstantiateMsg
