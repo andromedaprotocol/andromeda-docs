@@ -10,6 +10,8 @@ description: >-
 
 The `Receipt` module creates a [receipt ](../../andromeda-digital-objects/receipt.md)contract to generate receipts that store the events activity.
 
+**Module\_type:** receipt
+
 ### InstantiateMsg
 
 The Instantiate message for the receipt contract.

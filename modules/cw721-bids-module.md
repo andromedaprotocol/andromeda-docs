@@ -10,6 +10,8 @@ description: >-
 
 The Bids module uses the cw721-bids contract in order to allow a user to sell their NFT and for buyers to bid for said NFT. It is created as another way to make a `TransferAgreement`.
 
+**Module\_type:** cw721-bids
+
 ### InstantiateMsg
 
 ```rust

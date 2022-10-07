@@ -10,6 +10,8 @@ description: >-
 
 The address list contains a list of of addresses as operators. These addresses can either whitelisted or blacklisted. The `is_inclusive` field is used as a flag to specify whether to consider the address list as a whitelist or a blacklist.
 
+**Module\_type:** address-list
+
 ### InstantiateMsg
 
 The Instantiation message for the Address List contract.

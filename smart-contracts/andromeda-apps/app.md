@@ -71,6 +71,8 @@ The ADO to be a part of the App.&#x20;
 
 {% hint style="warning" %}
 The `instantiate_msg` should be base64 encoded and not raw binary.
+
+The `name` field is case sensitive.&#x20;
 {% endhint %}
 
 ```rust
@@ -81,11 +83,11 @@ pub struct AppComponent {
 }
 ```
 
-| Name              | Type    | Description                                                    |
-| ----------------- | ------- | -------------------------------------------------------------- |
-| `name`            | String. | The name of the ADO component.                                 |
-| `ado_type`        | String  | The type of the ADO.                                           |
-| `instantiate_msg` | Binary  | The instantiate message of the ADO component in base64 binary. |
+| Name              | Type    | Description                                                                               |
+| ----------------- | ------- | ----------------------------------------------------------------------------------------- |
+| `name`            | String. | The name of the ADO component. The names can be used later on to reference the coponent.  |
+| `ado_type`        | String  | The type of the ADO.                                                                      |
+| `instantiate_msg` | Binary  | The instantiate message of the ADO component in base64 binary.                            |
 
 ## ExecuteMsg
 
