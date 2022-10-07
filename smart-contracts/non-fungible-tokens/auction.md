@@ -31,7 +31,7 @@ pub struct InstantiateMsg {
 
 ### ReceiveNft
 
-Receives a token from a [`SendNft`](../../andromeda-digital-objects/andromeda-digital-object.md#sendnft) and starts an auction based on the given parameters in the [`StartAuction` ](auction.md#startauction)struct. &#x20;
+Receives a token from a [`SendNft`](broken-reference) and starts an auction based on the given parameters in the [`StartAuction` ](auction.md#startauction)struct. &#x20;
 
 {% hint style="warning" %}
 The auction information can be modified before it has started but is immutable after that.

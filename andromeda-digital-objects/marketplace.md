@@ -44,7 +44,7 @@ pub struct InstantiateMsg {
 
 ### ReceiveNft
 
-Receives a token from a [`SendNft`](andromeda-digital-object.md#sendnft) and starts an auction based on the given parameters in the StartSale struct. &#x20;
+Receives a token from a [`SendNft`](broken-reference) and starts an auction based on the given parameters in the StartSale struct. &#x20;
 
 {% tabs %}
 {% tab title="Rust" %}

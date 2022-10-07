@@ -20,7 +20,7 @@
 * [Crowdfund](smart-contracts/non-fungible-tokens/crowdfund.md)
 * [CW20 Staking](andromeda-digital-objects/cw20-staking.md)
 * [CW20](andromeda-digital-objects/cw20.md)
-* [CW721](andromeda-digital-objects/andromeda-digital-object.md)
+* [CW721](andromeda-digital-objects/cw721.md)
 * [Factory](andromeda-digital-objects/andromeda-factory.md)
 * [Lockdrop](smart-contracts/fungible-tokens/lockdrop.md)
 * [Marketplace](andromeda-digital-objects/marketplace.md)

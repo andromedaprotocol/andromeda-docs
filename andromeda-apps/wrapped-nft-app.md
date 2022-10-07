@@ -8,7 +8,7 @@ If any of the messages in this example do not work, you might want to cross refe
 
 ### **Defining our App**
 
-For this example, we will be utilizing our [wrapped-nft ADO](../andromeda-digital-objects/wrapped-cw721.md) to wrap a cw721-base nft and leverage the andromeda [TransferAgreement](../andromeda-digital-objects/andromeda-digital-object.md#transferagreement-1) functionality to sell the token. We will build our project using our CLI.
+For this example, we will be utilizing our [wrapped-nft ADO](../andromeda-digital-objects/wrapped-cw721.md) to wrap a cw721-base nft and leverage the andromeda [TransferAgreement](broken-reference) functionality to sell the token. We will build our project using our CLI.
 
 {% hint style="info" %}
 We will not build this example using the App contract.
@@ -25,7 +25,7 @@ The steps we will perform:&#x20;
 We will need to use the following andromeda contracts in addition to the base-nft contract:
 
 * [Andromeda wrapped-nft ](../andromeda-digital-objects/wrapped-cw721.md)
-* [Andromeda cw721](../andromeda-digital-objects/andromeda-digital-object.md)
+* [Andromeda cw721](broken-reference)
 
 ### Instantiating the CW-721 base NFT
 

@@ -125,7 +125,7 @@ Accepts a bid that is placed on your NFT.&#x20;
 {% hint style="warning" %}
 Only the `andromeda_cw721_contract` can accept bids.
 
-Cannot accept a bid on a token that has a current [TransferAgreement](andromeda-digital-object.md#transferagreement-1).
+Cannot accept a bid on a token that has a current [TransferAgreement](broken-reference).
 {% endhint %}
 
 {% tabs %}

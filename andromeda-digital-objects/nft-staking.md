@@ -49,7 +49,7 @@ pub struct InstantiateMsg {
 
 ### ReceiveNft
 
-Receives an NFT from one of the `nft_contract` set on instantiation by executing a [`SendNft`](andromeda-digital-object.md#sendnft) from the NFT contract with the attached `Stake` message
+Receives an NFT from one of the `nft_contract` set on instantiation by executing a [`SendNft`](broken-reference) from the NFT contract with the attached `Stake` message
 
 ```rust
 pub enum ExecuteMsg {
