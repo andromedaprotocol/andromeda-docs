@@ -845,9 +845,10 @@ pub struct ModuleInfoWithAddress {
 "module":{
   "module_type":"address_list",
   "instantiate":{
-     "address": "juno1...",
-     }
-"address":"juno1...",
+     "address": "juno1..."
+     },
+"address":"juno1..."
+}
 ```
 {% endtab %}
 {% endtabs %}
@@ -875,7 +876,7 @@ ModuleIds{}
 ```json
 {
 "andr_query":{
-    "module_ids":{},
+    "module_ids":{}
 }
 ```
 {% endtab %}
