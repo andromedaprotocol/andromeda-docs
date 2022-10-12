@@ -1,3 +1,7 @@
+---
+description: Deploying a wrapped NFT App using the Andromeda CLI.
+---
+
 # Wrapped-NFT App
 
 If unfimailar with the steps of deploying an app, go back to the [first example](crowdfunding-app.md) where we explain in detail all the different parts of deploying an App.

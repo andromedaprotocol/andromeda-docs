@@ -10,6 +10,8 @@ The contract supports [modules](broken-reference) to extend it's functionality.
 &#x20;Each sale is assigned an Id which starts at 1 and increments for each new sale. .
 {% endhint %}
 
+**Ado\_type:** marketplace
+
 ## InstantiateMsg
 
 {% tabs %}

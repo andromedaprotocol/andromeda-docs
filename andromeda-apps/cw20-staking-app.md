@@ -1,6 +1,10 @@
-# Cw-20 Staking App
+---
+description: Deploying a cw20 staking App using the Andromeda CLI.
+---
 
-If unfimailar with the steps of deploying an app, go back to the [first example](../andromeda-apps/crowdfunding-app.md) where we explain in detail all the different parts of deploying an App.
+# Cw20 Staking App
+
+If unfimailar with the steps of deploying an app, go back to the [first example](crowdfunding-app.md) where we explain in detail all the different parts of deploying an App.
 
 {% hint style="warning" %}
 If any of the messages in this example do not work, you might want to cross reference the messages with the ADO specific section which always contains the latest ADO versions to make sure they are correct. Other than that the logic will remain the same.
@@ -14,13 +18,13 @@ The steps we will perform:&#x20;
 
 * Mint some coins to different addresses
 * Stake some of the coins for rewards of our choice&#x20;
-* Check that all the results are what what expected
+* Check that all the results are as expected
 
 ### Defining the Messages
 
 The components/ADOs we would need:
 
-* [Cw-20 token](../andromeda-digital-objects/cw20.md)
+* [CW20](../andromeda-digital-objects/cw20.md)
 * [Cw-20 staking](../andromeda-digital-objects/cw20-staking.md)
 
 {% hint style="warning" %}
