@@ -572,7 +572,7 @@ IsOperators{
 {
 "andr_query":{
    "is_operators":{
-     "address":"juno1...",
+     "address":"juno1..."
      }
   }
 }
