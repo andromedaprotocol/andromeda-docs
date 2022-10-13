@@ -170,7 +170,7 @@ pub enum ExecuteMsg{
 
 | Name                    | Type                                                                  | Description                                                       |
 | ----------------------- | --------------------------------------------------------------------- | ----------------------------------------------------------------- |
-| `exiration`             | [Expiration](../../platform-and-framework/common-types/expiration.md) | When the sale ends.                                               |
+| `expiration`            | [Expiration](../../platform-and-framework/common-types/expiration.md) | When the sale ends.                                               |
 | `price`                 | [Coin](../../platform-and-framework/common-types/coin.md)             | The price per token.                                              |
 | `min_tokens_sold`       | Uint128                                                               | The minimum amount of tokens sold to go through with the sale.    |
 | `max_amount_per_wallet` | Option\<u32>                                                          | The amount of tokens a wallet can purchase, default is 1.         |
