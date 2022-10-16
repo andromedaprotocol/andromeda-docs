@@ -62,17 +62,17 @@ help
 
 You will get a list of available commands to use:
 
-| Command     | Description                               |
-| ----------- | ----------------------------------------- |
-| **ado**     | Query and execute on an ADO               |
-| **chain**   | Manage Chain Config                       |
-| **clear**   | Clears the terminal                       |
-| **exit**    | Exits the CLI                             |
-| **gql**     | Query using the Andromeda GraphQL service |
-| **help**    | Lists all valid commands                  |
-| **tx**      | Query transactions                        |
-| **wallets** | Manage wallets                            |
-| **wasm**    | Send CosmWasm messages to the chain       |
+| Command                                   | Description                               |
+| ----------------------------------------- | ----------------------------------------- |
+| ****[**ado**](ado.md)****                 | Query and execute on an ADO               |
+| ****[**chain**](chain.md)****             | Manage Chain Config                       |
+| ****[**clear**](clear-and-exit.md)****    | Clears the terminal                       |
+| ****[**exit**](clear-and-exit.md)****     | Exits the CLI                             |
+| ****[**gql**](gql.md)****                 | Query using the Andromeda GraphQL service |
+| ****[**help**](help-and-shortcuts.md)**** | Lists all valid commands                  |
+| ****[**tx**](tx.md)****                   | Query transactions                        |
+| ****[**wallets**](wallets.md)****         | Manage wallets                            |
+| ****[**wasm**](wasm.md)****               | Send CosmWasm messages to the chain       |
 
 {% hint style="warning" %}
 It is important to note that the CLI has been designed to promt the user for the required fields in each command. This means that it is sufficient to write the command without the fields and the CLI will prompt you to fill in the inputs one by one instead of throwing an error.&#x20;

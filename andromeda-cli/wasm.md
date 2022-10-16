@@ -63,11 +63,13 @@ wasm instantiate <code-id> <instantiate message>
 
 #### Flags
 
-| Flag   | Description                                                    | Usage                           |
-| ------ | -------------------------------------------------------------- | ------------------------------- |
-| label  | Used to provide a label assigned to the instantiation.         | --label 'This is a great label' |
-| admin  | Used to provide an alternative admin address for the contract. | --admin juno...                 |
-| help   | Displays info about the current command.                       | --help                          |
+| Flag         | Description                                                                      | Usage                           |
+| ------------ | -------------------------------------------------------------------------------- | ------------------------------- |
+| **label**    | Used to provide a label assigned to the instantiation.                           | --label 'This is a great label' |
+| **admin**    | Used to provide an alternative admin address for the contract.                   | --admin juno...                 |
+| **simulate** | Simulates the transaction without broadcasting it. Useful to estimate gas costs. | --simulate                      |
+| **print**    | Prints the constructed message before simulating.                                | --print                         |
+| **help**     | Displays info about the current command.                                         | --help                          |
 
 #### Example
 

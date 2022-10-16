@@ -33,7 +33,11 @@ Then we need to add a wallet. We run:
 wallets add 
 ```
 
-You will be prompted to select the wallet name. Finally send some tokens to your new address from the corresponding test-net faucet on discord.
+You will be prompted to select the wallet name. Send some tokens to your new address from the corresponding test-net faucet on discord.
+
+{% hint style="warning" %}
+If you already have an address, you can import it to the CLI using the [recover flag. ](wallets.md#flags)
+{% endhint %}
 
 ### CLI Display
 
@@ -76,7 +80,7 @@ In addition to the help flag, you can you the "tab" button on your keyboard to l
 
 #### Example:
 
-To test this out, write any of the commands available but do not press enter to run it. Instead press tab and the Available commands should pop up.
+To test this out, write any of the commands available but do not press enter to run it. Instead press tab and the "Available commands" should pop up.
 
 ```
 ? $main@elgafar-1> () wallets

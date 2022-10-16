@@ -112,6 +112,12 @@ For the default chains, this can only be called by an operator of the deployed A
 ado factory updatecodeid <ado key> <code id>
 ```
 
+#### Example
+
+```
+ado factory updatecodeid auction 367
+```
+
 #### Flags
 
 | Flag         | Description                                                                      | Usage                                  |
@@ -120,12 +126,6 @@ ado factory updatecodeid <ado key> <code id>
 | **memo**     | An optional memo to attach to the message                                        | --memo 'Wow what a great transaction!' |
 | **simulate** | Simulates the transaction without broadcasting it. Useful to estimate gas costs. | -- simmulate                           |
 | **help**     | Displays info about the current command.                                         | --help                                 |
-
-#### Example
-
-```
-ado factory updatecodeid auction 367
-```
 
 ### Factory Getcodeid
 
