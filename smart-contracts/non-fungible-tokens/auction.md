@@ -362,7 +362,7 @@ pub struct AuctionStateResponse {
 | -------------------- | --------------------------------------------------------------------- | --------------------------------------------------------------------- |
 | `start_time`         | [Expiration](../../platform-and-framework/common-types/expiration.md) | The start of the auction.                                             |
 | `end_time`           | [Expiration](../../platform-and-framework/common-types/expiration.md) | The end of the auction.                                               |
-| `high_bidder_addr`   | String                                                                | The terra address of the highest bidder.                              |
+| `high_bidder_addr`   | String                                                                | The address of the highest bidder.                                    |
 | `high_bidder_amount` | Uint128                                                               | The amount of the highest bid.                                        |
 | `auction_id`         | Uint128                                                               | The id of the auction.                                                |
 | `coin_denom`         | String                                                                | The denom the auction is in.                                          |
