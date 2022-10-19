@@ -25,13 +25,17 @@ Creates and adds a new wallet to the list of wallets.
 wallets add <name>
 ```
 
+{% hint style="warning" %}
+You cannot have two wallets with the same name including wallets on different chain configs.
+{% endhint %}
+
 #### Example
 
 ```
 wallets add test
 ```
 
-The above command will generate an output similar to:
+The above command will prompt you to enter a passphrase for your account and then generate an output similar to:
 
 ```
 Wallet added!
@@ -49,6 +53,18 @@ Use the specific chain faucet to send tokens to the address.
 {% endhint %}
 
 You have created a new wallet address. To view the address we would need to list our wallets.
+
+#### Recover an existing key from seed phrase
+
+If you forget your password or lose your key, or you would like to use your key in another place, you can recover your key by using the `--recover` flag.
+
+The following example will recover a key with the seed phrase and store it in the local keystore with the name test:
+
+```
+wallets add test --recover
+```
+
+You'll be asked to enter and repeat the new password for your key, and enter the seed phrase. Then you get your key back.
 
 #### Flags:
 
