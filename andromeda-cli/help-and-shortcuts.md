@@ -1,50 +1,5 @@
 # Help and Shortcuts
 
-### Getting Started
-
-The first thing to do in the CLI is to choose the chain config and wallets to use.&#x20;
-
-Run:&#x20;
-
-```
-chain use 
-```
-
-You will be prompted to choose a chain config from a list:
-
-{% hint style="info" %}
-The chain Ids are the same as the ones for the testnets they correspond to.
-{% endhint %}
-
-```
- Input the chain ID to use: (Use arrow keys)
-❯ uni-5 
-  elgafar-1 
-  galileo-2 
-  pisco-1 
-  exit 
-```
-
-Choose the chain config that you want to use.
-
-Then we need to add a wallet. We run:
-
-```
-wallets add 
-```
-
-You will be prompted to select the wallet name. Send some tokens to your new address from the corresponding test-net faucet on discord.
-
-{% hint style="warning" %}
-If you already have an address, you can import it to the CLI using the [recover flag. ](wallets.md#flags)
-{% endhint %}
-
-### CLI Display
-
-You will notice something similar to "`? $test@uni-5>"` in the CLI. This is not random but signifies which wallet and chain-Id are currently in use. It is formatted in the following way:
-
-`? $<Wallet>@<ChainId>>`
-
 ### Help Flag
 
 The help flag can be used after any command to get information on the current command.
