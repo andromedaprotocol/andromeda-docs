@@ -34,7 +34,7 @@ Now that we have the CLI open, we can start exploring some of its functions whic
 * Query using our GraphQL server.
 
 {% hint style="info" %}
-The andromeda CLI is built to work with any of the chains that Andromeda is deployed on. This would remove the need for users to learn how to deploy contracts on each of the chains allowing them to use this CLI to interact with ADOs anywhere on the Cosmos ecosystem.&#x20;
+The Andromeda CLI is built to work with any of the chains that Andromeda is deployed on. This would remove the need for users to learn how to deploy contracts on each of the chains allowing them to use this CLI to interact with ADOs anywhere on the Cosmos ecosystem.&#x20;
 {% endhint %}
 
 ### Deployed Chains
@@ -120,5 +120,5 @@ You will get a list of available commands to use:
 | ****[**wasm**](wasm.md)****               | Send CosmWasm messages to the chain       |
 
 {% hint style="warning" %}
-It is important to note that the CLI has been designed to promt the user for the required fields in each command. This means that it is sufficient to write the command without the fields and the CLI will prompt you to fill in the inputs one by one instead of throwing an error.&#x20;
+It is important to note that the CLI has been designed to prompt the user for the required fields in each command. This means that it is sufficient to write the command without the fields and the CLI will prompt you to fill in the inputs one by one instead of throwing an error.&#x20;
 {% endhint %}

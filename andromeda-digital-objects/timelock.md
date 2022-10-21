@@ -74,7 +74,7 @@ pub enum ExecuteMsg {
 | Name        | Type                                                                     | Description                                                     |
 | ----------- | ------------------------------------------------------------------------ | --------------------------------------------------------------- |
 | `recipient` | Option<[Recipient](../platform-and-framework/common-types/recipient.md)> | Optional recipient address. If not set, defaults to the sender. |
-| `condition` | Option<[EscrowCondition](timelock.md#escrowcondition)>                   | An optional condition to unlock the Escrow                      |
+| `condition` | Option<[EscrowCondition](timelock.md#escrowcondition)>                   | An optional condition to unlock the Escrow.                     |
 
 #### EscrowCondition
 
@@ -87,10 +87,10 @@ pub enum EscrowCondition {
 }
 ```
 
-| EscrowCondition Type | Type                                                               | Description                                         |
-| -------------------- | ------------------------------------------------------------------ | --------------------------------------------------- |
-| `Expiration`         | [Expiration](../platform-and-framework/common-types/expiration.md) | Requires a given time or block height to be reached |
-| `MinimumFunds`       | Vec<[Coin](../platform-and-framework/common-types/coin.md)>        | Requires a minimum amount of funds to be deposited  |
+| EscrowCondition Type | Type                                                               | Description                                          |
+| -------------------- | ------------------------------------------------------------------ | ---------------------------------------------------- |
+| `Expiration`         | [Expiration](../platform-and-framework/common-types/expiration.md) | Requires a given time or block height to be reached. |
+| `MinimumFunds`       | Vec<[Coin](../platform-and-framework/common-types/coin.md)>        | Requires a minimum amount of funds to be deposited.  |
 
 ### ReleaseFunds
 
@@ -203,7 +203,7 @@ pub enum QueryMsg {
 
 | Name        | Type   | Description                                |
 | ----------- | ------ | ------------------------------------------ |
-| `owner`     | String | The address of the owner of the funds      |
+| `owner`     | String | The address of the owner of the funds.     |
 | `recipient` | String | The address of the recipient of the funds. |
 
 #### GetLockedFundsResponse
@@ -273,7 +273,7 @@ pub struct GetLockedFundsResponse {
 
 | Name          | Type            | Description                                                                                                   |
 | ------------- | --------------- | ------------------------------------------------------------------------------------------------------------- |
-| `recipient`   | String          | The address of the recipient                                                                                  |
+| `recipient`   | String          | The address of the recipient..                                                                                |
 | `start_after` | Option\<String> | An optional address for which to start after, used for pagination.                                            |
 | `limit`       | Option\<u32>    | Optional limit to the number timelocks to attempt to query. Defaults to 10 and can be set to a maximum of 30. |
 
