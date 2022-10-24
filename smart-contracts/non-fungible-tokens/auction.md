@@ -577,6 +577,8 @@ pub struct AuctionIdsResponse {
 
 ### AuctionInfosForAddress
 
+Gets all of the auction infos for a given token address.
+
 {% tabs %}
 {% tab title="Rust" %}
 ```rust
