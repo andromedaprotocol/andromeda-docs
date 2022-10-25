@@ -29,7 +29,7 @@ help    Displays info about the current command
 
 ```
 
-### Tab Based Suggestions&#x20;
+### Autofill Suggestions&#x20;
 
 In addition to the help flag, you can you the "tab" button on your keyboard to list the available commands or even autocomplete  a command.
 
@@ -54,7 +54,7 @@ In this example, write the first letter of the command you want to run and see h
 ? $main@elgafar-1> () wallets add
 ```
 
-### Parent Shell Input
+### Direnct Shell Input
 
 Our CLI accepts inputs from the parent shell using the andr keyword.
 

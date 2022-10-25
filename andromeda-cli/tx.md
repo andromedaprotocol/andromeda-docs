@@ -8,7 +8,7 @@
 | **history**   | Gets a history of transactions for your current wallet |
 | **info**      | Gets transaction info from provided hash               |
 
-## Byaddress
+## By Address
 
 Gets a history of transactions for a given address.
 

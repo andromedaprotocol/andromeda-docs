@@ -1,5 +1,5 @@
 ---
-description: GraphQL server custom built by Andromeda to query from our Apps.
+description: Queries using our GraphQL server
 ---
 
 # Gql

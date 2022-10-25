@@ -7,7 +7,7 @@
 | **balance** | Gets the balance for an address. |
 | **send**    | Sends tokens to another address. |
 
-## Bank
+## Balance
 
 Gets the balance for an address.
 
@@ -16,6 +16,10 @@ Gets the balance for an address.
 ```
 bank balance <denom?> <address>
 ```
+
+{% hint style="warning" %}
+Leaving the address field empty will get the balance of the current wallet being used.
+{% endhint %}
 
 #### Example
 

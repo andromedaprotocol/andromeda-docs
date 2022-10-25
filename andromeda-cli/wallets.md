@@ -1,7 +1,5 @@
 ---
-description: >-
-  The wallets module allows you to manage your local tendermint keystore
-  ("wallets") for the juno network.
+description: The wallets handler allows you to manage your locally stored wallet keys
 ---
 
 # Wallets
@@ -41,7 +39,7 @@ The above command will prompt you to enter a passphrase for your account and the
 Wallet added!
 
 Your seed phrase is:
-tortoise height lake subject scene always parent circle illness swift input quality jeans fall fragile year mind broccoli believe sugar page horse deliver case
+"Your seed phrase will be displayed here" 
 
 Do not share this with anyone. Please make sure to store this for future reference, without it you cannot recover your wallet.
 ```
@@ -49,7 +47,7 @@ Do not share this with anyone. Please make sure to store this for future referen
 {% hint style="warning" %}
 Note: The output of the above command contains a _**seed phrase**_. It's recommended to save the _seed phrase_ in a safe place to avoid losing it.
 
-Use the specific chain faucet to send tokens to the address.
+Use the specific chain faucet to send tokens to the address for **test-net** wallets..
 {% endhint %}
 
 You have created a new wallet address. To view the address we would need to list our wallets.

@@ -1,5 +1,5 @@
 ---
-description: Query and execute on an ADO.
+description: Queries, execute, or create and ADO
 ---
 
 # ADO
@@ -97,35 +97,6 @@ ado factory address
 // Response
 juno1alwx0jf72y366627gavklj6rte6ygdm4kw0ctqjrr4qg4y74h84sdfct3g
 ```
-
-### Factory Updatecodeid
-
-Updates the code ID for a given ADO in the factory.
-
-{% hint style="warning" %}
-For the default chains, this can only be called by an operator of the deployed Andromeda factory contract.
-{% endhint %}
-
-### Usage
-
-```
-ado factory updatecodeid <ado key> <code id>
-```
-
-#### Example
-
-```
-ado factory updatecodeid auction 367
-```
-
-#### Flags
-
-| Flag         | Description                                                                      | Usage                                  |
-| ------------ | -------------------------------------------------------------------------------- | -------------------------------------- |
-| **funds**    | Funds to send with the message                                                   | --funds 100ujunox                      |
-| **memo**     | An optional memo to attach to the message                                        | --memo 'Wow what a great transaction!' |
-| **simulate** | Simulates the transaction without broadcasting it. Useful to estimate gas costs. | -- simmulate                           |
-| **help**     | Displays info about the current command.                                         | --help                                 |
 
 ### Factory Getcodeid
 

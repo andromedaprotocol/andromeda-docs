@@ -1,5 +1,5 @@
 ---
-description: Manage Chain Config.
+description: Manage chains and configs
 ---
 
 # Chain
@@ -174,7 +174,7 @@ pisco1   pisco-1
 tutorial elgafar-1
 ```
 
-## Rm
+## Remove
 
 Removes a config by name or chain ID.
 
@@ -231,7 +231,7 @@ Swaps to one of the saved configs.
 #### Usage
 
 ```
-chain use <chainId or name>
+chain use <chainId/name>
 ```
 
 #### Example
@@ -263,110 +263,42 @@ Config loaded!
 
 ## CLI Configs
 
-The default configs are hardcoded in, which allows easily switching from one chain to another. Currently there are four saved configs to use:
+The default configs are saved in our GraphQL server, and can be easily fetched by anyone:
 
-#### Andromeda
+The following configs are currently saved:
 
-Config of Andromeda's galileo-2 testnet:
+| Chain     | Config-Testnets |
+| --------- | --------------- |
+| Andromeda | galileo-2       |
+| Juno      | uni-5           |
+| Stargaze  | elgafar-1       |
+| Terra-2   | pisco-1         |
 
-```typescript
-{
-    "name": "galileo2",
-    "chainName": "Andromeda",
-    "chainId": "galileo-2",
-    "chainUrl": "https://rpc-andromeda-testnet.cereslabs.io/",
-    "registryAddress": "andr14hj2tavq8fpesdwxxcu44rty3hh90vhujrvcmstl4zr3txmfvw9shptkql",
-    "addressPrefix": "andr",
-    "defaultFee": "0.025uandr",
-    "blockExplorerTxPages": [
-      "https://testnet-ping.wildsage.io/andromeda/tx/${txHash}"
-    ],
-    "blockExplorerAddressPages": [
-      "https://testnet-ping.wildsage.io/andromeda/account/${address}"
-    ],
-    "chainType": "testnet",
-    "iconUrl": {
-      "sm": "https://testnet-ping.wildsage.io/logos/andromeda.png",
-      "lg": "https://testnet-ping.wildsage.io/logos/andromeda.png"
-    }
-  }
+To query the configs from the GQL server visit [https://andr-graphql.herokuapp.com/graphql](https://andr-graphql.herokuapp.com/graphql) then run the following query:
+
+{% hint style="warning" %}
+You can get all the configs from the CLI by running [chain config](chain.md#config).&#x20;
+{% endhint %}
+
 ```
-
-#### Juno
-
-Config of Juno's uni-5 testnet:
-
-```typescript
-  {
-    "name": "junotestnet",
-    "chainName": "Juno",
-    "chainId": "uni-5",
-    "chainUrl": "https://rpc.uni.juno.deuslabs.fi:443",
-    "registryAddress": "juno133fdsnvcah870exzcyxknydswyh778jfhwxzlhhgjuagh4482zpqp856dz",
-    "addressPrefix": "juno",
-    "defaultFee": "0.025ujunox",
-    "blockExplorerTxPages": [
-      "https://testnet.mintscan.io/juno-testnet/txs/${txHash}"
-    ],
-    "blockExplorerAddressPages": [
-      "https://testnet.mintscan.io/juno-testnet/account/${address}"
-    ],
-    "chainType": "testnet",
-    "iconUrl": {
-      "sm": "https://assets.coingecko.com/coins/images/19249/small/juno.png",
-      "lg": "https://assets.coingecko.com/coins/images/19249/large/juno.png"
+query {
+    chainConfigs {
+    allConfigs {
+      addressPrefix
+      blockExplorerAddressPages
+      blockExplorerTxPages
+      chainId
+      chainName
+      chainType
+      chainUrl
+      defaultFee
+      iconUrls {
+        lg
+        sm
+      }
+      name
+      registryAddress
     }
   }
-```
-
-#### Stargaze
-
-Config of Stargaze's elgafar-1 testnet:
-
-```typescript
-{
-    "name": "elgafar1",
-    "chainName": "Stargaze",
-    "chainId": "elgafar-1",
-    "chainUrl": "https://rpc.elgafar-1.stargaze-apis.com/",
-    "registryAddress": "stars1n8kh8ev97f5ch2c5qtujlaelz9textg3t2tunu3emuv33d2jx9cs7mv9eq",
-    "addressPrefix": "stars",
-    "defaultFee": "0.025ustars",
-    "blockExplorerTxPages": [
-      "https://testnet-explorer.publicawesome.dev/stargaze/tx/${txHash}"
-    ],
-    "blockExplorerAddressPages": [
-      "https://testnet-explorer.publicawesome.dev/stargaze/account/${address}"
-    ],
-    "chainType": "testnet",
-    "iconUrl": {
-      "sm": "https://assets.coingecko.com/coins/images/22363/small/stars.png?1645256657",
-      "lg": "https://assets.coingecko.com/coins/images/22363/large/stars.png?1645256657"
-    }
-  }
-```
-
-#### Terra-2
-
-Config of Terra's pisco1 testnet:
-
-```typescript
-{
-    "name": "pisco1",
-    "chainName": "Terra2",
-    "chainId": "pisco-1",
-    "chainUrl": "https://pisco-rpc.dalnim.finance/",
-    "registryAddress": "terra1d29xk5fenxj2039fklmy57qcajwcpwe2lj2vspku82wh53cn39sssuzavq",
-    "addressPrefix": "terra",
-    "defaultFee": "0.2uluna",
-    "blockExplorerTxPages": ["https://finder.terra.money/testnet/tx/${txHash}"],
-    "blockExplorerAddressPages": [
-      "https://finder.terra.money/testnet/account/${address}"
-    ],
-    "chainType": "testnet",
-    "iconUrls": {
-      "sm": "https://assets.coingecko.com/coins/images/25767/small/01_Luna_color.png",
-      "lg": "https://assets.coingecko.com/coins/images/25767/large/01_Luna_color.png"
-    }
-  }
+}
 ```

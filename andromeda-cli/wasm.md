@@ -100,7 +100,7 @@ wasm migrate <contract address> <new code id> <migrate msg>
 #### Example:
 
 ```
-wasm migrate juno1hlp92l8mhkpf9gusaklnqlyu07y2vygvru6m85fvmcqnrt7y0vcq6up78z {}
+wasm migrate 126 juno1hlp92l8mhkpf9gusaklnqlyu07y2vygvru6m85fvmcqnrt7y0vcq6up78z {}
 ```
 
 ## Query
@@ -133,6 +133,10 @@ Here I am queriying the account of a user from one of our contracts, we get:
 ## Upload
 
 Upload a contract wasm.
+
+{% hint style="warning" %}
+The path is relative to where the CLI was run.&#x20;
+{% endhint %}
 
 #### Usage
 

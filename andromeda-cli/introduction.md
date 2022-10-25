@@ -10,7 +10,7 @@ The CLI is still in beta phase. It may contain bugs and upgrades will probably b
 
 ## Installation
 
-To install the Andromeda CLI, run the following command:
+To install the Andromeda CLI, run the following command to download our [npm package](https://www.npmjs.com/package/@andromedaprotocol/andromeda.js):
 
 {% hint style="warning" %}
 Make sure you have npm installed.
@@ -28,9 +28,9 @@ Then run `andr`  to open the CLI:
 
 Now that we have the CLI open, we can start exploring some of its functions which include:
 
-* Generating Keys and managing wallets.
+* Generating keys and managing wallets.
 * Swap between chains with one command.
-* Interact with the set chain (Deploy, instantiate, execute ...)
+* Interact with the chain of your choice
 * Query using our GraphQL server.
 
 {% hint style="info" %}
@@ -60,6 +60,8 @@ You will be prompted to choose a chain config from a list:
 
 {% hint style="info" %}
 The chain Ids are the same as the ones for the testnets they correspond to.
+
+You can also create your own chain config using the [chain new](chain.md#new) command.
 {% endhint %}
 
 ```
@@ -79,19 +81,25 @@ Then we need to add a wallet. We run:
 wallets add 
 ```
 
-You will be prompted to select the wallet name. Send some tokens to your new address from the corresponding test-net faucet on discord.
+{% hint style="warning" %}
+Make sure to save the **seed phrase** somewhere private and secure as it is the only way to recover your wallet.
+{% endhint %}
+
+You will be prompted to select the wallet name.&#x20;
 
 {% hint style="warning" %}
+If you are using a test-net config make sure to send some tokens to your new address from the corresponding test-net faucet on discord.
+
 If you already have an address, you can import it to the CLI using the [recover flag. ](wallets.md#flags)
 {% endhint %}
 
 ### CLI Display
 
-You will notice something similar to "`? $test@uni-5>"` in the CLI. This is not random but signifies which wallet and chain-Id are currently in use. It is formatted in the following way:
+You will notice something similar to "`? $test@uni-5>"` in the CLI. This signifies which wallet and chain-Id are currently in use. It is formatted in the following way:
 
 `? $<Wallet>@<ChainId>>`
 
-### Starting Exploring
+### Start Exploring
 
 We can start off by running `andr --help` to see what are the available commands.&#x20;
 
@@ -104,6 +112,10 @@ Or just:
 ```
 help
 ```
+
+{% hint style="warning" %}
+The --help flag  can be used after any command to get information on the command.
+{% endhint %}
 
 You will get a list of available commands to use:
 
