@@ -211,7 +211,7 @@ pub enum QueryMsg{
 {% endtab %}
 {% endtabs %}
 
-### PaymentsResponse
+#### PaymentsResponse
 
 {% tabs %}
 {% tab title="Rust" %}
