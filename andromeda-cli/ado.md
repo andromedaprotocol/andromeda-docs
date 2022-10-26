@@ -1,5 +1,5 @@
 ---
-description: Queries, execute, or create and ADO
+description: Query, execute, or create and ADO
 ---
 
 # ADO

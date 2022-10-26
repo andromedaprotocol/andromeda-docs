@@ -24,6 +24,10 @@ Then run `andr`  to open the CLI:
 
 ![Andromeda CLI ](../.gitbook/assets/ANDROMEDA-CLI.png)
 
+{% hint style="warning" %}
+You can run "`version"` in the CLI to check the CLI version you have downloaded.
+{% endhint %}
+
 ### CLI Commands
 
 Now that we have the CLI open, we can start exploring some of its functions which include:
@@ -119,17 +123,18 @@ The --help flag  can be used after any command to get information on the command
 
 You will get a list of available commands to use:
 
-| Command                                   | Description                               |
-| ----------------------------------------- | ----------------------------------------- |
-| ****[**ado**](ado.md)****                 | Query and execute on an ADO               |
-| ****[**chain**](chain.md)****             | Manage Chain Config                       |
-| ****[**clear**](clear-and-exit.md)****    | Clears the terminal                       |
-| ****[**exit**](clear-and-exit.md)****     | Exits the CLI                             |
-| ****[**gql**](gql.md)****                 | Query using the Andromeda GraphQL service |
-| ****[**help**](help-and-shortcuts.md)**** | Lists all valid commands                  |
-| ****[**tx**](tx.md)****                   | Query transactions                        |
-| ****[**wallets**](wallets.md)****         | Manage wallets                            |
-| ****[**wasm**](wasm.md)****               | Send CosmWasm messages to the chain       |
+| Command                                              | Description                               |
+| ---------------------------------------------------- | ----------------------------------------- |
+| ****[**ado**](ado.md)****                            | Query and execute on an ADO               |
+| ****[**chain**](chain.md)****                        | Manage Chain Config                       |
+| ****[**clear**](clear-and-exit.md)****               | Clears the terminal                       |
+| ****[**exit**](clear-and-exit.md)****                | Exits the CLI                             |
+| ****[**gql**](gql.md)****                            | Query using the Andromeda GraphQL service |
+| ****[**help**](help-and-shortcuts.md)****            | Lists all valid commands                  |
+| ****[**tx**](tx.md)****                              | Query transactions                        |
+| ****[**version**](help-and-shortcuts.md#version)**** | Prints the current CLI version.           |
+| ****[**wallets**](wallets.md)****                    | Manage wallets                            |
+| ****[**wasm**](wasm.md)****                          | Send CosmWasm messages to the chain       |
 
 {% hint style="warning" %}
 It is important to note that the CLI has been designed to prompt the user for the required fields in each command. This means that it is sufficient to write the command without the fields and the CLI will prompt you to fill in the inputs one by one instead of throwing an error.&#x20;

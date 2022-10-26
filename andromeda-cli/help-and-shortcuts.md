@@ -54,7 +54,7 @@ In this example, write the first letter of the command you want to run and see h
 ? $main@elgafar-1> () wallets add
 ```
 
-### Direnct Shell Input
+### Direct Shell Input
 
 Our CLI accepts inputs from the parent shell using the andr keyword.
 
@@ -84,3 +84,15 @@ galileo2    galileo-2
 pisco1      pisco-1  </code></pre>
 
 The command runs and the result is displayed but we are still in the parent shell.&#x20;
+
+### Version
+
+Prints the current CLI version
+
+#### Example
+
+```
+? main@uni-5> version
+Version: 0.0.63
+? main@uni-5> () 
+```
