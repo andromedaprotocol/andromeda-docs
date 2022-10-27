@@ -94,7 +94,7 @@ pub enum Cw721HookMsg {
 
 | Name         | Type                | Description                                                                          |
 | ------------ | ------------------- | ------------------------------------------------------------------------------------ |
-| `start_time` | u64                 | Start time in milliseconds since epoch.                                              |
+| `start_time` | u64                 | Start time in milliseconds since [epoch](https://www.epochconverter.com/clock).      |
 | `duration`   | u64                 | Duration in milliseconds from the `start_time`.                                      |
 | `coin_denom` | String              | The native coin denomination to do the auction in.                                   |
 | `min_bid`    | Option\<Uint128>    | The minimum bid that can be placed on the auctioned token.                           |
@@ -156,7 +156,7 @@ An auction can be updated only if it has not started yet.&#x20;
 | --------------- | ------------------- | ------------------------------------------------------------------------------------ |
 | `token_id`      | String              | The id of the NFT that is being auctioned.                                           |
 | `token_address` | String              | The address of the token contract.                                                   |
-| `start_time`    | u64                 | Start time in milliseconds since epoch.                                              |
+| `start_time`    | u64                 | Start time in milliseconds since [epoch](https://www.epochconverter.com/clock).      |
 | `duration`      | u64                 | Duration in milliseconds from the `start_time`.                                      |
 | `coin_denom`    | String              | The native coin denomination to do the auction in.                                   |
 | `min_bid`       | Option\<Uint128>    | The minimum bid that can be placed on the auctioned token.                           |
