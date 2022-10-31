@@ -17,7 +17,6 @@ This contract is implemented as a [module](../modules/receipt-module/) and added
 {% tabs %}
 {% tab title="Rust" %}
 ```rust
-#[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
 pub struct InstantiateMsg {
     pub minter: String,
 }
@@ -52,7 +51,6 @@ Usually called automatically by the receipt module after generating the receipt.
 {% tabs %}
 {% tab title="Rust" %}
 ```rust
-#[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
 pub enum ExecuteMsg {
     StoreReceipt {
         receipt: Receipt,
@@ -95,7 +93,6 @@ pub enum ExecuteMsg {
 The receipt structure contains a basic vector of `CosmWasm` events.
 
 ```rust
-#[derive(Serialize, Deserialize, Clone, PartialEq, JsonSchema, Debug)]
 pub struct Receipt {
     pub events: Vec<Event>,
 }
@@ -112,8 +109,6 @@ Edit a receipt by ID. Only executable by the assigned `minter` address or a vali
 {% tabs %}
 {% tab title="Rust" %}
 ```rust
-#[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
-#[serde(rename_all = "snake_case")]
 pub enum ExecuteMsg {
     EditReceipt {
         receipt_id: Uint128,
@@ -167,8 +162,6 @@ Queries a receipt by its ID.
 {% tabs %}
 {% tab title="Rust" %}
 ```rust
-#[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
-#[serde(rename_all = "snake_case")]
 pub enum QueryMsg {
     Receipt {
      receipt_id: Uint128
@@ -197,7 +190,6 @@ pub enum QueryMsg {
 {% tabs %}
 {% tab title="Rust" %}
 ```rust
-#[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
 pub struct ReceiptResponse {
     pub receipt: Receipt,
 }
@@ -238,8 +230,6 @@ Queries the contract's configuration.
 {% tabs %}
 {% tab title="Rust" %}
 ```rust
-#[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
-#[serde(rename_all = "snake_case")]
 pub enum QueryMsg {
     ContractInfo {},
 }
@@ -260,14 +250,11 @@ pub enum QueryMsg {
 {% tabs %}
 {% tab title="Rust" %}
 ```rust
-#[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
 pub struct Config {
     pub minter: String,
    
 }
 
-#[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
-#[serde(rename_all = "snake_case")]
 pub struct ContractInfoResponse {
     pub config: Config,
 }

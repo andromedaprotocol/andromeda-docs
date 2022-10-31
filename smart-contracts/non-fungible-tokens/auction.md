@@ -18,8 +18,7 @@ The contract supports [modules](broken-reference) to extend it's functionality.
 
 {% tabs %}
 {% tab title="Rust" %}
-<pre class="language-rust"><code class="lang-rust">#[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
-pub struct InstantiateMsg {
+<pre class="language-rust"><code class="lang-rust">pub struct InstantiateMsg {
 <strong>    pub modules: Option&#x3C;Vec&#x3C;Module>>,
 </strong> }</code></pre>
 {% endtab %}
@@ -291,8 +290,6 @@ Queries the most recent auction for the given token (either ongoing, complete, o
 {% tabs %}
 {% tab title="Rust" %}
 ```rust
-#[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
-#[serde(rename_all = "snake_case")]
 pub enum QueryMsg {
     LatestAuctionState {
         token_id: String,
@@ -324,7 +321,6 @@ pub enum QueryMsg {
 {% tabs %}
 {% tab title="Rust" %}
 ```rust
-#[derive(Serialize, Deserialize, Clone, PartialEq, JsonSchema, Debug)]
 pub struct AuctionStateResponse {
     pub start_time: Expiration,
     pub end_time: Expiration,
@@ -383,8 +379,6 @@ To get the auction\_id of a particular token, use LatestAuctionState
 {% tabs %}
 {% tab title="Rust" %}
 ```rust
-#[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
-#[serde(rename_all = "snake_case")]
 pub enum QueryMsg {
     AuctionState {
         auction_id: Uint128,
@@ -419,8 +413,6 @@ Gets the bids for a given auction.
 {% tabs %}
 {% tab title="Rust" %}
 ```rust
-#[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
-#[serde(rename_all = "snake_case")]
 pub enum QueryMsg {
     Bids {
         auction_id: Uint128,
@@ -453,8 +445,6 @@ pub enum QueryMsg {
 | `order_by`    | Option\<OrderBy> | Optional parameter to specify the order of the bids being queries. Default is Ascending.               |
 
 ```rust
-#[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
-#[serde(rename_all = "snake_case")]
 pub enum OrderBy {
     Asc,
     Desc,
@@ -466,7 +456,6 @@ pub enum OrderBy {
 {% tabs %}
 {% tab title="Rust" %}
 ```rust
-#[derive(Serialize, Deserialize, Clone, PartialEq, JsonSchema, Debug)]
 pub struct BidsResponse {
     pub bids: Vec<Bid>,
 }
@@ -499,7 +488,6 @@ pub struct BidsResponse {
 The state for a particular bid is stored in a basic struct.
 
 ```rust
-#[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
 pub struct Bid {
     pub bidder: String,
     pub amount: Uint128,
@@ -520,8 +508,6 @@ Queries the auction ids for a given token.
 {% tabs %}
 {% tab title="Rust" %}
 ```rust
-#[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
-#[serde(rename_all = "snake_case")]
 pub enum QueryMsg {
     AuctionIds {
         token_id: String,
@@ -553,7 +539,6 @@ pub enum QueryMsg {
 {% tabs %}
 {% tab title="Rust" %}
 ```rust
-#[derive(Serialize, Deserialize, Clone, PartialEq, JsonSchema, Debug)]
 pub struct AuctionIdsResponse {
     pub auction_ids: Vec<Uint128>,
 }

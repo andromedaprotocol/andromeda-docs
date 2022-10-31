@@ -22,7 +22,6 @@ The contract supports [modules](broken-reference) to extend it's functionality.
 {% tabs %}
 {% tab title="Rust" %}
 ```rust
-#[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
 pub struct InstantiateMsg {
     pub modules: Option<Vec<Module>>,
 }
@@ -43,7 +42,6 @@ Holds sent funds in escrow.
 {% tabs %}
 {% tab title="Rust" %}
 ```rust
-#[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
 pub enum ExecuteMsg {
     HoldFunds {
         condition: Option<EscrowCondition>,
@@ -99,7 +97,6 @@ Releases any held funds of the specified recipient.
 {% tabs %}
 {% tab title="Rust" %}
 ```rust
-#[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
 pub enum ExecuteMsg {
     ReleaseFunds {
     recipient_addr:Option<String>,
@@ -211,7 +208,6 @@ pub enum QueryMsg {
 {% tabs %}
 {% tab title="Rust" %}
 ```rust
-#[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
 pub struct GetLockedFundsResponse {
     pub funds: Option<Escrow>,
 }
@@ -320,7 +316,6 @@ pub struct GetLockedFundsForRecipientResponse {
 The time-lock contract uses a basic struct to store a record of funds being held.
 
 ```rust
-#[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
 pub struct Escrow {
     pub coins: Vec<Coin>,
     pub condition: Option<EscrowCondition>,

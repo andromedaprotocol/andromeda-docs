@@ -22,7 +22,6 @@ This contract is usually implemented as a [module ](../modules/address-list-modu
 {% tabs %}
 {% tab title="Rust" %}
 ```rust
-#[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
 pub struct InstantiateMsg {
     pub is_inclusive: bool,
 }
@@ -55,7 +54,6 @@ Only Owner/Operators can execute AddAddress.
 {% tabs %}
 {% tab title="Rust" %}
 ```rust
-#[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
 pub enum ExecuteMsg {
     AddAddress { address: String },
 }
@@ -88,7 +86,6 @@ Only Owner/Operators can execute RemoveAddress.
 {% tabs %}
 {% tab title="Rust" %}
 ```rust
-#[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
 pub enum ExecuteMsg {
     RemoveAddress { address: String },
 }
@@ -151,7 +148,6 @@ pub enum QueryMsg {
 {% tabs %}
 {% tab title="Rust" %}
 ```rust
-#[derive(Serialize, Deserialize, Clone, PartialEq, JsonSchema)]
 pub struct IncludesAddressResponse {
     pub included: bool,
 }

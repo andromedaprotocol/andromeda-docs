@@ -40,7 +40,7 @@ The cw721-bids module uses the `OnTransfer` hook which is sent whenever we execu
   }
 ```
 
-When the cw721-bids contract receives the hook, it will check if the `recipient` has an bid placed on the NFT being transferred with the recorded `token_id.` The assumption is that the owner transferring the token to a user that has a bid means they want to accept that bid. If the bid is expired, this message will end up failing and the transfer will not happen.
+When the cw721-bids contract receives the hook, it will check if the `recipient` has a bid placed on the NFT being transferred with the recorded `token_id.` The assumption is that the owner transferring the token to a user that has a bid means they want to accept that bid. If the bid is expired, this message will end up failing and the transfer will not happen.
 
 ```rust
 fn handle_andr_hook(deps: Deps, env: Env, msg: AndromedaHook) -> Result<Binary, ContractError> {

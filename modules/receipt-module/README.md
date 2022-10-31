@@ -91,7 +91,7 @@ When we have a transfer of funds of some sort we call the `OnFundsTransfer` func
     }
 ```
 
-If a receipt module is found it is sent the following hook:
+If a receipt module is found, it is sent the following hook:
 
 ```rust
  pub enum AndromedaHook{

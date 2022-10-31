@@ -25,7 +25,6 @@ The maximum time that can be set is 31,536,000 which is 1 year.
 {% tabs %}
 {% tab title="Rust" %}
 ```rust
-#[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
 pub struct InstantiateMsg {
     pub recipients: Vec<AddressPercent>,
     pub lock_time: Option<u64>
@@ -79,7 +78,6 @@ The splitter uses a basic array of structs to determine recipients and how the f
 {% tabs %}
 {% tab title="Rust" %}
 ```rust
-#[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
 pub struct AddressPercent {
     pub recipient: Recipient,
     pub percent: Decimal,
@@ -122,7 +120,6 @@ Only available to the contract owner/operator when the contract is not locked.
 {% tabs %}
 {% tab title="Rust" %}
 ```rust
-#[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
 pub enum ExecuteMsg {
     UpdateRecipients { 
         recipients: Vec<AddressPercent> 
@@ -169,7 +166,6 @@ The maximum time that can be set is 31,536,000 which is 1 year.
 {% tabs %}
 {% tab title="Rust" %}
 ```rust
-#[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
 pub enum ExecuteMsg {
     UpdateLock {
         lock_time: u64,
@@ -204,7 +200,6 @@ You cannot send more than 5 coins with one Send.
 {% tabs %}
 {% tab title="Rust" %}
 ```rust
-#[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
 pub enum ExecuteMsg {
     Send {}
 }
@@ -257,7 +252,6 @@ pub enum QueryMsg {
 {% tabs %}
 {% tab title="Rust" %}
 ```rust
-#[derive(Serialize, Deserialize, Clone, PartialEq, JsonSchema)]
 pub struct GetSplitterConfigResponse {
     pub config: Splitter,
 }
@@ -297,7 +291,6 @@ pub struct GetSplitterConfigResponse {
 The splitter's config is stored in a basic struct.
 
 ```rust
-#[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
 pub struct Splitter {
     pub recipients: Vec<AddressPercent>, 
     pub lock: Expiration,                   

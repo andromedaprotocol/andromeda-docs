@@ -11,7 +11,6 @@ The **Factory** ADO is a smart contract that is primarily used to store code ids
 {% tabs %}
 {% tab title="Rust" %}
 ```rust
-#[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
 pub struct InstantiateMsg {}
 ```
 {% endtab %}
@@ -30,7 +29,6 @@ Only available to the contract owner/operators.
 {% tabs %}
 {% tab title="Rust" %}
 ```rust
-#[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
 pub enum ExecuteMsg {
      UpdateCodeId {
         code_id_key: String,
