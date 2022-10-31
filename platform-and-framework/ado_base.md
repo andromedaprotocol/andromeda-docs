@@ -220,7 +220,7 @@ pub enum AndromedaMsg{
 
 | Name                 | Type                                           | Description                                                        |
 | -------------------- | ---------------------------------------------- | ------------------------------------------------------------------ |
-| `recipient`          | Option<[Recipient](common-types/recipient.md)> | The recipient of the funds.                                        |
+| `recipient`          | Option<[Recipient](common-types.md#recipient)> | The recipient of the funds.                                        |
 | `tokens_to_withdraw` | Option\<Vec\<Withdrawal>                       | The tokens to withdraw. If not specified all tokens are withdrawn. |
 
 #### Withdrawal

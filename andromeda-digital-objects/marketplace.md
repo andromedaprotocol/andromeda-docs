@@ -48,7 +48,7 @@ pub struct InstantiateMsg {
 
 ### ReceiveNft
 
-Receives a token from a [`SendNft`](broken-reference) and starts an auction based on the given parameters in the StartSale struct. &#x20;
+Receives a token from a [`SendNft`](cw721.md#sendnft) and starts an auction based on the given parameters in the StartSale struct. &#x20;
 
 {% tabs %}
 {% tab title="Rust" %}
@@ -202,11 +202,11 @@ pub enum ExecuteMsg {
 
 ### AndrReceive
 
-{% hint style="info" %}
+{% hint style="warning" %}
 Has the modules feature enabled.
 {% endhint %}
 
-Check [AndrReceive](../platform-and-framework/ado\_base.md).
+Check [AndrReceive](../platform-and-framework/ado\_base.md#andrrecieve).
 
 ## QueryMsg
 
@@ -399,4 +399,4 @@ pub struct SaleInfo {
 
 ### AndrQuery
 
-Check [AndrQuery](../platform-and-framework/ado\_base.md#andrquery).
+A set of base queries common to all Andromeda ADOs. Check[ AndrQuery](../platform-and-framework/ado\_base.md#andrquery).

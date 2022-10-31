@@ -1,9 +1,3 @@
----
-description: >-
-  An ADO contract to facilitate auctioning an Andromeda token. This can be added
-  as a module to it.
----
-
 # Auction
 
 ## Introduction
@@ -32,7 +26,7 @@ The contract supports [modules](broken-reference) to extend it's functionality.
 
 ### ReceiveNft
 
-Receives a token from a [`SendNft`](broken-reference) and starts an auction based on the given parameters in the [`StartAuction` ](auction.md#startauction)struct. &#x20;
+Receives a token from a [`SendNft`](../../andromeda-digital-objects/cw721.md#sendnft) and starts an auction based on the given parameters in the [`StartAuction` ](auction.md#startauction)struct. &#x20;
 
 {% hint style="warning" %}
 The auction information can be modified before it has started but is immutable after that.
@@ -279,7 +273,11 @@ Can only be done when the `end_time` has been passed. If no bids has been placed
 
 ### AndrRecieve
 
-Check [AndrReceive](../../platform-and-framework/ado\_base.md#andrrecieve).
+{% hint style="warning" %}
+Uses the modules feature.
+{% endhint %}
+
+The rest of the executes can be found in the [`AndrReceive`](../../platform-and-framework/ado\_base.md#andrrecieve) section.
 
 ## QueryMsg
 
@@ -356,8 +354,8 @@ pub struct AuctionStateResponse {
 
 | Name                 | Type                                                                  | Description                                                           |
 | -------------------- | --------------------------------------------------------------------- | --------------------------------------------------------------------- |
-| `start_time`         | [Expiration](../../platform-and-framework/common-types/expiration.md) | The start of the auction.                                             |
-| `end_time`           | [Expiration](../../platform-and-framework/common-types/expiration.md) | The end of the auction.                                               |
+| `start_time`         | [Expiration](../../platform-and-framework/common-types.md#expiration) | The start of the auction.                                             |
+| `end_time`           | [Expiration](../../platform-and-framework/common-types.md#expiration) | The end of the auction.                                               |
 | `high_bidder_addr`   | String                                                                | The address of the highest bidder.                                    |
 | `high_bidder_amount` | Uint128                                                               | The amount of the highest bid.                                        |
 | `auction_id`         | Uint128                                                               | The id of the auction.                                                |
@@ -495,11 +493,11 @@ pub struct Bid {
 }
 ```
 
-| Name        | Type                                                                           |                            |
-| ----------- | ------------------------------------------------------------------------------ | -------------------------- |
-| `bidder`    | String                                                                         | The address of the bidder. |
-| `amount`    | Uint128                                                                        | The amount of funds bid.   |
-| `timestamp` | [TimeStamp](../../platform-and-framework/common-types/expiration.md#timestamp) | The time of the bid.       |
+| Name        | Type                                                                |                            |
+| ----------- | ------------------------------------------------------------------- | -------------------------- |
+| `bidder`    | String                                                              | The address of the bidder. |
+| `amount`    | Uint128                                                             | The amount of funds bid.   |
+| `timestamp` | [TimeStamp](../../platform-and-framework/common-types.md#timestamp) | The time of the bid.       |
 
 ### AuctionIds
 
@@ -634,4 +632,4 @@ pub struct AuctionInfo {
 
 ### AndrQuery
 
-Check [AndrQuery](../../platform-and-framework/ado\_base.md#andrquery).
+A set of base queries common to all Andromeda ADOs. Check[ AndrQuery](../../platform-and-framework/ado\_base.md#andrquery).

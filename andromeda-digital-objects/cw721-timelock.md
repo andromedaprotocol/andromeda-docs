@@ -20,7 +20,7 @@ pub struct InstantiateMsg {}
 
 ### ReceiveNft
 
-Receives a token from a [`Send`](broken-reference) and locks it based on the parameters defined in the `StartLock` hook message.
+Receives a token from a [`SendNft`](cw721.md#sendnft)and locks it based on the parameters defined in the `StartLock` hook message.
 
 {% tabs %}
 {% tab title="Rust" %}
@@ -113,7 +113,7 @@ pub enum ExecuteMsg {
 
 ### AndrReceive
 
-Check [AndrReceive](../platform-and-framework/ado\_base.md#andrrecieve).
+The rest of the executes can be found in the [`AndrReceive`](../platform-and-framework/ado\_base.md#andrrecieve) section.
 
 ## QueryMsg
 
@@ -178,10 +178,10 @@ pub struct LockDetails {
 | Name           | Type                                                               | Description                                                      |
 | -------------- | ------------------------------------------------------------------ | ---------------------------------------------------------------- |
 | `recipient`    | String                                                             | The recipient of the NFT once the lock time has passed.          |
-| `expiration`   | [Expiration](../platform-and-framework/common-types/expiration.md) | When the lock time will be completed and the NFT can be claimed. |
+| `expiration`   | [Expiration](../platform-and-framework/common-types.md#expiration) | When the lock time will be completed and the NFT can be claimed. |
 | `nft_id`       | String                                                             | The id of the NFT.                                               |
 | `nft_contract` | String                                                             | The address of the NFT contract.                                 |
 
 ### AndrQuery
 
-Check [AndrQuery](../platform-and-framework/ado\_base.md#andrquery).
+A set of base queries common to all Andromeda ADOs. Check[ AndrQuery](../platform-and-framework/ado\_base.md#andrquery).

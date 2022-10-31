@@ -1,7 +1,3 @@
----
-description: The messages to interact with the Vault ADO.
----
-
 # Vault
 
 ## Introduction
@@ -83,8 +79,8 @@ pub enum ExecuteMsg {
 
 | Name        | Type                                                                     | Description                                                                             |
 | ----------- | ------------------------------------------------------------------------ | --------------------------------------------------------------------------------------- |
-| `recipient` | Option<[Recipient](../platform-and-framework/common-types/recipient.md)> | The recipient of the deposit. Defaults to the sender if not specified.                  |
-| `amount`    | Option<[Coin](../platform-and-framework/common-types/coin.md)>           | The amount to deposit. If not specified then the sent funds are used as the amount.     |
+| `recipient` | Option<[Recipient](../platform-and-framework/common-types.md#recipient)> | The recipient of the deposit. Defaults to the sender if not specified.                  |
+| `amount`    | Option<[Coin](../platform-and-framework/common-types.md#coin)>           | The amount to deposit. If not specified then the sent funds are used as the amount.     |
 | `strategy`  | Option<[StrategyType](vault.md#strategytype)>                            | The strategy to deposit the funds to. If not specified, the funds will go to the vault. |
 
 #### StrategyType
@@ -96,14 +92,14 @@ pub enum StrategyType {
 ```
 
 {% hint style="warning" %}
-No strategy in currently supported.
+No strategy is currently supported.
 {% endhint %}
 
 ### Withdraw
 
 Withdraw funds from the vault or one of the strategies.
 
-{% hint style="info" %}
+{% hint style="warning" %}
 The `recipient` field is not used if withdrawing from a strategy.
 {% endhint %}
 
@@ -144,11 +140,9 @@ pub enum ExecuteMsg{
 
 | Name          | Type                                                                     |                                                                                                                                      |
 | ------------- | ------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------ |
-| `recipient`   | Option<[Recipient](../platform-and-framework/common-types/recipient.md)> | The address to receive the withdrawn funds when withdrawing from vault. Defaults to the sender. Not used if a strategy is specified. |
+| `recipient`   | Option<[Recipient](../platform-and-framework/common-types.md#recipient)> | The address to receive the withdrawn funds when withdrawing from vault. Defaults to the sender. Not used if a strategy is specified. |
 | `withdrawals` | Vec<[Withdrawal](../platform-and-framework/ado\_base.md#withdrawal)>     | The funds to withdraw.                                                                                                               |
 | `strategy`    | Option<[StrategyType](vault.md#strategytype)>                            | The strategy to withdraw from. If not specified, the funds are withdrawn from the vault.                                             |
-
-The rest of the executes can be found in the [`AndrReceive`](../platform-and-framework/ado\_base.md#andrrecieve) section.
 
 ### UpdateStrategy
 
@@ -182,10 +176,14 @@ The Vault needs to be an operator of the strategy contract.
 {% endtab %}
 {% endtabs %}
 
-| Name       | Type                                                                           | Description                                     |
-| ---------- | ------------------------------------------------------------------------------ | ----------------------------------------------- |
-| `strategy` | [StrategyType](vault.md#strategytype-1)                                        | The strategy to set a new contract address for. |
-| `address`  | [AndrAddress](../platform-and-framework/common-types/recipient.md#andraddress) | The new contract address                        |
+| Name       | Type                                                                 | Description                                     |
+| ---------- | -------------------------------------------------------------------- | ----------------------------------------------- |
+| `strategy` | [StrategyType](vault.md#strategytype)                                | The strategy to set a new contract address for. |
+| `address`  | [AndrAddress](../platform-and-framework/common-types.md#andraddress) | The new contract address                        |
+
+### AndrReceive
+
+The rest of the executes can be found in the [`AndrReceive`](../platform-and-framework/ado\_base.md#andrrecieve) section.
 
 ## QueryMsg
 
@@ -218,11 +216,11 @@ pub enum QueryMsg {
 {% endtab %}
 {% endtabs %}
 
-| Name       | Type                                             | Description                                                                               |
-| ---------- | ------------------------------------------------ | ----------------------------------------------------------------------------------------- |
-| `address`  | String                                           | The address to get the balance of.                                                        |
-| `strategy` | Option<[StrategyType](vault.md#strategyaddress)> | The strategy to get the balance of. If not specified, the funds in the vault are queried. |
-| `denom`    | Option\<String>                                  | Optional denom for the funds.                                                             |
+| Name       | Type                                          | Description                                                                               |
+| ---------- | --------------------------------------------- | ----------------------------------------------------------------------------------------- |
+| `address`  | String                                        | The address to get the balance of.                                                        |
+| `strategy` | Option<[StrategyType](vault.md#strategytype)> | The strategy to get the balance of. If not specified, the funds in the vault are queried. |
+| `denom`    | Option\<String>                               | Optional denom for the funds.                                                             |
 
 Returns the balance response corresponding to the strategy. If the strategy is not specified, it would return a `Vec<Coin>` containing the balance of the `address`.
 

@@ -43,13 +43,13 @@ pub struct InstantiateMsg {
 | ------------------ | ------------------------------------------------------ | ------------------------------------------------------------------------------------------ |
 | nft\_contract      | Vec\<String>                                           | The contract addresses of the NFT contracts that can stake their NFTs using this contract. |
 | `unbonding_period` | u64                                                    | The unbonding period (time to unstake) of the NFTs in seconds.                             |
-| `reward`           | [Coin](../platform-and-framework/common-types/coin.md) | The rewards to be distributed per second.                                                  |
+| `reward`           | [Coin](../platform-and-framework/common-types.md#coin) | The rewards to be distributed per second.                                                  |
 
 ## ExecuteMsg
 
 ### ReceiveNft
 
-Receives an NFT from one of the `nft_contract` set on instantiation by executing a [`SendNft`](broken-reference) from the NFT contract with the attached `Stake` message
+Receives an NFT from one of the `nft_contract` set on instantiation by executing a [`SendNft`](cw721.md#sendnft) from the NFT contract with the attached `Stake` message
 
 ```rust
 pub enum ExecuteMsg {
@@ -285,7 +285,7 @@ pub enum ExecuteMsg {
 
 ### AndrReceive
 
-Check [AndrReceive](../platform-and-framework/ado\_base.md#andrrecieve).
+The rest of the executes can be found in the [`AndrReceive`](../platform-and-framework/ado\_base.md#andrrecieve) section.
 
 ## QueryMsg
 
@@ -359,8 +359,8 @@ pub struct StakedNft {
 | `contract_address`  | String                                                         | The NFT contract address.                                 |
 | `time_of_staking`   | Timestamp                                                      | The time of staking. Epoch time in seconds.               |
 | `time_of_unbonding` | Option\<Timestamp>                                             | Optional time of unbonding if the NFT has been unstaked.  |
-| `rewards`           | [Coin](../platform-and-framework/common-types/coin.md)         | The rewards being distributed per second.                 |
-| `accrued_reward`    | Option<[Coin](../platform-and-framework/common-types/coin.md)> | The amount of rewards accumulated from staking.           |
+| `rewards`           | [Coin](../platform-and-framework/common-types.md#coin)         | The rewards being distributed per second.                 |
+| `accrued_reward`    | Option<[Coin](../platform-and-framework/common-types.md#coin)> | The amount of rewards accumulated from staking.           |
 
 ### AllowedContracts
 
@@ -435,8 +435,8 @@ pub enum QueryMsg {
 {% endtab %}
 {% endtabs %}
 
-Returns a type [Coin](../platform-and-framework/common-types/coin.md) with the amount and denom of the reward being distributed per second.
+Returns a type [Coin](../platform-and-framework/common-types.md#coin) with the amount and denom of the reward being distributed per second.
 
 ### AndrQuery
 
-Check [AndrQuery](../platform-and-framework/ado\_base.md#andrquery).
+A set of base queries common to all Andromeda ADOs. Check[ AndrQuery](../platform-and-framework/ado\_base.md#andrquery).

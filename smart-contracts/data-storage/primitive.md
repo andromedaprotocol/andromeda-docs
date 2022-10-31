@@ -1,9 +1,3 @@
----
-description: >-
-  A contract used to store data. This contract would be referenced by other
-  contracts to retrieve the saved values.
----
-
 # Primitive
 
 ## Introduction
@@ -129,7 +123,7 @@ Only available to the contract owner/operator
 
 ### AndrReceive
 
-Check [AndrReceive](../../platform-and-framework/ado\_base.md).
+The rest of the executes can be found in the [`AndrReceive`](../../platform-and-framework/ado\_base.md#andrrecieve) section.
 
 ## QueryMsg
 

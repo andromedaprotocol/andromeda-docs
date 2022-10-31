@@ -68,7 +68,7 @@ pub struct InstantiateMsg {
 | `recipients` | Vec<[AddressPercent](andromeda-splitter.md#addresspercent)> | The recipient list of the splitter. Can be updated after instantiation.                                                               |
 
 {% hint style="warning" %}
-Anytime a [`Send`](andromeda-splitter.md#send) execute message is sent the amount sent will be divided amongst the recipients depending on their assigned percentage.
+Anytime a [`Send`](andromeda-splitter.md#send) execute message is sent, the amount sent will be divided amongst the recipients depending on their assigned percentage.
 {% endhint %}
 
 #### AddressPercent
@@ -105,7 +105,7 @@ To be a valid recipient list the array of `AddressPercent` structs must meet the
 * Have percentage amounts less than or equaling 1
 {% endhint %}
 
-Read more about the recipient struct [here](../platform-and-framework/common-types/recipient.md).
+Read more about the recipient struct [here](broken-reference).
 
 ## ExecuteMsg
 
@@ -221,7 +221,7 @@ pub enum ExecuteMsg {
 Uses the modules feature.
 {% endhint %}
 
-Check [AndrReceive](../platform-and-framework/ado\_base.md).
+The rest of the executes can be found in the [`AndrReceive`](../platform-and-framework/ado\_base.md#andrrecieve) section.
 
 ## QueryMsg
 
@@ -304,4 +304,4 @@ pub struct Splitter {
 
 ### AndrQuery
 
-Check[ AndrQuery](../platform-and-framework/ado\_base.md#andrquery).
+A set of base queries common to all Andromeda ADOs. Check[ AndrQuery](../platform-and-framework/ado\_base.md#andrquery).

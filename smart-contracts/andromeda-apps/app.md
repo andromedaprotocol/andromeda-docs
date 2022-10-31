@@ -238,7 +238,7 @@ pub enum ExecuteMsg {
 
 ### AndrReceive
 
-Check [AndrReceive](../../platform-and-framework/ado\_base.md).
+The rest of the executes can be found in the [`AndrReceive`](../../platform-and-framework/ado\_base.md#andrrecieve) section.
 
 ## QueryMsg
 
@@ -444,4 +444,8 @@ fn handle_andromeda_query(
 }
 ```
 
-Check [AndrQuery](../../platform-and-framework/ado\_base.md#andrquery) for the rest of the default queries.
+Check[ AndrQuery](../../platform-and-framework/ado\_base.md#andrquery) for the rest of the base queries.
+
+{% hint style="info" %}
+Base queries are common for all Andromeda ADOs.
+{% endhint %}

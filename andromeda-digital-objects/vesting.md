@@ -38,7 +38,7 @@ pub struct InstantiateMsg {
 
 | Name                     | Type                                                             | Description                                          |
 | ------------------------ | ---------------------------------------------------------------- | ---------------------------------------------------- |
-| `recipient`              | [Recipient](../platform-and-framework/common-types/recipient.md) | The recipient of all funds locked in this contract.  |
+| `recipient`              | [Recipient](../platform-and-framework/common-types.md#recipient) | The recipient of all funds locked in this contract.  |
 | `is_multi_batch_enabled` | bool                                                             | Whether or not multi-batching has been enabled.      |
 | `denom`                  | String                                                           | The denom of the coin being vested.                  |
 | `unbonding_duration`     | Duration                                                         | The unbonding duration of the native staking module. |
@@ -376,7 +376,7 @@ pub enum ExecuteMsg {
 
 ### AndrReceive
 
-Check[ AndrReceive](../platform-and-framework/ado\_base.md#andrrecieve).
+The rest of the executes can be found in the [`AndrReceive`](../platform-and-framework/ado\_base.md#andrrecieve) section.
 
 ## QueryMsg
 
@@ -434,12 +434,12 @@ pub struct Config {
 {% endtab %}
 {% endtabs %}
 
-| Name                     | Type                             | Description                                          |
-| ------------------------ | -------------------------------- | ---------------------------------------------------- |
-| `recipient`              | Recipient                        | The recipient of each batch.                         |
-| `is_multi_batch_enabled` | bool                             | Whether or not multiple batches are supported.       |
-| `denom`                  | String                           | The denom of the coin being vested.                  |
-| `unbonding_duration`     | [Duration](vesting.md#undefined) | The unbonding duration of the native staking module. |
+| Name                     | Type                            | Description                                          |
+| ------------------------ | ------------------------------- | ---------------------------------------------------- |
+| `recipient`              | Recipient                       | The recipient of each batch.                         |
+| `is_multi_batch_enabled` | bool                            | Whether or not multiple batches are supported.       |
+| `denom`                  | String                          | The denom of the coin being vested.                  |
+| `unbonding_duration`     | [Duration](vesting.md#duration) | The unbonding duration of the native staking module. |
 
 ### Batch
 
@@ -557,4 +557,4 @@ Returns a Vec<[BatchResponse](vesting.md#batchresponse)>.
 
 ### AndrQuery
 
-Check [AndrQuery](../platform-and-framework/ado\_base.md#andrquery).
+A set of base queries common to all Andromeda ADOs. Check[ AndrQuery](../platform-and-framework/ado\_base.md#andrquery).

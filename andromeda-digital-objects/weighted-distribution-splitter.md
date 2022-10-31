@@ -214,7 +214,7 @@ pub enum ExecuteMsg {
 
 | Name        | Type                                                             | Description                            |
 | ----------- | ---------------------------------------------------------------- | -------------------------------------- |
-| `recipient` | [Recipient](../platform-and-framework/common-types/recipient.md) | The recipient to remove from the list. |
+| `recipient` | [Recipient](../platform-and-framework/common-types.md#recipient) | The recipient to remove from the list. |
 
 ### UpdateLock
 
@@ -324,7 +324,7 @@ pub enum ExecuteMsg {
 This contract uses the modules feature
 {% endhint %}
 
-Check [AndrReceive](../platform-and-framework/ado\_base.md#andrrecieve).
+The rest of the executes can be found in the [`AndrReceive`](../platform-and-framework/ado\_base.md#andrrecieve) section.
 
 ## QueryMsg
 
@@ -408,7 +408,7 @@ pub struct Splitter {
 | Name         | Type                                                                  | Description                                                                                                                                                                                                                   |
 | ------------ | --------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `recipients` | Vec<[AddressWeight](weighted-distribution-splitter.md#addressweight)> | The vector of recipients for the contract. Anytime a `Send` execute message is sent the amount sent will be divided amongst these recipients depending on their assigned weight.                                              |
-| `locked`     | [Expiration](../platform-and-framework/common-types/expiration.md)    | The expiration time of the lock. Will return an epoc time which is equal to the current\_time _+_ lock\_time taken at the point of setting the lock. (Current time refers to the time the lock was set and not the time now.) |
+| `locked`     | [Expiration](../platform-and-framework/common-types.md#expiration)    | The expiration time of the lock. Will return an epoc time which is equal to the current\_time _+_ lock\_time taken at the point of setting the lock. (Current time refers to the time the lock was set and not the time now.) |
 
 ### GetUserWeight
 
@@ -458,4 +458,4 @@ pub struct GetUserWeightResponse {
 
 ### AndrQuery
 
-Check [AndrQuery](../platform-and-framework/ado\_base.md#andrquery).
+A set of base queries common to all Andromeda ADOs. Check[ AndrQuery](../platform-and-framework/ado\_base.md#andrquery).

@@ -6,10 +6,7 @@
 * [ADO Classes](platform-and-framework/ado-classes.md)
 * [ADO\_Base](platform-and-framework/ado\_base.md)
 * [Hooks](platform-and-framework/hooks.md)
-* [Common Types](platform-and-framework/common-types/README.md)
-  * [Recipient](platform-and-framework/common-types/recipient.md)
-  * [Coin](platform-and-framework/common-types/coin.md)
-  * [Expiration](platform-and-framework/common-types/expiration.md)
+* [Common Types](platform-and-framework/common-types.md)
 * [Deployed Contracts](platform-and-framework/deployed-contracts.md)
 
 ## Andromeda Digital Objects

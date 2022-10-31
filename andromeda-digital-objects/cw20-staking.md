@@ -76,10 +76,10 @@ pub struct InstantiateMsg {
 {% endtab %}
 {% endtabs %}
 
-| Name                 | Type                                                                           | Description                                                                                                                                                               |
-| -------------------- | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `staking_token`      | [AndrAddress](../platform-and-framework/common-types/recipient.md#andraddress) | The cw20 token that can be staked                                                                                                                                         |
-| `additional_rewards` | Option\<Vec\<RewardTokenUnchecked>>                                            | Any rewards in addition to the staking token. This list cannot include the staking token since it is used as a reward by default. Can have a maximum of 10 reward tokens. |
+| Name                 | Type                                                                 | Description                                                                                                                                                               |
+| -------------------- | -------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `staking_token`      | [AndrAddress](../platform-and-framework/common-types.md#andraddress) | The cw20 token that can be staked                                                                                                                                         |
+| `additional_rewards` | Option\<Vec\<RewardTokenUnchecked>>                                  | Any rewards in addition to the staking token. This list cannot include the staking token since it is used as a reward by default. Can have a maximum of 10 reward tokens. |
 
 #### RewardTokenUnchecked
 
@@ -90,10 +90,10 @@ pub struct RewardTokenUnchecked {
 }
 ```
 
-| Name                | Type                                                  | Description                                                                                                |
-| ------------------- | ----------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- |
-| `asset_info`        | AssetInfoUnchecked                                    | The asset used as a reward.                                                                                |
-| `allocation_config` | Option<[AllocationConfig](cw20-staking.md#undefined)> | How to allocate the `asset_info` as rewards. If not set, then the rewards are of the "non-allocated" type. |
+| Name                | Type                                                         | Description                                                                                                |
+| ------------------- | ------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------- |
+| `asset_info`        | AssetInfoUnchecked                                           | The asset used as a reward.                                                                                |
+| `allocation_config` | Option<[AllocationConfig](cw20-staking.md#allocationconfig)> | How to allocate the `asset_info` as rewards. If not set, then the rewards are of the "non-allocated" type. |
 
 #### AssetInfoUnchecked
 
@@ -286,7 +286,7 @@ pub enum ExecuteMsg {
 
 ### AndrReceive
 
-Check [AndrReceive](../platform-and-framework/ado\_base.md#andrrecieve).
+The rest of the executes can be found in the [`AndrReceive`](../platform-and-framework/ado\_base.md#andrrecieve) section.
 
 ## QueryMsg
 
@@ -338,10 +338,10 @@ pub struct Config {
 {% endtab %}
 {% endtabs %}
 
-| Name                      | Type                                                                           | Description                                                           |
-| ------------------------- | ------------------------------------------------------------------------------ | --------------------------------------------------------------------- |
-| `staking_token`           | [AndrAddress](../platform-and-framework/common-types/recipient.md#andraddress) | The token accepted for staking.                                       |
-| `number_of_reward_tokens` | u32                                                                            | The current number of reward tokens, cannot exceed the maximum of 10. |
+| Name                      | Type                                                                 | Description                                                           |
+| ------------------------- | -------------------------------------------------------------------- | --------------------------------------------------------------------- |
+| `staking_token`           | [AndrAddress](../platform-and-framework/common-types.md#andraddress) | The token accepted for staking.                                       |
+| `number_of_reward_tokens` | u32                                                                  | The current number of reward tokens, cannot exceed the maximum of 10. |
 
 ### State
 
@@ -520,4 +520,4 @@ Returns a u64 with the current timestamp in seconds.
 
 ### AndrQuery
 
-Check [AndrQuery](../platform-and-framework/ado\_base.md#andrquery).
+A set of base queries common to all Andromeda ADOs. Check[ AndrQuery](../platform-and-framework/ado\_base.md#andrquery).

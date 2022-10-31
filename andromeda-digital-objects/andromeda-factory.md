@@ -57,7 +57,7 @@ pub enum ExecuteMsg {
 
 ### AndrReceive
 
-Check [AndrReceive](../platform-and-framework/ado\_base.md).
+Check AndrReceive.
 
 ## QueryMsg
 
@@ -95,4 +95,4 @@ Returns a u64 which represents the `code_id`.
 
 ### AndrQuery
 
-Check [AndrQuery](../platform-and-framework/ado\_base.md).
+A set of base queries common to all Andromeda ADOs. Check[ AndrQuery](../platform-and-framework/ado\_base.md#andrquery).
