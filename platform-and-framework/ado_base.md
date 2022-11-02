@@ -279,7 +279,7 @@ pub enum AndromedaMsg {
                "module_type": "receipt",
                "address":{
                     "identifier":"juno1..."
-                    }
+                    },
                "is_mutable": true
         }
      }
