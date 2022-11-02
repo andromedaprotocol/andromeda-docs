@@ -316,7 +316,7 @@ Only available to the contract owner/operators.
 ```json
 {
 "andr_receive":{
-    "deregistering_module":{
+    "deregister_module":{
         "module_idx":"3"
         }
     }
