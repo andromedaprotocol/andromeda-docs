@@ -4,7 +4,7 @@
 
 The help flag can be used after any command to get information on the current command.
 
-#### Example:
+#### Example
 
 ```
 ? $test@uni-3> wallets --help
@@ -33,7 +33,7 @@ help    Displays info about the current command
 
 In addition to the help flag, you can you the "tab" button on your keyboard to list the available commands or even autocomplete  a command.
 
-#### Example:
+#### Example
 
 To test this out, write any of the commands available but do not press enter to run it. Instead press tab and the "Available commands" should pop up.
 

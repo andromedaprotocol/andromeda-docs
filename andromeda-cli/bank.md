@@ -35,7 +35,7 @@ ujunox: 3598667
 
 Sends tokens to another address.
 
-#### Usage:
+#### Usage
 
 ```
 bank send <recipient address> <amount>
@@ -45,7 +45,7 @@ bank send <recipient address> <amount>
 Make sure to include the denom with the amount.&#x20;
 {% endhint %}
 
-#### **Example:**
+#### **Example**
 
 ```
 bank send juno12x7efvfn94ynqkyvdcgdndh6rqrz6u6x20jes2 6000ujunox

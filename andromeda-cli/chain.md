@@ -69,13 +69,13 @@ iconUrl                   [object Object]
 
 Creates a copy of a current config.&#x20;
 
-#### Usage:
+#### Usage
 
 ```
 chain copy <current config name/chainId> <new config name>
 ```
 
-#### Example:
+#### Example
 
 ```
 ? $main@elgafar-1> chain copy elgafar-1 test
@@ -150,13 +150,13 @@ The chain currently is use is highlighted in green.
 
 Creates a new config.
 
-#### Usage:
+#### Usage
 
 ```
 chain new <name>
 ```
 
-#### Example:
+#### Example
 
 ```
 ? $main@elgafar-1> chain new tutorial

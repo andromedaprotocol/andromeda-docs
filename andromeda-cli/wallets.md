@@ -64,7 +64,7 @@ wallets add test --recover
 
 You'll be asked to enter and repeat the new password for your key, and enter the seed phrase. Then you get your key back.
 
-#### Flags:
+#### Flags
 
 | Flag        | Description                              | Usage     |
 | ----------- | ---------------------------------------- | --------- |
