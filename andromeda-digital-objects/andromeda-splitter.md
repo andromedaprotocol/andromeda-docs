@@ -89,11 +89,10 @@ pub struct AddressPercent {
 ```javascript
 {
     "recipient":{
-    "addr":"juno1..."
+        "addr":"juno1..."
      },
     "percent": "0.5"
 }
-
 ```
 {% endtab %}
 {% endtabs %}
