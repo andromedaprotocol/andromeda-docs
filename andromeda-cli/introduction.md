@@ -10,14 +10,14 @@ The CLI is still in beta phase. It may contain bugs and upgrades will probably b
 
 ## Installation
 
-To install the Andromeda CLI, run the following command to download our [npm package](https://www.npmjs.com/package/@andromedaprotocol/andromeda.js):
+To install the Andromeda CLI, run the following command to download our[ npm package](https://www.npmjs.com/package/@andromedaprotocol/andromeda.js/v/0.1.3):
 
 {% hint style="warning" %}
 Make sure you have npm installed.
 {% endhint %}
 
 ```
-npm install -g @andromedaprotocol/andromeda.js
+npm install -g @andromedaprotocol/andromeda.js@0.1.3
 ```
 
 Then run `andr`  to open the CLI:
