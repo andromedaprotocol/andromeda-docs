@@ -117,12 +117,9 @@ AddAppComponent{
  "component":{
        "name":"fundsplitter",
        "ado_type":"splitter",
-       "instantiate_msg":{
-       ...
-       }
+       "instantiate_msg":"eyJ0b2tlbl9hZGRyZXNzIjp7ImlkZW50aWZpZXIiOiJqdW5vMS4uLiJ9InByaW1pdGl2ZV9hZGRyZXNzIjoianVubzEuLi4sImNhbl9taW50X2FmdGVyX3NhbGUiOiB0cnVlfQ=="
    }
-}
-            
+}         
 ```
 {% endtab %}
 {% endtabs %}
