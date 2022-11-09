@@ -50,7 +50,7 @@ When instantiating an **Andromeda Digital Object** contract the modules can be d
           "module_type": "address_list",
           "address": {
             "identifier":"juno1..."
-              }
+              },
           "is_mutable": false
         },
         
