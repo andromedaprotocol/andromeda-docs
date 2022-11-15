@@ -105,7 +105,7 @@ pub enum ExecuteMsg {
 
 ### AndrReceive
 
-The rest of the executes can be found in the [`AndrReceive`](../platform-and-framework/ado\_base.md#andrrecieve) section.
+The rest of the executes can be found in the [`AndrReceive`](../platform-and-framework/ado-base.md#andrrecieve) section.
 
 ## QueryMsg
 
@@ -165,4 +165,4 @@ pub struct IncludesAddressResponse {
 
 ### AndrQuery
 
-&#x20;A set of base queries common to all Andromeda ADOs. Check[ AndrQuery](../platform-and-framework/ado\_base.md#andrquery).
+&#x20;A set of base queries common to all Andromeda ADOs. Check[ AndrQuery](../platform-and-framework/ado-base.md#andrquery).

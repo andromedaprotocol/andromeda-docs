@@ -1,10 +1,10 @@
 ---
 description: >-
-  The ADO_Base contains all the common functionality applied on all ADOs upon
+  The ADO Base contains all the common functionality applied on all ADOs upon
   instantiation.
 ---
 
-# ADO\_Base
+# ADO Base
 
 ### InstantiateMsg
 

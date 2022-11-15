@@ -41,7 +41,7 @@ pub struct ADOContract<'a> {
 }
 ```
 
-To avoid defining these fields for every single contract, we have decided to bundle them in a struct that can be used by all ADOs. There are also [ado-base messages](ado\_base.md) which are the messages that can be called by any ADO (Unless they require a certain feature enabled) that will be further discussed later on.
+To avoid defining these fields for every single contract, we have decided to bundle them in a struct that can be used by all ADOs. There are also [ado-base messages](ado-base.md) which are the messages that can be called by any ADO (Unless they require a certain feature enabled) that will be further discussed later on.
 
 As we can see, not all ADOs use all the fields. Some require that the ADO have the modules, primitive, or withdraw feature which will be stated in that ADO documentation.&#x20;
 

@@ -4,7 +4,7 @@
 
 * [Introduction](README.md)
 * [ADO Classes](platform-and-framework/ado-classes.md)
-* [ADO\_Base](platform-and-framework/ado\_base.md)
+* [ADO Base](platform-and-framework/ado-base.md)
 * [Hooks](platform-and-framework/hooks.md)
 * [Common Types](platform-and-framework/common-types.md)
 * [Deployed Contracts](platform-and-framework/deployed-contracts.md)

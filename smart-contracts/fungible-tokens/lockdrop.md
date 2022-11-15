@@ -256,7 +256,7 @@ pub enum ExecuteMsg {
 
 ### AndrReceive
 
-Check [AndrReceive](../../platform-and-framework/ado\_base.md#andrrecieve).
+Check [AndrReceive](../../platform-and-framework/ado-base.md#andrrecieve).
 
 ## QueryMsg
 
@@ -447,4 +447,4 @@ Returns a number of type Decimal representing the percentage allowed to withdraw
 
 ### AndrQuery
 
-A set of base queries common to all Andromeda ADOs. Check[ AndrQuery](../../platform-and-framework/ado\_base.md#andrquery).
+A set of base queries common to all Andromeda ADOs. Check[ AndrQuery](../../platform-and-framework/ado-base.md#andrquery).

@@ -206,7 +206,7 @@ pub enum ExecuteMsg {
 Has the modules feature enabled.
 {% endhint %}
 
-Check [AndrReceive](../platform-and-framework/ado\_base.md#andrrecieve).
+Check [AndrReceive](../platform-and-framework/ado-base.md#andrrecieve).
 
 ## QueryMsg
 
@@ -399,4 +399,4 @@ pub struct SaleInfo {
 
 ### AndrQuery
 
-A set of base queries common to all Andromeda ADOs. Check[ AndrQuery](../platform-and-framework/ado\_base.md#andrquery).
+A set of base queries common to all Andromeda ADOs. Check[ AndrQuery](../platform-and-framework/ado-base.md#andrquery).

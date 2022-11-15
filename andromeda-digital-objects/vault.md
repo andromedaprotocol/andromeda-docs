@@ -44,9 +44,9 @@ pub enum ExecuteMsg{
 {% endtab %}
 {% endtabs %}
 
-The [`AndromedaMsg`](../platform-and-framework/ado\_base.md#andromedamsg)  needs to be of type `receive` to deposit funds to the vault. It will then execute a [Deposit](vault.md#deposit) with the `recipient` being the sender, the `amount` is the amount of funds sent. The funds are deposited to the central vault.
+The [`AndromedaMsg`](../platform-and-framework/ado-base.md#andromedamsg)  needs to be of type `receive` to deposit funds to the vault. It will then execute a [Deposit](vault.md#deposit) with the `recipient` being the sender, the `amount` is the amount of funds sent. The funds are deposited to the central vault.
 
-If the `AndromedaMsg` is not of type receive, then it is used to execute one of the default [AndrReceive messages](../platform-and-framework/ado\_base.md#andrrecieve).
+If the `AndromedaMsg` is not of type receive, then it is used to execute one of the default [AndrReceive messages](../platform-and-framework/ado-base.md#andrrecieve).
 
 ### Deposit
 
@@ -141,7 +141,7 @@ pub enum ExecuteMsg{
 | Name          | Type                                                                     |                                                                                                                                      |
 | ------------- | ------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------ |
 | `recipient`   | Option<[Recipient](../platform-and-framework/common-types.md#recipient)> | The address to receive the withdrawn funds when withdrawing from vault. Defaults to the sender. Not used if a strategy is specified. |
-| `withdrawals` | Vec<[Withdrawal](../platform-and-framework/ado\_base.md#withdrawal)>     | The funds to withdraw.                                                                                                               |
+| `withdrawals` | Vec<[Withdrawal](../platform-and-framework/ado-base.md#withdrawal)>      | The funds to withdraw.                                                                                                               |
 | `strategy`    | Option<[StrategyType](vault.md#strategytype)>                            | The strategy to withdraw from. If not specified, the funds are withdrawn from the vault.                                             |
 
 ### UpdateStrategy
@@ -183,7 +183,7 @@ The Vault needs to be an operator of the strategy contract.
 
 ### AndrReceive
 
-The rest of the executes can be found in the [`AndrReceive`](../platform-and-framework/ado\_base.md#andrrecieve) section.
+The rest of the executes can be found in the [`AndrReceive`](../platform-and-framework/ado-base.md#andrrecieve) section.
 
 ## QueryMsg
 
@@ -292,7 +292,7 @@ pub enum QueryMsg {
     }
 ```
 
-If the [`AndromedaQuery`](../platform-and-framework/ado\_base.md#andromedaquery) is of type `Get` , the contract will query the balance of the specified address(data).&#x20;
+If the [`AndromedaQuery`](../platform-and-framework/ado-base.md#andromedaquery) is of type `Get` , the contract will query the balance of the specified address(data).&#x20;
 
 ```rust
 fn handle_andromeda_query(
@@ -310,4 +310,4 @@ fn handle_andromeda_query(
 }
 ```
 
-Check [AndrQuery](../platform-and-framework/ado\_base.md#andromedaquery) for the rest of the default queries.
+Check [AndrQuery](../platform-and-framework/ado-base.md#andromedaquery) for the rest of the default queries.
