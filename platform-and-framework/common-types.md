@@ -155,7 +155,7 @@ pub struct ADORecipient {
 
 ### AndrAddress
 
-A struct used to reference another ADO contract. Can be either an address or identifier of an ADO in an app.
+A struct used to reference another ADO contract. Can be either an address or the name of an ADO component in an app.
 
 {% tabs %}
 {% tab title="Rust" %}
