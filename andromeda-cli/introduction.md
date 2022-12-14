@@ -17,7 +17,17 @@ Make sure you have npm installed.
 {% endhint %}
 
 ```
-npm install -g @andromedaprotocol/andromeda.js@0.1.6
+sudo npm install -g @andromedaprotocol/andromeda.js@0.1.6
+```
+
+{% hint style="warning" %}
+We use sudo since we are installing globally using the -g flag.
+{% endhint %}
+
+If you have the package already installed, you can the following to update to the lates version:
+
+```
+sudo npm update -g @andromedaprotocol/andromeda.js
 ```
 
 Then run `andr`  to open the CLI:

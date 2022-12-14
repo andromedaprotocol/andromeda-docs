@@ -259,7 +259,7 @@ If the minimum number of tokens to be sold was not reached. The user can claim t
 
 ### EndSale
 
-Ends the sale. In the case that the minimum sold is not achieved, refunds are sent to the buyers and tokens are burnt. If the minimum sold was achieved, the tokens are sent to the buyers and the funds to the recipient.&#x20;
+Ends the sale. In the case that the minimum number of tokens to be sold is not achieved, refunds are sent to the buyers and tokens are burnt. If the minimum amount of tokens sold was achieved, the tokens are sent to the buyers and the funds to the recipient.&#x20;
 
 {% tabs %}
 {% tab title="Rust" %}

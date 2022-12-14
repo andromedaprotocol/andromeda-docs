@@ -48,7 +48,7 @@ pub struct InstantiateMsg {
     
   "modules": [
         {
-          "module_type": "address_list",
+          "module_type": "address-list",
           "address": {
              "identifier": "my_address_list"
           },
