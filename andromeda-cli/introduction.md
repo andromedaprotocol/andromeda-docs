@@ -17,7 +17,7 @@ Make sure you have npm installed.
 {% endhint %}
 
 ```
-npm install -g @andromedaprotocol/andromeda.js@0.1.3
+npm install -g @andromedaprotocol/andromeda.js@0.1.6
 ```
 
 Then run `andr`  to open the CLI:

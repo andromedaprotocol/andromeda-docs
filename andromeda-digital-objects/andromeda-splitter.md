@@ -232,6 +232,7 @@ The current config of the Splitter contract.
 {% tab title="Rust" %}
 ```rust
 pub enum QueryMsg {
+    #[returns(GetSplitterConfigResponse)]
     GetSplitterConfig {},
 }
 ```
@@ -263,9 +264,8 @@ pub struct GetSplitterConfigResponse {
     "config": {
         "recipients": [
             {
-                "recipient":
-                { 
-                    "juno1..."
+                "recipient":{
+                   "addr":"juno1..."
                     },
                 "percent": "0.5"
             },

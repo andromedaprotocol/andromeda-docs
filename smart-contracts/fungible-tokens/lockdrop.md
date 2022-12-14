@@ -268,6 +268,7 @@ Queries the config of the contract.
 {% tab title="Rust" %}
 ```rust
 pub enum QueryMsg {
+    #[returns(ConfigResponse)]
     Config {},
  }
 ```
@@ -311,6 +312,7 @@ Queries the current state of the contract.
 {% tab title="Rust" %}
 ```rust
 pub enum QueryMsg {
+    #[returns(StateResponse)]
     State {},
 }
 ```
@@ -358,6 +360,7 @@ pub enum QueryMsg {
 {% tab title="Rust" %}
 ```rust
 pub enum QueryMsg {
+     #[returns(UserInfoResponse)]
      UserInfo {
         address: String,
     }
@@ -421,6 +424,7 @@ Returns the max withdrawable percent for a position.
 {% tab title="Rust" %}
 ```rust
 pub enum QueryMsg {
+      #[returns(Decimal)]
       WithdrawalPercentAllowed {
             timestamp: Option<u64>,
     }
@@ -439,9 +443,9 @@ pub enum QueryMsg {
 {% endtab %}
 {% endtabs %}
 
-| Name        | Type         | Description                                       |
-| ----------- | ------------ | ------------------------------------------------- |
-| `timestamp` | Option\<u64> | The time to check the maximum withdrawal allowed. |
+| Name        | Type         | Description                                             |
+| ----------- | ------------ | ------------------------------------------------------- |
+| `timestamp` | Option\<u64> | The timestamp to check the maximum withdrawal allowed.  |
 
 Returns a number of type Decimal representing the percentage allowed to withdraw.
 

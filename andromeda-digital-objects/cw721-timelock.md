@@ -125,6 +125,7 @@ Queries details on the locked token with the specified `lock_id`.
 {% tab title="Rust" %}
 ```rust
 pub enum QueryMsg {
+       #[returns(LockDetails)]
        LockedToken {
            lock_id: String 
        },

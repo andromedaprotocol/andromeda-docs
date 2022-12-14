@@ -167,6 +167,7 @@ Returns the latest bid of the token with the given `token_id`.
 {% tab title="Rust" %}
 ```rust
 pub enum QueryMsg{
+  #[returns(BidResponse)]
   Bid {
         token_id: String,
     }
@@ -240,7 +241,8 @@ Returns all the bids of a certain purchaser.
 {% tabs %}
 {% tab title="Rust" %}
 ```rust
-   pub enum ExecuteMsg{
+pub enum ExecuteMsg{
+   #[returns(AllBidsResponse)]
    AllBids {
         purchaser: String,
         limit: Option<u32>,
@@ -295,7 +297,8 @@ pub struct AllBidsResponse {
 },
 ...
 <strong>  ]
-</strong><strong>}</strong></code></pre>
+</strong><strong>}
+</strong></code></pre>
 {% endtab %}
 {% endtabs %}
 

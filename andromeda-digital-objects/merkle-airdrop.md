@@ -178,6 +178,7 @@ Check [AndrReceive](../platform-and-framework/ado-base.md#andrrecieve).
 {% tab title="Rust" %}
 ```rust
 pub enum QueryMsg {
+ #[returns(ConfigResponse)]
  Config {}
  }
 ```
@@ -236,8 +237,9 @@ Queries the Merkle-Root  for the specified `stage`.
 {% tab title="Rust" %}
 ```rust
 pub enum QueryMsg {
-MerkleRoot {
- stage: u8
+ #[returns(MerkleRootResponse)]
+ MerkleRoot {
+  stage: u8
   }
 }
 ```
@@ -301,6 +303,7 @@ Queries the last stage.
 {% tab title="Rust" %}
 ```rust
 pub enum QueryMsg {
+  #[returns(LatestStageResponse)]
   LatestStage {}
   }
 ```
@@ -343,6 +346,7 @@ pub struct LatestStageResponse {
 {% tab title="Rust" %}
 ```rust
 pub enum QueryMsg {
+    #[returns(IsClaimedResponse)]
     IsClaimed {
      stage: u8,
      address: String
@@ -396,8 +400,9 @@ pub struct IsClaimedResponse {
 {% tab title="Rust" %}
 ```rust
 pub enum QueryMsg {
- TotalClaimed {
-  stage: u8
+  #[returns(TotalClaimedResponse)]
+  TotalClaimed {
+    stage: u8
     }
   }
 ```

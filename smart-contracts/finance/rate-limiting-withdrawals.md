@@ -175,6 +175,7 @@ Provides the allowed coin and limits for withdrawal size and frequency.
 {% tab title="Rust" %}
 ```rust
 pub enum QueryMsg{
+    #[returns(CoinAllowance)]
     CoinAllowanceDetails {}
     }
 ```
@@ -229,6 +230,7 @@ Shows the balance and latest withdrawal time.
 {% tab title="Rust" %}
 ```rust
 pub enum QueryMsg{
+     #[returns(AccountDetails)]
      AccountDetails {
         account: String,
     }

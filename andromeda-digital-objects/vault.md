@@ -195,6 +195,7 @@ Gets the balance for the specified address. Can be either the their balance in t
 {% tab title="Rust" %}
 ```rust
 pub enum QueryMsg {
+    #[returns(Binary)]
     Balance {
         address: String,
         strategy: Option<StrategyType>,
@@ -232,6 +233,7 @@ Returns the contract address of the specified strategy.
 {% tab title="Rust" %}
 ```rust
 pub enum QueryMsg{
+    #[returns(Binary)]
     StrategyAddress {
         strategy: StrategyType,
     }

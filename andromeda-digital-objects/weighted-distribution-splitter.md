@@ -336,6 +336,7 @@ Queries the current config of the contract.
 {% tab title="Rust" %}
 ```rust
 pub enum QueryMsg {
+      #[returns(GetSplitterConfigResponse)]
       GetSplitterConfig {},
 }
 ```
@@ -418,6 +419,7 @@ Queries the user's allocated weight.
 {% tab title="Rust" %}
 ```rust
 pub enum QueryMsg {
+    #[returns(GetUserWeightResponse)]
     GetUserWeight {
         user: Recipient,
         }

@@ -178,6 +178,7 @@ Query any held funds for an address.
 {% tab title="Rust" %}
 ```rust
 pub enum QueryMsg {
+    #[returns(GetLockedFundsResponse)]
     GetLockedFunds{
         owner: String,
         recipient:String
@@ -244,7 +245,8 @@ pub struct GetLockedFundsResponse {
 {% tabs %}
 {% tab title="Rust" %}
 ```rust
-   pub enum QueryMsg {
+pub enum QueryMsg {
+   #[returns(GetLockedFundsForRecipientResponse)]
    GetLockedFundsForRecipient {
         recipient: String,
         start_after: Option<String>,
@@ -293,12 +295,12 @@ pub struct GetLockedFundsForRecipientResponse {
         },
         
         "recipient":{
-        "addr":"juno1..."
-        }
+            "addr":"juno1..."
+        },
         
         "condition": {
             "expiration": {
-              "at_height": 1
+              "at_height": 13249238492
               }
         }
     }

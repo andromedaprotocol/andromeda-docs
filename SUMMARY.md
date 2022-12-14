@@ -18,7 +18,7 @@
 * [CW20 Staking](andromeda-digital-objects/cw20-staking.md)
 * [CW20](andromeda-digital-objects/cw20.md)
 * [CW721](andromeda-digital-objects/cw721.md)
-* [Factory](andromeda-digital-objects/andromeda-factory.md)
+* [ADO Database](andromeda-digital-objects/andromeda-factory.md)
 * [Lockdrop](smart-contracts/fungible-tokens/lockdrop.md)
 * [Marketplace](andromeda-digital-objects/marketplace.md)
 * [Merkle-Airdrop](andromeda-digital-objects/merkle-airdrop.md)
@@ -31,10 +31,10 @@
 * [Receipt](andromeda-digital-objects/receipt.md)
 * [Splitter](andromeda-digital-objects/andromeda-splitter.md)
 * [Timelock](andromeda-digital-objects/timelock.md)
-* [Weighted Distribution Splitter](andromeda-digital-objects/weighted-distribution-splitter.md)
-* [Wrapped CW721](andromeda-digital-objects/wrapped-cw721.md)
 * [Vault](andromeda-digital-objects/vault.md)
 * [Vesting](andromeda-digital-objects/vesting.md)
+* [Weighted Distribution Splitter](andromeda-digital-objects/weighted-distribution-splitter.md)
+* [Wrapped CW721](andromeda-digital-objects/wrapped-cw721.md)
 
 ## Modules
 

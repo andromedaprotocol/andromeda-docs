@@ -30,4 +30,4 @@ All of the builds can be performed using our [ado commands](../andromeda-cli/ado
 
 ### What's Next ?
 
-In the next sections, we will be going through some examples on building and deploying an Andromda App from scratch using the Andromeda CLI. We will go through a variety of popular dApps that can be built using Andromeda. Keep in mind that these are only a very few use cases out of thousands that can be built.&#x20;
+In the next sections, we will be going through some examples on building and deploying an Andromda App from scratch using the Andromeda CLI. We will go through a variety of popular dApps that can be built using Andromeda. Keep in mind that these are only a very few use cases out of the thousands that can be built.&#x20;

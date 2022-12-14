@@ -163,6 +163,7 @@ Queries a receipt by its ID.
 {% tab title="Rust" %}
 ```rust
 pub enum QueryMsg {
+    #[returns(ReceiptResponse)]
     Receipt {
      receipt_id: Uint128
       }
@@ -231,6 +232,7 @@ Queries the contract's configuration.
 {% tab title="Rust" %}
 ```rust
 pub enum QueryMsg {
+    #[returns(ContractInfoResponse)]
     ContractInfo {},
 }
 ```
@@ -245,18 +247,15 @@ pub enum QueryMsg {
 {% endtab %}
 {% endtabs %}
 
-### ContractInfoResponse
+#### ContractInfoResponse
 
 {% tabs %}
 {% tab title="Rust" %}
 ```rust
 pub struct Config {
+    #[returns(ContractInfoResponse)]
     pub minter: String,
    
-}
-
-pub struct ContractInfoResponse {
-    pub config: Config,
 }
 ```
 {% endtab %}

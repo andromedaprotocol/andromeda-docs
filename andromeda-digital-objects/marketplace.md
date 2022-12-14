@@ -104,7 +104,8 @@ Only available to the NFT owner.
         price: Uint128,
         coin_denom: String,
     }
-}</code></pre>
+}
+</code></pre>
 {% endtab %}
 
 {% tab title="JSON" %}
@@ -143,7 +144,8 @@ Dont forget to attach the required funds.
         token_id: String,
         token_address: String,
      }
-  }</code></pre>
+  }
+</code></pre>
 {% endtab %}
 
 {% tab title="JSON" %}
@@ -218,6 +220,7 @@ Gets the latest sale state for the given token. This will either be the current 
 {% tab title="Rust" %}
 ```rust
  pub enum QueryMsg {
+ #[returns(SaleStateResponse)]
  LatestSaleState {
         token_id: String,
         token_address: String,
@@ -284,6 +287,7 @@ Gets the sale state for the given sale id.
 {% tab title="Rust" %}
 ```rust
 pub enum QueryMsg
+#[returns(SaleStateResponse)]
  SaleState {
         sale_id: Uint128,
     }
@@ -314,6 +318,7 @@ Returns a [SaleStateResponse](marketplace.md#salestateresponse).
 {% tab title="Rust" %}
 ```rust
 pub enum QueryMsg {
+     #[returns(SaleIdsResponse)]
      SaleIds {
         token_id: String,
         token_address: String,
@@ -349,6 +354,7 @@ Get sale information on the provided cw721 token address.
 {% tab title="Rust" %}
 ```rust
 pub enum QueryMsg {
+ #[returns(Vec<SaleInfo>)]
  SaleInfosForAddress {
         token_address: String,
         start_after: Option<String>,

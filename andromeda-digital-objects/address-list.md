@@ -117,6 +117,7 @@ Query if an address is included in the address list.
 {% tab title="Rust" %}
 ```rust
 pub enum QueryMsg {
+    #[returns(IncludesAddressResponse)]
     IncludesAddress{
         address: String
     },

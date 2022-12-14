@@ -298,6 +298,7 @@ Gets the config of the contract.
 {% tab title="Rust" %}
 ```rust
 pub enum QueryMsg {
+       #[returns(Config)]
        Config {},
  }
 ```
@@ -351,6 +352,7 @@ Gets the state of the contract.
 {% tab title="Rust" %}
 ```rust
 pub enum QueryMsg {
+    #[returns(State)]
     State {},
     }
 ```
@@ -399,6 +401,7 @@ Returns a `StakerResponse` for the given staker. The pending rewards are updated
 {% tab title="Rust" %}
 ```rust
 pub enum QueryMsg {
+      #[returns(StakerResponse)]
       Staker {
         address: String,
     },
@@ -465,14 +468,14 @@ Returns a `Vec<StakerResponse>` for range of stakers. The pending rewards are up
 
 {% tabs %}
 {% tab title="Rust" %}
-```rust
-pub enum QueryMsg {
-        Stakers {
-        start_after: Option<String>,
-        limit: Option<u32>,
-    },
-}
-```
+<pre class="language-rust"><code class="lang-rust">pub enum QueryMsg {
+   #[returns(Vec&#x3C;StakerResponse>)]
+   Stakers {
+          start_after: Option&#x3C;String>,
+          limit: Option&#x3C;u32>,
+            },
+<strong>        }
+</strong></code></pre>
 {% endtab %}
 
 {% tab title="JSON" %}
@@ -501,6 +504,7 @@ Queries the current timestamp in seconds.
 {% tab title="Rust" %}
 ```rust
 pub enum QueryMsg {
+       #[returns(u64)]
        Timestamp {},
     }
 }

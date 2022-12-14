@@ -1,10 +1,10 @@
-# Factory
+# ADO Database
 
 ## Introduction
 
-The **Factory** ADO is a smart contract that is primarily used to store code ids for contracts when creating Andromeda [Apps](../smart-contracts/andromeda-apps/app.md).
+The **Database** ADO is a smart contract that is primarily used to store code ids for ADOs to be used when creating Andromeda [Apps](../smart-contracts/andromeda-apps/app.md). The code Ids are stored within a key value pair where the key is usually the ADO name and the value is the ADO code Id.
 
-**Ado\_type**: factory
+**Ado\_type**: adodb
 
 ## InstantiateMsg
 
@@ -22,7 +22,7 @@ pub struct InstantiateMsg {}
 
 Assigns a `code_id` to the specified `code_id_key`. This is used to store the code ids of ADOs in Apps.
 
-{% hint style="info" %}
+{% hint style="warning" %}
 Only available to the contract owner/operators.
 {% endhint %}
 
@@ -50,10 +50,10 @@ pub enum ExecuteMsg {
 {% endtab %}
 {% endtabs %}
 
-| Name              | Type         | Description                                                   |
-| ----------------- | ------------ | ------------------------------------------------------------- |
-| `receipt_code_id` | Option\<u64> | Optional new code ID for the [receipt](receipt.md) contracts. |
-| `token_code_id`   | Option\<u64> | Optional new code ID for the contract.                        |
+| Name          | Type   | Description                           |
+| ------------- | ------ | ------------------------------------- |
+| `code_id_key` | String | The ADO key to change the code Id for |
+| `code_id`     | u64    | The new code Id for the ADO.          |
 
 ### AndrReceive
 
@@ -69,6 +69,7 @@ Query the code\_id of the specified key.
 {% tab title="Rust" %}
 ```rust
 pub enum QueryMsg {
+    #[returns(u64)]
     CodeId {
       key:String,
     }
@@ -87,9 +88,9 @@ pub enum QueryMsg {
 {% endtab %}
 {% endtabs %}
 
-| Name  | Type   | Description                                           |
-| ----- | ------ | ----------------------------------------------------- |
-| `key` | String | The key of the contract which we want the code id of. |
+| Name  | Type   | Description                                      |
+| ----- | ------ | ------------------------------------------------ |
+| `key` | String | The key of the ADO which we want the code Id of. |
 
 Returns a u64 which represents the `code_id`.
 

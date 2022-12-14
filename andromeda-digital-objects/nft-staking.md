@@ -297,6 +297,7 @@ Queries information on a staked NFT.&#x20;
 {% tab title="Rust" %}
 ```rust
 pub enum QueryMsg {
+    #[returns(StakedNft)]
     StakedNft {
          key: String 
     }
@@ -370,6 +371,7 @@ Queries the list of allowed NFT contracts to stake using this contract.
 {% tab title="Rust" %}
 ```rust
 pub enum QueryMsg {
+    #[returns(Vec<String>)]
     AllowedContracts {}
     }
 }
@@ -395,7 +397,8 @@ Queries the unbonding period.
 {% tab title="Rust" %}
 ```rust
 pub enum QueryMsg {
-        UnbondingPeriod {}
+    #[returns(u64)]
+    UnbondingPeriod {}
         }
   }
 ```
@@ -420,6 +423,7 @@ Queries the reward being distributed for staking.
 {% tab title="Rust" %}
 ```rust
 pub enum QueryMsg {
+     #[returns(Coin)]
      Reward {}
      }
 }

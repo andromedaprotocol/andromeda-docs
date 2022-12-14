@@ -6,16 +6,7 @@ The **App** ADO is a smart contract that is used to bundle up contracts that wil
 
 A contract in the App is called a AppComponent. Every app would be composed of many of these components (up to 50). Each component is assigned a name which can be used by other components to reference each other.
 
-The steps needed to build a full app from scratch are the following:
-
-1. Upload the contracts and get the code IDs.
-2. Instantiate a factory contract and save the code IDs of the contracts in it.
-3. Instantiate a primitive contract and save the factory address as a value under the name "factory".
-4. Instantiate the app contract and attach the primitive to it (`primitive_contract` field in instantiation)
-
-{% hint style="warning" %}
-Andromeda has a list of deployed addresses that include the Factory with the code ids of all the contracts and a primitive linked to it. This means that the first three steps are already covered if you use our [deployed contracts](../../platform-and-framework/deployed-contracts.md). All that is needed is step 4. You can learn to deploy your first app [here](../../andromeda-apps/crowdfunding-app.md).
-{% endhint %}
+To build a full app from scratch we only need to instantiate the app contract and attach a primitive to it (`primitive_contract` field in instantiation). This primitive contains a reference to an "ado db" ADO which has all the ADO code Ids saved. These contracts are already deployed to chain and the addresses can be found in our [deployed contracts](../../platform-and-framework/deployed-contracts.md) section. You can learn to deploy your first app [here](../../andromeda-apps/crowdfunding-app.md).
 
 **Ado\_type**: app
 
@@ -29,7 +20,7 @@ The maximum number of app components is 50.
 {% tab title="Rust" %}
 ```rust
 pub struct InstantiateMsg {
-    pub app: Vec<AppComponent>,
+    pub app_components: Vec<AppComponent>,
     pub name: String,
     pub primitive_contract: String
 }
@@ -39,7 +30,7 @@ pub struct InstantiateMsg {
 {% tab title="JSON" %}
 ```rust
 {
-"app":[
+"app_components":[
      {
        "name":"fundsplitter",
        "ado_type":"splitter",
@@ -61,7 +52,7 @@ pub struct InstantiateMsg {
 
 | Name                 | Type                                     | Description                                                            |
 | -------------------- | ---------------------------------------- | ---------------------------------------------------------------------- |
-| `App`                | Vec<[AppComponent](app.md#appcomponent)> | The vector of AppComponent containing all the ADOs of the app.         |
+| `app_components`     | Vec<[AppComponent](app.md#appcomponent)> | The vector of AppComponent containing all the ADOs of the app.         |
 | `name`               | String                                   | The name of the app.                                                   |
 | `primitive_contract` | String                                   | The address of the `primitve` contract used to supply data to the app. |
 
@@ -247,6 +238,7 @@ Queries the contract address of a component name.
 {% tab title="Rust" %}
 ```rust
 pub enum QueryMsg{
+ #[returns(String)]
  GetAddress { name: String }
  }
 ```
@@ -275,6 +267,7 @@ Returns a `String` of the component address.
 {% tab title="Rust" %}
 ```rust
 pub enum QueryMsg{
+   #[returns(Vec<ComponentAddress>)]
    GetAddresses {}
 }
 ```
@@ -319,6 +312,7 @@ pub struct ComponentAddress {
 {% tab title="Rust" %}
 ```rust
 pub enum QueryMsg{
+ #[returns(Vec<AppComponent>)]
  GetComponents {}
 }
 ```
@@ -343,6 +337,7 @@ Queries the configuration of the app.
 {% tab title="Rust" %}
 ```rust
 pub enum QueryMsg{
+    #[returns(ConfigResponse)]
     Config {}
 }
 ```
@@ -387,6 +382,7 @@ Checks if a component with the specified `name` exists.
 {% tab title="Rust" %}
 ```rust
 pub enum QueryMsg {
+    #[returns(bool)]
     ComponentExists { name: String },
     }
 ```

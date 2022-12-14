@@ -388,6 +388,7 @@ Queries the configuration of the contract.
 {% tab title="Rust" %}
 ```rust
 pub enum QueryMsg {
+     #[returns(Config)]
      Config {}
      }
 ```
@@ -449,6 +450,7 @@ Queries batch information from the specified id.
 {% tab title="Rust" %}
 ```rust
 pub enum QueryMsg {
+       #[returns(BatchResponse)]
        Batch {
         id: u64,
     }
@@ -529,6 +531,7 @@ Queries the batches with pagination.
 {% tab title="Rust" %}
 ```rust
 pub enum QueryMsg {
+      #[returns(Vec<BatchResponse>)]
       Batches {
         start_after: Option<u64>,
         limit: Option<u32>,

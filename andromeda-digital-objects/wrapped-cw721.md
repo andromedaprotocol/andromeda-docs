@@ -72,7 +72,7 @@ pub struct Cw721Specification {
 
 ### ReceiveNft
 
-Receives the NFT sent by the user from the CW721 contract defined in the `InstantiateMsg`. When sending an NFT to this contract, the user would send a message to either wrap the sent token, or unwrap it (If allowed). This will be defined depending on the `Cw721HookMsg` attached to the Cw721ReceiveMsg.
+Receives the NFT sent by the user from the CW721 contract defined in the `InstantiateMsg`. When sending an NFT to this contract, the user would send a message to either wrap the sent token, or unwrap it (If allowed). This will be defined depending on the `Cw721HookMsg` attached to the `Cw721ReceiveMsg`.
 
 {% tabs %}
 {% tab title="Rust" %}
@@ -110,6 +110,31 @@ pub enum Cw721HookMsg {
 The rest of the executes can be found in the [`AndrReceive`](../platform-and-framework/ado-base.md#andrrecieve) section.
 
 ## QueryMsg
+
+### NFTContractAddress
+
+Queries the contract address of the NFT contract created at [instantiation](wrapped-cw721.md#instantiatemsg).
+
+{% tabs %}
+{% tab title="Rust" %}
+```rust
+pub enum QueryMsg {   
+    #[returns(String)]
+    NFTContractAddress {},
+    }
+```
+{% endtab %}
+
+{% tab title="JSON" %}
+```json
+{
+"nft_contract_address":{}
+}
+```
+{% endtab %}
+{% endtabs %}
+
+The contract address is returned as a string.
 
 ### AndrQuery
 

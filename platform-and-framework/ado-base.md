@@ -430,7 +430,8 @@ Similar to `RefreshAddress`, but is used to save all the values from the primiti
 <strong>      "limit": 15
 </strong>     }
    }
-}</code></pre>
+}
+</code></pre>
 {% endtab %}
 {% endtabs %}
 
@@ -451,15 +452,25 @@ pub enum QueryMsg {
 
 ```rust
 pub enum AndromedaQuery {
+    #[returns(Option<Binary>)]
     Get(Option<Binary>),
+    #[returns(ContractOwnerResponse)]
     Owner {},
+    #[returns(OperatorsResponse)]
     Operators {},
+    #[returns(TypeResponse)]
     Type {},
+    #[returns(PublisherResponse)]
     OriginalPublisher {},
+    #[returns(BlockHeightResponse)]
     BlockHeightUponCreation {},
+    #[returns(IsOperatorResponse)]
     IsOperator { address: String },
+    #[returns(Module)]
     Module { id: Uint64 },
+    #[returns(Vec<String>)]
     ModuleIds {},
+    #[returns(VersionResponse)]
     Version {},
 }
 ```
@@ -472,7 +483,8 @@ Queries the owner of the contract.
 {% tab title="Rust" %}
 ```rust
 pub enum AndromedaQuery{
-Owner{}
+    #[returns(ContractOwnerResponse)]
+    Owner{}
 }
 ```
 {% endtab %}
@@ -516,7 +528,8 @@ Queries the operators of a contract.
 {% tab title="Rust" %}
 ```rust
 pub enum AndromedaQuery{
-Operators{}
+     #[returns(OperatorsResponse)]
+     Operators{}
 }
 ```
 {% endtab %}
@@ -560,8 +573,9 @@ Checks if  the specified `address` is an operator of the contract.
 {% tab title="Rust" %}
 ```rust
 pub enum AndromedaQuery{
-IsOperators{
-  address:String,
+  #[returns(IsOperatorResponse)]
+  IsOperators{
+      address:String,
   }
 }
 ```
@@ -610,11 +624,11 @@ Queries the Ado\_type.&#x20;
 
 {% tabs %}
 {% tab title="Rust" %}
-```rust
-pub enum AndromedaQuery {
-    Type {}
+<pre class="language-rust"><code class="lang-rust">pub enum AndromedaQuery {
+<strong>    #[returns(TypeResponse)]
+</strong>    Type {}
 }
-```
+</code></pre>
 {% endtab %}
 
 {% tab title="JSON" %}
@@ -658,6 +672,7 @@ Queries the block height when the ADO was created.
 {% tab title="Rust" %}
 ```rust
 pub enum AndromedaQuery{
+      #[returns(BlockHeightResponse)]
       BlockHeightUponCreation {},
       }
 ```
@@ -704,6 +719,7 @@ Queries the version of the ADO.&#x20;
 {% tab title="Rust" %}
 ```rust
 pub enum AndromedaQuery {
+     #[returns(VersionResponse)]
      Version {}
      }
 ```
@@ -750,6 +766,7 @@ Queries the orginal address that published/instantiated the ADO.
 {% tab title="Rust " %}
 ```rust
 pub enum AndromedaQuery {
+    #[returns(PublisherResponse)]
     OriginalPublisher {}
     }
 ```
@@ -800,8 +817,9 @@ Queries a module by its Id.
 {% tab title="Rust" %}
 ```rust
 pub enum AndromedaQuery{
-Module{
-  id:Uint64,
+  #[returns(Module)]
+  Module{
+      id:Uint64,
   }
 }
 ```
@@ -867,7 +885,8 @@ Queries all of the module ids.
 {% tab title="Rust" %}
 ```rust
 pub enum AndromedaQuery{
-ModuleIds{}
+    #[returns(Vec<String>)]
+    ModuleIds{}
 }
 ```
 {% endtab %}

@@ -305,6 +305,7 @@ Queries the state of the sale.
 {% tab title="Rust" %}
 ```rust
 pub enum QueryMsg {
+    #[returns(State)]
     State {},
 }
 ```
@@ -379,6 +380,7 @@ Queries the configuration of the contract.
 {% tab title="Rust" %}
 ```rust
 pub enum QueryMsg {
+    #[returns(Config)]
     Config {},
 }
 ```
@@ -430,6 +432,7 @@ Queries the available tokens for sale.
 {% tab title="Rust" %}
 ```rust
 pub enum QueryMsg {
+     #[returns(Vec<String>)]
      AvailableTokens {
             start_after: Option<String>,
             limit: Option<u32>,
@@ -462,6 +465,7 @@ Checks if the token with the specified `token_id` is available for sale.
 {% tab title="Rust" %}
 ```rust
 pub enum QueryMsg {
+  #[returns(bool)]
   IsTokenAvailable {
         id: String,
     }

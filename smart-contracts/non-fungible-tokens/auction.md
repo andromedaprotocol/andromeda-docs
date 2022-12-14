@@ -14,7 +14,8 @@ The contract supports [modules](broken-reference) to extend it's functionality.
 {% tab title="Rust" %}
 <pre class="language-rust"><code class="lang-rust">pub struct InstantiateMsg {
 <strong>    pub modules: Option&#x3C;Vec&#x3C;Module>>,
-</strong> }</code></pre>
+</strong> }
+</code></pre>
 {% endtab %}
 {% endtabs %}
 
@@ -289,6 +290,7 @@ Queries the most recent auction for the given token (either ongoing, complete, o
 {% tab title="Rust" %}
 ```rust
 pub enum QueryMsg {
+    #[returns(AuctionStateResponse)]
     LatestAuctionState {
         token_id: String,
         token_address:String,
@@ -378,6 +380,7 @@ To get the auction\_id of a particular token, use LatestAuctionState
 {% tab title="Rust" %}
 ```rust
 pub enum QueryMsg {
+    #[returns(AuctionStateResponse)]
     AuctionState {
         auction_id: Uint128,
     },
@@ -412,6 +415,7 @@ Gets the bids for a given auction.
 {% tab title="Rust" %}
 ```rust
 pub enum QueryMsg {
+    #[returns(BidsResponse)]
     Bids {
         auction_id: Uint128,
         start_after: Option<u64>,
@@ -507,6 +511,7 @@ Queries the auction ids for a given token.
 {% tab title="Rust" %}
 ```rust
 pub enum QueryMsg {
+    #[returns(AuctionIdsResponse)]
     AuctionIds {
         token_id: String,
         token_address:String
@@ -566,6 +571,7 @@ Gets all of the auction infos for a given token address.
 {% tab title="Rust" %}
 ```rust
   pub enum ExecuteMsg {
+    #[returns(AuctionInfo)]
     AuctionInfosForAddress {
         token_address: String,
         start_after: Option<String>,
