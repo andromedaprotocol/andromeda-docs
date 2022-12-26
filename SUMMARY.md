@@ -4,6 +4,7 @@
 
 * [Introduction to AndromedaOS](README.md)
 * [Andromeda Digital Objects](platform-and-framework/andromeda-digital-objects/README.md)
+  * [ADO Package System](platform-and-framework/andromeda-digital-objects/ado-package-system.md)
   * [ADO Classes](platform-and-framework/andromeda-digital-objects/ado-classes.md)
   * [ADO Base](platform-and-framework/andromeda-digital-objects/ado-base.md)
   * [Hooks](platform-and-framework/andromeda-digital-objects/hooks.md)
