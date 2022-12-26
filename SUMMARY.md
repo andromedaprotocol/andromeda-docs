@@ -11,6 +11,7 @@
   * [Common Types](platform-and-framework/andromeda-digital-objects/common-types.md)
   * [Developer Store](platform-and-framework/andromeda-digital-objects/developer-store.md)
 * [Andromeda Apps](platform-and-framework/andromeda-apps/README.md)
+  * [App ADO Structure](platform-and-framework/andromeda-apps/app-ado-structure.md)
   * [App Store](platform-and-framework/andromeda-apps/app-store.md)
 * [aOS Kernel](platform-and-framework/aos-kernel.md)
 * [aOS Messaging Protocol](platform-and-framework/aos-messaging-protocol.md)
