@@ -91,7 +91,7 @@ pub enum AndromedaQuery {
 ```
 
 {% hint style="info" %}
-More details about each of these messages can be found in [AndrReceive/AndrQuery](../platform-and-framework/ado-base.md#modules)
+More details about each of these messages can be found in [AndrReceive/AndrQuery](../platform-and-framework/andromeda-digital-objects/ado-base.md#modules)
 {% endhint %}
 
 ### Module Usage&#x20;

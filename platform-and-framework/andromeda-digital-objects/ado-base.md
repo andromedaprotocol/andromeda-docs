@@ -24,13 +24,13 @@ pub struct InstantiateMsg {
 {% endtab %}
 {% endtabs %}
 
-| Name                 | Type                                                     | Description                                                                                             |
-| -------------------- | -------------------------------------------------------- | ------------------------------------------------------------------------------------------------------- |
-| `ado_type`           | String                                                   | The type of the ADO. Usually is the same as the name. Is automatically set when an ADO is instantiated. |
-| `ado_version`        | String                                                   | The version of the ADO.                                                                                 |
-| `operators`          | Option\<Vec\<String>>                                    | The list of addresses to set as operators on the contract.                                              |
-| `modules`            | Option\<Vec<[Module](../modules/module-definitions.md)>> | The list of modules to add to the ADO.                                                                  |
-| `primitive_contract` | Option\<String>                                          | The address of the primitive contract to use for data retrieval.                                        |
+| Name                 | Type                                                        | Description                                                                                             |
+| -------------------- | ----------------------------------------------------------- | ------------------------------------------------------------------------------------------------------- |
+| `ado_type`           | String                                                      | The type of the ADO. Usually is the same as the name. Is automatically set when an ADO is instantiated. |
+| `ado_version`        | String                                                      | The version of the ADO.                                                                                 |
+| `operators`          | Option\<Vec\<String>>                                       | The list of addresses to set as operators on the contract.                                              |
+| `modules`            | Option\<Vec<[Module](../../modules/module-definitions.md)>> | The list of modules to add to the ADO.                                                                  |
+| `primitive_contract` | Option\<String>                                             | The address of the primitive contract to use for data retrieval.                                        |
 
 Many of the contracts will have repeating functionality. To normalize one struct across all contracts, we use the `AndrRecieve` and `AndrQuery` for certain functionalities that will be shown below. This way each contract doesn't have to independently handle the message.
 
@@ -289,9 +289,9 @@ pub enum AndromedaMsg {
 {% endtab %}
 {% endtabs %}
 
-| Name   | Type                                       | Description         |
-| ------ | ------------------------------------------ | ------------------- |
-| module | [Module](../modules/module-definitions.md) | The module to add.  |
+| Name   | Type                                          | Description         |
+| ------ | --------------------------------------------- | ------------------- |
+| module | [Module](../../modules/module-definitions.md) | The module to add.  |
 
 ### DeregisterModule
 
@@ -371,10 +371,10 @@ pub enum AndromedaMsg{
 {% endtab %}
 {% endtabs %}
 
-| Name         | Type                                       | Description                        |
-| ------------ | ------------------------------------------ | ---------------------------------- |
-| `module_idx` | Uint64                                     | The index of the module to change. |
-| `module`     | [Module](../modules/module-definitions.md) | The new module implement.          |
+| Name         | Type                                          | Description                        |
+| ------------ | --------------------------------------------- | ---------------------------------- |
+| `module_idx` | Uint64                                        | The index of the module to change. |
+| `module`     | [Module](../../modules/module-definitions.md) | The new module implement.          |
 
 ### Primitives
 
@@ -871,11 +871,11 @@ pub struct ModuleInfoWithAddress {
 {% endtab %}
 {% endtabs %}
 
-| Name      | Type                                       | Description                                                 |
-| --------- | ------------------------------------------ | ----------------------------------------------------------- |
-| `module`  | [Module](../modules/module-definitions.md) | The information of the module are found in a Module struct. |
-| `address` | String                                     | The contract address of the module.                         |
-|           |                                            |                                                             |
+| Name      | Type                                          | Description                                                 |
+| --------- | --------------------------------------------- | ----------------------------------------------------------- |
+| `module`  | [Module](../../modules/module-definitions.md) | The information of the module are found in a Module struct. |
+| `address` | String                                        | The contract address of the module.                         |
+|           |                                               |                                                             |
 
 ### ModuleIds
 

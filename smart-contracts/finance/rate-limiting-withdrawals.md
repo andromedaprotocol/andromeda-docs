@@ -163,7 +163,7 @@ pub enum ExecuteMsg{
 Uses the modules feature.
 {% endhint %}
 
-The rest of the executes can be found in the [`AndrReceive`](../../platform-and-framework/ado-base.md#andrrecieve) section.
+The rest of the executes can be found in the [`AndrReceive`](../../platform-and-framework/andromeda-digital-objects/ado-base.md#andrrecieve) section.
 
 ## QueryMsg
 
@@ -284,4 +284,4 @@ pub struct AccountDetails {
 
 ### AndrQuery
 
-A set of base queries common to all Andromeda ADOs. Check[ AndrQuery](../../platform-and-framework/ado-base.md#andrquery).
+A set of base queries common to all Andromeda ADOs. Check[ AndrQuery](../../platform-and-framework/andromeda-digital-objects/ado-base.md#andrquery).

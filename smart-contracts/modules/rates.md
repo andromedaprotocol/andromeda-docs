@@ -75,12 +75,12 @@ pub struct RateInfo {
 }
 ```
 
-| Name          | Type                                                                     | Description                                                                               |
-| ------------- | ------------------------------------------------------------------------ | ----------------------------------------------------------------------------------------- |
-| `rate`        | [Rate](rates.md#rate)                                                    | The type of rate being taken.                                                             |
-| `is_additive` | bool                                                                     | An indicator to whether the rate being taken is tax. If tax `is_additive` is set to true. |
-| `description` | Option\<String>                                                          | Optional description for the rate.                                                        |
-| `recipients`  | Vec<[Recipient](../../platform-and-framework/common-types.md#recipient)> | The addresses to receive the `rate` specified.                                            |
+| Name          | Type                                                                                               | Description                                                                               |
+| ------------- | -------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- |
+| `rate`        | [Rate](rates.md#rate)                                                                              | The type of rate being taken.                                                             |
+| `is_additive` | bool                                                                                               | An indicator to whether the rate being taken is tax. If tax `is_additive` is set to true. |
+| `description` | Option\<String>                                                                                    | Optional description for the rate.                                                        |
+| `recipients`  | Vec<[Recipient](../../platform-and-framework/andromeda-digital-objects/common-types.md#recipient)> | The addresses to receive the `rate` specified.                                            |
 
 #### Rate
 
@@ -96,7 +96,7 @@ pub enum Rate {
 
 The Rate can be one of the three option seen above:
 
-* Flat: A fixed amount to be taken ([Coin](../../platform-and-framework/common-types.md#coin)). Needs to have an amount and denomination specified.&#x20;
+* Flat: A fixed amount to be taken ([Coin](../../platform-and-framework/andromeda-digital-objects/common-types.md#coin)). Needs to have an amount and denomination specified.&#x20;
 * Percent: A percentage based rate. Needs to have the percent to take specified.
 * External: This refers to a rate that we want to use which is saved in a primitive contract. Needs the address of the primitive and the key of the stored Rate primitive to be specified.
 
@@ -121,10 +121,10 @@ pub struct PrimitivePointer {
 }
 ```
 
-| Name      | Type                                                                    | Description                            |
-| --------- | ----------------------------------------------------------------------- | -------------------------------------- |
-| `address` | [AndrAddress](../../platform-and-framework/common-types.md#andraddress) | The address of the primitive contract. |
-| `key`     | Option\<String>                                                         | The optional key for the stored data.  |
+| Name      | Type                                                                                              | Description                            |
+| --------- | ------------------------------------------------------------------------------------------------- | -------------------------------------- |
+| `address` | [AndrAddress](../../platform-and-framework/andromeda-digital-objects/common-types.md#andraddress) | The address of the primitive contract. |
+| `key`     | Option\<String>                                                                                   | The optional key for the stored data.  |
 
 ## ExecuteMsg
 
@@ -181,7 +181,7 @@ pub enum ExecuteMsg{
 
 ### AndrReceive
 
-The rest of the executes can be found in the [`AndrReceive`](../../platform-and-framework/ado-base.md#andrrecieve) section.
+The rest of the executes can be found in the [`AndrReceive`](../../platform-and-framework/andromeda-digital-objects/ado-base.md#andrrecieve) section.
 
 ### Payments
 
@@ -253,4 +253,4 @@ pub struct PaymentsResponse {
 
 ### AndrQuery
 
-A set of base queries common to all Andromeda ADOs. Check[ AndrQuery](../../platform-and-framework/ado-base.md#andrquery).
+A set of base queries common to all Andromeda ADOs. Check[ AndrQuery](../../platform-and-framework/andromeda-digital-objects/ado-base.md#andrquery).

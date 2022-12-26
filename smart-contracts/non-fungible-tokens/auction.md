@@ -278,7 +278,7 @@ Can only be done when the `end_time` has been passed. If no bids has been placed
 Uses the modules feature.
 {% endhint %}
 
-The rest of the executes can be found in the [`AndrReceive`](../../platform-and-framework/ado-base.md#andrrecieve) section.
+The rest of the executes can be found in the [`AndrReceive`](../../platform-and-framework/andromeda-digital-objects/ado-base.md#andrrecieve) section.
 
 ## QueryMsg
 
@@ -354,17 +354,17 @@ pub struct AuctionStateResponse {
 {% endtab %}
 {% endtabs %}
 
-| Name                 | Type                                                                  | Description                                                           |
-| -------------------- | --------------------------------------------------------------------- | --------------------------------------------------------------------- |
-| `start_time`         | [Expiration](../../platform-and-framework/common-types.md#expiration) | The start of the auction.                                             |
-| `end_time`           | [Expiration](../../platform-and-framework/common-types.md#expiration) | The end of the auction.                                               |
-| `high_bidder_addr`   | String                                                                | The address of the highest bidder.                                    |
-| `high_bidder_amount` | Uint128                                                               | The amount of the highest bid.                                        |
-| `auction_id`         | Uint128                                                               | The id of the auction.                                                |
-| `coin_denom`         | String                                                                | The denom the auction is in.                                          |
-| `is_cancelled`       | bool                                                                  | Whether or not the auction has been cancelled.                        |
-| `min_bid`            | Option\<Uint128>                                                      | The minimum bid that can be placed on the auctioned token.            |
-| `whitelist`          | Option\<Vec\<Addr>>                                                   | The whitelisted addresses if they were specified at time of creation. |
+| Name                 | Type                                                                                            | Description                                                           |
+| -------------------- | ----------------------------------------------------------------------------------------------- | --------------------------------------------------------------------- |
+| `start_time`         | [Expiration](../../platform-and-framework/andromeda-digital-objects/common-types.md#expiration) | The start of the auction.                                             |
+| `end_time`           | [Expiration](../../platform-and-framework/andromeda-digital-objects/common-types.md#expiration) | The end of the auction.                                               |
+| `high_bidder_addr`   | String                                                                                          | The address of the highest bidder.                                    |
+| `high_bidder_amount` | Uint128                                                                                         | The amount of the highest bid.                                        |
+| `auction_id`         | Uint128                                                                                         | The id of the auction.                                                |
+| `coin_denom`         | String                                                                                          | The denom the auction is in.                                          |
+| `is_cancelled`       | bool                                                                                            | Whether or not the auction has been cancelled.                        |
+| `min_bid`            | Option\<Uint128>                                                                                | The minimum bid that can be placed on the auctioned token.            |
+| `whitelist`          | Option\<Vec\<Addr>>                                                                             | The whitelisted addresses if they were specified at time of creation. |
 
 ### AuctionState
 
@@ -497,11 +497,11 @@ pub struct Bid {
 }
 ```
 
-| Name        | Type                                                                |                            |
-| ----------- | ------------------------------------------------------------------- | -------------------------- |
-| `bidder`    | String                                                              | The address of the bidder. |
-| `amount`    | Uint128                                                             | The amount of funds bid.   |
-| `timestamp` | [TimeStamp](../../platform-and-framework/common-types.md#timestamp) | The time of the bid.       |
+| Name        | Type                                                                                          |                            |
+| ----------- | --------------------------------------------------------------------------------------------- | -------------------------- |
+| `bidder`    | String                                                                                        | The address of the bidder. |
+| `amount`    | Uint128                                                                                       | The amount of funds bid.   |
+| `timestamp` | [TimeStamp](../../platform-and-framework/andromeda-digital-objects/common-types.md#timestamp) | The time of the bid.       |
 
 ### AuctionIds
 
@@ -638,4 +638,4 @@ pub struct AuctionInfo {
 
 ### AndrQuery
 
-A set of base queries common to all Andromeda ADOs. Check[ AndrQuery](../../platform-and-framework/ado-base.md#andrquery).
+A set of base queries common to all Andromeda ADOs. Check[ AndrQuery](../../platform-and-framework/andromeda-digital-objects/ado-base.md#andrquery).

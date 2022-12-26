@@ -69,10 +69,10 @@ pub enum ExecuteMsg {
 {% endtab %}
 {% endtabs %}
 
-| Name        | Type                                                                     | Description                                                     |
-| ----------- | ------------------------------------------------------------------------ | --------------------------------------------------------------- |
-| `recipient` | Option<[Recipient](../platform-and-framework/common-types.md#recipient)> | Optional recipient address. If not set, defaults to the sender. |
-| `condition` | Option<[EscrowCondition](timelock.md#escrowcondition)>                   | An optional condition to unlock the Escrow.                     |
+| Name        | Type                                                                                               | Description                                                     |
+| ----------- | -------------------------------------------------------------------------------------------------- | --------------------------------------------------------------- |
+| `recipient` | Option<[Recipient](../platform-and-framework/andromeda-digital-objects/common-types.md#recipient)> | Optional recipient address. If not set, defaults to the sender. |
+| `condition` | Option<[EscrowCondition](timelock.md#escrowcondition)>                                             | An optional condition to unlock the Escrow.                     |
 
 #### EscrowCondition
 
@@ -85,10 +85,10 @@ pub enum EscrowCondition {
 }
 ```
 
-| EscrowCondition Type | Type                                                        | Description                                          |
-| -------------------- | ----------------------------------------------------------- | ---------------------------------------------------- |
-| `Expiration`         | [Expiration](broken-reference)                              | Requires a given time or block height to be reached. |
-| `MinimumFunds`       | Vec<[Coin](../platform-and-framework/common-types.md#coin)> | Requires a minimum amount of funds to be deposited.  |
+| EscrowCondition Type | Type                                                                                  | Description                                          |
+| -------------------- | ------------------------------------------------------------------------------------- | ---------------------------------------------------- |
+| `Expiration`         | [Expiration](broken-reference)                                                        | Requires a given time or block height to be reached. |
+| `MinimumFunds`       | Vec<[Coin](../platform-and-framework/andromeda-digital-objects/common-types.md#coin)> | Requires a minimum amount of funds to be deposited.  |
 
 ### ReleaseFunds
 
@@ -166,7 +166,7 @@ ReleaseSpecificFunds {
 Uses the modules feature.
 {% endhint %}
 
-The rest of the executes can be found in the [`AndrReceive`](../platform-and-framework/ado-base.md#andrrecieve) section.
+The rest of the executes can be found in the [`AndrReceive`](../platform-and-framework/andromeda-digital-objects/ado-base.md#andrrecieve) section.
 
 ## QueryMsg
 
@@ -325,12 +325,12 @@ pub struct Escrow {
 }
 ```
 
-| Name        | Type                                                             | Description                                               |
-| ----------- | ---------------------------------------------------------------- | --------------------------------------------------------- |
-| `coins`     | Vec<[Coin](../platform-and-framework/common-types.md#coin)>      | Funds being held within the Escrow.                       |
-| `condition` | Option<[EscrowCondition](timelock.md#escrowcondition)>           | Optional condition for the Escrow.                        |
-| `recipient` | [Recipient](../platform-and-framework/common-types.md#recipient) | The recipient of the funds once `condition` is satisfied. |
+| Name        | Type                                                                                       | Description                                               |
+| ----------- | ------------------------------------------------------------------------------------------ | --------------------------------------------------------- |
+| `coins`     | Vec<[Coin](../platform-and-framework/andromeda-digital-objects/common-types.md#coin)>      | Funds being held within the Escrow.                       |
+| `condition` | Option<[EscrowCondition](timelock.md#escrowcondition)>                                     | Optional condition for the Escrow.                        |
+| `recipient` | [Recipient](../platform-and-framework/andromeda-digital-objects/common-types.md#recipient) | The recipient of the funds once `condition` is satisfied. |
 
 ### AndrQuery
 
-A set of base queries common to all Andromeda ADOs. Check[ AndrQuery](../platform-and-framework/ado-base.md#andrquery).
+A set of base queries common to all Andromeda ADOs. Check[ AndrQuery](../platform-and-framework/andromeda-digital-objects/ado-base.md#andrquery).

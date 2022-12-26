@@ -3,11 +3,18 @@
 ## Platform and Framework
 
 * [Introduction to AndromedaOS](README.md)
-* [ADO Classes](platform-and-framework/ado-classes.md)
-* [ADO Base](platform-and-framework/ado-base.md)
-* [Hooks](platform-and-framework/hooks.md)
-* [Common Types](platform-and-framework/common-types.md)
-* [Deployed Contracts](platform-and-framework/deployed-contracts.md)
+* [Andromeda Digital Objects](platform-and-framework/andromeda-digital-objects/README.md)
+  * [ADO Classes](platform-and-framework/andromeda-digital-objects/ado-classes.md)
+  * [ADO Base](platform-and-framework/andromeda-digital-objects/ado-base.md)
+  * [Hooks](platform-and-framework/andromeda-digital-objects/hooks.md)
+  * [Common Types](platform-and-framework/andromeda-digital-objects/common-types.md)
+* [Andromeda Apps](platform-and-framework/andromeda-apps.md)
+* [aOS Kernel](platform-and-framework/aos-kernel.md)
+* [aOS Messaging Protocol](platform-and-framework/aos-messaging-protocol.md)
+* [aOS Filesystem](platform-and-framework/aos-filesystem.md)
+* [aOS Users & Groups](platform-and-framework/aos-users-and-groups.md)
+* [aOS Networking](platform-and-framework/aos-networking.md)
+* [aOS Economics](platform-and-framework/aos-economics.md)
 
 ## Andromeda Digital Objects
 
@@ -56,6 +63,7 @@
 ## User Docs
 
 * [User Docs](user-docs.md)
+* [Contract Addresses](user-docs/contract-addresses.md)
 
 ## Andromeda CLI
 

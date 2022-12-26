@@ -38,11 +38,11 @@ pub struct InstantiateMsg {
 {% endtab %}
 {% endtabs %}
 
-| Name                  | Type                                                                           | Desctription                                                                                                                                                    |
-| --------------------- | ------------------------------------------------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `token_address`       | [AndrAddress](../../platform-and-framework/common-types.md#andraddress)        | The contract address of the token.                                                                                                                              |
-| `modules`             | Option\<Vec<[Module](../../modules/module-definitions.md#module-definitions)>> | An optional vector of Andromeda[ Modules](broken-reference) that can be attached to the contract. "rates", "address-list", and  "receipt" modules can be added. |
-| `can_mint_after_sale` | bool                                                                           | A flag to whether minting is allowed after a sale has been done. Minting is never allowed during a sale.                                                        |
+| Name                  | Type                                                                                              | Desctription                                                                                                                                                    |
+| --------------------- | ------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `token_address`       | [AndrAddress](../../platform-and-framework/andromeda-digital-objects/common-types.md#andraddress) | The contract address of the token.                                                                                                                              |
+| `modules`             | Option\<Vec<[Module](../../modules/module-definitions.md#module-definitions)>>                    | An optional vector of Andromeda[ Modules](broken-reference) that can be attached to the contract. "rates", "address-list", and  "receipt" modules can be added. |
+| `can_mint_after_sale` | bool                                                                                              | A flag to whether minting is allowed after a sale has been done. Minting is never allowed during a sale.                                                        |
 
 ## ExecuteMsg
 
@@ -161,13 +161,13 @@ pub enum ExecuteMsg{
 {% endtab %}
 {% endtabs %}
 
-| Name                    | Type                                                                  | Description                                                       |
-| ----------------------- | --------------------------------------------------------------------- | ----------------------------------------------------------------- |
-| `expiration`            | [Expiration](../../platform-and-framework/common-types.md#expiration) | When the sale ends.                                               |
-| `price`                 | [Coin](../../platform-and-framework/common-types.md#coin)             | The price per token.                                              |
-| `min_tokens_sold`       | Uint128                                                               | The minimum amount of tokens sold to go through with the sale.    |
-| `max_amount_per_wallet` | Option\<u32>                                                          | The amount of tokens a wallet can purchase, default is 1.         |
-| `recipient`             | [Recipient](../../platform-and-framework/common-types.md#recipient)   | The recipient of the funds if the sale met the `min_tokens_sold`. |
+| Name                    | Type                                                                                            | Description                                                       |
+| ----------------------- | ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------- |
+| `expiration`            | [Expiration](../../platform-and-framework/andromeda-digital-objects/common-types.md#expiration) | When the sale ends.                                               |
+| `price`                 | [Coin](../../platform-and-framework/andromeda-digital-objects/common-types.md#coin)             | The price per token.                                              |
+| `min_tokens_sold`       | Uint128                                                                                         | The minimum amount of tokens sold to go through with the sale.    |
+| `max_amount_per_wallet` | Option\<u32>                                                                                    | The amount of tokens a wallet can purchase, default is 1.         |
+| `recipient`             | [Recipient](../../platform-and-framework/andromeda-digital-objects/common-types.md#recipient)   | The recipient of the funds if the sale met the `min_tokens_sold`. |
 
 ### Purchase
 
@@ -293,7 +293,7 @@ Ends the sale. In the case that the minimum number of tokens to be sold is not a
 Uses the modules feature.
 {% endhint %}
 
-The rest of the executes can be found in the [`AndrReceive`](../../platform-and-framework/ado-base.md#andrrecieve) section.
+The rest of the executes can be found in the [`AndrReceive`](../../platform-and-framework/andromeda-digital-objects/ado-base.md#andrrecieve) section.
 
 ## QueryMsg
 
@@ -361,16 +361,16 @@ pub struct State {
 {% endtab %}
 {% endtabs %}
 
-| Name                    | Type                                                                  | Description                                                                                                           |
-| ----------------------- | --------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------- |
-| `expiration`            | [Expiration](../../platform-and-framework/common-types.md#expiration) | The expiration denoting when the sale ends.                                                                           |
-| `price`                 | [Coin](../../platform-and-framework/common-types.md#coin)             | The price of each token.                                                                                              |
-| `min_tokens_sold`       | Uint128                                                               | The minimum number of tokens sold for the sale to go through.                                                         |
-| `max_amount_per_wallet` | u32                                                                   | The max number of tokens allowed per wallet.                                                                          |
-| `amount_sold`           | Uint128                                                               | Number of tokens sold.                                                                                                |
-| `amount_to_send`        | Uint128                                                               | The amount of funds to send to recipient if sale successful. This already takes into account the royalties and taxes. |
-| `amount_transferred`    | Uint128                                                               | Number of tokens transferred to purchasers if sale was successful.                                                    |
-| `recipient`             | [Recipient](../../platform-and-framework/common-types.md#recipient)   | The recipient of the raised funds if the sale is successful.                                                          |
+| Name                    | Type                                                                                            | Description                                                                                                           |
+| ----------------------- | ----------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------- |
+| `expiration`            | [Expiration](../../platform-and-framework/andromeda-digital-objects/common-types.md#expiration) | The expiration denoting when the sale ends.                                                                           |
+| `price`                 | [Coin](../../platform-and-framework/andromeda-digital-objects/common-types.md#coin)             | The price of each token.                                                                                              |
+| `min_tokens_sold`       | Uint128                                                                                         | The minimum number of tokens sold for the sale to go through.                                                         |
+| `max_amount_per_wallet` | u32                                                                                             | The max number of tokens allowed per wallet.                                                                          |
+| `amount_sold`           | Uint128                                                                                         | Number of tokens sold.                                                                                                |
+| `amount_to_send`        | Uint128                                                                                         | The amount of funds to send to recipient if sale successful. This already takes into account the royalties and taxes. |
+| `amount_transferred`    | Uint128                                                                                         | Number of tokens transferred to purchasers if sale was successful.                                                    |
+| `recipient`             | [Recipient](../../platform-and-framework/andromeda-digital-objects/common-types.md#recipient)   | The recipient of the raised funds if the sale is successful.                                                          |
 
 ### Config
 
@@ -419,10 +419,10 @@ pub struct Config {
 {% endtab %}
 {% endtabs %}
 
-| Name                  | Type                                                                    | Description                                                                            |
-| --------------------- | ----------------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
-| `token_address`       | [AndrAddress](../../platform-and-framework/common-types.md#andraddress) | The address of the token contract whose tokens are being sold.                         |
-| `can_mint_after_sale` | bool                                                                    | Whether or not the owner can mint additional tokens after the sale has been conducted. |
+| Name                  | Type                                                                                              | Description                                                                            |
+| --------------------- | ------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
+| `token_address`       | [AndrAddress](../../platform-and-framework/andromeda-digital-objects/common-types.md#andraddress) | The address of the token contract whose tokens are being sold.                         |
+| `can_mint_after_sale` | bool                                                                                              | Whether or not the owner can mint additional tokens after the sale has been conducted. |
 
 ### AvailableTokens
 
@@ -492,4 +492,4 @@ Returns a `bool` response specifying whether the token is available for purchase
 
 ### AndrQuery
 
-A set of base queries common to all Andromeda ADOs. Check[ AndrQuery](../../platform-and-framework/ado-base.md#andrquery).
+A set of base queries common to all Andromeda ADOs. Check[ AndrQuery](../../platform-and-framework/andromeda-digital-objects/ado-base.md#andrquery).

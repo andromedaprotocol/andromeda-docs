@@ -76,10 +76,10 @@ pub struct InstantiateMsg {
 {% endtab %}
 {% endtabs %}
 
-| Name                 | Type                                                                 | Description                                                                                                                                                               |
-| -------------------- | -------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `staking_token`      | [AndrAddress](../platform-and-framework/common-types.md#andraddress) | The cw20 token that can be staked                                                                                                                                         |
-| `additional_rewards` | Option\<Vec\<RewardTokenUnchecked>>                                  | Any rewards in addition to the staking token. This list cannot include the staking token since it is used as a reward by default. Can have a maximum of 10 reward tokens. |
+| Name                 | Type                                                                                           | Description                                                                                                                                                               |
+| -------------------- | ---------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `staking_token`      | [AndrAddress](../platform-and-framework/andromeda-digital-objects/common-types.md#andraddress) | The cw20 token that can be staked                                                                                                                                         |
+| `additional_rewards` | Option\<Vec\<RewardTokenUnchecked>>                                                            | Any rewards in addition to the staking token. This list cannot include the staking token since it is used as a reward by default. Can have a maximum of 10 reward tokens. |
 
 #### RewardTokenUnchecked
 
@@ -286,7 +286,7 @@ pub enum ExecuteMsg {
 
 ### AndrReceive
 
-The rest of the executes can be found in the [`AndrReceive`](../platform-and-framework/ado-base.md#andrrecieve) section.
+The rest of the executes can be found in the [`AndrReceive`](../platform-and-framework/andromeda-digital-objects/ado-base.md#andrrecieve) section.
 
 ## QueryMsg
 
@@ -339,10 +339,10 @@ pub struct Config {
 {% endtab %}
 {% endtabs %}
 
-| Name                      | Type                                                                 | Description                                                           |
-| ------------------------- | -------------------------------------------------------------------- | --------------------------------------------------------------------- |
-| `staking_token`           | [AndrAddress](../platform-and-framework/common-types.md#andraddress) | The token accepted for staking.                                       |
-| `number_of_reward_tokens` | u32                                                                  | The current number of reward tokens, cannot exceed the maximum of 10. |
+| Name                      | Type                                                                                           | Description                                                           |
+| ------------------------- | ---------------------------------------------------------------------------------------------- | --------------------------------------------------------------------- |
+| `staking_token`           | [AndrAddress](../platform-and-framework/andromeda-digital-objects/common-types.md#andraddress) | The token accepted for staking.                                       |
+| `number_of_reward_tokens` | u32                                                                                            | The current number of reward tokens, cannot exceed the maximum of 10. |
 
 ### State
 
@@ -524,4 +524,4 @@ Returns a u64 with the current timestamp in seconds.
 
 ### AndrQuery
 
-A set of base queries common to all Andromeda ADOs. Check[ AndrQuery](../platform-and-framework/ado-base.md#andrquery).
+A set of base queries common to all Andromeda ADOs. Check[ AndrQuery](../platform-and-framework/andromeda-digital-objects/ado-base.md#andrquery).
