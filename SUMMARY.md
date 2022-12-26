@@ -2,7 +2,7 @@
 
 ## Platform and Framework
 
-* [Introduction](README.md)
+* [Introduction to AndromedaOS](README.md)
 * [ADO Classes](platform-and-framework/ado-classes.md)
 * [ADO Base](platform-and-framework/ado-base.md)
 * [Hooks](platform-and-framework/hooks.md)
