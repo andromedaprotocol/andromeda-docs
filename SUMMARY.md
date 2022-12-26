@@ -25,7 +25,10 @@
   * [/svc](platform-and-framework/aos-file-system/svc.md)
 * [aOS Users & Groups](platform-and-framework/aos-users-and-groups.md)
 * [aOS Networking](platform-and-framework/aos-networking.md)
-* [aOS Economics](platform-and-framework/aos-economics.md)
+* [aOS Economics](platform-and-framework/aos-economics/README.md)
+  * [Instantiation](platform-and-framework/aos-economics/instantiation.md)
+  * [Per Tick](platform-and-framework/aos-economics/per-tick.md)
+  * [Value Carry](platform-and-framework/aos-economics/value-carry.md)
 
 ## Andromeda Digital Objects
 
