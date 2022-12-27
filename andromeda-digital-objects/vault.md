@@ -44,9 +44,9 @@ pub enum ExecuteMsg{
 {% endtab %}
 {% endtabs %}
 
-The [`AndromedaMsg`](../platform-and-framework/andromeda-digital-objects/ado-base.md#andromedamsg)  needs to be of type `receive` to deposit funds to the vault. It will then execute a [Deposit](vault.md#deposit) with the `recipient` being the sender, the `amount` is the amount of funds sent. The funds are deposited to the central vault.
+The [`AndromedaMsg`](../platform-and-framework/ado-base.md#andromedamsg)  needs to be of type `receive` to deposit funds to the vault. It will then execute a [Deposit](vault.md#deposit) with the `recipient` being the sender, the `amount` is the amount of funds sent. The funds are deposited to the central vault.
 
-If the `AndromedaMsg` is not of type receive, then it is used to execute one of the default [AndrReceive messages](../platform-and-framework/andromeda-digital-objects/ado-base.md#andrrecieve).
+If the `AndromedaMsg` is not of type receive, then it is used to execute one of the default [AndrReceive messages](../platform-and-framework/ado-base.md#andrrecieve).
 
 ### Deposit
 
@@ -77,11 +77,11 @@ pub enum ExecuteMsg {
 {% endtab %}
 {% endtabs %}
 
-| Name        | Type                                                                                               | Description                                                                             |
-| ----------- | -------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- |
-| `recipient` | Option<[Recipient](../platform-and-framework/andromeda-digital-objects/common-types.md#recipient)> | The recipient of the deposit. Defaults to the sender if not specified.                  |
-| `amount`    | Option<[Coin](../platform-and-framework/andromeda-digital-objects/common-types.md#coin)>           | The amount to deposit. If not specified then the sent funds are used as the amount.     |
-| `strategy`  | Option<[StrategyType](vault.md#strategytype)>                                                      | The strategy to deposit the funds to. If not specified, the funds will go to the vault. |
+| Name        | Type                                                                     | Description                                                                             |
+| ----------- | ------------------------------------------------------------------------ | --------------------------------------------------------------------------------------- |
+| `recipient` | Option<[Recipient](../platform-and-framework/common-types.md#recipient)> | The recipient of the deposit. Defaults to the sender if not specified.                  |
+| `amount`    | Option<[Coin](../platform-and-framework/common-types.md#coin)>           | The amount to deposit. If not specified then the sent funds are used as the amount.     |
+| `strategy`  | Option<[StrategyType](vault.md#strategytype)>                            | The strategy to deposit the funds to. If not specified, the funds will go to the vault. |
 
 #### StrategyType
 
@@ -138,11 +138,11 @@ pub enum ExecuteMsg{
 {% endtab %}
 {% endtabs %}
 
-| Name          | Type                                                                                               |                                                                                                                                      |
-| ------------- | -------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------ |
-| `recipient`   | Option<[Recipient](../platform-and-framework/andromeda-digital-objects/common-types.md#recipient)> | The address to receive the withdrawn funds when withdrawing from vault. Defaults to the sender. Not used if a strategy is specified. |
-| `withdrawals` | Vec<[Withdrawal](../platform-and-framework/andromeda-digital-objects/ado-base.md#withdrawal)>      | The funds to withdraw.                                                                                                               |
-| `strategy`    | Option<[StrategyType](vault.md#strategytype)>                                                      | The strategy to withdraw from. If not specified, the funds are withdrawn from the vault.                                             |
+| Name          | Type                                                                     |                                                                                                                                      |
+| ------------- | ------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------ |
+| `recipient`   | Option<[Recipient](../platform-and-framework/common-types.md#recipient)> | The address to receive the withdrawn funds when withdrawing from vault. Defaults to the sender. Not used if a strategy is specified. |
+| `withdrawals` | Vec<[Withdrawal](../platform-and-framework/ado-base.md#withdrawal)>      | The funds to withdraw.                                                                                                               |
+| `strategy`    | Option<[StrategyType](vault.md#strategytype)>                            | The strategy to withdraw from. If not specified, the funds are withdrawn from the vault.                                             |
 
 ### UpdateStrategy
 
@@ -176,14 +176,14 @@ The Vault needs to be an operator of the strategy contract.
 {% endtab %}
 {% endtabs %}
 
-| Name       | Type                                                                                           | Description                                     |
-| ---------- | ---------------------------------------------------------------------------------------------- | ----------------------------------------------- |
-| `strategy` | [StrategyType](vault.md#strategytype)                                                          | The strategy to set a new contract address for. |
-| `address`  | [AndrAddress](../platform-and-framework/andromeda-digital-objects/common-types.md#andraddress) | The new contract address                        |
+| Name       | Type                                                                 | Description                                     |
+| ---------- | -------------------------------------------------------------------- | ----------------------------------------------- |
+| `strategy` | [StrategyType](vault.md#strategytype)                                | The strategy to set a new contract address for. |
+| `address`  | [AndrAddress](../platform-and-framework/common-types.md#andraddress) | The new contract address                        |
 
 ### AndrReceive
 
-The rest of the executes can be found in the [`AndrReceive`](../platform-and-framework/andromeda-digital-objects/ado-base.md#andrrecieve) section.
+The rest of the executes can be found in the [`AndrReceive`](../platform-and-framework/ado-base.md#andrrecieve) section.
 
 ## QueryMsg
 
@@ -294,7 +294,7 @@ pub enum QueryMsg {
     }
 ```
 
-If the [`AndromedaQuery`](../platform-and-framework/andromeda-digital-objects/ado-base.md#andromedaquery) is of type `Get` , the contract will query the balance of the specified address(data).&#x20;
+If the [`AndromedaQuery`](../platform-and-framework/ado-base.md#andromedaquery) is of type `Get` , the contract will query the balance of the specified address(data).&#x20;
 
 ```rust
 fn handle_andromeda_query(
@@ -312,4 +312,4 @@ fn handle_andromeda_query(
 }
 ```
 
-Check [AndrQuery](../platform-and-framework/andromeda-digital-objects/ado-base.md#andromedaquery) for the rest of the default queries.
+Check [AndrQuery](../platform-and-framework/ado-base.md#andromedaquery) for the rest of the default queries.

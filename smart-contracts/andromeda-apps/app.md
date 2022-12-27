@@ -226,7 +226,7 @@ pub enum ExecuteMsg {
 
 ### AndrReceive
 
-The rest of the executes can be found in the [`AndrReceive`](../../platform-and-framework/andromeda-digital-objects/ado-base.md#andrrecieve) section.
+The rest of the executes can be found in the [`AndrReceive`](../../platform-and-framework/ado-base.md#andrrecieve) section.
 
 ## QueryMsg
 
@@ -413,7 +413,7 @@ pub enum QueryMsg {
 }
 ```
 
-If the [`AndromedaQuery`](../../platform-and-framework/andromeda-digital-objects/ado-base.md#andromedaquery) is of type `Get` , the contract will query address of the specified name (data) . If no data is supplied in the Get, an error will occur.
+If the [`AndromedaQuery`](../../platform-and-framework/ado-base.md#andromedaquery) is of type `Get` , the contract will query address of the specified name (data) . If no data is supplied in the Get, an error will occur.
 
 ```rust
 fn handle_andromeda_query(
@@ -437,7 +437,7 @@ fn handle_andromeda_query(
 }
 ```
 
-Check[ AndrQuery](../../platform-and-framework/andromeda-digital-objects/ado-base.md#andrquery) for the rest of the base queries.
+Check[ AndrQuery](../../platform-and-framework/ado-base.md#andrquery) for the rest of the base queries.
 
 {% hint style="info" %}
 Base queries are common for all Andromeda ADOs.

@@ -1,2 +1,0 @@
-# Per Tick
-

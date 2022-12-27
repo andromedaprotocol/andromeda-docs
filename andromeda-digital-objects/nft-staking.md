@@ -39,11 +39,11 @@ pub struct InstantiateMsg {
 {% endtab %}
 {% endtabs %}
 
-| Name               | Type                                                                             | Description                                                                                |
-| ------------------ | -------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------ |
-| nft\_contract      | Vec\<String>                                                                     | The contract addresses of the NFT contracts that can stake their NFTs using this contract. |
-| `unbonding_period` | u64                                                                              | The unbonding period (time to unstake) of the NFTs in seconds.                             |
-| `reward`           | [Coin](../platform-and-framework/andromeda-digital-objects/common-types.md#coin) | The rewards to be distributed per second.                                                  |
+| Name               | Type                                                   | Description                                                                                |
+| ------------------ | ------------------------------------------------------ | ------------------------------------------------------------------------------------------ |
+| nft\_contract      | Vec\<String>                                           | The contract addresses of the NFT contracts that can stake their NFTs using this contract. |
+| `unbonding_period` | u64                                                    | The unbonding period (time to unstake) of the NFTs in seconds.                             |
+| `reward`           | [Coin](../platform-and-framework/common-types.md#coin) | The rewards to be distributed per second.                                                  |
 
 ## ExecuteMsg
 
@@ -285,7 +285,7 @@ pub enum ExecuteMsg {
 
 ### AndrReceive
 
-The rest of the executes can be found in the [`AndrReceive`](../platform-and-framework/andromeda-digital-objects/ado-base.md#andrrecieve) section.
+The rest of the executes can be found in the [`AndrReceive`](../platform-and-framework/ado-base.md#andrrecieve) section.
 
 ## QueryMsg
 
@@ -353,15 +353,15 @@ pub struct StakedNft {
 {% endtab %}
 {% endtabs %}
 
-| Name                | Type                                                                                     | Description                                               |
-| ------------------- | ---------------------------------------------------------------------------------------- | --------------------------------------------------------- |
-| `owner`             | String                                                                                   | The owner of the token.                                   |
-| `id`                | String                                                                                   | The token id.                                             |
-| `contract_address`  | String                                                                                   | The NFT contract address.                                 |
-| `time_of_staking`   | Timestamp                                                                                | The time of staking. Epoch time in seconds.               |
-| `time_of_unbonding` | Option\<Timestamp>                                                                       | Optional time of unbonding if the NFT has been unstaked.  |
-| `rewards`           | [Coin](../platform-and-framework/andromeda-digital-objects/common-types.md#coin)         | The rewards being distributed per second.                 |
-| `accrued_reward`    | Option<[Coin](../platform-and-framework/andromeda-digital-objects/common-types.md#coin)> | The amount of rewards accumulated from staking.           |
+| Name                | Type                                                           | Description                                               |
+| ------------------- | -------------------------------------------------------------- | --------------------------------------------------------- |
+| `owner`             | String                                                         | The owner of the token.                                   |
+| `id`                | String                                                         | The token id.                                             |
+| `contract_address`  | String                                                         | The NFT contract address.                                 |
+| `time_of_staking`   | Timestamp                                                      | The time of staking. Epoch time in seconds.               |
+| `time_of_unbonding` | Option\<Timestamp>                                             | Optional time of unbonding if the NFT has been unstaked.  |
+| `rewards`           | [Coin](../platform-and-framework/common-types.md#coin)         | The rewards being distributed per second.                 |
+| `accrued_reward`    | Option<[Coin](../platform-and-framework/common-types.md#coin)> | The amount of rewards accumulated from staking.           |
 
 ### AllowedContracts
 
@@ -439,8 +439,8 @@ pub enum QueryMsg {
 {% endtab %}
 {% endtabs %}
 
-Returns a type [Coin](../platform-and-framework/andromeda-digital-objects/common-types.md#coin) with the amount and denom of the reward being distributed per second.
+Returns a type [Coin](../platform-and-framework/common-types.md#coin) with the amount and denom of the reward being distributed per second.
 
 ### AndrQuery
 
-A set of base queries common to all Andromeda ADOs. Check[ AndrQuery](../platform-and-framework/andromeda-digital-objects/ado-base.md#andrquery).
+A set of base queries common to all Andromeda ADOs. Check[ AndrQuery](../platform-and-framework/ado-base.md#andrquery).

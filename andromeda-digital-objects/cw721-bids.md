@@ -78,11 +78,11 @@ pub enum ExecuteMsg{
 {% endtab %}
 {% endtabs %}
 
-| Name         | Type                                                                                         | Description                                |
-| ------------ | -------------------------------------------------------------------------------------------- | ------------------------------------------ |
-| `token_id`   | String                                                                                       | The token id of the token/NFT to buy.      |
-| `expiration` | [Expiration](../platform-and-framework/andromeda-digital-objects/common-types.md#expiration) | An expiration for the bid.                 |
-| `bid_amount` | Uint128                                                                                      | The amount of funds to bid for the token.  |
+| Name         | Type                                                               | Description                                |
+| ------------ | ------------------------------------------------------------------ | ------------------------------------------ |
+| `token_id`   | String                                                             | The token id of the token/NFT to buy.      |
+| `expiration` | [Expiration](../platform-and-framework/common-types.md#expiration) | An expiration for the bid.                 |
+| `bid_amount` | Uint128                                                            | The amount of funds to bid for the token.  |
 
 ### CancelBid
 
@@ -155,7 +155,7 @@ pub enum ExecuteMsg{
 
 ### AndrReceive
 
-The rest of the executes can be found in the [`AndrReceive`](../platform-and-framework/andromeda-digital-objects/ado-base.md#andrrecieve) section.
+The rest of the executes can be found in the [`AndrReceive`](../platform-and-framework/ado-base.md#andrrecieve) section.
 
 ## QueryMsg
 
@@ -225,14 +225,14 @@ pub struct BidResponse {
 {% endtab %}
 {% endtabs %}
 
-| Name               | Type                                                                                         | Description                                                                      |
-| ------------------ | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
-| `denom`            | String                                                                                       | The denomination of the coin used to place bids.                                 |
-| `bid_amount`       | Uint128                                                                                      | The amount of coins bid on the token.                                            |
-| `remaining_amount` | Uint128                                                                                      | The amount left after any royalties/taxes have been applied to the `bid_amount.` |
-| `tax_amount`       | Uint128                                                                                      | The amount of coins taken as tax.                                                |
-| `expiration`       | [Expiration](../platform-and-framework/andromeda-digital-objects/common-types.md#expiration) | Expiration for the bid.                                                          |
-| `purchaser`        | String                                                                                       | The address that has placed the bid.                                             |
+| Name               | Type                                                               | Description                                                                      |
+| ------------------ | ------------------------------------------------------------------ | -------------------------------------------------------------------------------- |
+| `denom`            | String                                                             | The denomination of the coin used to place bids.                                 |
+| `bid_amount`       | Uint128                                                            | The amount of coins bid on the token.                                            |
+| `remaining_amount` | Uint128                                                            | The amount left after any royalties/taxes have been applied to the `bid_amount.` |
+| `tax_amount`       | Uint128                                                            | The amount of coins taken as tax.                                                |
+| `expiration`       | [Expiration](../platform-and-framework/common-types.md#expiration) | Expiration for the bid.                                                          |
+| `purchaser`        | String                                                             | The address that has placed the bid.                                             |
 
 ### AllBids
 
@@ -308,4 +308,4 @@ pub struct AllBidsResponse {
 
 ### AndrQuery
 
-A set of base queries common to all Andromeda ADOs. Check[ AndrQuery](../platform-and-framework/andromeda-digital-objects/ado-base.md#andrquery).
+A set of base queries common to all Andromeda ADOs. Check[ AndrQuery](../platform-and-framework/ado-base.md#andrquery).

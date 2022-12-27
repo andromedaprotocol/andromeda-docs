@@ -2,33 +2,11 @@
 
 ## Platform and Framework
 
-* [Introduction to AndromedaOS](README.md)
-* [Andromeda Digital Objects](platform-and-framework/andromeda-digital-objects/README.md)
-  * [Interfaces](platform-and-framework/andromeda-digital-objects/interfaces.md)
-  * [ADO Package System](platform-and-framework/andromeda-digital-objects/ado-package-system.md)
-  * [ADO Classes](platform-and-framework/andromeda-digital-objects/ado-classes.md)
-  * [ADO Base](platform-and-framework/andromeda-digital-objects/ado-base.md)
-  * [Hooks](platform-and-framework/andromeda-digital-objects/hooks.md)
-  * [Common Types](platform-and-framework/andromeda-digital-objects/common-types.md)
-  * [Developer Store](platform-and-framework/andromeda-digital-objects/developer-store.md)
-* [Andromeda Apps](platform-and-framework/andromeda-apps/README.md)
-  * [App ADO Structure](platform-and-framework/andromeda-apps/app-ado-structure.md)
-  * [App Store](platform-and-framework/andromeda-apps/app-store.md)
-* [aOS Kernel](platform-and-framework/aos-kernel.md)
-* [aOS Messaging Protocol](platform-and-framework/aos-messaging-protocol.md)
-* [aOS File System](platform-and-framework/aos-file-system/README.md)
-  * [/etc](platform-and-framework/aos-file-system/etc.md)
-  * [/bin](platform-and-framework/aos-file-system/bin.md)
-  * [/lib](platform-and-framework/aos-file-system/lib.md)
-  * [/home](platform-and-framework/aos-file-system/home.md)
-  * [/group](platform-and-framework/aos-file-system/group.md)
-  * [/svc](platform-and-framework/aos-file-system/svc.md)
-* [aOS Users & Groups](platform-and-framework/aos-users-and-groups.md)
-* [aOS Networking](platform-and-framework/aos-networking.md)
-* [aOS Economics](platform-and-framework/aos-economics/README.md)
-  * [Instantiation](platform-and-framework/aos-economics/instantiation.md)
-  * [Per Tick](platform-and-framework/aos-economics/per-tick.md)
-  * [Value Carry](platform-and-framework/aos-economics/value-carry.md)
+* [Introduction](README.md)
+* [ADO Classes](platform-and-framework/ado-classes.md)
+* [ADO Base](platform-and-framework/ado-base.md)
+* [Hooks](platform-and-framework/hooks.md)
+* [Common Types](platform-and-framework/common-types.md)
 
 ## Andromeda Digital Objects
 

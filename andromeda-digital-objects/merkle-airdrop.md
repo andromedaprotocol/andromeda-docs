@@ -87,11 +87,11 @@ Only the owner can execute `RegisterMerkleRoot`.
 {% endtab %}
 {% endtabs %}
 
-| Name           | Type                                                                                                 | Description                                                                                      |
-| -------------- | ---------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------ |
-| `merkle_root`  | String                                                                                               | A hex-encoded Merkle root.                                                                       |
-| `expiration`   | Option<[Expiration](../platform-and-framework/andromeda-digital-objects/common-types.md#expiration)> | An optional expiration for the root.                                                             |
-| `total_amount` | Option\<Uint128>                                                                                     | An optional amount to specify the maximum number of tokens that can be claimed from the airdrop. |
+| Name           | Type                                                                       | Description                                                                                      |
+| -------------- | -------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------ |
+| `merkle_root`  | String                                                                     | A hex-encoded Merkle root.                                                                       |
+| `expiration`   | Option<[Expiration](../platform-and-framework/common-types.md#expiration)> | An optional expiration for the root.                                                             |
+| `total_amount` | Option\<Uint128>                                                           | An optional amount to specify the maximum number of tokens that can be claimed from the airdrop. |
 
 ### Claim
 
@@ -168,7 +168,7 @@ Only the owner can execute `Burn`.
 
 ### AndrReceive
 
-Check [AndrReceive](../platform-and-framework/andromeda-digital-objects/ado-base.md#andrrecieve).
+Check [AndrReceive](../platform-and-framework/ado-base.md#andrrecieve).
 
 ## Query
 
@@ -288,12 +288,12 @@ pub struct MerkleRootResponse {
 {% endtab %}
 {% endtabs %}
 
-| Name           | Type                                                                                         | Description                                                         |
-| -------------- | -------------------------------------------------------------------------------------------- | ------------------------------------------------------------------- |
-| `stage`        | u8                                                                                           | The stage that belongs to this root.                                |
-| `merkle_root`  | String                                                                                       | The Merkle-Root of this stage.                                      |
-| `expiration`   | [Expiration](../platform-and-framework/andromeda-digital-objects/common-types.md#expiration) | The expiration for the airdrop of this stage.                       |
-| `total_amount` | Uint128                                                                                      | The total amount of funds to be airdropped belonging to this stage. |
+| Name           | Type                                                               | Description                                                         |
+| -------------- | ------------------------------------------------------------------ | ------------------------------------------------------------------- |
+| `stage`        | u8                                                                 | The stage that belongs to this root.                                |
+| `merkle_root`  | String                                                             | The Merkle-Root of this stage.                                      |
+| `expiration`   | [Expiration](../platform-and-framework/common-types.md#expiration) | The expiration for the airdrop of this stage.                       |
+| `total_amount` | Uint128                                                            | The total amount of funds to be airdropped belonging to this stage. |
 
 ### LatestStage
 
@@ -449,4 +449,4 @@ pub struct TotalClaimedResponse {
 
 ### AndrQuery
 
-A set of base queries common to all Andromeda ADOs. Check[ AndrQuery](../platform-and-framework/andromeda-digital-objects/ado-base.md#andrquery).
+A set of base queries common to all Andromeda ADOs. Check[ AndrQuery](../platform-and-framework/ado-base.md#andrquery).
