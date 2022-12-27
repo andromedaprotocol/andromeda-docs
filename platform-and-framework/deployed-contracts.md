@@ -1,4 +1,4 @@
-# Deployed Contracts
+# Contract Addresses
 
 The following section contains our deployed contracts:
 
@@ -49,13 +49,3 @@ These addresses will be used when deploying Andromeda Apps
 | **Registry/Primitive** | terra1tf8kr3v2czkwrmqy4dp4g6g4xw2lnaga7vjct570708z3lg6nylqdklh5p | Contract used to save the factory address and connect it to Andromeda Apps.  |
 {% endtab %}
 {% endtabs %}
-
-### What's Next
-
-In the following sections we will be going through each of our unique ADOs.
-
-We will provide the following for each ADO:
-
-* An introduction to the ADO and its function.
-* Contract messages ( Instantiation, Executes, Queries).
-* &#x20;Rust and JSON representation along with explanations and field definitions for each of the messages.

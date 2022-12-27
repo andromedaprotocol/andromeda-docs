@@ -1,7 +1,3 @@
----
-description: An ADO contract to split sent funds amongst predefined addresses.
----
-
 # Splitter
 
 ## Introduction

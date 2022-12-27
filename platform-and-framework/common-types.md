@@ -4,7 +4,7 @@ description: Defining recurring structs used by our ADOs.
 
 # Common Types
 
-This section contains the definitions of structures used by many of our ADOs. To avoid redefining them every time, they will be placed in this section and referenced.
+This section contains the definitions of structures used by many of our ADOs. To avoid redefining them every time, they will be placed in this section and referenced.&#x20;
 
 
 
@@ -148,10 +148,10 @@ pub struct ADORecipient {
 }
 ```
 
-| Name      | Type            | Description                                    |
-| --------- | --------------- | ---------------------------------------------- |
-| `address` | AndrAddress     | Check [AndrAdress](common-types.md#andradress) |
-| `msg`     | Option\<Binary> | An optional message to attach.                 |
+| Name      | Type            | Description                                      |
+| --------- | --------------- | ------------------------------------------------ |
+| `address` | AndrAddress     | Check [AndrAdress](common-types.md#andradress)   |
+| `msg`     | Option\<Binary> | An optional message to attach for the recipient. |
 
 ### AndrAddress
 
@@ -163,6 +163,20 @@ A struct used to reference another ADO contract. Can be either an address or the
 pub struct AndrAddress {
     pub identifier: String,
  }
+```
+{% endtab %}
+
+{% tab title="JSON" %}
+```json
+{
+"identifier":"juno1..."
+}
+
+or
+
+{
+"identifier":"component-name"
+}
 ```
 {% endtab %}
 {% endtabs %}

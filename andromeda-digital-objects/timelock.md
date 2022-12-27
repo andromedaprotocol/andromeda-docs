@@ -1,7 +1,3 @@
----
-description: An ADO contract to hold funds for a set period of time.
----
-
 # Timelock
 
 The **Timelock** ADO or Escrow ADO is a smart contract built to hold funds for a period of time until the set condition is satisfied.&#x20;

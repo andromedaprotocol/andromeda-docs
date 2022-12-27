@@ -3,6 +3,7 @@
 ## Platform and Framework
 
 * [Introduction](README.md)
+* [Introduction](platform-and-framework/introduction-1.md)
 * [ADO Classes](platform-and-framework/ado-classes.md)
 * [ADO Base](platform-and-framework/ado-base.md)
 * [Hooks](platform-and-framework/hooks.md)
@@ -55,7 +56,7 @@
 ## User Docs
 
 * [User Docs](user-docs.md)
-* [Contract Addresses](user-docs/contract-addresses.md)
+* [Contract Addresses](platform-and-framework/deployed-contracts.md)
 
 ## Andromeda CLI
 

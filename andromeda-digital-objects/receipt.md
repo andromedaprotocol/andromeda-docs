@@ -1,7 +1,3 @@
----
-description: An ADO contract to mint, edit and query receipts containing event data.
----
-
 # Receipt
 
 ## Introduction
