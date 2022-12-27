@@ -27,7 +27,7 @@ A quick description of each of the components mentioned above:
 * [aOS Networking](platform-and-framework/aos-networking.md) - easy to reference services cross-chain natively
 * [aOS Economics](platform-and-framework/aos-economics/) - developer and creator incentives
 
-It's important to note that each of these systems exist 100% on-chain. All logic, interactions, objects, economics, etc. are deployed on-chain. While the interfaces, wallets, key management, and other parts do remain off-chain for obvious reasons, the entirety of the AndromedaOS.
+It's important to note that each of these systems exist 100% on-chain. All logic, interactions, objects, economics, etc. are deployed on-chain. While the interfaces, wallets, key management, and other parts do remain off-chain for obvious reasons, the entirety of the AndromedaOS is on-chain.
 
 ### Powered by the Cosmos Ecosystem
 
