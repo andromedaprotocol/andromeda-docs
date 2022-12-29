@@ -56,7 +56,6 @@
 ## User Docs
 
 * [User Docs](user-docs.md)
-* [Contract Addresses](platform-and-framework/deployed-contracts.md)
 
 ## Andromeda CLI
 
