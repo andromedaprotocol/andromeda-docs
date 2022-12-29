@@ -261,28 +261,28 @@ pub enum QueryMsg{
 
 Returns a `String` of the component address.
 
-### GetAddresses
+### GetAddressesWithNames
+
+Queries all the components returning the name along with the address for each.&#x20;
 
 {% tabs %}
 {% tab title="Rust" %}
 ```rust
-pub enum QueryMsg{
-   #[returns(Vec<ComponentAddress>)]
-   GetAddresses {}
-}
+pub enum QueryMsg {
+    #[returns(Vec<ComponentAddress>)]
+    GetAddressesWithNames {}
+    }
 ```
 {% endtab %}
 
 {% tab title="JSON" %}
 ```json
 {
-"get_addresses":{}
- }
+"get_addresses_with_names":{}
+}
 ```
 {% endtab %}
 {% endtabs %}
-
-Returns a `Vec<ComponentAddress>` containing the name and address of each component.
 
 #### ComponentAddress
 
@@ -299,7 +299,7 @@ pub struct ComponentAddress {
 {% tab title="JSON" %}
 ```json
 {
-"name":"componentname",
+"name":"token",
 "address":"juno1..."
 }
 ```
