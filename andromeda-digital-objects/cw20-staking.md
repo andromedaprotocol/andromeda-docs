@@ -105,13 +105,15 @@ pub type AssetInfoUnchecked = AssetInfoBase<String>
 
 ```rust
 pub enum AssetInfoBase<T> {
-    Cw20(T),
     Native(String),
+    Cw20(T),
+    Cw1155(T, String),
 }
 ```
 
-* **Cw20**: To create an asset info instance of this type, provide the contract address.
-* **Native**: To create an asset info instance of this type, provide the denomination.
+* **Cw20**: To create an asset info instance of this type, provide the contract address
+* **Native**: To create an asset info instance of this type, provide the denomination
+* **CW1155 tokens:** To create an **asset info** instance of this type, provide the contract address and token ID
 
 #### AllocationConfig
 

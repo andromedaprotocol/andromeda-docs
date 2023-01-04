@@ -466,7 +466,6 @@ pub enum QueryMsg {
 
 ```rust
 pub enum AndromedaQuery {
-    #[returns(Option<Binary>)]
     Get(Option<Binary>),
     #[returns(ContractOwnerResponse)]
     Owner {},

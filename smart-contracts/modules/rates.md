@@ -4,7 +4,7 @@
 
 The **Rates** ADO is a smart contract used to impose some kind of fees on funds transactions.
 
-This contract is implemented as a module and attached to other contracts which would apply the specified rates on any fund transfers. A small example on this would be putting rates on an NFT Collectible, sending a percentage as royalty to the original owner.
+This contract is implemented as a module and attached to other contracts which would apply the specified rates on any fund transfers. The contract owner can specify specific addresses to be exempt from these rates. A small example on this would be putting rates on an NFT Collectible, sending a percentage as royalty to the original owner.&#x20;
 
 There are two main types of rates:
 
@@ -179,6 +179,70 @@ pub enum ExecuteMsg{
 | ------- | ---------------------------------- | ------------------------------------------------------------------ |
 | `rates` | Vec<[RateInfo](rates.md#rateinfo)> | A vector containing the new `RateInfo` to be used by the contract. |
 
+### AddExemption
+
+Specifies an address to be exempt from any rates set by this contract.
+
+{% hint style="warning" %}
+Only available to the contract owner.
+{% endhint %}
+
+{% tabs %}
+{% tab title="Rust" %}
+```rust
+pub enum ExecuteMsg {
+    AddExemption {
+         address: String 
+         }
+}
+```
+{% endtab %}
+
+{% tab title="JSON" %}
+```json
+{
+"add_exemption":{
+    "address":"juno1..."
+    }
+}
+```
+{% endtab %}
+{% endtabs %}
+
+| Name      | Type   | Description                                       |
+| --------- | ------ | ------------------------------------------------- |
+| `address` | String | The address that will not have the rates applied. |
+
+### RemoveExemption
+
+Removes an address from the list of exempt addresses.
+
+{% tabs %}
+{% tab title="Rust" %}
+```rust
+pub enum ExecuteMsg {
+        RemoveExemption {
+                 address: String 
+                 }
+        }
+```
+{% endtab %}
+
+{% tab title="JSON" %}
+```json
+{
+"remove_exemption":{
+    "address":"juno1..."
+    }
+}
+```
+{% endtab %}
+{% endtabs %}
+
+| Name      | Type   | Description                               |
+| --------- | ------ | ----------------------------------------- |
+| `address` | String | The address to remove the exemption from. |
+
 ### AndrReceive
 
 The rest of the executes can be found in the [`AndrReceive`](../../platform-and-framework/ado-base.md#andrrecieve) section.
@@ -250,6 +314,89 @@ pub struct PaymentsResponse {
 | Name       | Type                               | Description                                               |
 | ---------- | ---------------------------------- | --------------------------------------------------------- |
 | `payments` | Vec<[RateInfo](rates.md#rateinfo)> | A vector of the `RatInfo` currently used by the contract. |
+
+### IsExempt
+
+Checks if the specified address is exempt from rates.
+
+{% tabs %}
+{% tab title="Rust" %}
+```rust
+pub enum QueryMsg {
+    #[returns(bool)]
+    IsExempt {address: String }
+}
+```
+{% endtab %}
+
+{% tab title="JSON" %}
+```json
+{
+"is_exempt":{
+    "address":"juno1..."
+    }
+}
+```
+{% endtab %}
+{% endtabs %}
+
+| Name      | Type   | Description                                |
+| --------- | ------ | ------------------------------------------ |
+| `address` | String | The address to check if exempt from rates. |
+
+Returns true if included and false otherwise.
+
+### Exemptions
+
+Queries the list of addresses exempt from rates.
+
+{% tabs %}
+{% tab title="Rust" %}
+<pre class="language-rust"><code class="lang-rust"><strong>pub enum QueryMsg {   
+</strong>    #[returns(ExemptionsResponse)]
+    Exemptions {
+        limit: Option&#x3C;u32>,
+        start_after: Option&#x3C;String>,
+    }
+}
+</code></pre>
+{% endtab %}
+
+{% tab title="JSON" %}
+```json
+{
+"exemptions":{
+    "limit": 80
+    }
+}
+```
+{% endtab %}
+{% endtabs %}
+
+| Name          | Type            | Description                                                                                                    |
+| ------------- | --------------- | -------------------------------------------------------------------------------------------------------------- |
+| `limit`       | Option\<u32>    | An optional limit on how many  are returned. Default limit is 50 and the maximum limit that can be set is 100. |
+| `start_after` | Option\<String> | An optional Id for which to start after, used for pagination.                                                  |
+
+#### ExemptionsResponse
+
+{% tabs %}
+{% tab title="Rust" %}
+```rust
+pub struct ExemptionsResponse {
+    pub exemptions: Vec<String>,
+}
+```
+{% endtab %}
+
+{% tab title="JSON" %}
+```json
+{
+"exemptions":["juno1...","juno1...",...]
+}
+```
+{% endtab %}
+{% endtabs %}
 
 ### AndrQuery
 

@@ -65,12 +65,13 @@ More information on the Rates contract can be found [here](../smart-contracts/mo
 When we have a transfer of funds of some sort we call the `on_funds_transfer` function to send the provided hook message to all registered modules.&#x20;
 
 ```rust
-    pub fn on_funds_transfer(
+pub fn on_funds_transfer(
         &self,
         storage: &dyn Storage,
         api: &dyn Api,
         querier: &QuerierWrapper,
         sender: String,
+        receiver: String,
         amount: Funds,
         msg: Binary,
     ) -> Result<(Vec<SubMsg>, Vec<Event>, Funds), ContractError> {
@@ -92,6 +93,7 @@ When we have a transfer of funds of some sort we call the `on_funds_transfer` fu
                 AndromedaHook::OnFundsTransfer {
                     payload: msg.clone(),
                     sender: sender.clone(),
+                    receiver: receiver.clone(),
                     amount: remainder.clone(),
                 },
                 module_address,
@@ -108,6 +110,7 @@ When we have a transfer of funds of some sort we call the `on_funds_transfer` fu
                 AndromedaHook::OnFundsTransfer {
                     payload: to_binary(&events)?,
                     sender,
+                    receiver,
                     amount: remainder.clone(),
                 },
                 receipt_module_address,
@@ -140,8 +143,42 @@ This would call the rates contract to deduct the necessary funds from the amount
 fn query_deducted_funds(
     deps: Deps,
     funds: Funds,
+    sender: Option<String>,
+    receiver: Option<String>,
 ) -> Result<OnFundsTransferResponse, ContractError> {
     let config = CONFIG.load(deps.storage)?;
+    // Check sender for exemption
+    if let Some(sender_addr) = sender {
+        let is_exempt = EXEMPT_ADDRESSES
+            .load(deps.storage, &sender_addr)
+            .unwrap_or(false);
+
+        // If sender is exempt then do not deduct any funds
+        if is_exempt {
+            return Ok(OnFundsTransferResponse {
+                msgs: vec![],
+                events: vec![],
+                leftover_funds: funds,
+            });
+        }
+    }
+
+    // Check receiver for exemption
+    if let Some(receiver_addr) = receiver {
+        let is_exempt = EXEMPT_ADDRESSES
+            .load(deps.storage, &receiver_addr)
+            .unwrap_or(false);
+
+        // If receiver is exempt then do not deduct any funds
+        if is_exempt {
+            return Ok(OnFundsTransferResponse {
+                msgs: vec![],
+                events: vec![],
+                leftover_funds: funds,
+            });
+        }
+    }
+
     let mut msgs: Vec<SubMsg> = vec![];
     let mut events: Vec<Event> = vec![];
     let (coin, is_native): (Coin, bool) = match funds {
@@ -159,9 +196,12 @@ fn query_deducted_funds(
         if let Some(desc) = &rate_info.description {
             event = event.add_attribute("description", desc);
         }
-        let rate = rate_info.rate.validate(&deps.querier)?;
+        let app_contract = ADOContract::default().get_app_contract(deps.storage)?;
+        let rate = rate_info
+            .rate
+            .validate(deps.api, &deps.querier, app_contract)?;
         let fee = calculate_fee(rate, &coin)?;
-        for reciever in rate_info.receivers.iter() {
+        for reciever in rate_info.recipients.iter() {
             if !rate_info.is_additive {
                 deduct_funds(&mut leftover_funds, &fee)?;
                 event = event.add_attribute("deducted", fee.to_string());
@@ -169,16 +209,27 @@ fn query_deducted_funds(
             event = event.add_attribute(
                 "payment",
                 PaymentAttribute {
-                    receiver: reciever.get_addr(),
+                    receiver: reciever.get_addr(
+                        deps.api,
+                        &deps.querier,
+                        ADOContract::default().get_app_contract(deps.storage)?,
+                    )?,
                     amount: fee.clone(),
                 }
                 .to_string(),
             );
             let msg = if is_native {
-                reciever.generate_msg_native(deps.api, vec![fee.clone()])?
+                reciever.generate_msg_native(
+                    deps.api,
+                    &deps.querier,
+                    ADOContract::default().get_app_contract(deps.storage)?,
+                    vec![fee.clone()],
+                )?
             } else {
                 reciever.generate_msg_cw20(
                     deps.api,
+                    &deps.querier,
+                    ADOContract::default().get_app_contract(deps.storage)?,
                     Cw20Coin {
                         amount: fee.amount,
                         address: fee.denom.to_string(),

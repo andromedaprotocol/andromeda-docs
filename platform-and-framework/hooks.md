@@ -115,7 +115,7 @@ pub struct OnFundsTransferResponse {
 | `leftover_funds` | Funds        | The funds that are left after any deductions are made by the module        |
 
 {% hint style="info" %}
-This function also ensures that the [`Receipt`](../../modules/receipt-module/) module is invoked last if it exists, since it needs all of the previous events to create a complete receipt.
+This function also ensures that the [`Receipt`](../modules/receipt-module/) module is invoked last if it exists, since it needs all of the previous events to create a complete receipt.
 {% endhint %}
 
 Here is an example of how this hook gets called for a `TransferAgreement:`
@@ -185,18 +185,18 @@ If a given module does not support a given hook, it should return `ContractError
 This module only implements the `OnExecute` hook which it uses to determine if the sender is authorized based on the whitelist or blacklist. If not authorized, it returns a `ContractError::InvalidAddress` and otherwise a `Response::default()`. Here is the specific code for it:
 
 ```rust
-fn handle_andr_hook(deps: Deps, msg: AndromedaHook) -> Result<Response, ContractError> {
+fn handle_andr_hook(deps: Deps, msg: AndromedaHook) -> Result<Binary, ContractError> {
     match msg {
         AndromedaHook::OnExecute { sender, .. } => {
             let is_included = includes_address(deps.storage, &sender)?;
             let is_inclusive = IS_INCLUSIVE.load(deps.storage)?;
             if is_included != is_inclusive {
-                Err(ContractError::InvalidAddress {})
+                Err(ContractError::Unauthorized {})
             } else {
-                Ok(Response::default())
+                Ok(to_binary(&None::<Response>)?)
             }
         }
-        _ => Err(ContractError::UnsupportedOperation {}),
+        _ => Ok(to_binary(&None::<Response>)?),
     }
 }
 ```
@@ -208,12 +208,20 @@ This module only implements the `OnFundsTransfer` hook which it uses to generate
 Below is the implementation:
 
 ```rust
-fn handle_andromeda_hook(deps: Deps, msg: AndromedaHook) -> Result<Binary, ContractError> {
+handle_andromeda_hook(deps: Deps, msg: AndromedaHook) -> Result<Binary, ContractError> {
     match msg {
-        AndromedaHook::OnFundsTransfer { amount, .. } => {
-            encode_binary(&query_deducted_funds(deps, amount)?)
-        }
-        _ => Err(ContractError::UnsupportedOperation {}),
+        AndromedaHook::OnFundsTransfer {
+            amount,
+            sender,
+            receiver,
+            ..
+        } => encode_binary(&query_deducted_funds(
+            deps,
+            amount,
+            Some(sender),
+            Some(receiver),
+        )?),
+        _ => Ok(encode_binary(&None::<Response>)?),
     }
 }
 ```
@@ -231,16 +239,17 @@ fn handle_andr_hook(env: Env, msg: AndromedaHook) -> Result<Binary, ContractErro
             sender: _,
             payload,
             amount,
+            ..
         } => {
             let events: Vec<Event> = parse_message(&Some(payload))?;
             let msg = generate_receipt_message(env.contract.address.to_string(), events)?;
-            encode_binary(&OnFundsTransferResponse {
+            encode_binary(&Some(OnFundsTransferResponse {
                 msgs: vec![msg],
                 leftover_funds: amount,
                 events: vec![],
-            })
+            }))
         }
-        _ => Err(ContractError::UnsupportedOperation {}),
+        _ => Ok(encode_binary(&None::<Response>)?),
     }
 }
 ```
@@ -279,10 +288,4 @@ fn handle_andr_hook(deps: Deps, env: Env, msg: AndromedaHook) -> Result<Binary, 
                     resp = resp.add_message(msg);
                 }
             }
-
-            Ok(encode_binary(&resp)?)
-        }
-        _ => Ok(encode_binary(&None::<Response>)?),
-    }
-}
 ```
