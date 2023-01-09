@@ -94,6 +94,39 @@ pub enum QueryMsg {
 
 Returns a u64 which represents the `code_id`.
 
+### AdoTypes
+
+Lists all the available ADO types.
+
+{% tabs %}
+{% tab title="Rust" %}
+```rust
+#[returns(Vec<String>)]
+     AdoTypes {
+         limit: Option<u32>,
+         start_after: Option<String>,
+     }
+ }
+```
+{% endtab %}
+
+{% tab title="JSON" %}
+```json
+{
+"ado_types":{
+    "limit": 30,
+    "start_after": "pageid"
+    }
+}
+```
+{% endtab %}
+{% endtabs %}
+
+| Name          | Type             | Description                                                                                                  |
+| ------------- | ---------------- | ------------------------------------------------------------------------------------------------------------ |
+| `limit`       | Option\<u32>     | An optional limit to the number of ADO types returned. The default limit is 25 and the maximum limit is 100. |
+| `start_after` | Option\<String>  | Optional Id to start after.                                                                                  |
+
 ### AndrQuery
 
 A set of base queries common to all Andromeda ADOs. Check[ AndrQuery](../platform-and-framework/ado-base.md#andrquery).

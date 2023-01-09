@@ -5,6 +5,7 @@
 The **CW20 Exchange** ADO is used to sell CW20 tokens for other assets. The token to be sold is specified at instantiation and then sales can be started on the token by the contract owner. Each sale has an "asset" to purchase the tokens with. This asset can be:
 
 * CW20&#x20;
+* CW1155
 * Native
 
 Users can then purchase the CW20 token being sold by sending the required asset to the contract.
@@ -128,12 +129,14 @@ pub type AssetInfo = AssetInfoBase<Addr>;
 pub enum AssetInfoBase<T> {
     Native(String),
     Cw20(T),
+    Cw1155(T, String),
 }
 
 ```
 
 * **Native SDK coins:** To create an **asset info** instance of this type, provide the denomination
 * **CW20 tokens:** To create an **asset info** instance of this type, provide the contract address
+* **CW1155 tokens:** To create an **asset info** instance of this type, provide the contract address and token ID
 
 #### Purchase
 
