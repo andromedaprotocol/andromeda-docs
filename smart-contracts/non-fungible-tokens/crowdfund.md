@@ -148,7 +148,7 @@ pub enum ExecuteMsg{
   "at_height": 550
   },
   "price":{
-    "denom":"uusd",
+    "denom":"ujunox",
     "amount":"10000"
     },
   "min_tokens_sold":"1000",
@@ -299,7 +299,7 @@ The rest of the executes can be found in the [`AndrReceive`](../../platform-and-
 
 ### State
 
-Queries the state of the sale.
+Queries the state of the sale. State is only available once a sale has started.&#x20;
 
 {% tabs %}
 {% tab title="Rust" %}
