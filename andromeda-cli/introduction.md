@@ -17,14 +17,14 @@ Make sure you have npm installed.
 {% endhint %}
 
 ```
-sudo npm install -g @andromedaprotocol/andromeda.js@0.1.6
+sudo npm install -g @andromedaprotocol/andromeda.js
 ```
 
 {% hint style="warning" %}
 We use sudo since we are installing globally using the -g flag.
 {% endhint %}
 
-If you have the package already installed, you can the following to update to the lates version:
+If you have the package already installed, you can the following to update to the latest version:
 
 ```
 sudo npm update -g @andromedaprotocol/andromeda.js
