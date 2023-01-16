@@ -19,11 +19,11 @@ pub struct Module {
 }
 ```
 
-| Name          | Type                            | Description                                                                                                    |
-| ------------- | ------------------------------- | -------------------------------------------------------------------------------------------------------------- |
-| `module_type` | String                          | The name of the module to add. Can be set one of the following: "rates", "offers", "address-list", "receipt" . |
-| `address`     | [AndrAddress](broken-reference) | How to instantiate the module.                                                                                 |
-| `is_mutable`  | bool                            | Whether the module can be later modified or not.                                                               |
+| Name          | Type                            | Description                                                                                                                                                                                                                                                                                 |
+| ------------- | ------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `module_type` | String                          | The name of the module to add. Can be set one of the following: "rates", "offers", "address-list", "receipt" .                                                                                                                                                                              |
+| `address`     | [AndrAddress](broken-reference) | How to instantiate the module.                                                                                                                                                                                                                                                              |
+| `is_mutable`  | bool                            | Whether the module can be later modified or not. This means that if `is_mutable` is set to true, then you can run the base executes [`deregister_module`](../platform-and-framework/ado-base.md#deregistermodule) and [`alter _module`](../platform-and-framework/ado-base.md#altermodule). |
 
 {% hint style="warning" %}
 Any ADO that can implement modules uses this `Module` struct in its instantiation  to add the modules to the ADO.&#x20;

@@ -266,7 +266,7 @@ The following can be executed by the contracts that implement modules:
 Adds a module to the contract.
 
 {% hint style="warning" %}
-Only the owner or an operator can execute RegisterModule.
+Only the owner/operators can execute RegisterModule.
 
 Each module is assigned a u64 index so as it can be unregistered/altered by the owner.
 
@@ -313,6 +313,8 @@ Removes a module from the contract.
 
 {% hint style="warning" %}
 Only available to the contract owner/operators.
+
+Only mutable modules can be deregistered.&#x20;
 {% endhint %}
 
 {% tabs %}
