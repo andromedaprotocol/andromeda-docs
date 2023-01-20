@@ -68,7 +68,7 @@ pub enum Cw721HookMsg {
 ```json
 {
 "start_lock":{
-    "recipient":"juno1...",
+    "recipient":"andr1...",
     "lock_time": 100000
     }
 }
@@ -100,7 +100,7 @@ pub enum ExecuteMsg {
 ```json
 {
 "claim":{
-    "lock_id": "juno1...53"
+    "lock_id": "andr1...tokenid"
     }
 }
 ```
@@ -137,7 +137,7 @@ pub enum QueryMsg {
 ```rust
 {
 "locked_token":{
-    "lock_id":"juno1...3"
+    "lock_id":"andr1...tokenid"
     }
 }
 ```
@@ -165,12 +165,12 @@ pub struct LockDetails {
 {% tab title="JSON" %}
 ```json
 {
-"recipient":"juno1...",
+"recipient":"andr1...",
 "expiration":{
     "at_time": "128193232"
     },
 "nft_id": "3",
-"nft_contract":"juno1..."
+"nft_contract":"andr1..."
 }
 ```
 {% endtab %}

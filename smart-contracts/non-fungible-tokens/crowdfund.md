@@ -29,9 +29,9 @@ pub struct InstantiateMsg {
 ```json
 {
 "token_address":{
-   "identifier":"juno1..."
+   "identifier":"andr1..."
    }
-"primitive_address":"juno1...",
+"primitive_address":"andr1...",
 "can_mint_after_sale": true
 }
 ```
@@ -75,10 +75,10 @@ pub enum ExecuteMsg {
 "mint":[
  {
  "token_id":"myid",
- "owner":"juno1...",
+ "owner":"andr1...",
   "extension": {
             "name": "Some token",
-            "publisher": "juno1...",
+            "publisher": "andr1...",
             "description": "A minted token for testing",
             "attributes": [
                 {
@@ -148,13 +148,13 @@ pub enum ExecuteMsg{
   "at_height": 550
   },
   "price":{
-    "denom":"ujunox",
+    "denom":"uandr",
     "amount":"10000"
     },
   "min_tokens_sold":"1000",
   "max_amount_per_wallet":10,
   "recipient":{
-   "addr":"juno1..."
+   "addr":"andr1..."
   }
 }
 ```
@@ -345,7 +345,7 @@ pub struct State {
   "at_height": 550
   },
   "price":{
-    "denom":"uusd",
+    "denom":"uandr",
     "amount":"10000"
     },
   "min_tokens_sold":"1000",
@@ -354,7 +354,7 @@ pub struct State {
   "amount_to_send":"100000",
   "amount_transferred":"300",
   "recipient":{
-    "addr":"juno1..."
+    "addr":"andr1..."
   }
 }
 ```
@@ -411,7 +411,7 @@ pub struct Config {
 ```json
 {
 "token_address":{
-          "identifier":"juno1..."
+          "identifier":"andr1..."
           },
 "can_mint_after_sale": true
 }

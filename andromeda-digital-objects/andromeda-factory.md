@@ -81,7 +81,7 @@ pub enum QueryMsg {
 ```javascript
 {
     "code_id": {
-    "key": "..."
+    "key": "cw721"
     }
 }
 ```
@@ -115,7 +115,7 @@ Lists all the available ADO types.
 {
 "ado_types":{
     "limit": 30,
-    "start_after": "pageid"
+    "start_after": "rates"
     }
 }
 ```

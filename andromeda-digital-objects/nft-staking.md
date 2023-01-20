@@ -28,10 +28,10 @@ pub struct InstantiateMsg {
 {% tab title="JSON" %}
 ```json
 {
-"nft_contract":["juno1...","juno1...",...],
+"nft_contract":["andr1...","andr1...",...],
 "unbonding_period": 100,
 "reward":{
-    "denom": "ujunox",
+    "denom": "uandr",
     "amount": "50"
     }
 }
@@ -100,7 +100,7 @@ Unstake {
 ```json
 {
 "unstake":{
-    "key":"juno1...4"
+    "key":"andr1...toeknid"
     }
 }
 ```
@@ -136,7 +136,7 @@ pub enum ExecuteMsg {
 ```json
 {
 "update_allowed_contracts": {
-    "contracts":["juno1...","juno1...",...]
+    "contracts":["andr1...","andr1...",...]
     }
 }
 ```
@@ -170,7 +170,7 @@ pub enum ExecuteMsg {
 ```json
 {
 "add_allowed_contract":{
-    "new_contract": "juno1..."
+    "new_contract": "andr1..."
     }
 }
 ```
@@ -204,7 +204,7 @@ pub enum ExecuteMsg {
 ```json
 {
 "remove_allowed_contract":{
-    "old_contract": "juno1..."
+    "old_contract": "andr1..."
     }
 }
 ```
@@ -272,7 +272,7 @@ pub enum ExecuteMsg {
 ```json
 {
 "claim":{
-    "key":"juno1...2"
+    "key":"andr1...tokenid"
     }
 }
 ```
@@ -309,7 +309,7 @@ pub enum QueryMsg {
 ```json
 {
 "staked_nft":{
-    "key":"juno1...3"
+    "key":"andr1...tokenid"
     }
 }
 ```
@@ -340,12 +340,12 @@ pub struct StakedNft {
 {% tab title="JSON" %}
 ```json
 {
-"owner":"juno1...",
+"owner":"andr1...",
 "id":"3",
-"contract_address":"juno1...",
+"contract_address":"andr1...",
 "time_of_staking":"123437462",
 "rewards":{
-    "denom":"ujunox",
+    "denom":"uandr",
     "amount":"50"
     }
 }

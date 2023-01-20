@@ -58,11 +58,11 @@ pub struct InstantiateMsg {
 ```json
 {
 "staking_token":{
-          "identifier":"juno1..."
+          "identifier":"andr1..."
               },
 "additional_rewards": [{
           "asset_info":{
-              "cw-20":"juno1..."
+              "cw20":"andr1..."
               },
           "allocation_config":{
               "init_timestamp": 104329432,
@@ -107,13 +107,11 @@ pub type AssetInfoUnchecked = AssetInfoBase<String>
 pub enum AssetInfoBase<T> {
     Native(String),
     Cw20(T),
-    Cw1155(T, String),
 }
 ```
 
 * **Cw20**: To create an asset info instance of this type, provide the contract address
 * **Native**: To create an asset info instance of this type, provide the denomination
-* **CW1155 tokens:** To create an **asset info** instance of this type, provide the contract address and token ID
 
 #### AllocationConfig
 
@@ -196,7 +194,7 @@ pub enum ExecuteMsg {
 {
 "add_reward_token":{
         "reward_token":{
-                "cw20":"juno1..."
+                "cw20":"andr1..."
                 }
      }
 } 
@@ -276,7 +274,7 @@ pub enum ExecuteMsg {
 {% endtab %}
 
 {% tab title="JSON" %}
-```rust
+```json
 "update_global_indexes":{}
 ```
 {% endtab %}
@@ -333,7 +331,7 @@ pub struct Config {
 ```json
 {
 "staking_token":{
-        "identifier":"juno1..."
+        "identifier":"andr1..."
         },
 "number_of_rewards_tokens": 7                   
 }
@@ -415,7 +413,7 @@ pub enum QueryMsg {
 ```json
 {
 "staker":{
-    "address":"juno1..."
+    "address":"andr1..."
     }
 }
 ```
@@ -443,11 +441,11 @@ pub struct StakerResponse {
 {% tab title="JSON" %}
 ```json
 {
-    "address": "juno1...",
+    "address": "andr1...",
     "share": "10000000",
     "pending_rewards": [
       [
-        "native:uusd",
+        "native:uandr",
         "6666666"
       ]
     ]

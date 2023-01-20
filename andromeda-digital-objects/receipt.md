@@ -22,7 +22,7 @@ pub struct InstantiateMsg {
 {% tab title="JSON" %}
 ```javascript
 {
-    "minter": "juno1..."
+    "minter": "andr1..."
 }
 ```
 {% endtab %}
@@ -56,7 +56,7 @@ pub enum ExecuteMsg {
 {% endtab %}
 
 {% tab title="JSON" %}
-```rust
+```json
 {
     "store_receipt": {
         "receipt": {
@@ -66,7 +66,7 @@ pub enum ExecuteMsg {
                     "attributes": [
                         {
                             "key": "payment",
-                            "value": "juno1...<100uluna"
+                            "value": "andr1...<100uluna"
                         },
                         ...
                     ]
@@ -115,7 +115,7 @@ pub enum ExecuteMsg {
 {% endtab %}
 
 {% tab title="JSON" %}
-```rust
+```json
 {
     "edit_receipt": {
         "receipt_id": "1",
@@ -126,7 +126,7 @@ pub enum ExecuteMsg {
                     "attributes": [
                         {
                             "key": "payment",
-                            "value": "juno1...<100uluna"
+                            "value": "andr1...<100uluna"
                         },
                         ...
                     ]
@@ -168,7 +168,7 @@ pub enum QueryMsg {
 {% endtab %}
 
 {% tab title="JSON" %}
-```rust
+```json
 {
     "receipt": {
         "receipt_id": "1"
@@ -194,7 +194,7 @@ pub struct ReceiptResponse {
 {% endtab %}
 
 {% tab title="JSON" %}
-```rust
+```json
 {
     "receipt": {
         "events": [
@@ -235,7 +235,7 @@ pub enum QueryMsg {
 {% endtab %}
 
 {% tab title="JSON" %}
-```rust
+```json
 {
     "contract_info": {}
 }
@@ -257,7 +257,7 @@ pub struct Config {
 {% endtab %}
 
 {% tab title="JSON" %}
-```rust
+```json
 {
     "config": {
         "minter": "juno1..."

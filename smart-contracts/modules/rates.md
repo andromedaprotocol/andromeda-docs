@@ -38,10 +38,10 @@ pub struct InstantiateMsg {
       },
       "is_additive": false,
       "recipients":[{
-         "addr":"juno1..."
+         "addr":"andr1..."
             },
          {
-         "addr":"juno1..."
+         "addr":"andr1..."
          }
          ]
       },
@@ -159,10 +159,10 @@ pub enum ExecuteMsg{
          "is_additive": false,
          "recipients":[
             {
-            "addr":"juno1..."
+            "addr":"andr1..."
          },
             {
-         "addr":"juno1..."
+         "addr":"andr1..."
          },
          ...
          ]
@@ -202,7 +202,7 @@ pub enum ExecuteMsg {
 ```json
 {
 "add_exemption":{
-    "address":"juno1..."
+    "address":"andr1..."
     }
 }
 ```
@@ -232,7 +232,7 @@ pub enum ExecuteMsg {
 ```json
 {
 "remove_exemption":{
-    "address":"juno1..."
+    "address":"andr1..."
     }
 }
 ```
@@ -295,10 +295,10 @@ pub struct PaymentsResponse {
       "is_additive": false,
       "recipients":[
                      {
-                     "addr":"juno1..."
+                     "addr":"andr1..."
                   },
                      {
-                     "addr":"juno1..."
+                     "addr":"andr1..."
                   },
          ...
          ]
@@ -333,7 +333,7 @@ pub enum QueryMsg {
 ```json
 {
 "is_exempt":{
-    "address":"juno1..."
+    "address":"andr1..."
     }
 }
 ```
@@ -392,7 +392,7 @@ pub struct ExemptionsResponse {
 {% tab title="JSON" %}
 ```json
 {
-"exemptions":["juno1...","juno1...",...]
+"exemptions":["andr1...","andr1...",...]
 }
 ```
 {% endtab %}

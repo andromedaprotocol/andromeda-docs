@@ -30,7 +30,7 @@ pub struct InstantiateMsg {
     {
     "module_type":"address-list",
     "address":{
-        "identifier":"juno1..."
+        "identifier":"andr1..."
         },
     "is_mutable": true
     }
@@ -113,9 +113,9 @@ Only available to the NFT owner.
 {
 "update_sale":{
     "token_id":"1",
-    "token_address":"juno1...",
+    "token_address":"andr1...",
     "price":"100",
-    "coin_denom":"juno"
+    "coin_denom":"uandr"
     }
 }
 ```
@@ -153,7 +153,7 @@ Dont forget to attach the required funds.
 {
 "buy":{
     "token_id":"1",
-    "token_address":"juno1..."
+    "token_address":"andr1..."
     }
 }
 ```
@@ -190,7 +190,7 @@ pub enum ExecuteMsg {
 {
 "cancel_sale":{
     "token_id":"1",
-    "token_address":"juno1..."
+    "token_address":"andr1..."
     }
 }
 ```
@@ -234,7 +234,7 @@ Gets the latest sale state for the given token. This will either be the current 
 {
 "latest_sale_state":{
     "token_id":"1",
-    "token_address":"juno1..."
+    "token_address":"andr1..."
     }
 }
 ```
@@ -264,7 +264,7 @@ pub struct SaleStateResponse {
 ```json
 {
 "sale_id":"3",
-"coin_denom":"juno",
+"coin_denom":"uandr",
 "price":"100",
 "status":"open"
 }
@@ -332,7 +332,7 @@ pub enum QueryMsg {
 {
 "sale_ids":{
     "token_id":"1",
-    "token_address":"juno1..."
+    "token_address":"andr1..."
     }
 }
 ```
@@ -368,7 +368,7 @@ pub enum QueryMsg {
 ```json
 {
 "sale_infos_for_address":{
-    "token_address":"juno1..."
+    "token_address":"andr1..."
     }
 }
 ```

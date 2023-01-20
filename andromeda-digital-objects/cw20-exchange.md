@@ -5,7 +5,6 @@
 The **CW20 Exchange** ADO is used to sell CW20 tokens for other assets. The token to be sold is specified at instantiation and then sales can be started on the token by the contract owner. Each sale has an "asset" to purchase the tokens with. This asset can be:
 
 * CW20&#x20;
-* CW1155
 * Native
 
 Users can then purchase the CW20 token being sold by sending the required asset to the contract.
@@ -29,7 +28,7 @@ pub struct InstantiateMsg {
 ```json
 {
 "token_address":{
-    "identifier":"juno1..."
+    "identifier":"andr1..."
     }
 }
 ```
@@ -103,7 +102,7 @@ pub enum Cw20HookMsg {
 "start_sale":{
     "asset":{
         "asset_info":{
-              "cw-20":"juno1..."
+              "cw20":"andr1..."
               }
         },
     "exchange_rate":"5"
@@ -129,14 +128,12 @@ pub type AssetInfo = AssetInfoBase<Addr>;
 pub enum AssetInfoBase<T> {
     Native(String),
     Cw20(T),
-    Cw1155(T, String),
 }
 
 ```
 
 * **Native SDK coins:** To create an **asset info** instance of this type, provide the denomination
 * **CW20 tokens:** To create an **asset info** instance of this type, provide the contract address
-* **CW1155 tokens:** To create an **asset info** instance of this type, provide the contract address and token ID
 
 #### Purchase
 
@@ -157,7 +154,7 @@ pub enum Cw20HookMsg {
 ```json
 {
 "purchase":{
-    "recipient":"juno1..."
+    "recipient":"andr1..."
     }
 } 
 ```
@@ -193,7 +190,7 @@ pub enum ExecuteMsg {
 "cancel_sale":{
     "asset":{ 
         "asset_info":{
-              "cw-20":"juno1..."
+              "cw20":"andr1..."
               }
         }
     }
@@ -226,7 +223,7 @@ pub enum ExecuteMsg {
 ```json
 {
 "purchase":{
-    "recipient":"juno1..."
+    "recipient":"andr1..."
     }
 }
 ```
@@ -263,7 +260,7 @@ pub enum QueryMsg {
 "sale":{
     "asset":{ 
         "asset_info":{
-              "cw-20":"juno1..."
+              "cw20":"andr1..."
               }
         }
   }
@@ -361,7 +358,7 @@ pub enum QueryMsg {
 ```json
 {
 "sale_assets":{
-    "start_after":"jdsfk",
+    "start_after":"token8",
     "limit": 70
     }
 }

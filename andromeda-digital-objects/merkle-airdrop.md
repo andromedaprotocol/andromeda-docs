@@ -22,7 +22,7 @@ pub struct InstantiateMsg {
 {
 "asset_info":{
 "asset_info_unchecked":{
-    "cw20":"juno1..."
+    "cw20":"andr1..."
      }
    }
 } 
@@ -205,13 +205,15 @@ pub struct ConfigResponse {
 {% endtab %}
 
 {% tab title="JSON" %}
-```rust
+{% code lineNumbers="true" %}
+```json
 {
 "asset_info":{
- "Cw20":"juno1..."
+ "cw20":"andr1..."
    }
  }
 ```
+{% endcode %}
 {% endtab %}
 {% endtabs %}
 
@@ -246,10 +248,10 @@ pub enum QueryMsg {
 {% endtab %}
 
 {% tab title="JSON" %}
-```rust
+```json
 {
-"merkle_root"{
-"stage": 2
+"merkle_root":{
+   "stage": 2
    }
 }
 ```
@@ -359,7 +361,7 @@ pub enum QueryMsg {
 ```json
 {
 "is_claimed": 2,
-"address":"juno1..."
+"address":"andr1..."
 }
 ```
 {% endtab %}

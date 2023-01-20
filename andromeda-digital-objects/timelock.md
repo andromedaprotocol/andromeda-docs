@@ -52,11 +52,11 @@ pub enum ExecuteMsg {
 {
     "hold_funds": {
         "recipient":{
-         "addr":"juno1..."
+         "addr":"andr1..."
          }
         "condition": {
             "expiration": {
-              "at_height": 1
+              "at_height": 14738473
               }
         }
     }
@@ -98,7 +98,7 @@ pub enum ExecuteMsg {
     recipient_addr:Option<String>,
     start_after:Option<String>,
     limit:Option<u32>
-    },
+    }
 }
 ```
 {% endtab %}
@@ -108,7 +108,7 @@ pub enum ExecuteMsg {
 {
     "release_funds": {
     
-       "recipient_addr":"juno1...",
+       "recipient_addr":"andr1...",
        "limit":"15"
     }
 }
@@ -142,8 +142,8 @@ ReleaseSpecificFunds {
 ```json
 {
 "release_specific_funds": {
-   "owner":"juno1...",
-   "recipient_addr": "juno1..."
+   "owner":"andr1...",
+   "recipient_addr": "andr1..."
      }
  }
   
@@ -187,8 +187,8 @@ pub enum QueryMsg {
 ```javascript
 {
     "get_locked_funds": {
-        "owner": "juno1...",
-        "recipient":"juno1..."
+        "owner": "andr1...",
+        "recipient":"andr1..."
     }
 }
 ```
@@ -215,15 +215,18 @@ pub struct GetLockedFundsResponse {
 ```javascript
 {
     "funds": {
-        "coins": {
-            "uluna": 1000
+          "coins":[{
+            "amount": "1000",
+            "denom": "uandr"
         },
+        ...
+        ],
         
         "recipient": "juno1...",
         
         "condition": {
             "expiration": {
-              "at_height": 1
+              "at_height": 175849
               }
         }
     }
@@ -232,9 +235,9 @@ pub struct GetLockedFundsResponse {
 {% endtab %}
 {% endtabs %}
 
-| Name  | Type                                 | Description                                                  |
-| ----- | ------------------------------------ | ------------------------------------------------------------ |
-| funds | Option<[Escrow](timelock.md#escrow)> | Optional Escrow with the held funds and related information. |
+| Name    | Type                                 | Description                                                  |
+| ------- | ------------------------------------ | ------------------------------------------------------------ |
+| `funds` | Option<[Escrow](timelock.md#escrow)> | Optional Escrow with the held funds and related information. |
 
 ### GetLockedFundsForRecipient
 
@@ -286,9 +289,12 @@ pub struct GetLockedFundsForRecipientResponse {
 ```json
 {
     "funds": {
-        "coins": {
-            "uluna": 1000
+        "coins":[{
+            "amount": "1000",
+            "denom": uandr
         },
+        ...
+        ],
         
         "recipient":{
             "addr":"juno1..."

@@ -261,7 +261,7 @@ pub struct GetSplitterConfigResponse {
         "recipients": [
             {
                 "recipient":{
-                   "addr":"juno1..."
+                   "addr":"andr1..."
                     },
                 "percent": "0.5"
             },

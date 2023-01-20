@@ -24,10 +24,10 @@ pub struct InstantiateMsg {
 ```json
 {
 "recipient":{
-    "addr":"juno1..."
+    "addr":"andr1..."
     },
 "is_multi_batch_enabled": true,
-"denom":"uusd",
+"denom":"uandr",
 "unbonding_duration":{
     "time":23248854
     }
@@ -93,7 +93,7 @@ pub enum ExecuteMsg {
     "release_amount":{
         "percentage":"0.2"
         },
-    "validator_to_delegate_to": "validator"
+    "validator_to_delegate_to": "andrvaloper1f..."
     }
 }
 ```
@@ -207,7 +207,7 @@ Only available to the contract owner.
 {
 "delegate":{
     "amount":"2000",
-    "validator":"validator"
+    "validator":"andrvaloper1f9vl..."
     }
 }
 ```
@@ -244,7 +244,7 @@ pub enum ExecuteMsg {
 {
 "undelegate":{
     "amount":"2000",
-    "validator":"validator"
+    "validator":"andrvaloper1f..."
     }
 }
 ```
@@ -284,8 +284,8 @@ pub enum ExecuteMsg {
 {
 "redelegate":{
     "amount": "4000",
-    "from":"juno1...",
-    "to":"juno1..."
+    "from":"andrvaloper1f...",
+    "to":"andrvaloper1zk..."
     }
 }
 ```
@@ -423,10 +423,10 @@ pub struct Config {
 ```json
 {
 "recipient":{
-    "addr":"juno1..."
+    "addr":"andr1..."
     },
 "is_multi_batch_enabled": true,
-"denom":"uusd",
+"denom":"uandr",
 "unbonding_duration":{
     "time":3248325932
     }

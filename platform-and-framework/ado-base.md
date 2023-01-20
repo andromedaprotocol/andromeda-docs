@@ -142,7 +142,7 @@ pub enum AndromedaMsg{
 {
  "andr_receive":{
       "update_owner":{
-            "address":"juno1..."
+            "address":"andr1..."
      }
    }
 }
@@ -181,7 +181,7 @@ pub enum AndromedaMsg{
 {
  "andr_receive":{
       "update_operators":{
-            "operators":["juno1...","juno1...",...]
+            "operators":["andr1...","andr1...",...]
      }
    }
 }
@@ -215,11 +215,11 @@ pub enum AndromedaMsg{
  "andr_receive":{
       "withdraw":{
             "recipient":{
-                  "addr":"juno1..."
+                  "addr":"andr1..."
               },
             "tokens_to_withdraw":[
                 {
-                    "token":"uusd",
+                    "token":"uandr",
                     "withdrawal_type":{
                         "percentage":"0.3"
                         }
@@ -292,7 +292,7 @@ pub enum AndromedaMsg {
           "module":{
                "module_type": "receipt",
                "address":{
-                    "identifier":"juno1..."
+                    "identifier":"andr1..."
                     },
                "is_mutable": true
         }
@@ -376,7 +376,7 @@ pub enum AndromedaMsg{
           "module":{
              "module_type": "receipt",
              "address":{
-                "identifier":"juno1..."
+                "identifier":"andr1..."
                 }
              "is_mutable": false
         }
@@ -544,7 +544,7 @@ pub struct ContractOwnerResponse {
 {% tab title="JSON" %}
 ```json
 {
-"owner":"juno1..."
+"owner":"andr1..."
 }
 ```
 {% endtab %}
@@ -589,7 +589,7 @@ pub struct OperatorsResponse {
 {% tab title="JSON" %}
 ```json
 {
-"operators":["juno1...","juno1...",...]
+"operators":["andr1...","andr1...",...]
 }
 ```
 {% endtab %}
@@ -616,7 +616,7 @@ pub enum AndromedaQuery{
 {
 "andr_query":{
    "is_operators":{
-     "address":"juno1..."
+     "address":"andr1..."
      }
   }
 }
@@ -832,7 +832,7 @@ pub struct PublisherResponse {
 {% tab title="JSON" %}
 ```json
 {
-"original_publisher":" juno1..."
+"original_publisher":"andr1..."
 }
 ```
 {% endtab %}
@@ -900,9 +900,9 @@ pub struct ModuleInfoWithAddress {
 "module":{
   "module_type":"address_list",
   "instantiate":{
-     "address": "juno1..."
+     "address": "andr1..."
      },
-"address":"juno1..."
+"address":"andr1..."
 }
 ```
 {% endtab %}

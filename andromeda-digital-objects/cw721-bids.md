@@ -23,8 +23,8 @@ pub struct InstantiateMsg {
 {% tab title="JSON" %}
 ```json
 {
-"andromeda_cw721_contract":"juno1...",
-"valid_denom":"ujuno"
+"andromeda_cw721_contract":"andr1...",
+"valid_denom":"uandr"
 }
 ```
 {% endtab %}
@@ -66,7 +66,7 @@ pub enum ExecuteMsg{
 ```json
 {
 "place_bid":{
-  "token_id":"juno1...",
+  "token_id":"1",
   "expiration":{
      "at_height": 300
      }
@@ -103,7 +103,7 @@ pub enum ExecuteMsg{
 ```json
 {
 "cancel_bid":{
-  "token_id": "anewtoken"
+  "token_id": "1"
   }
 }
 ```
@@ -140,8 +140,8 @@ pub enum ExecuteMsg{
 ```json
 {
 "accept_bid":{
-  "token_id":"anewtoken",
-   "recipient":"juno1..."
+  "token_id":"1",
+   "recipient":"andr1..."
    }
  }
 ```
@@ -179,7 +179,7 @@ pub enum QueryMsg{
 ```json
 {
 "bid":{
-  "token_id":"anewtoken"
+  "token_id":"1"
    }
 }
 ```
@@ -209,14 +209,14 @@ pub struct BidResponse {
 {% tab title="JSON" %}
 ```json
 {
-"denom":"uusd",
+"denom":"uandr",
 "bid_amount":"1000",
 "remaining_amount":"997",
-"tax_amount":"2",
+"tax_amount":"3",
 "expiration":{
     "at_height": 500
     },
-"purchaser":"juno1..."
+"purchaser":"andr1..."
 }
 
 
@@ -256,7 +256,7 @@ pub enum ExecuteMsg{
 ```json
 {
 "all_bids":{
-  "purchaser":"juno1...",
+  "purchaser":"andr1...",
   "limit": 15
     }
  }
@@ -286,14 +286,14 @@ pub struct AllBidsResponse {
 <pre class="language-json"><code class="lang-json">{
 "bids":[ 
  {
-  "denom":"uusd",
+  "denom":"uandr",
   "bid_amount":"1000",
   "remaining_amount":"997",
-  "tax_amount":"2",
+  "tax_amount":"3",
 <strong>  "expiration":{
 </strong>    "at_height": 500
     },
-  "purchaser":"juno1..."
+  "purchaser":"andr1..."
 },
 ...
 <strong>  ]

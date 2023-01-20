@@ -24,9 +24,9 @@ pub struct InstantiateMsg {
 {% tab title="JSON" %}
 ```json
 {
-"primitive_contract":"juno1...",
+"primitive_contract":"andr1...",
 "cw721_instantiate_type":{
-  "address":"juno1..."
+  "address":"andr1..."
    },
  "can_unwrap": true
 }
@@ -34,11 +34,11 @@ pub struct InstantiateMsg {
 {% endtab %}
 {% endtabs %}
 
-| Name                     | Type            | Description                                                                                                                                                           |
-| ------------------------ | --------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `primitive_contract`     | String          | The primitive contract use to store the factory contract  if used.                                                                                                    |
-| `cw721_instantiate_type` | InstantiateType | The cw721 contract can be instantiated or an existing address can be used. In the case that  an existing address is used, the minter must be set to be this contract. |
-| `can_unwrap`             | bool            | Whether or not the cw721 token can be unwrapped once it is wrapped.                                                                                                   |
+| Name                     | Type                                                | Description                                                                                                                                                           |
+| ------------------------ | --------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `primitive_contract`     | String                                              | The primitive contract use to store the factory contract  if used.                                                                                                    |
+| `cw721_instantiate_type` | [InstantiateType](wrapped-cw721.md#instantiatetype) | The cw721 contract can be instantiated or an existing address can be used. In the case that  an existing address is used, the minter must be set to be this contract. |
+| `can_unwrap`             | bool                                                | Whether or not the cw721 token can be unwrapped once it is wrapped.                                                                                                   |
 
 #### InstantiateType
 

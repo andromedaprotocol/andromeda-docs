@@ -40,10 +40,10 @@ pub struct InstantiateMsg {
 {% tab title="JSON" %}
 ```json
 {
-"native_denom":"ujuno",
+"native_denom":"uandr",
 "deposit_window":600,
 "init_timestamp":1649877513,
-"incentive_token":"juno1...",
+"incentive_token":"andr1...",
 "withdrawal_window":400
 }
 ```
@@ -243,7 +243,7 @@ pub enum ExecuteMsg {
 ```json
 {
 "withdraw_proceeds":{
-    "recipient":"juno1..."
+    "recipient":"andr1..."
     }
 }
 ```
@@ -369,10 +369,10 @@ pub enum QueryMsg {
 {% endtab %}
 
 {% tab title="JSON" %}
-```rust
+```json
 {
 "user_info": {
-    "address":"juno1..."
+    "address":"andr1..."
     }
 }
 ```

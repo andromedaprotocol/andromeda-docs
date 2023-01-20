@@ -53,7 +53,7 @@ pub enum ExecuteMsg{
     "key": "rate_name",
     "value": {
       "coin": {
-        "denom": "ujuno",
+        "denom": "uandr",
         "amount": "100"
       }
     }

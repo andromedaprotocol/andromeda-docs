@@ -27,7 +27,7 @@ pub struct Coin {
 {% tab title="JSON" %}
 ```json
 {
-"denom":"ujuno",
+"denom":"uandr",
 "amount":"1000000"
 }
 ```
@@ -109,7 +109,7 @@ pub enum Recipient {
 {% tab title="JSON" %}
 ```json
 {
-"addr":"juno1..."
+"addr":"andr1..."
 }
 
 or
@@ -117,7 +117,7 @@ or
 {
 "a_d_o":{
     "address":{
-        "identifier":" splitter contract"
+        "identifier":" splitter-contract"
         }
     }
 }
@@ -169,7 +169,7 @@ pub struct AndrAddress {
 {% tab title="JSON" %}
 ```json
 {
-"identifier":"juno1..."
+"identifier":"andr1..."
 }
 
 or

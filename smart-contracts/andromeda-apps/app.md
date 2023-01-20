@@ -41,7 +41,7 @@ pub struct InstantiateMsg {
    }
  ],
  "name":"some_app",
- "primitive_contract":"juno1..."
+ "primitive_contract":"andr1..."
  }
        
      
@@ -106,8 +106,8 @@ AddAppComponent{
 {
 "add_app_component":{
  "component":{
-       "name":"fundsplitter",
-       "ado_type":"splitter",
+       "name":"crowdfund",
+       "ado_type":"crowdfund",
        "instantiate_msg":"eyJ0b2tlbl9hZGRyZXNzIjp7ImlkZW50aWZpZXIiOiJqdW5vMS4uLiJ9InByaW1pdGl2ZV9hZGRyZXNzIjoianVubzEuLi4sImNhbl9taW50X2FmdGVyX3NhbGUiOiB0cnVlfQ=="
    }
 }         
@@ -178,7 +178,7 @@ Only available to the contract owner.
 {
 "proxy_message":{
  "name":"componentname",
- "msg":"eyJtaW50ZXIiOiAianVubzE3OX..."
+ "msg":"eyJtaW50Ijp7InRva2VuX2lkIjo..."
     }
 }
 ```
@@ -211,7 +211,7 @@ pub enum ExecuteMsg {
 {
 "update_address":{
  "name":"componentname",
- "addr":"juno1..."
+ "addr":"andr1..."
   }
  }
 
@@ -300,7 +300,7 @@ pub struct ComponentAddress {
 ```json
 {
 "name":"token",
-"address":"juno1..."
+"address":"andr1..."
 }
 ```
 {% endtab %}
@@ -368,7 +368,7 @@ pub struct ConfigResponse {
 ```json
 {
 "name":"myapp",
-"owner":"juno1..."
+"owner":"andr1..."
 }
 ```
 {% endtab %}

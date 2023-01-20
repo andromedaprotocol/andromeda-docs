@@ -45,19 +45,19 @@ pub struct InstantiateMsg {
 "recipients":[
                 {
                   "recipient":{
-                    "addr":"juno1..."
+                    "addr":"andr1..."
                     },
                   "weight": 4
                   },
                 {
                   "recipient":{
-                    "addr":"juno1..."
+                    "addr":"andr1..."
                     },
                   "weight": 7
                   },
                 {
                   "recipient":{
-                    "addr":"juno1..."
+                    "addr":"andr1..."
                     },
                   "weight": 2
                   }
@@ -112,19 +112,19 @@ pub enum ExecuteMsg {
     "recipients":[
                {
                   "recipient":{
-                    "addr":"juno1..."
+                    "addr":"andr1..."
                     },
                   "weight": 1
                   },
                 {
                   "recipient":{
-                    "addr":"juno1..."
+                    "addr":"andr1..."
                     },
                   "weight": 4
                   },
                 {
                   "recipient":{
-                    "addr":"juno1..."
+                    "addr":"andr1..."
                     },
                   "weight": 12
                   }
@@ -166,7 +166,7 @@ pub enum ExecuteMsg {
 "add_recipient":{
     "recipient":{
             "recipient":{
-                 "addr":"juno1..."
+                 "addr":"andr1..."
                 },
             "weight": 1
               }
@@ -203,7 +203,7 @@ pub enum ExecuteMsg {
 {
 "remove_recipient":{
     "recipient":{
-        "addr":"juno1..."
+        "addr":"andr1..."
         }
     }
 ```
@@ -279,7 +279,7 @@ Only available to the contract owner/operator.
 "update_recipient_weight":{
     "recipient":{
             "recipient":{
-                 "addr":"juno1..."
+                 "addr":"andr1..."
                 },
             "weight": 1
               }
@@ -369,19 +369,19 @@ pub struct GetSplitterConfigResponse {
      "recipients":[
                {
                   "recipient":{
-                    "addr":"juno1..."
+                    "addr":"andr1..."
                     },
                   "weight": 1
                   },
                 {
                   "recipient":{
-                    "addr":"juno1..."
+                    "addr":"andr1..."
                     },
                   "weight": 4
                   },
                 {
                   "recipient":{
-                    "addr":"juno1..."
+                    "addr":"andr1..."
                     },
                   "weight": 12
                   }
@@ -432,7 +432,7 @@ pub enum QueryMsg {
 {
 "get_user_weight":{
     "user":{
-        "addr":"juno1..."
+        "addr":"andr1..."
         }
     }
 }

@@ -77,9 +77,9 @@ pub enum Cw721HookMsg {
     "start_auction": {
           "start_time": 1663334970211,
           "duration": 900000,
-          "coin_denom": "ujunox",
+          "coin_denom": "uandr",
           "min_bid":"300",
-          "whitelist": ["juno1...", "juno1...", ...]
+          "whitelist": ["andr1...", "andr1...", ...]
     }
 }
 ```
@@ -130,12 +130,12 @@ An auction can be updated only if it has not started yet.&#x20;
 {
   "update_auction": {
   "token_id":"token_001",
-   "token_address":"juno1...",
+   "token_address":"andr1...",
    "start_time": 1663334970211,
    "duration": 900000,
    "coin_denom": "uusd",
    "min_bid":"400",
-   "whitelist": ["juno1...", "juno1...", ...]
+   "whitelist": ["andr1...", "andr1...", ...]
     }
  }
 ```
@@ -181,7 +181,7 @@ pub enum ExecuteMsg {
 {
   "cancel_auction": {
     "token_id":"token_001",
-    "token_address":"juno1..."
+    "token_address":"andr1..."
   }
 }
 ```
@@ -214,7 +214,7 @@ pub enum ExecuteMsg {
 {
     "place_bid": {
         "token_id": "token_001",
-        "token_address":"juno1..."
+        "token_address":"andr1..."
     }
 }
 ```
@@ -256,7 +256,7 @@ pub enum ExecuteMsg {
 {
     "claim": {
         "token_id": "token_001",
-        "token_address":"juno1..."
+        "token_address":"andr1..."
     }
 }
 ```
@@ -304,7 +304,7 @@ pub enum QueryMsg {
 {
     "latest_auction_state": {
         "token_id": "token_001",
-        "token_address":"juno1..."
+        "token_address":"andr1..."
     }
 }
 ```
@@ -341,13 +341,13 @@ pub struct AuctionStateResponse {
     "auction_state_response": {
           "start_time": { "at_height": 500 },
           "end_time": { "at_height": 600 },
-          "high_bidder_addr": "juno1...",
+          "high_bidder_addr": "andr1...",
           "high_bidder_amount": "50",
           "auction_id": "0",
-          "coin_denom": "uusd",
+          "coin_denom": "uandr",
           "claimed": false,
           "min_bid":"300",
-          "whitelist": ["juno1...", "juno1...", ...]
+          "whitelist": ["andr1...", "andr1...", ...]
     }
 }
 ```
@@ -392,7 +392,7 @@ pub enum QueryMsg {
 ```json
 {
     "auction_state": {
-        "auction_id": "0"
+        "auction_id": "1"
     }
 }
 ```
@@ -431,7 +431,7 @@ pub enum QueryMsg {
 {
  "bids":{
     "auction_id": "4",
-    "start_after": 3,
+    "start_after": 700,
     "limit": 25
     }
  }
@@ -470,7 +470,7 @@ pub struct BidsResponse {
     "bids_response": {
         "bids": [ 
             { 
-                "bidder": "juno1...",
+                "bidder": "andr1...",
                 "amount": "500",
                 "timestamp": "60"
             }
@@ -525,7 +525,7 @@ pub enum QueryMsg {
 {
     "auction_ids": {
         "token_id": "token_001",
-        "token_address":"juno1..."
+        "token_address":"andr1..."
     }
 }
 ```
@@ -552,7 +552,7 @@ pub struct AuctionIdsResponse {
 ```json
 {
     "auction_ids_response": {
-        "auction_ids": ["0", "3", ... ]
+        "auction_ids": ["1", "3", ... ]
     }
 }
 ```
@@ -585,7 +585,7 @@ Gets all of the auction infos for a given token address.
 ```json
 {
 "auction_infos_for_address":{
-       "token_address":"juno1...",
+       "token_address":"andr1...",
        "start_after":"3",
        "limit": 15
        }
@@ -621,7 +621,7 @@ pub struct AuctionInfo {
 
 "auction_info" {
    "auction_ids": ["0","1",...],
-   "token_address":"juno1...",
+   "token_address":"andr1...",
    "token_id":"token_001"
    }
 }

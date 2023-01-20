@@ -69,7 +69,7 @@ pub enum ExecuteMsg {
 {
 "deposit":{
 "recipient":{
-   "addr":"juno1...",
+   "addr":"andr1...",
      }
    }
 }
@@ -121,11 +121,11 @@ pub enum ExecuteMsg{
 {
 "withdraw":{
 "recipient":{
-    "addr":"juno1..."
+    "addr":"andr1..."
     },
 "withdrawals":[
                 {
-                    "token":"uusd",
+                    "token":"uandr",
                     "withdrawal_type":{
                         "percentage":"0.3"
                         }
@@ -168,7 +168,7 @@ The Vault needs to be an operator of the strategy contract.
 "update_strategy":{
     "strategy":"anchor",
     "address":{
-        "identifier":"juno1..."
+        "identifier":"andr1..."
         }
     }
 }
@@ -209,8 +209,8 @@ pub enum QueryMsg {
 ```json
 {
 "balance":{
-"address":"juno1...",
-"denom":"ujuno"
+     "address":"andr1...",
+     "denom":"uandr"
      }
 }
 ```
@@ -245,7 +245,7 @@ pub enum QueryMsg{
 ```json
 {
 "strategy_address":{
-           "strategy":"Anchor"
+           "strategy":"anchor"
            
        }
 }
@@ -270,14 +270,11 @@ pub struct StrategyAddressResponse {
 {% endtab %}
 
 {% tab title="JSON" %}
-```json
-{
-"strategy":{
-            "Anchor"
-            },
-"address":"juno1..."
-}
-```
+<pre class="language-json"><code class="lang-json">{
+"strategy":"anchor",
+<strong>    "address":"andr1..."
+</strong>}
+</code></pre>
 {% endtab %}
 {% endtabs %}
 

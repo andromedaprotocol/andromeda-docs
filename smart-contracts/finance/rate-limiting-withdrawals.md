@@ -29,7 +29,7 @@ pub struct InstantiateMsg {
 ```json
 {
 "allowed_coin":{
-    "coin":"ujunox",
+    "coin":"uandr",
     "limit":"500"
     },
 "minimal_withdrawal_frequency":{
@@ -114,7 +114,7 @@ pub enum ExecuteMsg {
 ```json
 {
 "deposit":{
-    "recipient":"juno1..."
+    "recipient":"andr1..."
     }
 }
 ```
@@ -208,7 +208,7 @@ pub struct CoinAllowance {
 {% tab title="JSON" %}
 ```json
 {
-"coin":"ujuox",
+"coin":"uandr",
 "limit":"50000",
 "minimal_withdrawal_frequency":"3600"
 }
@@ -242,7 +242,7 @@ pub enum QueryMsg{
 ```json
 {
 "account_details":{
-    "account":"juno1..."
+    "account":"andr1..."
     }
 }
 ```

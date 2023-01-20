@@ -60,7 +60,7 @@ pub enum ExecuteMsg {
 ```javascript
 {
     "add_address": {
-        "address": "juno1..."
+        "address": "andr1..."
     }    
 }
 ```
@@ -92,7 +92,7 @@ pub enum ExecuteMsg {
 ```javascript
 {
     "remove_address": {
-        "address": "juno1..."
+        "address": "andr1..."
     }
 }
 ```
@@ -129,7 +129,7 @@ pub enum QueryMsg {
 ```javascript
 {
     "includes_address": {
-        "address": "juno1..."
+        "address": "andr1..."
     }
 }
 ```
