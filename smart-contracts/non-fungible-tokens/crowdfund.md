@@ -261,6 +261,10 @@ If the minimum number of tokens to be sold was not reached. The user can claim t
 
 Ends the sale. In the case that the minimum number of tokens to be sold is not achieved, refunds are sent to the buyers and tokens are burnt. If the minimum amount of tokens sold was achieved, the tokens are sent to the buyers and the funds to the recipient.&#x20;
 
+{% hint style="warning" %}
+The sale can only be ended if the expiration of the sale has been reached or all the tokens have been sold.
+{% endhint %}
+
 {% tabs %}
 {% tab title="Rust" %}
 ```rust
