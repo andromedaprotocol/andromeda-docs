@@ -54,10 +54,6 @@
 * [Wrapped-NFT App](andromeda-apps/wrapped-nft-app.md)
 * [Marketplace App](andromeda-apps/marketplace-app.md)
 
-## User Docs
-
-* [User Docs](user-docs.md)
-
 ## Andromeda CLI
 
 * [Introduction](andromeda-cli/introduction.md)
