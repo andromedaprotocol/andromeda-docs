@@ -247,6 +247,8 @@ pub enum ExecuteMsg {
 
 The rest of the executes can be found in the [`AndrReceive`](../../platform-and-framework/ado-base.md#andrrecieve) section.
 
+## QueryMsg
+
 ### Payments
 
 Returns the rates used by the contract in a vector of `RateInfo`.
