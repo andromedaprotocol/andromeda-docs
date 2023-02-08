@@ -30,7 +30,7 @@
 * [Rates](smart-contracts/modules/rates.md)
 * [Rate Limiting Withdrawals](smart-contracts/finance/rate-limiting-withdrawals.md)
 * [Receipt](andromeda-digital-objects/receipt.md)
-* [Splitter](andromeda-digital-objects/andromeda-splitter.md)
+* [Splitter](andromeda-digital-objects/splitter.md)
 * [Timelock](andromeda-digital-objects/timelock.md)
 * [Vault](andromeda-digital-objects/vault.md)
 * [Vesting](andromeda-digital-objects/vesting.md)

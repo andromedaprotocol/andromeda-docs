@@ -57,14 +57,14 @@ pub struct InstantiateMsg {
 {% endtab %}
 {% endtabs %}
 
-| Name         | Type                                                        | Description                                                                                                                           |
-| ------------ | ----------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------- |
-| `Modules`    | Option<[Module](../modules/module-definitions.md)>          | An optional vector of Andromeda[ Modules](broken-reference) that can be attached to the contract. "address-list" module can be added. |
-| `lock_time`  | Option\<u64>                                                | How long the splitter is locked. When locked, no recipients can be added/changed.                                                     |
-| `recipients` | Vec<[AddressPercent](andromeda-splitter.md#addresspercent)> | The recipient list of the splitter. Can be updated after instantiation.                                                               |
+| Name         | Type                                               | Description                                                                                                                           |
+| ------------ | -------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------- |
+| `Modules`    | Option<[Module](../modules/module-definitions.md)> | An optional vector of Andromeda[ Modules](broken-reference) that can be attached to the contract. "address-list" module can be added. |
+| `lock_time`  | Option\<u64>                                       | How long the splitter is locked. When locked, no recipients can be added/changed.                                                     |
+| `recipients` | Vec<[AddressPercent](splitter.md#addresspercent)>  | The recipient list of the splitter. Can be updated after instantiation.                                                               |
 
 {% hint style="warning" %}
-Anytime a [`Send`](andromeda-splitter.md#send) execute message is sent, the amount sent will be divided amongst the recipients depending on their assigned percentage.
+Anytime a [`Send`](splitter.md#send) execute message is sent, the amount sent will be divided amongst the recipients depending on their assigned percentage.
 {% endhint %}
 
 #### AddressPercent
@@ -142,9 +142,9 @@ pub enum ExecuteMsg {
 {% endtab %}
 {% endtabs %}
 
-| Name         | Type                                                        | Description                                 |
-| ------------ | ----------------------------------------------------------- | ------------------------------------------- |
-| `recipients` | Vec<[AddressPercent](andromeda-splitter.md#addresspercent)> | The new list of addresses to receive funds. |
+| Name         | Type                                              | Description                                 |
+| ------------ | ------------------------------------------------- | ------------------------------------------- |
+| `recipients` | Vec<[AddressPercent](splitter.md#addresspercent)> | The new list of addresses to receive funds. |
 
 ### UpdateLock
 
@@ -277,9 +277,9 @@ pub struct GetSplitterConfigResponse {
 {% endtab %}
 {% endtabs %}
 
-| Name     | Type                                       | Description                 |
-| -------- | ------------------------------------------ | --------------------------- |
-| `config` | [Splitter](andromeda-splitter.md#splitter) | The Splitter config struct. |
+| Name     | Type                             | Description                 |
+| -------- | -------------------------------- | --------------------------- |
+| `config` | [Splitter](splitter.md#splitter) | The Splitter config struct. |
 
 #### Splitter
 
@@ -292,10 +292,10 @@ pub struct Splitter {
 }
 ```
 
-| Name         | Type                                                       | Description                                                                                                                                                                                                                   |
-| ------------ | ---------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `recipients` | Vec<[AdressPercent](andromeda-splitter.md#addresspercent)> | The vector of recipients for the contract. Anytime a `Send` execute message is sent the amount sent will be divided amongst these recipients depending on their assigned percentage.                                          |
-| `locked`     | Expiration                                                 | The expiration time of the lock. Will return an epoc time which is equal to the current\_time _+_ lock\_time taken at the point of setting the lock. (Current time refers to the time the lock was set and not the time now.) |
+| Name         | Type                                             | Description                                                                                                                                                                                                                   |
+| ------------ | ------------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `recipients` | Vec<[AdressPercent](splitter.md#addresspercent)> | The vector of recipients for the contract. Anytime a `Send` execute message is sent the amount sent will be divided amongst these recipients depending on their assigned percentage.                                          |
+| `locked`     | Expiration                                       | The expiration time of the lock. Will return an epoc time which is equal to the current\_time _+_ lock\_time taken at the point of setting the lock. (Current time refers to the time the lock was set and not the time now.) |
 
 ### AndrQuery
 
