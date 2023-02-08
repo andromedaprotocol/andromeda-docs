@@ -339,8 +339,8 @@ pub struct AuctionStateResponse {
 ```json
 {
     "auction_state_response": {
-          "start_time": { "at_height": 500 },
-          "end_time": { "at_height": 600 },
+          "start_time": { "at_time": 1672764083954000000 },
+          "end_time": { "at_time": 1672773083954000000 },
           "high_bidder_addr": "andr1...",
           "high_bidder_amount": "50",
           "auction_id": "0",
