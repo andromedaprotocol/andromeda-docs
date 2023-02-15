@@ -3,7 +3,7 @@
 ### Juno
 
 {% tabs %}
-{% tab title="Testnet (uni-5)" %}
+{% tab title="Testnet (uni-6)" %}
 | Contract               | Address                                                         | Description                                                                  |
 | ---------------------- | --------------------------------------------------------------- | ---------------------------------------------------------------------------- |
 | **ADODB**              | juno15fmej9zdqwlrdu8cutfg3dn9g2l26dt68s6mdurhq4nk63kpd0mqar2t6v | Contract used to store the code IDs of all the other ADOs.                   |
@@ -29,7 +29,7 @@ These addresses will be used when deploying Andromeda Apps
 ### Andromeda
 
 {% tabs %}
-{% tab title="Testnet (galileo-2)" %}
+{% tab title="Testnet (galileo-3)" %}
 | Contract               | Address                                                         | Description                                                                  |
 | ---------------------- | --------------------------------------------------------------- | ---------------------------------------------------------------------------- |
 | **ADODB**              | andr1yyca08xqdgvjz0psg56z67ejh9xms6l436u8y58m82npdqqhmmtq9snx2v | Contract used to store the code IDs of all the other ADOs.                   |
