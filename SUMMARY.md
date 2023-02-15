@@ -29,7 +29,6 @@
 * [Primitive](smart-contracts/data-storage/primitive.md)
 * [Rates](smart-contracts/modules/rates.md)
 * [Rate Limiting Withdrawals](smart-contracts/finance/rate-limiting-withdrawals.md)
-* [Receipt](andromeda-digital-objects/receipt.md)
 * [Splitter](andromeda-digital-objects/splitter.md)
 * [Timelock](andromeda-digital-objects/timelock.md)
 * [Vault](andromeda-digital-objects/vault.md)
@@ -42,7 +41,6 @@
 * [Module Definitions](modules/module-definitions.md)
 * [Rates Module](modules/rates-module.md)
 * [Address List Module](modules/address-list-module/README.md)
-* [Receipt Module](modules/receipt-module/README.md)
 * [CW721-Bids Module](modules/cw721-bids-module.md)
 
 ## Andromeda Apps

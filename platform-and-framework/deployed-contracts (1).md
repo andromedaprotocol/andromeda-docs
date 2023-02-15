@@ -6,8 +6,8 @@
 {% tab title="Testnet (uni-6)" %}
 | Contract               | Address                                                         | Description                                                                  |
 | ---------------------- | --------------------------------------------------------------- | ---------------------------------------------------------------------------- |
-| **ADODB**              | juno15fmej9zdqwlrdu8cutfg3dn9g2l26dt68s6mdurhq4nk63kpd0mqar2t6v | Contract used to store the code IDs of all the other ADOs.                   |
-| **Registry/Primitive** | juno133fdsnvcah870exzcyxknydswyh778jfhwxzlhhgjuagh4482zpqp856dz | Contract used to save the factory address and connect it to Andromeda Apps.  |
+| **ADODB**              | juno13cjznr3f259jqcxpygfhgd4k6lygyzuuqvdnucg2zrjrrypf53dqd3gm8a | Contract used to store the code IDs of all the other ADOs.                   |
+| **Registry/Primitive** | juno13jjcwkdk45l987jqa7vyc94h0djdr943dn7sxs0djndsfp3c7q6qvyp5pl | Contract used to save the factory address and connect it to Andromeda Apps.  |
 {% endtab %}
 {% endtabs %}
 

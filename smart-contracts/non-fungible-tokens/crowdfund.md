@@ -38,11 +38,11 @@ pub struct InstantiateMsg {
 {% endtab %}
 {% endtabs %}
 
-| Name                  | Type                                                                           | Desctription                                                                                                                                                    |
-| --------------------- | ------------------------------------------------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `token_address`       | [AndrAddress](../../platform-and-framework/common-types.md#andraddress)        | The contract address of the token.                                                                                                                              |
-| `modules`             | Option\<Vec<[Module](../../modules/module-definitions.md#module-definitions)>> | An optional vector of Andromeda[ Modules](broken-reference) that can be attached to the contract. "rates", "address-list", and  "receipt" modules can be added. |
-| `can_mint_after_sale` | bool                                                                           | A flag to whether minting is allowed after a sale has been done. Minting is never allowed during a sale.                                                        |
+| Name                  | Type                                                                           | Desctription                                                                                                                                       |
+| --------------------- | ------------------------------------------------------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `token_address`       | [AndrAddress](../../platform-and-framework/common-types.md#andraddress)        | The contract address of the token.                                                                                                                 |
+| `modules`             | Option\<Vec<[Module](../../modules/module-definitions.md#module-definitions)>> | An optional vector of Andromeda[ Modules](broken-reference) that can be attached to the contract. "rates"and  "address-list" modules can be added. |
+| `can_mint_after_sale` | bool                                                                           | A flag to whether minting is allowed after a sale has been done. Minting is never allowed during a sale.                                           |
 
 ## ExecuteMsg
 

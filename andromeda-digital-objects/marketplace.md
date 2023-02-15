@@ -40,9 +40,9 @@ pub struct InstantiateMsg {
 {% endtab %}
 {% endtabs %}
 
-| Name      | Type                  | Description                                                                                                                            |
-| --------- | --------------------- | -------------------------------------------------------------------------------------------------------------------------------------- |
-| `modules` | Option\<Vec\<Module>> | An optional vector of Andromeda [Modules](../modules/module-definitions.md). "rates", "address\_list", "receipt" modules can be added. |
+| Name      | Type                  | Description                                                                                                                    |
+| --------- | --------------------- | ------------------------------------------------------------------------------------------------------------------------------ |
+| `modules` | Option\<Vec\<Module>> | An optional vector of Andromeda [Modules](../modules/module-definitions.md). "rates" and "address\_list" modules can be added. |
 
 ## ExecuteMsg
 

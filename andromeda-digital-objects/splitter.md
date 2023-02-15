@@ -59,7 +59,7 @@ pub struct InstantiateMsg {
 
 | Name         | Type                                               | Description                                                                                                                           |
 | ------------ | -------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------- |
-| `Modules`    | Option<[Module](../modules/module-definitions.md)> | An optional vector of Andromeda[ Modules](broken-reference) that can be attached to the contract. "address-list" module can be added. |
+| `modules`    | Option<[Module](../modules/module-definitions.md)> | An optional vector of Andromeda[ Modules](broken-reference) that can be attached to the contract. "address-list" module can be added. |
 | `lock_time`  | Option\<u64>                                       | How long the splitter is locked. When locked, no recipients can be added/changed.                                                     |
 | `recipients` | Vec<[AddressPercent](splitter.md#addresspercent)>  | The recipient list of the splitter. Can be updated after instantiation.                                                               |
 

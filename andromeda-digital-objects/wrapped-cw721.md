@@ -62,11 +62,11 @@ pub struct Cw721Specification {
 }
 ```
 
-| Name      | Type                                                     | Description                                                                                                            |
-| --------- | -------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------- |
-| `name`    | String                                                   | Name of the NFT.                                                                                                       |
-| `symbol`  | String                                                   | Symbol of the NFT.                                                                                                     |
-| `modules` | Option\<Vec<[Module](../modules/module-definitions.md)>> | An optional vector of Andromeda Modules. The module definitions can be found[ here](../modules/module-definitions.md). |
+| Name      | Type                                                     | Description                                                                                                |
+| --------- | -------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| `name`    | String                                                   | Name of the NFT.                                                                                           |
+| `symbol`  | String                                                   | Symbol of the NFT.                                                                                         |
+| `modules` | Option\<Vec<[Module](../modules/module-definitions.md)>> | An optional vector of Andromeda Modules. Any module that can be added to a [CW721](cw721.md) can be added. |
 
 ## ExecuteMsg
 

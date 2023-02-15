@@ -19,9 +19,9 @@ The contract supports [modules](broken-reference) to extend it's functionality.
 {% endtab %}
 {% endtabs %}
 
-| Name      | Type                  | Description                                                                                                                                                     |
-| --------- | --------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `modules` | Option\<Vec\<Module>> | An optional vector of Andromeda[ Modules](broken-reference) that can be attached to the contract. "rates", "address-list", and  "receipt" modules can be added. |
+| Name      | Type                  | Description                                                                                                                                        |
+| --------- | --------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `modules` | Option\<Vec\<Module>> | An optional vector of Andromeda[ Modules](broken-reference) that can be attached to the contract. "rates" and "address-list" modules can be added. |
 
 ## ExecuteMsg
 
