@@ -97,8 +97,18 @@ pub enum Rate {
 The Rate can be one of the three option seen above:
 
 * Flat: A fixed amount to be taken ([Coin](../../platform-and-framework/common-types.md#coin)). Needs to have an amount and denomination specified.&#x20;
-* Percent: A percentage based rate. Needs to have the percent to take specified.
-* External: This refers to a rate that we want to use which is saved in a primitive contract. Needs the address of the primitive and the key of the stored Rate primitive to be specified.
+* Percent: A percentage based rate. Needs to have the percent specified.
+
+
+
+* External: This refers to a rate that we want to use which is saved in a primitive contract. Needs the address of the primitive and the key of the stored Rate primitive to be specified. The value saved in the primitive needs to be one of two types:&#x20;
+
+**1. Decimal:** If the value is a decimal then the rate taken will be a percentage equivalent                   to the specified decimal value.&#x20;
+
+**2.Coin:** If the value is of type coin then the rate taken will be flat equivalent to the a. amount specified in the coin value. \
+
+
+Any other type of value will not be will not apply any rates.&#x20;
 
 #### PercentRate
 
@@ -121,10 +131,10 @@ pub struct PrimitivePointer {
 }
 ```
 
-| Name      | Type                                                                    | Description                            |
-| --------- | ----------------------------------------------------------------------- | -------------------------------------- |
-| `address` | [AndrAddress](../../platform-and-framework/common-types.md#andraddress) | The address of the primitive contract. |
-| `key`     | Option\<String>                                                         | The optional key for the stored data.  |
+| Name      | Type                                                                    | Description                                                                  |
+| --------- | ----------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
+| `address` | [AndrAddress](../../platform-and-framework/common-types.md#andraddress) | The address of the primitive contract.                                       |
+| `key`     | Option\<String>                                                         | The key for the stored data. If not specified, then the default key is used. |
 
 ## ExecuteMsg
 
