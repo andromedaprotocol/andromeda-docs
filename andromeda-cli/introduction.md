@@ -60,6 +60,10 @@ Andromeda is currently deployed on the following chains:
 * Stargaze
 * Terra
 
+{% hint style="warning" %}
+Currently, Andromeda, Juno, and Stargaze testnets are functional.
+{% endhint %}
+
 ### Getting Started
 
 The first thing to do in the CLI is to choose the chain config and wallets to use.&#x20;
