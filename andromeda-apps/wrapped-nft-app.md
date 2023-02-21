@@ -8,11 +8,13 @@ If unfimailar with the steps of deploying an app, go back to the [first example]
 
 {% hint style="warning" %}
 If any of the messages in this example do not work, you might want to cross reference the messages with the ADO specific section which always contains the latest ADO versions to make sure they are correct. Other than that the logic will remain the same.
+
+The examples use uni-5 testnet. As of now, Juno has upgraded to uni-6. The steps of building the App remain the same.
 {% endhint %}
 
 ### **Defining our App**
 
-For this example, we will be utilizing our [wrapped-nft ADO](../andromeda-digital-objects/wrapped-cw721.md) to wrap a cw721-base nft and leverage the andromeda [TransferAgreement](broken-reference) functionality to sell the token. We will build our project using our CLI.
+For this example, we will be utilizing our [wrapped-nft ADO](../andromeda-digital-objects/wrapped-cw721.md) to wrap a CW721-base nft and leverage the andromeda [TransferAgreement](broken-reference) functionality to sell the token. We will build our project using our CLI.
 
 {% hint style="info" %}
 We will not build this example using the App contract.
@@ -20,7 +22,7 @@ We will not build this example using the App contract.
 
 The steps we will perform:&#x20;
 
-1. Mint a token using the cw721-base contract found in [cw-nfts repo.](https://github.com/CosmWasm/cw-nfts)
+1. Mint a token using the CW721-base contract found in [cw-nfts repo.](https://github.com/CosmWasm/cw-nfts)
 2. Send it to wrapper ADO to have it wrapped.
 3. Apply a TransferAgreement for the token.&#x20;
 4. Buy the token using another address.&#x20;
@@ -33,11 +35,47 @@ We will need to use the following andromeda contracts in addition to the base-nf
 
 ### Instantiating the CW-721 base NFT
 
-First we need to mint a regular nft from the cw-nft repo. To do this, we first need to clone the repo, build the contract and upload it to juno uni-5 testnet. I have done this and the code-id you can use is 201.&#x20;
+First we need to mint a regular nft from the cw-nft repo. To do this, we first need to clone the repo, build the contract and upload it to the chain we want to deploy on. To do so, we perform the following steps:
 
-### Instantiate
+* Start a new project in your IDE
+* In the terminal:
 
-The instantiation message for cw-721 base nft is the following:
+```
+git clone https://github.com/CosmWasm/cw-nfts.git
+cd cw-nfts
+```
+
+Then [compile](https://github.com/CosmWasm/rust-optimizer) the CW721 base contract. When done, the contract .wasm file should appear in the artifacts directory.&#x20;
+
+Let us open the CLI by running `andr` in our terminal from artifacts directory. We then need to choose the chain we want to deploy on:
+
+{% hint style="warning" %}
+Feel free to use any of the chains available
+{% endhint %}
+
+```
+chain use 
+```
+
+Then select the chain to deploy on.
+
+{% hint style="warning" %}
+If this is the first time using the CLI make sure to run `"wallets add <wallet-name>"`
+
+in order to create a wallet. Then go to chain's faucet to request some tokens (Usually the faucet will be in the Chain's discord).
+{% endhint %}
+
+#### Uploading the Contract
+
+To upload the contract, we run:
+
+```
+wasm upload cw721_base.wasm
+```
+
+The contract will be uploaded to chain and the code Id will be returned.&#x20;
+
+The instantiation message for CW721 base nft is the following:
 
 {% tabs %}
 {% tab title="Rust" %}
@@ -63,19 +101,11 @@ pub struct InstantiateMsg {
 
 #### Instantiate
 
-First, let us open the CLI by running `andr` in our terminal. We then need to chose the chain we want to deploy on. For this example I will be using the Juno testnet uni-5:
-
-```
-chain use uni-5
-```
+Now that we have our contract uploaded we can instantiate a CW721:
 
 {% hint style="warning" %}
-If this is the first time using the CLI make sure to run `"wallets add <wallet-name>"`
-
-in order to create a wallet. Then go to the Juno faucet and request some tokens.
+Use the code Id that you got when uplaoding the contract instead of 201.
 {% endhint %}
-
-Now we can run the following in the CLI:
 
 ```
 wasm instantiate 201 '{"name":"test","symbol":"TST","minter":"juno1zkpthqsz3ud97fm6p4kxcra8ae99jgzauugyem"}' 
@@ -104,7 +134,19 @@ We will mint an NFT with token\_id specified as 1.
 
 ### Instantiate Wrapped-NFT ADO.
 
-I already have uploaded a wrapped-nft ado with code-id 117. We can instantiate it using the message below.
+We have already uploaded the Wrapped-NFT ADO to the uni-5 testnet. The code I will use is 117. This code Id will most likely be outdated in the future. A simple way to check the latest code id for the App ADO is to query it from the ADODB using the the chain you want to use.&#x20;
+
+In the CLI, while connected to the chain of choice, run:
+
+```
+ado db getcodeid wrapped-cw721
+```
+
+The code Id to use will be returned.
+
+{% hint style="warning" %}
+The primitive address used here might be outdated in the future. Check our [deployed contracts](<../platform-and-framework/deployed-contracts (1).md>) to get the latest registry.
+{% endhint %}
 
 ```json
 {
@@ -125,7 +167,7 @@ I already have uploaded a wrapped-nft ado with code-id 117. We can instantiate i
 
 [Instantiate wrapped](https://testnet.mintscan.io/juno-testnet/txs/E8821E83CD0D92B57B0AA882407BF0DB762571E0EDC32185A89CAB4FE6AEC28B)
 
-{% hint style="info" %}
+{% hint style="warning" %}
 When we instantiate the wrapped-nft contract, we specified the cw721 type as new which means that we have also instantiated an andromeda cw721 contract.
 {% endhint %}
 
@@ -133,9 +175,9 @@ When we instantiate the wrapped-nft contract, we specified the cw721 type as new
 
 Let us list the contracts thus far to avoid confusion:
 
-* **cw721-base:** juno1nqhnl03hwhh4jtdwv6acpex7m54e3ql4sdzjvcyrgu5kgv2sc8js9kqc8c
-* **wrapped-ado:** juno1wdahcdkalcl3g02sl5qnadh43le60yhndz7mx7f6syfnxce5cg3q6pwkz9
-* **ado-cw721:**juno1z9mzpgrksmlvg62kple37wpr0u9mvv2s725juwecxhfhxkkdfp0qahyqwz
+* **CW721-base:** juno1nqhnl03hwhh4jtdwv6acpex7m54e3ql4sdzjvcyrgu5kgv2sc8js9kqc8c
+* **Wrapped-ADO:** juno1wdahcdkalcl3g02sl5qnadh43le60yhndz7mx7f6syfnxce5cg3q6pwkz9
+* **ADO-CW721:**juno1z9mzpgrksmlvg62kple37wpr0u9mvv2s725juwecxhfhxkkdfp0qahyqwz
 
 Now we have everything set up, we can send the token we minted earlier to get wrapped by our ADO.&#x20;
 
@@ -241,10 +283,6 @@ pagination:
   next_key: null
   total: "0"
 ```
-
-{% hint style="warning" %}
-To check the balance you can run "junod query bank balances \<address>" in the terminal (Not CLI).&#x20;
-{% endhint %}
 
 ### Buy the NFT&#x20;
 

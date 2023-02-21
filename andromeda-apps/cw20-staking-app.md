@@ -8,6 +8,8 @@ If unfimailar with the steps of deploying an app, go back to the [first example]
 
 {% hint style="warning" %}
 If any of the messages in this example do not work, you might want to cross reference the messages with the ADO specific section which always contains the latest ADO versions to make sure they are correct. Other than that the logic will remain the same.
+
+The examples use uni-5 testnet. As of now, Juno has upgraded to uni-6. The steps of building the App remain the same.
 {% endhint %}
 
 ### Defining our App
@@ -92,6 +94,10 @@ eyJzdGFraW5nX3Rva2VuIjp7ImlkZW50aWZpZXIiOiJjdzIwIn19
 
 #### App
 
+{% hint style="warning" %}
+The primitive address used here might be outdated in the future. Check our [deployed contracts](<../platform-and-framework/deployed-contracts (1).md>) to get the latest registry.
+{% endhint %}
+
 ```json
 {
   "name": "Staking App",
@@ -113,29 +119,25 @@ eyJzdGFraW5nX3Rva2VuIjp7ImlkZW50aWZpZXIiOiJjdzIwIn19
 
 ### Instantiating the App
 
-First, let us open the CLI by running `andr` in our terminal. We then need to chose the chain we want to deploy on. For this example I will be using the Juno testnet uni-5:
+If you do not have the CLI downloaded, go to the [Introduction to Apps](introduction-to-apps.md) section to get the latest version.
 
-```
-chain use uni-5
-```
+First, let us open the CLI by running `andr` in our terminal. We then need to choose the chain we want to deploy on. Run `"chain use"` in the CLI and select the testnet that you want to deploy on. For this example I will be using the juno testnet uni-5.
 
 {% hint style="warning" %}
-If this is the first time using the CLI make sure to run `"wallets add <wallet-name>"`
-
-in order to create a wallet. Then go to the Juno faucet and request some tokens.
+If this is the first time using the CLI make sure to run `"wallets add <wallet-name>"`in order to create a wallet. Then go to that chain's faucet (usually located in their discord) and request tokens.
 {% endhint %}
 
-The Andromeda CLI will open and we can now instantiate our App. We will be using our wasm command to instantiate our app:
+We have already uploaded the App ADO to the uni-5 testnet. The code I will use is 98. This code Id will most likely be outdated in the future. A simple way to check the latest code id for the App ADO is to query it from the ADODB using the the chain you want to use.&#x20;
 
-{% hint style="warning" %}
-I have already uplaoded the App contract to the uni-5 testnet. The code Id to use is 98. If you want to upload a new one to make sure it is the latest version, you need to:
+&#x20;In the CLI, while connected to the chain of choice, run:
 
-\-Clone our [Repo](https://github.com/andromedaprotocol/andromeda-core) and build the contract&#x20;
+```
+ado db getcodeid app
+```
 
-\-In artifacts, run `wasm upload andromeda_app_contract.wasm` in CLI
+The code Id to use will be returned.
 
-\-You will get a new code Id to use
-{% endhint %}
+&#x20;Now we can instantiate our App. We will be using our wasm command to instantiate our app:
 
 ```
 wasm instantiate 98 '{"name": "Staking App","app": [{"name": "cw20","ado_type": "cw20","instantiate_msg": "eyJuYW1lIjogIlN0YWtpbmcgVG9rZW4iLCJzeW1ib2wiOiJTVEsiLCJkZWNpbWFscyI6NiwiaW5pdGlhbF9iYWxhbmNlcyI6W3siYWRkcmVzcyI6Imp1bm8xemtwdGhxc3ozdWQ5N2ZtNnA0a3hjcmE4YWU5OWpnemF1dWd5ZW0iLCJhbW91bnQiOiIxMDAwMCJ9LHsiYWRkcmVzcyI6Imp1bm8xZTUzdnRrN2ZtcXpmdHRkdnBmNGEzcHl4MGU3OXdrbWp6aDZxc2siLCJhbW91bnQiOiIxMDAwMCJ9LHsiYWRkcmVzcyI6Imp1bm8xOXMzbDN3aDVhM3c1ZHB5djZ2MjM0MmFlajM5bXdtamVhOHZwc24iLCJhbW91bnQiOiIxMDAwMCJ9IF19ICA="},{"name": "staking","ado_type": "cw20-staking","instantiate_msg": "eyJzdGFraW5nX3Rva2VuIjp7ImlkZW50aWZpZXIiOiJjdzIwIn19"}],"primitive_contract": "juno133fdsnvcah870exzcyxknydswyh778jfhwxzlhhgjuagh4482zpqp856dz"}'
