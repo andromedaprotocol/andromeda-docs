@@ -6,10 +6,10 @@ description: Queries using our GraphQL server
 
 ### Available Commands
 
-| Command    | Description                                                              |
-| ---------- | ------------------------------------------------------------------------ |
-| **app**    | Queries details about an app.                                            |
-| **assets** | Queries details about your deployed apps and ADOs for the current chain. |
+| Command                             | Description                                                              |
+| ----------------------------------- | ------------------------------------------------------------------------ |
+| ****[**app**](gql.md#app)****       | Queries details about an app.                                            |
+| ****[**assets**](gql.md#assets)**** | Queries details about your deployed apps and ADOs for the current chain. |
 
 ## App
 
@@ -24,7 +24,7 @@ gql app <contract address>
 #### Example
 
 ```
-gql app juno16k0hp6eetdrus3lga005ug0vpt4cz88nwjpmfr30szfs578p46nq90j5eh
+gql app andr1vtsclrxc0vk8qx3xqj4nm9uczqxc5rh3w4ey2ha9zz0cpv8lrncsp436gs
 ```
 
 #### Response
@@ -32,19 +32,18 @@ gql app juno16k0hp6eetdrus3lga005ug0vpt4cz88nwjpmfr30szfs578p46nq90j5eh
 The response includes the owner address, app name, and components of the app.
 
 ```
-Searching the Cosmos...
-Owner: juno1zkpthqsz3ud97fm6p4kxcra8ae99jgzauugyem
-App Name: example_app
+- Searching the Cosmos...
+Owner: andr1vcmlq0snkv8tjccxq8r86aqd3l67xlwnqgma7q
+App Name: Crowdfunding
 
 Components
-crowdfund     crowdfund juno13u5rdsafnr6z9sj0xdkyspg99k2vvu7afj275k4zpr4huh0yqqaq2wegdu
-reserve_vault vault     juno1mcmld8th8yyjf2l8aj3hpzzjyuq73fseakp5n8jhwkfkcdgnyutsqul7uj
-sale_splitter splitter  juno1a697d7fy5wwyuvjc0cexhpc63jvuzk2r58y9p70e45esvalvfjtsyr2y5x
-tokens        cw721     juno1yhdqlzav3zpseur7xyhcwmx7tmru7d0phvyxc3zalaaufja6sh3szzdftx
-yield_vault   vault     juno1ju7fn05hscckhtd5q9dutdgpp09s9403le080agnm6m8e6uaywcsrurk08
+Crowdfund   crowdfund andr10y4jzxavk0uw2usy7ezt4dq5h0k64na8c9yz3rq3dk50v7j8mezsq8cnce
+Splitter    splitter  andr1nywjc2mfzl2fud8epzrllj2f2xlpnk2tfpnf49qh02z7c97gv2dqw3qvdn
+Tokens      cw721     andr1zkjmt8x78w5de0pysh6yrdd3alxf7dp8uv80ey2yadjxsaywy3vquj76lx
+Yield-Vault vault     andr1k528kg8h3q56j5yazshv39fafmhjzl4540u7w36g6q2amgyrpwpsf50ury
 ```
 
-### Assets
+## Assets
 
 Queries details about your deployed apps and ADOs for the current chain.
 
@@ -54,20 +53,20 @@ Queries details about your deployed apps and ADOs for the current chain.
 gql assets
 ```
 
+{% hint style="warning" %}
+The result is the same as running "ado list"
+{% endhint %}
+
 #### Example
 
 ```
-? $main@uni-5> gql assets 
-- Searching the Cosmos...
-Address                                                         ADO Type      App Contract                                                   
-juno1xg3c9lx8554s44umj6f9x4tknn9yyv8v0yfwys4y4l4xgdjc6fysl374p2 app                                                                                                                                                
-juno1dxw33nhqz5v4ht2xu5y73y3r3epcwffqccwnnjnvkd7pl5dgxv2szumd7a app                                                                          
-juno1fjd5qr83hdkfayqaejphp2vvjacw3fye6gpl79jp5zhujtr5m3gsxgp4c8 crowdfund     juno1fjd5qr83hdkfayqaejphp2vvjacw3fye6gpl79jp5zhujtr5m3gsxgp4c8
-juno14g7rcqe0vwsf8pgaz2dg77p5mm08hvhwwfu73653406rhzh3rdgqckhq5g cw721         juno14g7rcqe0vwsf8pgaz2dg77p5mm08hvhwwfu73653406rhzh3rdgqckhq5g
-juno1khsspglsfgkhxpsyfkzd3a2cdf7d8mngpvt22m4y0uznz24mjesq3kzawz vault         juno1khsspglsfgkhxpsyfkzd3a2cdf7d8mngpvt22m4y0uznz24mjesq3kzawz
-juno1w23ad8kkfk7g7gc5cgce9c6lwnvvn4kur7ycxjkt3kfdngjkyvyskajhur vault         juno1w23ad8kkfk7g7gc5cgce9c6lwnvvn4kur7ycxjkt3kfdngjkyvyskajhur
-juno1a7arcy7k0ral0sgqncs9adgzwv8z6zvpfxggta32wauwpj2x8xksv42upn splitter      juno1a7arcy7k0ral0sgqncs9adgzwv8z6zvpfxggta32wauwpj2x8xksv42upn
-     
+? guides@galileo-3> gql assets
+⠂ Searching the Cosmos...
+Address                                                         ADO Type App Contract                                                   
+andr1dtaqwlmzlk3jku5un6h6rfunttmwsqnfz7evvdf4pwr0wypsl68qa30vxv cw20                                                                    
+andr138gmtsqwcz0z09ja6y4cs3uyestx85440xcuwsght70jvmc9v92s9lwvj0 app                                                                     
+andr1qdgvugdnscwnj8lc96q666000gyjv434kn9zl9ey3dph6p0cunuszv3dwf cw721    andr138gmtsqwcz0z09ja6y4cs3uyestx85440xcuwsght70jvmc9v92s9lwvj0
+? guides@galileo-3> () 
 ```
 
 #### Flags

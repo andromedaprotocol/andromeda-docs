@@ -2,11 +2,11 @@
 
 ### Available Commands <a href="#available-commands" id="available-commands"></a>
 
-| Command       | Description                                            |
-| ------------- | ------------------------------------------------------ |
-| **byaddress** | Gets a history of transactions for a given address     |
-| **history**   | Gets a history of transactions for your current wallet |
-| **info**      | Gets transaction info from provided hash               |
+| Command                                   | Description                                            |
+| ----------------------------------------- | ------------------------------------------------------ |
+| ****[**byaddress**](tx.md#by-address)**** | Gets a history of transactions for a given address     |
+| ****[**history**](tx.md#history)****      | Gets a history of transactions for your current wallet |
+| ****[**info**](tx.md#info)****            | Gets transaction info from provided hash               |
 
 ## By Address
 

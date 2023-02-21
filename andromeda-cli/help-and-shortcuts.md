@@ -2,30 +2,24 @@
 
 ### Help Flag
 
-The help flag can be used after any command to get information on the current command.
+The help flag can be used after any command to get information on it.
 
 #### Example
 
 ```
-? $test@uni-3> wallets --help
-Usage:
-   wallets [cmd]
-
-Valid commands:
-   add Adds a new wallet
-   list Lists all added wallets
-   rm Remove a wallet by address
-   use Sets the default wallet to use
-
-? $test@uni-3> wallets add --help
-Adds a new wallet
+? user@galileo-3> wallets add --help
+Adds a new wallet. Can be used with the --recover flag to add a wallet by mnemonic.
 
 Usage:
-wallets add <name?>
+wallets add <name>
 
 Valid flags:
 recover Recovers a wallet by mnemonic           
 help    Displays info about the current command 
+
+Any request inputs can be exited using one of the following inputs: .exit, .quit, .e, .q, exit
+Documentation can be found here: https://docs.andromedaprotocol.io/andromeda/andromeda-cli/
+
 
 ```
 
@@ -74,14 +68,16 @@ andr chain list
 
 #### Result
 
-<pre><code><strong>⠂ Loading config...
-</strong>⠂ Loading wallets...
+```
 – Connecting client...
-Name        Chain ID 
-junotestnet uni-5    
-elgafar1    elgafar-1
-galileo2    galileo-2
-pisco1      pisco-1  </code></pre>
+Name        Chain ID     
+elgafar1    elgafar-1    
+pisco1      pisco-1      
+sei-network atlantic-1   
+injective   injective-888
+galileo3    galileo-3    
+junotestnet uni-6        
+```
 
 The command runs and the result is displayed but we are still in the parent shell.&#x20;
 
@@ -92,7 +88,7 @@ Prints the current CLI version
 #### Example
 
 ```
-? main@uni-5> version
-Version: 0.0.63
-? main@uni-5> () 
+? user@galileo-3> version
+Version: 0.1.9
+? user@galileo-3> () 
 ```

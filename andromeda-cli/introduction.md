@@ -83,12 +83,14 @@ You can also create your own chain config using the [chain new](chain.md#new) co
 {% endhint %}
 
 ```
- Input the chain ID to use: (Use arrow keys)
-❯ uni-5 
-  elgafar-1 
-  galileo-2 
-  pisco-1 
-  exit 
+? Input the chain ID to use: 
+  elgafar1 
+  pisco1 
+  sei-network 
+  injective 
+❯ galileo3 
+  junotestnet 
+  exit  
 ```
 
 Choose the chain config that you want to use.
@@ -106,14 +108,14 @@ Make sure to save the **seed phrase** somewhere private and secure as it is the 
 You will be prompted to select the wallet name.&#x20;
 
 {% hint style="warning" %}
-If you are using a test-net config make sure to send some tokens to your new address from the corresponding test-net faucet on discord.
+If you are using a testnet config make sure to send some tokens to your new address from the corresponding testnet faucet (Usually on discord).
 
 If you already have an address, you can import it to the CLI using the [recover flag. ](wallets.md#flags)
 {% endhint %}
 
 ### CLI Display
 
-You will notice something similar to "`? $test@uni-5>"` in the CLI. This signifies which wallet and chain-Id are currently in use. It is formatted in the following way:
+You will notice something similar to `? user@galileo-3>` in the CLI. This signifies which wallet and chain-Id are currently in use. It is formatted in the following way:
 
 `? $<Wallet>@<ChainId>>`
 

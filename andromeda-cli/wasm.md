@@ -6,13 +6,13 @@ description: Send CosmWasm messages to the chain.
 
 ### Available Commands
 
-| Command         | Description                         |
-| --------------- | ----------------------------------- |
-| **execute**     | Executes a wasm message.            |
-| **instantiate** | Instantiates a contract by code ID. |
-| **migrate**     | Migrate a contract.                 |
-| **query**       | Queries a contract.                 |
-| **upload**      | Upload a contract wasm.             |
+| Command                                        | Description                         |
+| ---------------------------------------------- | ----------------------------------- |
+| ****[**execute**](wasm.md#execute)****         | Executes a wasm message.            |
+| ****[**instantiate**](wasm.md#instantiate)**** | Instantiates a contract by code ID. |
+| ****[**migrate**](wasm.md#migrate)****         | Migrate a contract.                 |
+| ****[**query**](wasm.md#query)****             | Queries a contract.                 |
+| ****[**upload**](wasm.md#upload)****           | Upload a contract wasm.             |
 
 ## Execute
 

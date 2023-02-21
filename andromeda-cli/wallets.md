@@ -6,12 +6,12 @@ description: The wallets handler allows you to manage your locally stored wallet
 
 ### Available Commands
 
-| Command  | Description                     |
-| -------- | ------------------------------- |
-| **add**  | Adds a new wallet               |
-| **list** | Lists all added wallets         |
-| **rm**   | Removes a wallet by address     |
-| **use**  | Sets the default wallet to use  |
+| Command                                     | Description                     |
+| ------------------------------------------- | ------------------------------- |
+| ****[**add**](wallets.md#wallets-add)****   | Adds a new wallet               |
+| ****[**list**](wallets.md#wallets-list)**** | Lists all added wallets         |
+| ****[**rm**](wallets.md#wallets-rm)****     | Removes a wallet by address     |
+| ****[**use**](wallets.md#wallets-use)****   | Sets the default wallet to use  |
 
 ## Wallets Add
 
@@ -129,7 +129,7 @@ which will prompt you to chose which wallet you want to remove.
 #### Example
 
 ```
-test@uni-3> wallets list
+test@uni-6> wallets list
 *  test juno12x7efvfn94ynqkyvdcgdndh6rqrz6u6x20jes2
    test2 juno1sra207nk6uua39dg7g5nfscnfptjmdhyzexycj
 ```
@@ -166,17 +166,17 @@ wallets use <wallet-name>
 ```
 //list the wallets
 
-? $test@uni-3> wallets list
+? $test@uni-6> wallets list
 *  test juno1ygp0dvp7gccyk2vja6p7lr7f9ulasr2h4shhx5
    test2 juno14vdzdygwg4p0l8d6ezrcsczsjy5eql79z57mvn
    
 //Chose to use second wallet
 
-? $test@uni-3> wallets use test2
+? $test@uni-6> wallets use test2
 
 //Check if the in use wallet has changed 
 
-? $test2@uni-3> wallets list
+? $test2@uni-6> wallets list
    test juno1ygp0dvp7gccyk2vja6p7lr7f9ulasr2h4shhx5
 *  test2 juno14vdzdygwg4p0l8d6ezrcsczsjy5eql79z57mvn
 ```

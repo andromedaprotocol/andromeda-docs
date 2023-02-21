@@ -6,17 +6,17 @@ description: Query, execute, or create and ADO
 
 ### Available commands
 
-| Command       | Description                                                             |
-| ------------- | ----------------------------------------------------------------------- |
-| **create**    | Creates an ADO by given type.                                           |
-| **execute**   | Executes a message on an ADO by given address.                          |
-| **db**        | Allows querying the on chain ADO Database.                              |
-| **info**      | Queries the info of ADO for a given address.                            |
-| **list**      | Queries details about your deployed apps and ADOs for the current chain |
-| **modules**   | Allows management of modules for an ADO.                                |
-| **operators** | Allows management of operators for an ADO.                              |
-| **query**     | Queries an ADO by given address.                                        |
-| **transfer**  | Transfers ownership of an ADO.                                          |
+| Command                                   | Description                                                             |
+| ----------------------------------------- | ----------------------------------------------------------------------- |
+| ****[**create**](ado.md#create)****       | Creates an ADO by given type.                                           |
+| ****[**execute**](ado.md#execute)****     | Executes a message on an ADO by given address.                          |
+| ****[**db**](ado.md#database)****         | Allows querying the on chain ADO Database.                              |
+| ****[**info**](ado.md#info)****           | Queries the info of ADO for a given address.                            |
+| ****[**list**](ado.md#list)****           | Queries details about your deployed apps and ADOs for the current chain |
+| ****[**modules**](ado.md#modules)****     | Allows management of modules for an ADO.                                |
+| ****[**operators**](ado.md#operators)**** | Allows management of operators for an ADO.                              |
+| ****[**query**](ado.md#query)****         | Queries an ADO by given address.                                        |
+| ****[**transfer**](ado.md#transfer)****   | Transfers ownership of an ADO.                                          |
 
 ## Create
 
@@ -52,13 +52,13 @@ Executes a message on an ADO by given contract address.&#x20;
 #### Usage
 
 ```
-ado execute <contract address> 
+ado execute <ado-address> 
 ```
 
 #### Example
 
 ```
-ado execute juno153xscnqm7erc847fye9p2vuqtz6465g2jr48ah5meuwzjmzlc6aqf677yd
+ado execute andr1gfddqxkhffjykm8z9wj9gym7khvazlkqx0ynsa55kd93vx4tjqws9y77pk
 ```
 
 You can then chose from the list of executes to run.
@@ -75,7 +75,7 @@ You can then chose from the list of executes to run.
 
 ## Database
 
-Allows querying the on chain ADO DB.
+Allows querying the on chain [ADO DB](../platform-and-framework/ado-base.md).
 
 | Command          | Description                                           |
 | ---------------- | ----------------------------------------------------- |
@@ -95,9 +95,9 @@ ado db address
 #### Example
 
 ```
-? main@uni-5> ado db address
-juno17uvgdeum5fnxns4u6r547tgsucd7zwss9tgzh8rllwvcjqmlzrzq6p50yc
-? main@uni-5> () 
+? user@galileo-3> ado db address
+andr1yyca08xqdgvjz0psg56z67ejh9xms6l436u8y58m82npdqqhmmtq9snx2v
+? user@galileo-3> () 
 ```
 
 ### Db Getcodeid
@@ -113,9 +113,10 @@ ado db getcodeid <ado key>
 **Example**
 
 ```
-? main@uni-5> ado db getcodeid auction
+? user@galileo-3> ado db getcodeid auction
 - Querying contract...
-Code ID: 179
+Code ID: 11
+? user@galileo-3> () 
 ```
 
 ## Info
@@ -125,22 +126,22 @@ Queries the info of specified ADO contract address.
 #### Usage
 
 ```
-ado info <ADO address>
+ado info <ado-address>
 ```
 
 #### Example
 
 ```
-? main@uni-5> ado info juno1a7arcy7k0ral0sgqncs9adgzwv8z6zvpfxggta32wauwpj2x8xksv42upn
- Querying ADO info...
+? user@galileo-3> ado info andr1yyca08xqdgvjz0psg56z67ejh9xms6l436u8y58m82npdqqhmmtq9snx2v
+– Querying ADO info...
 
 ADO Info
-Type: splitter
-Version: v0.1.0
-Owner: juno1zkpthqsz3ud97fm6p4kxcra8ae99jgzauugyem
-Publisher: juno1dxw33nhqz5v4ht2xu5y73y3r3epcwffqccwnnjnvkd7pl5dgxv2szumd7a
-Created Height: 76940
-? main@uni-5> () 
+Type: adodb
+Version: v0.1.1
+Owner: andr1jr7l9mw0mkqm7vdmr7vclsqcf9u06x06gcfm9x
+Publisher: andr1jr7l9mw0mkqm7vdmr7vclsqcf9u06x06gcfm9x
+Created Height: 11840
+? user@galileo-3> () 
 ```
 
 ## List
@@ -156,19 +157,13 @@ ado list
 #### Example
 
 ```
- $main@uni-5> ado list
+ ? guides@galileo-3> ado list
 ⠂ Searching the Cosmos...
-Address                                                         ADO Type      App Contract                                                   
-juno1xg3c9lx8554s44umj6f9x4tknn9yyv8v0yfwys4y4l4xgdjc6fysl374p2 app                                                                          
-juno12rldgl4x4clvkgmw6npjy5htupp24gercczjsr3d97hcte3vsj0q4fvs63 app                                                                          
-juno1fehkdr6w47w35ux6npv3hqhhctt9fcllxt4ccswj53800n4c80gqjrnu0d app                                                                          
-juno1dxw33nhqz5v4ht2xu5y73y3r3epcwffqccwnnjnvkd7pl5dgxv2szumd7a app                                                                          
-juno1fjd5qr83hdkfayqaejphp2vvjacw3fye6gpl79jp5zhujtr5m3gsxgp4c8 crowdfund     juno1fjd5qr83hdkfayqaejphp2vvjacw3fye6gpl79jp5zhujtr5m3gsxgp4c8
-juno14g7rcqe0vwsf8pgaz2dg77p5mm08hvhwwfu73653406rhzh3rdgqckhq5g cw721         juno14g7rcqe0vwsf8pgaz2dg77p5mm08hvhwwfu73653406rhzh3rdgqckhq5g
-juno1khsspglsfgkhxpsyfkzd3a2cdf7d8mngpvt22m4y0uznz24mjesq3kzawz vault         juno1khsspglsfgkhxpsyfkzd3a2cdf7d8mngpvt22m4y0uznz24mjesq3kzawz
-juno1w23ad8kkfk7g7gc5cgce9c6lwnvvn4kur7ycxjkt3kfdngjkyvyskajhur vault         juno1w23ad8kkfk7g7gc5cgce9c6lwnvvn4kur7ycxjkt3kfdngjkyvyskajhur
-juno1a7arcy7k0ral0sgqncs9adgzwv8z6zvpfxggta32wauwpj2x8xksv42upn splitter    
-? $main@uni-5> () 
+Address                                                         ADO Type App Contract                                                   
+andr1dtaqwlmzlk3jku5un6h6rfunttmwsqnfz7evvdf4pwr0wypsl68qa30vxv cw20                                                                    
+andr138gmtsqwcz0z09ja6y4cs3uyestx85440xcuwsght70jvmc9v92s9lwvj0 app                                                                     
+andr1qdgvugdnscwnj8lc96q666000gyjv434kn9zl9ey3dph6p0cunuszv3dwf cw721    andr138gmtsqwcz0z09ja6y4cs3uyestx85440xcuwsght70jvmc9v92s9lwvj0
+? guides@galileo-3> () 
 ```
 
 #### Flags
@@ -196,7 +191,7 @@ Add a module to an ADO.
 #### Usage
 
 ```
-ado modules add <address>
+ado modules add <ado-address>
 ```
 
 You are then prompted to provide the module's type and the module's contract address.
@@ -204,26 +199,26 @@ You are then prompted to provide the module's type and the module's contract add
 #### Example
 
 ```
-? main@uni-5> ado modules add juno1err4ar9c92gdrunrln6fg302m8uxs686qx5wm3affm8g633x5dvs4edwq6
-⠂ Querying contract...
+? guides@galileo-3> ado modules add andr1qdgvugdnscwnj8lc96q666000gyjv434kn9zl9ey3dph6p0cunuszv3dwf
+— Querying contract...
 ? Input the module type: address-list
-? Input the module address: juno1a3hm3ne4fqdhtwykt0d5dzxtz88kgr6cwg9pdk4nj8agl93kqtvq5kgdq6
-? Should this module be mutable? Yes
-– Simulating Tx...
+? Input the module address: andr1swwe3v2tezqgfwrh8wg8vxv6xgqwxtar8pn4yphfn40qdrj8fnvslhcdz7
+? Should this module be mutable? No
+— Simulating Tx...
 Transaction simulated!
 
 Cost Estimates
-Gas Used: 164852
+Gas Used: 165146
 Fee estimates:
-   4122ujunox
+   4129uandr
 
 ? Do you want to proceed? Yes
 - Executing Tx...
 
 Module registered!
 
-https://testnet.mintscan.io/juno-testnet/txs/8DA807AE77BB956D89E5B7FE19E6A2D6685AA34C4650F721ED396C34421F0308
-? main@uni-5> ()
+https://testnets.cosmosrun.info/andromeda-galileo-3/tx/8FA6B89EEAA8F33E767FEB9985ECFCE0B55CA51841D69568424E963B3AD4BE0E
+? guides@galileo-3> () 
 ```
 
 #### Flags
@@ -243,35 +238,34 @@ Edits an already added module attached to an ADO.
 #### Usage
 
 ```
-ado modules edit <address>
+ado modules edit <ado-address>
 ```
 
 #### Example
 
 ```
-? main@uni-5> ado modules edit juno1err4ar9c92gdrunrln6fg302m8uxs686qx5wm3affm8g633x5dvs4edwq6
+? keplr-g3@galileo-3> ado modules edit andr1pjpvwn5065jcw5qgkx3qdzvxfvkqcepnku9gmyw3mtueeq4320qqr9dc4g
 - Querying contract...
 – Querying modules...
-? Choose which module to edit: (1) address-list juno1a3hm3ne4fqdhtwykt0d5dzxtz88kgr6cwg9pdk4nj8agl93kqtvq5kgdq6
+? Choose which module to edit: (1) address-list andr1swwe3v2tezqgfwrh8wg8vxv6xgqwxtar8pn4yphfn40qdrj8fnvslhcdz7
 ? Input the module type (currently: address-list): address-list
-? Input the module address (currently: juno1a3hm3ne4fqdhtwykt0d5dzxtz88kgr6cwg9pdk4nj8agl93kqtvq5kgdq6): 
-juno1f2yzuc6agmkk8y0m3t05evsx475rf3tfk2xmqy8zs0xfzmvpy7kqggksl0
-? Should this module be mutable? (currently: juno1a3hm3ne4fqdhtwykt0d5dzxtz88kgr6cwg9pdk4nj8agl93kqtvq5kgdq6) Yes
+? Input the module address (currently: andr1swwe3v2tezqgfwrh8wg8vxv6xgqwxtar8pn4yphfn40qdrj8fnvslhcdz7): andr1kxdy6hhmanuas0lajj77uvsk636h8270ze62792shss62ahr56tqcm0tfh
+? Should this module be mutable? (currently: andr1swwe3v2tezqgfwrh8wg8vxv6xgqwxtar8pn4yphfn40qdrj8fnvslhcdz7) Yes
 - Simulating Tx...
 Transaction simulated!
 
 Cost Estimates
-Gas Used: 161077
+Gas Used: 161311
 Fee estimates:
-   4027ujunox
+   4033uandr
 
 ? Do you want to proceed? Yes
-- Executing Tx...
+— Executing Tx...
 
-Module removed!
+Module updated!
 
-https://testnet.mintscan.io/juno-testnet/txs/EBE4F1D0EB50F2335602E37AD08C12DFD667057B18315DFF87BAE60B0C23BA12
-? main@uni-5> () 
+https://testnets.cosmosrun.info/andromeda-galileo-3/tx/FF7F3A6581A92605971109D05F7F5F739A18B8103725252409839CB93753634B
+? keplr-g3@galileo-3> () 
 ```
 
 #### Flags
@@ -291,19 +285,18 @@ Lists all the modules of the specified ADO.
 #### Usage
 
 ```
-ado modules list <address>
+ado modules list <ado-address>
 ```
 
 #### Example
 
 ```
-? main@uni-5> ado modules list juno175hu3dxvdy40snmpwhlkzaklp5m60qj4gmghhrhs7st5pjw7ca4s2x6kz6
+? keplr-g3@galileo-3> ado modules list andr1pjpvwn5065jcw5qgkx3qdzvxfvkqcepnku9gmyw3mtueeq4320qqr9dc4g
 – Querying modules...
 
-  Type         Address   Mutable
-1 address-list whitelist x      
-2 rates        royalties x      
-? main@uni-5> () 
+  Type         Address                                                         Mutable
+1 address-list andr1kxdy6hhmanuas0lajj77uvsk636h8270ze62792shss62ahr56tqcm0tfh ✓      
+? keplr-g3@galileo-3> () 
 ```
 
 ### Module Remove
@@ -317,31 +310,31 @@ You can only remove mutable modules.
 #### Usage
 
 ```
-ado modules rm <address>
+ado modules rm <ado-address>
 ```
 
 #### Example
 
 ```
-? main@uni-5> ado modules rm juno1yvxl7jcuged55rjl57cd4c967p7l48avnv9r2fcgs0sshl07fuasn8u22f
-⠂ Querying contract...
-– Querying modules...
-? Choose which module to remove: (1) address-list juno1a3hm3ne4fqdhtwykt0d5dzxtz88kgr6cwg9pdk4nj8agl93kqtvq5kgdq6
-⠂ Simulating Tx...
+? keplr-g3@galileo-3> ado modules rm andr1pjpvwn5065jcw5qgkx3qdzvxfvkqcepnku9gmyw3mtueeq4320qqr9dc4g
+- Querying contract...
+- Querying modules...
+? Choose which module to remove: (1) address-list andr1kxdy6hhmanuas0lajj77uvsk636h8270ze62792shss62ahr56tqcm0tfh
+— Simulating Tx...
 Transaction simulated!
 
 Cost Estimates
-Gas Used: 144551
+Gas Used: 144518
 Fee estimates:
-   3614ujunox
+   3613uandr
 
 ? Do you want to proceed? Yes
 – Executing Tx...
 
 Module removed!
 
-https://testnet.mintscan.io/juno-testnet/txs/00C0EA38B09593155414CCB1088E0B7F7319F365A73FA0DEE1E9ECEA36D64FEC
-? main@uni-5> () 
+https://testnets.cosmosrun.info/andromeda-galileo-3/tx/1AF193D42F08919C0A62EBC3F4D364F6864AB4EA721AB31F8DF2754EC4A32FF2
+? keplr-g3@galileo-3> () 
 ```
 
 **Flags**
@@ -371,30 +364,29 @@ Adds an operator to an ADO.
 #### Usage
 
 ```
-ado operators add <address> <new operator address>
+ado operators add <ado-address> <new operator address>
 ```
 
 #### Example
 
 ```
-? main@uni-5> ado operators add juno1yvxl7jcuged55rjl57cd4c967p7l48avnv9r2fcgs0sshl07fuasn8u22f juno17ssms3dz3n88ltauh2735df6qslxttpxst0njsd8nx3x9vde5yfqyzt
-l5p
-⠂ Querying operators...
-– Simulating Tx...
+? keplr-g3@galileo-3> ado operators add andr1pjpvwn5065jcw5qgkx3qdzvxfvkqcepnku9gmyw3mtueeq4320qqr9dc4g andr105j9m29uk2486rjwawkcucp8e3l52f8wdlm8ay
+- Querying operators...
+— Simulating Tx...
 Transaction simulated!
 
 Cost Estimates
-Gas Used: 158951
+Gas Used: 147859
 Fee estimates:
-   3974ujunox
+   3697uandr
 
 ? Do you want to proceed? Yes
-⠂ Executing Tx...
+- Executing Tx...
 
 Operator added!
 
-https://testnet.mintscan.io/juno-testnet/txs/1163326756B4401823E7E627D13F7A859D77DBB086B1EC7DAF766650FD397B6A
-? main@uni-5> () 
+https://testnets.cosmosrun.info/andromeda-galileo-3/tx/3756D53D316816C3225A7BE8560A3E83D4DD933D56092C449F4717E26DC3469A
+? keplr-g3@galileo-3> () 
 ```
 
 | Flag         | Description                                                                      | Usage                                  |
@@ -412,19 +404,18 @@ Lists all the operators of an ADO.
 #### Usage
 
 ```
-ado operators list <address>
+ado operators list <ado-address>
 ```
 
 #### Example
 
 ```
-? main@uni-5> ado operators list juno1yvxl7jcuged55rjl57cd4c967p7l48avnv9r2fcgs0sshl07fuasn8u22f
-⠂ Querying operators...
+? keplr-g3@galileo-3> ado operators list andr1pjpvwn5065jcw5qgkx3qdzvxfvkqcepnku9gmyw3mtueeq4320qqr9dc4g
+- Querying operators...
 
-Operator Address                                               
-juno17ssms3dz3n88ltauh2735df6qslxttpxst0njsd8nx3x9vde5yfqyztl5p
-juno1err4ar9c92gdrunrln6fg302m8uxs686qx5wm3affm8g633x5dvs4edwq6
-? main@uni-5> () 
+Operator Address                           
+andr105j9m29uk2486rjwawkcucp8e3l52f8wdlm8ay
+? keplr-g3@galileo-3> () 
 ```
 
 ### Operators Remove  <a href="#operators-add" id="operators-add"></a>
@@ -434,29 +425,29 @@ Removes an operator from an ADO.
 **Usage**
 
 ```
-ado operators rm <address> <operator address to remove>
+ado operators rm <ado-address> <operator address to remove>
 ```
 
 **Example**
 
 ```
-? main@uni-5> ado operators rm juno1yvxl7jcuged55rjl57cd4c967p7l48avnv9r2fcgs0sshl07fuasn8u22f juno17ssms3dz3n88ltauh2735df6qslxttpxst0njsd8nx3x9vde5yfqyztl5p
+? keplr-g3@galileo-3> ado operators rm andr1pjpvwn5065jcw5qgkx3qdzvxfvkqcepnku9gmyw3mtueeq4320qqr9dc4g andr105j9m29uk2486rjwawkcucp8e3l52f8wdlm8ay
 - Querying operators...
 – Simulating Tx...
 Transaction simulated!
 
 Cost Estimates
-Gas Used: 152922
+Gas Used: 143173
 Fee estimates:
-   3824ujunox
+   3580uandr
 
 ? Do you want to proceed? Yes
 – Executing Tx...
 
 Operator removed!
 
-https://testnet.mintscan.io/juno-testnet/txs/740625CD4B4D0882D843BE75DBD07288BA1FB9FBCCEB330D237E7F61B0EDF16B
-? main@uni-5> () 
+https://testnets.cosmosrun.info/andromeda-galileo-3/tx/2DA9C3EDD1CD620CF5C57797A9023993A48AD18A2ED682E6601B344280B75BA7
+? keplr-g3@galileo-3> () 
 ```
 
 #### Flags
@@ -476,7 +467,7 @@ Queries an ADO by given contract address.
 #### Usage
 
 ```
-ado query <address>
+ado query <ado-address>
 ```
 
 #### Example

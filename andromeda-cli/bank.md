@@ -2,10 +2,10 @@
 
 ### Available Commands
 
-| Command     | Description                      |
-| ----------- | -------------------------------- |
-| **balance** | Gets the balance for an address. |
-| **send**    | Sends tokens to another address. |
+| Command                                | Description                      |
+| -------------------------------------- | -------------------------------- |
+| ****[**balance**](bank.md#balance)**** | Gets the balance for an address. |
+| ****[**send**](bank.md#send)****       | Sends tokens to another address. |
 
 ## Balance
 
@@ -24,11 +24,11 @@ Leaving the address field empty will get the balance of the current wallet being
 #### Example
 
 ```
-? $main@uni-5> bank balance ujunox juno1zkpthqsz3ud97fm6p4kxcra8ae99jgzauugyem
+? keplr-g3@galileo-3> bank balance uandr andr105j9m29uk2486rjwawkcucp8e3l52f8wdlm8ay
 
 Balance
-ujunox: 3598667
-? $main@uni-5> () 
+uandr: 9048072
+? keplr-g3@galileo-3> () 
 ```
 
 ## Send
@@ -48,5 +48,11 @@ Make sure to include the denom with the amount.&#x20;
 #### **Example**
 
 ```
-bank send juno12x7efvfn94ynqkyvdcgdndh6rqrz6u6x20jes2 6000ujunox
+? keplr-g3@galileo-3> bank send andr1g0c0y8prkhwrnffrw8afwdplv9wm5wgt9hdv7u 500uandr
+? Are you sure you want to send 500uandr to andr1g0c0y8prkhwrnffrw8afwdplv9wm5wgt9hdv7u? Yes
+— Sending tokens...
+
+Sent 500uandr to andr1g0c0y8prkhwrnffrw8afwdplv9wm5wgt9hdv7u!
+https://testnets.cosmosrun.info/andromeda-galileo-3/tx/81C2F2BF1A900D2BE4DC82CB11E5B5ADB4559F8C67DDF9539C6C7DE6CBA85996
+? keplr-g3@galileo-3> () 
 ```

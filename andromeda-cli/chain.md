@@ -6,16 +6,16 @@ description: Manage chains and configs
 
 ### Available Commands
 
-| Command    | Description                             |
-| ---------- | --------------------------------------- |
-| **config** | Displays current chain config.          |
-| **copy**   | Creates a copy of a current config.     |
-| **get**    | Displays current value for a given key. |
-| **list**   | Lists all the currently saved configs.  |
-| **new**    | Creates a new config.                   |
-| **rm**     | Removes a config by name or chain ID.   |
-| **set**    | Sets the value for a given config key.  |
-| **use**    | Swap to a saved config.                 |
+| Command                               | Description                             |
+| ------------------------------------- | --------------------------------------- |
+| ****[**config**](chain.md#config)**** | Displays current chain config.          |
+| ****[**copy**](chain.md#copy)****     | Creates a copy of a current config.     |
+| ****[**get**](chain.md#get)****       | Displays current value for a given key. |
+| ****[**list**](chain.md#list)****     | Lists all the currently saved configs.  |
+| ****[**new**](chain.md#new)****       | Creates a new config.                   |
+| ****[**rm**](chain.md#remove)****     | Removes a config by name or chain ID.   |
+| ****[**set**](chain.md#set)****       | Sets the value for a given config key.  |
+| ****[**use**](chain.md#use)****       | Swap to a saved config.                 |
 
 ## Config
 
@@ -78,17 +78,20 @@ chain copy <current config name/chainId> <new config name>
 #### Example
 
 ```
-? $main@elgafar-1> chain copy elgafar-1 test
+? keplr-g3@galileo-3> chain copy galileo3 test
+- Loading config...
 Config loaded!
-– Connecting client...
-
-? $main@elgafar-1> chain list
-Name     Chain ID 
-uni3     uni-3    
-elgafar1 elgafar-1
-galileo2 galileo-2
-pisco1   pisco-1  
-test     elgafar-1
+- Connecting client...
+? keplr-g3@galileo-3> chain list
+Name        Chain ID     
+elgafar1    elgafar-1    
+pisco1      pisco-1      
+sei-network atlantic-1   
+injective   injective-888
+galileo3    galileo-3    
+junotestnet uni-6        
+test        galileo-3    
+? keplr-g3@galileo-3> () 
 ```
 
 {% hint style="warning" %}
@@ -135,11 +138,14 @@ chain list
 #### Example
 
 ```
-? $main@uni-3> chain list
-Chain ID 
-uni-3    
-galileo-2
-elgafar-1
+? keplr-g3@galileo-3> chain list
+Name        Chain ID     
+elgafar1    elgafar-1    
+pisco1      pisco-1      
+sei-network atlantic-1   
+injective   injective-888
+galileo3    galileo-3    
+junotestnet uni-6         
 ```
 
 {% hint style="warning" %}
@@ -159,18 +165,20 @@ chain new <name>
 #### Example
 
 ```
-? $main@elgafar-1> chain new tutorial
+? keplr-g3@galileo-3> chain new tutorial
 ```
 
 You will be prompted to enter the required config fields. We can then query the configs:&#x20;
 
 ```
-? $main@elgafar-1> chain list
-Name     Chain ID 
-uni3     uni-3    
-elgafar1 elgafar-1
-galileo2 galileo-2
-pisco1   pisco-1  
+? keplr-g3@galileo-3> chain list
+Name        Chain ID     
+elgafar1    elgafar-1    
+pisco1      pisco-1      
+sei-network atlantic-1   
+injective   injective-888
+galileo3    galileo-3    
+junotestnet uni-6 
 tutorial elgafar-1
 ```
 
@@ -191,12 +199,7 @@ chain rm <config name>
 #### Example
 
 ```
-? $main@uni-5> chain rm copyofjuno
-? Select new config to use: (Use arrow keys)
-❯ junotestnet 
-  elgafar1 
-  galileo2 
-  pisco1 
+? keplr-g3@galileo-3> chain rm tutorial
 ```
 
 ## Set
@@ -218,8 +221,8 @@ chain set <key> <value>
 Change some of the values in the config:
 
 ```
-// Set the default fee to 0.03ujunox
-? $test@uni-3> chain set defaultFee 0.03ujunox
+// Set the default fee to 0.05uandr
+? user@galileo-3> chain set defaultFee 0.05uandr
 ```
 
 Run `chain config` to see the changes in the config.&#x20;
@@ -239,66 +242,37 @@ chain use <chainId/name>
 ```
 // Get a list of chains saved. elgafar-1 is currently used. 
 
-? $main@elgafar-1> chain list
-Name     Chain ID 
-uni3     uni-3    
-elgafar1 elgafar-1
-galileo2 galileo-2
-pisco1   pisco-1  
+? guide@elgafar-1> chain list
+Name        Chain ID     
+elgafar1    elgafar-1    
+pisco1      pisco-1      
+sei-network atlantic-1   
+injective   injective-888
+galileo3    galileo-3    
+junotestnet uni-6        
+example     galileo-3      
 
-// Set pisco-1 as the config to use using the name.
+// Set galileo-3 as the config to use using the ID.
 
-? $main@elgafar-1> chain use pisco1
+? guide@elgafar-1> chain use galileo-3
+⠂ Loading configs...
+– Loading config...
+Config loaded!
+⠂ Connecting client...
+? user@galileo-3> ()  
+
+//Set elgafar-1 as the config to use using the name.
+
+? user@galileo-3> chain use elgafar1
+- Loading configs...
+– Loading config...
 Config loaded!
 - Connecting client...
-? $pisco-1> () 
-
-//Set galileo-2 as the config to use using the chainId.
-
-? $pisco-1> chain use galileo-2
-Config loaded!
-– Connecting client...
-? $main@galileo-2> () 
+? guide@elgafar-1> () 
 ```
 
 ## CLI Configs
 
-The default configs are saved in our GraphQL server, and can be easily fetched by anyone:
+The default configs are saved in our GraphQL server, and can be easily fetched by anyone.
 
-The following configs are currently saved:
-
-| Chain     | Config-Testnets |
-| --------- | --------------- |
-| Andromeda | galileo-2       |
-| Juno      | uni-5           |
-| Stargaze  | elgafar-1       |
-| Terra-2   | pisco-1         |
-
-To query the configs from the GQL server visit [https://andr-graphql.herokuapp.com/graphql](https://andr-graphql.herokuapp.com/graphql) then run the following query:
-
-{% hint style="warning" %}
-You can get all the configs from the CLI by running [chain config](chain.md#config).&#x20;
-{% endhint %}
-
-```
-query {
-    chainConfigs {
-    allConfigs {
-      addressPrefix
-      blockExplorerAddressPages
-      blockExplorerTxPages
-      chainId
-      chainName
-      chainType
-      chainUrl
-      defaultFee
-      iconUrls {
-        lg
-        sm
-      }
-      name
-      registryAddress
-    }
-  }
-}
-```
+You can get all the configs from the CLI by running [chain config](chain.md#config).
