@@ -44,8 +44,8 @@ These addresses will be used when deploying Andromeda Apps
 {% tab title="Testnet (pisco-1)" %}
 | Contract               | Address                                                          | Description                                                                  |
 | ---------------------- | ---------------------------------------------------------------- | ---------------------------------------------------------------------------- |
-| **ADODB**              | terra16v8ha6vfvmhk5gx0r84degpgszc2kt5n29w47rqdh547aclg5kfq6axe3n | Contract used to store the code IDs of all the other ADOs.                   |
-| **Registry/Primitive** | terra1tf8kr3v2czkwrmqy4dp4g6g4xw2lnaga7vjct570708z3lg6nylqdklh5p | Contract used to save the factory address and connect it to Andromeda Apps.  |
+| **ADODB**              | terra1jf6wpg3ysz7s7fydv7scuu2h3eg50aanjzm4lm39ey702ckwvfsqcjndsv | Contract used to store the code IDs of all the other ADOs.                   |
+| **Registry/Primitive** | terra1v9lw7tvkx85m6ckr6q27qyq6zaf9dauat8tpkyykyvjt6kcwy8kqr8tx7z | Contract used to save the factory address and connect it to Andromeda Apps.  |
 {% endtab %}
 {% endtabs %}
 
