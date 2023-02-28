@@ -7,7 +7,7 @@ The **Marketplace** ADO is a smart contract that allows you to sell your NFTs in
 The contract supports [modules](broken-reference) to extend it's functionality.
 
 {% hint style="warning" %}
-&#x20;Each sale is assigned an Id which starts at 1 and increments for each new sale. .
+&#x20;Each sale is assigned an Id which starts at 1 and increments for each new sale.&#x20;
 {% endhint %}
 
 **Ado\_type:** marketplace

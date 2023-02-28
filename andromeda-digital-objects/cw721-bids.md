@@ -4,6 +4,8 @@
 
 The **CW721 Bids ADO** is a smart contract used to buy/sell NFT tokens. It allows users to place a bid on a certain token which can then be accepted by the seller if satisfied. Once a bid is placed, funds are allocated for the purchase until the bid is expired, accepted, canceled, or a higher bid has been made.
 
+To accept a bid, the owner of the NFT need to transfer the NFT to the highest bidder. This will automatically accept the bid, transfering the NFT to the bidder and the funds to the seller.&#x20;
+
 The Bids ADO  is not built to work as a standalone contract, instead it is implemented as a [module](../modules/cw721-bids-module.md) for the NFT Collectible ADO facilitating the process of trading NFTs.&#x20;
 
 **Ado\_type**: cw721-bids
@@ -116,11 +118,9 @@ pub enum ExecuteMsg{
 
 ### AcceptBid
 
-Accepts a bid that is placed on your NFT.&#x20;
+Accepts a bid that is placed on your NFT.  A bid is accepted by calling [**TransferNft**](cw721.md#transfernft) **** and specifying the recipient as the address of the highest bidder.&#x20;
 
 {% hint style="warning" %}
-Only the `andromeda_cw721_contract` can accept bids.
-
 Cannot accept a bid on a token that has a current [TransferAgreement](cw721.md#transferagreement).
 {% endhint %}
 
@@ -135,23 +135,12 @@ pub enum ExecuteMsg{
  }
 ```
 {% endtab %}
-
-{% tab title="JSON" %}
-```json
-{
-"accept_bid":{
-  "token_id":"1",
-   "recipient":"andr1..."
-   }
- }
-```
-{% endtab %}
 {% endtabs %}
 
-| Name        | Type   | Description                                  |
-| ----------- | ------ | -------------------------------------------- |
-| `token_id`  | String | The Id of the token to accept the bid on.    |
-| `recipient` | String | The address to receive the funds of the bid. |
+| Name        | Type   | Description                                                                               |
+| ----------- | ------ | ----------------------------------------------------------------------------------------- |
+| `token_id`  | String | The Id of the token to accept the bid on.                                                 |
+| `recipient` | String | The address to receive the funds of the bid. The NFT owner is assigned as the recipient.  |
 
 ### AndrReceive
 

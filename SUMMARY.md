@@ -64,6 +64,7 @@
 * [Wallets](andromeda-cli/wallets.md)
 * [Wasm](andromeda-cli/wasm.md)
 * [Clear and Exit](andromeda-cli/clear-and-exit.md)
+* [Clearing CLI Data](andromeda-cli/clearing-cli-data.md)
 
 ## Additional Resources
 
