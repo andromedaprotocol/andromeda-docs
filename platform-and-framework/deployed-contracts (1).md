@@ -7,7 +7,7 @@
 | Contract               | Address                                                         | Description                                                                |
 | ---------------------- | --------------------------------------------------------------- | -------------------------------------------------------------------------- |
 | **ADODB**              | andr1yyca08xqdgvjz0psg56z67ejh9xms6l436u8y58m82npdqqhmmtq9snx2v | Contract used to store the code IDs of all the other ADOs.                 |
-| **Registry/Primitive** | andr13ehuhysn5mqjeaheeuew2gjs785f6k7jm8vfsqg3jhtpkwppcmzql7df24 | Contract used to save the ADODB address and connect it to Andromeda Apps.  |
+| **Registry/Primitive** | andr1mfxffyrda922hpt23f7hpf8t50sadcwavkt54cuyl3w6p4zwz36sc9hfj6 | Contract used to save the ADODB address and connect it to Andromeda Apps.  |
 {% endtab %}
 {% endtabs %}
 
