@@ -2,11 +2,9 @@
 
 ## Introduction
 
-The **Primitive ADO** is a smart contract that is used to store data for another contract. It is a simple contract that allows us to store values and give them a name to reference when needed.&#x20;
+The **Primitive ADO** is a smart contract that is used to store data for another contract. It is a simple contract that allows us to store key/value pairs to be reference when needed.&#x20;
 
 The primitive contract is used in situations where data will most likely be used several times saving us the cost of redefining it every single time. Instead, the primitive contract address can be added to the ADOs that utilize it (Found in the `InstantiationMsg` of the ADO).&#x20;
-
-The primitive is also used to save the factory contract address for our Andromeda Apps.
 
 **Ado\_type**: primitive
 

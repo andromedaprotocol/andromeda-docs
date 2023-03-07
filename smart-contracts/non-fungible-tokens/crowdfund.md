@@ -2,13 +2,15 @@
 
 ## Introduction
 
-As the name suggests, the **Crowdfund** ADO is a smart contract that allows users to start a crowdfund for their projects.&#x20;
+As the name suggests, the **Crowdfund** ADO is a smart contract that allows users to start a crowdfund for their projects by selling NFTs.
 
-The owner of the contract can start the crowdfund by executing `StartSale`. Before starting the sale, they can use the contract to mint the tokens from the defined `token_address` in the `InstantiateMsg`. In order to be eligible for the sale, the minter has to be defined as the crowdfund contract.&#x20;
+The owner of the contract can start the crowdfund by executing `StartSale`. Before starting the sale, they can use the contract to mint the tokens from the specified `token_address` in the `InstantiateMsg`. In order to be eligible for the sale, the NFT needs to be minted and owned by the crowdfund ADO.&#x20;
 
-Every sale sets a `min_tokens_sold` which specifies the minimum number of tokens that need to be sold in order for the sale to be considered successful which in turn acts as insurance for the buyers by allowing them to get a refund in case this goal was not achieved.&#x20;
+We allow for owners other than the contract, incase the creator wants to set aside a few  tokens for some other use, say airdrop, team allocation, etc., but only those which have the contract as the owner will be available to sell.
 
-The contract supports [modules](broken-reference) to extend it's functionality.
+Every sale sets a `min_tokens_sold` which specifies the minimum number of tokens that need to be sold in order for the sale to be considered successful. This acts as an insurance for the buyers by allowing them to get a refund in case this goal was not achieved.&#x20;
+
+The contract supports [modules](broken-reference) to extend its functionality.
 
 **Ado\_type**: crowdfund
 
@@ -57,7 +59,7 @@ Only the contract owner can execute Mint.
 
 Minting is only allowed before a sale starts.
 
-The limit for the number of `MintMsg` that can be defined at once is 100.
+The limit for the number of `MintMsg` is 100.
 {% endhint %}
 
 {% tabs %}

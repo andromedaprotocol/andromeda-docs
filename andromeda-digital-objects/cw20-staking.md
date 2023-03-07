@@ -2,7 +2,7 @@
 
 ## Introduction
 
-This contract allows users to stake a specified token and to receive rewards in any number of other tokens in proportion to their share. The reward token does not need to be the token they stake with but it can be. The contract allows for two types of rewards:
+This **CW20 Staking ADO** allows users to stake a specified [CW20 token](cw20.md) and to receive rewards in any number of other tokens in proportion to their share. The reward token does not need to be the token they stake with but it can be. The contract allows for two types of rewards:
 
 * non-allocated rewards: These are rewards that get deposited periodically into the contract and get distributed proportionally to stakers. Rewards that are deposited are instantly granted to the stakers.&#x20;
 * Allocated rewards:  The owner deposits a number of tokens to be distributed over the course of a set time. The rewards get distributed the same way, except all of the reward tokens are already deposited in the contract.

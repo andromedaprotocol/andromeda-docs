@@ -2,14 +2,14 @@
 
 ## Introduction
 
-The **Address List** ADO is a smart contract that can be used to store a list of addresses.&#x20;
+The **Address List** ADO is a smart contract that can be used to store a list of addresses. It is one of the Andromeda [modules](../modules/module-definitions.md) that can be attached to ADOs that accept modules.&#x20;
 
 These addresses can be set as one of the following:
 
-* **Whitelist:** The addresses are given whitelist privilege, allowing them to  interact with it. If a whitelist of addresses is set, then any other address is considered as a blacklist.
-* **Blacklist:** The addresses are give blacklist restriction, preventing them to interact with the contract. If a blacklist of addresses is set, then any other address is considered as a whitelist.
+* **Whitelist:** The addresses are given whitelist privilege, allowing them to  interact/execute with the ADO that has the module attached . If a whitelist of addresses is set, then any other address is considered as a blacklist.
+* **Blacklist:** The addresses are given blacklist restriction, preventing them to interact/execute with the ADO that has the module attached. If a blacklist of addresses is set, then any other address is considered as a whitelist.
 
-This ADO is usually implemented as a [module ](../modules/address-list-module/)to interact with other ADOs, setting a whitelist/blacklist for the ADO.
+Blacklisted addresses are restricted from performing any execute message, but they can still query from the ADO.&#x20;
 
 **Ado\_type:** address-list
 
@@ -35,7 +35,7 @@ pub struct InstantiateMsg {
 
 | Name           | Type | Description                                                                                                                        |
 | -------------- | ---- | ---------------------------------------------------------------------------------------------------------------------------------- |
-| `is_inclusive` | bool | Whether or not the address list is inclusive. If `true` the address list is a whitelist, if false the address list is a blacklist. |
+| `is_inclusive` | bool | Whether or not the address list is inclusive. If `true` the address list is a whitelist. If false the address list is a blacklist. |
 
 ## ExecuteMsg
 

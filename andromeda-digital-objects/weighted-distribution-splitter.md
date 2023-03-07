@@ -2,7 +2,7 @@
 
 ## Introduction
 
-The **Weighted-Splitter** ADO is a smart contract to split funds among a set of defined recipients. Each of  the recipients is assigned a weight which is divided by the total weight to get the percentage of each of the recipients. Whenever the splitter receives funds by executing a `send` it automatically splits the funds to the defined recipients. The splitter can be locked for a specified time as a kind of insurance for recipients that their weights will not be changed for a certain period of time.
+The **Weighted-Distribution-Splitter** ADO is a smart contract to split funds among a set of defined recipients. Each of  the recipients is assigned a weight which is divided by the total weight to get the percentage of each of the recipients. Whenever the splitter receives funds by executing a `send` it automatically splits the funds to the defined recipients. The splitter can be locked for a specified time as a kind of insurance for recipients that their weights will not be changed for a certain period of time.
 
 #### Example:
 

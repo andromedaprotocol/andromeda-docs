@@ -2,14 +2,14 @@
 
 ## Introduction
 
-The **Rates** ADO is a smart contract used to impose some kind of fees on funds transactions.
+The **Rates** ADO is a smart contract used to impose some kind of fees on fund transactions.
 
-This contract is implemented as a module and attached to other contracts which would apply the specified rates on any fund transfers. The contract owner can specify specific addresses to be exempt from these rates. A small example on this would be putting rates on an NFT Collectible, sending a percentage as royalty to the original owner.&#x20;
+This contract is implemented as a [module](../../modules/module-definitions.md) and attached to other contracts which would apply the specified rates on any fund transfers. The contract owner can specify specific addresses to be exempt from these rates. A small example on this would be putting rates on a [CW721 ADO](../../andromeda-digital-objects/cw721.md), sending a percentage as tax/royalty to the original owner whenever an NFT is sold.&#x20;
 
 There are two main types of rates:
 
-* Taxes: Funds are added to the price and paid by the buyer
-* Royalties: Funds are deducted from the price and are paid by the seller.
+* **Taxes:** Funds are added to the price and paid by the buyer.
+* **Royalties**: Funds are deducted from the price and are paid by the seller.
 
 More information on how the module works can be found in the  [Rates Module](../../modules/rates-module.md) section.
 

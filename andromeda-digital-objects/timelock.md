@@ -1,6 +1,6 @@
 # Timelock
 
-The **Timelock** ADO or Escrow ADO is a smart contract built to hold funds for a period of time until the set condition is satisfied.&#x20;
+The **Timelock** ADO or Escrow ADO is a smart contract built to hold funds (Native coins) for a period of time until the set condition is satisfied.&#x20;
 
 There are two main conditions that can be used by the contract:
 
@@ -9,7 +9,7 @@ There are two main conditions that can be used by the contract:
 
 Once a condition is satisfied, the funds can be released by anyone.
 
-The contract supports [modules](broken-reference) to extend it's functionality.
+The contract supports [modules](broken-reference) to extend its functionality.
 
 **Ado\_type**: timelock
 
@@ -118,7 +118,7 @@ pub enum ExecuteMsg {
 
 | Name             | Type            | Description                                                                                                       |
 | ---------------- | --------------- | ----------------------------------------------------------------------------------------------------------------- |
-| `recipient_addr` | Option\<String> | Optional address release the funds for. Will default to the sender if not specified.                              |
+| `recipient_addr` | Option\<String> | Optional address to release the funds for. Will default to the sender if not specified.                           |
 | `start_after`    | Option\<String> | An optional address for which to start after, used for pagination.                                                |
 | `limit`          | Option\<u32>    | Optional limit to the number of timelocks to attempt to unlock. Defaults to 10 and can be set to a maximum of 30. |
 

@@ -4,9 +4,9 @@
 
 The **CW721 Bids ADO** is a smart contract used to buy/sell NFT tokens. It allows users to place a bid on a certain token which can then be accepted by the seller if satisfied. Once a bid is placed, funds are allocated for the purchase until the bid is expired, accepted, canceled, or a higher bid has been made.
 
-To accept a bid, the owner of the NFT need to transfer the NFT to the highest bidder. This will automatically accept the bid, transfering the NFT to the bidder and the funds to the seller.&#x20;
+To accept a bid, the owner of the NFT needs to transfer the NFT to the highest bidder. This will automatically accept the bid, transfering the NFT to the bidder and the funds to the seller.&#x20;
 
-The Bids ADO  is not built to work as a standalone contract, instead it is implemented as a [module](../modules/cw721-bids-module.md) for the NFT Collectible ADO facilitating the process of trading NFTs.&#x20;
+The Bids ADO  is not built to work as a standalone contract, instead it is implemented as a [module](../modules/cw721-bids-module.md) for the NFT Collectible ADO facilitating the process of buying/selling NFTs.&#x20;
 
 **Ado\_type**: cw721-bids
 

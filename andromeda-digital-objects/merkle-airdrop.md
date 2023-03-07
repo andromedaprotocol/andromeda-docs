@@ -2,7 +2,7 @@
 
 ## Introduction
 
-The Merkle-Airdrop ADO is a smart contract that allows projects to launch airdrops using the Merkle-tree (hashing). If you do not know what is a Merkle-airdrop and how it is different from a normal airdrop, please refer to the following [article](https://medium.com/mochilab/merkle-airdrop-one-of-the-best-airdrop-solution-for-token-issues-e2279df1c5c1).
+The Merkle-Airdrop ADO is a smart contract that allows projects to launch airdrops using the Merkle-tree (hashing). Uses the same logic of the [base cw20-merkel-airdrop contract](https://github.com/CosmWasm/cw-tokens/tree/main/contracts/cw20-merkle-airdrop). If you do not know what is a Merkle-airdrop and how it is different from a normal airdrop, please refer to the following [article](https://medium.com/smartz-blog/merkle-airdrop-the-basics-9a0857fcc930).
 
 **Ado\_type**: merkle-airdrop
 
@@ -90,7 +90,7 @@ Only the owner can execute `RegisterMerkleRoot`.
 | Name           | Type                                                                       | Description                                                                                      |
 | -------------- | -------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------ |
 | `merkle_root`  | String                                                                     | A hex-encoded Merkle root.                                                                       |
-| `expiration`   | Option<[Expiration](../platform-and-framework/common-types.md#expiration)> | An optional expiration for the root.                                                             |
+| `expiration`   | Option<[Expiration](../platform-and-framework/common-types.md#expiration)> | An optional expiration for the root. Defaults to never if not specified.                         |
 | `total_amount` | Option\<Uint128>                                                           | An optional amount to specify the maximum number of tokens that can be claimed from the airdrop. |
 
 ### Claim

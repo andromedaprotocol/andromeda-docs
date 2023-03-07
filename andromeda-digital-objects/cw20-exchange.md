@@ -2,7 +2,7 @@
 
 ## Introduction
 
-The **CW20 Exchange** ADO is used to sell CW20 tokens for other assets. The token to be sold is specified at instantiation and then sales can be started on the token by the contract owner. Each sale has an "asset" to purchase the tokens with. This asset can be:
+The **CW20 Exchange** ADO is used to sell CW20 tokens for other assets. The token to be sold is specified at instantiation, and then sales can be started on the token by the contract owner. Each sale has an "asset" to purchase the tokens with. This asset can be:
 
 * CW20&#x20;
 * Native

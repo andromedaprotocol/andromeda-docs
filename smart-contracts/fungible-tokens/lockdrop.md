@@ -2,7 +2,7 @@
 
 ## Introduction
 
-This ADO is another part of the toolkit of allowing a user to setup their own token. The lockdrop ADO allows users to deposit a native token in exchange for a given CW20 token (like a crowdfund). This ADO was heavily inspired by the [MARS lockdrop contract](https://github.com/mars-protocol/mars-periphery/tree/main/contracts/lockdrop).&#x20;
+This ADO is another part of the toolkit of allowing a user to setup their own [CW20 token](../../andromeda-digital-objects/cw20.md). The lockdrop ADO allows users to deposit a native token in exchange for a given CW20 token (like a crowdfund). This ADO was heavily inspired by the [MARS lockdrop contract](https://github.com/mars-protocol/mars-periphery/tree/main/contracts/lockdrop).&#x20;
 
 There are two phases:
 

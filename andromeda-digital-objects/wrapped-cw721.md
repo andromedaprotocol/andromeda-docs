@@ -2,9 +2,9 @@
 
 ## Introduction
 
-The `Wrapped-Cw721` ADO is a smart contract that wraps cw721 tokens. This makes it possible to "upgrade" existing cw721 tokens to leverage our modules. One simple example is if a user wants to leverage our `TransferAgreement` functionality to make a trade without the need of a marketplace or escrow service. In this case they can wrap the token, sell the wrapped token, and then the new owner can unwrap to get the original.
+The `Wrapped-Cw721` ADO is a smart contract that wraps[ CW721 tokens](cw721.md). This makes it possible to "upgrade" existing CW721 tokens to leverage our modules. One simple example is if a user wants to leverage our `TransferAgreement` functionality to make a trade without the need of a marketplace or escrow service. In this case they can wrap the token, sell the wrapped token, and then the new owner can unwrap to get the original.
 
-The user can deposit any cw721 token and get back a "wrapped" version which can utilize our modules. They can also be "unwrapped" back to  the underlying token by depositing the wrapped token in the contract (the creator of the contract can specify if unwrapping should be allowed or not as there are some instances where they may want to permanently wrap a token).
+The user can send any CW721 token and get back a "wrapped" version which can utilize our modules. They can also be "unwrapped" back to  the underlying token by depositing the wrapped token in the contract (the creator of the contract can specify if unwrapping should be allowed or not as there are some instances where they may want to permanently wrap a token).
 
 **Ado\_type**: wrapped-cw721
 

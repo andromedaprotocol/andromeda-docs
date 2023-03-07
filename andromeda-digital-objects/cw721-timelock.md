@@ -2,7 +2,11 @@
 
 ## Introduction
 
-Lock an NFT with a contract for a certain amount of time (currently between one day & one year). Once the timelock has expired, anyone can call the `claim` function which will send the NFT to the defined recipient.&#x20;
+Lock an NFT with a contract for a certain amount of time (currently between one day & one year). Once the timelock has expired, anyone can call the `claim` function which will send the NFT to the defined recipient. Each locked NFT has a specific lock id which is compromised of the CW721 contract address concatenated with the token\_id.&#x20;
+
+For example, if an NFT with token id "token-1" is sent from the CW721 ADO " andr1uqju2r...daskv9a6m", then the `lock_id` would be:
+
+&#x20;"andr1uqju2r...daskv9a6mtoken-1"
 
 **Ado\_type:** cw721-timelock
 

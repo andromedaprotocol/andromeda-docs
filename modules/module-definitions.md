@@ -22,7 +22,7 @@ pub struct Module {
 | Name          | Type                            | Description                                                                                                                                                                                                                                                                                 |
 | ------------- | ------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `module_type` | String                          | The name of the module to add. Can be set one of the following: "rates", "offers", "address-list", "receipt" .                                                                                                                                                                              |
-| `address`     | [AndrAddress](broken-reference) | How to instantiate the module.                                                                                                                                                                                                                                                              |
+| `address`     | [AndrAddress](broken-reference) | The reference to the module ADO. Can be the contract address or the name of the component in an App.                                                                                                                                                                                        |
 | `is_mutable`  | bool                            | Whether the module can be later modified or not. This means that if `is_mutable` is set to true, then you can run the base executes [`deregister_module`](../platform-and-framework/ado-base.md#deregistermodule) and [`alter _module`](../platform-and-framework/ado-base.md#altermodule). |
 
 {% hint style="warning" %}
@@ -49,7 +49,7 @@ When instantiating an **Andromeda Digital Object** contract the modules can be d
         {
           "module_type": "address_list",
           "address": {
-            "identifier":"juno1..."
+            "identifier":"andr1..."
               },
           "is_mutable": false
         },

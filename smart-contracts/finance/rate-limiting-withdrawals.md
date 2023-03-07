@@ -2,17 +2,13 @@
 
 ## Introduction
 
-The Rate Limiting Withdrawals ADO acts as a bank account that limits the frequency and size of an account holder's withdrawals. Only one type of coin can be used.
+The **Rate Limiting Withdrawals ADO** acts as a bank account that limits the frequency and size of an account holder's withdrawals. Only one type of coin can be used.
 
-The contract supports [modules](broken-reference) to extend it's functionality.
+The contract supports [modules](broken-reference) to extend its functionality.
 
 **Ado\_type**: rate-limiting-withdrawals
 
 ## InstantiateMsg
-
-{% hint style="warning" %}
-Either the minimal\_withdrawal\_frequency __ or contract\_key should be set and not both.
-{% endhint %}
 
 {% tabs %}
 {% tab title="Rust" %}
@@ -72,8 +68,8 @@ pub enum MinimumFrequency {
 
 The minimum withdrawal frequency can be set in two ways:
 
-* Time: A time in seconds. For example 3600 would specify that each the user needs to wait 3600 seconds between withdrawals.
-* AddressAndKey: Takes the value from a primitive. Need to specify the contract address of the primitive and the key associated to the value we want.&#x20;
+* **Time:** A time in seconds. For example 3600 would specify that each the user needs to wait 3600 seconds between withdrawals.
+* **AddressAndKey:** Takes the value from a primitive. Need to specify the contract address of the primitive and the key associated to the value we want.&#x20;
 
 #### ContractAndKey
 
@@ -121,9 +117,9 @@ pub enum ExecuteMsg {
 {% endtab %}
 {% endtabs %}
 
-| Name        | Type            | Description                                                          |
-| ----------- | --------------- | -------------------------------------------------------------------- |
-| `recipient` | Option\<String> | The owner of the deposited funds. If not set default to the sender.  |
+| Name        | Type            | Description                                                            |
+| ----------- | --------------- | ---------------------------------------------------------------------- |
+| `recipient` | Option\<String> | The owner of the deposited funds. If not set, defaults to the sender.  |
 
 ### Withdraw
 

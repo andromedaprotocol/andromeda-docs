@@ -2,7 +2,7 @@
 
 ## Introduction
 
-The purpose of the vault ADO is to provide central funds for an [app](../smart-contracts/andromeda-apps/app.md). This means, it will allow the app to deposit funds to the vault, and these funds can be proxied to various yield strategies.
+The purpose of the vault ADO is to provide central funds for an [App](../smart-contracts/andromeda-apps/app.md). This means, it will allow the app to deposit funds to the vault, and these funds can be proxied to various yield strategies.
 
 {% hint style="warning" %}
 Since the Terra crash, no yield strategies are currently available.
@@ -10,7 +10,7 @@ Since the Terra crash, no yield strategies are currently available.
 
 Funds can be deposited to the vault and a record of the deposited funds is stored. Then strategies can be added by the contract owner at any point by calling `UpdateStrategy`.
 
-Deposits can be made to yield strategies in partial fashion, sending part of what you would like to deposit and taking the rest from what the vault is currently holding. For example, a wallet could have 10 JUNO held within the vault, they wish to deposit 50 JUNO to a yield strategy, in this case they can send 40 JUNO with a deposit message and 10 JUNO will be removed from their deposits and sent to the yield strategy contract.
+Deposits can be made to yield strategies in partial fashion, sending part of what you would like to deposit and taking the rest from what the vault is currently holding. For example, a wallet could have 10 ANDR held within the vault, they wish to deposit 50 ANDR to a yield strategy, in this case they can send 40 ANDR with a deposit message and 10 ANDR will be removed from their deposits and sent to the yield strategy contract.
 
 Withdrawals are done in similar fashion using our `Withdrawal` struct. Withdrawals can be made from the vault itself or from its according yield strategies.
 

@@ -2,9 +2,7 @@
 
 ## Introduction
 
-The **CW721 Staking** ADO is a smart contract that allows users stake, unstake, and claim their NFT alongside an accrued reward after surpassing the unbonding period.
-
-Note:
+The **NFT Staking** ADO is a smart contract that allows users to stake, unstake, and claim their NFT alongside an accrued reward after surpassing the unbonding period.
 
 * The unbonding period is set in seconds
 * The rewards are distributed per second. This means if the reward is 50 ujunox, then after 10 seconds, my rewards should be 500 ujunox.
