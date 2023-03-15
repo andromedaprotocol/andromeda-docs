@@ -16,18 +16,17 @@ To install the Andromeda CLI, run the following command to download our [npm pac
 Make sure you have npm installed.
 {% endhint %}
 
-```
-sudo npm install -g @andromedaprotocol/andromeda.js
-```
+<pre><code><strong>sudo npm i -g @andromedaprotocol/cli
+</strong></code></pre>
 
 {% hint style="warning" %}
 We use sudo since we are installing globally using the -g flag.
 {% endhint %}
 
-If you have the package already installed, you can the following to update to the latest version:
+If you have the package already installed, you can run the following to update to the latest version:
 
 ```
-sudo npm update -g @andromedaprotocol/andromeda.js
+sudo npm update -g @andromedaprotocol/cli
 ```
 
 Then run `andr`  to open the CLI:
