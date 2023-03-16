@@ -285,7 +285,7 @@ pub enum AndromedaMsg {
 {% endtab %}
 
 {% tab title="JSON" %}
-```rust
+```json
 {
  "andr_receive":{
      "register_module": {

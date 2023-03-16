@@ -44,7 +44,7 @@ pub struct InstantiateMsg {
 Places a bid on the token with the specified `token_id`. When a bid is placed, the funds are taken and returned in the case of a higher bid or cancelation.
 
 {% hint style="warning" %}
-The ADO owner is not allowed to place a bid on their ADO.
+The NFT owner is not allowed to place a bid.
 
 `bid_amount` needs to exceed the previous highest bid.
 
@@ -90,6 +90,10 @@ pub enum ExecuteMsg{
 
 Cancels a bid previously placed by a purchaser.
 
+{% hint style="warning" %}
+A bid cannot be canceled if the expiration of the bid has not been reached.
+{% endhint %}
+
 {% tabs %}
 {% tab title="Rust" %}
 ```rust
@@ -122,6 +126,8 @@ Accepts a bid that is placed on your NFT.  A bid is accepted by calling [**Trans
 
 {% hint style="warning" %}
 Cannot accept a bid on a token that has a current [TransferAgreement](cw721.md#transferagreement).
+
+Cannot accept a bid that is expired.&#x20;
 {% endhint %}
 
 {% tabs %}
