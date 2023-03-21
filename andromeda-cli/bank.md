@@ -14,11 +14,11 @@ Gets the balance for an address.
 #### Usage
 
 ```
-bank balance <denom?> <address>
+bank balance <denom> <address>
 ```
 
 {% hint style="warning" %}
-Leaving the address field empty will get the balance of the current wallet being used.
+Leaving the address field empty when prompted for it will get the balance of the current wallet being used.
 {% endhint %}
 
 #### Example
@@ -29,6 +29,13 @@ Leaving the address field empty will get the balance of the current wallet being
 Balance
 uandr: 9048072
 ? keplr-g3@galileo-3> () 
+
+
+guides@galileo-3> bank balance
+? Input Denom: uandr
+? Input Address: 
+Balance
+uandr: 101771266
 ```
 
 ## Send
