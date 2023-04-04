@@ -109,12 +109,12 @@ pub struct CrowdfundMintMsg {
 }
 ```
 
-| Name        | Type                                                                      | Description                                                                                                                               |
-| ----------- | ------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------- |
-| `token_id`  | String                                                                    | Unique Id of the NFT.                                                                                                                     |
-| `owner`     | Option\<String>                                                           | The owner of the newly minted NFT. In order to be included in the sale, the owner must not be specified or set as the crowdfund contract. |
-| `token_uri` | Option\<String>                                                           |  Universal resource identifier for this NFT  Should point to a JSON file that conforms to the CW721  Metadata JSON Schema.                |
-| `extension` | [TokenExtension](../../andromeda-digital-objects/cw721.md#tokenextension) | Any custom extension used by this contract.                                                                                               |
+| Name        | Type                                                                      | Description                                                                                                                                    |
+| ----------- | ------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------- |
+| `token_id`  | String                                                                    | Unique Id of the NFT.                                                                                                                          |
+| `owner`     | Option\<String>                                                           | The owner of the newly minted NFT. In order to be included in the sale, the owner field should be kept empty or set as the crowdfund contract. |
+| `token_uri` | Option\<String>                                                           |  Universal resource identifier for this NFT  Should point to a JSON file that conforms to the CW721  Metadata JSON Schema.                     |
+| `extension` | [TokenExtension](../../andromeda-digital-objects/cw721.md#tokenextension) | Any custom extension used by this contract.                                                                                                    |
 
 ### StartSale
 
@@ -143,7 +143,7 @@ pub enum ExecuteMsg{
 {% endtab %}
 
 {% tab title="JSON" %}
-```rust
+```json
 {
 "start_sale":{
  "expiration":{
