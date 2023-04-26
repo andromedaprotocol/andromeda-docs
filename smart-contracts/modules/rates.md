@@ -96,7 +96,13 @@ pub enum Rate {
 
 The Rate can be one of the three option seen above:
 
-* Flat: A fixed amount to be taken ([Coin](../../platform-and-framework/common-types.md#coin)). Needs to have an amount and denomination specified.&#x20;
+{% hint style="warning" %}
+The flat rate needs to be a whole number.
+
+The percentage rate needs to be a decimal i.e 0.2 for 20%
+{% endhint %}
+
+* Flat: A fixed amount to be taken ([Coin](../../platform-and-framework/common-types.md#coin)). Needs to have an amount and denomination specified.
 * Percent: A percentage based rate. Needs to have the percent specified.
 
 
