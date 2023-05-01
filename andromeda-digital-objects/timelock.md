@@ -74,6 +74,10 @@ pub enum ExecuteMsg {
 
 Enum used to specify the condition which must be met in order for the Escrow to unlock.
 
+{% hint style="warning" %}
+The Expiration timestamp is taken in nanosecond precision. Using another precision will give a "Time in the past" error.&#x20;
+{% endhint %}
+
 ```rust
 pub enum EscrowCondition {
     Expiration(Expiration),

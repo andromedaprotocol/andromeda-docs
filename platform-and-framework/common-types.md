@@ -65,7 +65,7 @@ pub enum Expiration {
 
 #### Timestamp
 
-A point in time in nanosecond precision.
+A point in time in **nanosecond** precision.
 
 ```rust
 pub struct Timestamp(Uint64)
@@ -83,7 +83,7 @@ or
 
 {
 "expiration":{
-  "at_time":"124655832"
+  "at_time":"124655832000000000"
 }
 
 ```
