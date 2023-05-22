@@ -60,7 +60,7 @@ chain use
 Then select the chain to deploy on.
 
 {% hint style="warning" %}
-If this is the first time using the CLI make sure to run `"wallets add <wallet-name>"`
+If this is the first time using the CLI make sure to run `"wallet add <wallet-name>"`
 
 in order to create a wallet. Then go to chain's faucet to request some tokens (Usually the faucet will be in the Chain's discord).
 {% endhint %}

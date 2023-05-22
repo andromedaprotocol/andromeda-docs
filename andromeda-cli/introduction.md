@@ -97,7 +97,7 @@ Choose the chain config that you want to use.
 Then we need to add a wallet. We run:
 
 ```
-wallets add 
+wallet add 
 ```
 
 {% hint style="warning" %}
@@ -109,7 +109,7 @@ You will be prompted to select the wallet name.&#x20;
 {% hint style="warning" %}
 If you are using a testnet config make sure to send some tokens to your new address from the corresponding testnet faucet (Usually on discord).
 
-If you already have an address, you can import it to the CLI using the [recover flag. ](wallets.md#flags)
+If you already have an address, you can import it to the CLI using the [recover flag. ](wallet.md#flags)
 {% endhint %}
 
 ### CLI Display
@@ -138,18 +138,18 @@ The --help flag  can be used after any command to get information on the command
 
 You will get a list of available commands to use:
 
-| Command                                              | Description                               |
-| ---------------------------------------------------- | ----------------------------------------- |
-| ****[**ado**](ado.md)****                            | Query and execute on an ADO               |
-| ****[**chain**](chain.md)****                        | Manage Chain Config                       |
-| ****[**clear**](clear-and-exit.md)****               | Clears the terminal                       |
-| ****[**exit**](clear-and-exit.md)****                | Exits the CLI                             |
-| ****[**gql**](gql.md)****                            | Query using the Andromeda GraphQL service |
-| ****[**help**](help-and-shortcuts.md)****            | Lists all valid commands                  |
-| ****[**tx**](tx.md)****                              | Query transactions                        |
-| ****[**version**](help-and-shortcuts.md#version)**** | Prints the current CLI version.           |
-| ****[**wallets**](wallets.md)****                    | Manage wallets                            |
-| ****[**wasm**](wasm.md)****                          | Send CosmWasm messages to the chain       |
+| Command                                      | Description                               |
+| -------------------------------------------- | ----------------------------------------- |
+| [**ado**](ado.md)                            | Query and execute on an ADO               |
+| [**chain**](chain.md)                        | Manage Chain Config                       |
+| [**clear**](clear-and-exit.md)               | Clears the terminal                       |
+| [**exit**](clear-and-exit.md)                | Exits the CLI                             |
+| [**gql**](gql.md)                            | Query using the Andromeda GraphQL service |
+| [**help**](help-and-shortcuts.md)            | Lists all valid commands                  |
+| [**tx**](tx.md)                              | Query transactions                        |
+| [**version**](help-and-shortcuts.md#version) | Prints the current CLI version.           |
+| [**wallet**](wallet.md)                      | Manage wallets                            |
+| [**wasm**](wasm.md)                          | Send CosmWasm messages to the chain       |
 
 {% hint style="warning" %}
 It is important to note that the CLI has been designed to prompt the user for the required fields in each command. This means that it is sufficient to write the command without the fields and the CLI will prompt you to fill in the inputs one by one instead of throwing an error.&#x20;

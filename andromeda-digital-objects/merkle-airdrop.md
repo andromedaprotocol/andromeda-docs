@@ -42,7 +42,7 @@ pub type AssetInfoUnchecked = AssetInfoBase<String>;
 
 Represents the type of an fungible asset. Each asset info instance can be one of two variants:&#x20;
 
-* **CW20 tokens**: To create an **** asset info instance of this type, provide the contract address of the token.
+* **CW20 tokens**: To create an asset info instance of this type, provide the contract address of the token.
 * &#x20;**Native SDK coins**: To create an asset info instance of this type, provide the denomination ("ujuno","uatom").
 
 ```rust

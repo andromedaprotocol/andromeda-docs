@@ -122,7 +122,7 @@ pub enum ExecuteMsg{
 
 ### AcceptBid
 
-Accepts a bid that is placed on your NFT.  A bid is accepted by calling [**TransferNft**](cw721.md#transfernft) **** and specifying the recipient as the address of the highest bidder.&#x20;
+Accepts a bid that is placed on your NFT.  A bid is accepted by calling [**TransferNft**](cw721.md#transfernft) and specifying the recipient as the address of the highest bidder.&#x20;
 
 {% hint style="warning" %}
 Cannot accept a bid on a token that has a current [TransferAgreement](cw721.md#transferagreement).

@@ -158,8 +158,10 @@ An auction can be updated only if it has not started yet.&#x20;
 
 ### CancelAuction
 
-{% hint style="info" %}
+{% hint style="warning" %}
 Only the owner of the auction can execute `CancelAuction`.
+
+An auction cannot be canceled after it has started.&#x20;
 {% endhint %}
 
 Cancels the auction of a token.
@@ -197,6 +199,15 @@ pub enum ExecuteMsg {
 
 Places a bid for the auction for the given NFT id. The bid must be sent as native funds along with this message. The previous largest bid gets automatically sent back to the bidder when they are outbid.
 
+{% hint style="warning" %}
+The following criteria must be met for the bid to be placed:
+
+* The NFT is currently under auction
+* The sender's bid is higher than the highest bid
+* The sender does not currently hold the highest bid
+* The sender is not the token owner
+{% endhint %}
+
 {% tabs %}
 {% tab title="Rust" %}
 ```rust
@@ -226,18 +237,13 @@ pub enum ExecuteMsg {
 | `token_id`      | String | The id of the NFT to place a bid on. |
 | `token_address` | String | The address of the token contract.   |
 
-{% hint style="warning" %}
-The following criteria must be met for the bid to be placed:
-
-* The ADO is currently under auction
-* The sender's bid is higher than the highest bid
-* The sender does not currently hold the highest bid
-* The sender is not the token owner
-{% endhint %}
-
 ### Claim
 
 Sends the winner of the auction the NFT and the funds to the NFT owner  when the auction has finished. Anyone is allowed to execute this message.
+
+{% hint style="warning" %}
+Can only be done when the `end_time` has been passed. If there were no bids placed, the original owner retains the token.
+{% endhint %}
 
 {% tabs %}
 {% tab title="Rust" %}
@@ -267,10 +273,6 @@ pub enum ExecuteMsg {
 | --------------- | ------ | --------------------------------------- |
 | `token_id`      | String | The id of the token that was auctioned. |
 | `token_address` | String | The address of the token contract.      |
-
-{% hint style="warning" %}
-Can only be done when the `end_time` has been passed. If no bids has been placed the original owner retains the token.
-{% endhint %}
 
 ### AndrRecieve
 

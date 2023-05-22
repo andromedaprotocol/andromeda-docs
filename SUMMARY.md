@@ -61,7 +61,7 @@
 * [Chain](andromeda-cli/chain.md)
 * [Gql](andromeda-cli/gql.md)
 * [Tx](andromeda-cli/tx.md)
-* [Wallets](andromeda-cli/wallets.md)
+* [Wallet](andromeda-cli/wallet.md)
 * [Wasm](andromeda-cli/wasm.md)
 * [Clear and Exit](andromeda-cli/clear-and-exit.md)
 * [Clearing CLI Data](andromeda-cli/clearing-cli-data.md)
