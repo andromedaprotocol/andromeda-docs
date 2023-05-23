@@ -419,3 +419,28 @@ pub struct ExemptionsResponse {
 ### AndrQuery
 
 A set of base queries common to all Andromeda ADOs. Check[ AndrQuery](../../platform-and-framework/ado-base.md#andrquery).
+
+## Stacking Rates
+
+An ADO accepts the addition of multiple rates at once. This could be one of two cases:
+
+1. Adding multiple rates using the same rates module ADO.&#x20;
+2. Adding multiple rates using different rates module ADOs
+
+#### Rates Using the Same Module
+
+In this case, all the rates are applied on the initial price of the NFT being sold. For example, if I specify the following rates:
+
+* 350 flat rate royalty
+* 10% royalty
+
+Then selling the NFT for 1000 uandr will take 350 uandr for the first rate and 100 uandr for the second rate.
+
+#### Rates Using Different Modules
+
+In this case, the rates are applied by order. After the first deductions are made, the second rate will use the remaining amount and deduct from it. For example, if I specify the following rates:
+
+* 350 flat rate royalty using the first rates ADO&#x20;
+* 10% royalty using the second rates ADO
+
+Then selling the NFT for 1000 uandr will take 350 uandr for the first rate and 65 uandr for the second rate.
