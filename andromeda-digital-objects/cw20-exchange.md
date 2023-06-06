@@ -2,7 +2,7 @@
 
 ## Introduction
 
-The **CW20 Exchange** ADO is used to sell CW20 tokens for other assets. The token to be sold is specified at instantiation, and then sales can be started on the token by the contract owner. Each sale has an "asset" to purchase the tokens with. This asset can be:
+The **CW20 Exchange** ADO is used to sell CW20 tokens for other assets. The token to be sold is specified at instantiation, and then sales can be started on the token by the contract owner by sending them to this ADO. Each sale has an "asset" to purchase the tokens with. This asset can be:
 
 * CW20&#x20;
 * Native
@@ -67,7 +67,7 @@ pub struct Cw20ReceiveMsg {
 
 The `msg` in the `Cw20ReceiveMsg`should be a base64 encoded `Cw20HookMsg`.
 
-### Cw20HookMsg
+## Cw20HookMsg
 
 {% hint style="warning" %}
 The CW20 tokens sent with StartSale should come from the contract address specified at instantiation.
@@ -75,7 +75,7 @@ The CW20 tokens sent with StartSale should come from the contract address specif
 The CW20 tokens sent with Purchase should be the same as the defined Asset from StartSale message.
 {% endhint %}
 
-#### StartSale
+### StartSale
 
 {% hint style="warning" %}
 Only available to the contract owner.
@@ -101,9 +101,7 @@ pub enum Cw20HookMsg {
 {
 "start_sale":{
     "asset":{
-        "asset_info":{
-              "cw20":"andr1..."
-              }
+          "cw20":"andr1..."
         },
     "exchange_rate":"5"
     }
@@ -135,9 +133,13 @@ pub enum AssetInfoBase<T> {
 * **Native SDK coins:** To create an **asset info** instance of this type, provide the denomination
 * **CW20 tokens:** To create an **asset info** instance of this type, provide the contract address
 
-#### Purchase
+### Purchase
 
 Purchase tokens using the CW20 tokens sent.
+
+{% hint style="warning" %}
+You need to send an amount wich will get you a whole number in exchange. For example if the exchange rate is 5, then you need to send a multiple of 5 and nothing in between.&#x20;
+{% endhint %}
 
 {% tabs %}
 {% tab title="Rust" %}
@@ -165,7 +167,7 @@ pub enum Cw20HookMsg {
 | ----------- | --------------- | ------------------------------------------------------------------------------------ |
 | `recipient` | Option\<String> | Optional recipient of the purchased CW20 tokens. If not set, defaults to the sender. |
 
-### CancelSale
+## CancelSale
 
 {% hint style="warning" %}
 Only available for the contract owner.
@@ -189,9 +191,7 @@ pub enum ExecuteMsg {
 {
 "cancel_sale":{
     "asset":{ 
-        "asset_info":{
-              "cw20":"andr1..."
-              }
+        "cw20":"andr1..."
         }
     }
 }
@@ -259,11 +259,9 @@ pub enum QueryMsg {
 {
 "sale":{
     "asset":{ 
-        "asset_info":{
-              "cw20":"andr1..."
-              }
+        "cw20":"andr1..."    
         }
-  }
+    }
 }
 ```
 {% endtab %}
