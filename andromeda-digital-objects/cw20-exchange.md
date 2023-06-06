@@ -81,7 +81,7 @@ The CW20 tokens sent with Purchase should be the same as the defined Asset from 
 Only available to the contract owner.
 {% endhint %}
 
-Starts a sale on the CW20 tokens sent.
+Starts a sale on the CW20 tokens sent. This is attached as a `msg` when sending the CW20 tokens to the Exchange ADO.
 
 {% tabs %}
 {% tab title="Rust" %}
@@ -135,7 +135,7 @@ pub enum AssetInfoBase<T> {
 
 ### Purchase
 
-Purchase tokens using the CW20 tokens sent.
+Purchase tokens using the CW20 tokens sent. This is attached as a `msg` when sending the CW20 tokens to the Exchange ADO.
 
 {% hint style="warning" %}
 You need to send an amount wich will get you a whole number in exchange. For example if the exchange rate is 5, then you need to send a multiple of 5 and nothing in between.&#x20;
@@ -357,7 +357,7 @@ pub enum QueryMsg {
 {
 "sale_assets":{
     "start_after":"token8",
-    "limit": 70
+    "limit": 67
     }
 }
 ```
