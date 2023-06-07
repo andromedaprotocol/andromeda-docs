@@ -11,25 +11,11 @@
 {% endtab %}
 {% endtabs %}
 
-### Juno
-
-{% tabs %}
-{% tab title="Testnet (uni-6)" %}
-| Contract               | Address                                                         | Description                                                                |
-| ---------------------- | --------------------------------------------------------------- | -------------------------------------------------------------------------- |
-| **ADODB**              | juno13cjznr3f259jqcxpygfhgd4k6lygyzuuqvdnucg2zrjrrypf53dqd3gm8a | Contract used to store the code IDs of all the other ADOs.                 |
-| **Registry/Primitive** | juno13jjcwkdk45l987jqa7vyc94h0djdr943dn7sxs0djndsfp3c7q6qvyp5pl | Contract used to save the ADODB address and connect it to Andromeda Apps.  |
-{% endtab %}
-{% endtabs %}
-
 ### Stargaze
 
 {% tabs %}
 {% tab title="Testnet (elgafar-1)" %}
-| Contract               | Address                                                          | Description                                                                |
-| ---------------------- | ---------------------------------------------------------------- | -------------------------------------------------------------------------- |
-| **ADODB**              | stars1u4u3ys6rz06s70leq8z2sngr9xzw97nc2zgt2zcpgqmk033jupusymawr5 | Contract used to store the code IDs of all the other ADOs.                 |
-| **Registry/Primitive** | stars1elf7rg86nedmhf5gsglramlupqrwq0e0ce03hqjgcusta6unhn7sjcqpux | Contract used to save the ADODB address and connect it to Andromeda Apps.  |
+<table><thead><tr><th width="208">Contract</th><th>Address</th><th>Description</th></tr></thead><tbody><tr><td><strong>ADODB</strong></td><td>stars1u4u3ys6rz06s70leq8z2sngr9xzw97nc2zgt2zcpgqmk033jupusymawr5</td><td>Contract used to store the code IDs of all the other ADOs. </td></tr><tr><td><strong>Registry/Primitive</strong></td><td>stars1elf7rg86nedmhf5gsglramlupqrwq0e0ce03hqjgcusta6unhn7sjcqpux</td><td>Contract used to save the ADODB address and connect it to Andromeda Apps. </td></tr></tbody></table>
 {% endtab %}
 {% endtabs %}
 

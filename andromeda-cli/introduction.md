@@ -55,7 +55,6 @@ The Andromeda CLI is built to work with any of the chains that Andromeda is depl
 Andromeda is currently deployed on the following chains:
 
 * Andromeda
-* Juno
 * Stargaze
 * Terra
 
@@ -138,18 +137,7 @@ The --help flag  can be used after any command to get information on the command
 
 You will get a list of available commands to use:
 
-| Command                                      | Description                               |
-| -------------------------------------------- | ----------------------------------------- |
-| [**ado**](ado.md)                            | Query and execute on an ADO               |
-| [**chain**](chain.md)                        | Manage Chain Config                       |
-| [**clear**](clear-and-exit.md)               | Clears the terminal                       |
-| [**exit**](clear-and-exit.md)                | Exits the CLI                             |
-| [**gql**](gql.md)                            | Query using the Andromeda GraphQL service |
-| [**help**](help-and-shortcuts.md)            | Lists all valid commands                  |
-| [**tx**](tx.md)                              | Query transactions                        |
-| [**version**](help-and-shortcuts.md#version) | Prints the current CLI version.           |
-| [**wallet**](wallet.md)                      | Manage wallets                            |
-| [**wasm**](wasm.md)                          | Send CosmWasm messages to the chain       |
+<table><thead><tr><th width="234.5">Command</th><th>Description</th></tr></thead><tbody><tr><td><a href="ado.md"><strong>ado</strong></a></td><td>Query and execute on an ADO</td></tr><tr><td><a href="chain.md"><strong>chain</strong></a></td><td>Manage Chain Config</td></tr><tr><td><a href="clear-and-exit.md"><strong>clear</strong></a></td><td>Clears the terminal</td></tr><tr><td><a href="clear-and-exit.md"><strong>exit</strong></a></td><td>Exits the CLI</td></tr><tr><td><a href="gql.md"><strong>gql</strong></a></td><td>Query using the Andromeda GraphQL service</td></tr><tr><td><a href="help-and-shortcuts.md"><strong>help</strong></a></td><td>Lists all valid commands</td></tr><tr><td><a href="tx.md"><strong>tx</strong></a></td><td>Query transactions</td></tr><tr><td><a href="help-and-shortcuts.md#version"><strong>version</strong></a></td><td>Prints the current CLI version.</td></tr><tr><td><a href="wallet.md"><strong>wallet</strong></a></td><td>Manage wallets</td></tr><tr><td><a href="wasm.md"><strong>wasm</strong></a></td><td>Send CosmWasm messages to the chain</td></tr></tbody></table>
 
 {% hint style="warning" %}
 It is important to note that the CLI has been designed to prompt the user for the required fields in each command. This means that it is sufficient to write the command without the fields and the CLI will prompt you to fill in the inputs one by one instead of throwing an error.&#x20;
