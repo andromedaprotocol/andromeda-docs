@@ -21,9 +21,7 @@ pub struct InstantiateMsg {
 ```json
 {
 "asset_info":{
-"asset_info_unchecked":{
     "cw20":"andr1..."
-     }
    }
 } 
 ```
