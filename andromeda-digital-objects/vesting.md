@@ -36,12 +36,7 @@ pub struct InstantiateMsg {
 {% endtab %}
 {% endtabs %}
 
-| Name                     | Type                                                             | Description                                          |
-| ------------------------ | ---------------------------------------------------------------- | ---------------------------------------------------- |
-| `recipient`              | [Recipient](../platform-and-framework/common-types.md#recipient) | The recipient of all funds locked in this contract.  |
-| `is_multi_batch_enabled` | bool                                                             | Whether or not multi-batching has been enabled.      |
-| `denom`                  | String                                                           | The denom of the coin being vested.                  |
-| `unbonding_duration`     | Duration                                                         | The unbonding duration of the native staking module. |
+<table><thead><tr><th width="287.3333333333333">Name</th><th>Type</th><th>Description</th></tr></thead><tbody><tr><td><code>recipient</code></td><td><a href="../platform-and-framework/common-types.md#recipient">Recipient</a></td><td>The recipient of all funds locked in this contract.</td></tr><tr><td><code>is_multi_batch_enabled</code></td><td>bool</td><td>Whether or not multi-batching has been enabled.</td></tr><tr><td><code>denom</code></td><td>String</td><td>The denom of the coin being vested.</td></tr><tr><td><code>unbonding_duration</code></td><td>Duration</td><td>The unbonding duration of the native staking module.</td></tr></tbody></table>
 
 #### Duration
 
@@ -100,12 +95,7 @@ pub enum ExecuteMsg {
 {% endtab %}
 {% endtabs %}
 
-| Name                       | Type                                                                   | Description                                                                                                                               |
-| -------------------------- | ---------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------- |
-| `lockup_duration`          | Option\<u64>                                                           | A lockup period before vesting starts. Specifying None would mean no lock up period and funds start vesting right away.                   |
-| `release_unit`             | u64                                                                    | How often releases occur in seconds.                                                                                                      |
-| `release_amount`           | [WithdrawalType](../platform-and-framework/ado-base.md#withdrawaltype) | Specifies how much is to be released after each `release_unit`. If it is a percentage, it would be the percentage of the original amount. |
-| `validator_to_delegate_to` | Option\<String>                                                        | Optional validator to delegate to. If specified, funds will be automatically delegated to them.                                           |
+<table><thead><tr><th width="304.3333333333333">Name</th><th>Type</th><th>Description</th></tr></thead><tbody><tr><td><code>lockup_duration</code></td><td>Option&#x3C;u64></td><td>A lockup period before vesting starts. Specifying None would mean no lock up period and funds start vesting right away.</td></tr><tr><td><code>release_unit</code></td><td>u64</td><td>How often releases occur in seconds.</td></tr><tr><td><code>release_amount</code></td><td><a href="../platform-and-framework/ado-base.md#withdrawaltype">WithdrawalType</a></td><td>Specifies how much is to be released after each <code>release_unit</code>. If it is a percentage, it would be the percentage of the original amount.</td></tr><tr><td><code>validator_to_delegate_to</code></td><td>Option&#x3C;String></td><td>Optional validator to delegate to. If specified, funds will be automatically delegated to them.</td></tr></tbody></table>
 
 ### Claim
 
@@ -435,12 +425,7 @@ pub struct Config {
 {% endtab %}
 {% endtabs %}
 
-| Name                     | Type                            | Description                                          |
-| ------------------------ | ------------------------------- | ---------------------------------------------------- |
-| `recipient`              | Recipient                       | The recipient of each batch.                         |
-| `is_multi_batch_enabled` | bool                            | Whether or not multiple batches are supported.       |
-| `denom`                  | String                          | The denom of the coin being vested.                  |
-| `unbonding_duration`     | [Duration](vesting.md#duration) | The unbonding duration of the native staking module. |
+<table><thead><tr><th width="294.3333333333333">Name</th><th>Type</th><th>Description</th></tr></thead><tbody><tr><td><code>recipient</code></td><td>Recipient</td><td>The recipient of each batch.</td></tr><tr><td><code>is_multi_batch_enabled</code></td><td>bool</td><td>Whether or not multiple batches are supported.</td></tr><tr><td><code>denom</code></td><td>String</td><td>The denom of the coin being vested.</td></tr><tr><td><code>unbonding_duration</code></td><td><a href="vesting.md#duration">Duration</a></td><td>The unbonding duration of the native staking module.</td></tr></tbody></table>
 
 ### Batch
 
@@ -511,17 +496,7 @@ pub struct BatchResponse {
 {% endtab %}
 {% endtabs %}
 
-| Name                         | Type                                                                   | Description                                                                                                                               |
-| ---------------------------- | ---------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------- |
-| `id`                         | u64                                                                    | The id of the batch.                                                                                                                      |
-| `amount`                     | Uint128                                                                | The amount of tokens in the batch.                                                                                                        |
-| `amount_claimed`             | Uint128                                                                | The amount of tokens that have been already claimed.                                                                                      |
-| `amount_available_to_claim`  | Uint128                                                                | The amount of tokens available to claim right now.                                                                                        |
-| `number_of_available_claims` | Uint128                                                                | The number of available claims now.                                                                                                       |
-| `lockup_end`                 | u64                                                                    | When the lockup ends.                                                                                                                     |
-| `release_unit`               | u64                                                                    | How often releases occur in seconds.                                                                                                      |
-| `release_amount`             | [WithdrawalType](../platform-and-framework/ado-base.md#withdrawaltype) | Specifies how much is to be released after each `release_unit`. If it is a percentage, it would be the percentage of the original amount. |
-| `last_claimed_release_time`  | u64                                                                    | The time at which the last claim took place.                                                                                              |
+<table><thead><tr><th width="316.3333333333333">Name</th><th>Type</th><th>Description</th></tr></thead><tbody><tr><td><code>id</code></td><td>u64</td><td>The id of the batch.</td></tr><tr><td><code>amount</code></td><td>Uint128</td><td>The amount of tokens in the batch.</td></tr><tr><td><code>amount_claimed</code></td><td>Uint128</td><td>The amount of tokens that have been already claimed.</td></tr><tr><td><code>amount_available_to_claim</code></td><td>Uint128</td><td>The amount of tokens available to claim right now.</td></tr><tr><td><code>number_of_available_claims</code></td><td>Uint128</td><td>The number of available claims now.</td></tr><tr><td><code>lockup_end</code></td><td>u64</td><td>When the lockup ends.</td></tr><tr><td><code>release_unit</code></td><td>u64</td><td>How often releases occur in seconds.</td></tr><tr><td><code>release_amount</code></td><td><a href="../platform-and-framework/ado-base.md#withdrawaltype">WithdrawalType</a></td><td>Specifies how much is to be released after each <code>release_unit</code>. If it is a percentage, it would be the percentage of the original amount.</td></tr><tr><td><code>last_claimed_release_time</code></td><td>u64</td><td>The time at which the last claim took place.</td></tr></tbody></table>
 
 ### Batches
 

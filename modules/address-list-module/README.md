@@ -23,9 +23,7 @@ pub struct InstantiateMsg {
 }
 ```
 
-| Name           | Type | Description                                                                                                                        |
-| -------------- | ---- | ---------------------------------------------------------------------------------------------------------------------------------- |
-| `is_inclusive` | bool | Whether or not the address list is inclusive. If `true` the address list is a whitelist, if false the address list is a blacklist. |
+<table><thead><tr><th width="249.33333333333331">Name</th><th>Type</th><th>Description</th></tr></thead><tbody><tr><td><code>is_inclusive</code></td><td>bool</td><td>Whether or not the address list is inclusive. If <code>true</code> the address list is a whitelist, if false the address list is a blacklist.</td></tr></tbody></table>
 
 More information about the address list contract can be found [here](../../andromeda-digital-objects/address-list.md).
 

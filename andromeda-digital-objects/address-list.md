@@ -33,9 +33,7 @@ pub struct InstantiateMsg {
 {% endtab %}
 {% endtabs %}
 
-| Name           | Type | Description                                                                                                                        |
-| -------------- | ---- | ---------------------------------------------------------------------------------------------------------------------------------- |
-| `is_inclusive` | bool | Whether or not the address list is inclusive. If `true` the address list is a whitelist. If false the address list is a blacklist. |
+<table><thead><tr><th width="249.33333333333331">Name</th><th width="234.54210587473648">Type</th><th>Description</th></tr></thead><tbody><tr><td><code>is_inclusive</code></td><td>bool</td><td>Whether or not the address list is inclusive. If <code>true</code> the address list is a whitelist. If false the address list is a blacklist.</td></tr></tbody></table>
 
 ## ExecuteMsg
 
@@ -67,9 +65,7 @@ pub enum ExecuteMsg {
 {% endtab %}
 {% endtabs %}
 
-| Name      | Type   | Description                     |
-| --------- | ------ | ------------------------------- |
-| `address` | String | The address to add to the list. |
+<table><thead><tr><th width="155.33333333333331">Name</th><th>Type</th><th>Description</th></tr></thead><tbody><tr><td><code>address</code></td><td>String</td><td>The address to add to the list.</td></tr></tbody></table>
 
 ### RemoveAddress
 
@@ -99,9 +95,7 @@ pub enum ExecuteMsg {
 {% endtab %}
 {% endtabs %}
 
-| Name      | Type   | Description                          |
-| --------- | ------ | ------------------------------------ |
-| `address` | String | The address to remove from the list. |
+<table><thead><tr><th width="155.33333333333331">Name</th><th>Type</th><th>Description</th></tr></thead><tbody><tr><td><code>address</code></td><td>String</td><td>The address to remove from the list.</td></tr></tbody></table>
 
 ### AndrReceive
 

@@ -20,9 +20,7 @@ pub struct InstantiateMsg {
 }
 ```
 
-| Name                       | Type   | Description                                                                                             |
-| -------------------------- | ------ | ------------------------------------------------------------------------------------------------------- |
-| `andromeda_cw721_contract` | String | The address of the cw721 contract to allow bids on. Needs to be an already instantiated cw721 contract. |
+<table><thead><tr><th width="284.3333333333333">Name</th><th>Type</th><th>Description</th></tr></thead><tbody><tr><td><code>andromeda_cw721_contract</code></td><td>String</td><td>The address of the cw721 contract to allow bids on. Needs to be an already instantiated cw721 contract.</td></tr></tbody></table>
 
 More information on the cw721-bids contract can be found[ here](../andromeda-digital-objects/cw721-bids.md).
 

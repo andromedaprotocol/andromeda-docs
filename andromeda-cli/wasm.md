@@ -6,13 +6,13 @@ description: Send CosmWasm messages to the chain.
 
 ### Available Commands
 
-| Command                                        | Description                         |
-| ---------------------------------------------- | ----------------------------------- |
-| ****[**execute**](wasm.md#execute)****         | Executes a wasm message.            |
-| ****[**instantiate**](wasm.md#instantiate)**** | Instantiates a contract by code ID. |
-| ****[**migrate**](wasm.md#migrate)****         | Migrate a contract.                 |
-| ****[**query**](wasm.md#query)****             | Queries a contract.                 |
-| ****[**upload**](wasm.md#upload)****           | Upload a contract wasm.             |
+| Command                                | Description                         |
+| -------------------------------------- | ----------------------------------- |
+| [**execute**](wasm.md#execute)         | Executes a wasm message.            |
+| [**instantiate**](wasm.md#instantiate) | Instantiates a contract by code ID. |
+| [**migrate**](wasm.md#migrate)         | Migrate a contract.                 |
+| [**query**](wasm.md#query)             | Queries a contract.                 |
+| [**upload**](wasm.md#upload)           | Upload a contract wasm.             |
 
 ## Execute
 
@@ -26,12 +26,7 @@ wasm execute <contract address> <message>
 
 #### Flags
 
-| Flag         | Description                                                                      | Usage                                  |
-| ------------ | -------------------------------------------------------------------------------- | -------------------------------------- |
-| **funds**    | Funds to send with the message                                                   | --funds 100ujunox                      |
-| **memo**     | An optional memo to attach to the message                                        | --memo 'Wow what a great transaction!' |
-| **simulate** | Simulates the transaction without broadcasting it. Useful to estimate gas costs. | -- simulate                            |
-| **help**     | Displays info about the current command.                                         | --help                                 |
+<table><thead><tr><th>Flag</th><th width="235.66666666666666">Description</th><th>Usage</th></tr></thead><tbody><tr><td><strong>funds</strong></td><td>Funds to send with the message</td><td>--funds 100ujunox</td></tr><tr><td><strong>memo</strong></td><td>An optional memo to attach to the message</td><td>--memo 'Wow what a great transaction!'</td></tr><tr><td><strong>simulate</strong></td><td>Simulates the transaction without broadcasting it. Useful to estimate gas costs.</td><td>-- simulate</td></tr><tr><td><strong>help</strong></td><td>Displays info about the current command. </td><td>--help</td></tr></tbody></table>
 
 #### Example
 

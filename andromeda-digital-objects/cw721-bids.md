@@ -32,10 +32,7 @@ pub struct InstantiateMsg {
 {% endtab %}
 {% endtabs %}
 
-| Name                       | Type   | Description                                                                |
-| -------------------------- | ------ | -------------------------------------------------------------------------- |
-| `andromeda_cw721_contract` | String | The address of the contract allowed to sell tokens using the bid contract. |
-| `valid_denom`              | String | The denom allowed in bids.                                                 |
+<table><thead><tr><th width="290.3333333333333">Name</th><th>Type</th><th>Description</th></tr></thead><tbody><tr><td><code>andromeda_cw721_contract</code></td><td>String</td><td>The address of the contract allowed to sell tokens using the bid contract.</td></tr><tr><td><code>valid_denom</code></td><td>String</td><td>The denom allowed in bids.</td></tr></tbody></table>
 
 ## ExecuteMsg
 
@@ -220,14 +217,7 @@ pub struct BidResponse {
 {% endtab %}
 {% endtabs %}
 
-| Name               | Type                                                               | Description                                                                      |
-| ------------------ | ------------------------------------------------------------------ | -------------------------------------------------------------------------------- |
-| `denom`            | String                                                             | The denomination of the coin used to place bids.                                 |
-| `bid_amount`       | Uint128                                                            | The amount of coins bid on the token.                                            |
-| `remaining_amount` | Uint128                                                            | The amount left after any royalties/taxes have been applied to the `bid_amount.` |
-| `tax_amount`       | Uint128                                                            | The amount of coins taken as tax.                                                |
-| `expiration`       | [Expiration](../platform-and-framework/common-types.md#expiration) | Expiration for the bid.                                                          |
-| `purchaser`        | String                                                             | The address that has placed the bid.                                             |
+<table><thead><tr><th>Name</th><th width="221.66666666666666">Type</th><th>Description</th></tr></thead><tbody><tr><td><code>denom</code></td><td>String</td><td>The denomination of the coin used to place bids.</td></tr><tr><td><code>bid_amount</code></td><td>Uint128</td><td>The amount of coins bid on the token.</td></tr><tr><td><code>remaining_amount</code></td><td>Uint128</td><td>The amount left after any royalties/taxes have been applied to the <code>bid_amount.</code></td></tr><tr><td><code>tax_amount</code></td><td>Uint128</td><td>The amount of coins taken as tax.</td></tr><tr><td><code>expiration</code></td><td><a href="../platform-and-framework/common-types.md#expiration">Expiration</a></td><td>Expiration for the bid.</td></tr><tr><td><code>purchaser</code></td><td>String</td><td>The address that has placed the bid.</td></tr></tbody></table>
 
 ### AllBids
 

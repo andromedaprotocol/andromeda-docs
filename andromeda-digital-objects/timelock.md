@@ -25,9 +25,7 @@ pub struct InstantiateMsg {
 {% endtab %}
 {% endtabs %}
 
-| Name      | Type                                                     | Description                                                                                                                           |
-| --------- | -------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------- |
-| `modules` | Option\<Vec<[Module](../modules/module-definitions.md)>> | An optional vector of Andromeda[ Modules](broken-reference) that can be attached to the contract. "address-list" module can be added. |
+<table><thead><tr><th width="249.33333333333331">Name</th><th width="252.39014373716634">Type</th><th>Description</th></tr></thead><tbody><tr><td><code>modules</code></td><td>Option&#x3C;Vec&#x3C;<a href="../modules/module-definitions.md">Module</a>>></td><td>An optional vector of Andromeda<a href="broken-reference"> Modules</a> that can be attached to the contract. "address-list" module can be added.</td></tr></tbody></table>
 
 ## ExecuteMsg
 
@@ -65,10 +63,7 @@ pub enum ExecuteMsg {
 {% endtab %}
 {% endtabs %}
 
-| Name        | Type                                                                     | Description                                                     |
-| ----------- | ------------------------------------------------------------------------ | --------------------------------------------------------------- |
-| `recipient` | Option<[Recipient](../platform-and-framework/common-types.md#recipient)> | Optional recipient address. If not set, defaults to the sender. |
-| `condition` | Option<[EscrowCondition](timelock.md#escrowcondition)>                   | An optional condition to unlock the Escrow.                     |
+<table><thead><tr><th width="155.33333333333331">Name</th><th>Type</th><th>Description</th></tr></thead><tbody><tr><td><code>recipient</code></td><td>Option&#x3C;<a href="../platform-and-framework/common-types.md#recipient">Recipient</a>></td><td>Optional recipient address. If not set, defaults to the sender.</td></tr><tr><td><code>condition</code></td><td>Option&#x3C;<a href="timelock.md#escrowcondition">EscrowCondition</a>></td><td>An optional condition to unlock the Escrow.</td></tr></tbody></table>
 
 #### EscrowCondition
 

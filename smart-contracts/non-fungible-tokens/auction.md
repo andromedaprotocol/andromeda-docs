@@ -146,15 +146,7 @@ An auction can be updated only if it has not started yet.&#x20;
 `start_time` should not be a time in the past.
 {% endhint %}
 
-| Name            | Type                | Description                                                                          |
-| --------------- | ------------------- | ------------------------------------------------------------------------------------ |
-| `token_id`      | String              | The id of the NFT that is being auctioned.                                           |
-| `token_address` | String              | The address of the token contract.                                                   |
-| `start_time`    | u64                 | Start time in milliseconds since [epoch](https://www.epochconverter.com/clock).      |
-| `duration`      | u64                 | Duration in milliseconds from the `start_time`.                                      |
-| `coin_denom`    | String              | The native coin denomination to do the auction in.                                   |
-| `min_bid`       | Option\<Uint128>    | The minimum bid that can be placed on the auctioned token.                           |
-| `whitelist`     | Option\<Vec\<Addr>> | Optional list of addresses to whitelist for the auction. If None, auction is public. |
+<table><thead><tr><th width="196.33333333333331">Name </th><th>Type</th><th>Description</th></tr></thead><tbody><tr><td><code>token_id</code></td><td>String</td><td>The id of the NFT that is being auctioned.</td></tr><tr><td><code>token_address</code></td><td>String</td><td>The address of the token contract.</td></tr><tr><td><code>start_time</code></td><td>u64</td><td>Start time in milliseconds since <a href="https://www.epochconverter.com/clock">epoch</a>.</td></tr><tr><td><code>duration</code></td><td>u64</td><td>Duration in milliseconds from the <code>start_time</code>.</td></tr><tr><td><code>coin_denom</code></td><td>String</td><td>The native coin denomination to do the auction in.</td></tr><tr><td><code>min_bid</code></td><td>Option&#x3C;Uint128></td><td>The minimum bid that can be placed on the auctioned token.</td></tr><tr><td><code>whitelist</code></td><td>Option&#x3C;Vec&#x3C;Addr>></td><td>Optional list of addresses to whitelist for the auction. If None, auction is public.</td></tr></tbody></table>
 
 ### CancelAuction
 

@@ -50,11 +50,7 @@ pub struct InstantiateMsg {
 {% endtab %}
 {% endtabs %}
 
-| Name                 | Type                                     | Description                                                            |
-| -------------------- | ---------------------------------------- | ---------------------------------------------------------------------- |
-| `app_components`     | Vec<[AppComponent](app.md#appcomponent)> | The vector of AppComponent containing all the ADOs of the app.         |
-| `name`               | String                                   | The name of the app.                                                   |
-| `primitive_contract` | String                                   | The address of the `primitve` contract used to supply data to the app. |
+<table><thead><tr><th width="264.3333333333333">Name </th><th width="247.18815855494233">Type</th><th>Description</th></tr></thead><tbody><tr><td><code>app_components</code></td><td>Vec&#x3C;<a href="app.md#appcomponent">AppComponent</a>></td><td>The vector of AppComponent containing all the ADOs of the app.</td></tr><tr><td><code>name</code></td><td>String</td><td>The name of the app.</td></tr><tr><td><code>primitive_contract</code></td><td>String</td><td>The address of the <code>primitve</code> contract used to supply data to the app.</td></tr></tbody></table>
 
 ### AppComponent
 

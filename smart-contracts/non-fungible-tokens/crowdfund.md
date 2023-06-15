@@ -40,11 +40,7 @@ pub struct InstantiateMsg {
 {% endtab %}
 {% endtabs %}
 
-| Name                  | Type                                                                           | Desctription                                                                                                                                       |
-| --------------------- | ------------------------------------------------------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `token_address`       | [AndrAddress](../../platform-and-framework/common-types.md#andraddress)        | The contract address of the token.                                                                                                                 |
-| `modules`             | Option\<Vec<[Module](../../modules/module-definitions.md#module-definitions)>> | An optional vector of Andromeda[ Modules](broken-reference) that can be attached to the contract. "rates"and  "address-list" modules can be added. |
-| `can_mint_after_sale` | bool                                                                           | A flag to whether minting is allowed after a sale has been done. Minting is never allowed during a sale.                                           |
+<table><thead><tr><th width="259.3333333333333">Name</th><th>Type</th><th>Desctription</th></tr></thead><tbody><tr><td><code>token_address</code></td><td><a href="../../platform-and-framework/common-types.md#andraddress">AndrAddress</a></td><td>The contract address of the token.</td></tr><tr><td><code>modules</code></td><td>Option&#x3C;Vec&#x3C;<a href="../../modules/module-definitions.md#module-definitions">Module</a>>></td><td>An optional vector of Andromeda<a href="broken-reference"> Modules</a> that can be attached to the contract. "rates"and  "address-list" modules can be added.</td></tr><tr><td><code>can_mint_after_sale</code></td><td>bool</td><td>A flag to whether minting is allowed after a sale has been done. Minting is never allowed during a sale.  </td></tr></tbody></table>
 
 ## ExecuteMsg
 
@@ -163,13 +159,7 @@ pub enum ExecuteMsg{
 {% endtab %}
 {% endtabs %}
 
-| Name                    | Type                                                                  | Description                                                       |
-| ----------------------- | --------------------------------------------------------------------- | ----------------------------------------------------------------- |
-| `expiration`            | [Expiration](../../platform-and-framework/common-types.md#expiration) | When the sale ends.                                               |
-| `price`                 | [Coin](../../platform-and-framework/common-types.md#coin)             | The price per token.                                              |
-| `min_tokens_sold`       | Uint128                                                               | The minimum amount of tokens sold to go through with the sale.    |
-| `max_amount_per_wallet` | Option\<u32>                                                          | The amount of tokens a wallet can purchase, default is 1.         |
-| `recipient`             | [Recipient](../../platform-and-framework/common-types.md#recipient)   | The recipient of the funds if the sale met the `min_tokens_sold`. |
+<table><thead><tr><th width="272.3333333333333">Name</th><th width="196.50867625185924">Type</th><th>Description</th></tr></thead><tbody><tr><td><code>expiration</code></td><td><a href="../../platform-and-framework/common-types.md#expiration">Expiration</a></td><td>When the sale ends.</td></tr><tr><td><code>price</code></td><td><a href="../../platform-and-framework/common-types.md#coin">Coin</a></td><td>The price per token.</td></tr><tr><td><code>min_tokens_sold</code></td><td>Uint128</td><td>The minimum amount of tokens sold to go through with the sale.</td></tr><tr><td><code>max_amount_per_wallet</code></td><td>Option&#x3C;u32></td><td>The amount of tokens a wallet can purchase, default is 1.</td></tr><tr><td><code>recipient</code></td><td><a href="../../platform-and-framework/common-types.md#recipient">Recipient</a></td><td>The recipient of the funds if the sale met the <code>min_tokens_sold</code>.</td></tr></tbody></table>
 
 ### Purchase
 
@@ -367,16 +357,7 @@ pub struct State {
 {% endtab %}
 {% endtabs %}
 
-| Name                    | Type                                                                  | Description                                                                                                           |
-| ----------------------- | --------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------- |
-| `expiration`            | [Expiration](../../platform-and-framework/common-types.md#expiration) | The expiration denoting when the sale ends.                                                                           |
-| `price`                 | [Coin](../../platform-and-framework/common-types.md#coin)             | The price of each token.                                                                                              |
-| `min_tokens_sold`       | Uint128                                                               | The minimum number of tokens sold for the sale to go through.                                                         |
-| `max_amount_per_wallet` | u32                                                                   | The max number of tokens allowed per wallet.                                                                          |
-| `amount_sold`           | Uint128                                                               | Number of tokens sold.                                                                                                |
-| `amount_to_send`        | Uint128                                                               | The amount of funds to send to recipient if sale successful. This already takes into account the royalties and taxes. |
-| `amount_transferred`    | Uint128                                                               | Number of tokens transferred to purchasers if sale was successful.                                                    |
-| `recipient`             | [Recipient](../../platform-and-framework/common-types.md#recipient)   | The recipient of the raised funds if the sale is successful.                                                          |
+<table><thead><tr><th width="267.3333333333333">Name</th><th>Type</th><th>Description</th></tr></thead><tbody><tr><td><code>expiration</code></td><td><a href="../../platform-and-framework/common-types.md#expiration">Expiration</a></td><td>The expiration denoting when the sale ends.</td></tr><tr><td><code>price</code></td><td><a href="../../platform-and-framework/common-types.md#coin">Coin</a></td><td>The price of each token.</td></tr><tr><td><code>min_tokens_sold</code></td><td>Uint128</td><td>The minimum number of tokens sold for the sale to go through.</td></tr><tr><td><code>max_amount_per_wallet</code></td><td>u32</td><td>The max number of tokens allowed per wallet.</td></tr><tr><td><code>amount_sold</code></td><td>Uint128</td><td>Number of tokens sold.</td></tr><tr><td><code>amount_to_send</code></td><td>Uint128</td><td>The amount of funds to send to recipient if sale successful. This already takes into account the royalties and taxes.</td></tr><tr><td><code>amount_transferred</code></td><td>Uint128</td><td>Number of tokens transferred to purchasers if sale was successful.</td></tr><tr><td><code>recipient</code></td><td><a href="../../platform-and-framework/common-types.md#recipient">Recipient</a></td><td>The recipient of the raised funds if the sale is successful.</td></tr></tbody></table>
 
 ### Config
 
@@ -425,10 +406,7 @@ pub struct Config {
 {% endtab %}
 {% endtabs %}
 
-| Name                  | Type                                                                    | Description                                                                            |
-| --------------------- | ----------------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
-| `token_address`       | [AndrAddress](../../platform-and-framework/common-types.md#andraddress) | The address of the token contract whose tokens are being sold.                         |
-| `can_mint_after_sale` | bool                                                                    | Whether or not the owner can mint additional tokens after the sale has been conducted. |
+<table><thead><tr><th width="259.3333333333333">Name</th><th>Type</th><th>Description</th></tr></thead><tbody><tr><td><code>token_address</code></td><td><a href="../../platform-and-framework/common-types.md#andraddress">AndrAddress</a></td><td>The address of the token contract whose tokens are being sold.</td></tr><tr><td><code>can_mint_after_sale</code></td><td>bool</td><td>Whether or not the owner can mint additional tokens after the sale has been conducted.</td></tr></tbody></table>
 
 ### AvailableTokens
 

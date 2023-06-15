@@ -50,10 +50,7 @@ pub enum ExecuteMsg {
 {% endtab %}
 {% endtabs %}
 
-| Name          | Type   | Description                           |
-| ------------- | ------ | ------------------------------------- |
-| `code_id_key` | String | The ADO key to change the code Id for |
-| `code_id`     | u64    | The new code Id for the ADO.          |
+<table><thead><tr><th width="261.3333333333333">Name</th><th>Type</th><th>Description</th></tr></thead><tbody><tr><td><code>code_id_key</code></td><td>String</td><td>The ADO key to change the code Id for</td></tr><tr><td><code>code_id</code></td><td>u64</td><td>The new code Id for the ADO.</td></tr></tbody></table>
 
 ### AndrReceive
 

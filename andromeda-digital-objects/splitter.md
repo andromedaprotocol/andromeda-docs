@@ -57,11 +57,7 @@ pub struct InstantiateMsg {
 {% endtab %}
 {% endtabs %}
 
-| Name         | Type                                               | Description                                                                                                                           |
-| ------------ | -------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------- |
-| `modules`    | Option<[Module](../modules/module-definitions.md)> | An optional vector of Andromeda[ Modules](broken-reference) that can be attached to the contract. "address-list" module can be added. |
-| `lock_time`  | Option\<u64>                                       | How long the splitter is locked. When locked, no recipients can be added/changed.                                                     |
-| `recipients` | Vec<[AddressPercent](splitter.md#addresspercent)>  | The recipient list of the splitter. Can be updated after instantiation.                                                               |
+<table><thead><tr><th width="249.33333333333331">Name</th><th width="249.39014373716634">Type</th><th>Description</th></tr></thead><tbody><tr><td><code>modules</code></td><td>Option&#x3C;<a href="../modules/module-definitions.md">Module</a>></td><td>An optional vector of Andromeda<a href="broken-reference"> Modules</a> that can be attached to the contract. "address-list" module can be added.</td></tr><tr><td><code>lock_time</code></td><td>Option&#x3C;u64></td><td>How long the splitter is locked. When locked, no recipients can be added/changed.</td></tr><tr><td><code>recipients</code></td><td>Vec&#x3C;<a href="splitter.md#addresspercent">AddressPercent</a>></td><td>The recipient list of the splitter. Can be updated after instantiation.</td></tr></tbody></table>
 
 {% hint style="warning" %}
 Anytime a [`Send`](splitter.md#send) execute message is sent, the amount sent will be divided amongst the recipients depending on their assigned percentage.
@@ -277,9 +273,7 @@ pub struct GetSplitterConfigResponse {
 {% endtab %}
 {% endtabs %}
 
-| Name     | Type                             | Description                 |
-| -------- | -------------------------------- | --------------------------- |
-| `config` | [Splitter](splitter.md#splitter) | The Splitter config struct. |
+<table><thead><tr><th width="275.3333333333333">Name</th><th>Type</th><th>Description</th></tr></thead><tbody><tr><td><code>config</code></td><td><a href="splitter.md#splitter">Splitter</a></td><td>The Splitter config struct.</td></tr></tbody></table>
 
 #### Splitter
 
@@ -292,10 +286,7 @@ pub struct Splitter {
 }
 ```
 
-| Name         | Type                                             | Description                                                                                                                                                                                                                   |
-| ------------ | ------------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `recipients` | Vec<[AdressPercent](splitter.md#addresspercent)> | The vector of recipients for the contract. Anytime a `Send` execute message is sent the amount sent will be divided amongst these recipients depending on their assigned percentage.                                          |
-| `locked`     | Expiration                                       | The expiration time of the lock. Will return an epoc time which is equal to the current\_time _+_ lock\_time taken at the point of setting the lock. (Current time refers to the time the lock was set and not the time now.) |
+<table><thead><tr><th>Name</th><th width="266.3333333333333">Type</th><th>Description</th></tr></thead><tbody><tr><td><code>recipients</code></td><td>Vec&#x3C;<a href="splitter.md#addresspercent">AdressPercent</a>></td><td>The vector of recipients for the contract. Anytime a <code>Send</code> execute message is sent the amount sent will be divided amongst these recipients depending on their assigned percentage.</td></tr><tr><td><code>locked</code></td><td>Expiration</td><td>The expiration time of the lock. Will return an epoc time which is equal to the current_time <em>+</em> lock_time taken at the point of setting the lock. (Current time refers to the time the lock was set and not the time now.)</td></tr></tbody></table>
 
 ### AndrQuery
 

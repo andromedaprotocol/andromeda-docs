@@ -34,11 +34,7 @@ pub struct InstantiateMsg {
 {% endtab %}
 {% endtabs %}
 
-| Name                     | Type                                                | Description                                                                                                                                                           |
-| ------------------------ | --------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `primitive_contract`     | String                                              | The primitive contract use to store the factory contract  if used.                                                                                                    |
-| `cw721_instantiate_type` | [InstantiateType](wrapped-cw721.md#instantiatetype) | The cw721 contract can be instantiated or an existing address can be used. In the case that  an existing address is used, the minter must be set to be this contract. |
-| `can_unwrap`             | bool                                                | Whether or not the cw721 token can be unwrapped once it is wrapped.                                                                                                   |
+<table><thead><tr><th width="285.3333333333333">Name</th><th>Type</th><th>Description</th></tr></thead><tbody><tr><td><code>primitive_contract</code></td><td>String</td><td>The primitive contract use to store the factory contract  if used.</td></tr><tr><td><code>cw721_instantiate_type</code></td><td><a href="wrapped-cw721.md#instantiatetype">InstantiateType</a></td><td>The cw721 contract can be instantiated or an existing address can be used. In the case that  an existing address is used, the minter must be set to be this contract.</td></tr><tr><td><code>can_unwrap</code></td><td>bool</td><td>Whether or not the cw721 token can be unwrapped once it is wrapped.</td></tr></tbody></table>
 
 #### InstantiateType
 

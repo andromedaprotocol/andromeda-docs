@@ -349,10 +349,7 @@ pub enum QueryMsg {
 {% endtab %}
 {% endtabs %}
 
-| Name                  | Type    | Description                                                                                                        |
-| --------------------- | ------- | ------------------------------------------------------------------------------------------------------------------ |
-| `total_native_locked` | Uint128 | Total native coins deposited at the end of Lockdrop window. This value remains unchanged post the lockdrop window. |
-| `are_claims_allowed`  | bool    | Boolean value indicating if the user can withdraw their token rewards or not.                                      |
+<table><thead><tr><th width="260.3333333333333">Name</th><th>Type</th><th>Description</th></tr></thead><tbody><tr><td><code>total_native_locked</code></td><td>Uint128</td><td>Total native coins deposited at the end of Lockdrop window. This value remains unchanged post the lockdrop window.</td></tr><tr><td><code>are_claims_allowed</code></td><td>bool</td><td>Boolean value indicating if the user can withdraw their token rewards or not.</td></tr></tbody></table>
 
 ### UserInfo
 
@@ -409,12 +406,7 @@ pub struct UserInfoResponse {
 {% endtab %}
 {% endtabs %}
 
-| Name                  | Type    | Description                                                             |
-| --------------------- | ------- | ----------------------------------------------------------------------- |
-| `total_native_locked` | Uint128 | Total UST amount deposited by the user across all his lockup positions. |
-| `total_incentives`    | Uint128 | The total amount of incentive tokens for the user.                      |
-| `is_lockdrop_claimed` | bool    | Whether the lockdrop tokens have been claimed by the user or not.       |
-| `wtihdrawal_flag`     | bool    | Whether or not the user has withdrawn during the withdrawal phase.      |
+<table><thead><tr><th width="284.3333333333333">Name</th><th>Type</th><th>Description</th></tr></thead><tbody><tr><td><code>total_native_locked</code></td><td>Uint128</td><td>Total UST amount deposited by the user across all his lockup positions.</td></tr><tr><td><code>total_incentives</code></td><td>Uint128</td><td>The total amount of incentive tokens for the user.</td></tr><tr><td><code>is_lockdrop_claimed</code></td><td>bool</td><td>Whether the lockdrop tokens have been claimed by the user or not.</td></tr><tr><td><code>wtihdrawal_flag</code></td><td>bool</td><td>Whether or not the user has withdrawn during the withdrawal phase.</td></tr></tbody></table>
 
 ### WithdrawalPercentAllowed
 

@@ -66,10 +66,7 @@ You'll be asked to enter and repeat the new password for your key, and enter the
 
 #### Flags
 
-| Flag        | Description                              | Usage     |
-| ----------- | ---------------------------------------- | --------- |
-| **recover** | Recovers a wallet by mnemonic.           | --recover |
-| **help**    | Displays info about the current command. | --help    |
+<table><thead><tr><th>Flag</th><th width="369">Description</th><th>Usage</th></tr></thead><tbody><tr><td><strong>recover</strong></td><td>Recovers a wallet by mnemonic.</td><td>--recover</td></tr><tr><td><strong>help</strong></td><td>Displays info about the current command.</td><td>--help</td></tr></tbody></table>
 
 ## Wallet List
 

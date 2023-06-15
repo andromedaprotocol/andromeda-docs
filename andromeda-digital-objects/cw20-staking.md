@@ -76,10 +76,7 @@ pub struct InstantiateMsg {
 {% endtab %}
 {% endtabs %}
 
-| Name                 | Type                                                                 | Description                                                                                                                                                               |
-| -------------------- | -------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `staking_token`      | [AndrAddress](../platform-and-framework/common-types.md#andraddress) | The cw20 token that can be staked                                                                                                                                         |
-| `additional_rewards` | Option\<Vec\<RewardTokenUnchecked>>                                  | Any rewards in addition to the staking token. This list cannot include the staking token since it is used as a reward by default. Can have a maximum of 10 reward tokens. |
+<table><thead><tr><th width="255.8396361895644">Name</th><th width="344.3333333333333">Type</th><th>Description</th></tr></thead><tbody><tr><td><code>staking_token</code></td><td><a href="../platform-and-framework/common-types.md#andraddress">AndrAddress</a></td><td>The cw20 token that can be staked</td></tr><tr><td><code>additional_rewards</code></td><td>Option&#x3C;Vec&#x3C;RewardTokenUnchecked>></td><td>Any rewards in addition to the staking token. This list cannot include the staking token since it is used as a reward by default. Can have a maximum of 10 reward tokens.</td></tr></tbody></table>
 
 #### RewardTokenUnchecked
 
@@ -280,9 +277,7 @@ pub enum ExecuteMsg {
 {% endtab %}
 {% endtabs %}
 
-| Name          | Type                                                                   | Description                                                            |
-| ------------- | ---------------------------------------------------------------------- | ---------------------------------------------------------------------- |
-| `asset_infos` | Option\<Vec<[AssetInfoUnchecked](cw20-staking.md#assetinfounchecked)>> | Optional vector to specify the assets to update the global index for.  |
+<table><thead><tr><th>Name</th><th width="319.3333333333333">Type</th><th>Description</th></tr></thead><tbody><tr><td><code>asset_infos</code></td><td>Option&#x3C;Vec&#x3C;<a href="cw20-staking.md#assetinfounchecked">AssetInfoUnchecked</a>>></td><td>Optional vector to specify the assets to update the global index for. </td></tr></tbody></table>
 
 ### AndrReceive
 
@@ -339,10 +334,7 @@ pub struct Config {
 {% endtab %}
 {% endtabs %}
 
-| Name                      | Type                                                                 | Description                                                           |
-| ------------------------- | -------------------------------------------------------------------- | --------------------------------------------------------------------- |
-| `staking_token`           | [AndrAddress](../platform-and-framework/common-types.md#andraddress) | The token accepted for staking.                                       |
-| `number_of_reward_tokens` | u32                                                                  | The current number of reward tokens, cannot exceed the maximum of 10. |
+<table><thead><tr><th width="306.970342910102">Name</th><th width="319.3333333333333">Type</th><th>Description</th></tr></thead><tbody><tr><td><code>staking_token</code></td><td><a href="../platform-and-framework/common-types.md#andraddress">AndrAddress</a></td><td>The token accepted for staking.</td></tr><tr><td><code>number_of_reward_tokens</code></td><td>u32</td><td>The current number of reward tokens, cannot exceed the maximum of 10.</td></tr></tbody></table>
 
 ### State
 

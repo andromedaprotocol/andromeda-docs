@@ -17,7 +17,7 @@ Andromeda is a central hub for building fully decentralized web-3 Apps in the Co
 We will be building the Apps using the [Andromeda CLI](broken-reference), so make sure you have it dowloaded. If not you can grab the latest version by running:
 
 ```
-npm i -g @andromedaprotocol/andromeda.js
+sudo npm i -g @andromedaprotocol/cli
 ```
 
 We will be building all our examples using our [wasm commands](../andromeda-cli/wasm.md):

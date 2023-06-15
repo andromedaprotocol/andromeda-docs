@@ -38,11 +38,7 @@ pub struct InstantiateMsg {
 {% endtab %}
 {% endtabs %}
 
-| Name                           | Type                                                            | Description                                                                                                                           |
-| ------------------------------ | --------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------- |
-| `allowed_coin`                 | [CoinAndLimit](rate-limiting-withdrawals.md#coinandlimit)       | Set the allowed coin denom and the maximum amount allowed to withdraw.                                                                |
-| `minimal_withdrawal_frequency` | [MinimumFrequency](rate-limiting-withdrawals.md#contractandkey) | The time required between withdrawals. Specified in seconds. Cannot be 0.                                                             |
-| `modules`                      | Option\<Vec\<Module>>                                           | An optional vector of Andromeda[ Modules](broken-reference) that can be attached to the contract. "address-list" module can be added. |
+<table><thead><tr><th width="337.06022340942206">Name</th><th width="231.96848920702132">Type</th><th>Description</th></tr></thead><tbody><tr><td><code>allowed_coin</code></td><td><a href="rate-limiting-withdrawals.md#coinandlimit">CoinAndLimit</a></td><td>Set the allowed coin denom and the maximum amount allowed to withdraw.</td></tr><tr><td><code>minimal_withdrawal_frequency</code></td><td><a href="rate-limiting-withdrawals.md#contractandkey">MinimumFrequency</a></td><td>The time required between withdrawals. Specified in seconds. Cannot be 0.</td></tr><tr><td><code>modules</code></td><td>Option&#x3C;Vec&#x3C;Module>></td><td>An optional vector of Andromeda<a href="broken-reference"> Modules</a> that can be attached to the contract. "address-list" module can be added.</td></tr></tbody></table>
 
 #### CoinAndLimit
 
@@ -212,11 +208,7 @@ pub struct CoinAllowance {
 {% endtab %}
 {% endtabs %}
 
-| Name                           | Type    | Description                                                   |
-| ------------------------------ | ------- | ------------------------------------------------------------- |
-| `coin`                         | string  | The coin denom.                                               |
-| `limit`                        | Uint128 | The amount allowed to withdraw per withdrawal.                |
-| `minimal_withdrawal_frequency` | Uint128 | The time required between withdrawals. Specified in seconds.  |
+<table><thead><tr><th width="337.06022340942206">Name</th><th width="231.96848920702132">Type</th><th>Description</th></tr></thead><tbody><tr><td><code>coin</code></td><td>string</td><td>The coin denom.</td></tr><tr><td><code>limit</code></td><td>Uint128</td><td>The amount allowed to withdraw per withdrawal.</td></tr><tr><td><code>minimal_withdrawal_frequency</code></td><td>Uint128</td><td>The time required between withdrawals. Specified in seconds. </td></tr></tbody></table>
 
 ### AccountDetails
 
