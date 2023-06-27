@@ -101,7 +101,7 @@ The primitive address used here might be outdated in the future. Check our [depl
 ```json
 {
   "name": "Staking App",
-  "app": [
+  "app_components": [
     {
       "name": "cw20",
       "ado_type": "cw20",
@@ -140,7 +140,7 @@ The code Id to use will be returned.
 &#x20;Now we can instantiate our App. We will be using our wasm command to instantiate our app:
 
 ```
-wasm instantiate 98 '{"name": "Staking App","app": [{"name": "cw20","ado_type": "cw20","instantiate_msg": "eyJuYW1lIjogIlN0YWtpbmcgVG9rZW4iLCJzeW1ib2wiOiJTVEsiLCJkZWNpbWFscyI6NiwiaW5pdGlhbF9iYWxhbmNlcyI6W3siYWRkcmVzcyI6Imp1bm8xemtwdGhxc3ozdWQ5N2ZtNnA0a3hjcmE4YWU5OWpnemF1dWd5ZW0iLCJhbW91bnQiOiIxMDAwMCJ9LHsiYWRkcmVzcyI6Imp1bm8xZTUzdnRrN2ZtcXpmdHRkdnBmNGEzcHl4MGU3OXdrbWp6aDZxc2siLCJhbW91bnQiOiIxMDAwMCJ9LHsiYWRkcmVzcyI6Imp1bm8xOXMzbDN3aDVhM3c1ZHB5djZ2MjM0MmFlajM5bXdtamVhOHZwc24iLCJhbW91bnQiOiIxMDAwMCJ9IF19ICA="},{"name": "staking","ado_type": "cw20-staking","instantiate_msg": "eyJzdGFraW5nX3Rva2VuIjp7ImlkZW50aWZpZXIiOiJjdzIwIn19"}],"primitive_contract": "juno133fdsnvcah870exzcyxknydswyh778jfhwxzlhhgjuagh4482zpqp856dz"}'
+wasm instantiate 98 '{"name": "Staking App","app_components": [{"name": "cw20","ado_type": "cw20","instantiate_msg": "eyJuYW1lIjogIlN0YWtpbmcgVG9rZW4iLCJzeW1ib2wiOiJTVEsiLCJkZWNpbWFscyI6NiwiaW5pdGlhbF9iYWxhbmNlcyI6W3siYWRkcmVzcyI6Imp1bm8xemtwdGhxc3ozdWQ5N2ZtNnA0a3hjcmE4YWU5OWpnemF1dWd5ZW0iLCJhbW91bnQiOiIxMDAwMCJ9LHsiYWRkcmVzcyI6Imp1bm8xZTUzdnRrN2ZtcXpmdHRkdnBmNGEzcHl4MGU3OXdrbWp6aDZxc2siLCJhbW91bnQiOiIxMDAwMCJ9LHsiYWRkcmVzcyI6Imp1bm8xOXMzbDN3aDVhM3c1ZHB5djZ2MjM0MmFlajM5bXdtamVhOHZwc24iLCJhbW91bnQiOiIxMDAwMCJ9IF19ICA="},{"name": "staking","ado_type": "cw20-staking","instantiate_msg": "eyJzdGFraW5nX3Rva2VuIjp7ImlkZW50aWZpZXIiOiJjdzIwIn19"}],"primitive_contract": "juno133fdsnvcah870exzcyxknydswyh778jfhwxzlhhgjuagh4482zpqp856dz"}'
 ```
 
 [Instantiation](https://testnet.mintscan.io/juno-testnet/txs/1EE4CC4DEB10C568A8D8B6028AAB7727665EBEAAD35C8A561E07C9544CC355B7)
