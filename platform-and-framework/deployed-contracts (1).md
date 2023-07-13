@@ -50,6 +50,6 @@
 | Contract               | Address                                                          | Description                                                                |
 | ---------------------- | ---------------------------------------------------------------- | -------------------------------------------------------------------------- |
 | **ADODB**              | juno13cjznr3f259jqcxpygfhgd4k6lygyz uuqvdnucg2zrjrrypf53dqd3gm8a | Contract used to store the code IDs of all the other ADOs.                 |
-| **Registry/Primitive** | juno13jjcwkdk45l987jqa7vyc94h0djdr943d n7sxs0djndsfp3c7q6qvyp5pl | Contract used to save the ADODB address and connect it to Andromeda Apps.  |
+| **Registry/Primitive** | juno13jjcwkdk45l987jqa7vyc94h0djdr943dn7sxs0djndsfp3c7q6qvyp5pl  | Contract used to save the ADODB address and connect it to Andromeda Apps.  |
 {% endtab %}
 {% endtabs %}
