@@ -28,6 +28,26 @@ We will be building all our examples using our [wasm commands](../andromeda-cli/
 
 All of the builds can be performed using our [ado commands](../andromeda-cli/ado.md) which would prompt you to fill in the messages field by field. Feel free to experiment and build any of the use cases the way you find easiest.&#x20;
 
+### Converting from JSON to Base64
+
+In the examples we will cover, there will be many instances where we have to convert JSON messages to Base64. To convert your JSON message to a base64 encoded message, you will need to use an online converter. One thing to keep in mind is that the JSON message needs to be one line when converting. For example the conversion below is **Invalid** as the message is spread accross 7 lines:
+
+<figure><img src="../.gitbook/assets/Screen Shot 2023-06-15 at 6.36.00 PM.png" alt=""><figcaption></figcaption></figure>
+
+The correct conversion looks like this:
+
+<figure><img src="../.gitbook/assets/Screen Shot 2023-06-15 at 6.38.13 PM.png" alt=""><figcaption></figcaption></figure>
+
+### Getting Component Addresses
+
+In the examples we will cover, you will need to interact with the components of the app after you instantiate it. You can run the following in CLI to get the contract address of each component:
+
+```
+wasm query <app-contract-address> '{"get_addresses_with_names":{}}'
+```
+
+This will return the name of each component, along with the contract address.
+
 ### What's Next ?
 
-In the next sections, we will be going through some examples on building and deploying an Andromda App from scratch using the Andromeda CLI. We will go through a variety of popular dApps that can be built using Andromeda. Keep in mind that these are only a very few use cases out of the thousands that can be built.&#x20;
+In the next sections, we will be going through some examples on building and deploying an Andromda App from scratch using the Andromeda CLI. All the Apps will be built on the Andromeda testnet. We will go through a variety of popular dApps that can be built using Andromeda. Keep in mind that these are only a very few use cases out of the thousands that can be built.&#x20;

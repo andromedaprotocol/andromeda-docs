@@ -49,8 +49,8 @@
 * [Crowdfunding App](andromeda-apps/crowdfunding-app.md)
 * [Auctioning App](andromeda-apps/auctioning-app.md)
 * [Cw20 Staking App](andromeda-apps/cw20-staking-app.md)
-* [Wrapped-NFT App](andromeda-apps/wrapped-nft-app.md)
 * [Marketplace App](andromeda-apps/marketplace-app.md)
+* [Wrapped-NFT App](andromeda-apps/wrapped-nft-app.md)
 
 ## Andromeda CLI
 
