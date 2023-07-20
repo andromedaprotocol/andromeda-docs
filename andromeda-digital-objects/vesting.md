@@ -4,6 +4,8 @@ The **Vesting** ADO allows the vesting of tokens for one recipient which is fixe
 
 A new batch can be created using the `CreateBatch` message which will create a batch with the funds that are sent along with the message. This message contains parameters that define the lockup period and vesting parameters. All time-related parameters are done using seconds.
 
+To release tokens from the vesting ADO, you would need to run the **Claim** execute message.&#x20;
+
 **Ado\_type**: vesting
 
 ## InstantiateMsg
