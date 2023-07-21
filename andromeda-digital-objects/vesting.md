@@ -4,10 +4,6 @@ The **Vesting** ADO allows the vesting of tokens for one recipient which is fixe
 
 A new batch can be created using the `CreateBatch` message which will create a batch with the funds that are sent along with the message. This message contains parameters that define the lockup period and vesting parameters. All time-related parameters are done using seconds.
 
-#### What is super vesting?
-
-Super vesting is when you vest all your tokens in one batch.&#x20;
-
 **Ado\_type**: vesting
 
 ## InstantiateMsg
