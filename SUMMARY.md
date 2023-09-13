@@ -9,6 +9,10 @@
 * [Common Types](platform-and-framework/common-types.md)
 * [Deployed Contracts](<platform-and-framework/deployed-contracts (1).md>)
 
+## Creating an ADO
+
+* [Getting Started](creating-an-ado/getting-started.md)
+
 ## Andromeda Digital Objects
 
 * [Address List](andromeda-digital-objects/address-list.md)
