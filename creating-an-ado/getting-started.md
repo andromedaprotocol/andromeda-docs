@@ -8,6 +8,10 @@ description: Getting started with your own ADO
 
 If you're starting from scratch the best way to begin is to use the fork of the CosmWasm smart contract template. This can be found on our Github [here](https://github.com/andromedaprotocol/andr-cw-template).
 
+### Andromeda Standard Crate
+
+Our crate can be found [here](https://crates.io/crates/andromeda-std).
+
 ## Contract Messages
 
 The message definitions for an ADO can be added to any existing message definitions using our `andromeda-macros` crate (this is also available via the `andromeda-std` crate, so if you're using our full suite you don't need to install this crate explicitly). There are three macros for instantiation, execute and query messages.
