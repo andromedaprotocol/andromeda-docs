@@ -96,9 +96,18 @@ This will create an ado with type `ADO_NAME` and a current version of `CONTRACT_
 
 ### Execution
 
-Executing messages in an ADO is a fairly simple process. We expose a new struct called `ExecuteContext` which has your regular dependencies, info and environment alongside a new `AMPPkt` struct (under `.ctx`) that includes info about the current AMP packet if the message was received via the `AMPReceive` message type. \
+Executing messages in an ADO is a fairly simple process. We expose a new struct called `ExecuteContext` which has your regular dependencies, info and environment alongside a new [`AMPPkt`](https://github.com/andromedaprotocol/andromeda-core/blob/amp/packages/std/src/amp/messages.rs#L240) struct (`amp_ctx`) that includes info about the current AMP packet if the message was received via the `AMPReceive` message type. \
 \
 An AMP Packet includes some useful information such as the `origin` field which includes the original sender of the packet. **If you are using this for authorisation purposes please verify that the sender is someone you can trust.**&#x20;
+
+```rust
+pub struct ExecuteContext<'a> {
+    pub deps: DepsMut<'a>,
+    pub info: MessageInfo,
+    pub env: Env,
+    pub amp_ctx: Option<AMPPkt>,
+}
+```
 
 In order to expose this data we must first call the method for handling `AMPReceive` messages and provide it your standard execution handler like so:
 
@@ -124,8 +133,14 @@ pub fn execute(
 pub fn handle_execute(ctx: ExecuteContext, msg: ExecuteMsg) -> Result<Response, ContractError> {
     match msg {
         // .. Your execute message handlers,
+        ExecuteMsg::MyMsg { some_param } => my_handler(ctx, some_param),
         _ => ADOContract::default().execute(ctx, msg),
     }
+}
+
+pub fn my_handler(ctx: ExecuteContext, some_param: SomeVariableType) -> Result<Response, ContractError> {
+    let ExecuteContext { amp_ctx, deps, info, env } = ctx;
+    // .. Your code
 }
 ```
 
