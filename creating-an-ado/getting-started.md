@@ -207,7 +207,7 @@ To use the dependencies simply create your mock dependencies variable like so:
 use andromeda_std::testing::mock_dependencies_custom;
 
 fn test_something() {
- let mut deps = mock_dependencies_custom(&);
+ let mut deps = mock_dependencies_custom(&[]);
  // .. The rest of your test code
 }
 ```
