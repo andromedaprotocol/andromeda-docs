@@ -6,7 +6,7 @@ description: Getting started with your own ADO
 
 ## Template
 
-If you're starting from scratch the best way to begin is to use the fork of the CosmWasm smart contract template. This can be found on our Github here: [https://github.com/andromedaprotocol/andr-cw-template](https://github.com/andromedaprotocol/andr-cw-template).
+If you're starting from scratch the best way to begin is to use the fork of the CosmWasm smart contract template. This can be found on our Github [here](https://github.com/andromedaprotocol/andr-cw-template).
 
 ## Contract Messages
 
@@ -127,7 +127,7 @@ pub fn handle_execute(ctx: ExecuteContext, msg: ExecuteMsg) -> Result<Response, 
 
 Here we provide our `handle_execute` method to the `execute_amp_receive` method so that the handler can verify and create the `ExecuteContext` object appropriately before passing it to the handler.
 
-As a catchall we provide the `.execute(ctx, msg)` call to handle any Andromeda specific messages. If you are looking to use another execute message handler such as cw721-base check out our CW721 contract here: [https://github.com/andromedaprotocol/andromeda-core/blob/amp/contracts/non-fungible-tokens/andromeda-cw721/src/contract.rs#L103](https://github.com/andromedaprotocol/andromeda-core/blob/amp/contracts/non-fungible-tokens/andromeda-cw721/src/contract.rs#L103)
+As a catchall we provide the `.execute(ctx, msg)` call to handle any Andromeda specific messages. If you are looking to use another execute message handler such as cw721-base check out our CW721 contract [here](https://github.com/andromedaprotocol/andromeda-core/blob/amp/contracts/non-fungible-tokens/andromeda-cw721/src/contract.rs#L103).
 
 ### Queries
 
@@ -145,5 +145,53 @@ pub fn query(deps: Deps, env: Env, msg: QueryMsg) -> Result<Binary, ContractErro
 
 ### Testing
 
-To aid in testing we provide a separate `mock_dependencies_custom` function that provides handlers for specific ADO contracts. This can be found here.
+To aid in testing we provide a separate `mock_dependencies_custom` function that provides handlers for specific ADO contracts. This can be found [here](https://github.com/andromedaprotocol/andromeda-core/blob/amp/packages/std/src/testing/mock\_querier.rs). The following mock variables are used:
+
+```rust
+/// Mock CW20 Contract Address
+pub const MOCK_CW20_CONTRACT: &str = "cw20_contract";
+/// Mock App Contract Address
+pub const MOCK_APP_CONTRACT: &str = "app_contract";
+/// Mock Primitive Contract Address
+pub const MOCK_PRIMITIVE_CONTRACT: &str = "primitive_contract";
+/// Mock Kernel Contract Address
+pub const MOCK_KERNEL_CONTRACT: &str = "kernel_contract";
+/// Mock VFS Contract Address
+pub const MOCK_VFS_CONTRACT: &str = "vfs_contract";
+/// Mock ADODB Contract Address
+pub const MOCK_ADODB_CONTRACT: &str = "adodb_contract";
+// Mock ADO Publisher
+pub const MOCK_ADO_PUBLISHER: &str = "ado_publisher";
+// Mock Osmosis Router
+pub const MOCK_OSMOSIS_ROUTER_CONTRACT: &str = "osmosis_router";
+// Mock Economics Contract
+pub const MOCK_ECONOMICS_CONTRACT: &str = "economics_contract";
+
+/// Mock Rates Contract Address
+pub const MOCK_RATES_CONTRACT: &str = "rates_contract";
+/// Mock Address List Contract Address
+pub const MOCK_ADDRESS_LIST_CONTRACT: &str = "address_list_contract";
+
+/// An invalid contract address
+pub const INVALID_CONTRACT: &str = "invalid_contract";
+/// An invalid VFS Path
+pub const FAKE_VFS_PATH: &str = "/f";
+/// An invalid ADODB Key
+pub const FAKE_ADODB_KEY: &str = "fake_adodb_key";
+/// A valid action
+pub const MOCK_ACTION: &str = "action";
+```
+
+To use the dependencies simply create your mock dependencies variable like so:
+
+```rust
+use andromeda_std::testing::mock_dependencies_custom;
+
+fn test_something() {
+ let mut deps = mock_dependencies_custom(&);
+ // .. The rest of your test code
+}
+```
+
+
 
