@@ -1,7 +1,3 @@
----
-description: change as there is no bridge anymore
----
-
 # Andromeda Messaging Protocol
 
 The **Andromeda Messaging Protoco**l (AMP) is an advanced messaging system tailored for Andromeda ADOs. It has been designed to optimize communication between ADOs, addressing common issues present in existing CosmWasm messaging protocols.
