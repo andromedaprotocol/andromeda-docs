@@ -13,13 +13,17 @@ Users can then purchase the CW20 token being sold by sending the required asset 
 Multiple sales can take place at the same time but no two sales can have the same purchasing asset.
 {% endhint %}
 
+**ado\_type:** cw20-exchange
+
 ## InstantiateMsg
 
 {% tabs %}
 {% tab title="Rust" %}
 ```rust
 pub struct InstantiateMsg {
-    pub token_address: AndrAddress,
+    pub token_address: AndrAddr,
+    pub kernel_address: String,
+    pub owner: Option<String>,
 }
 ```
 {% endtab %}
@@ -27,17 +31,19 @@ pub struct InstantiateMsg {
 {% tab title="JSON" %}
 ```json
 {
-"token_address":{
-    "identifier":"andr1..."
-    }
+"token_address":"andr1...",
+"kernel_address":"andr1...",
+"owner":"andr1..."
 }
 ```
 {% endtab %}
 {% endtabs %}
 
-| Name            | Type                                                                 | Description                                    |
-| --------------- | -------------------------------------------------------------------- | ---------------------------------------------- |
-| `token_address` | [AndrAddress](../platform-and-framework/common-types.md#andraddress) | Contract address of the CW20 token to be sold. |
+| Name             | Type                                                           | Description                                                                                                                                                                                                                                                                                                                   |
+| ---------------- | -------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `token_address`  | [AndrAddr](../platform-and-framework/common-types.md#andraddr) | Address of the CW20 token to be sold.                                                                                                                                                                                                                                                                                         |
+| `kernel_address` | String                                                         | Contract address of the [kernel contract](../platform-and-framework/andromeda-messaging-protocol/kernel.md) to be used for [AMP](../platform-and-framework/andromeda-messaging-protocol/) messaging. Kernel contract address can be found in our [deployed contracts](<../platform-and-framework/deployed-contracts (1).md>). |
+| `owner`          | Option\<String>                                                | Optional address to specify as the owner of the ADO being created. Defaults to the sender if not specified.                                                                                                                                                                                                                   |
 
 ## ExecuteMsg
 
@@ -67,13 +73,26 @@ pub struct Cw20ReceiveMsg {
 
 The `msg` in the `Cw20ReceiveMsg`should be a base64 encoded `Cw20HookMsg`.
 
-## Cw20HookMsg
+### Cw20HookMsg
 
 {% hint style="warning" %}
 The CW20 tokens sent with StartSale should come from the contract address specified at instantiation.
 
 The CW20 tokens sent with Purchase should be the same as the defined Asset from StartSale message.
 {% endhint %}
+
+```rust
+pub enum Cw20HookMsg {
+    StartSale {
+        asset: AssetInfo,
+        exchange_rate: Uint128,
+        recipient: Option<String>,
+    },
+    Purchase {
+        recipient: Option<String>,
+    },
+}
+```
 
 ### StartSale
 
@@ -101,7 +120,7 @@ pub enum Cw20HookMsg {
 {
 "start_sale":{
     "asset":{
-          "cw20":"andr1..."
+        "native":"uandr"
         },
     "exchange_rate":"5"
     }
@@ -234,9 +253,9 @@ pub enum ExecuteMsg {
 | ----------- | --------------- | -------------------------------------------------------------------------------------------- |
 | `recipient` | Option\<String> | Optional recipient to receive the purchased tokens. Defaults to the sender if not specified. |
 
-### AndrReceive
+### Base Executes
 
-The rest of the executes can be found in the [`AndrReceive`](../platform-and-framework/ado-base.md#andrrecieve) section.
+The rest of the execute messages can be found in the[ ADO Base](../platform-and-framework/ado-base.md) section.
 
 ## QueryMsg
 
@@ -379,6 +398,6 @@ pub struct SaleAssetsResponse {
 }
 ```
 
-### AndrQuery
+### &#x20;Base Queries
 
-A set of base queries common to all Andromeda ADOs. Check[ AndrQuery](../platform-and-framework/ado-base.md#andrquery).
+The rest of the query messages can be found in the[ ADO Base](../platform-and-framework/ado-base.md) section.

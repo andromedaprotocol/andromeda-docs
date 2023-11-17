@@ -123,6 +123,8 @@ The `instantiate_message` of the cw20 will be different for you since you are us
   }
 ```
 
+We have already uploaded the App ADO to the uni-5 testnet. The code I will use is 98. This code Id will most likely be outdated in the future. A simple way to check the latest code Id for the App ADO is to query it from the ADODB using the the chain you want to use.&#x20;
+
 ### Instantiating the App
 
 If you do not have the CLI downloaded, go to the [Introduction to Apps](introduction-to-apps.md) section to get the latest version.

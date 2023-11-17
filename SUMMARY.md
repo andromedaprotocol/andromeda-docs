@@ -4,8 +4,13 @@
 
 * [Introduction](README.md)
 * [ADO Classes](platform-and-framework/ado-classes.md)
-* [ADO Base](platform-and-framework/ado-base.md)
 * [Hooks](platform-and-framework/hooks.md)
+* [Andromeda Messaging Protocol](platform-and-framework/andromeda-messaging-protocol/README.md)
+  * [Kernel](platform-and-framework/andromeda-messaging-protocol/kernel.md)
+  * [ADO Database](platform-and-framework/andromeda-messaging-protocol/andromeda-factory.md)
+  * [Economics](platform-and-framework/andromeda-messaging-protocol/economics.md)
+  * [Virtual File System](platform-and-framework/andromeda-messaging-protocol/virtual-file-system.md)
+* [ADO Base](platform-and-framework/ado-base.md)
 * [Common Types](platform-and-framework/common-types.md)
 * [Deployed Contracts](<platform-and-framework/deployed-contracts (1).md>)
 
@@ -18,6 +23,7 @@
 * [Address List](andromeda-digital-objects/address-list.md)
 * [Auction](smart-contracts/non-fungible-tokens/auction.md)
 * [App](smart-contracts/andromeda-apps/app.md)
+* [Cross-Chain Swap](andromeda-digital-objects/cross-chain-swap.md)
 * [Crowdfund](smart-contracts/non-fungible-tokens/crowdfund.md)
 * [CW20](andromeda-digital-objects/cw20.md)
 * [CW20 Staking](andromeda-digital-objects/cw20-staking.md)
@@ -25,7 +31,6 @@
 * [CW721 Bids](andromeda-digital-objects/cw721-bids.md)
 * [CW721 Timelock](andromeda-digital-objects/cw721-timelock.md)
 * [CW20 Exchange](andromeda-digital-objects/cw20-exchange.md)
-* [ADO Database](andromeda-digital-objects/andromeda-factory.md)
 * [Lockdrop](smart-contracts/fungible-tokens/lockdrop.md)
 * [Marketplace](andromeda-digital-objects/marketplace.md)
 * [Merkle-Airdrop](andromeda-digital-objects/merkle-airdrop.md)
@@ -45,7 +50,6 @@
 * [Module Definitions](modules/module-definitions.md)
 * [Rates Module](modules/rates-module.md)
 * [Address List Module](modules/address-list-module/README.md)
-* [CW721-Bids Module](modules/cw721-bids-module.md)
 
 ## Andromeda Apps
 

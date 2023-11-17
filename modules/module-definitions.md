@@ -13,52 +13,38 @@ A struct describing a token module, provided with the instantiation message this
 
 ```rust
 pub struct Module {
-    pub module_type: String,
-    pub address: AndrAddress,
+    pub name: Option<String>,
+    pub address: AndrAddr,
     pub is_mutable: bool,
 }
 ```
 
-| Name          | Type                            | Description                                                                                                                                                                                                                                                                                 |
-| ------------- | ------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `module_type` | String                          | The name of the module to add. Can be set one of the following: "rates", "offers", "address-list", "receipt" .                                                                                                                                                                              |
-| `address`     | [AndrAddress](broken-reference) | The reference to the module ADO. Can be the contract address or the name of the component in an App.                                                                                                                                                                                        |
-| `is_mutable`  | bool                            | Whether the module can be later modified or not. This means that if `is_mutable` is set to true, then you can run the base executes [`deregister_module`](../platform-and-framework/ado-base.md#deregistermodule) and [`alter _module`](../platform-and-framework/ado-base.md#altermodule). |
+| Name         | Type                                                           | Description                                                                                                                                                                                                                                                                                 |
+| ------------ | -------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `name`       | Option\<String>                                                | An optional name to assign the module.                                                                                                                                                                                                                                                      |
+| `address`    | [AndrAddr](../platform-and-framework/common-types.md#andraddr) | Reference to the module ADO. Can be either the contract address or the name of the ADO in an App.                                                                                                                                                                                           |
+| `is_mutable` | bool                                                           | Whether the module can be later modified or not. This means that if `is_mutable` is set to true, then you can run the base executes [`deregister_module`](../platform-and-framework/ado-base.md#deregistermodule) and [`alter _module`](../platform-and-framework/ado-base.md#altermodule). |
 
 {% hint style="warning" %}
-Any ADO that can implement modules uses this `Module` struct in its instantiation  to add the modules to the ADO.&#x20;
+Any ADO that can implement modules uses this `Module` struct in its instantiation  to add modules to the ADO.&#x20;
 {% endhint %}
-
-### AndrAdress
-
-A struct used to reference  another ADO contract. Can be either an address, or identifier of an ADO in an app.&#x20;
-
-```rust
-pub struct AndrAddress {
-    pub identifier: String,
- }
-```
 
 ## Defining Modules
 
-When instantiating an **Andromeda Digital Object** contract the modules can be defined within the `modules` field of the `InstantiateMsg` like so:
+When instantiating an **Andromeda Digital Object** contract, the modules can be defined within the `modules` field of the `InstantiateMsg` like so:
 
 ```json
 {
   "modules": [
         {
-          "module_type": "address_list",
-          "address": {
-            "identifier":"andr1..."
-              },
+          "name": "address_list",
+          "address":"andr1...",
           "is_mutable": false
         },
         
         {
-          "module_type": "rates",
-          "address": {
-            "identifier":"my_rates"
-            },
+          "name": "rates",
+          "address":"rates-1",
           "is_mutable": true
         }
       ]
@@ -91,11 +77,11 @@ pub enum AndromedaQuery {
 ```
 
 {% hint style="info" %}
-More details about each of these messages can be found in [AndrReceive/AndrQuery](../platform-and-framework/ado-base.md#modules)
+More details about each of these messages can be found in [ADO Base](../platform-and-framework/ado-base.md) section.
 {% endhint %}
 
 ### Module Usage&#x20;
 
 As we know by now, not all ADOs can have modules added to them. Even the ADOs that accept modules do not necessarily accept all modules. Below is a summary on the modules that can be added to each ADO.
 
-<table><thead><tr><th width="248">ADO</th><th data-type="checkbox">Address List</th><th data-type="checkbox">Rates</th><th data-type="checkbox">Offers</th></tr></thead><tbody><tr><td><strong>auction</strong></td><td>true</td><td>true</td><td>false</td></tr><tr><td><strong>cw721</strong></td><td>true</td><td>true</td><td>true</td></tr><tr><td><strong>cw20</strong></td><td>true</td><td>false</td><td>false</td></tr><tr><td><strong>rate-limiting-withdrawals</strong></td><td>true</td><td>false</td><td>false</td></tr><tr><td><strong>splitter</strong></td><td>true</td><td>false</td><td>false</td></tr><tr><td><strong>timelock</strong></td><td>true</td><td>false</td><td>false</td></tr><tr><td><strong>weighted-distribution-splitter</strong></td><td>true</td><td>false</td><td>false</td></tr><tr><td><strong>crowdfund</strong></td><td>true</td><td>true</td><td>false</td></tr><tr><td><strong>marketplace</strong></td><td>true</td><td>true</td><td>false</td></tr></tbody></table>
+<table><thead><tr><th width="248">ADO</th><th data-type="checkbox">Address List</th><th data-type="checkbox">Rates</th></tr></thead><tbody><tr><td><strong>auction</strong></td><td>true</td><td>true</td></tr><tr><td><strong>cw721</strong></td><td>true</td><td>true</td></tr><tr><td><strong>cw20</strong></td><td>true</td><td>false</td></tr><tr><td><strong>rate-limiting-withdrawals</strong></td><td>true</td><td>false</td></tr><tr><td><strong>timelock</strong></td><td>true</td><td>false</td></tr><tr><td><strong>weighted-distribution-splitter</strong></td><td>true</td><td>false</td></tr><tr><td><strong>crowdfund</strong></td><td>true</td><td>true</td></tr><tr><td><strong>marketplace</strong></td><td>true</td><td>true</td></tr></tbody></table>

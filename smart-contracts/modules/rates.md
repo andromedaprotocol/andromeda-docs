@@ -22,6 +22,9 @@ More information on how the module works can be found in the  [Rates Module](../
 ```rust
 pub struct InstantiateMsg {
     pub rates: Vec<RateInfo>,
+    pub kernel_address: String,
+    pub owner: Option<String>
+    
 }
 ```
 {% endtab %}
@@ -38,23 +41,26 @@ pub struct InstantiateMsg {
       },
       "is_additive": false,
       "recipients":[{
-         "addr":"andr1..."
+         "address":"andr1..."
             },
          {
-         "addr":"andr1..."
+         "address":"andr1..."
          }
          ]
       },
     ...
-   ] 
+   ],
+"kernel_address":"andr1..."
 }
 ```
 {% endtab %}
 {% endtabs %}
 
-| Name    | Type                               | Description                                                   |
-| ------- | ---------------------------------- | ------------------------------------------------------------- |
-| `rates` | Vec<[RateInfo](rates.md#rateinfo)> | A vector containing the different `RateInfo` of the contract. |
+| Name             | Type                               | Description                                                                                                                                                                                                                                                                                                                            |
+| ---------------- | ---------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `rates`          | Vec<[RateInfo](rates.md#rateinfo)> | A vector containing the different `RateInfo` of the contract.                                                                                                                                                                                                                                                                          |
+| `kernel_address` | String                             | Contract address of the [kernel contract](../../platform-and-framework/andromeda-messaging-protocol/kernel.md) to be used for [AMP](../../platform-and-framework/andromeda-messaging-protocol/) messaging. Kernel contract address can be found in our [deployed contracts](<../../platform-and-framework/deployed-contracts (1).md>). |
+| `owner`          | Option\<String>                    | Optional address to specify as the owner of the ADO being created. Defaults to the sender if not specified.                                                                                                                                                                                                                            |
 
 ### RateInfo
 
@@ -90,7 +96,6 @@ An enum used to define various types of fees which is used in the RateInfo.
 pub enum Rate {
     Flat(Coin),
     Percent(PercentRate),
-    External(PrimitivePointer),
 }
 ```
 
@@ -102,17 +107,8 @@ The flat rate needs to be a whole number.
 The percentage rate needs to be a decimal i.e 0.2 for 20%
 {% endhint %}
 
-* Flat: A fixed amount to be taken ([Coin](../../platform-and-framework/common-types.md#coin)). Needs to have an amount and denomination specified.
-* Percent: A percentage based rate. Needs to have the percent specified.
-
-
-
-* External: This refers to a rate that we want to use which is saved in a primitive contract. Needs the address of the primitive and the key of the stored Rate primitive to be specified. The value saved in the primitive needs to be one of two types:&#x20;
-
-**1. Decimal:** If the value is a decimal then the rate taken will be a percentage equivalent                   to the specified decimal value.&#x20;
-
-**2.Coin:** If the value is of type coin then the rate taken will be flat equivalent to the a. amount specified in the coin value. \
-
+* **Flat**: A fixed amount to be taken ([Coin](../../platform-and-framework/common-types.md#coin)). Needs to have an amount and denomination specified.&#x20;
+* **Percent**: A percentage based rate. Needs to have the percent specified.
 
 Any other type of value will not be will not apply any rates.&#x20;
 
@@ -127,20 +123,6 @@ pub struct PercentRate {
 | Name      | Type    | Description                     |
 | --------- | ------- | ------------------------------- |
 | `percent` | Decimal | The percentage to take as rate. |
-
-**PrimitivePointer**
-
-```rust
-pub struct PrimitivePointer {
-    pub address: AndrAddress,
-    pub key: Option<String>,
-}
-```
-
-| Name      | Type                                                                    | Description                                                                  |
-| --------- | ----------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
-| `address` | [AndrAddress](../../platform-and-framework/common-types.md#andraddress) | The address of the primitive contract.                                       |
-| `key`     | Option\<String>                                                         | The key for the stored data. If not specified, then the default key is used. |
 
 ## ExecuteMsg
 
@@ -175,10 +157,10 @@ pub enum ExecuteMsg{
          "is_additive": false,
          "recipients":[
             {
-            "addr":"andr1..."
+            "address":"andr1..."
          },
             {
-         "addr":"andr1..."
+         "address":"andr1..."
          },
          ...
          ]
@@ -237,10 +219,10 @@ Removes an address from the list of exempt addresses.
 {% tab title="Rust" %}
 ```rust
 pub enum ExecuteMsg {
-        RemoveExemption {
-                 address: String 
-                 }
-        }
+    RemoveExemption {
+        address: String 
+     }
+}
 ```
 {% endtab %}
 
@@ -259,9 +241,9 @@ pub enum ExecuteMsg {
 | --------- | ------ | ----------------------------------------- |
 | `address` | String | The address to remove the exemption from. |
 
-### AndrReceive
+### Base Executes
 
-The rest of the executes can be found in the [`AndrReceive`](../../platform-and-framework/ado-base.md#andrrecieve) section.
+The rest of the execute messages can be found in the[ ADO Base](../../platform-and-framework/ado-base.md) section.
 
 ## QueryMsg
 
@@ -313,10 +295,10 @@ pub struct PaymentsResponse {
       "is_additive": false,
       "recipients":[
                      {
-                     "addr":"andr1..."
+                     "address":"andr1..."
                   },
                      {
-                     "addr":"andr1..."
+                     "address":"andr1..."
                   },
          ...
          ]
@@ -416,9 +398,9 @@ pub struct ExemptionsResponse {
 {% endtab %}
 {% endtabs %}
 
-### AndrQuery
+### &#x20;Base Queries
 
-A set of base queries common to all Andromeda ADOs. Check[ AndrQuery](../../platform-and-framework/ado-base.md#andrquery).
+The rest of the query messages can be found in the[ ADO Base](../../platform-and-framework/ado-base.md) section.
 
 ## Stacking Rates
 

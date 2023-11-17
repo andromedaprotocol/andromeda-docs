@@ -9,7 +9,7 @@ description: Send CosmWasm messages to the chain.
 | Command                                | Description                         |
 | -------------------------------------- | ----------------------------------- |
 | [**execute**](wasm.md#execute)         | Executes a wasm message.            |
-| [**instantiate**](wasm.md#instantiate) | Instantiates a contract by code ID. |
+| [**instantiate**](wasm.md#instantiate) | Instantiates a contract by code Id. |
 | [**migrate**](wasm.md#migrate)         | Migrate a contract.                 |
 | [**query**](wasm.md#query)             | Queries a contract.                 |
 | [**upload**](wasm.md#upload)           | Upload a contract wasm.             |
@@ -48,7 +48,7 @@ The link will take you to the explorer to see the transaction details.
 
 ## Instantiate
 
-Instantiates a contract by code ID.
+Instantiates a contract by code Id.
 
 #### Usage
 

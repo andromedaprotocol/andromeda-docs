@@ -2,7 +2,11 @@
 
 ## Introduction
 
-The **Auction** ADO is a smart contract that allows performing custom auctions on NFTs. The owner can send an NFT to this contract with the required messages to start an auction on it. Once the auction has started, users can place bids on the token until the auction expires. The highest bid will win the auction sending the funds to the seller and receiving the token in return.
+The **Auction** ADO is a smart contract that allows performing custom auctions on NFTs. The owner can send an NFT to this contract with the required messages to start an auction on it. Once the auction has started, users can place bids on the token until the auction expires. The highest bid will win the auction, sending the funds to the seller and receiving the token in return.
+
+{% hint style="info" %}
+This ADO allows creating [English Auctions](https://en.wikipedia.org/wiki/English\_auction).&#x20;
+{% endhint %}
 
 The contract supports [modules](broken-reference) to extend its functionality.
 
@@ -14,14 +18,27 @@ The contract supports [modules](broken-reference) to extend its functionality.
 {% tab title="Rust" %}
 <pre class="language-rust"><code class="lang-rust">pub struct InstantiateMsg {
 <strong>    pub modules: Option&#x3C;Vec&#x3C;Module>>,
+</strong><strong>    pub kernel_address: String,
+</strong><strong>    pub owner: Option&#x3C;String>,
 </strong> }
 </code></pre>
 {% endtab %}
+
+{% tab title="JSON" %}
+```json
+{
+"kernel_address":"andr1...",
+"owner":"andr1..."
+}
+```
+{% endtab %}
 {% endtabs %}
 
-| Name      | Type                  | Description                                                                                                                                        |
-| --------- | --------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `modules` | Option\<Vec\<Module>> | An optional vector of Andromeda[ Modules](broken-reference) that can be attached to the contract. "rates" and "address-list" modules can be added. |
+| Name             | Type                  | Description                                                                                                                                                                                                                                                                                                                            |
+| ---------------- | --------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `modules`        | Option\<Vec\<Module>> | An optional vector of Andromeda[ Modules](broken-reference) that can be attached to the contract. "rates" and "address-list" modules can be added.                                                                                                                                                                                     |
+| `kernel_address` | String                | Contract address of the [kernel contract](../../platform-and-framework/andromeda-messaging-protocol/kernel.md) to be used for [AMP](../../platform-and-framework/andromeda-messaging-protocol/) messaging. Kernel contract address can be found in our [deployed contracts](<../../platform-and-framework/deployed-contracts (1).md>). |
+| `owner`          | Option\<String>       | Optional address to specify as the owner of the ADO being created. Defaults to the sender if not specified.                                                                                                                                                                                                                            |
 
 ## ExecuteMsg
 
@@ -33,6 +50,8 @@ Receives a token from a [`SendNft`](../../andromeda-digital-objects/cw721.md#sen
 The auction information can be modified before it has started but is immutable after that.
 
 Only the NFT owner can send the NFT and start the auction.
+
+This message is not called by the user on this ADO, but is the case that handles receiving NFTs from a CW721 ADO.
 {% endhint %}
 
 {% tabs %}
@@ -55,6 +74,10 @@ In order to start an auction you need to define the message of the `Cw721Receive
 {% endhint %}
 
 #### StartAuction
+
+{% hint style="warning" %}
+You need to get the base64 encoded representation of the JSON message and attach it as the `msg`when sending.&#x20;
+{% endhint %}
 
 {% tabs %}
 {% tab title="Rust" %}
@@ -102,7 +125,7 @@ pub enum Cw721HookMsg {
 
 Updates the information of an auction.
 
-{% hint style="info" %}
+{% hint style="warning" %}
 Only the owner of the auction can execute `UpdateAuction`.
 
 An auction can be updated only if it has not started yet.&#x20;
@@ -146,7 +169,7 @@ An auction can be updated only if it has not started yet.&#x20;
 `start_time` should not be a time in the past.
 {% endhint %}
 
-<table><thead><tr><th width="196.33333333333331">Name </th><th>Type</th><th>Description</th></tr></thead><tbody><tr><td><code>token_id</code></td><td>String</td><td>The id of the NFT that is being auctioned.</td></tr><tr><td><code>token_address</code></td><td>String</td><td>The address of the token contract.</td></tr><tr><td><code>start_time</code></td><td>u64</td><td>Start time in milliseconds since <a href="https://www.epochconverter.com/clock">epoch</a>.</td></tr><tr><td><code>duration</code></td><td>u64</td><td>Duration in milliseconds from the <code>start_time</code>.</td></tr><tr><td><code>coin_denom</code></td><td>String</td><td>The native coin denomination to do the auction in.</td></tr><tr><td><code>min_bid</code></td><td>Option&#x3C;Uint128></td><td>The minimum bid that can be placed on the auctioned token.</td></tr><tr><td><code>whitelist</code></td><td>Option&#x3C;Vec&#x3C;Addr>></td><td>Optional list of addresses to whitelist for the auction. If None, auction is public.</td></tr></tbody></table>
+<table><thead><tr><th width="196.33333333333331">Name </th><th>Type</th><th>Description</th></tr></thead><tbody><tr><td><code>token_id</code></td><td>String</td><td>The Id of the NFT that is being auctioned.</td></tr><tr><td><code>token_address</code></td><td>String</td><td>The address of the  NFT contract.</td></tr><tr><td><code>start_time</code></td><td>u64</td><td>Start time in milliseconds since <a href="https://www.epochconverter.com/clock">epoch</a>.</td></tr><tr><td><code>duration</code></td><td>u64</td><td>Duration in milliseconds from the <code>start_time</code>.</td></tr><tr><td><code>coin_denom</code></td><td>String</td><td>The native coin denomination to do the auction in.</td></tr><tr><td><code>min_bid</code></td><td>Option&#x3C;Uint128></td><td>The minimum bid that can be placed on the auctioned token.</td></tr><tr><td><code>whitelist</code></td><td>Option&#x3C;Vec&#x3C;Addr>></td><td>Optional list of addresses to whitelist for the auction. If None, auction is public.</td></tr></tbody></table>
 
 ### CancelAuction
 
@@ -184,12 +207,12 @@ pub enum ExecuteMsg {
 
 | Name            | Type   | Description                                       |
 | --------------- | ------ | ------------------------------------------------- |
-| `token_id`      | String | The id of the NFT in the auction to be cancelled. |
-| `token_address` | String | The address of the token contract.                |
+| `token_id`      | String | The Id of the NFT in the auction to be cancelled. |
+| `token_address` | String | The address of the NFT contract.                  |
 
 ### PlaceBid
 
-Places a bid for the auction for the given NFT id. The bid must be sent as native funds along with this message. The previous largest bid gets automatically sent back to the bidder when they are outbid.
+Places a bid for the auction for the given NFT Id. The bid must be sent as native funds along with this message. The previous largest bid gets automatically sent back to the bidder when they are outbid.
 
 {% hint style="warning" %}
 The following criteria must be met for the bid to be placed:
@@ -226,8 +249,8 @@ pub enum ExecuteMsg {
 
 | Name            | Type   | Description                          |
 | --------------- | ------ | ------------------------------------ |
-| `token_id`      | String | The id of the NFT to place a bid on. |
-| `token_address` | String | The address of the token contract.   |
+| `token_id`      | String | The Id of the NFT to place a bid on. |
+| `token_address` | String | The address of the NFT contract.     |
 
 ### Claim
 
@@ -263,16 +286,16 @@ pub enum ExecuteMsg {
 
 | Name            | Type   | Description                             |
 | --------------- | ------ | --------------------------------------- |
-| `token_id`      | String | The id of the token that was auctioned. |
-| `token_address` | String | The address of the token contract.      |
+| `token_id`      | String | The Id of the token that was auctioned. |
+| `token_address` | String | The address of the NFT contract.        |
 
-### AndrRecieve
+### Base Executes
 
 {% hint style="warning" %}
 Uses the modules feature.
 {% endhint %}
 
-The rest of the executes can be found in the [`AndrReceive`](../../platform-and-framework/ado-base.md#andrrecieve) section.
+The rest of the execute messages can be found in the[ ADO Base](../../platform-and-framework/ado-base.md) section.
 
 ## QueryMsg
 
@@ -307,8 +330,8 @@ pub enum QueryMsg {
 
 | Name            | Type   | Description                                             |
 | --------------- | ------ | ------------------------------------------------------- |
-| `token_id`      | String | The id of the NFT that we want to query the auction of. |
-| `token_address` | String | The address of the token contract.                      |
+| `token_id`      | String | The Id of the NFT that we want to query the auction of. |
+| `token_address` | String | The address of the NFT contract.                        |
 
 #### AuctionStateResponse
 
@@ -354,7 +377,7 @@ pub struct AuctionStateResponse {
 | `end_time`           | [Expiration](../../platform-and-framework/common-types.md#expiration) | The end of the auction.                                               |
 | `high_bidder_addr`   | String                                                                | The address of the highest bidder.                                    |
 | `high_bidder_amount` | Uint128                                                               | The amount of the highest bid.                                        |
-| `auction_id`         | Uint128                                                               | The id of the auction.                                                |
+| `auction_id`         | Uint128                                                               | The Id of the auction.                                                |
 | `coin_denom`         | String                                                                | The denom the auction is in.                                          |
 | `is_cancelled`       | bool                                                                  | Whether or not the auction has been cancelled.                        |
 | `min_bid`            | Option\<Uint128>                                                      | The minimum bid that can be placed on the auctioned token.            |
@@ -395,7 +418,7 @@ pub enum QueryMsg {
 
 | Name         | Type    | Description     |
 | ------------ | ------- | --------------- |
-| `auction_id` | Uint128 | The auction id. |
+| `auction_id` | Uint128 | The auction Id. |
 
 #### Response
 
@@ -435,7 +458,7 @@ pub enum QueryMsg {
 
 | Name          | Type             | Description                                                                                            |
 | ------------- | ---------------- | ------------------------------------------------------------------------------------------------------ |
-| `auction_id`  | Uint128          | The auction id.                                                                                        |
+| `auction_id`  | Uint128          | The auction Id.                                                                                        |
 | `start_after` | Option\<u64>     | Optional parameter to specify which bid to start after. If none specified index `0` will be used.      |
 | `limit`       | Option\<u64>     | Optional parameter to specify how many bids to query. If none specified a default limit of 10 is used. |
 | `order_by`    | Option\<OrderBy> | Optional parameter to specify the order of the bids being queries. Default is Ascending.               |
@@ -499,7 +522,7 @@ pub struct Bid {
 
 ### AuctionIds
 
-Queries the auction ids for a given token.
+Queries the auction Ids for a given token.
 
 {% tabs %}
 {% tab title="Rust" %}
@@ -526,10 +549,10 @@ pub enum QueryMsg {
 {% endtab %}
 {% endtabs %}
 
-| Name            | Type   | Description                            |
-| --------------- | ------ | -------------------------------------- |
-| `token_id`      | String | The id of the token/NFT.               |
-| `token_address` | String | The address of the token/NFT contract. |
+| Name            | Type   | Description                      |
+| --------------- | ------ | -------------------------------- |
+| `token_id`      | String | The Id of the token/NFT.         |
+| `token_address` | String | The address of the NFT contract. |
 
 #### AuctionIdsResponse
 
@@ -555,7 +578,7 @@ pub struct AuctionIdsResponse {
 
 | Name          | Type          | Description      |
 | ------------- | ------------- | ---------------- |
-| `auction_ids` | Vec\<Uint128> | The auction ids. |
+| `auction_ids` | Vec\<Uint128> | The auction Ids. |
 
 ### AuctionInfosForAddress
 
@@ -624,12 +647,116 @@ pub struct AuctionInfo {
 {% endtab %}
 {% endtabs %}
 
-| Name            | Type          | Description                                                     |
-| --------------- | ------------- | --------------------------------------------------------------- |
-| `auction_ids`   | Vec\<Uint128> | The ids of the auctions that use  the specified `token_address` |
-| `token_address` | String        | The address of the token contract.                              |
-| `token_id`      | String        | The id of the token that was auctioned.                         |
+<table><thead><tr><th>Name</th><th width="200.66666666666666">Type</th><th>Description</th></tr></thead><tbody><tr><td><code>auction_ids</code></td><td>Vec&#x3C;Uint128></td><td>The Ids of the auctions that use  the specified <code>token_address</code></td></tr><tr><td><code>token_address</code></td><td>String</td><td>The address of the token contract.</td></tr><tr><td><code>token_id</code></td><td>String</td><td>The Id of the token that was auctioned.</td></tr></tbody></table>
 
-### AndrQuery
+### IsCancelled
 
-A set of base queries common to all Andromeda ADOs. Check[ AndrQuery](../../platform-and-framework/ado-base.md#andrquery).
+Checks if the specified aution was cancelled.
+
+{% tabs %}
+{% tab title="Rust" %}
+```rust
+pub enum QueryMsg {
+ #[returns(bool)]
+    IsCancelled {
+        token_id: String,
+        token_address: String,
+    },
+}
+```
+{% endtab %}
+
+{% tab title="JSON" %}
+```json
+{
+"is_cancelled":{
+   "token_id":"token_001",
+   "token_address":"andr1..."
+   }
+}
+```
+{% endtab %}
+{% endtabs %}
+
+| Name            | Type   | Description                             |
+| --------------- | ------ | --------------------------------------- |
+| `token_id`      | String | The Id of the token that was auctioned. |
+| `token_address` | String | The address of the token contract.      |
+
+Returns a true if the auction has been cancelled and false otherwise.
+
+### IsClosed
+
+Checks if the specified auction has been closes. Returns true only if the auction has been cancelled, the token has been claimed, or the end time has expired.
+
+{% tabs %}
+{% tab title="Rust" %}
+```rust
+pub enum QueryMsg {
+   #[returns(bool)]
+    IsClosed {
+        token_id: String,
+        token_address: String,
+    }
+}
+```
+{% endtab %}
+
+{% tab title="JSON" %}
+```json
+{
+"is_closed":{
+   "token_id":"token_001",
+   "token_address":"andr1..."
+   }
+}
+```
+{% endtab %}
+{% endtabs %}
+
+| Name            | Type   | Description                             |
+| --------------- | ------ | --------------------------------------- |
+| `token_id`      | String | The Id of the token that was auctioned. |
+| `token_address` | String | The address of the token contract.      |
+
+Returns a true if the auction has been cancelled and false otherwise.
+
+### IsClaimed
+
+Checks if the NFT has been claimed after the auction has concluded.
+
+{% tabs %}
+{% tab title="Rust" %}
+```rust
+pub enum QueryMsg {
+   #[returns(bool)]
+    IsClaimed {
+        token_id: String,
+        token_address: String,
+    }
+}
+```
+{% endtab %}
+
+{% tab title="JSON " %}
+```json
+{
+"is_claimed":{
+   "token_id":"token_001",
+   "token_address":"andr1..."
+   }
+}
+```
+{% endtab %}
+{% endtabs %}
+
+| Name            | Type   | Description                             |
+| --------------- | ------ | --------------------------------------- |
+| `token_id`      | String | The Id of the token that was auctioned. |
+| `token_address` | String | The address of the token contract.      |
+
+Returns a true if the NFT has been claimed and false otherwise.
+
+### Base Queries
+
+The rest of the query messages can be found in the[ ADO Base](../../platform-and-framework/ado-base.md) section.

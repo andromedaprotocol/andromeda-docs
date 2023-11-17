@@ -27,10 +27,8 @@ pub struct ADOContract<'a> {
     pub(crate) ado_type: Item<'a, String>,
     pub(crate) version: Item<'a, String>,
     pub(crate) app_contract: Item<'a, Addr>,
-    #[cfg(feature = "primitive")]
-    pub(crate) primitive_contract: Item<'a, Addr>,
-    #[cfg(feature = "primitive")]
-    pub(crate) cached_addresses: Map<'a, &'a str, String>,
+    pub(crate) kernel_address: Item<'a, Addr>,
+    pub(crate) permissioned_actions: Map<'a, String, bool>,
     #[cfg(feature = "modules")]
     pub(crate) module_info: Map<'a, &'a str, Module>,
     #[cfg(feature = "modules")]

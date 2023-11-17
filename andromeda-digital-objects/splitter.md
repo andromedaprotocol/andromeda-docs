@@ -4,8 +4,6 @@
 
 The **Splitter** ADO is a smart contract used to split funds to a preset number of addresses. Each of the addresses has a specific percentage assigned by the contract owner. The splitter can be locked for a specified time as a kind of insurance for recipients that their percentages will not be changed for a certain period of time.
 
-The contract supports [modules](broken-reference) to extend its functionality.
-
 **Ado\_type**: splitter
 
 ## InstantiateMsg
@@ -13,9 +11,9 @@ The contract supports [modules](broken-reference) to extend its functionality.
 {% hint style="warning" %}
 A maximum of 100 recipients can be set.&#x20;
 
-The minimum time that can be set is 86,400 which is 1 day.
+The minimum lock\_time that can be set is 86,400 which is 1 day.
 
-The maximum time that can be set is 31,536,000 which is 1 year.
+The maximum lock\_time that can be set is 31,536,000 which is 1 year.
 {% endhint %}
 
 {% tabs %}
@@ -24,7 +22,8 @@ The maximum time that can be set is 31,536,000 which is 1 year.
 pub struct InstantiateMsg {
     pub recipients: Vec<AddressPercent>,
     pub lock_time: Option<u64>
-    pub modules: Option<Module>,
+    pub kernel_address: String,
+    pub owner: Option<String>,
 }
 ```
 {% endtab %}
@@ -35,29 +34,20 @@ pub struct InstantiateMsg {
     "recipients": [
                {
                 "recipient":{
-                    "addr":"juno1..."
+                    "address":"andr1..."
                 },
                 "percent":"0.2"
      },
      ...
     ],
-    
-  "modules": [
-        {
-          "module_type": "address-list",
-          "address": {
-             "identifier": "my_address_list"
-          },
-          "is_mutable": true
-        },
-        ...
-    ]
+"kernel_address":"andr1...",
+"owner":"andr1..."
 }
 ```
 {% endtab %}
 {% endtabs %}
 
-<table><thead><tr><th width="249.33333333333331">Name</th><th width="249.39014373716634">Type</th><th>Description</th></tr></thead><tbody><tr><td><code>modules</code></td><td>Option&#x3C;<a href="../modules/module-definitions.md">Module</a>></td><td>An optional vector of Andromeda<a href="broken-reference"> Modules</a> that can be attached to the contract. "address-list" module can be added.</td></tr><tr><td><code>lock_time</code></td><td>Option&#x3C;u64></td><td>How long the splitter is locked. When locked, no recipients can be added/changed.</td></tr><tr><td><code>recipients</code></td><td>Vec&#x3C;<a href="splitter.md#addresspercent">AddressPercent</a>></td><td>The recipient list of the splitter. Can be updated after instantiation.</td></tr></tbody></table>
+<table><thead><tr><th width="249.33333333333331">Name</th><th width="249.39014373716634">Type</th><th>Description</th></tr></thead><tbody><tr><td><code>lock_time</code></td><td>Option&#x3C;u64></td><td>How long the splitter is locked. When locked, no recipients can be added/changed. In seconds.</td></tr><tr><td><code>recipients</code></td><td>Vec&#x3C;<a href="splitter.md#addresspercent">AddressPercent</a>></td><td>The recipient list of the splitter. Can be updated after instantiation if there is no current lock time.</td></tr><tr><td><code>kernel_address</code></td><td>String</td><td>Contract address of the <a href="../platform-and-framework/andromeda-messaging-protocol/kernel.md">kernel contract</a> to be used for <a href="../platform-and-framework/andromeda-messaging-protocol/">AMP</a> messaging. Kernel contract address can be found in our <a href="../platform-and-framework/deployed-contracts (1).md">deployed contracts</a>.</td></tr><tr><td><code>owner</code></td><td>Option&#x3C;String></td><td>Optional address to specify as the owner of the ADO being created. Defaults to the sender if not specified.</td></tr></tbody></table>
 
 {% hint style="warning" %}
 Anytime a [`Send`](splitter.md#send) execute message is sent, the amount sent will be divided amongst the recipients depending on their assigned percentage.
@@ -81,7 +71,7 @@ pub struct AddressPercent {
 ```javascript
 {
     "recipient":{
-        "addr":"juno1..."
+        "address":"andr1..."
      },
     "percent": "0.5"
 }
@@ -96,7 +86,7 @@ To be a valid recipient list the array of `AddressPercent` structs must meet the
 * Have percentage amounts less than or equaling 1
 {% endhint %}
 
-Read more about the recipient struct [here](broken-reference).
+Read more about the Recipient struct [here](../platform-and-framework/common-types.md#recipient).
 
 ## ExecuteMsg
 
@@ -126,7 +116,7 @@ pub enum ExecuteMsg {
         "recipients": [
             {
                 "recipient":{
-                    "addr":"juno1..."
+                    "address":"andr1..."
                 },
                 "percent": "0.5"
             },
@@ -184,8 +174,10 @@ pub enum ExecuteMsg {
 
 Divides any attached funds to the message amongst the recipients list.
 
-{% hint style="info" %}
+{% hint style="warning" %}
 You cannot send more than 5 coins with one Send.
+
+Make sure to attach funds when executing a Send.
 {% endhint %}
 
 {% tabs %}
@@ -206,13 +198,9 @@ pub enum ExecuteMsg {
 {% endtab %}
 {% endtabs %}
 
-### AndrReceive
+### Base Executes
 
-{% hint style="info" %}
-Uses the modules feature.
-{% endhint %}
-
-The rest of the executes can be found in the [`AndrReceive`](../platform-and-framework/ado-base.md#andrrecieve) section.
+The rest of the execute messages can be found in the[ ADO Base](../platform-and-framework/ado-base.md) section.
 
 ## QueryMsg
 
@@ -288,6 +276,6 @@ pub struct Splitter {
 
 <table><thead><tr><th>Name</th><th width="266.3333333333333">Type</th><th>Description</th></tr></thead><tbody><tr><td><code>recipients</code></td><td>Vec&#x3C;<a href="splitter.md#addresspercent">AdressPercent</a>></td><td>The vector of recipients for the contract. Anytime a <code>Send</code> execute message is sent the amount sent will be divided amongst these recipients depending on their assigned percentage.</td></tr><tr><td><code>locked</code></td><td>Expiration</td><td>The expiration time of the lock. Will return an epoc time which is equal to the current_time <em>+</em> lock_time taken at the point of setting the lock. (Current time refers to the time the lock was set and not the time now.)</td></tr></tbody></table>
 
-### AndrQuery
+### Base Queries
 
-A set of base queries common to all Andromeda ADOs. Check[ AndrQuery](../platform-and-framework/ado-base.md#andrquery).
+The rest of the query messages can be found in the[ ADO Base](../platform-and-framework/ado-base.md) section.

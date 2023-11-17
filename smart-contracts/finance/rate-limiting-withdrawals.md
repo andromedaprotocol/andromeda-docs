@@ -17,6 +17,8 @@ pub struct InstantiateMsg {
     pub allowed_coin: CoinAndLimit,
     pub minimal_withdrawal_frequency: MinimumFrequency,
     pub modules: Option<Vec<Module>>,
+    pub kernel_address: String,
+    pub owner: Option<String>,
 }
 ```
 {% endtab %}
@@ -32,13 +34,15 @@ pub struct InstantiateMsg {
     "time":{
         "time":"3600"
         }
-    }
+    },
+"kernel_address":"andr1...",
+"owner":"andr1..."
 }
 ```
 {% endtab %}
 {% endtabs %}
 
-<table><thead><tr><th width="337.06022340942206">Name</th><th width="231.96848920702132">Type</th><th>Description</th></tr></thead><tbody><tr><td><code>allowed_coin</code></td><td><a href="rate-limiting-withdrawals.md#coinandlimit">CoinAndLimit</a></td><td>Set the allowed coin denom and the maximum amount allowed to withdraw.</td></tr><tr><td><code>minimal_withdrawal_frequency</code></td><td><a href="rate-limiting-withdrawals.md#contractandkey">MinimumFrequency</a></td><td>The time required between withdrawals. Specified in seconds. Cannot be 0.</td></tr><tr><td><code>modules</code></td><td>Option&#x3C;Vec&#x3C;Module>></td><td>An optional vector of Andromeda<a href="broken-reference"> Modules</a> that can be attached to the contract. "address-list" module can be added.</td></tr></tbody></table>
+<table><thead><tr><th width="337.06022340942206">Name</th><th width="231.96848920702132">Type</th><th>Description</th></tr></thead><tbody><tr><td><code>allowed_coin</code></td><td><a href="rate-limiting-withdrawals.md#coinandlimit">CoinAndLimit</a></td><td>Set the allowed coin denom and the maximum amount allowed to withdraw.</td></tr><tr><td><code>minimal_withdrawal_frequency</code></td><td><a href="rate-limiting-withdrawals.md#contractandkey">MinimumFrequency</a></td><td>The time required between withdrawals. Specified in seconds. Cannot be 0.</td></tr><tr><td><code>modules</code></td><td>Option&#x3C;Vec&#x3C;Module>></td><td>An optional vector of Andromeda<a href="broken-reference"> Modules</a> that can be attached to the contract. "address-list" module can be added.</td></tr><tr><td><code>kernel_address</code></td><td>String</td><td>Contract address of the <a href="../../platform-and-framework/andromeda-messaging-protocol/kernel.md">kernel contract</a> to be used for <a href="../../platform-and-framework/andromeda-messaging-protocol/">AMP</a> messaging. Kernel contract address can be found in our <a href="../../platform-and-framework/deployed-contracts (1).md">deployed contracts</a>.</td></tr><tr><td><code>owner</code></td><td>Option&#x3C;String></td><td>Optional address to specify as the owner of the ADO being created. Defaults to the sender if not specified.</td></tr></tbody></table>
 
 #### CoinAndLimit
 
@@ -60,6 +64,7 @@ pub struct CoinAndLimit {
 pub enum MinimumFrequency {
      Time { time: Uint128 },
      AddressAndKey { address_and_key: ContractAndKey },
+     }
 ```
 
 The minimum withdrawal frequency can be set in two ways:
@@ -83,7 +88,7 @@ pub struct ContractAndKey {
 
 ## ExecuteMsg
 
-### Deposit
+### Deposits
 
 Deposit funds for the specified recipient.
 
@@ -95,7 +100,7 @@ Only the allowed coin in instantiation can be deposited.
 {% tab title="Rust" %}
 ```rust
 pub enum ExecuteMsg {
-    Deposit {
+    Deposits {
         recipient: Option<String>,
     }
 }
@@ -105,7 +110,7 @@ pub enum ExecuteMsg {
 {% tab title="JSON" %}
 ```json
 {
-"deposit":{
+"deposits":{
     "recipient":"andr1..."
     }
 }
@@ -117,7 +122,7 @@ pub enum ExecuteMsg {
 | ----------- | --------------- | ---------------------------------------------------------------------- |
 | `recipient` | Option\<String> | The owner of the deposited funds. If not set, defaults to the sender.  |
 
-### Withdraw
+### Withdraws
 
 {% hint style="warning" %}
 Enough time should pass since the last withdrawal.
@@ -127,7 +132,7 @@ Enough time should pass since the last withdrawal.
 {% tab title="Rust" %}
 ```rust
 pub enum ExecuteMsg{
-     Withdraw {
+     Withdraws {
         amount: Uint128,
     }
 }
@@ -137,7 +142,7 @@ pub enum ExecuteMsg{
 {% tab title="JSON" %}
 ```json
 {
-"withdraw":{
+"withdraws":{
     "amount":"100"
     }
 }
@@ -149,13 +154,13 @@ pub enum ExecuteMsg{
 | -------- | ------- | -------------------------------- |
 | `amount` | Uint128 | The amount of coins to withdraw. |
 
-### AndrReceive
+### Base Executes
 
-{% hint style="info" %}
+{% hint style="warning" %}
 Uses the modules feature.
 {% endhint %}
 
-The rest of the executes can be found in the [`AndrReceive`](../../platform-and-framework/ado-base.md#andrrecieve) section.
+The rest of the execute messages can be found in the[ ADO Base](../../platform-and-framework/ado-base.md) section.
 
 ## QueryMsg
 
@@ -270,6 +275,6 @@ pub struct AccountDetails {
 | `balance`           | Uint128            | The balance of the specified address.                     |
 | `latest_withdrawal` | Option\<Timestamp> | The time of the last withdrawal of the specified address. |
 
-### AndrQuery
+### Base Queries
 
-A set of base queries common to all Andromeda ADOs. Check[ AndrQuery](../../platform-and-framework/ado-base.md#andrquery).
+The rest of the query messages can be found in the[ ADO Base](../../platform-and-framework/ado-base.md) section.

@@ -6,17 +6,17 @@ description: Query, execute, or create and ADO
 
 ### Available commands
 
-| Command                                   | Description                                                             |
-| ----------------------------------------- | ----------------------------------------------------------------------- |
-| ****[**create**](ado.md#create)****       | Creates an ADO by given type.                                           |
-| ****[**execute**](ado.md#execute)****     | Executes a message on an ADO by given address.                          |
-| ****[**db**](ado.md#database)****         | Allows querying the on chain ADO Database.                              |
-| ****[**info**](ado.md#info)****           | Queries the info of ADO for a given address.                            |
-| ****[**list**](ado.md#list)****           | Queries details about your deployed apps and ADOs for the current chain |
-| ****[**modules**](ado.md#modules)****     | Allows management of modules for an ADO.                                |
-| ****[**operators**](ado.md#operators)**** | Allows management of operators for an ADO.                              |
-| ****[**query**](ado.md#query)****         | Queries an ADO by given address.                                        |
-| ****[**transfer**](ado.md#transfer)****   | Transfers ownership of an ADO.                                          |
+| Command                           | Description                                                             |
+| --------------------------------- | ----------------------------------------------------------------------- |
+| [**create**](ado.md#create)       | Creates an ADO by given type.                                           |
+| [**execute**](ado.md#execute)     | Executes a message on an ADO by given address.                          |
+| [**db**](ado.md#database)         | Allows querying the on chain ADO Database.                              |
+| [**info**](ado.md#info)           | Queries the info of ADO for a given address.                            |
+| [**list**](ado.md#list)           | Queries details about your deployed apps and ADOs for the current chain |
+| [**modules**](ado.md#modules)     | Allows management of modules for an ADO.                                |
+| [**operators**](ado.md#operators) | Allows management of operators for an ADO.                              |
+| [**query**](ado.md#query)         | Queries an ADO by given address.                                        |
+| [**transfer**](ado.md#transfer)   | Transfers ownership of an ADO.                                          |
 
 ## Create
 
@@ -80,7 +80,7 @@ Allows querying the on chain [ADO DB](../platform-and-framework/ado-base.md).
 | Command          | Description                                           |
 | ---------------- | ----------------------------------------------------- |
 | **address**      | Gets the address of the database contract being used. |
-| **updatecodeid** | Updates the code ID for a given ADO in the factory.   |
+| **updatecodeid** | Updates the code Id for a given ADO in the factory.   |
 
 ### Db Address
 
@@ -102,7 +102,7 @@ andr1yyca08xqdgvjz0psg56z67ejh9xms6l436u8y58m82npdqqhmmtq9snx2v
 
 ### Db Getcodeid
 
-Fetches the code ID for a given ADO.
+Fetches the code Id for a given ADO.
 
 **Usage**
 

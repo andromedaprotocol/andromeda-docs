@@ -20,9 +20,11 @@ The contract supports [modules](broken-reference) to extend its functionality.
 {% tab title="Rust" %}
 ```rust
 pub struct InstantiateMsg {
-    pub token_address: AndrAddress,
+    pub token_address: AndrAddr,
     pub can_mint_after_sale: bool,
     pub modules: Option<Vec<Module>>,
+    pub kernel_address: String,
+    pub owner: Option<String>,
 }
 ```
 {% endtab %}
@@ -30,17 +32,16 @@ pub struct InstantiateMsg {
 {% tab title="JSON" %}
 ```json
 {
-"token_address":{
-   "identifier":"andr1..."
-   }
+"token_address":"andr1...",
 "primitive_address":"andr1...",
-"can_mint_after_sale": true
+"can_mint_after_sale": true,
+"kernel_address":"andr1..."
 }
 ```
 {% endtab %}
 {% endtabs %}
 
-<table><thead><tr><th width="259.3333333333333">Name</th><th>Type</th><th>Desctription</th></tr></thead><tbody><tr><td><code>token_address</code></td><td><a href="../../platform-and-framework/common-types.md#andraddress">AndrAddress</a></td><td>The contract address of the token.</td></tr><tr><td><code>modules</code></td><td>Option&#x3C;Vec&#x3C;<a href="../../modules/module-definitions.md#module-definitions">Module</a>>></td><td>An optional vector of Andromeda<a href="broken-reference"> Modules</a> that can be attached to the contract. "rates"and  "address-list" modules can be added.</td></tr><tr><td><code>can_mint_after_sale</code></td><td>bool</td><td>A flag to whether minting is allowed after a sale has been done. Minting is never allowed during a sale.  </td></tr></tbody></table>
+<table><thead><tr><th width="259.3333333333333">Name</th><th width="212.3589484327604">Type</th><th>Desctription</th></tr></thead><tbody><tr><td><code>token_address</code></td><td><a href="../../platform-and-framework/common-types.md#andraddr">AndrAddr</a></td><td>The reference to the CW721 ADO that will mint the NFTs for the sale. Can be either the contract address or the name in an App. </td></tr><tr><td><code>modules</code></td><td>Option&#x3C;Vec&#x3C;<a href="../../modules/module-definitions.md#module-definitions">Module</a>>></td><td>An optional vector of Andromeda<a href="broken-reference"> Modules</a> that can be attached to the contract. "rates", "address-list", and  "receipt" modules can be added.</td></tr><tr><td><code>can_mint_after_sale</code></td><td>bool</td><td>A flag to whether minting is allowed after a sale has been done. Minting is never allowed during a sale.  </td></tr><tr><td><code>kernel_address</code></td><td>String</td><td>Contract address of the <a href="../../platform-and-framework/andromeda-messaging-protocol/kernel.md">kernel contract</a> to be used for <a href="../../platform-and-framework/andromeda-messaging-protocol/">AMP</a> messaging. Kernel contract address can be found in our <a href="../../platform-and-framework/deployed-contracts (1).md">deployed contracts</a>.</td></tr><tr><td><code>owner</code></td><td>Option&#x3C;String></td><td>Optional address to specify as the owner of the ADO being created. Defaults to the sender if not specified.</td></tr></tbody></table>
 
 ## ExecuteMsg
 
@@ -56,6 +57,8 @@ Only the contract owner can execute Mint.
 Minting is only allowed before a sale starts.
 
 The limit for the number of `MintMsg` is 100.
+
+Unlike other mint messages, the crowdfund mint allows users to keep the owner field empty defaulting the owner to the crowdfund ADO, making it eligible for a sale.&#x20;
 {% endhint %}
 
 {% tabs %}
@@ -74,18 +77,9 @@ pub enum ExecuteMsg {
  {
  "token_id":"myid",
  "owner":"andr1...",
+ "token_uri":"https://gateway.pinata.cloud/ipfs...",
   "extension": {
-            "name": "Some token",
-            "publisher": "andr1...",
-            "description": "A minted token for testing",
-            "attributes": [
-                {
-                    "trait_type": "Trait One",
-                    "value": "ABC",
-                    "display_type": "String"
-                }
-            ],
-            "image": "https://google.com"
+            "publisher": "andr1..."
         }
      }
   ]
@@ -139,8 +133,7 @@ pub enum ExecuteMsg{
 {% endtab %}
 
 {% tab title="JSON" %}
-```json
-{
+<pre class="language-json"><code class="lang-json">{
 "start_sale":{
  "expiration":{
   "at_height": 550
@@ -154,8 +147,9 @@ pub enum ExecuteMsg{
   "recipient":{
    "addr":"andr1..."
   }
-}
-```
+<strong> }
+</strong>}
+</code></pre>
 {% endtab %}
 {% endtabs %}
 
@@ -225,7 +219,7 @@ Purchases a token with the specified `token_id`.
 
 | Name       | Type   | Descripton                           |
 | ---------- | ------ | ------------------------------------ |
-| `token_id` | String | The token id of the NFT to purchase. |
+| `token_id` | String | The token Id of the NFT to purchase. |
 
 ### ClaimRefund
 
@@ -255,6 +249,8 @@ Ends the sale. In the case that the minimum number of tokens to be sold is not a
 
 {% hint style="warning" %}
 The sale can only be ended if the expiration of the sale has been reached or all the tokens have been sold.
+
+The EndSale message needs to be called twice. Once for distribution of NFTs and another for distribution of funds.&#x20;
 {% endhint %}
 
 {% tabs %}
@@ -283,13 +279,13 @@ The sale can only be ended if the expiration of the sale has been reached or all
 | ------- | ------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `limit` | Option\<u32>> | An optional limit on the number of transferred tokens in case the sale was a success, or the number of refunds to issue in case the sale did not succeed (min amount not reached). |
 
-### AndrReceive
+### Base Executes
 
 {% hint style="warning" %}
 Uses the modules feature.
 {% endhint %}
 
-The rest of the executes can be found in the [`AndrReceive`](../../platform-and-framework/ado-base.md#andrrecieve) section.
+The rest of the execute messages can be found in the[ ADO Base](../../platform-and-framework/ado-base.md) section.
 
 ## QueryMsg
 
@@ -388,7 +384,7 @@ pub enum QueryMsg {
 {% tab title="Rust" %}
 ```rust
 pub struct Config {
-    pub token_address: AndrAddress,
+    pub token_address: String,
     pub can_mint_after_sale: bool,
 }
 ```
@@ -397,16 +393,14 @@ pub struct Config {
 {% tab title="JSON" %}
 ```json
 {
-"token_address":{
-          "identifier":"andr1..."
-          },
+"token_address":"andr1...",
 "can_mint_after_sale": true
 }
 ```
 {% endtab %}
 {% endtabs %}
 
-<table><thead><tr><th width="259.3333333333333">Name</th><th>Type</th><th>Description</th></tr></thead><tbody><tr><td><code>token_address</code></td><td><a href="../../platform-and-framework/common-types.md#andraddress">AndrAddress</a></td><td>The address of the token contract whose tokens are being sold.</td></tr><tr><td><code>can_mint_after_sale</code></td><td>bool</td><td>Whether or not the owner can mint additional tokens after the sale has been conducted.</td></tr></tbody></table>
+<table><thead><tr><th width="259.3333333333333">Name</th><th>Type</th><th>Description</th></tr></thead><tbody><tr><td><code>token_address</code></td><td>String</td><td>The address of the token contract whose tokens are being sold.</td></tr><tr><td><code>can_mint_after_sale</code></td><td>bool</td><td>Whether or not the owner can mint additional tokens after the sale has been conducted.</td></tr></tbody></table>
 
 ### AvailableTokens
 
@@ -439,7 +433,7 @@ pub enum QueryMsg {
 | `start_after` | Option\<String> | Optional parameter to specify which Token to start from. If none specified index `0` will be used. Used for pagination. |
 | `limit`       | Option\<u32>    | Limit to number of available tokens to query.                                                                           |
 
-Returns a `Vec<String>` containing the token ids of the available NFTs for sale.
+Returns a `Vec<String>` containing the token Ids of the available NFTs for sale.
 
 ### IsTokenAvailable
 
@@ -470,10 +464,10 @@ pub enum QueryMsg {
 
 | Name | Type   | Description                   |
 | ---- | ------ | ----------------------------- |
-| `id` | String | The id of the token to check. |
+| `id` | String | The Id of the token to check. |
 
-Returns a `bool` response specifying whether the token is available for purchase or not.
+Returns a `bool` response specifyi ng whether the token is available for purchase or not.
 
-### AndrQuery
+### Base Queries
 
-A set of base queries common to all Andromeda ADOs. Check[ AndrQuery](../../platform-and-framework/ado-base.md#andrquery).
+The rest of the query messages can be found in the[ ADO Base](../../platform-and-framework/ado-base.md) section.

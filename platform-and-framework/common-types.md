@@ -6,8 +6,6 @@ description: Defining recurring structs used by our ADOs.
 
 This section contains the definitions of structures used by many of our ADOs. To avoid redefining them every time, they will be placed in this section and referenced.&#x20;
 
-
-
 ## Coin
 
 ### Definition <a href="#definition" id="definition"></a>
@@ -83,100 +81,48 @@ or
 
 {
 "expiration":{
-  "at_time":"124655832000000000"
-}
-
-```
-
-## Recipient
-
-### Definition
-
-When building ADOs, the recipient of a function/message could be another ADO or an address. This is why we use the Recipient enum to differentiate between a user recipient and an ADO recipient.
-
-The `Recipient` enum looks as follows:&#x20;
-
-{% tabs %}
-{% tab title="Rust" %}
-```rust
-pub enum Recipient {
-    Addr(String),
-    ADO(ADORecipient),
+  "at_time":"1246593483949835832"
 }
 ```
-{% endtab %}
 
-{% tab title="JSON" %}
-```json
-{
-"addr":"andr1..."
-}
+### Recipient
 
-or
-
-{
-"a_d_o":{
-    "address":{
-        "identifier":" splitter-contract"
-        }
-    }
-}
-    
-```
-{% endtab %}
-{% endtabs %}
+A simple struct used for inter-contract communication:
 
 ```rust
-pub enum Recipient {
-    Addr(String),
-    ADO(ADORecipient),
-}
-```
-
-**Addr:** When the recipient address is not another ADO. It is assumed that it is a valid address.
-
-**ADO:** When the recipient address is another ADO. Uses the `ADORecipient` struct defined below.
-
-#### **ADORecipient**
-
-The address can be either a contract address or the human-readable identifier used in an app contract.
-
-```rust
-pub struct ADORecipient {
-    pub address: AndrAddress,
+pub struct Recipient {
+    pub address: AndrAddr,
     pub msg: Option<Binary>,
 }
 ```
 
-| Name      | Type            | Description                                      |
-| --------- | --------------- | ------------------------------------------------ |
-| `address` | AndrAddress     | Check [AndrAdress](common-types.md#andradress)   |
-| `msg`     | Option\<Binary> | An optional message to attach for the recipient. |
+The struct can be used in two ways:
 
-### AndrAddress
+1\. Simply just providing an `AndrAddr` which will treat the communication as a transfer of any related funds.
 
-A struct used to reference another ADO contract. Can be either an address or the name of an ADO component in an app.
+&#x20;2\. Providing an `AndrAddr` and a `Binary` message which will be sent to the contract at the resolved address. The `Binary` message can be any message that the contract at the resolved address can handle.
 
-{% tabs %}
-{% tab title="Rust" %}
+### AndrAddr
+
+An address that can be used within the Andromeda ecosystem.
+
 ```rust
-pub struct AndrAddress {
-    pub identifier: String,
- }
+pub struct AndrAddr(String);
 ```
-{% endtab %}
 
-{% tab title="JSON" %}
-```json
-{
-"identifier":"andr1..."
-}
+The address can be one of two things:
 
-or
+* A valid human readable address e.g. "andr1..."
+* A valid Andromeda [Virtual File System](andromeda-messaging-protocol/virtual-file-system.md) (VFS) path e.g. "/home/user/app/component"
 
-{
-"identifier":"component-name"
-}
-```
-{% endtab %}
-{% endtabs %}
+VFS paths can be local in the case of an app and can be done by referencing  `./component` .
+
+They can also contain protocols for cross chain communication and are structured in the following way:
+
+{% hint style="danger" %}
+The chain is required if IBC is to be used.&#x20;
+
+VFS paths are required in specifying the recipients in IBC messages.
+{% endhint %}
+
+`<protocol>://<chain>/<path>` e.g. `ibc://stargaze/home/user/app/component`

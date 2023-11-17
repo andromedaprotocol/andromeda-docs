@@ -48,8 +48,10 @@ The additional rewards should not include the staking token.
 {% tab title="Rust" %}
 ```rust
 pub struct InstantiateMsg {
-  pub staking_token: AndrAddress,
+  pub staking_token: AndrAddr,
   pub additional_rewards: Option<Vec<RewardTokenUnchecked>>,
+  pub kernel_address: String,
+  pub owner: Option<String>
 }
 ```
 {% endtab %}
@@ -57,9 +59,7 @@ pub struct InstantiateMsg {
 {% tab title="JSON" %}
 ```json
 {
-"staking_token":{
-          "identifier":"andr1..."
-              },
+"staking_token":"andr1...",
 "additional_rewards": [{
           "asset_info":{
               "cw20":"andr1..."
@@ -70,13 +70,15 @@ pub struct InstantiateMsg {
               "cycle_rewards":"300",
               "cycle duration":"400"
               }
-          }]
+          }],
+ "kernel_address":"andr1..."
+
      }
 ```
 {% endtab %}
 {% endtabs %}
 
-<table><thead><tr><th width="255.8396361895644">Name</th><th width="344.3333333333333">Type</th><th>Description</th></tr></thead><tbody><tr><td><code>staking_token</code></td><td><a href="../platform-and-framework/common-types.md#andraddress">AndrAddress</a></td><td>The cw20 token that can be staked</td></tr><tr><td><code>additional_rewards</code></td><td>Option&#x3C;Vec&#x3C;RewardTokenUnchecked>></td><td>Any rewards in addition to the staking token. This list cannot include the staking token since it is used as a reward by default. Can have a maximum of 10 reward tokens.</td></tr></tbody></table>
+<table><thead><tr><th width="230.8396361895644">Name</th><th width="254.33333333333331">Type</th><th>Description</th></tr></thead><tbody><tr><td><code>staking_token</code></td><td><a href="../platform-and-framework/common-types.md#andraddr">AndrAddr</a></td><td>Reference to the  CW20 token that can be staked. Can be either the contract address or name in an App.</td></tr><tr><td><code>additional_rewards</code></td><td>Option&#x3C;Vec&#x3C;RewardTokenUnchecked>></td><td>Any rewards in addition to the staking token. This list cannot include the staking token since it is used as a reward by default. Can have a maximum of 10 reward tokens.</td></tr><tr><td><code>kernel_address</code></td><td>String</td><td>Contract address of the <a href="../platform-and-framework/andromeda-messaging-protocol/kernel.md">kernel contract</a> to be used for <a href="../platform-and-framework/andromeda-messaging-protocol/">AMP</a> messaging. Kernel contract address can be found in our <a href="../platform-and-framework/deployed-contracts (1).md">deployed contracts</a>.</td></tr><tr><td><code>owner</code></td><td>Option&#x3C;String></td><td>Optional address to specify as the owner of the ADO being created. Defaults to the sender if not specified.</td></tr></tbody></table>
 
 #### RewardTokenUnchecked
 
@@ -134,7 +136,7 @@ pub struct AllocationConfig {
 
 ### Receive
 
-Receives Cw-20 tokens which can be staked, or used to update the global index depending on the attached Cw20HookMsg
+Receives CW20 tokens which can be staked, or used to update the global index depending on the attached Cw20HookMsg.
 
 ```rust
 pub enum ExecuteMsg {
@@ -154,7 +156,11 @@ pub struct Cw20ReceiveMsg {
 
 The `msg` in the `Cw20ReceiveMsg`should be a `Cw20HookMsg`.
 
-#### Cw20HookMsg
+### Cw20HookMsg
+
+{% hint style="warning" %}
+These messages need to be attached as a base64 encoded `msg when sending CW20 tokens.`
+{% endhint %}
 
 ```rust
 pub enum Cw20HookMsg {
@@ -180,7 +186,7 @@ Only available to the contract owner/operator.
 ```rust
 pub enum ExecuteMsg {
       AddRewardToken {
-        reward_token: RewardInfoUnchecked,
+        reward_token: RewardTokenUnchecked,
     },
 }
 ```
@@ -199,9 +205,9 @@ pub enum ExecuteMsg {
 {% endtab %}
 {% endtabs %}
 
-| Name           | Type                                                        | Description                        |
-| -------------- | ----------------------------------------------------------- | ---------------------------------- |
-| `reward_token` | [RewardInfoUnchecked](cw20-staking.md#rewardtokenunchecked) | The token to be added as a reward. |
+| Name           | Type                                                         | Description                        |
+| -------------- | ------------------------------------------------------------ | ---------------------------------- |
+| `reward_token` | [RewardTokenUnchecked](cw20-staking.md#rewardtokenunchecked) | The token to be added as a reward. |
 
 ### UnstakeTokens
 
@@ -316,7 +322,7 @@ Returns the config structure.
 {% tab title="Rust" %}
 ```rust
 pub struct Config {
-    pub staking_token: AndrAddress,
+    pub staking_token: String,
     pub number_of_reward_tokens: u32,
 }
 ```
@@ -325,16 +331,14 @@ pub struct Config {
 {% tab title="JSON" %}
 ```json
 {
-"staking_token":{
-        "identifier":"andr1..."
-        },
+"staking_token":"identifier":"andr1...",
 "number_of_rewards_tokens": 7                   
 }
 ```
 {% endtab %}
 {% endtabs %}
 
-<table><thead><tr><th width="306.970342910102">Name</th><th width="319.3333333333333">Type</th><th>Description</th></tr></thead><tbody><tr><td><code>staking_token</code></td><td><a href="../platform-and-framework/common-types.md#andraddress">AndrAddress</a></td><td>The token accepted for staking.</td></tr><tr><td><code>number_of_reward_tokens</code></td><td>u32</td><td>The current number of reward tokens, cannot exceed the maximum of 10.</td></tr></tbody></table>
+<table><thead><tr><th width="306.970342910102">Name</th><th width="319.3333333333333">Type</th><th>Description</th></tr></thead><tbody><tr><td><code>staking_token</code></td><td>String</td><td>The token accepted for staking.</td></tr><tr><td><code>number_of_reward_tokens</code></td><td>u32</td><td>The current number of reward tokens, cannot exceed the maximum of 10.</td></tr></tbody></table>
 
 ### State
 
@@ -483,7 +487,7 @@ Returns a `Vec<StakerResponse>` for range of stakers. The pending rewards are up
 
 |               |                 |                                                                                                        |
 | ------------- | --------------- | ------------------------------------------------------------------------------------------------------ |
-| `start_after` | Option\<String> | An optional ID to start after. Used for pagination.                                                    |
+| `start_after` | Option\<String> | An optional Id to start after. Used for pagination.                                                    |
 | `limit`       | Optional\<u32>  | An optional limit to the number of stakers to query. Defaults to 10 and can be set to a maximum of 30. |
 
 Returns a vector of [StakerResponse](cw20-staking.md#stakerresponse).

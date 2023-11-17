@@ -27,7 +27,7 @@ pub enum AndromedaHook {
         payload: Binary,
         amount: Funds,
     },
-    OnTransfer {
+    OnTokenTransfer {
         token_id: String,
         sender: String,
         recipient: String,
@@ -35,25 +35,24 @@ pub enum AndromedaHook {
 }
 ```
 
-`OnExecute` is called at the root `fn execute` function.
 
-`OnFundsTransfer` is called before CW20 tokens are transferred or sent, and before a transfer gets executed for a CW721.
 
-`OnTransfer` is called when performing a transfer for a CW721.
+* `OnExecute` is called at the root `fn execute` function.
+* `OnFundsTransfer` is called before CW20 tokens are transferred or sent, and before a transfer gets executed for a CW721.
+* `OnTokenTransfer` is called when performing a transfer for a CW721.
 
 ## Calling Hooks
 
 ### OnExecute
 
-`OnExecute` hooks are called using the general function `module_hook`.
+`OnExecute` hooks are called using the general function `module_hook` which is responsible for sending the provided hook message to all registered modules.
 
 ```rust
-    pub fn module_hook<T>(
+   pub fn module_hook<T: DeserializeOwned>(
         &self,
-        storage: &dyn Storage,
-        querier: QuerierWrapper,
+        deps: &Deps,
         hook_msg: AndromedaHook,
-    ) -> Result<Vec<T>, ContractError>
+    ) -> Result<Vec<T>, ContractError> {
 ```
 
 In the case of `OnExecute` the return type is `Result<Vec<Response>,ContractError>` so we expect a module that implements this hook to return a binary encoded `Response`.
@@ -61,14 +60,13 @@ In the case of `OnExecute` the return type is `Result<Vec<Response>,ContractErro
 Here is how that looks within the `fn execute` function:
 
 ```rust
-    contract.module_hook::<Response>(
-        deps.storage,
-        deps.querier,
-        AndromedaHook::OnExecute {
-            sender: info.sender.to_string(),
-            payload: encode_binary(&msg)?,
-        },
-    )?;
+contract.module_hook::<Response>(
+            &ctx.deps.as_ref(),
+            AndromedaHook::OnExecute {
+                sender: ctx.info.sender.to_string(),
+                payload: encode_binary(&msg)?,
+            },
+        )?;
 
 ```
 
@@ -83,13 +81,13 @@ This is done by the `AddressList` module. The `payload` in this case is the `Exe
 It is broadcast using the `on_funds_transfer` function as shown below:
 
 ```rust
-pub fn on_funds_transfer(
-    storage: &dyn Storage,
-    querier: QuerierWrapper,
-    sender: String,
-    amount: Funds,
-    msg: Binary,
-) -> Result<(Vec<SubMsg>, Vec<Event>, Funds), ContractError>
+ pub fn on_funds_transfer(
+        &self,
+        deps: &Deps,
+        sender: String,
+        amount: Funds,
+        msg: Binary,
+    ) -> Result<(Vec<SubMsg>, Vec<Event>, Funds), ContractError>
 ```
 
 {% hint style="info" %}
@@ -110,22 +108,17 @@ pub struct OnFundsTransferResponse {
 
 | Name             | Type         | Description                                                                |
 | ---------------- | ------------ | -------------------------------------------------------------------------- |
-| `msgs`           | Vec\<SubMsg> | messages that the module wants to execute                                  |
-| `events`         | Vec\<Event>  | any events the module wants to store. These are used to generate receipts. |
+| `msgs`           | Vec\<SubMsg> | Messages that the module wants to execute                                  |
+| `events`         | Vec\<Event>  | Any events the module wants to store. These are used to generate receipts. |
 | `leftover_funds` | Funds        | The funds that are left after any deductions are made by the module        |
-
-{% hint style="info" %}
-This function also ensures that the [`Receipt`](broken-reference) module is invoked last if it exists, since it needs all of the previous events to create a complete receipt.
-{% endhint %}
 
 Here is an example of how this hook gets called for a `TransferAgreement:`
 
 ```rust
 let (mut msgs, events, remainder) = base_contract.on_funds_transfer(
-            deps.storage,
-            deps.querier,
+            &deps.as_ref(),
             info.sender.to_string(),
-            Funds::Native(agreement.amount.clone()),
+            Funds::Native(agreement_amount.clone()),
             encode_binary(&ExecuteMsg::TransferNft {
                 token_id: token_id.clone(),
                 recipient: recipient.clone(),
@@ -135,28 +128,26 @@ let (mut msgs, events, remainder) = base_contract.on_funds_transfer(
 
 ### Use
 
-The main use case for this hook at the moment is the `Rates` module which generates sub-messages that send royalties/taxes to the correct recipient and deduct any taxes from the sent funds which is why we need `leftover_funds`. This hook is also used to generate the events needed mint receipts by the receipt module.
+The main use case for this hook at the moment is the `Rates` module which generates sub-messages that send royalties/taxes to the correct recipient and deduct any taxes from the sent funds which is why we need `leftover_funds`.&#x20;
 
-### OnTransfer
+### OnTokenTransfer
 
-Similar to the `OnExecute` hook the `OnTransfer` hook is called using the general `module_hook` function.
+Similar to the `OnExecute` hook the `OnTokenTransfer` hook is called using the general `module_hook` function.
 
 ```rust
-    pub fn module_hook<T>(
+    pub fn module_hook<T: DeserializeOwned>(
         &self,
-        storage: &dyn Storage,
-        querier: QuerierWrapper,
+        deps: &Deps,
         hook_msg: AndromedaHook,
-    ) -> Result<Vec<T>, ContractError>
+    ) -> Result<Vec<T>, ContractError> {
 ```
 
 Here is how that looks within the `fn execute` function:
 
 ```rust
-   let responses = base_contract.module_hook::<Response>(
-        deps.storage,
-        deps.querier,
-        AndromedaHook::OnTransfer {
+  let responses = base_contract.module_hook::<Response>(
+        &deps.as_ref(),
+        AndromedaHook::OnTokenTransfer {
             token_id: token_id.clone(),
             sender: info.sender.to_string(),
             recipient: recipient.clone(),
@@ -164,17 +155,17 @@ Here is how that looks within the `fn execute` function:
     )?;
 ```
 
-### Use
-
-The main use for the `OnTransfer` hook currently is the `Bids` module. Transferring an NFT will trigger the `OnTransfer` hook which will be sent to the `Bids`module if found. If the receiver of the NFT had a bid placed on it, then we consider that the bid has been accepted by the seller and the `AcceptBid` is automatically executed by the contract.
-
 ## Implementation
 
 This section will show you how to implement a hook in general, and explain the specific implementations for our modules.
 
-As stated earlier, these hooks are broadcast as queries. Therefore, each module that needs to implement them should have the `AndrHook`(`AndromedaHook`) variant in its `QueryMsg` enum.
+As stated earlier, these hooks are broadcast as queries. Therefore, each module that needs to implement them should have the `AndrHook`(`AndromedaHook`) variant in its `QueryMsg` enum:
 
-**For `OnExecute` and `OnTransfer`, the query should return a binary encoded `Response`.**
+```
+QueryMsg::AndrHook(msg) => handle_andr_hook(deps, msg),
+```
+
+**For `OnExecute` and `OnTokenTransfer`, the query should return a binary encoded `Response`.**
 
 **For `OnFundsTransfer` the query should return a binary encoded `OnFundsTransferResponse`.**
 
@@ -208,84 +199,12 @@ This module only implements the `OnFundsTransfer` hook which it uses to generate
 Below is the implementation:
 
 ```rust
-handle_andromeda_hook(deps: Deps, msg: AndromedaHook) -> Result<Binary, ContractError> {
+fn handle_andromeda_hook(deps: Deps, msg: AndromedaHook) -> Result<Binary, ContractError> {
     match msg {
-        AndromedaHook::OnFundsTransfer {
-            amount,
-            sender,
-            receiver,
-            ..
-        } => encode_binary(&query_deducted_funds(
-            deps,
-            amount,
-            Some(sender),
-            Some(receiver),
-        )?),
-        _ => Ok(encode_binary(&None::<Response>)?),
-    }
-}
-```
-
-### Receipt Module
-
-This module only implements the `OnFundsTransfer` hook which it uses to generate a sub message which will create a Receipt with the given events. In this case it assumes that the `payload` is a binary encoding of `Vec<Event>` which it decodes and uses to generate the Receipt message.
-
-Below is the implementation:
-
-```rust
-fn handle_andr_hook(env: Env, msg: AndromedaHook) -> Result<Binary, ContractError> {
-    match msg {
-        AndromedaHook::OnFundsTransfer {
-            sender: _,
-            payload,
-            amount,
-            ..
-        } => {
-            let events: Vec<Event> = parse_message(&Some(payload))?;
-            let msg = generate_receipt_message(env.contract.address.to_string(), events)?;
-            encode_binary(&Some(OnFundsTransferResponse {
-                msgs: vec![msg],
-                leftover_funds: amount,
-                events: vec![],
-            }))
+        AndromedaHook::OnFundsTransfer { amount, .. } => {
+            encode_binary(&query_deducted_funds(deps, amount)?)
         }
         _ => Ok(encode_binary(&None::<Response>)?),
     }
 }
-```
-
-### Bids Module
-
-This module only implements the `OnTransfer` hook which it uses to check if the `recipient` of the transfer has a bid placed on the Nft with the `code_id`. If so, it will execute an AcceptBid to send the funds of the bid to the seller.&#x20;
-
-```rust
-fn handle_andr_hook(deps: Deps, env: Env, msg: AndromedaHook) -> Result<Binary, ContractError> {
-    match msg {
-        AndromedaHook::OnTransfer {
-            token_id,
-            sender,
-            recipient,
-        } => {
-            let mut resp: Response = Response::new();
-            let bid = bids().may_load(deps.storage, &token_id)?;
-            if let Some(bid) = bid {
-                if bid.purchaser == recipient {
-                    let msg = CosmosMsg::Wasm(WasmMsg::Execute {
-                        contract_addr: env.contract.address.to_string(),
-                        funds: vec![],
-                        // The assumption is that the owner transfering the token to a user that has
-                        // an bid means they want to accept that bid. If the bid is
-                        // expired this message will end up failing and the transfer will not
-                        // happen.
-                        msg: encode_binary(&ExecuteMsg::AcceptBid {
-                            token_id,
-                            // We ensure! a recipient since the owner of the token will have
-                            // changed once this message gets executed. Sender is assuemd to be the
-                            // orignal owner of the token.
-                            recipient: sender,
-                        })?,
-                    });
-                    resp = resp.add_message(msg);
-                }
-            }
 ```

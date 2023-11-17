@@ -20,6 +20,9 @@ Blacklisted addresses are restricted from performing any execute message, but th
 ```rust
 pub struct InstantiateMsg {
     pub is_inclusive: bool,
+    pub kernel_address: String,
+    pub owner: Option<String>
+
 }
 ```
 {% endtab %}
@@ -27,13 +30,14 @@ pub struct InstantiateMsg {
 {% tab title="JSON" %}
 ```javascript
 {
-"is_inclusive": false
+"is_inclusive": false,
+"kernel_address":"andr1..."
 }
 ```
 {% endtab %}
 {% endtabs %}
 
-<table><thead><tr><th width="249.33333333333331">Name</th><th width="234.54210587473648">Type</th><th>Description</th></tr></thead><tbody><tr><td><code>is_inclusive</code></td><td>bool</td><td>Whether or not the address list is inclusive. If <code>true</code> the address list is a whitelist. If false the address list is a blacklist.</td></tr></tbody></table>
+<table><thead><tr><th width="249.33333333333331">Name</th><th width="234.54210587473648">Type</th><th>Description</th></tr></thead><tbody><tr><td><code>is_inclusive</code></td><td>bool</td><td>Whether or not the address list is inclusive. If <code>true</code> the address list is a whitelist, if false the address list is a blacklist.</td></tr><tr><td><code>kernel_address</code></td><td>String</td><td>Contract address of the <a href="../platform-and-framework/andromeda-messaging-protocol/kernel.md">kernel contract</a> to be used for <a href="../platform-and-framework/andromeda-messaging-protocol/">AMP</a> messaging. Kernel contract address can be found in our <a href="../platform-and-framework/deployed-contracts (1).md">deployed contracts</a>.</td></tr><tr><td><code>owner</code></td><td>Option&#x3C;String></td><td>Optional address to specify as the owner of the ADO being created. Defaults to the sender if not specified.</td></tr></tbody></table>
 
 ## ExecuteMsg
 
@@ -97,15 +101,41 @@ pub enum ExecuteMsg {
 
 <table><thead><tr><th width="155.33333333333331">Name</th><th>Type</th><th>Description</th></tr></thead><tbody><tr><td><code>address</code></td><td>String</td><td>The address to remove from the list.</td></tr></tbody></table>
 
-### AndrReceive
+### AddAddresses
 
-The rest of the executes can be found in the [`AndrReceive`](../platform-and-framework/ado-base.md#andrrecieve) section.
+Add multiple addresses to the address list.
+
+{% tabs %}
+{% tab title="Rust" %}
+```rust
+pub enum ExecuteMsg {
+    AddAddresses { addresses: Vec<String> },
+    }
+```
+{% endtab %}
+
+{% tab title="JSON" %}
+```json
+{
+"add_addresses":{
+    "addresses":["andr1...","andr1...",...]
+    }
+}
+```
+{% endtab %}
+{% endtabs %}
+
+<table><thead><tr><th width="155.33333333333331">Name</th><th>Type</th><th>Description</th></tr></thead><tbody><tr><td><code>addresses</code></td><td>Vec&#x3C;String></td><td>A vector containing all the addresses to add to the address list.</td></tr></tbody></table>
+
+### Base Executes
+
+The rest of the execute messages can be found in the[ ADO Base](../platform-and-framework/ado-base.md) section.
 
 ## QueryMsg
 
 ### IncludesAddress
 
-Query if an address is included in the address list.
+Checks if an address is included in the address list.
 
 {% tabs %}
 {% tab title="Rust" %}
@@ -158,6 +188,31 @@ pub struct IncludesAddressResponse {
 | ---------- | ---- | -------------------------------- |
 | `included` | Bool | Whether the address is included. |
 
-### AndrQuery
+### IsInclusive
 
-&#x20;A set of base queries common to all Andromeda ADOs. Check[ AndrQuery](../platform-and-framework/ado-base.md#andrquery).
+Checks if the address list is a whitelist or a blacklist.&#x20;
+
+{% tabs %}
+{% tab title="Rust" %}
+```rust
+pub enum QueryMsg {
+    #[returns(bool)]
+    IsInclusive {},
+    }
+```
+{% endtab %}
+
+{% tab title="JSON" %}
+```json
+{
+"is_inclusive":{}
+}
+```
+{% endtab %}
+{% endtabs %}
+
+Returns a bool with the result. If true, the address list is a whitelist. Otherwise the address list is a blacklist.
+
+### Base Queries
+
+The rest of the query messages can be found in the[ ADO Base](../platform-and-framework/ado-base.md) section.

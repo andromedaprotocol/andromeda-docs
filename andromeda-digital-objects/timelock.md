@@ -20,12 +20,30 @@ The contract supports [modules](broken-reference) to extend its functionality.
 ```rust
 pub struct InstantiateMsg {
     pub modules: Option<Vec<Module>>,
+    pub kernel_address:String,
+    pub owner: Option<String>,
+}
+```
+{% endtab %}
+
+{% tab title="JSON" %}
+```json
+{
+"modules": [
+        {
+          "name": "address-list",
+          "address":"andr1...",
+          "is_mutable": true
+        },
+        ...
+    ],
+"kernel_address":"andr1..."
 }
 ```
 {% endtab %}
 {% endtabs %}
 
-<table><thead><tr><th width="249.33333333333331">Name</th><th width="252.39014373716634">Type</th><th>Description</th></tr></thead><tbody><tr><td><code>modules</code></td><td>Option&#x3C;Vec&#x3C;<a href="../modules/module-definitions.md">Module</a>>></td><td>An optional vector of Andromeda<a href="broken-reference"> Modules</a> that can be attached to the contract. "address-list" module can be added.</td></tr></tbody></table>
+<table><thead><tr><th width="249.33333333333331">Name</th><th width="252.39014373716634">Type</th><th>Description</th></tr></thead><tbody><tr><td><code>modules</code></td><td>Option&#x3C;Vec&#x3C;<a href="../modules/module-definitions.md">Module</a>>></td><td>An optional vector of Andromeda<a href="broken-reference"> Modules</a> that can be attached to the contract. "address-list" module can be added.</td></tr><tr><td><code>kernel_address</code></td><td>String</td><td>Contract address of the <a href="../platform-and-framework/andromeda-messaging-protocol/kernel.md">kernel contract</a> to be used for <a href="../platform-and-framework/andromeda-messaging-protocol/">AMP</a> messaging. Kernel contract address can be found in our <a href="../platform-and-framework/deployed-contracts (1).md">deployed contracts</a>.</td></tr><tr><td><code>owner</code></td><td>Option&#x3C;String></td><td>Optional address to specify as the owner of the ADO being created. Defaults to the sender if not specified.</td></tr></tbody></table>
 
 ## ExecuteMsg
 
@@ -50,11 +68,11 @@ pub enum ExecuteMsg {
 {
     "hold_funds": {
         "recipient":{
-         "addr":"andr1..."
-         }
+             "address":"andr1..."
+         },
         "condition": {
             "expiration": {
-              "at_height": 14738473
+              "at_height": 1473847495893493453
               }
         }
     }
@@ -87,7 +105,7 @@ pub enum EscrowCondition {
 
 ### ReleaseFunds
 
-Releases any held funds of the specified recipient.
+Releases any held funds by the specified recipient.
 
 {% tabs %}
 {% tab title="Rust" %}
@@ -155,13 +173,13 @@ ReleaseSpecificFunds {
 | `owner`          | String          | The address of the funds to be released.                                                     |
 | `recipient_addr` | Option\<String> | Optional address to receive the released funds. Will default to the sender if not specified. |
 
-### AndrReceive
+### Base Executes
 
-{% hint style="info" %}
+{% hint style="warning" %}
 Uses the modules feature.
 {% endhint %}
 
-The rest of the executes can be found in the [`AndrReceive`](../platform-and-framework/ado-base.md#andrrecieve) section.
+The rest of the execute messages can be found in the[ ADO Base](../platform-and-framework/ado-base.md) section.
 
 ## QueryMsg
 
@@ -332,6 +350,6 @@ pub struct Escrow {
 | `condition` | Option<[EscrowCondition](timelock.md#escrowcondition)>           | Optional condition for the Escrow.                        |
 | `recipient` | [Recipient](../platform-and-framework/common-types.md#recipient) | The recipient of the funds once `condition` is satisfied. |
 
-### AndrQuery
+### Base Queries
 
-A set of base queries common to all Andromeda ADOs. Check[ AndrQuery](../platform-and-framework/ado-base.md#andrquery).
+The rest of the query messages can be found in the[ ADO Base](../platform-and-framework/ado-base.md) section.

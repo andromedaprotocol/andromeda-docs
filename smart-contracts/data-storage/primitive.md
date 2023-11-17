@@ -13,10 +13,45 @@ The primitive contract is used in situations where data will most likely be used
 {% tabs %}
 {% tab title="Rust" %}
 ```rust
-pub struct InstantiateMsg {}
+pub struct InstantiateMsg {
+    pub restriction:PrimitiveRestriction,
+    pub kernel_address: String,
+    pub owner: Option<String>
+}
+```
+{% endtab %}
+
+{% tab title="JSON" %}
+```json
+{
+"restriction":"public",
+"kernel_address":"andr1..."
+}
 ```
 {% endtab %}
 {% endtabs %}
+
+| Name             | Type                                                      | Description                                                                                                                                                                                                                                                                                                                            |
+| ---------------- | --------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `restriction`    | [PrimitiveRestriction](primitive.md#primitiverestriction) | Specifies who has access to add/delete data into the primitive ADO.                                                                                                                                                                                                                                                                    |
+| `kernel_address` | String                                                    | Contract address of the [kernel contract](../../platform-and-framework/andromeda-messaging-protocol/kernel.md) to be used for [AMP](../../platform-and-framework/andromeda-messaging-protocol/) messaging. Kernel contract address can be found in our [deployed contracts](<../../platform-and-framework/deployed-contracts (1).md>). |
+| `owner`          | Option\<String>                                           | Optional address to specify as the owner of the ADO being created. Defaults to the sender if not specified.                                                                                                                                                                                                                            |
+
+#### PrimitiveRestriction
+
+An enum defining the different types of restrictions that can be set.
+
+```rust
+pub enum PrimitiveRestriction {
+    Private,
+    Public,
+    Restricted,
+}
+```
+
+* **Private:** Only accessible by the contract owner/operator of the ADO.
+* **Public:** Accessible by anyone.
+* **Restricted:** Only accessible to the key owner (The address that first set the key).
 
 ## ExecuteMsg
 
@@ -61,10 +96,10 @@ pub enum ExecuteMsg{
 {% endtab %}
 {% endtabs %}
 
-| Name    | Type                                | Description                 |
-| ------- | ----------------------------------- | --------------------------- |
-| `name`  | Option\<String>                     | Optional name for the data. |
-| `value` | [Primitive](primitive.md#primitive) | The value of the data.      |
+| Name    | Type                                | Description                                                                          |
+| ------- | ----------------------------------- | ------------------------------------------------------------------------------------ |
+| `key`   | Option\<String>                     | The key for the data. The default key "default" will be used if it is not specified. |
+| `value` | [Primitive](primitive.md#primitive) | The value of the data.                                                               |
 
 #### Primitive
 
@@ -78,7 +113,8 @@ pub enum Primitive {
     String(String),
     Bool(bool),
     Vec(Vec<Primitive>),
-    Binary(Binary)
+    Binary(Binary),
+    Object(Map<String, Primitive>),
 }
 ```
 
@@ -115,44 +151,167 @@ Only available to the contract owner/operator
 {% endtab %}
 {% endtabs %}
 
-| Name  | Type            | Description                                                                          |
-| ----- | --------------- | ------------------------------------------------------------------------------------ |
-| `key` | Option\<String> | Optional key for the data to delete. If not specified, the default key will be used. |
+| Name  | Type            | Description                                                                                |
+| ----- | --------------- | ------------------------------------------------------------------------------------------ |
+| `key` | Option\<String> | Thel key for the data to delete. If not specified, the default key "default" will be used. |
 
-### AndrReceive
+### UpdateRestriction
 
-The rest of the executes can be found in the [`AndrReceive`](../../platform-and-framework/ado-base.md#andrrecieve) section.
+Changes the restriction set on the primitive.
 
-## QueryMsg
+{% hint style="warning" %}
+Only available to the contract owner/operator.
+{% endhint %}
 
-### AndrQuery
-
+{% tabs %}
+{% tab title="Rust" %}
 ```rust
-pub enum QueryMsg {
-    AndrQuery(AndromedaQuery),
+pub enum ExecuteMsg {
+ UpdateRestriction {
+        restriction: PrimitiveRestriction,
+    },
 }
 ```
+{% endtab %}
 
-If the [`AndromedaQuery`](../../platform-and-framework/ado-base.md#andromedaquery) is of type `Get` , the contract will query the value of the specified key (data). If no data is supplied in the Get, then the contract will query the default key value.
-
-```rust
-fn handle_andromeda_query(
-    deps: Deps,
-    env: Env,
-    msg: AndromedaQuery,
-) -> Result<Binary, ContractError> {
-    match msg {
-        AndromedaQuery::Get(data) => match data {
-            // Treat no binary as request to get value with default key.
-            None => encode_binary(&query_value(deps, None)?),
-            Some(_) => {
-                let name: String = parse_message(&data)?;
-                encode_binary(&query_value(deps, Some(name))?)
-            }
-        },
-        _ => ADOContract::default().query(deps, env, msg, query),
+{% tab title="JSON" %}
+```json
+{
+"update_restriction":{
+    "restriction":"private"
     }
 }
 ```
+{% endtab %}
+{% endtabs %}
 
-Check [AndrQuery](../../platform-and-framework/ado-base.md#andrquery) for the rest of the default queries.
+| Name          | Type                                                      | Description                                           |
+| ------------- | --------------------------------------------------------- | ----------------------------------------------------- |
+| `restriction` | [PrimitiveRestriction](primitive.md#primitiverestriction) | The new restriction type to use for the primitve ADO. |
+
+### Base Executes
+
+The rest of the execute messages can be found in the[ ADO Base](../../platform-and-framework/ado-base.md) section.
+
+## QueryMsg
+
+### GetValue
+
+Gets the value asociated to the specified key.
+
+{% tabs %}
+{% tab title="Rust" %}
+```rust
+pub enum QueryMsg { 
+ #[returns(GetValueResponse)]
+    GetValue { key: Option<String> },
+    }
+```
+{% endtab %}
+
+{% tab title="JSON" %}
+```json
+{
+"get_value":{
+    "key":"funds"
+    }
+}
+```
+{% endtab %}
+{% endtabs %}
+
+| Name  | Type            | Description                                                                   |
+| ----- | --------------- | ----------------------------------------------------------------------------- |
+| `key` | Option\<String> | The key to get the value for. The default key is used if it is not specified. |
+
+#### GetValueResponse
+
+{% tabs %}
+{% tab title="Rust" %}
+```rust
+pub struct GetValueResponse {
+    pub key: String,
+    pub value: Primitive,
+}
+```
+{% endtab %}
+
+{% tab title="JSON" %}
+```json
+{
+"key":"funds",
+"value": {
+      "coin": {
+        "denom": "uandr",
+        "amount": "100"
+      }
+    }
+}
+```
+{% endtab %}
+{% endtabs %}
+
+| Name    | Type                                | Description                            |
+| ------- | ----------------------------------- | -------------------------------------- |
+| `key`   | String                              | The key you are getting the value for. |
+| `value` | [Primitive](primitive.md#primitive) | The value for the specified key.       |
+
+### AllKeys&#x20;
+
+Gets all the keys that are currently saved in the primitive ADO.
+
+{% tabs %}
+{% tab title="Rust" %}
+```rust
+pub enum QueryMsg {
+ #[returns(Vec<String>)]
+    AllKeys {},
+    }
+```
+{% endtab %}
+
+{% tab title="JSON" %}
+```json
+{
+"all_keys":{}
+}
+```
+{% endtab %}
+{% endtabs %}
+
+Returns a Vec\<String> containing all the available keys.
+
+### OwnerKeys
+
+Gets all the keys that belong to the specified owner address.
+
+{% tabs %}
+{% tab title="Rust" %}
+```rust
+pub enum QueryMsg {
+    #[returns(Vec<String>)]
+    OwnerKeys { owner: AndrAddr },
+    }
+```
+{% endtab %}
+
+{% tab title="JSON" %}
+```json
+{
+"owner_keys":{
+    "owner":"andr1..."
+    }
+}
+```
+{% endtab %}
+{% endtabs %}
+
+| Name    | Type                                                              | Description                      |
+| ------- | ----------------------------------------------------------------- | -------------------------------- |
+| `owner` | [AndrAddr](../../platform-and-framework/common-types.md#andraddr) | The address to get the keys for. |
+
+Returns a Vec\<String> containing all the keys belonging to the specified `owner`.
+
+### Base Queries
+
+The rest of the query messages can be found in the[ ADO Base](../../platform-and-framework/ado-base.md) section.

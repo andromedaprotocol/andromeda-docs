@@ -2,13 +2,19 @@
 
 ## Introduction
 
-The **App** ADO is a smart contract that is used to bundle up contracts that will be interacting with each other into  what we call an  "App" and would provide a naming system to allow these contracts to reference each other using these names instead of contract addresses. Essentially, an App would include several contracts that interact to complete a desired goal for the project being built.&#x20;
+The **App** ADO is a smart contract that is used to bundle up ADOs that will be interacting with each other into  what we call an  "App". It also offers a naming system that allows the contracts to reference each other by their assigned names rather than contract addresses.&#x20;
 
-A contract in the App is called a AppComponent. Every app would be composed of many of these components (up to 50). Each component is assigned a name which can be used by other components to reference each other.
+An ADO in the App is called an AppComponent. Every App would be composed of many of these components (up to 50). Each component is assigned a name which can be used by other components to reference each other. The App ADO allows us to instantiate all of these components in one go.&#x20;
 
-To build a full app from scratch we only need to instantiate the app contract and attach a primitive to it (`primitive_contract` field in instantiation). This primitive contains a reference to an "ado db" ADO which has all the ADO code Ids saved. These contracts are already deployed to chain and the addresses can be found in our [deployed contracts](broken-reference) section. You can learn to deploy your first app [here](../../andromeda-apps/crowdfunding-app.md).
+At instantiation, we specify the address of the [Kernel ADO](../../platform-and-framework/andromeda-messaging-protocol/kernel.md) . This Kernel will have a reference to the [ADODB](../../platform-and-framework/ado-base.md) which has the code Ids of all the Andromeda ADOs saved. The Kernel ADO for each chain is already deployed and the addresses can be found in our [deployed contracts](broken-reference) section. You can learn to deploy your first app [here](../../andromeda-apps/crowdfunding-app.md).
 
-**Ado\_type**: app
+Our Apps support cross-chain components or ADOs, meaning an App can contain several ADOs each located on a different chain. This is specified by using the `CrossChain` component type.
+
+{% hint style="info" %}
+The App registers all its components in the [Virtual File System](../../platform-and-framework/andromeda-messaging-protocol/virtual-file-system.md) upon instantiation and assigns to them the names specified by the user upon instantiation of the App.
+{% endhint %}
+
+**Ado\_type**: app-contract
 
 ## InstantiateMsg
 
@@ -22,59 +28,116 @@ The maximum number of app components is 50.
 pub struct InstantiateMsg {
     pub app_components: Vec<AppComponent>,
     pub name: String,
-    pub primitive_contract: String
+    pub chain_info: Option<Vec<ChainInfo>>,
+    pub kernel_address:String,
+    pub owner:Option<String>,
 }
 ```
 {% endtab %}
 
 {% tab title="JSON" %}
-```rust
+```json
 {
 "app_components":[
      {
        "name":"fundsplitter",
        "ado_type":"splitter",
-       "instantiate_msg":"eyJtaW50ZXIiOiAianVubzE3OX..."
+       "component_type":{
+       "new":"eyJtaW50ZXIiOiAianVubzE3OX..."
+       }
      },
    {
    ...
    }
  ],
  "name":"some_app",
- "primitive_contract":"andr1..."
+ "kernel_address":"andr1...",
+ "owner":"andr1..."
  }
-       
-     
-
 ```
 {% endtab %}
 {% endtabs %}
 
-<table><thead><tr><th width="264.3333333333333">Name </th><th width="247.18815855494233">Type</th><th>Description</th></tr></thead><tbody><tr><td><code>app_components</code></td><td>Vec&#x3C;<a href="app.md#appcomponent">AppComponent</a>></td><td>The vector of AppComponent containing all the ADOs of the app.</td></tr><tr><td><code>name</code></td><td>String</td><td>The name of the app.</td></tr><tr><td><code>primitive_contract</code></td><td>String</td><td>The address of the <code>primitve</code> contract used to supply data to the app.</td></tr></tbody></table>
+<table><thead><tr><th width="264.3333333333333">Name </th><th width="247.18815855494233">Type</th><th>Description</th></tr></thead><tbody><tr><td><code>app_components</code></td><td>Vec&#x3C;<a href="app.md#appcomponent">AppComponent</a>></td><td>The vector of AppComponent containing all the ADOs of the app.</td></tr><tr><td><code>name</code></td><td>String</td><td>The name of the app.</td></tr><tr><td><code>chain_info</code></td><td>Option&#x3C;Vec&#x3C;<a href="app.md#chaininfo">ChainInfo</a>>></td><td>A vector containing the chain information describing the chains that will be used in the App. To be able to deploy a CrossChain component, the chain_info for that chain need to be specified.</td></tr><tr><td><code>kernel_address</code></td><td>String</td><td>Contract address of the <a href="../../platform-and-framework/andromeda-messaging-protocol/kernel.md">kernel contract</a> to be used for <a href="../../platform-and-framework/andromeda-messaging-protocol/">AMP</a> messaging. Kernel contract address can be found in our <a href="../../platform-and-framework/deployed-contracts (1).md">deployed contracts</a>.</td></tr><tr><td><code>owner</code></td><td>Option&#x3C;String></td><td>Optional address to specify as the owner of the ADO being created. Defaults to the sender if not specified. </td></tr></tbody></table>
 
 ### AppComponent
 
 The ADO to be a part of the App.&#x20;
 
 {% hint style="warning" %}
-The `instantiate_msg` should be base64 encoded and not raw binary.
-
-The `name` field is case sensitive.&#x20;
+The `name` field is case sensitive and needs to be unique for each component.
 {% endhint %}
 
 ```rust
 pub struct AppComponent {
     pub name: String,
     pub ado_type: String,
-    pub instantiate_msg: Binary,
+    pub component_type: ComponentType,
 }
 ```
 
-| Name              | Type    | Description                                                                               |
-| ----------------- | ------- | ----------------------------------------------------------------------------------------- |
-| `name`            | String. | The name of the ADO component. The names can be used later on to reference the coponent.  |
-| `ado_type`        | String  | The type of the ADO.                                                                      |
-| `instantiate_msg` | Binary  | The instantiate message of the ADO component in base64 binary.                            |
+| Name             | Type                                 | Description                                                                               |
+| ---------------- | ------------------------------------ | ----------------------------------------------------------------------------------------- |
+| `name`           | String.                              | The name of the ADO component. The names can be used later on to reference the coponent.  |
+| `ado_type`       | String                               | The type of the ADO.                                                                      |
+| `component_type` | [ComponentType](app.md#componenttye) | Specifies the type of component. The components types are discussed below.                |
+
+#### ComponentType
+
+An enum containing the different component types that can be instantiated.
+
+{% hint style="warning" %}
+In order to create a CrossChain component, `chain_info`field (Found in instantiation message of the App ADO) needs be specified for the chain to deploy the component on. For example, if I want to create a NFT component on Stargaze from an App on the Andromeda chain, I need to specify the [chain info](app.md#chaininfo) for the stargaze chain for it to be successfull.
+{% endhint %}
+
+```rust
+pub enum ComponentType {
+    New(Binary),
+    Symlink(AndrAddr),
+    CrossChain(CrossChainComponent),
+}
+```
+
+There are three types of components:
+
+* **New:** Provide a base64 encoded binary of the instantiation message of the component to add
+* **Symlink:** Provide a valid Symlink that resolves to the address of the component to add
+* **CrossChain:** Provide a base64 encoded binary of the instantiation message of the component to add as well as the chain. The component will be instantiated on the specified chain
+
+#### CrossChainComponent
+
+{% hint style="warning" %}
+The `instantiate_msg` should be base64 encoded and not raw binary.
+{% endhint %}
+
+```rust
+pub struct CrossChainComponent {
+    pub instantiate_msg: Binary,
+    pub chain: String,
+}
+```
+
+| Name              | Type   | Description                                                                 |
+| ----------------- | ------ | --------------------------------------------------------------------------- |
+| `instantiate_msg` | Binary | base64 binary representation of the instantiation message of the comopnent. |
+| `chain`           | String | The chain to create the component on.                                       |
+
+### ChainInfo
+
+Information on the chains that will be part of the App. Need to be specified to be able to use CrossChain components.
+
+```rust
+#[cw_serde]
+pub struct ChainInfo {
+    pub chain_name: String,
+    pub owner: String,
+}
+```
+
+| Name         | Type   | Description                                                                             |
+| ------------ | ------ | --------------------------------------------------------------------------------------- |
+| `chain_name` | String | The name of the chain.                                                                  |
+| `owner`      | String | The address of the owner of the components that will be created on the specified chain. |
 
 ## ExecuteMsg
 
@@ -104,7 +167,9 @@ AddAppComponent{
  "component":{
        "name":"crowdfund",
        "ado_type":"crowdfund",
-       "instantiate_msg":"eyJ0b2tlbl9hZGRyZXNzIjp7ImlkZW50aWZpZXIiOiJqdW5vMS4uLiJ9InByaW1pdGl2ZV9hZGRyZXNzIjoianVubzEuLi4sImNhbl9taW50X2FmdGVyX3NhbGUiOiB0cnVlfQ=="
+       "component_type":{
+       "new":"eyJ0b2tlbl9hZGRyZXNzIjp7ImlkZW50aWZpZXIiOiJqdW5vMS4uLiJ9InByaW1pdGl2ZV9hZGRyZXNzIjoianVub..."
+       }
    }
 }         
 ```
@@ -117,7 +182,7 @@ AddAppComponent{
 
 ### ClaimOwnership
 
-Gives ownership of a component to the owner address instead of the app contract.
+Gives ownership of a component to the specified `new_owner` address instead of the app contract.
 
 {% hint style="warning" %}
 Only available to the contract owner.
@@ -128,7 +193,8 @@ Only available to the contract owner.
 ```rust
 pub enum ExecuteMsg{
    ClaimOwnership { 
-   name: Option<String> 
+      name: Option<String>,
+      new_owner:Option<Addr>
    }
 }
 ```
@@ -138,16 +204,18 @@ pub enum ExecuteMsg{
 ```json
 {
 "claim_ownership":{
-  "name":"mycomponent"
+  "name":"mycomponent",
+  "new_owner":"andr1..."
   }
 }
 ```
 {% endtab %}
 {% endtabs %}
 
-| Name   | Type            | Description                                                                                     |
-| ------ | --------------- | ----------------------------------------------------------------------------------------------- |
-| `name` | Option\<String> | Optional name for the component to claim. If not set, will claim all ADO components in the app. |
+| Name        | Type            | Description                                                                                     |
+| ----------- | --------------- | ----------------------------------------------------------------------------------------------- |
+| `name`      | Option\<String> | Optional name for the component to claim. If not set, will claim all ADO components in the app. |
+| `new_owner` | Option\<Addr>   | The address to get ownership. Defaults to the sender if not specified.                          |
 
 ### ProxyMessage
 
@@ -162,8 +230,8 @@ Only available to the contract owner.
 ```rust
   pub enum ExecuteMsg{
   ProxyMessage { 
-  name: String,
-  msg: Binary 
+    name: String,
+    msg: Binary 
     }
   }
 ```
@@ -181,14 +249,18 @@ Only available to the contract owner.
 {% endtab %}
 {% endtabs %}
 
-| Name   | Type   | Description                           |
-| ------ | ------ | ------------------------------------- |
-| `name` | String | The name of the ADO to execute on.    |
-| `msg`  | Binary | The msg to excecute (Base 64 binary). |
+| Name   | Type   | Description                                                                                     |
+| ------ | ------ | ----------------------------------------------------------------------------------------------- |
+| `name` | String | The name of the ADO to execute on.                                                              |
+| `msg`  | Binary | The msg to excecute. This is a base64 encoded binary of the JSON representation of the message. |
 
 ### UpdateAddress
 
 Sets a new contract address for the ADO with the specified `name`.
+
+{% hint style="warning" %}
+Only available to the contract owner or the ADO component with the specified name.
+{% endhint %}
 
 {% tabs %}
 {% tab title="Rust" %}
@@ -206,8 +278,8 @@ pub enum ExecuteMsg {
 ```json
 {
 "update_address":{
- "name":"componentname",
- "addr":"andr1..."
+  "name":"roayalties",
+  "addr":"andr1..."
   }
  }
 
@@ -220,9 +292,9 @@ pub enum ExecuteMsg {
 | `name` | String | The name of the ADO.                   |
 | `addr` | String | The new contract address for the ADO.  |
 
-### AndrReceive
+### Base Executes
 
-The rest of the executes can be found in the [`AndrReceive`](../../platform-and-framework/ado-base.md#andrrecieve) section.
+The rest of the execute messages can be found in the[ ADO Base](../../platform-and-framework/ado-base.md) section.
 
 ## QueryMsg
 
@@ -401,40 +473,6 @@ pub enum QueryMsg {
 
 Returns a bool response.
 
-### AndrQuery
+### &#x20;Base Queries
 
-```rust
-pub enum QueryMsg {
-    AndrQuery(AndromedaQuery),
-}
-```
-
-If the [`AndromedaQuery`](../../platform-and-framework/ado-base.md#andromedaquery) is of type `Get` , the contract will query address of the specified name (data) . If no data is supplied in the Get, an error will occur.
-
-```rust
-fn handle_andromeda_query(
-    deps: Deps,
-    env: Env,-
-    msg: AndromedaQuery,
-) -> Result<Binary, ContractError> {
-    match msg {
-        AndromedaQuery::Get(data) => match data {
-            None => Err(ContractError::ParsingError {
-                err: String::from("No data passed with AndrGet query"),
-            }),
-            Some(_) => {
-                //Default to get address for given ADO name
-                let name: String = parse_message(&data)?;
-                encode_binary(&query_component_address(deps, name)?)
-            }
-        },
-        _ => ADOContract::default().query(deps, env, msg, query),
-    }
-}
-```
-
-Check[ AndrQuery](../../platform-and-framework/ado-base.md#andrquery) for the rest of the base queries.
-
-{% hint style="info" %}
-Base queries are common for all Andromeda ADOs.
-{% endhint %}
+The rest of the query messages can be found in the[ ADO Base](../../platform-and-framework/ado-base.md) section.

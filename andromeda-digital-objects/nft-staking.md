@@ -5,7 +5,7 @@
 The **NFT Staking** ADO is a smart contract that allows users to stake, unstake, and claim their NFT alongside an accrued reward after surpassing the unbonding period.
 
 * The unbonding period is set in seconds
-* The rewards are distributed per second. This means if the reward is 50 ujunox, then after 10 seconds, my rewards should be 500 ujunox.
+* The rewards are distributed per second. This means if the reward is 50 uandr, then after 10 seconds, my rewards should be 500 uandr.
 * When the NFT is staked, it is assigned a unique key, which consists of concatenating the cw721 contract address + token Id.&#x20;
 
 **Ado\_type:** nft-staking
@@ -19,6 +19,8 @@ pub struct InstantiateMsg {
     pub nft_contract: Vec<String>,
     pub unbonding_period: u64,
     pub reward: Coin,
+    pub kernel_address:String
+
 }
 ```
 {% endtab %}
@@ -31,17 +33,19 @@ pub struct InstantiateMsg {
 "reward":{
     "denom": "uandr",
     "amount": "50"
-    }
+    },
+"kernel_address":"andr1..."
 }
 ```
 {% endtab %}
 {% endtabs %}
 
-| Name               | Type                                                   | Description                                                                                |
-| ------------------ | ------------------------------------------------------ | ------------------------------------------------------------------------------------------ |
-| nft\_contract      | Vec\<String>                                           | The contract addresses of the NFT contracts that can stake their NFTs using this contract. |
-| `unbonding_period` | u64                                                    | The unbonding period (time to unstake) of the NFTs in seconds.                             |
-| `reward`           | [Coin](../platform-and-framework/common-types.md#coin) | The rewards to be distributed per second.                                                  |
+| Name               | Type                                                   | Description                                                                                                                                                                                                                                                                                                                   |
+| ------------------ | ------------------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| nft\_contract      | Vec\<String>                                           | The contract addresses of the NFT contracts that can stake their NFTs using this contract.                                                                                                                                                                                                                                    |
+| `unbonding_period` | u64                                                    | The unbonding period (time to unstake) of the NFTs in seconds.                                                                                                                                                                                                                                                                |
+| `reward`           | [Coin](../platform-and-framework/common-types.md#coin) | The rewards to be distributed per second.                                                                                                                                                                                                                                                                                     |
+| `kernel_address`   | String                                                 | Contract address of the [kernel contract](../platform-and-framework/andromeda-messaging-protocol/kernel.md) to be used for [AMP](../platform-and-framework/andromeda-messaging-protocol/) messaging. Kernel contract address can be found in our [deployed contracts](<../platform-and-framework/deployed-contracts (1).md>). |
 
 ## ExecuteMsg
 
@@ -354,7 +358,7 @@ pub struct StakedNft {
 | Name                | Type                                                           | Description                                               |
 | ------------------- | -------------------------------------------------------------- | --------------------------------------------------------- |
 | `owner`             | String                                                         | The owner of the token.                                   |
-| `id`                | String                                                         | The token id.                                             |
+| `id`                | String                                                         | The token Id.                                             |
 | `contract_address`  | String                                                         | The NFT contract address.                                 |
 | `time_of_staking`   | Timestamp                                                      | The time of staking. Epoch time in seconds.               |
 | `time_of_unbonding` | Option\<Timestamp>                                             | Optional time of unbonding if the NFT has been unstaked.  |

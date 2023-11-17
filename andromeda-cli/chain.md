@@ -6,16 +6,16 @@ description: Manage chains and configs
 
 ### Available Commands
 
-| Command                               | Description                             |
-| ------------------------------------- | --------------------------------------- |
-| ****[**config**](chain.md#config)**** | Displays current chain config.          |
-| ****[**copy**](chain.md#copy)****     | Creates a copy of a current config.     |
-| ****[**get**](chain.md#get)****       | Displays current value for a given key. |
-| ****[**list**](chain.md#list)****     | Lists all the currently saved configs.  |
-| ****[**new**](chain.md#new)****       | Creates a new config.                   |
-| ****[**rm**](chain.md#remove)****     | Removes a config by name or chain ID.   |
-| ****[**set**](chain.md#set)****       | Sets the value for a given config key.  |
-| ****[**use**](chain.md#use)****       | Swap to a saved config.                 |
+| Command                       | Description                             |
+| ----------------------------- | --------------------------------------- |
+| [**config**](chain.md#config) | Displays current chain config.          |
+| [**copy**](chain.md#copy)     | Creates a copy of a current config.     |
+| [**get**](chain.md#get)       | Displays current value for a given key. |
+| [**list**](chain.md#list)     | Lists all the currently saved configs.  |
+| [**new**](chain.md#new)       | Creates a new config.                   |
+| [**rm**](chain.md#remove)     | Removes a config by name or chain Id.   |
+| [**set**](chain.md#set)       | Sets the value for a given config key.  |
+| [**use**](chain.md#use)       | Swap to a saved config.                 |
 
 ## Config
 
@@ -24,7 +24,7 @@ Displays the config of the chain.
 | Key                           | Description                                                           |
 | ----------------------------- | --------------------------------------------------------------------- |
 | **chainName**                 | The name of the chain.                                                |
-| **chainId**                   | The ID of the chain to use                                            |
+| **chainId**                   | The Id of the chain to use                                            |
 | **chainUrl**                  | The URL of the chain to use                                           |
 | **registryAddress**           | The contract address of the Andromeda Registry                        |
 | **addressPrefix**             | The prefix for all addresses on chain                                 |

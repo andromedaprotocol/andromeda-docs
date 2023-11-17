@@ -13,6 +13,8 @@ The Merkle-Airdrop ADO is a smart contract that allows projects to launch airdro
 ```rust
 pub struct InstantiateMsg {
     pub asset_info: AssetInfoUnchecked,
+    pub kernel_address: String,
+    pub owner: Option<String>
 }
 ```
 {% endtab %}
@@ -22,11 +24,19 @@ pub struct InstantiateMsg {
 {
 "asset_info":{
     "cw20":"andr1..."
-   }
+     },
+"kernel_address":"andr1...",
+"owner":"andr1..."
 } 
 ```
 {% endtab %}
 {% endtabs %}
+
+| Name             | Type                                                       | Description                                                                                                                                                                                                                                                                                                                   |
+| ---------------- | ---------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `asset_info`     | [AssetInfoUnchecked](merkle-airdrop.md#assetinfounchecked) | The assets to airdrop.                                                                                                                                                                                                                                                                                                        |
+| `kernel_address` | String                                                     | Contract address of the [kernel contract](../platform-and-framework/andromeda-messaging-protocol/kernel.md) to be used for [AMP](../platform-and-framework/andromeda-messaging-protocol/) messaging. Kernel contract address can be found in our [deployed contracts](<../platform-and-framework/deployed-contracts (1).md>). |
+| `owner`          | Option\<String>                                            | Optional address to specify as the owner of the ADO being created. Defaults to the sender if not specified.                                                                                                                                                                                                                   |
 
 #### AssetInfoUnchecked
 
@@ -41,7 +51,7 @@ pub type AssetInfoUnchecked = AssetInfoBase<String>;
 Represents the type of an fungible asset. Each asset info instance can be one of two variants:&#x20;
 
 * **CW20 tokens**: To create an asset info instance of this type, provide the contract address of the token.
-* &#x20;**Native SDK coins**: To create an asset info instance of this type, provide the denomination ("ujuno","uatom").
+* &#x20;**Native SDK coins**: To create an asset info instance of this type, provide the denomination ("uandr","uatom").
 
 ```rust
 pub enum AssetInfoBase<T> {
@@ -164,9 +174,9 @@ Only the owner can execute `Burn`.
 | ------- | ---- | -------------------------------------------------------------------------- |
 | `stage` | u8   | The stage of the airdrop used to specify which airdrop to execute burn on. |
 
-### AndrReceive
+### Base Executes
 
-Check [AndrReceive](../platform-and-framework/ado-base.md#andrrecieve).
+The rest of the execute messages can be found in the[ ADO Base](../platform-and-framework/ado-base.md) section.
 
 ## Query
 
@@ -447,6 +457,6 @@ pub struct TotalClaimedResponse {
 | --------------- | ------- | -------------------------------------- |
 | `total_claimed` | Uint128 | The stage to check the amount claimed. |
 
-### AndrQuery
+### &#x20;Base Queries
 
-A set of base queries common to all Andromeda ADOs. Check[ AndrQuery](../platform-and-framework/ado-base.md#andrquery).
+The rest of the query messages can be found in the[ ADO Base](../platform-and-framework/ado-base.md) section.

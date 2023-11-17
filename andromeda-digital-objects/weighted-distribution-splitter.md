@@ -2,7 +2,7 @@
 
 ## Introduction
 
-The **Weighted-Distribution-Splitter** ADO is a smart contract to split funds among a set of defined recipients. Each of  the recipients is assigned a weight which is divided by the total weight to get the percentage of each of the recipients. Whenever the splitter receives funds by executing a `send` it automatically splits the funds to the defined recipients. The splitter can be locked for a specified time as a kind of insurance for recipients that their weights will not be changed for a certain period of time.
+The **Weighted-Splitter** ADO is a smart contract to split funds among a set of defined recipients. Each of  the recipients is assigned a weight which is divided by the total weight to get the percentage of each of the recipients. Whenever the splitter receives funds by executing a `send` it automatically splits the funds to the defined recipients. The splitter can be locked for a specified time as a kind of insurance for recipients that their weights will not be changed for a certain period of time.
 
 #### Example:
 
@@ -23,9 +23,9 @@ The contract supports [modules](broken-reference) to extend it's functionality.
 {% hint style="warning" %}
 A maximum of 100 recipients can be set.&#x20;
 
-The minimum time that can be set is 86,400 which is 1 day.
+The minimum lock\_time that can be set is 86,400 which is 1 day.
 
-The maximum time that can be set is 31,536,000 which is 1 year.
+The maximum lock\_time that can be set is 31,536,000 which is 1 year.
 {% endhint %}
 
 {% tabs %}
@@ -35,6 +35,8 @@ pub struct InstantiateMsg {
     pub recipients: Vec<AddressWeight>,
     pub lock_time: Option<u64>,
     pub modules: Option<Vec<Module>>,
+    pub kernel_address: String,
+    pub owner: Option<String>
 }
 ```
 {% endtab %}
@@ -45,37 +47,40 @@ pub struct InstantiateMsg {
 "recipients":[
                 {
                   "recipient":{
-                    "addr":"andr1..."
+                    "address":"andr1..."
                     },
                   "weight": 4
                   },
                 {
                   "recipient":{
-                    "addr":"andr1..."
+                    "address":"andr1..."
                     },
                   "weight": 7
                   },
                 {
                   "recipient":{
-                    "addr":"andr1..."
+                    "address":"andr1..."
                     },
                   "weight": 2
                   }
-                ]
-     }
+                ],
+"kernel_address":"andr1..."
+ }
 ```
 {% endtab %}
 {% endtabs %}
 
-| Name         | Type                                     | Description                                                                                                                                                                       |
-| ------------ | ---------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `recipients` | Vec\<AddressWeight>                      | The vector of recipients for the contract. Anytime a `Send` execute message is sent the amount sent will be divided amongst these recipients depending on their assigned weight.  |
-| `lock_time`  | Option\<u64>                             | How long the splitter is locked. When locked, no recipients/weights can be added/changed.                                                                                         |
-| `modules`    | Option\<Vec<[Module](broken-reference)>> | An optional vector of Andromeda[ Modules](broken-reference) that can be attached to the contract."address-list" module can be added.                                              |
+| Name             | Type                                                                  | Description                                                                                                                                                                                                                                                                                                                   |
+| ---------------- | --------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `recipients`     | Vec<[AddressWeight](weighted-distribution-splitter.md#addressweight)> | The vector of recipients for the contract. Anytime a `Send` execute message is sent the amount sent will be divided amongst these recipients depending on their assigned weight.                                                                                                                                              |
+| `lock_time`      | Option\<u64>                                                          | How long the splitter is locked. When locked, no recipients/weights can be added/changed. In seconds.                                                                                                                                                                                                                         |
+| `modules`        | Option\<Vec<[Module](broken-reference)>>                              | An optional vector of Andromeda[ Modules](broken-reference) that can be attached to the contract."address-list" module can be added.                                                                                                                                                                                          |
+| `kernel_address` | String                                                                | Contract address of the [kernel contract](../platform-and-framework/andromeda-messaging-protocol/kernel.md) to be used for [AMP](../platform-and-framework/andromeda-messaging-protocol/) messaging. Kernel contract address can be found in our [deployed contracts](<../platform-and-framework/deployed-contracts (1).md>). |
+| `owner`          | Option\<String>                                                       | Optional address to specify as the owner of the ADO being created. Defaults to the sender if not specified.                                                                                                                                                                                                                   |
 
 #### AddressWeight
 
-struct containing the recipient of the funds and the assigned weight for that recipient.
+Struct containing the recipient of the funds and the assigned weight for that recipient.
 
 ```rust
 pub struct AddressWeight {
@@ -83,6 +88,11 @@ pub struct AddressWeight {
     pub weight: Uint128,
 }
 ```
+
+| Name        | Type                                                             | Description                        |
+| ----------- | ---------------------------------------------------------------- | ---------------------------------- |
+| `recipient` | [Recipient](../platform-and-framework/common-types.md#recipient) | The address to receive the funds.  |
+| `weight`    | Uint128                                                          | The weight of the above recipient. |
 
 ## ExecuteMsg
 
@@ -112,19 +122,19 @@ pub enum ExecuteMsg {
     "recipients":[
                {
                   "recipient":{
-                    "addr":"andr1..."
+                    "address":"andr1..."
                     },
                   "weight": 1
                   },
                 {
                   "recipient":{
-                    "addr":"andr1..."
+                    "address":"andr1..."
                     },
                   "weight": 4
                   },
                 {
                   "recipient":{
-                    "addr":"andr1..."
+                    "address":"andr1..."
                     },
                   "weight": 12
                   }
@@ -166,7 +176,7 @@ pub enum ExecuteMsg {
 "add_recipient":{
     "recipient":{
             "recipient":{
-                 "addr":"andr1..."
+                 "address":"andr1..."
                 },
             "weight": 1
               }
@@ -203,14 +213,12 @@ pub enum ExecuteMsg {
 {
 "remove_recipient":{
     "recipient":{
-        "addr":"andr1..."
+        "address":"andr1..."
         }
     }
 ```
 {% endtab %}
 {% endtabs %}
-
-
 
 | Name        | Type                                                             | Description                            |
 | ----------- | ---------------------------------------------------------------- | -------------------------------------- |
@@ -222,6 +230,8 @@ Used to lock the contract for a certain period of time making it unmodifiable in
 
 {% hint style="warning" %}
 Only available to the contract owner/operator.
+
+Cannot be called if a lock is already in action.
 
 The minimum time that can be set is 86,400 which is 1 day.
 
@@ -279,7 +289,7 @@ Only available to the contract owner/operator.
 "update_recipient_weight":{
     "recipient":{
             "recipient":{
-                 "addr":"andr1..."
+                 "address":"andr1..."
                 },
             "weight": 1
               }
@@ -318,13 +328,13 @@ pub enum ExecuteMsg {
 {% endtab %}
 {% endtabs %}
 
-### AndrReceive
+### Base Executes
 
-{% hint style="info" %}
-This contract uses the modules feature
+{% hint style="warning" %}
+Uses the modules feature.
 {% endhint %}
 
-The rest of the executes can be found in the [`AndrReceive`](../platform-and-framework/ado-base.md#andrrecieve) section.
+The rest of the execute messages can be found in the[ ADO Base](../platform-and-framework/ado-base.md) section.
 
 ## QueryMsg
 
@@ -369,25 +379,25 @@ pub struct GetSplitterConfigResponse {
      "recipients":[
                {
                   "recipient":{
-                    "addr":"andr1..."
+                    "address":"andr1..."
                     },
                   "weight": 1
                   },
                 {
                   "recipient":{
-                    "addr":"andr1..."
+                    "address":"andr1..."
                     },
                   "weight": 4
                   },
                 {
                   "recipient":{
-                    "addr":"andr1..."
+                    "address":"andr1..."
                     },
                   "weight": 12
                   }
                 ],
     "lock": {
-        "at_time": "1655212973"
+        "at_time": "1655212973934"
         }
           
     }
@@ -432,7 +442,7 @@ pub enum QueryMsg {
 {
 "get_user_weight":{
     "user":{
-        "addr":"andr1..."
+        "address":"andr1..."
         }
     }
 }
@@ -458,6 +468,6 @@ pub struct GetUserWeightResponse {
 | `weight`       | Uint128 | The weight of the user.           |
 | `total_weight` | Uint128 | The total weight of the splitter. |
 
-### AndrQuery
+### &#x20;Base Queries
 
-A set of base queries common to all Andromeda ADOs. Check[ AndrQuery](../platform-and-framework/ado-base.md#andrquery).
+The rest of the query messages can be found in the[ ADO Base](../platform-and-framework/ado-base.md) section.

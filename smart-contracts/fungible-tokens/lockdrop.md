@@ -33,6 +33,8 @@ pub struct InstantiateMsg {
     pub withdrawal_window: u64,
     pub incentive_token: String,
     pub native_denom: String,
+    pub kernel_address: String,
+    pub owner: Option<String>
 }
 ```
 {% endtab %}
@@ -44,28 +46,31 @@ pub struct InstantiateMsg {
 "deposit_window":600,
 "init_timestamp":1649877513,
 "incentive_token":"andr1...",
-"withdrawal_window":400
+"withdrawal_window":400,
+"kernel_address":"andr1..."
 }
 ```
 {% endtab %}
 {% endtabs %}
 
-| Name                | Type   | Description                                                      |
-| ------------------- | ------ | ---------------------------------------------------------------- |
-| `init_timestamp`    | u64    | Timestamp till when deposits can be made. Provided in seconds.   |
-| `deposit_window`    | u64    | Number of seconds for which lockup deposits will be accepted.    |
-| `withdrawal_window` | u64    | Number of seconds for which lockup withdrawals will be allowed.  |
-| `incentive_token`   | String | The token being given as incentive.                              |
-| `native_denom`      | String | The native token being deposited.                                |
+| Name                | Type            | Description                                                                                                                                                                                                                                                                                                                            |
+| ------------------- | --------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `init_timestamp`    | u64             | Timestamp till when deposits can be made. Provided in seconds.                                                                                                                                                                                                                                                                         |
+| `deposit_window`    | u64             | Number of seconds for which lockup deposits will be accepted.                                                                                                                                                                                                                                                                          |
+| `withdrawal_window` | u64             | Number of seconds for which lockup withdrawals will be allowed.                                                                                                                                                                                                                                                                        |
+| `incentive_token`   | String          | The token being given as incentive.                                                                                                                                                                                                                                                                                                    |
+| `native_denom`      | String          | The native token being deposited.                                                                                                                                                                                                                                                                                                      |
+| `kernel_address`    | String          | Contract address of the [kernel contract](../../platform-and-framework/andromeda-messaging-protocol/kernel.md) to be used for [AMP](../../platform-and-framework/andromeda-messaging-protocol/) messaging. Kernel contract address can be found in our [deployed contracts](<../../platform-and-framework/deployed-contracts (1).md>). |
+| `owner`             | Option\<String> | Optional address to specify as the owner of the ADO being created. Defaults to the sender if not specified.                                                                                                                                                                                                                            |
 
 ## ExecuteMsg
 
 ### Receive
 
-Receives Cw-20 tokens that will be used as incentive for the lockdrop.
+Receives CW20 tokens that will be used as incentive for the lockdrop.
 
 {% hint style="warning" %}
-The sender needs to be the Cw-20 contract of the incentive token (Same as the one specified in instantiation).
+The sender needs to be the CW20 contract of the incentive token (Same as the one specified in instantiation).
 
 Needs to be sent before the withdrawal period.
 {% endhint %}
@@ -254,9 +259,9 @@ pub enum ExecuteMsg {
 | ----------- | --------------- | ----------------------------------------------------------------------------- |
 | `recipient` | Option\<String> | The recipient of the native tokens that are withdrawn. Defaults to the owner. |
 
-### AndrReceive
+### Base Executes
 
-Check [AndrReceive](../../platform-and-framework/ado-base.md#andrrecieve).
+The rest of the execute messages can be found in the[ ADO Base](../../platform-and-framework/ado-base.md) section.
 
 ## QueryMsg
 
@@ -353,6 +358,8 @@ pub enum QueryMsg {
 
 ### UserInfo
 
+Gets information for the user with the `address` specified.
+
 {% tabs %}
 {% tab title="Rust" %}
 ```rust
@@ -441,6 +448,6 @@ pub enum QueryMsg {
 
 Returns a number of type Decimal representing the percentage allowed to withdraw.
 
-### AndrQuery
+### Base Queries
 
-A set of base queries common to all Andromeda ADOs. Check[ AndrQuery](../../platform-and-framework/ado-base.md#andrquery).
+The rest of the query messages can be found in the[ ADO Base](../../platform-and-framework/ado-base.md) section.

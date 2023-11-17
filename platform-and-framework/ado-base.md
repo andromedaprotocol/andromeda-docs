@@ -17,106 +17,94 @@ pub struct InstantiateMsg {
     pub ado_type: String,
     pub ado_version: String,
     pub operators: Option<Vec<String>>,
-    pub modules: Option<Vec<Module>>,
-    pub primitive_contract: Option<String>,
+    pub kernel_address: String,
+    pub owner: Option<String>,
 }
 ```
 {% endtab %}
 {% endtabs %}
 
-| Name                 | Type                                                     | Description                                                                                                    |
-| -------------------- | -------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------- |
-| `ado_type`           | String                                                   | The type of the ADO. Usually, it is the same as the name. It is automatically set when an ADO is instantiated. |
-| `ado_version`        | String                                                   | The version of the ADO.                                                                                        |
-| `operators`          | Option\<Vec\<String>>                                    | The list of addresses to set as operators on the contract.                                                     |
-| `modules`            | Option\<Vec<[Module](../modules/module-definitions.md)>> | The list of modules to add to the ADO.                                                                         |
-| `primitive_contract` | Option\<String>                                          | The address of the primitive contract to use for data retrieval.                                               |
+<table><thead><tr><th width="235.66666666666669">Name</th><th>Type</th><th>Description</th></tr></thead><tbody><tr><td><code>ado_type</code></td><td>String</td><td>The type of the ADO. Usually, it is the same as the name. It is automatically set when an ADO is instantiated.</td></tr><tr><td><code>ado_version</code></td><td>String</td><td>The version of the ADO. It is automatically set when an ADO is instantiated.</td></tr><tr><td><code>operators</code></td><td>Option&#x3C;Vec&#x3C;String>></td><td>The list of addresses that are given operator privilege  on the contract. Automatically set to empty when an ADO is intantiated.</td></tr><tr><td><code>kernel_address</code></td><td>Option&#x3C;String></td><td>The contract address of the <a href="andromeda-messaging-protocol/kernel.md">kerne</a><a href="andromeda-messaging-protocol/kernel.md">l</a> ADO responsible for communication between ADOs. Specified by the creator in the instantiation message of an ADO.</td></tr><tr><td><code>owner</code></td><td>Option&#x3C;String></td><td>The address of the ADO owner. Specified by the creator in the instantiation message of an ADO. </td></tr></tbody></table>
 
-Many of the contracts will have repeating functionality. To normalize one struct across all contracts, we use the `AndrRecieve` and `AndrQuery` for certain functionalities that will be shown below. This way each contract doesn't have to independently handle the message.
+Our ADOs have a set of execute and query messages refered to as the "base executes" and "base queries". These messages are common to every ADO in our Andromeda Digital Library or ALL. They are listed in the AndromedaMsg and AndromedaQuery enums which we will discuss next. &#x20;
 
-## AndrRecieve
+## AndromedaMsg
 
-All of the contracts have an `AndrReceive` as an execute.
+All of the ADOs can call the base execute messages found in the AndromedaMsg
+
+{% hint style="danger" %}
+Some of the execute messages are feature specific meaning they are only available to all the ADOs that implement a specific feature such as the modules feature. Implemented features will be specified in the ADO's documentation page.&#x20;
+{% endhint %}
 
 {% tabs %}
 {% tab title="Rust" %}
 ```rust
-pub enum ExecuteMsg {
-  AndrReceive(AndromedaMsg)
-  }
-```
-{% endtab %}
-{% endtabs %}
-
-### AndromedaMsg
-
-An enum lisiting the different types of `AndromedaMsg`. Not all of these messages can be executed by any contract.&#x20;
-
-The withdraw feature should be enabled in order to execute:
-
-* `Withdraw`
-
-The modules feature should be enabled in order to execute:
-
-* `RegisterModule`
-* `DeregisterModule`
-* `AlterModule`
-
-The primitive feature should be enabled in order to execute:
-
-* `RefreshAddress`
-* `RefreshAddresses`
-
-{% hint style="warning" %}
-To check if an ADO uses a certain feature, check the AndrReceive section in that contract's documentation. If nothing is specified then the feature is not available.
-{% endhint %}
-
-```rust
+#[cw_serde]
 pub enum AndromedaMsg {
-    Receive(Option<Binary>),
     UpdateOwner {
         address: String,
     },
     UpdateOperators {
         operators: Vec<String>,
     },
+    UpdateAppContract {
+        address: String,
+    },
+    #[cfg(feature = "withdraw")]
     Withdraw {
         recipient: Option<Recipient>,
         tokens_to_withdraw: Option<Vec<Withdrawal>>,
     },
+    #[cfg(feature = "modules")]
     RegisterModule {
         module: Module,
     },
+    #[cfg(feature = "modules")]
     DeregisterModule {
         module_idx: Uint64,
     },
+    #[cfg(feature = "modules")]
     AlterModule {
         module_idx: Uint64,
         module: Module,
     },
-    RefreshAddress {
-        contract: String,
+    Deposit {
+        recipient: Option<AndrAddr>,
+        msg: Option<Binary>,
     },
-    RefreshAddresses {
-        limit: Option<u32>,
-        start_after: Option<String>,
+    #[serde(rename = "amp_receive")]
+    AMPReceive(AMPPkt),
+    SetPermission {
+        actor: AndrAddr,
+        action: String,
+        permission: Permission,
+    },
+    RemovePermission {
+        action: String,
+        actor: AndrAddr,
+    },
+    PermissionAction {
+        action: String,
     },
 }
 ```
-
-### Receive
-
-Receives binary data that will be parsed and executed if valid.
-
-{% tabs %}
-{% tab title="Rust" %}
-```rust
-pub enum AndromedaMsg {
-    Receive(Option<Binary>)
-    }
-```
 {% endtab %}
 {% endtabs %}
+
+All the ADOs can execute:&#x20;
+
+* [`UpdateOwner`](ado-base.md#updateowner)
+* [`UpdateOperators`](ado-base.md#updateoperators)
+* [`UpdateAppContract`](ado-base.md#updateappcontract)
+* [`AMPReceive`](ado-base.md#ampreceive)
+* [`SetPermission`](ado-base.md#setpermission)
+* [`RemovePermission`](ado-base.md#removepermission)
+
+The modules feature should be enabled for an ADO in order to execute:
+
+* [`RegisterModule`](ado-base.md#registermodule)
+* [`DeregisterModule`](ado-base.md#deregistermodule)
+* [`AlterModule`](ado-base.md#altermodule)
 
 ### UpdateOwner
 
@@ -131,7 +119,7 @@ Only available to the contract owner.
 ```rust
 pub enum AndromedaMsg{
    UpdateOwner {
-   address:String
+      address:String
    }
 }
 ```
@@ -140,13 +128,10 @@ pub enum AndromedaMsg{
 {% tab title="JSON" %}
 ```json
 {
- "andr_receive":{
-      "update_owner":{
-            "address":"andr1..."
+"update_owner":{
+     "address":"andr1..."
      }
    }
-}
-
 ```
 {% endtab %}
 {% endtabs %}
@@ -179,12 +164,10 @@ pub enum AndromedaMsg{
 {% tab title="JSON" %}
 ```json
 {
- "andr_receive":{
-      "update_operators":{
-            "operators":["andr1...","andr1...",...]
+"update_operators":{
+     "operators":["andr1...","andr1...",...]
      }
    }
-}
 ```
 {% endtab %}
 {% endtabs %}
@@ -193,18 +176,65 @@ pub enum AndromedaMsg{
 | ----------- | ------------ | ----------------------------------- |
 | `operators` | Vec\<String> | The new addresses of the operators. |
 
-### Withdraw
+### UpdateAppContract
 
-Withdraws token to a specified `recipient`. Not common to all ADOs, but only to the ones with withdraw feature enabled.
+Updates the referenced App contract of an ADO. This allows the ADO to reference by name the components of the new App contract.
 
 {% tabs %}
 {% tab title="Rust" %}
 ```rust
-pub enum AndromedaMsg{
-  Withdraw {
-        recipient: Option<Recipient>,
-        tokens_to_withdraw: Option<Vec<Withdrawal>>,
+pub enum AndromedaMsg {
+  UpdateAppContract {
+        address: String,
+        },
     }
+```
+{% endtab %}
+
+{% tab title="JSON" %}
+```json
+{
+"update_app_contract":{
+    "address":"andr1..."
+    }
+}
+```
+{% endtab %}
+{% endtabs %}
+
+| Name      | Type   | Description                          |
+| --------- | ------ | ------------------------------------ |
+| `address` | String | The address of the new App contract. |
+
+### AMPReceive
+
+This message is not called by the user, but is the case that handles receiving [AMP messsages](andromeda-messaging-protocol/) from the [Kernel](andromeda-messaging-protocol/kernel.md). It first verifies the AMP packet and then proceeds to execute the attached execute messges. The AMP packet is verified by checking the following:
+
+1. The origin matches the sender
+2. The sender is the kernel
+3. The sender has a code ID stored within the ADODB (and as such is a valid ADO)
+
+## Permissioning&#x20;
+
+The next three base messages allow users to have full control over who is allowed to execute messages in the ADO.&#x20;
+
+### PermissionAction
+
+Enables permissioning on an action.&#x20;
+
+{% hint style="warning" %}
+By actions, we are reffering to execute messages.
+
+Permissioning an action will allow you to call SetPermission on that action.
+{% endhint %}
+
+{% tabs %}
+{% tab title="Rust" %}
+```rust
+pub enum AndromedaMsg {
+      PermissionAction {
+        action: String,
+    },
 }
 ```
 {% endtab %}
@@ -212,50 +242,119 @@ pub enum AndromedaMsg{
 {% tab title="JSON" %}
 ```json
 {
- "andr_receive":{
-      "withdraw":{
-            "recipient":{
-                  "addr":"andr1..."
-              },
-            "tokens_to_withdraw":[
-                {
-                    "token":"uandr",
-                    "withdrawal_type":{
-                        "percentage":"0.3"
-                        }
-                    },
-                ...
-          ]          
-   }
+"permission_action":{
+    "action":"mint"
+    }
 }
 ```
 {% endtab %}
 {% endtabs %}
 
-| Name                 | Type                                           | Description                                                        |
-| -------------------- | ---------------------------------------------- | ------------------------------------------------------------------ |
-| `recipient`          | Option<[Recipient](common-types.md#recipient)> | The recipient of the funds.                                        |
-| `tokens_to_withdraw` | Option\<Vec\<Withdrawal>                       | The tokens to withdraw. If not specified all tokens are withdrawn. |
+| Name     | Type   | Description                               |
+| -------- | ------ | ----------------------------------------- |
+| `action` | String | The action/execute message to permission. |
 
-#### Withdrawal
+### SetPermission
+
+Assigns permissions to the specified actor. The action needs to be permissioned by calling PermissionAction before&#x20;
+
+{% hint style="warning" %}
+Only availabe to the contract owner.
+
+The action needs to be permissioned by calling [PermissionAction](ado-base.md#permissionaction) to be able to set a permission for it.
+{% endhint %}
+
+{% tabs %}
+{% tab title="Rust" %}
+```rust
+pub enum AndromedaMsg {
+  SetPermission {
+        actor: AndrAddr,
+        action: String,
+        permission: Permission,
+    },
+ }
+```
+{% endtab %}
+
+{% tab title="JSON" %}
+```json
+{
+"set_permission":{
+    "actor"::"andr1...",
+    "action":"Mint",
+    "permission":{
+        "limited":{
+            "uses": 5
+            }
+        }
+    }
+}
+```
+{% endtab %}
+{% endtabs %}
+
+| Name         | Type                                 | Description                                                                                                                          |
+| ------------ | ------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------ |
+| `actor`      | [AndrAddr](common-types.md#andraddr) | The address to assign permissions for.                                                                                               |
+| `action`     | String                               | The execute message to assign a permission for. Action needs to be capitalized i.e. "UpdateSale" to specify the UpdateSale execute.  |
+| `permission` | Permission                           | The type of permission assigned.                                                                                                     |
+
+#### Permission
+
+An enum to represent a user's permission for an action:
+
+{% hint style="warning" %}
+Expiration defaults to `Never` if not provided.
+{% endhint %}
 
 ```rust
-pub struct Withdrawal {
-    pub token: String,
-    pub withdrawal_type: Option<WithdrawalType>,
+pub enum Permission {
+    Blacklisted(Option<Expiration>),
+    Limited {
+        expiration: Option<Expiration>,
+        uses: u32,
+    },
+    Whitelisted(Option<Expiration>),
 }
 ```
 
-#### WithdrawalType
+* **Blacklisted:** The user cannot perform the action until after the provided expiration.
+* **Limited:** The user can perform the action while uses are remaining and before the provided expiration.
+* **Whitelisted:** The user can perform the action until the provided expiration.
 
-Withdrawal can be a certain amount or a percentage of the tokens.
+### RemovePermission
 
+Remove a previously assigned permission for the specified actor.
+
+{% tabs %}
+{% tab title="Rust" %}
 ```rust
-pub enum WithdrawalType {
-    Amount(Uint128),
-    Percentage(Decimal),
+pub enum AndromedaMsg {
+     RemovePermission {
+        action: String,
+        actor: AndrAddr,
+    },
+ }
+```
+{% endtab %}
+
+{% tab title="JSON" %}
+```json
+{
+"remove_permission":{
+    "actor":"andr1...",
+    "action":"Mint"
+    }
 }
 ```
+{% endtab %}
+{% endtabs %}
+
+| Name     | Type                                 | Description                                                                  |
+| -------- | ------------------------------------ | ---------------------------------------------------------------------------- |
+| `actor`  | [AndrAddr](common-types.md#andraddr) | The address that you want to remove permissions for.                         |
+| `action` | String                               | The execute message to have its permission removed for the specified actor.  |
 
 ## Modules
 
@@ -287,25 +386,21 @@ pub enum AndromedaMsg {
 {% tab title="JSON" %}
 ```json
 {
- "andr_receive":{
-     "register_module": {
+   "register_module": {
           "module":{
-               "module_type": "receipt",
-               "address":{
-                    "identifier":"andr1..."
-                    },
+               "name": "receipt",
+               "address":"andr1...",
                "is_mutable": true
         }
      }
    }
- } 
 ```
 {% endtab %}
 {% endtabs %}
 
-| Name   | Type                                       | Description         |
-| ------ | ------------------------------------------ | ------------------- |
-| module | [Module](../modules/module-definitions.md) | The module to add.  |
+| Name     | Type                                       | Description         |
+| -------- | ------------------------------------------ | ------------------- |
+| `module` | [Module](../modules/module-definitions.md) | The module to add.  |
 
 ### DeregisterModule
 
@@ -331,11 +426,9 @@ Only mutable modules can be deregistered.&#x20;
 {% tab title="JSON" %}
 ```json
 {
-"andr_receive":{
     "deregister_module":{
         "module_idx":"3"
         }
-    }
 }
 ```
 {% endtab %}
@@ -370,19 +463,15 @@ pub enum AndromedaMsg{
 {% tab title="JSON" %}
 ```json
 {
-"andr_receive":{
-       "alter_module":{
+ "alter_module":{
           "module_idx":"3",
           "module":{
              "module_type": "receipt",
-             "address":{
-                "identifier":"andr1..."
-                }
+             "address":"andr1...",
              "is_mutable": false
         }
       }
     } 
- }
 ```
 {% endtab %}
 {% endtabs %}
@@ -392,118 +481,128 @@ pub enum AndromedaMsg{
 | `module_idx` | Uint64                                     | The index of the module to change. |
 | `module`     | [Module](../modules/module-definitions.md) | The new module implement.          |
 
-### Primitives
+***
 
-The following messages are used by contracts that implement primitives.
+### Withdraw
 
-### RefreshAddress
-
-Used to save the value for the specified `contract` in the cache to be used later on in the contract. Queries the primitive contract and saves the result in the cache.
+Withdraws funds from the ADO. Only available to ADOs with the "withdraw" feature is enabled.
 
 {% tabs %}
 {% tab title="Rust" %}
 ```rust
- pub enum AndromedaMsg
- RefreshAddress {
-        contract: String,
-    }
+pub enum AndromedaMsg {
+     Withdraw {
+        recipient: Option<Recipient>,
+        tokens_to_withdraw: Option<Vec<Withdrawal>>,
+    },
+ }
 ```
 {% endtab %}
 
 {% tab title="JSON" %}
 ```json
 {
-"refresh_address":"anchor"
-}
-```
-{% endtab %}
-{% endtabs %}
-
-| Name       | Type   | Description                             |
-| ---------- | ------ | --------------------------------------- |
-| `contract` | String | The key used in the primitive contract. |
-
-### RefreshAddresses
-
-Similar to `RefreshAddress`, but is used to save all the values from the primitive to the cache.
-
-{% tabs %}
-{% tab title="Rust" %}
-```rust
- pub enum AndromedaMsg{
-   RefreshAddresses {
-        limit: Option<u32>,
-        start_after: Option<String>,
+"withdraw":{
+"recipient":{
+    "address":"andr1..."
+    },
+"withdrawals":[
+                {
+                    "token":"uandr",
+                    "withdrawal_type":{
+                        "percentage":"0.3"
+                        }
+                    },    
+                ...
+          ]          
     }
  }
-```
-{% endtab %}
 
-{% tab title="JSON" %}
-<pre class="language-json"><code class="lang-json">{
-"andr_receive":{
-   "refresh_addresses":{
-<strong>      "limit": 15
-</strong>     }
-   }
-}
-</code></pre>
+    
+```
 {% endtab %}
 {% endtabs %}
 
-| Name          | Type            | Description                                                                                   |
-| ------------- | --------------- | --------------------------------------------------------------------------------------------- |
-| `limit`       | Option<32>      | An optional limit to the number of addresses to refresh. Defaults to 10. The max limit is 20. |
-| `start_after` | Option\<String> | An optional address for which to start after, used for pagination.                            |
+| Name                 | Type                                               | Description                                                                                      |
+| -------------------- | -------------------------------------------------- | ------------------------------------------------------------------------------------------------ |
+| `recipient`          | Option<[Recipient](common-types.md#recipient)>     | The address to receive the withdrawn funds when withdrawing from vault. Defaults to the sender.  |
+| `tokens_to_withdraw` | Option\<Vec<[Withdrawal](ado-base.md#withdrawal)>> | The funds to withdraw. All funds are withdrawn if not specified.                                 |
 
-## AndrQuery
+#### Withdrawal
 
 ```rust
-pub enum QueryMsg {
-    AndrQuery(AndromedaQuery),
+pub struct Withdrawal {
+    pub token: String,
+    pub withdrawal_type: Option<WithdrawalType>,
 }
 ```
 
-### AndromedaQuery
+| Name              | Type                    | Description             |
+| ----------------- | ----------------------- | ----------------------- |
+| `token`           | String                  | The token to withdraw.  |
+| `withdrawal_type` | Option\<WithdrawalType> | The type of withdrawal. |
+
+#### WithdrawalType
+
+```rust
+pub enum WithdrawalType {
+    Amount(Uint128),
+    Percentage(Decimal),
+}
+```
+
+There are two main withdrawal types:
+
+* **Amount:** Withdraw a flat amount from the vault/strategy.
+* **Percentage:** Withdraw a percentage of funds found in the vault/strategy.
+
+## AndromedaQuery
+
+All of the ADOs can call the base query messages found in the AndromedaMsg.
+
+{% hint style="danger" %}
+Some of the query messages are feature specific meaning they are only available to all the ADOs that implement a specific feature such as the modules feature. Implemented features will be specified in the ADO's documentation page.&#x20;
+{% endhint %}
 
 ```rust
 pub enum AndromedaQuery {
-    Get(Option<Binary>),
-    #[returns(ContractOwnerResponse)]
+    #[returns(self::ownership::ContractOwnerResponse)]
     Owner {},
-    #[returns(OperatorsResponse)]
+    #[returns(self::operators::OperatorsResponse)]
     Operators {},
-    #[returns(TypeResponse)]
+    #[returns(self::ado_type::TypeResponse)]
     Type {},
-    #[returns(PublisherResponse)]
+    #[returns(self::kernel_address::KernelAddressResponse)]
+    KernelAddress {},
+    #[returns(self::ownership::PublisherResponse)]
     OriginalPublisher {},
-    #[returns(BlockHeightResponse)]
+    #[returns(self::block_height::BlockHeightResponse)]
     BlockHeightUponCreation {},
-    #[returns(IsOperatorResponse)]
+    #[returns(self::operators::IsOperatorResponse)]
     IsOperator { address: String },
+    #[returns(self::version::VersionResponse)]
+    Version {},
+    #[returns(Option<::cosmwasm_std::Addr>)]
+    AppContract {},
+    #[cfg(feature = "modules")]
     #[returns(Module)]
     Module { id: Uint64 },
+    #[cfg(feature = "modules")]
     #[returns(Vec<String>)]
     ModuleIds {},
-    #[returns(VersionResponse)]
-    Version {},
+    #[returns(::cosmwasm_std::BalanceResponse)]
+    Balance { address: AndrAddr },
+    #[returns(Vec<self::permissioning::PermissionInfo>)]
+    Permissions {
+        actor: AndrAddr,
+        limit: Option<u32>,
+        start_after: Option<String>,
+    },
+    #[returns(Vec<String>)]
+    PermissionedActions {},
+    
 }
 ```
-
-### Get
-
-Takes binary data which is parsed and executes the corresponding query if valid.
-
-{% tabs %}
-{% tab title="Rust" %}
-```rust
-pub enum AndromedaQuery {
-    #[returns(Option<Binary>)]
-    Get(Option<Binary>)
-    }
-```
-{% endtab %}
-{% endtabs %}
 
 ### Owner
 
@@ -513,16 +612,15 @@ Queries the owner of the contract.
 {% tab title="Rust" %}
 ```rust
 pub enum AndromedaQuery{
-    #[returns(ContractOwnerResponse)]
+    #[returns(self::ownership::ContractOwnerResponse)]
     Owner{}
 }
 ```
 {% endtab %}
 
-{% tab title="Json" %}
+{% tab title="JSON" %}
 ```json
 {
-"andr_query":{
   "owner":{}
   }
 }
@@ -558,7 +656,7 @@ Queries the operators of a contract.
 {% tab title="Rust" %}
 ```rust
 pub enum AndromedaQuery{
-     #[returns(OperatorsResponse)]
+   #[returns(self::operators::OperatorsResponse)]
      Operators{}
 }
 ```
@@ -567,9 +665,7 @@ pub enum AndromedaQuery{
 {% tab title="JSON" %}
 ```json
 {
-"andr_query":{
   "operators":{}
-  }
 }
 ```
 {% endtab %}
@@ -603,7 +699,7 @@ Checks if  the specified `address` is an operator of the contract.
 {% tab title="Rust" %}
 ```rust
 pub enum AndromedaQuery{
-  #[returns(IsOperatorResponse)]
+  #[returns(self::operators::IsOperatorResponse)]
   IsOperators{
       address:String,
   }
@@ -614,11 +710,9 @@ pub enum AndromedaQuery{
 {% tab title="JSON" %}
 ```json
 {
-"andr_query":{
    "is_operators":{
      "address":"andr1..."
      }
-  }
 }
 ```
 {% endtab %}
@@ -650,12 +744,12 @@ pub struct IsOperatorResponse {
 
 ### Type
 
-Queries the Ado\_type.&#x20;
+Queries the ADO type.&#x20;
 
 {% tabs %}
 {% tab title="Rust" %}
 <pre class="language-rust"><code class="lang-rust">pub enum AndromedaQuery {
-<strong>    #[returns(TypeResponse)]
+<strong>    #[returns(self::ado_type::TypeResponse)]
 </strong>    Type {}
 }
 </code></pre>
@@ -663,9 +757,7 @@ Queries the Ado\_type.&#x20;
 
 {% tab title="JSON" %}
 <pre class="language-json"><code class="lang-json">{
-"andr_query":{
-<strong>        "type":{}
-</strong><strong>  }
+<strong>"type":{}
 </strong>}
 </code></pre>
 {% endtab %}
@@ -685,7 +777,7 @@ pub struct TypeResponse {
 {% tab title="JSON" %}
 ```json
 {
-"ado_type":"gumball"
+"ado_type":"auction"
 }
 ```
 {% endtab %}
@@ -695,6 +787,31 @@ pub struct TypeResponse {
 | ---------- | ------ | -------------------- |
 | `ado_type` | String | The type of the ado. |
 
+### KernelAddress
+
+Queries the kernel address of the chain the ADO is deployed on.
+
+{% tabs %}
+{% tab title="Rust" %}
+```rust
+pub enum AndromedaQuery {
+    #[returns(self::kernel_address::KernelAddressResponse)]
+    KernelAddress {},
+    }
+```
+{% endtab %}
+
+{% tab title="JSON" %}
+```json
+{
+"kernel_address":{}
+}
+```
+{% endtab %}
+{% endtabs %}
+
+Returns a String containing the contract address of the Kernel.
+
 ### BlockHeightUponCreation
 
 Queries the block height when the ADO was created.
@@ -703,7 +820,7 @@ Queries the block height when the ADO was created.
 {% tab title="Rust" %}
 ```rust
 pub enum AndromedaQuery{
-      #[returns(BlockHeightResponse)]
+      #[returns(self::block_height::BlockHeightResponse)]
       BlockHeightUponCreation {},
       }
 ```
@@ -712,9 +829,7 @@ pub enum AndromedaQuery{
 {% tab title="JSON" %}
 ```json
 {
-"andr_query":{
-    "block_height_upon_creation":{}
-    }
+"block_height_upon_creation":{}
 }
 ```
 {% endtab %}
@@ -734,7 +849,7 @@ pub struct BlockHeightResponse {
 {% tab title="JSON" %}
 ```json
 {
-"block_height": 200134
+"block_height": 2000134
 }
 ```
 {% endtab %}
@@ -752,7 +867,7 @@ Queries the version of the ADO.&#x20;
 {% tab title="Rust" %}
 ```rust
 pub enum AndromedaQuery {
-     #[returns(VersionResponse)]
+     #[returns(self::version::VersionResponse)]
      Version {}
      }
 ```
@@ -761,9 +876,7 @@ pub enum AndromedaQuery {
 {% tab title="JSON" %}
 ```json
 {
-"andr_query":{
-        "version":{}
-        }
+"version":{}
 }
 ```
 {% endtab %}
@@ -793,6 +906,8 @@ pub struct VersionResponse {
 | --------- | ------ | ------------------------ |
 | `version` | String | The version of the ADO.  |
 
+### AppContract
+
 ### OriginalPublisher
 
 Queries the orginal address that published/instantiated the ADO.
@@ -801,7 +916,7 @@ Queries the orginal address that published/instantiated the ADO.
 {% tab title="Rust " %}
 ```rust
 pub enum AndromedaQuery {
-    #[returns(PublisherResponse)]
+    #[returns(self::ownership::PublisherResponse)]
     OriginalPublisher {}
     }
 ```
@@ -810,9 +925,7 @@ pub enum AndromedaQuery {
 {% tab title="JSON" %}
 ```json
 {
-"andr_query":{
-    "original_publisher":{}
-    }
+"original_publisher":{}
 }
 ```
 {% endtab %}
@@ -842,6 +955,92 @@ pub struct PublisherResponse {
 | -------------------- | ------ | --------------------------------------------------------- |
 | `original_publisher` | String | The original address that instantiated/published the ADO. |
 
+### Permisions
+
+Queries the permissions set for the specified actor address.
+
+{% tabs %}
+{% tab title="Rust" %}
+```rust
+pub enum AndromedaQuery {
+    #[returns(Vec<self::permissioning::PermissionInfo>)]
+    Permissions {
+        actor: AndrAddr,
+        limit: Option<u32>,
+        start_after: Option<String>,
+    }
+}
+```
+{% endtab %}
+
+{% tab title="JSON" %}
+```json
+{
+"permissions":{
+    "actor":"andr1...",
+    }
+}
+```
+{% endtab %}
+{% endtabs %}
+
+| Name          | Type                                 | Description                                                                                             |
+| ------------- | ------------------------------------ | ------------------------------------------------------------------------------------------------------- |
+| `actor`       | [AndrAddr](common-types.md#andraddr) | The address we are checking permissions for.                                                            |
+| `limit`       | Option\<u32>                         | Optional limit to the number of permissions returned. Defaults to 25 and can be set to a maximum of 50. |
+| `start_after` | Option\<String>                      | Optional permission to start after. Used for pagination.                                                |
+
+#### PermissionInfo
+
+Returns a vector of the PermissionInfo struct containing all the permissions for the actor.
+
+{% tabs %}
+{% tab title="Rust" %}
+```rust
+pub struct PermissionInfo {
+    pub permission: Permission,
+    pub action: String,
+    pub actor: String,
+}
+```
+{% endtab %}
+{% endtabs %}
+
+| Name         | Type                                 | Description                                       |
+| ------------ | ------------------------------------ | ------------------------------------------------- |
+| `permission` | [Permission](ado-base.md#permission) | The permission that the actor was given.          |
+| `action`     | String                               | The action or message that the permission is for. |
+| `actor`      | String                               | The address that has these permissions.           |
+
+### PermissionedActions
+
+Queries the actions or execute messages that are permissioned in the ADO.&#x20;
+
+{% hint style="warning" %}
+The actions that are permissioned are the ones that have [PermissionAction](ado-base.md#permissionaction) called on them.
+{% endhint %}
+
+{% tabs %}
+{% tab title="Rust" %}
+```rust
+pub enum AndromedaQuery {
+    #[returns(Vec<String>)]
+    PermissionedActions {},
+    }
+```
+{% endtab %}
+
+{% tab title="JSON" %}
+```json
+{
+"permissioned_actions":{}
+}
+```
+{% endtab %}
+{% endtabs %}
+
+Returns a Vector of String containing the actions that are permissioned.&#x20;
+
 ## Modules
 
 The following can be executed by the contracts that implement modules:
@@ -865,13 +1064,10 @@ pub enum AndromedaQuery{
 {% tab title="JSON" %}
 ```json
 {
-"andr_query":{
    "module":{
      "id":"tokenid"
      }
-  }
 }
-
 ```
 {% endtab %}
 {% endtabs %}
@@ -880,43 +1076,11 @@ pub enum AndromedaQuery{
 | ---- | ------ | ------------------------------ |
 | `id` | Uint64 | The Id of the module to query. |
 
-#### ModuleInfoWithAddress
-
-Struct used to represent a module and its currently recorded address**.**
-
-{% tabs %}
-{% tab title="Rust" %}
-```rust
-pub struct ModuleInfoWithAddress {
-    pub module: Module,
-    pub address: String,
-}
-```
-{% endtab %}
-
-{% tab title="JSON" %}
-```json
-{
-"module":{
-  "module_type":"address_list",
-  "instantiate":{
-     "address": "andr1..."
-     },
-"address":"andr1..."
-}
-```
-{% endtab %}
-{% endtabs %}
-
-| Name      | Type                                       | Description                                                 |
-| --------- | ------------------------------------------ | ----------------------------------------------------------- |
-| `module`  | [Module](../modules/module-definitions.md) | The information of the module are found in a Module struct. |
-| `address` | String                                     | The contract address of the module.                         |
-|           |                                            |                                                             |
+Returns a [Module](../modules/module-definitions.md#module-definitions) struct with the module information.&#x20;
 
 ### ModuleIds
 
-Queries all of the module ids.
+Queries all of the module Ids.
 
 {% tabs %}
 {% tab title="Rust" %}
@@ -931,11 +1095,10 @@ pub enum AndromedaQuery{
 {% tab title="JSON" %}
 ```json
 {
-"andr_query":{
-    "module_ids":{}
+"module_ids":{}
 }
 ```
 {% endtab %}
 {% endtabs %}
 
-Returns a `Vec<String>` containing the module ids.
+Returns a `Vec<String>` containing the module Ids.

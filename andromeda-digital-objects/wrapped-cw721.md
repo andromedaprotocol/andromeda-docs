@@ -4,7 +4,11 @@
 
 The `Wrapped-Cw721` ADO is a smart contract that wraps[ CW721 tokens](cw721.md). This makes it possible to "upgrade" existing CW721 tokens to leverage our modules. One simple example is if a user wants to leverage our `TransferAgreement` functionality to make a trade without the need of a marketplace or escrow service. In this case they can wrap the token, sell the wrapped token, and then the new owner can unwrap to get the original.
 
+The `Wrapped-Cw721` ADO is a smart contract that wraps cw721 tokens. This makes it possible to "upgrade" existing cw721 tokens to leverage our modules. One simple example is if a user wants to leverage our `TransferAgreement` functionality to make a trade without the need of a marketplace or escrow service. In this case they can wrap the token, sell the wrapped token, and then the new owner can unwrap to get the original.
+
 The user can send any CW721 token and get back a "wrapped" version which can utilize our modules. They can also be "unwrapped" back to  the underlying token by depositing the wrapped token in the contract (the creator of the contract can specify if unwrapping should be allowed or not as there are some instances where they may want to permanently wrap a token).
+
+The user can deposit any cw721 token and get back a "wrapped" version which can utilize our modules. They can also be "unwrapped" back to  the underlying token by depositing the wrapped token in the contract (the creator of the contract can specify if unwrapping should be allowed or not as there are some instances where they may want to permanently wrap a token).
 
 **Ado\_type**: wrapped-cw721
 
@@ -17,6 +21,7 @@ pub struct InstantiateMsg {
     pub primitive_contract: String,
     pub cw721_instantiate_type: InstantiateType,
     pub can_unwrap: bool,
+    pub kernel_address: Option<String>,
 }
 ```
 {% endtab %}
@@ -28,13 +33,14 @@ pub struct InstantiateMsg {
 "cw721_instantiate_type":{
   "address":"andr1..."
    },
- "can_unwrap": true
+ "can_unwrap": true,
+ "kernel_address":"andr1..."
 }
 ```
 {% endtab %}
 {% endtabs %}
 
-<table><thead><tr><th width="285.3333333333333">Name</th><th>Type</th><th>Description</th></tr></thead><tbody><tr><td><code>primitive_contract</code></td><td>String</td><td>The primitive contract use to store the factory contract  if used.</td></tr><tr><td><code>cw721_instantiate_type</code></td><td><a href="wrapped-cw721.md#instantiatetype">InstantiateType</a></td><td>The cw721 contract can be instantiated or an existing address can be used. In the case that  an existing address is used, the minter must be set to be this contract.</td></tr><tr><td><code>can_unwrap</code></td><td>bool</td><td>Whether or not the cw721 token can be unwrapped once it is wrapped.</td></tr></tbody></table>
+<table><thead><tr><th width="285.3333333333333">Name</th><th>Type</th><th>Description</th></tr></thead><tbody><tr><td><code>primitive_contract</code></td><td>String</td><td>The primitive contract use to store the factory contract  if used.</td></tr><tr><td><code>cw721_instantiate_type</code></td><td><a href="wrapped-cw721.md#instantiatetype">InstantiateType</a></td><td>The cw721 contract can be instantiated or an existing address can be used. In the case that  an existing address is used, the minter must be set to be this contract.</td></tr><tr><td><code>can_unwrap</code></td><td>bool</td><td>Whether or not the cw721 token can be unwrapped once it is wrapped.</td></tr><tr><td><code>kernel_address</code></td><td>String</td><td>Contract address of the <a href="../platform-and-framework/andromeda-messaging-protocol/kernel.md">kernel contract</a> to be used for <a href="../platform-and-framework/andromeda-messaging-protocol/">AMP</a> messaging. Kernel contract address can be found in our <a href="../platform-and-framework/deployed-contracts (1).md">deployed contracts</a>.</td></tr></tbody></table>
 
 #### InstantiateType
 
@@ -58,11 +64,11 @@ pub struct Cw721Specification {
 }
 ```
 
-| Name      | Type                                                     | Description                                                                                                |
-| --------- | -------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- |
-| `name`    | String                                                   | Name of the NFT.                                                                                           |
-| `symbol`  | String                                                   | Symbol of the NFT.                                                                                         |
-| `modules` | Option\<Vec<[Module](../modules/module-definitions.md)>> | An optional vector of Andromeda Modules. Any module that can be added to a [CW721](cw721.md) can be added. |
+| Name      | Type                                                     | Description                                                                                                            |
+| --------- | -------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------- |
+| `name`    | String                                                   | Name of the NFT.                                                                                                       |
+| `symbol`  | String                                                   | Symbol of the NFT.                                                                                                     |
+| `modules` | Option\<Vec<[Module](../modules/module-definitions.md)>> | An optional vector of Andromeda Modules. The module definitions can be found[ here](../modules/module-definitions.md). |
 
 ## ExecuteMsg
 

@@ -4,6 +4,8 @@ The **Vesting** ADO allows the vesting of tokens for one recipient which is fixe
 
 A new batch can be created using the `CreateBatch` message which will create a batch with the funds that are sent along with the message. This message contains parameters that define the lockup period and vesting parameters. All time-related parameters are done using seconds.
 
+Ownership of the ADO should be transferred after creating the vesting batch to the user who is vesting. For example, if party A wants to vest tokens for user B, they would create a custom batch with the vesting properties specified like lockup duration, release unit ect... (These cannot be changed by anyone once created). Then after the batch/batches have been created, they would transfer ownership of the contract to user B who can claim the tokens when the time comes.
+
 **Ado\_type**: vesting
 
 ## InstantiateMsg
@@ -16,6 +18,8 @@ pub struct InstantiateMsg {
     pub is_multi_batch_enabled: bool,
     pub denom: String,
     pub unbonding_duration: Duration,
+    pub kernel_address: String,
+    pub owner: Option<String>
 }
 ```
 {% endtab %}
@@ -24,23 +28,25 @@ pub struct InstantiateMsg {
 ```json
 {
 "recipient":{
-    "addr":"andr1..."
+    "address":"andr1..."
     },
 "is_multi_batch_enabled": true,
 "denom":"uandr",
 "unbonding_duration":{
     "time":23248854
-    }
+    },
+"kernel_address":"andr1...",
+"owner":"andr1"
 }
 ```
 {% endtab %}
 {% endtabs %}
 
-<table><thead><tr><th width="287.3333333333333">Name</th><th>Type</th><th>Description</th></tr></thead><tbody><tr><td><code>recipient</code></td><td><a href="../platform-and-framework/common-types.md#recipient">Recipient</a></td><td>The recipient of all funds locked in this contract.</td></tr><tr><td><code>is_multi_batch_enabled</code></td><td>bool</td><td>Whether or not multi-batching has been enabled.</td></tr><tr><td><code>denom</code></td><td>String</td><td>The denom of the coin being vested.</td></tr><tr><td><code>unbonding_duration</code></td><td>Duration</td><td>The unbonding duration of the native staking module.</td></tr></tbody></table>
+<table><thead><tr><th width="287.3333333333333">Name</th><th>Type</th><th>Description</th></tr></thead><tbody><tr><td><code>recipient</code></td><td><a href="../platform-and-framework/common-types.md#recipient">Recipient</a></td><td>The recipient of all funds locked in this contract.</td></tr><tr><td><code>is_multi_batch_enabled</code></td><td>bool</td><td>Whether or not multi-batching has been enabled.</td></tr><tr><td><code>denom</code></td><td>String</td><td>The denom of the coin being vested.</td></tr><tr><td><code>unbonding_duration</code></td><td><a href="vesting.md#duration">Duration</a></td><td>The unbonding duration of the native staking module.</td></tr><tr><td><code>kernel_address</code></td><td>String</td><td>Contract address of the <a href="../platform-and-framework/andromeda-messaging-protocol/kernel.md">kernel contract</a> to be used for <a href="../platform-and-framework/andromeda-messaging-protocol/">AMP</a> messaging. Kernel contract address can be found in our <a href="../platform-and-framework/deployed-contracts (1).md">deployed contracts</a>.</td></tr><tr><td><code>owner</code></td><td>Option&#x3C;String></td><td>Optional address to specify as the owner of the ADO being created. Defaults to the sender if not specified.</td></tr></tbody></table>
 
 #### Duration
 
-Can be either a block height or block time in seconds.
+Can be **either** a block height or block time in seconds.
 
 ```rust
 pub enum Duration {
@@ -60,9 +66,9 @@ Only available to the contract owner or an operator of the contract.
 
 The attached funds should be a single native fund.
 
-Denom should be the same as specified upon instantiation.
+Denom of attached funds should be the same as the one specified upon instantiation.
 
-Each batch has an ID which starts at 1 and increments by 1 for each new batch.
+Each batch has an Id which starts at 1 and increments by 1 for each new batch.
 {% endhint %}
 
 {% tabs %}
@@ -95,7 +101,21 @@ pub enum ExecuteMsg {
 {% endtab %}
 {% endtabs %}
 
-<table><thead><tr><th width="304.3333333333333">Name</th><th>Type</th><th>Description</th></tr></thead><tbody><tr><td><code>lockup_duration</code></td><td>Option&#x3C;u64></td><td>A lockup period before vesting starts. Specifying None would mean no lock up period and funds start vesting right away.</td></tr><tr><td><code>release_unit</code></td><td>u64</td><td>How often releases occur in seconds.</td></tr><tr><td><code>release_amount</code></td><td><a href="../platform-and-framework/ado-base.md#withdrawaltype">WithdrawalType</a></td><td>Specifies how much is to be released after each <code>release_unit</code>. If it is a percentage, it would be the percentage of the original amount.</td></tr><tr><td><code>validator_to_delegate_to</code></td><td>Option&#x3C;String></td><td>Optional validator to delegate to. If specified, funds will be automatically delegated to them.</td></tr></tbody></table>
+<table><thead><tr><th width="304.3333333333333">Name</th><th>Type</th><th>Description</th></tr></thead><tbody><tr><td><code>lockup_duration</code></td><td>Option&#x3C;u64></td><td>A lockup period before vesting starts. Specifying None would mean no lock up period and funds start vesting right away.</td></tr><tr><td><code>release_unit</code></td><td>u64</td><td>How often releases occur in seconds.</td></tr><tr><td><code>release_amount</code></td><td><a href="vesting.md#withdrawaltype">WithdrawalType</a></td><td>Specifies how much is to be released after each <code>release_unit</code>. If it is a percentage, it would be the percentage of the original amount.</td></tr><tr><td><code>validator_to_delegate_to</code></td><td>Option&#x3C;String></td><td>Optional validator to delegate to. If specified, funds will be automatically delegated to them.</td></tr></tbody></table>
+
+#### WithdrawalType
+
+```rust
+pub enum WithdrawalType {
+    Amount(Uint128),
+    Percentage(Decimal),
+}
+```
+
+There are two main withdrawal types:
+
+* **Amount:** Withdraw a flat amount from the vault/strategy.
+* **Percentage:** Withdraw a percentage of funds found in the vault/strategy.
 
 ### Claim
 
@@ -169,7 +189,7 @@ pub enum ExecuteMsg {
 | Name          | Type         | Description                                                                                     |
 | ------------- | ------------ | ----------------------------------------------------------------------------------------------- |
 | `up_to_time`  | Option\<u64> | Optional time to claim up to. The minimum of the current time and the specified time is taken.  |
-| `start_after` | Option\<u64> | Optional id to start after. Used for pagination.                                                |
+| `start_after` | Option\<u64> | Optional Id to start after. Used for pagination.                                                |
 | `limit`       | Option\<u32> | The number of batches to claim from. Defaults to 10 and can be set to a maximum of 30.          |
 
 ### Delegate
@@ -322,7 +342,7 @@ pub enum ExecuteMsg {
 
 | Name          | Type       | Description             |
 | ------------- | ---------- | ----------------------- |
-| `proposal_id` | u64        | The id of the proposal. |
+| `proposal_id` | u64        | The Id of the proposal. |
 | `vote`        | VoteOption | The vote.               |
 
 #### VoteOption
@@ -364,9 +384,9 @@ pub enum ExecuteMsg {
 {% endtab %}
 {% endtabs %}
 
-### AndrReceive
+### Base Executes
 
-The rest of the executes can be found in the [`AndrReceive`](../platform-and-framework/ado-base.md#andrrecieve) section.
+The rest of the execute messages can be found in the[ ADO Base](../platform-and-framework/ado-base.md) section.
 
 ## QueryMsg
 
@@ -429,7 +449,7 @@ pub struct Config {
 
 ### Batch
 
-Queries batch information from the specified id.
+Queries batch information from the specified Id.
 
 {% tabs %}
 {% tab title="Rust" %}
@@ -456,7 +476,7 @@ pub enum QueryMsg {
 
 | Name | Type | Description                   |
 | ---- | ---- | ----------------------------- |
-| `id` | u64  | The id of the batch to query. |
+| `id` | u64  | The Id of the batch to query. |
 
 #### BatchResponse
 
@@ -496,7 +516,7 @@ pub struct BatchResponse {
 {% endtab %}
 {% endtabs %}
 
-<table><thead><tr><th width="316.3333333333333">Name</th><th>Type</th><th>Description</th></tr></thead><tbody><tr><td><code>id</code></td><td>u64</td><td>The id of the batch.</td></tr><tr><td><code>amount</code></td><td>Uint128</td><td>The amount of tokens in the batch.</td></tr><tr><td><code>amount_claimed</code></td><td>Uint128</td><td>The amount of tokens that have been already claimed.</td></tr><tr><td><code>amount_available_to_claim</code></td><td>Uint128</td><td>The amount of tokens available to claim right now.</td></tr><tr><td><code>number_of_available_claims</code></td><td>Uint128</td><td>The number of available claims now.</td></tr><tr><td><code>lockup_end</code></td><td>u64</td><td>When the lockup ends.</td></tr><tr><td><code>release_unit</code></td><td>u64</td><td>How often releases occur in seconds.</td></tr><tr><td><code>release_amount</code></td><td><a href="../platform-and-framework/ado-base.md#withdrawaltype">WithdrawalType</a></td><td>Specifies how much is to be released after each <code>release_unit</code>. If it is a percentage, it would be the percentage of the original amount.</td></tr><tr><td><code>last_claimed_release_time</code></td><td>u64</td><td>The time at which the last claim took place.</td></tr></tbody></table>
+<table><thead><tr><th width="316.3333333333333">Name</th><th>Type</th><th>Description</th></tr></thead><tbody><tr><td><code>id</code></td><td>u64</td><td>The Id of the batch.</td></tr><tr><td><code>amount</code></td><td>Uint128</td><td>The amount of tokens in the batch.</td></tr><tr><td><code>amount_claimed</code></td><td>Uint128</td><td>The amount of tokens that have been already claimed.</td></tr><tr><td><code>amount_available_to_claim</code></td><td>Uint128</td><td>The amount of tokens available to claim right now.</td></tr><tr><td><code>number_of_available_claims</code></td><td>Uint128</td><td>The number of available claims now.</td></tr><tr><td><code>lockup_end</code></td><td>u64</td><td>When the lockup ends.</td></tr><tr><td><code>release_unit</code></td><td>u64</td><td>How often releases occur in seconds.</td></tr><tr><td><code>release_amount</code></td><td><a href="../platform-and-framework/ado-base.md#withdrawaltype">WithdrawalType</a></td><td>Specifies how much is to be released after each <code>release_unit</code>. If it is a percentage, it would be the percentage of the original amount.</td></tr><tr><td><code>last_claimed_release_time</code></td><td>u64</td><td>The time at which the last claim took place.</td></tr></tbody></table>
 
 ### Batches
 
@@ -533,6 +553,6 @@ pub enum QueryMsg {
 
 Returns a Vec<[BatchResponse](vesting.md#batchresponse)>.
 
-### AndrQuery
+### &#x20;Base Queries
 
-A set of base queries common to all Andromeda ADOs. Check[ AndrQuery](../platform-and-framework/ado-base.md#andrquery).
+The rest of the query messages can be found in the[ ADO Base](../platform-and-framework/ado-base.md) section.

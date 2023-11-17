@@ -2,7 +2,7 @@
 
 ## Introduction
 
-The **Marketplace** ADO is a smart contract that allows you to sell your NFTs in a marketplace. The seller sends their NFT to the ADO with a custom price and denomination to be used to buy the NFT. Once the NFT is sent, it is up for sale and buyers can pay the price to buy the NFT.
+The **Marketplace** ADO is a smart contract that allows you to sell your NFTs in a marketplace. The seller sends their NFT to the marketplace ADO with a custom price and denomination to be used to buy the NFT. Once the NFT is sent, it is up for sale and buyers can pay the price to buy the NFT.
 
 The contract supports [modules](broken-reference) to extend its functionality.
 
@@ -19,6 +19,9 @@ The contract supports [modules](broken-reference) to extend its functionality.
 ```rust
 pub struct InstantiateMsg {
     pub modules: Option<Vec<Module>>,
+    pub kernel_address: String,
+    pub owner: Option<String>
+
 }
 ```
 {% endtab %}
@@ -28,27 +31,34 @@ pub struct InstantiateMsg {
 {
 "modules":[
     {
-    "module_type":"address-list",
+    "name":"address-list",
     "address":{
         "identifier":"andr1..."
         },
     "is_mutable": true
     }
-  ]
+  ],
+ "kernel_address":"andr1..."
 }
 ```
 {% endtab %}
 {% endtabs %}
 
-| Name      | Type                  | Description                                                                                                                    |
-| --------- | --------------------- | ------------------------------------------------------------------------------------------------------------------------------ |
-| `modules` | Option\<Vec\<Module>> | An optional vector of Andromeda [Modules](../modules/module-definitions.md). "rates" and "address\_list" modules can be added. |
+| Name             | Type                  | Description                                                                                                                                                                                                                                                                                                                   |
+| ---------------- | --------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `modules`        | Option\<Vec\<Module>> | An optional vector of Andromeda [Modules](../modules/module-definitions.md). "rates", "address\_list", "receipt" modules can be added.                                                                                                                                                                                        |
+| `kernel_address` | String                | Contract address of the [kernel contract](../platform-and-framework/andromeda-messaging-protocol/kernel.md) to be used for [AMP](../platform-and-framework/andromeda-messaging-protocol/) messaging. Kernel contract address can be found in our [deployed contracts](<../platform-and-framework/deployed-contracts (1).md>). |
+| `owner`          | Option\<String>       | Optional address to specify as the owner of the ADO being created. Defaults to the sender if not specified.                                                                                                                                                                                                                   |
 
 ## ExecuteMsg
 
 ### ReceiveNft
 
 Receives a token from a [`SendNft`](cw721.md#sendnft) and starts an auction based on the given parameters in the StartSale struct. &#x20;
+
+{% hint style="warning" %}
+This message is not called by the user on this ADO, but is the case that handles receiving NFTs from a CW721 ADO.
+{% endhint %}
 
 {% tabs %}
 {% tab title="Rust" %}
@@ -124,7 +134,7 @@ Only available to the NFT owner.
 
 | Name            | Type    | Description                                              |
 | --------------- | ------- | -------------------------------------------------------- |
-| `token_id`      | String  | The id of the token to update the sale for.              |
+| `token_id`      | String  | The Id of the token to update the sale for.              |
 | `token_address` | String  | The address of the cw721 contract that minted the token. |
 | `price`         | Uint128 | The price of the NFT.                                    |
 | `coin_denom`    | String  | The denomination used to buy the NFT.                    |
@@ -162,7 +172,7 @@ Dont forget to attach the required funds.
 
 | Name            | Type   | Description                                          |
 | --------------- | ------ | ---------------------------------------------------- |
-| `token_id`      | String | The id of the NFT to buy.                            |
+| `token_id`      | String | The Id of the NFT to buy.                            |
 | `token_address` | String | The address of the cw721 that minted the NFT to buy. |
 
 ### CancelSale
@@ -199,16 +209,16 @@ pub enum ExecuteMsg {
 
 | Name            | Type   | Description                                                          |
 | --------------- | ------ | -------------------------------------------------------------------- |
-| `token_id`      | String | The id of the NFT to cancel the sale for.                            |
+| `token_id`      | String | The Id of the NFT to cancel the sale for.                            |
 | `token_address` | String | The address of the cw721 that minted the NFT to cancel the sale for. |
 
-### AndrReceive
+### Base Executes
 
 {% hint style="warning" %}
-Has the modules feature enabled.
+Uses the modules feature.
 {% endhint %}
 
-Check [AndrReceive](../platform-and-framework/ado-base.md#andrrecieve).
+The rest of the execute messages can be found in the[ ADO Base](../platform-and-framework/ado-base.md) section.
 
 ## QueryMsg
 
@@ -274,14 +284,14 @@ pub struct SaleStateResponse {
 
 | Name         | Type    | Description                                                                                                    |
 | ------------ | ------- | -------------------------------------------------------------------------------------------------------------- |
-| `sale_id`    | Uint128 | The id of the sale. The first sale has an Id of 1 and each sale after it increments the Id by 1.               |
+| `sale_id`    | Uint128 | The Id of the sale. The first sale has an Id of 1 and each sale after it increments the Id by 1.               |
 | `coin_denom` | String  | The denom used in the sale.                                                                                    |
 | `price`      | Uint128 | The price of the NFT.                                                                                          |
 | `status`     | Status  | <p>The status of the sale which can be one of three options:</p><p>-Open</p><p>-Executed</p><p>-Cancelled </p> |
 
 ### SaleState
 
-Gets the sale state for the given sale id.
+Gets the sale state for the given sale Id.
 
 {% tabs %}
 {% tab title="Rust" %}
@@ -308,11 +318,13 @@ pub enum QueryMsg
 
 | Name      | Type    | Description                  |
 | --------- | ------- | ---------------------------- |
-| `sale_id` | Uint128 | The id of the sale to check. |
+| `sale_id` | Uint128 | The Id of the sale to check. |
 
 Returns a [SaleStateResponse](marketplace.md#salestateresponse).
 
 ### SaleIds
+
+Queries the sale Id of the specified token.
 
 {% tabs %}
 {% tab title="Rust" %}
@@ -344,11 +356,11 @@ pub enum QueryMsg {
 | `token_id`      | String | The Id of the token to check the sale for.    |
 | `token_address` | String | The address of the cw721 that minted the NFT. |
 
-Returns the ID of the sale.&#x20;
+Returns the Id of the sale.&#x20;
 
 ### SaleInfosForAddress
 
-Get sale information on the provided cw721 token address.
+Get sale information on the provided CW721 token address.
 
 {% tabs %}
 {% tab title="Rust" %}
@@ -399,10 +411,10 @@ pub struct SaleInfo {
 
 | Name            | Type          | Description          |
 | --------------- | ------------- | -------------------- |
-| `sale_ids`      | Vec\<Uint128> | The id of the sale.  |
+| `sale_ids`      | Vec\<Uint128> | The Id of the sale.  |
 | `token_address` | String        | The cw721 address.   |
-| `token_id`      | String        | The id of the token. |
+| `token_id`      | String        | The Id of the token. |
 
-### AndrQuery
+### &#x20;Base Queries
 
-A set of base queries common to all Andromeda ADOs. Check[ AndrQuery](../platform-and-framework/ado-base.md#andrquery).
+The rest of the query messages can be found in the[ ADO Base](../platform-and-framework/ado-base.md) section.

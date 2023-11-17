@@ -134,7 +134,7 @@ We will mint an NFT with token\_id specified as 1.
 
 ### Instantiate Wrapped-NFT ADO.
 
-We have already uploaded the Wrapped-NFT ADO to the uni-5 testnet. The code I will use is 117. This code Id will most likely be outdated in the future. A simple way to check the latest code id for the App ADO is to query it from the ADODB using the the chain you want to use.&#x20;
+We have already uploaded the Wrapped-NFT ADO to the uni-5 testnet. The code I will use is 117. This code Id will most likely be outdated in the future. A simple way to check the latest code Id for the App ADO is to query it from the ADODB using the the chain you want to use.&#x20;
 
 In the CLI, while connected to the chain of choice, run:
 

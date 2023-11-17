@@ -14,11 +14,24 @@ For example, if an NFT with token id "token-1" is sent from the CW721 ADO " andr
 
 {% tabs %}
 {% tab title="Rust" %}
-```rust
-pub struct InstantiateMsg {}
+<pre class="language-rust"><code class="lang-rust">pub struct InstantiateMsg {
+        pub kernel_address: String,        
+<strong>        }
+</strong></code></pre>
+{% endtab %}
+
+{% tab title="JSON" %}
+```json
+{
+"kernel_address":"andr1..."
+}
 ```
 {% endtab %}
 {% endtabs %}
+
+| Name             | Type   | Description                                                                                                                                                                                                                                                                                                                   |
+| ---------------- | ------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `kernel_address` | String | Contract address of the [kernel contract](../platform-and-framework/andromeda-messaging-protocol/kernel.md) to be used for [AMP](../platform-and-framework/andromeda-messaging-protocol/) messaging. Kernel contract address can be found in our [deployed contracts](<../platform-and-framework/deployed-contracts (1).md>). |
 
 ## ExecuteMsg
 
@@ -113,7 +126,7 @@ pub enum ExecuteMsg {
 
 | Name      | Type   | Description                                                  |
 | --------- | ------ | ------------------------------------------------------------ |
-| `lock_id` | String | A concatinated id made of the nft contract address+token id. |
+| `lock_id` | String | A concatinated Id made of the nft contract address+token Id. |
 
 ### AndrReceive
 
@@ -150,7 +163,7 @@ pub enum QueryMsg {
 
 | Name      | Type   | Description                                                  |
 | --------- | ------ | ------------------------------------------------------------ |
-| `lock_id` | String | A concatinated id made of the nft contract address+token id. |
+| `lock_id` | String | A concatinated Id made of the nft contract address+token Id. |
 
 #### LockedDetails
 
@@ -184,7 +197,7 @@ pub struct LockDetails {
 | -------------- | ------------------------------------------------------------------ | ---------------------------------------------------------------- |
 | `recipient`    | String                                                             | The recipient of the NFT once the lock time has passed.          |
 | `expiration`   | [Expiration](../platform-and-framework/common-types.md#expiration) | When the lock time will be completed and the NFT can be claimed. |
-| `nft_id`       | String                                                             | The id of the NFT.                                               |
+| `nft_id`       | String                                                             | The Id of the NFT.                                               |
 | `nft_contract` | String                                                             | The address of the NFT contract.                                 |
 
 ### AndrQuery
