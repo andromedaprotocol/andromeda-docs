@@ -4,7 +4,7 @@
 
 The **Andromeda Kernel** acts as the core of the operating system. The Kernel receives and handles packets from ADOs to be relayed to a specified **recipient.** The Kernel keeps track of the original sender of the message. It also verifies that the packet is sent by an Andromeda certified ADO before relaying the message.&#x20;
 
-The Kernel is also responsible for relaying any IBC messages across any two chains that have an Andromeda Kernel  deployed and a channel set up. Each kernel has channels&#x20;
+The Kernel is also responsible for relaying any IBC messages across any two chains that have an Andromeda Kernel deployed and a channel set up.&#x20;
 
 All of our ADOs have a [AMPReceive](../ado-base.md#ampreceive) execute message to handle receiving packets from the Kernel.
 
