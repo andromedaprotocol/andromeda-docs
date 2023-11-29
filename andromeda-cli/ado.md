@@ -6,17 +6,21 @@ description: Query, execute, or create and ADO
 
 ### Available commands
 
-| Command                           | Description                                                             |
-| --------------------------------- | ----------------------------------------------------------------------- |
-| [**create**](ado.md#create)       | Creates an ADO by given type.                                           |
-| [**execute**](ado.md#execute)     | Executes a message on an ADO by given address.                          |
-| [**db**](ado.md#database)         | Allows querying the on chain ADO Database.                              |
-| [**info**](ado.md#info)           | Queries the info of ADO for a given address.                            |
-| [**list**](ado.md#list)           | Queries details about your deployed apps and ADOs for the current chain |
-| [**modules**](ado.md#modules)     | Allows management of modules for an ADO.                                |
-| [**operators**](ado.md#operators) | Allows management of operators for an ADO.                              |
-| [**query**](ado.md#query)         | Queries an ADO by given address.                                        |
-| [**transfer**](ado.md#transfer)   | Transfers ownership of an ADO.                                          |
+| Command                               | Description                                                             |
+| ------------------------------------- | ----------------------------------------------------------------------- |
+| [**create**](ado.md#create)           | Creates an ADO by given type.                                           |
+| [**execute**](ado.md#execute)         | Executes a message on an ADO by given address.                          |
+| [**db**](ado.md#database)             | Allows querying the on chain ADO Database.                              |
+| [**info**](ado.md#info)               | Queries the info of ADO for a given address.                            |
+| [**list**](ado.md#list)               | Queries details about your deployed apps and ADOs for the current chain |
+| [**modules**](ado.md#modules)         | Allows management of modules for an ADO.                                |
+| [**operators**](ado.md#operators)     | Allows management of operators for an ADO.                              |
+| [**query**](ado.md#query)             | Queries an ADO by given address.                                        |
+| [**transfer**](ado.md#transfer)       | Transfers ownership of an ADO.                                          |
+| [**addpath**](ado.md#addpath)         | Registers an ADO component to the path                                  |
+| [**paths**](ado.md#paths)             | Gets the paths of an ADO                                                |
+| [**resolvepath**](ado.md#resolvepath) | Gets the address of the specified path                                  |
+| [**subdir**](ado.md#subdir)           | Gets the sub directory of the specified path                            |
 
 ## Create
 
@@ -77,10 +81,10 @@ You can then chose from the list of executes to run.
 
 Allows querying the on chain [ADO DB](../platform-and-framework/ado-base.md).
 
-| Command          | Description                                           |
-| ---------------- | ----------------------------------------------------- |
-| **address**      | Gets the address of the database contract being used. |
-| **updatecodeid** | Updates the code Id for a given ADO in the factory.   |
+| Command       | Description                                           |
+| ------------- | ----------------------------------------------------- |
+| **address**   | Gets the address of the database contract being used. |
+| **getcodeid** | Updates the code Id for a given ADO in the factory.   |
 
 ### Db Address
 
@@ -507,4 +511,114 @@ ADO Transferred!
 
 https://testnet.mintscan.io/juno-testnet/txs/8955682FA597EAA60A5F524A0C626CBDB3519CF8EFBE733FA20896D08F538564
 ? main@uni-5> () 
+```
+
+
+
+## AddPath
+
+Registers an ADO component to the path.&#x20;
+
+{% hint style="warning" %}
+You can read more about the Andromeda VFS and paths [here](../platform-and-framework/andromeda-messaging-protocol/virtual-file-system.md).
+{% endhint %}
+
+#### Usage
+
+```
+ado addpath
+```
+
+#### Example
+
+```
+? guides@galileo-3> ado addpath 
+ Input the ADO componet Address: andr1wy6rspyd8k9vnsxnpvlhxlmcx8gr0hkpjhj0vs6gdhvn6jtsgh2sre2d65
+? Input the name: auction
+? Would you like to add funds to this message? No
+– Simulating Tx...
+Transaction simulated!
+
+Cost Estimates
+Gas Used: 171816
+Fee estimates:
+   4296uandr
+
+? Do you want to proceed? Yes
+– Executing Tx...
+
+Registered the given ado to the path!
+
+https://testnet-ping.wildsage.io/andromeda/tx/DCB83E0960A5371080EE3D8D0E31CEE7FE57D04369F902BA118488C3DC9E0BCF
+? guides@galileo-3> ()
+```
+
+## Paths
+
+Gets the paths of an ADO.
+
+{% hint style="warning" %}
+You can read more about the Andromeda VFS and paths [here](../platform-and-framework/andromeda-messaging-protocol/virtual-file-system.md).
+{% endhint %}
+
+#### Usage
+
+```
+ado paths <contract-address>
+```
+
+#### Example
+
+```
+? guides@galileo-3> ado paths andr1wy6rspyd8k9vnsxnpvlhxlmcx8gr0hkpjhj0vs6gdhvn6jtsgh2sre2d65
+[
+  "dany/auction"
+```
+
+## ResolvePath
+
+Gets the address of the specified path.
+
+{% hint style="warning" %}
+You can read more about the Andromeda VFS and paths [here](../platform-and-framework/andromeda-messaging-protocol/virtual-file-system.md).
+{% endhint %}
+
+#### Usage
+
+```
+ado resolvepath <path>
+```
+
+#### Example
+
+```
+? guides@galileo-3> ado resolvepath dany/auction
+"andr1wy6rspyd8k9vnsxnpvlhxlmcx8gr0hkpjhj0vs6gdhvn6jtsgh2sre2d65"
+```
+
+## SubDir
+
+Gets the sub directory of the specified path.
+
+{% hint style="warning" %}
+You can read more about the Andromeda VFS and paths [here](../platform-and-framework/andromeda-messaging-protocol/virtual-file-system.md).
+{% endhint %}
+
+#### Usage
+
+```
+ado subdir <address>
+```
+
+#### Example
+
+```
+? guides@galileo-3> ado subdir andr14pmn28jyqgphd5wv0z28ppxe5ryeraqqgqfr2v
+[
+  {
+    "name": "auction",
+    "address": "andr1wy6rspyd8k9vnsxnpvlhxlmcx8gr0hkpjhj0vs6gdhvn6jtsgh2sre2d65",
+    "parent_address": "andr14pmn28jyqgphd5wv0z28ppxe5ryeraqqgqfr2v"
+  }
+]
 ```

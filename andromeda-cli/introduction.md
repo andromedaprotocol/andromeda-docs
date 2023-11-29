@@ -46,7 +46,7 @@ Now that we have the CLI open, we can start exploring some of its functions whic
 * Interact with the chain of your choice
 * Query using our GraphQL server.
 
-{% hint style="info" %}
+{% hint style="warning" %}
 The Andromeda CLI is built to work with any of the chains that Andromeda is deployed on. This would remove the need for users to learn how to deploy contracts on each of the chains allowing them to use this CLI to interact with ADOs anywhere on the Cosmos ecosystem.&#x20;
 {% endhint %}
 
@@ -57,10 +57,10 @@ Andromeda is currently deployed on the following chains:
 * Andromeda
 * Stargaze
 * Terra
-
-{% hint style="warning" %}
-Currently, Andromeda, Juno, and Stargaze testnets are functional.
-{% endhint %}
+* Sei
+* Injective
+* Juno
+* Archway
 
 ### Getting Started
 
@@ -137,7 +137,7 @@ The --help flag  can be used after any command to get information on the command
 
 You will get a list of available commands to use:
 
-<table><thead><tr><th width="234.5">Command</th><th>Description</th></tr></thead><tbody><tr><td><a href="ado.md"><strong>ado</strong></a></td><td>Query and execute on an ADO</td></tr><tr><td><a href="chain.md"><strong>chain</strong></a></td><td>Manage Chain Config</td></tr><tr><td><a href="clear-and-exit.md"><strong>clear</strong></a></td><td>Clears the terminal</td></tr><tr><td><a href="clear-and-exit.md"><strong>exit</strong></a></td><td>Exits the CLI</td></tr><tr><td><a href="gql.md"><strong>gql</strong></a></td><td>Query using the Andromeda GraphQL service</td></tr><tr><td><a href="help-and-shortcuts.md"><strong>help</strong></a></td><td>Lists all valid commands</td></tr><tr><td><a href="tx.md"><strong>tx</strong></a></td><td>Query transactions</td></tr><tr><td><a href="help-and-shortcuts.md#version"><strong>version</strong></a></td><td>Prints the current CLI version.</td></tr><tr><td><a href="wallet.md"><strong>wallet</strong></a></td><td>Manage wallets</td></tr><tr><td><a href="wasm.md"><strong>wasm</strong></a></td><td>Send CosmWasm messages to the chain</td></tr></tbody></table>
+<table><thead><tr><th width="234.5">Command</th><th>Description</th></tr></thead><tbody><tr><td><a href="ado.md"><strong>ado</strong></a></td><td>Query and execute on an ADO</td></tr><tr><td><a href="bank.md"><strong>bank</strong></a></td><td>Send tokens or query balances</td></tr><tr><td><a href="chain.md"><strong>chain</strong></a></td><td>Manage Chain Config</td></tr><tr><td><a href="clear-and-exit.md"><strong>clear</strong></a></td><td>Clears the terminal</td></tr><tr><td><a href="clear-and-exit.md"><strong>exit</strong></a></td><td>Exits the CLI</td></tr><tr><td><a href="gql.md"><strong>gql</strong></a></td><td>Query using the Andromeda GraphQL service</td></tr><tr><td><a href="help-and-shortcuts.md"><strong>help</strong></a></td><td>Lists all valid commands</td></tr><tr><td><a href="tx.md"><strong>tx</strong></a></td><td>Query transactions</td></tr><tr><td><a href="user.md"><strong>user</strong></a></td><td>Mange and query usernames</td></tr><tr><td><a href="help-and-shortcuts.md#version"><strong>version</strong></a></td><td>Prints the current CLI version.</td></tr><tr><td><a href="wallet.md"><strong>wallet</strong></a></td><td>Manage wallets</td></tr><tr><td><a href="wasm.md"><strong>wasm</strong></a></td><td>Send CosmWasm messages to the chain</td></tr></tbody></table>
 
 {% hint style="warning" %}
 It is important to note that the CLI has been designed to prompt the user for the required fields in each command. This means that it is sufficient to write the command without the fields and the CLI will prompt you to fill in the inputs one by one instead of throwing an error.&#x20;
