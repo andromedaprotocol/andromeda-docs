@@ -2,17 +2,15 @@
 
 ## Introduction
 
-The **Weighted-Splitter** ADO is a smart contract to split funds among a set of defined recipients. Each of  the recipients is assigned a weight which is divided by the total weight to get the percentage of each of the recipients. Whenever the splitter receives funds by executing a `send` it automatically splits the funds to the defined recipients. The splitter can be locked for a specified time as a kind of insurance for recipients that their weights will not be changed for a certain period of time.
+The **Weighted-Distribution-Splitter** ADO is a smart contract to split funds among a set of defined recipients. Each of  the recipients is assigned a weight which is divided by the total weight to get the percentage of each of the recipients.&#x20;
 
-#### Example:
+In the Weighted Distribution Splitter ADO, each recipient is assigned a weight. The weight represents the proportion of funds that the recipient will receive. The total weight of all recipients is calculated, and then each recipient's weight is divided by the total weight to determine their percentage of the funds.
 
-On instantiation, the following weights are assigned:
+Whenever the splitter receives funds by executing a `send,` it automatically splits the funds for distribution to the defined recipients. The splitter can be locked for a predetermined period, acting as a guarantee for recipients that their allocated weights will remain constant during that time.
 
-* User A  weight: 5
-* User B weight: 3&#x20;
-* User C weight: 4
+For example, if there are three recipients with weights 4, 7, and 2 respectively, the total weight is 13. The first recipient will receive 4/13 of the funds, the second recipient will receive 7/13 of the funds, and the third recipient will receive 2/13 of the funds.&#x20;
 
-Then the total weight is 12 and A receives 5/12 of the funds, B receives 3/12 of the funds and C receives 4/12 of the funds. If a recipient is then added, the total weight is increased and the percentages are recalculated.
+If a recipient is then added, the total weight is increased and the percentages are recalculated.
 
 The contract supports [modules](broken-reference) to extend it's functionality.
 
