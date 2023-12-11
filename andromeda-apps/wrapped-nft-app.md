@@ -93,7 +93,7 @@ pub struct InstantiateMsg {
 {
 "name":"wrapped token",
 "symbol":"WT",
-"minter":"juno1hfngwh4f53smthvqde32y07rjcezdsnlztxtll"
+"minter":"<your-address>"
 }
 ```
 {% endtab %}
@@ -108,10 +108,8 @@ Use the code Id that you got when uploading the contract instead of 201.
 {% endhint %}
 
 ```
-wasm instantiate 201 '{"name":"test","symbol":"TST","minter":"juno1zkpthqsz3ud97fm6p4kxcra8ae99jgzauugyem"}' 
+wasm instantiate <cw721-code-id> '{"name":"test","symbol":"TST","minter":"<your-address>"}' 
 ```
-
-[Instantiate nft contract](https://testnet.mintscan.io/juno-testnet/txs/A909B7F4D132580E53596209B59875F60A3E69BE6009CA106390C52A0498A1A3)
 
 #### Mint an NFT&#x20;
 
@@ -130,11 +128,9 @@ We will mint an NFT with token\_id specified as 1.
  wasm execute <cw721-contract-address> '{"mint":{"token_id":"1","owner":"<your-address>"}}'
 ```
 
-[Mint](https://testnet.mintscan.io/juno-testnet/txs/6A37E1E8381896320DC7833EE19608E48357F7068246F8ED6BC1F50CE24FC94C)
-
 ### Instantiate Wrapped-NFT ADO.
 
-We have already uploaded the Wrapped-NFT ADO to the uni-5 testnet. The code I will use is 117. This code Id will most likely be outdated in the future. A simple way to check the latest code Id for the App ADO is to query it from the ADODB using the the chain you want to use.&#x20;
+A simple way to check the latest code Id for the App ADO is to query it from the ADODB using the the chain you want to use.&#x20;
 
 In the CLI, while connected to the chain of choice, run:
 
@@ -145,45 +141,29 @@ ado db getcodeid wrapped-cw721
 The code Id to use will be returned.
 
 {% hint style="warning" %}
-The primitive address used here might be outdated in the future. Check our [deployed contracts](<../platform-and-framework/deployed-contracts (1).md>) to get the latest registry.
+The kernel address used here might be outdated in the future. Check our [deployed contracts](<../platform-and-framework/deployed-contracts (1).md>) to get the latest kernel address.
 {% endhint %}
 
 ```json
 {
-"primitive_contract":"juno133fdsnvcah870exzcyxknydswyh778jfhwxzlhhgjuagh4482zpqp856dz",
 "cw721_instantiate_type":{
     "new":{
         "name":"test-wrap",
         "symbol":"TST"
         }
     },
-"can_unwrap": true
+"can_unwrap": true,
+"kernel_address":"andr159llw7xkpt20llxqmjegsegfn548q5l6jr2x7rh7sy7sal39syfs3tlvmm"
 }
 ```
 
 ```
- wasm instantiate 117 '{"primitive_contract":"juno133fdsnvcah870exzcyxknydswyh778jfhwxzlhhgjuagh4482zpqp856dz","cw721_instantiate_type":{"new":{"name":"test-wrap","symbol":"TST"}},"can_unwrap": true}' 
+ wasm instantiate <wrapped-code-id> '{"cw721_instantiate_type":{"new":{"name":"test-wrap","symbol":"TST"}},"can_unwrap": true,"kernel_address":"andr159llw7xkpt20llxqmjegsegfn548q5l6jr2x7rh7sy7sal39syfs3tlvmm"}' 
 ```
-
-[Instantiate wrapped](https://testnet.mintscan.io/juno-testnet/txs/E8821E83CD0D92B57B0AA882407BF0DB762571E0EDC32185A89CAB4FE6AEC28B)
 
 {% hint style="warning" %}
 When we instantiate the wrapped-nft contract, we specified the cw721 type as new which means that we have also instantiated an andromeda cw721 contract.
 {% endhint %}
-
-#### Contracts:
-
-Let us list the contracts thus far to avoid confusion:
-
-{% hint style="danger" %}
-The contract addresses you will be using are not the same as the ones below.&#x20;
-{% endhint %}
-
-* **CW721-base:** juno1nqhnl03hwhh4jtdwv6acpex7m54e3ql4sdzjvcyrgu5kgv2sc8js9kqc8c
-* **Wrapped-ADO:** juno1wdahcdkalcl3g02sl5qnadh43le60yhndz7mx7f6syfnxce5cg3q6pwkz9
-* **ADO-CW721:**juno1z9mzpgrksmlvg62kple37wpr0u9mvv2s725juwecxhfhxkkdfp0qahyqwz
-
-Now we have everything set up, we can send the token we minted earlier to get wrapped by our ADO.&#x20;
 
 #### Wrap the NFT
 
@@ -208,9 +188,6 @@ We run:
 ```
 wasm execute <cw721-contract-address> '{"send_nft":{"contract":"<wrapped-NFT-contract-address>","token_id":"1","msg":"eyJ3cmFwIjp7fX0="}}' 
 ```
-
-[Wrap NFT](https://testnet.mintscan.io/juno-testnet/txs/F6B489F324CCA349C7131536F3B18D1AC4EAAD5598C2AD7A85C0D21DEE03936E)\
-
 
 We have wrapped the nft, this means that the andromeda cw721 should have minted a new token for us. Let us check by querying our tokens in the andromeda nft contract.
 
@@ -245,7 +222,7 @@ We have specified the purchaser as "\*" which means any address is allowed to pu
         "amount":{
             "raw":{
                 "amount":"100000",
-                "denom":"ujunox"
+                "denom":"uandr"
                 }
             },
          "purchaser":"*"
@@ -255,37 +232,7 @@ We have specified the purchaser as "\*" which means any address is allowed to pu
 ```
 
 ```
-wasm execute <andromeda-cw721-contract-address> '{"transfer_agreement":{"token_id":"1","agreement":{"amount":{"raw":{"amount":"10000","denom":"ujunox"}},"purchaser":"*"}}}'  
-```
-
-[Add TransferAgreement ](https://testnet.mintscan.io/juno-testnet/txs/1A55E70388DD04FDDEE0BB75D25D5C745ED4390BF42230DF96DAB0D5AE8D5C9F)
-
-Let us check the balances of the seller and purchaser before making the purchase to make sure that correct funds are sent:
-
-**Seller:** juno1zkpthqsz3ud97fm6p4kxcra8ae99jgzauugyem
-
-```
-balances:
-- amount: "4105237"
-  denom: ujunox
-- amount: "20000000"
-  denom: uusdcx
-pagination:
-  next_key: null
-  total: "0"
-```
-
-**Buyer:** juno1e53vtk7fmqzfttdvpf4a3pyx0e79wkmjzh6qsk
-
-```
-balances:
-- amount: "9977890"
-  denom: ujunox
-- amount: "10000000"
-  denom: uusdcx
-pagination:
-  next_key: null
-  total: "0"
+wasm execute <andromeda-cw721-contract-address> '{"transfer_agreement":{"token_id":"1","agreement":{"amount":{"raw":{"amount":"10000","denom":"uandr"}},"purchaser":"*"}}}'  
 ```
 
 ### Buy the NFT&#x20;
@@ -301,43 +248,13 @@ If not familiar with our TransferAgreement message, it allows any buyer to trans
 }
 ```
 
-We attach 10000 ujunox to the message:
+We attach 10000 uandr to the message:
 
 ```
-wasm execute <andromeda-cw721-contract-address> '{"transfer_nft":{"recipient":"<any-recipient-address>","token_id":"1"}}' --funds 10000ujunox  
+wasm execute <andromeda-cw721-contract-address> '{"transfer_nft":{"recipient":"<any-recipient-address>","token_id":"1"}}' --funds 10000uandr  
 ```
 
-[Buy the nft using transfer](https://testnet.mintscan.io/juno-testnet/txs/D96B58B1CF77C1F842F380716F812C922F203EDC236C315ED67DA8126304A0E0)
-
-Let us check the balances again:
-
-**Seller**
-
-```
-balances:
-- amount: "4115237"
-  denom: ujunox
-- amount: "20000000"
-  denom: uusdcx
-pagination:
-  next_key: null
-  total: "0"
-```
-
-**Buyer**
-
-```
-balances:
-- amount: "9962179"
-  denom: ujunox
-- amount: "10000000"
-  denom: uusdcx
-pagination:
-  next_key: null
-  total: "0"
-```
-
-As we can see 10000 ujunox have been transfered and the token is now owned by the buyer address.&#x20;
+The NFT will be transfered to the recipient and the funds sent to the seller.
 
 ### Unwrap the Token
 
@@ -350,7 +267,7 @@ The buyer of the token is now the owner, so he would be unwrapping the token. Ma
 Let us see our tokens first in the cw721-base contract:
 
 ```
-wasm query <cw721-base-contract-address> '{"tokens":{"owner":"juno1e53vtk7fmqzfttdvpf4a3pyx0e79wkmjzh6qsk"}}' 
+wasm query <cw721-base-contract-address> '{"tokens":{"owner":"<owner-address>"}}' 
 ```
 
 **Result**
@@ -383,8 +300,6 @@ The base64 message is:
 ```
 wasm execute <andromeda-cw721-contract-address> '{"send_nft":{"contract":"<wrapped-NFT-contract-address>","token_id":"1","msg":"eyJ1bndyYXAiOnt9fQo="}}'  
 ```
-
-[Unwrap the token](https://testnet.mintscan.io/juno-testnet/txs/83401169FAB02034E62E0EC442DDFDC7A9D41791DD50F840A634402CD0B6CE03)
 
 Now let us check again our tokens in the cw721-base contract:
 

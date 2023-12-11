@@ -2,24 +2,21 @@
 
 ## Platform and Framework
 
-* [Introduction](README.md)
+* [Introduction to AndromedaOS](README.md)
 * [ADO Classes](platform-and-framework/ado-classes.md)
-* [Hooks](platform-and-framework/hooks.md)
 * [Andromeda Messaging Protocol](platform-and-framework/andromeda-messaging-protocol/README.md)
   * [Kernel](platform-and-framework/andromeda-messaging-protocol/kernel.md)
   * [ADO Database](platform-and-framework/andromeda-messaging-protocol/andromeda-factory.md)
-  * [Economics](platform-and-framework/andromeda-messaging-protocol/economics.md)
+  * [Economics Engine](platform-and-framework/andromeda-messaging-protocol/economics-engine.md)
   * [Virtual File System](platform-and-framework/andromeda-messaging-protocol/virtual-file-system.md)
 * [ADO Base](platform-and-framework/ado-base.md)
+* [Hooks](platform-and-framework/hooks.md)
 * [Common Types](platform-and-framework/common-types.md)
 * [Deployed Contracts](<platform-and-framework/deployed-contracts (1).md>)
 
-## Creating an ADO
-
-* [Getting Started](creating-an-ado/getting-started.md)
-
 ## Andromeda Digital Objects
 
+* [Introduction to ADOs](andromeda-digital-objects/introduction-to-ados.md)
 * [Address List](andromeda-digital-objects/address-list.md)
 * [Auction](smart-contracts/non-fungible-tokens/auction.md)
 * [App](smart-contracts/andromeda-apps/app.md)
@@ -59,6 +56,10 @@
 * [Cw20 Staking App](andromeda-apps/cw20-staking-app.md)
 * [Marketplace App](andromeda-apps/marketplace-app.md)
 * [Wrapped-NFT App](andromeda-apps/wrapped-nft-app.md)
+
+## Creating an ADO
+
+* [Getting Started](creating-an-ado/getting-started.md)
 
 ## Andromeda CLI
 

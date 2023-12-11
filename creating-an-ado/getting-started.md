@@ -1,5 +1,7 @@
 ---
-description: Getting started with your own ADO
+description: >-
+  Getting started with your own ADO. This document will show you how to
+  create/transform your smart contract into an ADO.
 ---
 
 # Getting Started

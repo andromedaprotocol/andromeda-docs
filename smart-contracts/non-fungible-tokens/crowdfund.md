@@ -79,7 +79,7 @@ pub enum ExecuteMsg {
  "owner":"andr1...",
  "token_uri":"https://gateway.pinata.cloud/ipfs...",
   "extension": {
-            "publisher": "andr1..."
+            "publisher": "Andromeda"
         }
      }
   ]

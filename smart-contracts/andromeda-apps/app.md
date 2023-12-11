@@ -6,11 +6,15 @@ The **App** ADO is a smart contract that is used to bundle up ADOs that will be 
 
 An ADO in the App is called an AppComponent. Every App would be composed of many of these components (up to 50). Each component is assigned a name which can be used by other components to reference each other. The App ADO allows us to instantiate all of these components in one go.&#x20;
 
+{% hint style="warning" %}
+To reference a component from another component, you would need to speciy "./\<component-name>. You will see examples of this in our [Andromeda Apps](broken-reference) section.
+{% endhint %}
+
 At instantiation, we specify the address of the [Kernel ADO](../../platform-and-framework/andromeda-messaging-protocol/kernel.md) . This Kernel will have a reference to the [ADODB](../../platform-and-framework/ado-base.md) which has the code Ids of all the Andromeda ADOs saved. The Kernel ADO for each chain is already deployed and the addresses can be found in our [deployed contracts](broken-reference) section. You can learn to deploy your first app [here](../../andromeda-apps/crowdfunding-app.md).
 
 Our Apps support cross-chain components or ADOs, meaning an App can contain several ADOs each located on a different chain. This is specified by using the `CrossChain` component type.
 
-{% hint style="info" %}
+{% hint style="warning" %}
 The App registers all its components in the [Virtual File System](../../platform-and-framework/andromeda-messaging-protocol/virtual-file-system.md) upon instantiation and assigns to them the names specified by the user upon instantiation of the App.
 {% endhint %}
 

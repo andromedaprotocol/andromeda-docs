@@ -1,6 +1,6 @@
-# Economics
+# Economics Engine
 
-The economics ADO allows users to deposit funds to be used to pay fees implemented on ADO actions by the [ADODB](andromeda-factory.md). Deposited funds can be either native funds such as "uandr" or CW20 tokens where the contract address is used. The fees are automatically called by the ADO that implements them.&#x20;
+The Economics ADO allows users to deposit funds to be used to pay fees implemented on ADO actions by the [ADODB](andromeda-factory.md). Deposited funds can be either native funds such as "uandr" or CW20 tokens where the contract address is used. The fees are automatically called by the ADO that implements them.&#x20;
 
 Fees are charged in the following order:
 
@@ -13,8 +13,6 @@ A fee can be paid by a combination of the below. For example if a 1000 uandr fee
 3. **Payee:** The address that sent the message to the ADO that is requesting the fees.
 
 **Ado\_type:** economics
-
-
 
 ## InstantiateMsg
 

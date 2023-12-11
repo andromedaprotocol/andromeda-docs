@@ -66,14 +66,15 @@ I will start out by giving 10000 tokens to three addresses. We have not set a mi
               "amount":"10000"
           }
              
-        ]
+        ],
+"kernel_address":"andr159llw7xkpt20llxqmjegsegfn548q5l6jr2x7rh7sy7sal39syfs3tlvmm"
  }  
 ```
 
 As Base64:&#x20;
 
 ```
-eyJuYW1lIjogIlN0YWtpbmcgVG9rZW4iLCJzeW1ib2wiOiJTVEsiLCJkZWNpbWFscyI6NiwiaW5pdGlhbF9iYWxhbmNlcyI6W3siYWRkcmVzcyI6ImFuZHIxY3A5dnh2cGxnamY1MDh0aHRhY3Z4ZWg2cXhxc3g2N2dzZXFjZDUiLCJhbW91bnQiOiIxMDAwMCJ9LHsiYWRkcmVzcyI6ImFuZHIxZjlxNWRoZzVxNDM0anlqZXMwMDJmdmtjdWswNjJ0bnQwd2R6bDgiLCJhbW91bnQiOiIxMDAwMCJ9LHsiYWRkcmVzcyI6ImFuZHIxZTlxZ2VsMDU4dHZncnl2c3U4dWh0YTB1NHNzd2FqcmUzY2poYXYiLCJhbW91bnQiOiIxMDAwMCJ9XX0gIA==
+eyJuYW1lIjogIlN0YWtpbmcgVG9rZW4iLCJzeW1ib2wiOiJTVEsiLCJkZWNpbWFscyI6NiwiaW5pdGlhbF9iYWxhbmNlcyI6W3siYWRkcmVzcyI6ImFuZHIxY3A5dnh2cGxnamY1MDh0aHRhY3Z4ZWg2cXhxc3g2N2dzZXFjZDUiLCJhbW91bnQiOiIxMDAwMCJ9LHsiYWRkcmVzcyI6ImFuZHIxZjlxNWRoZzVxNDM0anlqZXMwMDJmdmtjdWswNjJ0bnQwd2R6bDgiLCJhbW91bnQiOiIxMDAwMCJ9LHsiYWRkcmVzcyI6ImFuZHIxZTlxZ2VsMDU4dHZncnl2c3U4dWh0YTB1NHNzd2FqcmUzY2poYXYiLCJhbW91bnQiOiIxMDAwMCJ9XSwia2VybmVsX2FkZHJlc3MiOiJhbmRyMTU5bGx3N3hrcHQyMGxseHFtamVnc2VnZm41NDhxNWw2anIyeDdyaDdzeTdzYWwzOXN5ZnMzdGx2bW0ifSA=
 ```
 
 #### Cw-20 Staking
@@ -84,16 +85,15 @@ We have not set any additional rewards. This means that the rewards are the same
 
 ```json
 {
-"staking_token":{
-          "identifier":"cw20"
-              }
-     }
+"staking_token":"./cw20",
+"kernel_address":"andr159llw7xkpt20llxqmjegsegfn548q5l6jr2x7rh7sy7sal39syfs3tlvmm"
+}
 ```
 
 As Base64:
 
 ```
-eyJzdGFraW5nX3Rva2VuIjp7ImlkZW50aWZpZXIiOiJjdzIwIn19
+eyJzdGFraW5nX3Rva2VuIjoiLi9jdzIwIiwia2VybmVsX2FkZHJlc3MiOiJhbmRyMTU5bGx3N3hrcHQyMGxseHFtamVnc2VnZm41NDhxNWw2anIyeDdyaDdzeTdzYWwzOXN5ZnMzdGx2bW0ifQ==
 ```
 
 #### App
@@ -111,19 +111,23 @@ The `instantiate_message` of the cw20 will be different for you since you are us
     {
       "name": "cw20",
       "ado_type": "cw20",
-      "instantiate_msg": "eyJuYW1lIjogIlN0YWtpbmcgVG9rZW4iLCJzeW1ib2wiOiJTVEsiLCJkZWNpbWFscyI6NiwiaW5pdGlhbF9iYWxhbmNlcyI6W3siYWRkcmVzcyI6ImFuZHIxY3A5dnh2cGxnamY1MDh0aHRhY3Z4ZWg2cXhxc3g2N2dzZXFjZDUiLCJhbW91bnQiOiIxMDAwMCJ9LHsiYWRkcmVzcyI6ImFuZHIxZjlxNWRoZzVxNDM0anlqZXMwMDJmdmtjdWswNjJ0bnQwd2R6bDgiLCJhbW91bnQiOiIxMDAwMCJ9LHsiYWRkcmVzcyI6ImFuZHIxZTlxZ2VsMDU4dHZncnl2c3U4dWh0YTB1NHNzd2FqcmUzY2poYXYiLCJhbW91bnQiOiIxMDAwMCJ9XX0gIA=="
+      "component_type":{
+       "new":"eyJuYW1lIjogIlN0YWtpbmcgVG9rZW4iLCJzeW1ib2wiOiJTVEsiLCJkZWNpbWFscyI6NiwiaW5pdGlhbF9iYWxhbmNlcyI6W3siYWRkcmVzcyI6ImFuZHIxY3A5dnh2cGxnamY1MDh0aHRhY3Z4ZWg2cXhxc3g2N2dzZXFjZDUiLCJhbW91bnQiOiIxMDAwMCJ9LHsiYWRkcmVzcyI6ImFuZHIxZjlxNWRoZzVxNDM0anlqZXMwMDJmdmtjdWswNjJ0bnQwd2R6bDgiLCJhbW91bnQiOiIxMDAwMCJ9LHsiYWRkcmVzcyI6ImFuZHIxZTlxZ2VsMDU4dHZncnl2c3U4dWh0YTB1NHNzd2FqcmUzY2poYXYiLCJhbW91bnQiOiIxMDAwMCJ9XSwia2VybmVsX2FkZHJlc3MiOiJhbmRyMTU5bGx3N3hrcHQyMGxseHFtamVnc2VnZm41NDhxNWw2anIyeDdyaDdzeTdzYWwzOXN5ZnMzdGx2bW0ifSA="
+       }
     },
     {
       "name": "staking",
       "ado_type": "cw20-staking",
-      "instantiate_msg": "eyJzdGFraW5nX3Rva2VuIjp7ImlkZW50aWZpZXIiOiJjdzIwIn19"
+      "component_type":{
+       "new":"eyJzdGFraW5nX3Rva2VuIjoiLi9jdzIwIiwia2VybmVsX2FkZHJlc3MiOiJhbmRyMTU5bGx3N3hrcHQyMGxseHFtamVnc2VnZm41NDhxNWw2anIyeDdyaDdzeTdzYWwzOXN5ZnMzdGx2bW0ifQ=="
+       }
     }
   ],
-  "primitive_contract": "andr1mfxffyrda922hpt23f7hpf8t50sadcwavkt54cuyl3w6p4zwz36sc9hfj6"
+"kernel_address":"andr159llw7xkpt20llxqmjegsegfn548q5l6jr2x7rh7sy7sal39syfs3tlvmm"
   }
 ```
 
-We have already uploaded the App ADO to the uni-5 testnet. The code I will use is 98. This code Id will most likely be outdated in the future. A simple way to check the latest code Id for the App ADO is to query it from the ADODB using the the chain you want to use.&#x20;
+There are several components found here. A simple name for the app, the components of the app itself and a reference to the “Kernel”. Each component of the app provides two values: a name used for referencing for other components within the app, and the base64 encoded instantiation message.&#x20;
 
 ### Instantiating the App
 
@@ -135,12 +139,12 @@ First, let us open the CLI by running `andr` in our terminal. We then need to ch
 If this is the first time using the CLI make sure to run `"wallet add <wallet-name>"`in order to create a wallet. Then go to that chain's faucet (usually located in their discord) and request tokens.
 {% endhint %}
 
-We have already uploaded the App ADO to the Andromeda testnet. The code Id I will use is 55. This code Id will most likely be outdated in the future. A simple way to check the latest code id for the App ADO is to query it from the ADODB using the chain you want to use.&#x20;
+We have already uploaded the App ADO to the Andromeda testnet. A simple way to check the latest code id for the App ADO is to query it from the ADODB using the chain you want to use.&#x20;
 
 In the CLI, while connected to the chain of choice, run:
 
 ```
-ado db getcodeid app
+ado db getcodeid app-contract
 ```
 
 The code Id to use will be returned.
@@ -153,11 +157,10 @@ Do not copy and paste the command below as it will not work. Make sure to make t
 Replace the \<code\_id> with the returned code-id for the app ADO.&#x20;
 {% endhint %}
 
-```
-wasm instantiate <app-code-id> '{"name": "Staking App","app_components": [{"name": "cw20","ado_type": "cw20","instantiate_msg": "eyJuYW1lIjogIlN0YWtpbmcgVG9rZW4iLCJzeW1ib2wiOiJTVEsiLCJkZWNpbWFscyI6NiwiaW5pdGlhbF9iYWxhbmNlcyI6W3siYWRkcmVzcyI6ImFuZHIxY3A5dnh2cGxnamY1MDh0aHRhY3Z4ZWg2cXhxc3g2N2dzZXFjZDUiLCJhbW91bnQiOiIxMDAwMCJ9LHsiYWRkcmVzcyI6ImFuZHIxZjlxNWRoZzVxNDM0anlqZXMwMDJmdmtjdWswNjJ0bnQwd2R6bDgiLCJhbW91bnQiOiIxMDAwMCJ9LHsiYWRkcmVzcyI6ImFuZHIxZTlxZ2VsMDU4dHZncnl2c3U4dWh0YTB1NHNzd2FqcmUzY2poYXYiLCJhbW91bnQiOiIxMDAwMCJ9XX0gIA=="},{"name": "staking","ado_type": "cw20-staking","instantiate_msg": "eyJzdGFraW5nX3Rva2VuIjp7ImlkZW50aWZpZXIiOiJjdzIwIn19"}],"primitive_contract": "andr1mfxffyrda922hpt23f7hpf8t50sadcwavkt54cuyl3w6p4zwz36sc9hfj6"}'
-```
+<pre><code><a data-footnote-ref href="#user-content-fn-1">wasm</a> instantiate "&#x3C;app-code-id>" '{"name": "Staking App","app_components": [{"name": "cw20","ado_type": "cw20","component_type":{"new":"eyJuYW1lIjogIlN0YWtpbmcgVG9rZW4iLCJzeW1ib2wiOiJTVEsiLCJkZWNpbWFscyI6NiwiaW5pdGlhbF9iYWxhbmNlcyI6W3siYWRkcmVzcyI6ImFuZHIxY3A5dnh2cGxnamY1MDh0aHRhY3Z4ZWg2cXhxc3g2N2dzZXFjZDUiLCJhbW91bnQiOiIxMDAwMCJ9LHsiYWRkcmVzcyI6ImFuZHIxZjlxNWRoZzVxNDM0anlqZXMwMDJmdmtjdWswNjJ0bnQwd2R6bDgiLCJhbW91bnQiOiIxMDAwMCJ9LHsiYWRkcmVzcyI6ImFuZHIxZTlxZ2VsMDU4dHZncnl2c3U4dWh0YTB1NHNzd2FqcmUzY2poYXYiLCJhbW91bnQiOiIxMDAwMCJ9XSwia2VybmVsX2FkZHJlc3MiOiJhbmRyMTU5bGx3N3hrcHQyMGxseHFtamVnc2VnZm41NDhxNWw2anIyeDdyaDdzeTdzYWwzOXN5ZnMzdGx2bW0ifSA="}},{"name": "staking","ado_type": "cw20-staking","component_type":{"new":"eyJzdGFraW5nX3Rva2VuIjoiLi9jdzIwIiwia2VybmVsX2FkZHJlc3MiOiJhbmRyMTU5bGx3N3hrcHQyMGxseHFtamVnc2VnZm41NDhxNWw2anIyeDdyaDdzeTdzYWwzOXN5ZnMzdGx2bW0ifQ=="}}],"kernel_address":"andr159llw7xkpt20llxqmjegsegfn548q5l6jr2x7rh7sy7sal39syfs3tlvmm"}'
+</code></pre>
 
-[Instantiation](https://testnet-ping.wildsage.io/andromeda/tx/B51E814F547547482CE9FCAA8B60DE8366ABF7A2B21E979AD3B62959DD1A9C66)
+[Instantiation](https://testnet-ping.wildsage.io/andromeda/tx/93BADDE0BFE11476C546DD07422D393722CA314548E606BC940AA4F589FC8C2E)
 
 {% hint style="warning" %}
 You will be using the contract addresses that were instantiated for you instead of the ones in this tutorial.
@@ -183,7 +186,7 @@ You can also use proxy messages to execute through the app ADO itself, but for t
   wasm execute <app_contract_address> '{"claim_ownership":{}}' 
 ```
 
-[Claim Components](https://testnet-ping.wildsage.io/andromeda/tx/516099A2ECD274768D3F98E6FC82DDF2FE326007EBDA7FBD3F6B8D21F5AB28DF)
+[Claim Components](https://testnet-ping.wildsage.io/andromeda/tx/E7E573BA85928DC52625CBD9B6F4AA2F303F5C7CD3790AAFF71ABF79DCDA1B1C)
 
 #### User 1 stakes tokens
 
@@ -217,7 +220,7 @@ Let us execute it:
 wasm execute <cw20-contract-address> '{"send":{"contract":"<staking-contract-address>","amount":"3000","msg":"ewogICAgInN0YWtlX3Rva2VucyI6e30KICAgIAp9"}}' 
 ```
 
-[User 1 stakes 3000 tokens](https://testnet-ping.wildsage.io/andromeda/tx/FCC44C46879F204987DBC65316DA900695791A34C6E62E7ADF2A9EEC9F6E709F)
+[User 1 stakes 3000 tokens](https://testnet-ping.wildsage.io/andromeda/tx/79F647E36D8A26BD9BEF13A76CFFA2A105F4E5ED318A3A9C83A91E9D0A5FC15A)
 
 We perform the same steps to stake for users 2 and 3:
 
@@ -225,9 +228,9 @@ We perform the same steps to stake for users 2 and 3:
 Make sure to change wallet for each user and change the amount being staked.
 {% endhint %}
 
-[User 2 stakes 1000 tokens ](https://testnet-ping.wildsage.io/andromeda/tx/08AF4FDA3B41998AAF9C1FF25DED0C27EE450DE3CDE41FDC237C6C1099714875)
+[User 2 stakes 1000 tokens ](https://testnet-ping.wildsage.io/andromeda/tx/9EADA8B4D323475CF8558AF2245322BDBA64E3DC1A717A6EC4DFF84F1CACEBC1)
 
-[User 3 stakes 6000 tokens](https://testnet-ping.wildsage.io/andromeda/tx/A0A664FD3E2F65825556527B13CB6244DD6F7C8218CCD7A45F34F27B5D12D9B7)
+[User 3 stakes 6000 tokens](https://testnet-ping.wildsage.io/andromeda/tx/1DCB1B036FBFFED3B88CFE174D50AA6A9FE7DDBE8419E0CBED7EA14E4F1CB8E9)
 
 #### Checking Pending Rewards
 
@@ -241,7 +244,7 @@ wasm query  <staking-contract-address> '{"staker":{"address":"<user-address>"}}'
 
 ```
 {
-  "address": "andr1cp9vxvplgjf508thtacvxeh6qxqsx67gseqcd5",
+  "address": "andr1f9q5dhg5q434jyjes002fvkcuk062tnt0wdzl8",
   "share": "3000",
   "balance": "3000",
   "pending_rewards": []
@@ -257,7 +260,7 @@ Here we check one of the stakers. As we can see, the pending rewards are empty a
 Now let us send 1000 tokens to the contract. By doing this, we are telling the contract to use them as rewards for stakers.
 
 {% hint style="warning" %}
-You can use any of the wallets that cw20 tokens remaining.&#x20;
+You can use any of the wallets that have cw20 tokens remaining.&#x20;
 {% endhint %}
 
 ```json
@@ -288,7 +291,7 @@ wasm query  <staking-contract-address> '{"staker":{"address":"<user1-address>"}}
 
 ```
 {
-  "address": "andr1cp9vxvplgjf508thtacvxeh6qxqsx67gseqcd5",
+  "address": "andr1f9q5dhg5q434jyjes002fvkcuk062tnt0wdzl8",
   "share": "3000",
   "balance": "3300",
   "pending_rewards": []
@@ -305,7 +308,7 @@ wasm query  <staking-contract-address> '{"staker":{"address":"<user2-address>"}}
 
 ```
 {
-  "address": "andr1f9q5dhg5q434jyjes002fvkcuk062tnt0wdzl8",
+  "address": "andr1e9qgel058tvgryvsu8uhta0u4sswajre3cjhav",
   "share": "1000",
   "balance": "1100",
   "pending_rewards": []
@@ -322,7 +325,7 @@ wasm query  <staking-contract-address> '{"staker":{"address":"<user3-address>"}}
 
 ```
 {
-  "address": "andr1e9qgel058tvgryvsu8uhta0u4sswajre3cjhav",
+  "address": "andr1cp9vxvplgjf508thtacvxeh6qxqsx67gseqcd5",
   "share": "6000",
   "balance": "6600",
   "pending_rewards": []
@@ -334,3 +337,5 @@ As we can see each of the stakers got the amount proportional to the amount stak
 #### Conclusion
 
 This was a very simple App that showcases our cw20-staking contract. If you want to play around with it more, you can built it using the allocated rewards and add up to 10 different token rewards. It would also allow you to spread the rewards distribution to be in cycles instead of instant as we got here. This App although simple, is needed in most web3 projects that launch their own token. With Andromeda, you can have it all setup easily like we saw in this example or even using our no-code builder App which takes minutes.
+
+[^1]: 

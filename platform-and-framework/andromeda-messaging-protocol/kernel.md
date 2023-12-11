@@ -2,11 +2,16 @@
 
 ## Introduction&#x20;
 
-The **Andromeda Kernel** acts as the core of the operating system. The Kernel receives and handles packets from ADOs to be relayed to a specified **recipient.** The Kernel keeps track of the original sender of the message. It also verifies that the packet is sent by an Andromeda certified ADO before relaying the message.&#x20;
+The **Andromeda Kernel** acts as the core of the operating system.&#x20;
 
-The Kernel is also responsible for relaying any IBC messages across any two chains that have an Andromeda Kernel deployed and a channel set up.&#x20;
+The Kernel receives and handles packets from ADOs to be relayed to a specified **recipient.** The Kernel keeps track of the original sender of the message. It also verifies that the packet is sent by an Andromeda certified ADO before relaying the message.&#x20;
 
-All of our ADOs have a [AMPReceive](../ado-base.md#ampreceive) execute message to handle receiving packets from the Kernel.
+The Kernel is also responsible for:
+
+* &#x20;Relaying any IBC messages across any two chains that have an Andromeda Kernel  deployed and a channel set up.
+* Keeping track of the other AMP ADOs such as the ADODB, VFS, and Economics.
+
+All of our ADOs have an [AMPReceive](../ado-base.md#ampreceive) execute message to handle receiving packets from the Kernel.
 
 {% hint style="warning" %}
 The Kernels are set up by the Andromeda team on each chain. This means that as a regular user, you will not need to interact with this ADO yourself in most cases. This page serves as additional information on how it works for people that are interested into getting a deep understanding of our system.&#x20;
@@ -95,7 +100,7 @@ Create {
 
 ### UpsertKeyAddress
 
-Used to save the addresses of the AMP ADOs that the Kernel will be interacting with such as the [ADODB](andromeda-factory.md), [Economics](economics.md), and [VFS](virtual-file-system.md).&#x20;
+Used to save the addresses of the AMP ADOs that the Kernel will be interacting with such as the [ADODB](andromeda-factory.md), [Economics](economics-engine.md), and [VFS](virtual-file-system.md).&#x20;
 
 {% hint style="warning" %}
 Only available to the owner of the Kernel.&#x20;
@@ -215,7 +220,7 @@ vfs : Gets the address of the [VFS](virtual-file-system.md) ADO used by the kern
 
 adodb: Gets the address of the [ADODB](andromeda-factory.md) ADO used by the kernel.
 
-economics: Gets the address of the [Economics](economics.md) ADO used by the kernel.
+economics: Gets the address of the [Economics](economics-engine.md) ADO used by the kernel.
 {% endhint %}
 
 {% tabs %}

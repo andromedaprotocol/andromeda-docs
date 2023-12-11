@@ -4,7 +4,7 @@
 
 The **Database** ADO (ADODB) is a smart contract that is primarily used to store the code Ids for  Andromeda ADOs. These code Ids are used to instantiate these ADOs in Andromeda [Apps](../../smart-contracts/andromeda-apps/app.md). The code Ids are stored within a key value pair where the key is the ADO type and the value is the ADO code Id.
 
-The ADODB is also responsible for managing the [economic engine](economics.md) of the Andromeda ecosystem, allowing ADO publishers  to set custom fees to be paid when interacting with one of their published ADOs. These fees can be set as native or a CW20 token.
+The ADODB is also responsible for managing the [economic engine](economics-engine.md) of the Andromeda ecosystem, allowing ADO publishers  to set custom fees to be paid when interacting with one of their published ADOs. These fees can be set as native or a CW20 token.
 
 Currently all published ADOs have been done by and through the Andromeda team. This does not mean that ADOs developed by Andromeda are the only ones that can be published to the ADODB. On the contrary, we encourage developers to create new and exciting ADOs to be published that can be sumbmitted to our team to be reviewed. If the quality of the ADO is found to be to standard, the developer is given permission to publish it into the existing library of ADOs. It is important to note that although this process is done currently by the Andromeda team, the process of accepting and publishing ADOs will eventually be handed to the Andromeda DAO to make the process as decentralized as possible.&#x20;
 

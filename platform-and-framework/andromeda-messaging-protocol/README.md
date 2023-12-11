@@ -2,7 +2,11 @@
 
 The **Andromeda Messaging Protoco**l (AMP) is an advanced messaging system tailored for Andromeda ADOs. It has been designed to optimize communication between ADOs, addressing common issues present in existing CosmWasm messaging protocols.
 
-All ADO communication can be done through AMP. This means that ADOs would send their messages to AMP (The kernel)  which relays it to the intended ADO. The AMP layer also interacts with the rest of the OS systems such as the [Virtual File System](virtual-file-system.md) (VFS), [economics engine](economics.md), [ADO database](andromeda-factory.md).
+All ADO communication can be done through AMP. This means that ADOs would send their messages to AMP (The kernel)  which relays it to the intended ADO. The AMP layer also interacts with the rest of the OS systems such as the [Virtual File System](virtual-file-system.md) (VFS), [economics engine](economics-engine.md), [ADO database](andromeda-factory.md).
+
+
+
+<figure><img src="../../.gitbook/assets/Stand-alone Kernel Diagram.jpg" alt=""><figcaption></figcaption></figure>
 
 This messaging system is primarly handled by our [Kernel](kernel.md) ADO and is aimed to solve the following problems:&#x20;
 
@@ -33,6 +37,10 @@ Our AMP messages offer senders added control over their messages. Each AMP messa
 The AMP layer also handles IBC calls between ADOs.
 
 The Kernel ADO of each chain is responsible for handling and relaying IBC messages. When the Kernel receives an AMP packet So for example, if ADO 1 (On the Andromeda chain) wishes to send a message to ADO 5 (On another Cosmos chain) :
+
+
+
+<figure><img src="../../.gitbook/assets/Multi-Kernel Diagram.jpg" alt=""><figcaption></figcaption></figure>
 
 1. ADO 1 sends an AMP packet to the kernel on the Andromeda Chain.
 2. The Kernel receives the packet, verifies it, and forwards it to the kernel on the receiving chain through a channel via IBC-hooks.
