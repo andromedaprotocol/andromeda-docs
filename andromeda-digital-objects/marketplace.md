@@ -145,6 +145,8 @@ Buys the NFT that is for sale.
 
 {% hint style="warning" %}
 Dont forget to attach the required funds.
+
+The Owner of the NFT is not allowed to buy it.
 {% endhint %}
 
 {% tabs %}
