@@ -57,8 +57,6 @@ Andromeda is currently deployed on the following chains:
 * Andromeda
 * Stargaze
 * Terra
-* Sei
-* Injective
 * Juno
 * Archway
 
