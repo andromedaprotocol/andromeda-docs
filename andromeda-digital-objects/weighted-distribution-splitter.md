@@ -47,19 +47,19 @@ pub struct InstantiateMsg {
                   "recipient":{
                     "address":"andr1..."
                     },
-                  "weight": 4
+                  "weight":"4"
                   },
                 {
                   "recipient":{
                     "address":"andr1..."
                     },
-                  "weight": 7
+                  "weight":"7"
                   },
                 {
                   "recipient":{
                     "address":"andr1..."
                     },
-                  "weight": 2
+                  "weight":"2"
                   }
                 ],
 "kernel_address":"andr1..."
@@ -122,19 +122,19 @@ pub enum ExecuteMsg {
                   "recipient":{
                     "address":"andr1..."
                     },
-                  "weight": 1
+                  "weight":"1"
                   },
                 {
                   "recipient":{
                     "address":"andr1..."
                     },
-                  "weight": 4
+                  "weight":"4"
                   },
                 {
                   "recipient":{
                     "address":"andr1..."
                     },
-                  "weight": 12
+                  "weight":"12"
                   }
                 ]
         }
@@ -176,7 +176,7 @@ pub enum ExecuteMsg {
             "recipient":{
                  "address":"andr1..."
                 },
-            "weight": 1
+            "weight":"1"
               }
       }
 ```
@@ -289,7 +289,7 @@ Only available to the contract owner/operator.
             "recipient":{
                  "address":"andr1..."
                 },
-            "weight": 1
+            "weight":"1"
               }
       }
 ```
@@ -379,19 +379,19 @@ pub struct GetSplitterConfigResponse {
                   "recipient":{
                     "address":"andr1..."
                     },
-                  "weight": 1
+                  "weight": "1"
                   },
                 {
                   "recipient":{
                     "address":"andr1..."
                     },
-                  "weight": 4
+                  "weight": "4"
                   },
                 {
                   "recipient":{
                     "address":"andr1..."
                     },
-                  "weight": 12
+                  "weight": "12"
                   }
                 ],
     "lock": {
