@@ -6,7 +6,7 @@ The **Database** ADO (ADODB) is a smart contract that is primarily used to store
 
 The ADODB is also responsible for managing the [economic engine](economics-engine.md) of the Andromeda ecosystem, allowing ADO publishers  to set custom fees to be paid when interacting with one of their published ADOs. These fees can be set as native or a CW20 token.
 
-Currently all published ADOs have been done by and through the Andromeda team. This does not mean that ADOs developed by Andromeda are the only ones that can be published to the ADODB. On the contrary, we encourage developers to create new and exciting ADOs to be published that can be sumbmitted to our team to be reviewed. If the quality of the ADO is found to be to standard, the developer is given permission to publish it into the existing library of ADOs. It is important to note that although this process is done currently by the Andromeda team, the process of accepting and publishing ADOs will eventually be handed to the Andromeda DAO to make the process as decentralized as possible.&#x20;
+Currently all published ADOs have been done by and through the Andromeda team. This does not mean that ADOs developed by Andromeda are the only ones that can be published to the ADODB. On the contrary, we encourage developers to create new and exciting ADOs to be published that can be submitted to our team to be reviewed. If the quality of the ADO is found to be to standard, the developer is given permission to publish it into the existing library of ADOs. It is important to note that although this process is done currently by the Andromeda team, the process of accepting and publishing ADOs will eventually be handed to the Andromeda DAO to make the process as decentralized as possible.&#x20;
 
 {% hint style="warning" %}
 ADOs instantiated by code Ids found in the ADODB are eligible to communicate with the [AMP ](./)layer as it ensures that the ADO was created by one of the Andromeda contracts.
@@ -74,17 +74,17 @@ The fee can be either a native or a CW20 asset.
 {
 "publish":{
 "code_id": 98,
-"ado_type":"nft-auction",
+"ado_type":"auction",
 "action_fees": [
                 {
-                 "action":"mint",
+                 "action":"Mint",
                  "asset":"native:uandr",
                  "amount":"500",
                  "receiver":"andr1...
                  },
                  {
-                 "action":"buy",
-                 "asset":"uandr",
+                 "action":"Buy",
+                 "asset":"native:uandr",
                  "amount":"700",
                  "receiver":"andr1...
                  }],
@@ -152,17 +152,17 @@ Will return an error if the ADO type does not exist.
 ```json
 {
 "update_action_fees":{
-    "ado_type":"nft-marketplace",
+    "ado_type":"marketplace",
     "action_fees": [
                 {
-                 "action":"mint",
-                 "asset":"uandr",
+                 "action":"Mint",
+                 "asset":"native:uandr",
                  "amount":"900",
                  "receiver":"andr1...
                  },
                  {
-                 "action":"sell",
-                 "asset":"uandr",
+                 "action":" Buy",
+                 "asset":"native:uandr",
                  "amount":"350",
                  "receiver":"andr1...
                  }]
@@ -201,8 +201,8 @@ Will return an error if the ADO type does not exist.
 ```json
 {
 "remove_action_fees":{
-    "ado_type":"nft-marketplace",
-    "action_fees":["mint","buy","sell",...]
+    "ado_type":"marketplace",
+    "action_fees":["Mint","Buy","Sell",...]
     }
 }
 ```
@@ -276,7 +276,7 @@ pub enum QueryMsg {
 ```javascript
 {
     "code_id": {
-    "key": "cw721"
+    "key":"cw721"
     }
 }
 ```
@@ -309,7 +309,7 @@ Queries the ADO type linked to the specified `code_id`.
 ```json
 {
 "ado_type":{
-     "code_id": 13
+     "code_id":13
     }
 }
 ```
@@ -415,7 +415,7 @@ pub enum QueryMsg {
 ```json
 {
 "ado_metadata":{
-    "ado_type":"acution"
+    "ado_type":"auction"
     }
 }
 ```
@@ -474,7 +474,7 @@ pub enum QueryMsg {
 {
 "action_fee":{
     "ado_type":"nft-auction",
-    "action":"mint"
+    "action":"Mint"
     }
 }
 ```
@@ -507,7 +507,7 @@ pub enum QueryMsg {
 {
 "action_fee_by_code_id":{
     "code_id": 55,
-    "action":"buy"
+    "action":"Buy"
     }
 }
 ```
