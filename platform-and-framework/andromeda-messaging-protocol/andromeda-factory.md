@@ -51,7 +51,7 @@ The new version needs to be greater than the old one if using an already publish
 
 Only available to the ADO owner or an operator of the ADO.
 
-The fee can be either&#x20;
+The fee can be either a native or a CW20 asset.
 {% endhint %}
 
 {% tabs %}
@@ -78,7 +78,7 @@ The fee can be either&#x20;
 "action_fees": [
                 {
                  "action":"mint",
-                 "asset":"uandr",
+                 "asset":"native:uandr",
                  "amount":"500",
                  "receiver":"andr1...
                  },
@@ -106,6 +106,10 @@ The fee can be either&#x20;
 
 #### ActionFee
 
+{% hint style="warning" %}
+Ensure asset is in the format "cw20:address" or "native:denom
+{% endhint %}
+
 ```rust
 pub struct ActionFee {
     pub action: String,
@@ -115,12 +119,12 @@ pub struct ActionFee {
 }
 ```
 
-| Name       | Type          | Description                                                                                                                      |
-| ---------- | ------------- | -------------------------------------------------------------------------------------------------------------------------------- |
-| `action`   | String        | The action to add the fees on when called. This could be instantiation or one of the execute messages of the ADO.                |
-| `asset`    | String        | The funds used to pay the fee. Can be either a native fund such as "uandr" or a cw20 token contract address such as "andr1....". |
-| `amount`   | String        | The amount of the specified funds to pay as fees when performing the action.                                                     |
-| `receiver` | Option\<Addr> | An optional address to receive the fees. If not specified, then the specified publisher receives the fees.                       |
+| Name       | Type          | Description                                                                                                                                  |
+| ---------- | ------------- | -------------------------------------------------------------------------------------------------------------------------------------------- |
+| `action`   | String        | The action to add the fees on when called. This could be instantiation or one of the execute messages of the ADO.                            |
+| `asset`    | String        | The funds used to pay the fee. Can be either a native fund such as "native:uandr" or a cw20 token contract address such as "cw20:andr1....". |
+| `amount`   | String        | The amount of the specified funds to pay as fees when performing the action.                                                                 |
+| `receiver` | Option\<Addr> | An optional address to receive the fees. If not specified, then the specified publisher receives the fees.                                   |
 
 ### UpdateActionFees
 
@@ -169,7 +173,7 @@ Will return an error if the ADO type does not exist.
 
 | Name          | Type                                             | Description                                                         |
 | ------------- | ------------------------------------------------ | ------------------------------------------------------------------- |
-| `ado_type`    | String                                           | The `ado_type` to                                                   |
+| `ado_type`    | String                                           | The `ado_type` to update the action fees for.                       |
 | `action_fees` | Vec<[ActionFee](andromeda-factory.md#actionfee)> | The new fees to implement on the ADOs with the specified ADO type . |
 
 ### RemoveActionFees
