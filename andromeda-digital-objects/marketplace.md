@@ -54,7 +54,7 @@ pub struct InstantiateMsg {
 
 ### ReceiveNft
 
-Receives a token from a [`SendNft`](cw721.md#sendnft) and starts an auction based on the given parameters in the StartSale struct. &#x20;
+Receives a token from a [`SendNft`](cw721.md#sendnft) and starts an auction based on the given parameters in the **StartSale** struct. &#x20;
 
 {% hint style="warning" %}
 This message is not called by the user on this ADO, but is the case that handles receiving NFTs from a CW721 ADO.
@@ -88,14 +88,21 @@ Starts a new sale with the given parameters.&#x20;
 
 ```rust
 pub enum Cw721HookMsg {
-    StartSale { price: Uint128, coin_denom: String },
+    StartSale {
+     price: Uint128,
+     coin_denom: String
+     start_time: Option<u64>,
+     duration: Option<u64>,
+       },
    }
 ```
 
-| Name         | Type    | Description                       |
-| ------------ | ------- | --------------------------------- |
-| `price`      | Uint128 | The price of the NFT.             |
-| `coin_denom` | String  | The denom to pay the price with.  |
+| Name         | Type         | Description                                                                                                                                      |
+| ------------ | ------------ | ------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `price`      | Uint128      | The price of the NFT.                                                                                                                            |
+| `coin_denom` | String       | The denom to pay the price with.                                                                                                                 |
+| `start_time` | Option\<u64> | Optional start time in milliseconds since [epoch](https://www.epochconverter.com/clock). If not specified, then the sale will start immediately. |
+| `duration`   | Option\<u64> | Optional duration for the sale in milliseconds from the `start_time`. If not specified then the sale never expires.                              |
 
 ### UpdateSale
 
@@ -220,7 +227,7 @@ pub enum ExecuteMsg {
 Uses the modules feature.
 {% endhint %}
 
-The rest of the execute messages can be found in the[ ADO Base](../platform-and-framework/ado-base.md) section.
+The rest of the execute messages can be found in the[ ADO Base](../platform-and-framework/ado-base/) section.
 
 ## QueryMsg
 
@@ -284,12 +291,12 @@ pub struct SaleStateResponse {
 {% endtab %}
 {% endtabs %}
 
-| Name         | Type    | Description                                                                                                    |
-| ------------ | ------- | -------------------------------------------------------------------------------------------------------------- |
-| `sale_id`    | Uint128 | The Id of the sale. The first sale has an Id of 1 and each sale after it increments the Id by 1.               |
-| `coin_denom` | String  | The denom used in the sale.                                                                                    |
-| `price`      | Uint128 | The price of the NFT.                                                                                          |
-| `status`     | Status  | <p>The status of the sale which can be one of three options:</p><p>-Open</p><p>-Executed</p><p>-Cancelled </p> |
+| Name         | Type    | Description                                                                                                                                                                                               |
+| ------------ | ------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `sale_id`    | Uint128 | The Id of the sale. The first sale has an Id of 1 and each sale after it increments the Id by 1.                                                                                                          |
+| `coin_denom` | String  | The denom used in the sale.                                                                                                                                                                               |
+| `price`      | Uint128 | The price of the NFT.                                                                                                                                                                                     |
+| `status`     | Status  | <p>The status of the sale which can be one of the following options:</p><p>-<strong>Open</strong></p><p>-<strong>Expired</strong></p><p>-<strong>Executed</strong></p><p>-<strong>Cancelled</strong> </p> |
 
 ### SaleState
 
@@ -419,4 +426,4 @@ pub struct SaleInfo {
 
 ### &#x20;Base Queries
 
-The rest of the query messages can be found in the[ ADO Base](../platform-and-framework/ado-base.md) section.
+The rest of the query messages can be found in the[ ADO Base](../platform-and-framework/ado-base/) section.

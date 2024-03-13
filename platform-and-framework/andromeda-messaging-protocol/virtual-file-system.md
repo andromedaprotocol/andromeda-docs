@@ -2,13 +2,15 @@
 
 ## Introduction
 
-The **Virtual File System** (VFS) is a part of the Andromeda Messaging System (AMP) which was heavily inspired by the [linux file system](https://www.kernel.org/doc/html/latest/filesystems/vfs.html). Users can register their address to a username. They can also register ADOs to paths. These paths can then be used and referenced in our ADO systems.
-
-Addresses may only be registered by the child or parent. This means a child can register its name relative to its parent (**AddParentPath**) or a parent may register its child (**AddPath**).&#x20;
+The **Virtual File System** (VFS) is a part of the Andromeda Messaging System (AMP) which was heavily inspired by the linux file system. Users can register their address to a username. They can also register ADOs to paths. These paths can then be used and referenced in our ADO systems.
 
 When an [Andromeda App](../../smart-contracts/andromeda-apps/app.md) is made, it will register all paths for its child components and also register itself as a child of the instantiating address. Each component under the App is registered by its name, and the App itself is registered under its assigned name.
 
 In addition to paths, [symbolic links](virtual-file-system.md#addsymlink) that point to a path can be created by users.
+
+{% hint style="warning" %}
+All paths and usernames are resolved by the VFS in lowercase. For example, the username "USER" and "user" are considered to be the same. Same applies for paths, "`/home/USERNAME"` and  "`/home/username"` are the same.&#x20;
+{% endhint %}
 
 #### **Example:**
 
@@ -19,9 +21,9 @@ A user does the following:
 3. The App registers its components under their assigned names
 
 {% hint style="danger" %}
-When you register a username, it will registered in the "home" directory. This can also be represented by the "\~" symbol.&#x20;
+When you register a username, it will registered in the "home" directory. This can also be represented by the "\~" symbol or the "." symbol.
 
-In the examples below, /home can be replace by \~ in the paths. For example,  /home/user1 and \~/user1 are considered the same.
+In the examples below, /home can be replaced by \~ in the paths. For example,  /home/user1 and \~/user1 and ./user1 are considered the same.
 {% endhint %}
 
 The following paths are now registered:
@@ -64,10 +66,10 @@ pub struct InstantiateMsg {
 {% endtab %}
 {% endtabs %}
 
-| Name             | Type   | Description                                                                                                        |
-| ---------------- | ------ | ------------------------------------------------------------------------------------------------------------------ |
-| `kernel_address` | String | Address of the Kernel contract on chain. Can be found in our [deployed contracts](<../deployed-contracts (1).md>). |
-| `owner`          | String | Optional address to specify as the owner of the ADO being created. Defaultes to the sender if not specified.       |
+| Name             | Type            | Description                                                                                                        |
+| ---------------- | --------------- | ------------------------------------------------------------------------------------------------------------------ |
+| `kernel_address` | String          | Address of the Kernel contract on chain. Can be found in our [deployed contracts](<../deployed-contracts (1).md>). |
+| `owner`          | Option\<String> | Optional address to specify as the owner of the ADO being created. Defaultes to the sender if not specified.       |
 
 ### ExecuteMsg
 
@@ -81,8 +83,6 @@ Only accepts alphanumeric charaters.
 If user1 registers ado1, then the path created would be /home/user1/ado1.
 
 Registering a path that is already found will overwrite the old path.&#x20;
-
-Note that you will rarely need to call the **AddPath** execute message yourself. When Andromeda Apps are instantiated, it is automatically called, registering the App as a child to the sender's username and each of the components as children of the App itself similar to what we saw in the [example above.](virtual-file-system.md#example)
 {% endhint %}
 
 {% tabs %}
@@ -164,6 +164,8 @@ Only accepts alphanumeric charaters.
 Usernames are unique, meaning no two users can have the same username.
 
 If `address` is provided sender must be Kernel.
+
+Username cannot exceed 40 characters.
 {% endhint %}
 
 {% tabs %}
@@ -252,14 +254,14 @@ pub enum Execute {
 | `lib_name`    | String | The name of the library.    |
 | `lib_address` | Addr   | The address of the library. |
 
-### AddParentPath
+### AddChild
 
 Registers the child's path relative to the parent.
 
-For example, if I call `AddParentPath` specifying the `name` as test and the `parent_address` as \~/parent, then the path \~/parent/test would resolve to my address.&#x20;
-
 {% hint style="warning" %}
-Only accepts alphanumeric characters.
+Cannot be called by a user.
+
+When Andromeda Apps are instantiated, it is automatically called, registering the App as a child to the sender's username and each of the components as children of the App itself similar to what we saw in the [example above.](virtual-file-system.md#example)
 {% endhint %}
 
 {% tabs %}
@@ -293,7 +295,7 @@ pub enum ExecuteMsg {
 
 ### &#x20;Base Executes
 
-The rest of the execute messages can be found in the[ ADO Base](../ado-base.md) section.
+The rest of the execute messages can be found in the[ ADO Base](../ado-base/) section.
 
 ## QueryMsg
 
@@ -330,14 +332,19 @@ Returns the address of of the path.  In the above JSON example, the address of a
 
 ### SubDir
 
-Gets all the paths under the specified directory.
+Gets all the paths under the specified directory. Min and max can be used for pagination.&#x20;
 
 {% tabs %}
 {% tab title="Rust" %}
 ```rust
 pub enum QueryMsg {
   #[returns(Vec<PathDetails>)]
-   SubDir { path: AndrAddr },
+    SubDir {
+        path: AndrAddr,
+        min: Option<(Addr, String)>,
+        max: Option<(Addr, String)>,
+        limit: Option<u32>,
+    }
  }
 ```
 {% endtab %}
@@ -346,16 +353,20 @@ pub enum QueryMsg {
 ```json
 {
 "sub_dir":{
-    "path":"~/user1/app1"
+    "path":"~/user1/app1",
+    "limit": 68
     }
 }
 ```
 {% endtab %}
 {% endtabs %}
 
-| Name   | Type                                    | Description                              |
-| ------ | --------------------------------------- | ---------------------------------------- |
-| `path` | [AndrAddr](../common-types.md#andraddr) | The path to get all sub directories for. |
+| Name    | Type                                    | Description                                                                                    |
+| ------- | --------------------------------------- | ---------------------------------------------------------------------------------------------- |
+| `path`  | [AndrAddr](../common-types.md#andraddr) | The path to get all sub directories for.                                                       |
+| `min`   | Option<(Addr,String)>                   | The key to start from. Used for pagination.                                                    |
+| `max`   | Option<(Addr,String)>                   | The maximum key to return. Used for pagination.                                                |
+| `limit` | Option\<u32>                            | The number of paths to be returned. Defaults to 50 if not set. Can be set to a maximum of 100. |
 
 In the **JSON** example provided above, all paths under \~/user1/app1 will be returned. This would be all the component paths of the App app1.
 
@@ -475,6 +486,163 @@ pub enum QueryMsg {
 | ------ | --------------------------------------- | ----------------------------------- |
 | `path` | [AndrAddr](../common-types.md#andraddr) | The path of the symlink to resolve. |
 
-### Base Queries&#x20;
+### Version
 
-The rest of the query messages can be found in the[ ADO Base](../ado-base.md) section.
+Queries the version of the ADO.&#x20;
+
+{% tabs %}
+{% tab title="Rust" %}
+```rust
+pub enum AndromedaQuery {
+     #[returns(VersionResponse)]
+     Version {}
+     }
+```
+{% endtab %}
+
+{% tab title="JSON" %}
+```json
+{
+"version":{}
+}
+```
+{% endtab %}
+{% endtabs %}
+
+#### VersionResponse
+
+{% tabs %}
+{% tab title="Rust" %}
+```rust
+pub struct VersionResponse {
+    pub version: String,
+}
+```
+{% endtab %}
+
+{% tab title="JSON" %}
+```json
+{
+"version": "0.1.0"
+}
+```
+{% endtab %}
+{% endtabs %}
+
+| Name      | Type   | Descripton               |
+| --------- | ------ | ------------------------ |
+| `version` | String | The version of the ADO.  |
+
+### Owner
+
+Queries the owner of the contract.
+
+{% tabs %}
+{% tab title="Rust" %}
+```rust
+pub enum AndromedaQuery{
+    #[returns(ContractOwnerResponse)]
+    Owner{}
+}
+```
+{% endtab %}
+
+{% tab title="JSON" %}
+```json
+{
+  "owner":{}
+  }
+}
+```
+{% endtab %}
+{% endtabs %}
+
+#### ContractOwnerResponse
+
+{% tabs %}
+{% tab title="Rust" %}
+```rust
+pub struct ContractOwnerResponse {
+    pub owner: String
+}
+```
+{% endtab %}
+
+{% tab title="JSON" %}
+```json
+{
+"owner":"andr1..."
+}
+```
+{% endtab %}
+{% endtabs %}
+
+### Type
+
+Queries the ADO type.&#x20;
+
+{% tabs %}
+{% tab title="Rust" %}
+<pre class="language-rust"><code class="lang-rust">pub enum AndromedaQuery {
+<strong>    #[returns(TypeResponse)]
+</strong>    Type {}
+}
+</code></pre>
+{% endtab %}
+
+{% tab title="JSON" %}
+<pre class="language-json"><code class="lang-json">{
+<strong>"type":{}
+</strong>}
+</code></pre>
+{% endtab %}
+{% endtabs %}
+
+#### TypeResponse
+
+{% tabs %}
+{% tab title="Rust" %}
+```rust
+pub struct TypeResponse {
+    pub ado_type: String,
+    }
+```
+{% endtab %}
+
+{% tab title="JSON" %}
+```json
+{
+"ado_type":"auction"
+}
+```
+{% endtab %}
+{% endtabs %}
+
+| Name       | Type   | Description          |
+| ---------- | ------ | -------------------- |
+| `ado_type` | String | The type of the ado. |
+
+### KernelAddress
+
+Queries the kernel address of the chain the ADO is deployed on.
+
+{% tabs %}
+{% tab title="Rust" %}
+```rust
+pub enum AndromedaQuery {
+    #[returns(KernelAddressResponse)]
+    KernelAddress {},
+    }
+```
+{% endtab %}
+
+{% tab title="JSON" %}
+```json
+{
+"kernel_address":{}
+}
+```
+{% endtab %}
+{% endtabs %}
+
+Returns a String containing the contract address of the Kernel.

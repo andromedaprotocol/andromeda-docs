@@ -99,7 +99,7 @@ pub struct AddressWeight {
 Updates the recipients of the splitter. When executed, the previous recipients and distribution are replaced by the new list.
 
 {% hint style="warning" %}
-Only available to the contract owner/operator when the contract is not locked.
+Only available to the contract owner when the contract is not locked.
 {% endhint %}
 
 {% tabs %}
@@ -152,7 +152,7 @@ pub enum ExecuteMsg {
 Add a recipient to the list.&#x20;
 
 {% hint style="warning" %}
-Only available to the contract owner/operator.
+Only available to the contract owner.
 
 When a recipient is added, the total weight is changed and all the weights are recalculated appropriately.
 {% endhint %}
@@ -190,7 +190,7 @@ pub enum ExecuteMsg {
 ### RemoveRecipient
 
 {% hint style="warning" %}
-Only available to the contract owner/ operator.
+Only available to the contract owner.
 {% endhint %}
 
 Remove a recipient from the distribution.
@@ -227,7 +227,7 @@ pub enum ExecuteMsg {
 Used to lock the contract for a certain period of time making it unmodifiable in any way. This can serve as a way to ensure for recipients that their weights from the splitter are fixed for a certain amount of time. The time is calculated in seconds.
 
 {% hint style="warning" %}
-Only available to the contract owner/operator.
+Only available to the contract owner.
 
 Cannot be called if a lock is already in action.
 
@@ -267,7 +267,7 @@ pub enum ExecuteMsg {
 Updates the weight of a specific recipient from the list of recipients.
 
 {% hint style="warning" %}
-Only available to the contract owner/operator.
+Only available to the contract owner.
 {% endhint %}
 
 {% tabs %}
@@ -332,7 +332,7 @@ pub enum ExecuteMsg {
 Uses the modules feature.
 {% endhint %}
 
-The rest of the execute messages can be found in the[ ADO Base](../platform-and-framework/ado-base.md) section.
+The rest of the execute messages can be found in the[ ADO Base](../platform-and-framework/ado-base/) section.
 
 ## QueryMsg
 
@@ -468,4 +468,4 @@ pub struct GetUserWeightResponse {
 
 ### &#x20;Base Queries
 
-The rest of the query messages can be found in the[ ADO Base](../platform-and-framework/ado-base.md) section.
+The rest of the query messages can be found in the[ ADO Base](../platform-and-framework/ado-base/) section.

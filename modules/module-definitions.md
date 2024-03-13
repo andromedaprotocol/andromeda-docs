@@ -19,11 +19,11 @@ pub struct Module {
 }
 ```
 
-| Name         | Type                                                           | Description                                                                                                                                                                                                                                                                                 |
-| ------------ | -------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `name`       | Option\<String>                                                | An optional name to assign the module.                                                                                                                                                                                                                                                      |
-| `address`    | [AndrAddr](../platform-and-framework/common-types.md#andraddr) | Reference to the module ADO. Can be either the contract address or the name of the ADO in an App.                                                                                                                                                                                           |
-| `is_mutable` | bool                                                           | Whether the module can be later modified or not. This means that if `is_mutable` is set to true, then you can run the base executes [`deregister_module`](../platform-and-framework/ado-base.md#deregistermodule) and [`alter _module`](../platform-and-framework/ado-base.md#altermodule). |
+| Name         | Type                                                           | Description                                                                                                                                                                                                                                                                             |
+| ------------ | -------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `name`       | Option\<String>                                                | An optional name to assign the module.                                                                                                                                                                                                                                                  |
+| `address`    | [AndrAddr](../platform-and-framework/common-types.md#andraddr) | Reference to the module ADO. Can be either the contract address or the name of the ADO in an App.                                                                                                                                                                                       |
+| `is_mutable` | bool                                                           | Whether the module can be later modified or not. This means that if `is_mutable` is set to true, then you can run the base executes [`deregister_module`](../platform-and-framework/ado-base/#deregistermodule) and [`alter _module`](../platform-and-framework/ado-base/#altermodule). |
 
 {% hint style="warning" %}
 Any ADO that can implement modules uses this `Module` struct in its instantiation  to add modules to the ADO.&#x20;
@@ -77,7 +77,7 @@ pub enum AndromedaQuery {
 ```
 
 {% hint style="info" %}
-More details about each of these messages can be found in [ADO Base](../platform-and-framework/ado-base.md) section.
+More details about each of these messages can be found in [ADO Base](../platform-and-framework/ado-base/) section.
 {% endhint %}
 
 ### Module Usage&#x20;

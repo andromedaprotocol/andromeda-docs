@@ -2,10 +2,12 @@
 
 ## Introduction
 
-The **Auction** ADO is a smart contract that allows performing custom auctions on NFTs. The owner can send an NFT to this contract with the required messages to start an auction on it. Once the auction has started, users can place bids on the token until the auction expires. The highest bid will win the auction, sending the funds to the seller and receiving the token in return.
+The **Auction** ADO is a smart contract that allows performing custom auctions on NFTs. The owner can send an NFT to this contract with the required messages to start an auction on it. Once the auction has started, users can place bids on the token until the auction expires. The highest bid will win the auction, sending the funds to the seller and receiving the token in return.&#x20;
 
 {% hint style="info" %}
 This ADO allows creating [English Auctions](https://en.wikipedia.org/wiki/English\_auction).&#x20;
+
+Only authorized CW721 contracts are allowed to send NFTs to this ADO.&#x20;
 {% endhint %}
 
 The contract supports [modules](broken-reference) to extend its functionality.
@@ -17,6 +19,7 @@ The contract supports [modules](broken-reference) to extend its functionality.
 {% tabs %}
 {% tab title="Rust" %}
 <pre class="language-rust"><code class="lang-rust">pub struct InstantiateMsg {
+    pub authorized_token_addresses: Option&#x3C;Vec&#x3C;AndrAddr>>,
 <strong>    pub modules: Option&#x3C;Vec&#x3C;Module>>,
 </strong><strong>    pub kernel_address: String,
 </strong><strong>    pub owner: Option&#x3C;String>,
@@ -27,6 +30,7 @@ The contract supports [modules](broken-reference) to extend its functionality.
 {% tab title="JSON" %}
 ```json
 {
+"authorized_token_addresses":["andr1...","andr2..."],
 "kernel_address":"andr1...",
 "owner":"andr1..."
 }
@@ -34,11 +38,12 @@ The contract supports [modules](broken-reference) to extend its functionality.
 {% endtab %}
 {% endtabs %}
 
-| Name             | Type                  | Description                                                                                                                                                                                                                                                                                                                            |
-| ---------------- | --------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `modules`        | Option\<Vec\<Module>> | An optional vector of Andromeda[ Modules](broken-reference) that can be attached to the contract. "rates" and "address-list" modules can be added.                                                                                                                                                                                     |
-| `kernel_address` | String                | Contract address of the [kernel contract](../../platform-and-framework/andromeda-messaging-protocol/kernel.md) to be used for [AMP](../../platform-and-framework/andromeda-messaging-protocol/) messaging. Kernel contract address can be found in our [deployed contracts](<../../platform-and-framework/deployed-contracts (1).md>). |
-| `owner`          | Option\<String>       | Optional address to specify as the owner of the ADO being created. Defaults to the sender if not specified.                                                                                                                                                                                                                            |
+| Name                         | Type                                                                            | Description                                                                                                                                                                                                                                                                                                                            |
+| ---------------------------- | ------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `authorized_token_addresses` | Option\<Vec<[AndrAddr](../../platform-and-framework/common-types.md#andraddr)>> | Optional set of CW721 contract addresses to be allowed to send NFTs to the Auction ADO. Needs to be added by calling [AuthorizeTokenContract](auction.md#authorizetokencontract) if not specified in instantiation for the Auction to accept NFTs.                                                                                     |
+| `modules`                    | Option\<Vec\<Module>>                                                           | An optional vector of Andromeda[ Modules](broken-reference) that can be attached to the contract. "rates" and "address-list" modules can be added.                                                                                                                                                                                     |
+| `kernel_address`             | String                                                                          | Contract address of the [kernel contract](../../platform-and-framework/andromeda-messaging-protocol/kernel.md) to be used for [AMP](../../platform-and-framework/andromeda-messaging-protocol/) messaging. Kernel contract address can be found in our [deployed contracts](<../../platform-and-framework/deployed-contracts (1).md>). |
+| `owner`                      | Option\<String>                                                                 | Optional address to specify as the owner of the ADO being created. Defaults to the sender if not specified.                                                                                                                                                                                                                            |
 
 ## ExecuteMsg
 
@@ -65,6 +70,7 @@ This message is not called by the user on this ADO, but is the case that handles
 
 pub enum ExecuteMsg {
     ReceiveNft(Cw721ReceiveMsg)
+    }
 ```
 {% endtab %}
 {% endtabs %}
@@ -120,6 +126,76 @@ pub enum Cw721HookMsg {
 {% hint style="warning" %}
 `start_time` should not be a time in the past.
 {% endhint %}
+
+### AuthorizeTokenContract
+
+Authorize a CW721 contract to send NFTs to this ADO.
+
+{% hint style="warning" %}
+Only available to the contract owner.
+{% endhint %}
+
+{% tabs %}
+{% tab title="Rust" %}
+```rust
+pub enum ExecuteMsg {
+     AuthorizeTokenContract {
+        addr: AndrAddr,
+        expiration: Option<Expiration>,
+    }
+ }
+```
+{% endtab %}
+
+{% tab title="JSON" %}
+```json
+{
+"authorize_token_contract":{
+    "addr":"andr1..."
+    }
+}
+```
+{% endtab %}
+{% endtabs %}
+
+| Name         | Type                                                                          | Description                                                    |
+| ------------ | ----------------------------------------------------------------------------- | -------------------------------------------------------------- |
+| `addr`       | [AndrAddr](../../platform-and-framework/common-types.md#andraddr)             | The contract address of the CW721 (NFT) contract to authorize. |
+| `expiration` | Option<[Expiration](../../platform-and-framework/common-types.md#expiration)> | An optional expiration for the permission.                     |
+
+### DeauthorizeTokenContract
+
+Removes authorization from a CW721 contract to send NFTs to the auction.
+
+{% hint style="warning" %}
+Only available to the contract owner.
+{% endhint %}
+
+{% tabs %}
+{% tab title="Rust" %}
+```rust
+pub enum ExecuteMsg {
+    DeauthorizeTokenContract {
+        addr: AndrAddr,
+    },
+}
+```
+{% endtab %}
+
+{% tab title="JSON" %}
+```json
+{
+"deauthorize_auction_contract":{
+    "addr":"andr1..."
+    }
+}
+```
+{% endtab %}
+{% endtabs %}
+
+| Name   | Type                                                              | Description                                                                   |
+| ------ | ----------------------------------------------------------------- | ----------------------------------------------------------------------------- |
+| `addr` | [AndrAddr](../../platform-and-framework/common-types.md#andraddr) | The contract address of the CW721 (NFT) contract to remove authorization for. |
 
 ### UpdateAuction
 
@@ -295,7 +371,7 @@ pub enum ExecuteMsg {
 Uses the modules feature.
 {% endhint %}
 
-The rest of the execute messages can be found in the[ ADO Base](../../platform-and-framework/ado-base.md) section.
+The rest of the execute messages can be found in the[ ADO Base](../../platform-and-framework/ado-base/) section.
 
 ## QueryMsg
 
@@ -390,7 +466,7 @@ Gets the auction state for a particular `auction_id`.
 {% hint style="warning" %}
 Each Auction has an auction\_id which starts at 1 and increments every new auction.
 
-To get the auction\_id of a particular token, use LatestAuctionState
+To get the auction\_id of a particular token, use LatestAuctionState.
 {% endhint %}
 
 {% tabs %}
@@ -759,4 +835,4 @@ Returns a true if the NFT has been claimed and false otherwise.
 
 ### Base Queries
 
-The rest of the query messages can be found in the[ ADO Base](../../platform-and-framework/ado-base.md) section.
+The rest of the query messages can be found in the[ ADO Base](../../platform-and-framework/ado-base/) section.

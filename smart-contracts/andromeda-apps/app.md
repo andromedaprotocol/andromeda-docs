@@ -7,10 +7,10 @@ The **App** ADO is a smart contract that is used to bundle up ADOs that will be 
 An ADO in the App is called an AppComponent. Every App would be composed of many of these components (up to 50). Each component is assigned a name which can be used by other components to reference each other. The App ADO allows us to instantiate all of these components in one go.&#x20;
 
 {% hint style="warning" %}
-To reference a component from another component, you would need to speciy "./\<component-name>. You will see examples of this in our [Andromeda Apps](broken-reference) section.
+To reference a component from the another component when instantiating an App, you would need to speciy "./\<component-name>. You will see examples of this in our [Andromeda Apps](broken-reference) section.
 {% endhint %}
 
-At instantiation, we specify the address of the [Kernel ADO](../../platform-and-framework/andromeda-messaging-protocol/kernel.md) . This Kernel will have a reference to the [ADODB](../../platform-and-framework/ado-base.md) which has the code Ids of all the Andromeda ADOs saved. The Kernel ADO for each chain is already deployed and the addresses can be found in our [deployed contracts](broken-reference) section. You can learn to deploy your first app [here](../../andromeda-apps/crowdfunding-app.md).
+At instantiation, we specify the address of the [Kernel ADO](../../platform-and-framework/andromeda-messaging-protocol/kernel.md) . This Kernel will have a reference to the [ADODB](../../platform-and-framework/ado-base/) which has the code Ids of all the Andromeda ADOs saved. The Kernel ADO for each chain is already deployed and the addresses can be found in our [deployed contracts](broken-reference) section. You can learn to deploy your first app [here](../../andromeda-apps/crowdfunding-app.md).
 
 Our Apps support cross-chain components or ADOs, meaning an App can contain several ADOs each located on a different chain. This is specified by using the `CrossChain` component type.
 
@@ -70,6 +70,10 @@ The ADO to be a part of the App.&#x20;
 
 {% hint style="warning" %}
 The `name` field is case sensitive and needs to be unique for each component.
+
+Component name characters should be alphanumeric.
+
+Component name cannot be a single dot "."
 {% endhint %}
 
 ```rust
@@ -298,7 +302,7 @@ pub enum ExecuteMsg {
 
 ### Base Executes
 
-The rest of the execute messages can be found in the[ ADO Base](../../platform-and-framework/ado-base.md) section.
+The rest of the execute messages can be found in the[ ADO Base](../../platform-and-framework/ado-base/) section.
 
 ## QueryMsg
 
@@ -479,4 +483,4 @@ Returns a bool response.
 
 ### &#x20;Base Queries
 
-The rest of the query messages can be found in the[ ADO Base](../../platform-and-framework/ado-base.md) section.
+The rest of the query messages can be found in the[ ADO Base](../../platform-and-framework/ado-base/) section.

@@ -42,7 +42,7 @@ pub struct InstantiateMsg {
 
 | Name               | Type                                                   | Description                                                                                                                                                                                                                                                                                                                   |
 | ------------------ | ------------------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| nft\_contract      | Vec\<String>                                           | The contract addresses of the NFT contracts that can stake their NFTs using this contract.                                                                                                                                                                                                                                    |
+| `nft_contract`     | Vec\<String>                                           | The contract addresses of the NFT contracts that can stake their NFTs using this contract.                                                                                                                                                                                                                                    |
 | `unbonding_period` | u64                                                    | The unbonding period (time to unstake) of the NFTs in seconds.                                                                                                                                                                                                                                                                |
 | `reward`           | [Coin](../platform-and-framework/common-types.md#coin) | The rewards to be distributed per second.                                                                                                                                                                                                                                                                                     |
 | `kernel_address`   | String                                                 | Contract address of the [kernel contract](../platform-and-framework/andromeda-messaging-protocol/kernel.md) to be used for [AMP](../platform-and-framework/andromeda-messaging-protocol/) messaging. Kernel contract address can be found in our [deployed contracts](<../platform-and-framework/deployed-contracts (1).md>). |
@@ -118,7 +118,7 @@ Unstake {
 Updates the list of allowed NFT contracts to stake using this ADO.
 
 {% hint style="warning" %}
-Only available to the contract owner/operator.
+Only available to the contract owner.
 
 The old list is overwritten by the new one.
 {% endhint %}
@@ -154,7 +154,7 @@ pub enum ExecuteMsg {
 Add a new NFT contract to the list.
 
 {% hint style="warning" %}
-Only available to the contract owner/operator.
+Only available to the contract owner.
 {% endhint %}
 
 {% tabs %}
@@ -188,7 +188,7 @@ pub enum ExecuteMsg {
 Remove a new NFT contract to the list.
 
 {% hint style="warning" %}
-Only available to the contract owner/operator.
+Only available to the contract owner.
 {% endhint %}
 
 {% tabs %}
@@ -222,7 +222,7 @@ pub enum ExecuteMsg {
 Changes the unbonding period to a new one.
 
 {% hint style="warning" %}
-Only available to the contract owner/operator.
+Only available to the contract owner.
 {% endhint %}
 
 {% tabs %}
@@ -287,7 +287,7 @@ pub enum ExecuteMsg {
 
 ### AndrReceive
 
-The rest of the executes can be found in the [`AndrReceive`](../platform-and-framework/ado-base.md#andrrecieve) section.
+The rest of the executes can be found in the [`AndrReceive`](../platform-and-framework/ado-base/#andrrecieve) section.
 
 ## QueryMsg
 
@@ -445,4 +445,4 @@ Returns a type [Coin](../platform-and-framework/common-types.md#coin) with the a
 
 ### AndrQuery
 
-A set of base queries common to all Andromeda ADOs. Check[ AndrQuery](../platform-and-framework/ado-base.md#andrquery).
+A set of base queries common to all Andromeda ADOs. Check[ AndrQuery](../platform-and-framework/ado-base/#andrquery).

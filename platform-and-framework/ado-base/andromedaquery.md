@@ -1,0 +1,456 @@
+---
+description: The set of query messages common to all ADOs in the Andromeda Logic Library.
+---
+
+# AndromedaQuery
+
+## AndromedaQuery
+
+All of the ADOs can call the base query messages found in the AndromedaMsg.
+
+{% hint style="danger" %}
+Some of the query messages are feature specific meaning they are only available to all the ADOs that implement a specific feature such as the modules feature. Implemented features will be specified in the ADO's documentation page.&#x20;
+
+AMP ADOs are the only ADOs that do not implement the AndromedaQuery base queries.
+{% endhint %}
+
+```rust
+pub enum AndromedaQuery {
+    #[returns(self::ownership::ContractOwnerResponse)]
+    Owner {},
+    #[returns(self::ado_type::TypeResponse)]
+    Type {},
+    #[returns(self::kernel_address::KernelAddressResponse)]
+    KernelAddress {},
+    #[returns(self::ownership::PublisherResponse)]
+    OriginalPublisher {},
+    #[returns(self::block_height::BlockHeightResponse)]
+    BlockHeightUponCreation {},
+    #[returns(self::version::VersionResponse)]
+    Version {},
+    #[returns(Option<::cosmwasm_std::Addr>)]
+    AppContract {},
+    #[cfg(feature = "modules")]
+    #[returns(Module)]
+    Module { id: Uint64 },
+    #[cfg(feature = "modules")]
+    #[returns(Vec<String>)]
+    ModuleIds {},
+    #[returns(::cosmwasm_std::BalanceResponse)]
+    Balance { address: AndrAddr },
+    #[returns(Vec<self::permissioning::PermissionInfo>)]
+    Permissions {
+        actor: AndrAddr,
+        limit: Option<u32>,
+        start_after: Option<String>,
+    },
+    #[returns(Vec<String>)]
+    PermissionedActions {},
+    
+}
+```
+
+### Owner
+
+Queries the owner of the contract.
+
+{% tabs %}
+{% tab title="Rust" %}
+```rust
+pub enum AndromedaQuery{
+    #[returns(self::ownership::ContractOwnerResponse)]
+    Owner{}
+}
+```
+{% endtab %}
+
+{% tab title="JSON" %}
+```json
+{
+  "owner":{}
+  }
+}
+```
+{% endtab %}
+{% endtabs %}
+
+#### ContractOwnerResponse
+
+{% tabs %}
+{% tab title="Rust" %}
+```rust
+pub struct ContractOwnerResponse {
+    pub owner: String
+}
+```
+{% endtab %}
+
+{% tab title="JSON" %}
+```json
+{
+"owner":"andr1..."
+}
+```
+{% endtab %}
+{% endtabs %}
+
+### Type
+
+Queries the ADO type.&#x20;
+
+{% tabs %}
+{% tab title="Rust" %}
+<pre class="language-rust"><code class="lang-rust">pub enum AndromedaQuery {
+<strong>    #[returns(self::ado_type::TypeResponse)]
+</strong>    Type {}
+}
+</code></pre>
+{% endtab %}
+
+{% tab title="JSON" %}
+<pre class="language-json"><code class="lang-json">{
+<strong>"type":{}
+</strong>}
+</code></pre>
+{% endtab %}
+{% endtabs %}
+
+#### TypeResponse
+
+{% tabs %}
+{% tab title="Rust" %}
+```rust
+pub struct TypeResponse {
+    pub ado_type: String,
+    }
+```
+{% endtab %}
+
+{% tab title="JSON" %}
+```json
+{
+"ado_type":"auction"
+}
+```
+{% endtab %}
+{% endtabs %}
+
+| Name       | Type   | Description          |
+| ---------- | ------ | -------------------- |
+| `ado_type` | String | The type of the ado. |
+
+### KernelAddress
+
+Queries the kernel address of the chain the ADO is deployed on.
+
+{% tabs %}
+{% tab title="Rust" %}
+```rust
+pub enum AndromedaQuery {
+    #[returns(self::kernel_address::KernelAddressResponse)]
+    KernelAddress {},
+    }
+```
+{% endtab %}
+
+{% tab title="JSON" %}
+```json
+{
+"kernel_address":{}
+}
+```
+{% endtab %}
+{% endtabs %}
+
+Returns a String containing the contract address of the Kernel.
+
+### BlockHeightUponCreation
+
+Queries the block height when the ADO was created.
+
+{% tabs %}
+{% tab title="Rust" %}
+```rust
+pub enum AndromedaQuery{
+      #[returns(self::block_height::BlockHeightResponse)]
+      BlockHeightUponCreation {},
+      }
+```
+{% endtab %}
+
+{% tab title="JSON" %}
+```json
+{
+"block_height_upon_creation":{}
+}
+```
+{% endtab %}
+{% endtabs %}
+
+#### BlockHeightResponse
+
+{% tabs %}
+{% tab title="Rust" %}
+```rust
+pub struct BlockHeightResponse {
+    pub block_height: u64,
+}
+```
+{% endtab %}
+
+{% tab title="JSON" %}
+```json
+{
+"block_height": 2000134
+}
+```
+{% endtab %}
+{% endtabs %}
+
+| Name           | Type | Description                                          |
+| -------------- | ---- | ---------------------------------------------------- |
+| `block_height` | u64  | The block height at the time of creation of the ADO. |
+
+### Version
+
+Queries the version of the ADO.&#x20;
+
+{% tabs %}
+{% tab title="Rust" %}
+```rust
+pub enum AndromedaQuery {
+     #[returns(self::version::VersionResponse)]
+     Version {}
+     }
+```
+{% endtab %}
+
+{% tab title="JSON" %}
+```json
+{
+"version":{}
+}
+```
+{% endtab %}
+{% endtabs %}
+
+#### VersionResponse
+
+{% tabs %}
+{% tab title="Rust" %}
+```rust
+pub struct VersionResponse {
+    pub version: String,
+}
+```
+{% endtab %}
+
+{% tab title="JSON" %}
+```json
+{
+"version": "0.1.0"
+}
+```
+{% endtab %}
+{% endtabs %}
+
+| Name      | Type   | Descripton               |
+| --------- | ------ | ------------------------ |
+| `version` | String | The version of the ADO.  |
+
+### AppContract
+
+### OriginalPublisher
+
+Queries the orginal address that published/instantiated the ADO.
+
+{% tabs %}
+{% tab title="Rust " %}
+```rust
+pub enum AndromedaQuery {
+    #[returns(self::ownership::PublisherResponse)]
+    OriginalPublisher {}
+    }
+```
+{% endtab %}
+
+{% tab title="JSON" %}
+```json
+{
+"original_publisher":{}
+}
+```
+{% endtab %}
+{% endtabs %}
+
+#### PublisherResponse
+
+{% tabs %}
+{% tab title="Rust" %}
+```rust
+pub struct PublisherResponse {
+    pub original_publisher: String,
+}
+```
+{% endtab %}
+
+{% tab title="JSON" %}
+```json
+{
+"original_publisher":"andr1..."
+}
+```
+{% endtab %}
+{% endtabs %}
+
+| Name                 | Type   | Description                                               |
+| -------------------- | ------ | --------------------------------------------------------- |
+| `original_publisher` | String | The original address that instantiated/published the ADO. |
+
+### Permisions
+
+Queries the permissions set for the specified actor address.
+
+{% tabs %}
+{% tab title="Rust" %}
+```rust
+pub enum AndromedaQuery {
+    #[returns(Vec<self::permissioning::PermissionInfo>)]
+    Permissions {
+        actor: AndrAddr,
+        limit: Option<u32>,
+        start_after: Option<String>,
+    }
+}
+```
+{% endtab %}
+
+{% tab title="JSON" %}
+```json
+{
+"permissions":{
+    "actor":"andr1...",
+    }
+}
+```
+{% endtab %}
+{% endtabs %}
+
+| Name          | Type                                    | Description                                                                                             |
+| ------------- | --------------------------------------- | ------------------------------------------------------------------------------------------------------- |
+| `actor`       | [AndrAddr](../common-types.md#andraddr) | The address we are checking permissions for.                                                            |
+| `limit`       | Option\<u32>                            | Optional limit to the number of permissions returned. Defaults to 25 and can be set to a maximum of 50. |
+| `start_after` | Option\<String>                         | Optional permission to start after. Used for pagination.                                                |
+
+#### PermissionInfo
+
+Returns a vector of the PermissionInfo struct containing all the permissions for the actor.
+
+{% tabs %}
+{% tab title="Rust" %}
+```rust
+pub struct PermissionInfo {
+    pub permission: Permission,
+    pub action: String,
+    pub actor: String,
+}
+```
+{% endtab %}
+{% endtabs %}
+
+| Name         | Type                                       | Description                                       |
+| ------------ | ------------------------------------------ | ------------------------------------------------- |
+| `permission` | [Permission](andromedaquery.md#permission) | The permission that the actor was given.          |
+| `action`     | String                                     | The action or message that the permission is for. |
+| `actor`      | String                                     | The address that has these permissions.           |
+
+### PermissionedActions
+
+Queries the actions or execute messages that are permissioned in the ADO.&#x20;
+
+{% hint style="warning" %}
+The actions that are permissioned are the ones that have [PermissionAction](andromedaquery.md#permissionaction) called on them.
+{% endhint %}
+
+{% tabs %}
+{% tab title="Rust" %}
+```rust
+pub enum AndromedaQuery {
+    #[returns(Vec<String>)]
+    PermissionedActions {},
+    }
+```
+{% endtab %}
+
+{% tab title="JSON" %}
+```json
+{
+"permissioned_actions":{}
+}
+```
+{% endtab %}
+{% endtabs %}
+
+Returns a Vector of String containing the actions that are permissioned.&#x20;
+
+## Modules
+
+The following can be executed by the contracts that implement modules:
+
+### Module
+
+Queries a module by its Id.
+
+{% tabs %}
+{% tab title="Rust" %}
+```rust
+pub enum AndromedaQuery{
+  #[returns(Module)]
+  Module{
+      id:Uint64,
+  }
+}
+```
+{% endtab %}
+
+{% tab title="JSON" %}
+```json
+{
+   "module":{
+     "id":"tokenid"
+     }
+}
+```
+{% endtab %}
+{% endtabs %}
+
+| Name | Type   | Description                    |
+| ---- | ------ | ------------------------------ |
+| `id` | Uint64 | The Id of the module to query. |
+
+Returns a [Module](../../modules/module-definitions.md#module-definitions) struct with the module information.&#x20;
+
+### ModuleIds
+
+Queries all of the module Ids.
+
+{% tabs %}
+{% tab title="Rust" %}
+```rust
+pub enum AndromedaQuery{
+    #[returns(Vec<String>)]
+    ModuleIds{}
+}
+```
+{% endtab %}
+
+{% tab title="JSON" %}
+```json
+{
+"module_ids":{}
+}
+```
+{% endtab %}
+{% endtabs %}
+
+Returns a `Vec<String>` containing the module Ids.

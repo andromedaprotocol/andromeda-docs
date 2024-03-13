@@ -90,4 +90,4 @@ Slippage refers to the difference between the expected price of a trade and the 
 
 ### &#x20;Base Queries
 
-The rest of the query messages can be found in the[ ADO Base](../platform-and-framework/ado-base.md) section.
+The rest of the query messages can be found in the[ ADO Base](../platform-and-framework/ado-base/) section.

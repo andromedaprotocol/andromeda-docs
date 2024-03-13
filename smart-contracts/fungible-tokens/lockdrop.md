@@ -261,7 +261,7 @@ pub enum ExecuteMsg {
 
 ### Base Executes
 
-The rest of the execute messages can be found in the[ ADO Base](../../platform-and-framework/ado-base.md) section.
+The rest of the execute messages can be found in the[ ADO Base](../../platform-and-framework/ado-base/) section.
 
 ## QueryMsg
 
@@ -419,6 +419,10 @@ pub struct UserInfoResponse {
 
 Returns the max withdrawable percent for a position.
 
+{% hint style="warning" %}
+The provided timestamp cannot be in the past.
+{% endhint %}
+
 {% tabs %}
 {% tab title="Rust" %}
 ```rust
@@ -435,19 +439,19 @@ pub enum QueryMsg {
 ```json
 {
 "withdrawal_percent_allowed":{
-    "timestamp": 500
+    "timestamp": 1705341474
     }
 }
 ```
 {% endtab %}
 {% endtabs %}
 
-| Name        | Type         | Description                                             |
-| ----------- | ------------ | ------------------------------------------------------- |
-| `timestamp` | Option\<u64> | The timestamp to check the maximum withdrawal allowed.  |
+| Name        | Type         | Description                                                                                                                 |
+| ----------- | ------------ | --------------------------------------------------------------------------------------------------------------------------- |
+| `timestamp` | Option\<u64> | The timestamp in seconds to check the maximum withdrawal allowed for. If not specified, the current timestamp will be used. |
 
 Returns a number of type Decimal representing the percentage allowed to withdraw.
 
 ### Base Queries
 
-The rest of the query messages can be found in the[ ADO Base](../../platform-and-framework/ado-base.md) section.
+The rest of the query messages can be found in the[ ADO Base](../../platform-and-framework/ado-base/) section.

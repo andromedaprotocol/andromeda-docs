@@ -226,7 +226,7 @@ Only availabe to the contract owner.
 
 ### Base Executes
 
-The rest of the execute messages can be found in the[ ADO Base](../platform-and-framework/ado-base.md) section.
+The rest of the execute messages can be found in the[ ADO Base](../platform-and-framework/ado-base/) section.
 
 ## QueryMsg
 
@@ -328,4 +328,4 @@ pub struct StrategyAddressResponse {
 
 ### &#x20;Base Queries
 
-The rest of the query messages can be found in the[ ADO Base](../platform-and-framework/ado-base.md) section.
+The rest of the query messages can be found in the[ ADO Base](../platform-and-framework/ado-base/) section.

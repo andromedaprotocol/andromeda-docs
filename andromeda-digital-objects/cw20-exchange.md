@@ -87,6 +87,8 @@ pub enum Cw20HookMsg {
         asset: AssetInfo,
         exchange_rate: Uint128,
         recipient: Option<String>,
+        start_time: Option<u64>,
+        duration: Option<u64>,
     },
     Purchase {
         recipient: Option<String>,
@@ -98,6 +100,8 @@ pub enum Cw20HookMsg {
 
 {% hint style="warning" %}
 Only available to the contract owner.
+
+The asset to be traded cannot be the same as the asset being bought specified at instantiation.
 {% endhint %}
 
 Starts a sale on the CW20 tokens sent. This is attached as a `msg` when sending the CW20 tokens to the Exchange ADO.
@@ -110,6 +114,8 @@ pub enum Cw20HookMsg {
         asset: AssetInfo,
         exchange_rate: Uint128,
         recipient: Option<String>,
+        start_time: Option<u64>,
+        duration: Option<u64>,
     }
 }
 ```
@@ -122,18 +128,22 @@ pub enum Cw20HookMsg {
     "asset":{
         "native":"uandr"
         },
-    "exchange_rate":"5"
+    "exchange_rate":"5",
+    "start_time": 1663334970211,
+    "duration": 900000
     }
 }
 ```
 {% endtab %}
 {% endtabs %}
 
-| Name            | Type                                    | Description                                                                  |
-| --------------- | --------------------------------------- | ---------------------------------------------------------------------------- |
-| `asset`         | [AssetInfo](cw20-exchange.md#undefined) | The asset that may be used to purchase the token.                            |
-| `exchange_rate` | Uint128                                 | The amount of the above `asset` required to purchase a single token.         |
-| `recipient`     | Option\<String>                         | The recipient of the sale proceeds. Defaults to the sender if not specified. |
+| Name            | Type                                    | Description                                                                                                                                      |
+| --------------- | --------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `asset`         | [AssetInfo](cw20-exchange.md#undefined) | The asset that may be used to purchase the token.                                                                                                |
+| `exchange_rate` | Uint128                                 | The amount of the above `asset` required to purchase a single token.                                                                             |
+| `recipient`     | Option\<String>                         | The recipient of the sale proceeds. Defaults to the sender if not specified.                                                                     |
+| `start_time`    | Option\<u64>                            | Optional start time in milliseconds since [epoch](https://www.epochconverter.com/clock). If not specified, then the sale will start immediately. |
+| `duration`      | Option\<u64>                            | Optional duration for the sale in milliseconds from the `start_time`. If not specified then the sale never expires.                              |
 
 #### AssetInfo
 
@@ -227,6 +237,12 @@ pub enum ExecuteMsg {
 
 Purchase tokens with native funds.
 
+{% hint style="warning" %}
+Dont be confused by the previous [Purchase](cw20-exchange.md#purchase) message. Although they share the same name, the first message is attached to a CW20 [Send](cw20.md#send) and is used to buy using CW20 tokens while this message is called directly on the CW20 Exchange ADO and is used to buy using native funds.
+
+You need to attach the native funds to the message when calling this Purchase.
+{% endhint %}
+
 {% tabs %}
 {% tab title="Rust" %}
 ```rust
@@ -255,7 +271,7 @@ pub enum ExecuteMsg {
 
 ### Base Executes
 
-The rest of the execute messages can be found in the[ ADO Base](../platform-and-framework/ado-base.md) section.
+The rest of the execute messages can be found in the[ ADO Base](../platform-and-framework/ado-base/) section.
 
 ## QueryMsg
 
@@ -313,14 +329,20 @@ pub struct Sale {
     pub exchange_rate: Uint128,
     pub amount: Uint128,
     pub recipient: String,
+    pub start_time: Expiration,
+    pub end_time: Expiration,
+    pub start_amount: Uint128,
 }
 ```
 
-| Name            | Type    | Description                                                    |
-| --------------- | ------- | -------------------------------------------------------------- |
-| `exchange_rate` | Uint128 | The amount of exchange asset needed to purchase one token.     |
-| `amount`        | Uint128 | The amount of tokens for sale at the specified exchange\_rate. |
-| `recipient`     | String  | The recipient of the sale proceeds.                            |
+| Name            | Type                                                               | Description                                                                   |
+| --------------- | ------------------------------------------------------------------ | ----------------------------------------------------------------------------- |
+| `exchange_rate` | Uint128                                                            | The amount of exchange asset needed to purchase one token.                    |
+| `amount`        | Uint128                                                            | The amount of tokens for sale at the specified exchange\_rate.                |
+| `recipient`     | String                                                             | The recipient of the sale proceeds.                                           |
+| `start_time`    | [Expiration](../platform-and-framework/common-types.md#expiration) | The time when the sale starts.                                                |
+| `end_time`      | [Expiration](../platform-and-framework/common-types.md#expiration) | The time when the sale ends.                                                  |
+| `start_amount`  | Uint128                                                            | The amount of CW20 tokens for sale at the given rate at the start of the sale |
 
 ### TokenAddress
 
@@ -400,4 +422,4 @@ pub struct SaleAssetsResponse {
 
 ### &#x20;Base Queries
 
-The rest of the query messages can be found in the[ ADO Base](../platform-and-framework/ado-base.md) section.
+The rest of the query messages can be found in the[ ADO Base](../platform-and-framework/ado-base/) section.

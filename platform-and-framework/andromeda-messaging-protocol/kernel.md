@@ -8,10 +8,10 @@ The Kernel receives and handles packets from ADOs to be relayed to a specified *
 
 The Kernel is also responsible for:
 
-* &#x20;Relaying any IBC messages across any two chains that have an Andromeda Kernel  deployed and a channel set up.
+* &#x20;Relaying any IBC messages across any two chains that have an Andromeda Kernel deployed and a channel set up.
 * Keeping track of the other AMP ADOs such as the ADODB, VFS, and Economics.
 
-All of our ADOs have an [AMPReceive](../ado-base.md#ampreceive) execute message to handle receiving packets from the Kernel.
+All of our ADOs have an [AMPReceive](../ado-base/#ampreceive) execute message to handle receiving packets from the Kernel.
 
 {% hint style="warning" %}
 The Kernels are set up by the Andromeda team on each chain. This means that as a regular user, you will not need to interact with this ADO yourself in most cases. This page serves as additional information on how it works for people that are interested into getting a deep understanding of our system.&#x20;
@@ -130,6 +130,8 @@ Assigns a given channel between the current chain and the specified target `chai
 
 {% hint style="warning" %}
 Only available to the owner of the Kernel.
+
+Calling this message again, will override any previously set channels.
 {% endhint %}
 
 {% tabs %}
@@ -357,3 +359,139 @@ Gets any fund recoveries available for the specified address.
 | `addr` | Addr | The address to check recoveries for. |
 
 Returns a Vec<[Coin](../common-types.md#coin)> containing the recoverable funds.
+
+### Version
+
+Queries the version of the ADO.&#x20;
+
+{% tabs %}
+{% tab title="Rust" %}
+```rust
+pub enum AndromedaQuery {
+     #[returns(VersionResponse)]
+     Version {}
+     }
+```
+{% endtab %}
+
+{% tab title="JSON" %}
+```json
+{
+"version":{}
+}
+```
+{% endtab %}
+{% endtabs %}
+
+#### VersionResponse
+
+{% tabs %}
+{% tab title="Rust" %}
+```rust
+pub struct VersionResponse {
+    pub version: String,
+}
+```
+{% endtab %}
+
+{% tab title="JSON" %}
+```json
+{
+"version": "0.1.0"
+}
+```
+{% endtab %}
+{% endtabs %}
+
+| Name      | Type   | Descripton               |
+| --------- | ------ | ------------------------ |
+| `version` | String | The version of the ADO.  |
+
+### Owner
+
+Queries the owner of the contract.
+
+{% tabs %}
+{% tab title="Rust" %}
+```rust
+pub enum AndromedaQuery{
+    #[returns(ContractOwnerResponse)]
+    Owner{}
+}
+```
+{% endtab %}
+
+{% tab title="JSON" %}
+```json
+{
+  "owner":{}
+  }
+}
+```
+{% endtab %}
+{% endtabs %}
+
+#### ContractOwnerResponse
+
+{% tabs %}
+{% tab title="Rust" %}
+```rust
+pub struct ContractOwnerResponse {
+    pub owner: String
+}
+```
+{% endtab %}
+
+{% tab title="JSON" %}
+```json
+{
+"owner":"andr1..."
+}
+```
+{% endtab %}
+{% endtabs %}
+
+### Type
+
+Queries the ADO type.&#x20;
+
+{% tabs %}
+{% tab title="Rust" %}
+<pre class="language-rust"><code class="lang-rust">pub enum AndromedaQuery {
+<strong>    #[returns(TypeResponse)]
+</strong>    Type {}
+}
+</code></pre>
+{% endtab %}
+
+{% tab title="JSON" %}
+<pre class="language-json"><code class="lang-json">{
+<strong>"type":{}
+</strong>}
+</code></pre>
+{% endtab %}
+{% endtabs %}
+
+#### TypeResponse
+
+{% tabs %}
+{% tab title="Rust" %}
+```rust
+pub struct TypeResponse {
+    pub ado_type: String,
+    }
+```
+{% endtab %}
+
+{% tab title="JSON" %}
+```json
+{
+"ado_type":"auction"
+}
+```
+{% endtab %}
+{% endtabs %}
+
+| Name       | Type   | Description          |
+| ---------- | ------ | -------------------- |
+| `ado_type` | String | The type of the ado. |

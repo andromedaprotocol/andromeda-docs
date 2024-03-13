@@ -285,7 +285,7 @@ The EndSale message needs to be called twice. Once for distribution of NFTs and 
 Uses the modules feature.
 {% endhint %}
 
-The rest of the execute messages can be found in the[ ADO Base](../../platform-and-framework/ado-base.md) section.
+The rest of the execute messages can be found in the[ ADO Base](../../platform-and-framework/ado-base/) section.
 
 ## QueryMsg
 
@@ -470,4 +470,4 @@ Returns a `bool` response specifyi ng whether the token is available for purchas
 
 ### Base Queries
 
-The rest of the query messages can be found in the[ ADO Base](../../platform-and-framework/ado-base.md) section.
+The rest of the query messages can be found in the[ ADO Base](../../platform-and-framework/ado-base/) section.

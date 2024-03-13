@@ -49,7 +49,7 @@ Publishes an  ADO to the ADODB by saving the provided `code_id` under the specif
 {% hint style="warning" %}
 The new version needs to be greater than the old one if using an already published ado\_type.
 
-Only available to the ADO owner or an operator of the ADO.
+Only available to the ADO owner.
 
 The fee can be either a native or a CW20 asset.
 {% endhint %}
@@ -119,12 +119,50 @@ pub struct ActionFee {
 }
 ```
 
-| Name       | Type          | Description                                                                                                                                  |
-| ---------- | ------------- | -------------------------------------------------------------------------------------------------------------------------------------------- |
-| `action`   | String        | The action to add the fees on when called. This could be instantiation or one of the execute messages of the ADO.                            |
-| `asset`    | String        | The funds used to pay the fee. Can be either a native fund such as "native:uandr" or a cw20 token contract address such as "cw20:andr1....". |
-| `amount`   | String        | The amount of the specified funds to pay as fees when performing the action.                                                                 |
-| `receiver` | Option\<Addr> | An optional address to receive the fees. If not specified, then the specified publisher receives the fees.                                   |
+| Name       | Type          | Description                                                                                                                                            |
+| ---------- | ------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `action`   | String        | The action to add the fees on when called. This could be instantiation or one of the execute messages of the ADO.                                      |
+| `asset`    | String        | The funds used to pay the fee. Can be either a native fund specified as "native:uandr" or a CW20 token contract address specified as "cw20:andr1....". |
+| `amount`   | String        | The amount of the specified funds to pay as fees when performing the action.                                                                           |
+| `receiver` | Option\<Addr> | An optional address to receive the fees. If not specified, then the specified publisher receives the fees.                                             |
+
+### Unpublish
+
+Unpublishes a previously published ADO.&#x20;
+
+{% hint style="warning" %}
+Only available to the contract owner.
+
+Once unpublished, the code\_id will be removed from the ADODB.
+
+Unplubish is for a specific version of an ADO.
+
+An Unpublished ADO can never be published again.&#x20;
+{% endhint %}
+
+{% tabs %}
+{% tab title="Rust" %}
+```rust
+pub enum ExecuteMsg {
+Unpublish {
+        ado_type: String,
+        version: String,
+    },
+  }
+```
+{% endtab %}
+
+{% tab title="JSON" %}
+```json
+{
+"unpublish":{
+"ado_type":"auction",
+"version":"1.2.9"
+    }
+}
+```
+{% endtab %}
+{% endtabs %}
 
 ### UpdateActionFees
 
@@ -252,7 +290,7 @@ Only availabe to the contract owner.
 
 ### &#x20;Base Executes
 
-The rest of the execute messages can be found in the[ ADO Base](../ado-base.md) section.
+The rest of the execute messages can be found in the[ ADO Base](../ado-base/) section.
 
 ## QueryMsg
 
@@ -289,15 +327,48 @@ pub enum QueryMsg {
 
 Returns a u64 which represents the `code_id`.
 
+### IsUnpublishedCodeId
+
+Checks the if the `code_id` specified has been unpublished.
+
+{% tabs %}
+{% tab title="Rust" %}
+```rust
+pub enum QueryMsg {
+  #[returns(IsUnpublishedCodeIdResponse)]
+  IsUnpublishedCodeId {
+   code_id: u64 
+   },
+  }
+```
+{% endtab %}
+
+{% tab title="JSON" %}
+```rust
+{
+"is_unpublished_code_id":{
+    "code_id":98
+    }
+}
+```
+{% endtab %}
+{% endtabs %}
+
+| Name      | Type | Description                                                  |
+| --------- | ---- | ------------------------------------------------------------ |
+| `code_id` | u64  | The code Id to check whether it has been unpublished or not. |
+
+Returns true if the code Id has been unpublished and false otherwise.
+
 ### ADOType
 
-Queries the ADO type linked to the specified `code_id`.
+Queries the ADO type and version linked to the specified `code_id`.
 
 {% tabs %}
 {% tab title="Rust" %}
 <pre class="language-rust"><code class="lang-rust"><strong>pub enum QueryMsg {
 </strong><strong>    #[serde(rename = "ado_type")]
-</strong><strong>    #[returns(Option&#x3C;String>)]
+</strong><strong>    #[returns(Option&#x3C;ADOVersion>)]
 </strong>    ADOType {
           code_id: u64 
     }
@@ -318,7 +389,7 @@ Queries the ADO type linked to the specified `code_id`.
 
 <table><thead><tr><th width="257.66666666666663">Name</th><th>Type</th><th>Description</th></tr></thead><tbody><tr><td><code>code_id</code></td><td>u64</td><td>The code Id to return the ADO type for.</td></tr></tbody></table>
 
-Returns the ADO type in a string.
+Returns the ADO type in a string. The type will contain the ADO name along with the version. For example: `"cw721@0.2.3"`
 
 ### AllADOTypes
 
@@ -349,10 +420,10 @@ Queries all the ADO types available with their latest versions.
 {% endtab %}
 {% endtabs %}
 
-| Name          | Type            | Description                                                                                                                                                     |
-| ------------- | --------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `start_after` | Option\<String> | Optional ADO to start from. The ADOs are listed alphabetically. If specified, the query will only fetch ADOs after the specified start\_after.                  |
-| `limit`       | Option\<u32>    | Optional limit to the number of the ADO types returned by the query. If not specified, the default limit will be 10. The maximum limit that can be set is 100.  |
+| Name          | Type            | Description                                                                                                                                                      |
+| ------------- | --------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `start_after` | Option\<String> | Optional ADO to start from. The ADOs are listed alphabetically. If specified, the query will only fetch ADOs after the specified start\_after.                   |
+| `limit`       | Option\<u32>    | Optional limit to the number of the ADO types returned by the query. If not specified, the default limit will be 100. The maximum limit that can be set is 200.  |
 
 The query will return each ADO type along with its latest version.&#x20;
 
@@ -388,11 +459,11 @@ pub enum QueryMsg {
 {% endtab %}
 {% endtabs %}
 
-| Name          | Type            | Description                                                                                                                                                    |
-| ------------- | --------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `ado_type`    | String          | The type of ADO to get the versions for.                                                                                                                       |
-| `start_after` | Option\<String> | Optional version to start from. If specified, the query will only fetch versions greater than the start\_after version.                                        |
-| `limit`       | Option\<u32>    | Optional limit to the number of the versions returned by the query. If not specified, the default limit will be 10. The maximum limit that can be set is 100.  |
+| Name          | Type            | Description                                                                                                                                                     |
+| ------------- | --------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `ado_type`    | String          | The type of ADO to get the versions for.                                                                                                                        |
+| `start_after` | Option\<String> | Optional version to start from. If specified, the query will only fetch versions greater than the start\_after version.                                         |
+| `limit`       | Option\<u32>    | Optional limit to the number of the versions returned by the query. If not specified, the default limit will be 100. The maximum limit that can be set is 200.  |
 
 Returns a Vec\<String> containing all the requested ADO versions.&#x20;
 
@@ -521,6 +592,163 @@ pub enum QueryMsg {
 
 Returns the [ActionFee](andromeda-factory.md#actionfee) struct with the fee information if found.
 
-### &#x20;Base Queries
+### Version
 
-The rest of the query messages can be found in the[ ADO Base](../ado-base.md) section.
+Queries the version of the ADO.&#x20;
+
+{% tabs %}
+{% tab title="Rust" %}
+```rust
+pub enum AndromedaQuery {
+     #[returns(VersionResponse)]
+     Version {}
+     }
+```
+{% endtab %}
+
+{% tab title="JSON" %}
+```json
+{
+"version":{}
+}
+```
+{% endtab %}
+{% endtabs %}
+
+#### VersionResponse
+
+{% tabs %}
+{% tab title="Rust" %}
+```rust
+pub struct VersionResponse {
+    pub version: String,
+}
+```
+{% endtab %}
+
+{% tab title="JSON" %}
+```json
+{
+"version": "0.1.0"
+}
+```
+{% endtab %}
+{% endtabs %}
+
+| Name      | Type   | Descripton               |
+| --------- | ------ | ------------------------ |
+| `version` | String | The version of the ADO.  |
+
+### Owner
+
+Queries the owner of the contract.
+
+{% tabs %}
+{% tab title="Rust" %}
+```rust
+pub enum AndromedaQuery{
+    #[returns(ContractOwnerResponse)]
+    Owner{}
+}
+```
+{% endtab %}
+
+{% tab title="JSON" %}
+```json
+{
+  "owner":{}
+  }
+}
+```
+{% endtab %}
+{% endtabs %}
+
+#### ContractOwnerResponse
+
+{% tabs %}
+{% tab title="Rust" %}
+```rust
+pub struct ContractOwnerResponse {
+    pub owner: String
+}
+```
+{% endtab %}
+
+{% tab title="JSON" %}
+```json
+{
+"owner":"andr1..."
+}
+```
+{% endtab %}
+{% endtabs %}
+
+### Type
+
+Queries the ADO type.&#x20;
+
+{% tabs %}
+{% tab title="Rust" %}
+<pre class="language-rust"><code class="lang-rust">pub enum AndromedaQuery {
+<strong>    #[returns(TypeResponse)]
+</strong>    Type {}
+}
+</code></pre>
+{% endtab %}
+
+{% tab title="JSON" %}
+<pre class="language-json"><code class="lang-json">{
+<strong>"type":{}
+</strong>}
+</code></pre>
+{% endtab %}
+{% endtabs %}
+
+#### TypeResponse
+
+{% tabs %}
+{% tab title="Rust" %}
+```rust
+pub struct TypeResponse {
+    pub ado_type: String,
+    }
+```
+{% endtab %}
+
+{% tab title="JSON" %}
+```json
+{
+"ado_type":"auction"
+}
+```
+{% endtab %}
+{% endtabs %}
+
+| Name       | Type   | Description          |
+| ---------- | ------ | -------------------- |
+| `ado_type` | String | The type of the ado. |
+
+### KernelAddress
+
+Queries the kernel address of the chain the ADO is deployed on.
+
+{% tabs %}
+{% tab title="Rust" %}
+```rust
+pub enum AndromedaQuery {
+    #[returns(KernelAddressResponse)]
+    KernelAddress {},
+    }
+```
+{% endtab %}
+
+{% tab title="JSON" %}
+```json
+{
+"kernel_address":{}
+}
+```
+{% endtab %}
+{% endtabs %}
+
+Returns a String containing the contract address of the Kernel.

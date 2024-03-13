@@ -57,9 +57,9 @@ Before **Andromeda**, projects would need to hire a full development teams in or
 
 Developers can use our **Andromeda Logic Library** (ALL) which contains all our contracts to build from. Similar to how [**cw-plus**](https://github.com/CosmWasm/cw-plus) contracts are used as a base for production quality builds, the ALL will act as a base for all developers to create their own ADOs that use the superior interoperable system.&#x20;
 
-As it stands, the ALL contains around 25 ADOs which is the tip of the iceberg. More and more ADOs are being added by the Andromeda dev team weekly, and as we continue building, the ALL will eventually reach a state with thousands of ADOs where every use case imagined can be built using it.&#x20;
+As it stands, the ALL contains around 25 ADOs which is the tip of the iceberg. More and more ADOs are being added by the Andromeda team, and as we continue building, the ALL will eventually reach a state with thousands of ADOs where every use case imagined can be built using it.&#x20;
 
-Furthermore, developers are incentivized for their contributions and the ADOs they create. This incentive system operates through our economic engine, enabling developers to set custom fees on their ADOs when it is published. Users utilizing these ADOs pay these fees, which are then returned to the developer responsible for their creation.
+Furthermore, developers are incentivized for their contributions and the ADOs they create. This incentive system operates through our[ economic engine](platform-and-framework/andromeda-messaging-protocol/economics-engine.md), enabling developers to set custom fees on their ADOs when it is published. Users utilizing these ADOs pay these fees, which are then returned to the developer responsible for their creation.
 
 * **For Chains:**
 

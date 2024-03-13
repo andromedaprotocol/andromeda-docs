@@ -95,7 +95,7 @@ Read more about the Recipient struct [here](../platform-and-framework/common-typ
 Updates the recipients of the splitter contract. Only executable by the contract owner when the contract is not locked.
 
 {% hint style="warning" %}
-Only available to the contract owner/operator when the contract is not locked.
+Only available to the contract owner when the contract is not locked.
 {% endhint %}
 
 {% tabs %}
@@ -137,7 +137,7 @@ pub enum ExecuteMsg {
 Used to lock the contract for a certain period of time making it unmodifiable in any way. This can serve as a way to ensure for recipients that their weights from the splitter are fixed for a certain amount of time. The time is calculated in seconds.
 
 {% hint style="warning" %}
-Only available to the contract owner/operator when the contract is not already locked.
+Only available to the contract owner when the contract is not already locked.
 
 The minimum time that can be set is 86,400 which is 1 day.
 
@@ -200,7 +200,7 @@ pub enum ExecuteMsg {
 
 ### Base Executes
 
-The rest of the execute messages can be found in the[ ADO Base](../platform-and-framework/ado-base.md) section.
+The rest of the execute messages can be found in the[ ADO Base](../platform-and-framework/ado-base/) section.
 
 ## QueryMsg
 
@@ -278,4 +278,4 @@ pub struct Splitter {
 
 ### Base Queries
 
-The rest of the query messages can be found in the[ ADO Base](../platform-and-framework/ado-base.md) section.
+The rest of the query messages can be found in the[ ADO Base](../platform-and-framework/ado-base/) section.

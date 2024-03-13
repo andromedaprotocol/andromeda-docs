@@ -74,10 +74,12 @@ pub enum ExecuteMsg{
 
 ### Receive
 
-Handles receiving CW20 tokens to be deposited as funds to pay fees with.&#x20;
+Handles receiving CW20 tokens to be deposited as funds to pay fees with. Called by sending CW20 tokens from the CW20 ADO using the [Send](../../andromeda-digital-objects/cw20.md#send) execute message.&#x20;
 
 {% hint style="warning" %}
-This is not called directly by the user, but called when the user sends CW20 tokens to this ADO.
+This is not called directly by the user, but called when the user sends CW20 tokens to this ADO.&#x20;
+
+The msg field of the Send execute should be a base64 encoded [Cw20HookMsg](economics-engine.md#cw20hookmsg).
 {% endhint %}
 
 {% tabs %}
@@ -100,7 +102,7 @@ pub struct Cw20ReceiveMsg {
 }
 ```
 
-The `msg` field needs to be a `CwHookMsg` of type `Deposit`. The message is attached as a bsae64 encoded binary of the JSON representation of the Deposit message.
+The `msg` field needs to be a `Cw20HookMsg` of type `Deposit`. The message is attached as a bsae64 encoded binary of the JSON representation of the Deposit message.
 
 #### Cw20HookMsg
 
@@ -204,10 +206,10 @@ Withdraw CW20 funds from the Andromeda economics module. If no amount is provide
 {% endtab %}
 {% endtabs %}
 
-| Name     | Type                                            | Description                                                                                         |
-| -------- | ----------------------------------------------- | --------------------------------------------------------------------------------------------------- |
-| `amount` | Option<[AndrAddr](../common-types.md#andraddr)> | The amount of the specified asset to withdraw. If not specified then the total amount is withdrawn. |
-| `asset`  | String                                          | The contract address of the CW20 token to withdraw.                                                 |
+| Name     | Type             | Description                                                                                         |
+| -------- | ---------------- | --------------------------------------------------------------------------------------------------- |
+| `amount` | Option\<Uint128> | The amount of the specified asset to withdraw. If not specified then the total amount is withdrawn. |
+| `asset`  | String           | The contract address of the CW20 token to withdraw.                                                 |
 
 ## QueryMsg
 
@@ -243,3 +245,164 @@ pub enum QueryMsg {
 | `address` | [AndrAddr](../common-types.md#andraddr) | The address to get the balance for.                                                        |
 
 Returns a `Uint128` representing the current balance.
+
+### Version
+
+Queries the version of the ADO.&#x20;
+
+{% tabs %}
+{% tab title="Rust" %}
+```rust
+pub enum AndromedaQuery {
+     #[returns(VersionResponse)]
+     Version {}
+     }
+```
+{% endtab %}
+
+{% tab title="JSON" %}
+```json
+{
+"version":{}
+}
+```
+{% endtab %}
+{% endtabs %}
+
+#### VersionResponse
+
+{% tabs %}
+{% tab title="Rust" %}
+```rust
+pub struct VersionResponse {
+    pub version: String,
+}
+```
+{% endtab %}
+
+{% tab title="JSON" %}
+```json
+{
+"version": "0.1.0"
+}
+```
+{% endtab %}
+{% endtabs %}
+
+| Name      | Type   | Descripton               |
+| --------- | ------ | ------------------------ |
+| `version` | String | The version of the ADO.  |
+
+### Owner
+
+Queries the owner of the contract.
+
+{% tabs %}
+{% tab title="Rust" %}
+```rust
+pub enum AndromedaQuery{
+    #[returns(ContractOwnerResponse)]
+    Owner{}
+}
+```
+{% endtab %}
+
+{% tab title="JSON" %}
+```json
+{
+  "owner":{}
+  }
+}
+```
+{% endtab %}
+{% endtabs %}
+
+#### ContractOwnerResponse
+
+{% tabs %}
+{% tab title="Rust" %}
+```rust
+pub struct ContractOwnerResponse {
+    pub owner: String
+}
+```
+{% endtab %}
+
+{% tab title="JSON" %}
+```json
+{
+"owner":"andr1..."
+}
+```
+{% endtab %}
+{% endtabs %}
+
+### Type
+
+Queries the ADO type.&#x20;
+
+{% tabs %}
+{% tab title="Rust" %}
+<pre class="language-rust"><code class="lang-rust">pub enum AndromedaQuery {
+<strong>    #[returns(TypeResponse)]
+</strong>    Type {}
+}
+</code></pre>
+{% endtab %}
+
+{% tab title="JSON" %}
+<pre class="language-json"><code class="lang-json">{
+<strong>"type":{}
+</strong>}
+</code></pre>
+{% endtab %}
+{% endtabs %}
+
+#### TypeResponse
+
+{% tabs %}
+{% tab title="Rust" %}
+```rust
+pub struct TypeResponse {
+    pub ado_type: String,
+    }
+```
+{% endtab %}
+
+{% tab title="JSON" %}
+```json
+{
+"ado_type":"auction"
+}
+```
+{% endtab %}
+{% endtabs %}
+
+| Name       | Type   | Description          |
+| ---------- | ------ | -------------------- |
+| `ado_type` | String | The type of the ado. |
+
+### KernelAddress
+
+Queries the kernel address of the chain the ADO is deployed on.
+
+{% tabs %}
+{% tab title="Rust" %}
+```rust
+pub enum AndromedaQuery {
+    #[returns(KernelAddressResponse)]
+    KernelAddress {},
+    }
+```
+{% endtab %}
+
+{% tab title="JSON" %}
+```json
+{
+"kernel_address":{}
+}
+```
+{% endtab %}
+{% endtabs %}
+
+Returns a String containing the contract address of the Kernel.

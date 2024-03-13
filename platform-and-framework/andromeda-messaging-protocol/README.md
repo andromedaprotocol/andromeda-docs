@@ -8,10 +8,10 @@ All ADO communication can be done through AMP. This means that ADOs would send t
 
 <figure><img src="../../.gitbook/assets/Stand-alone Kernel Diagram.jpg" alt=""><figcaption></figcaption></figure>
 
-This messaging system is primarly handled by our [Kernel](kernel.md) ADO and is aimed to solve the following problems:&#x20;
+This messaging system is primarily handled by our [Kernel](kernel.md) ADO and is aimed to solve the following problems:&#x20;
 
 {% hint style="warning" %}
-Although not recommended, we have kept the option of sending messges directly from one ADO to another without passing through the AMP layer.&#x20;
+Although not recommended, we have kept the option of sending messages directly from one ADO to another without passing through the AMP layer.&#x20;
 {% endhint %}
 
 ### Message Tracking
@@ -54,8 +54,8 @@ ADOs use an Andromeda packet structure to communicate with the AMP layer. This `
 
 ### AMPPkt&#x20;
 
-{% hint style="info" %}
-The packet may contain several messages which allows for message batching.
+{% hint style="warning" %}
+The packet may contain several messages which allows for message batching. The messags are processed sequentially.
 {% endhint %}
 
 ```rust
@@ -66,10 +66,10 @@ pub struct AMPPkt {
 
 ```
 
-| Name       | Type                     | Description                                           |
-| ---------- | ------------------------ | ----------------------------------------------------- |
-| `messages` | Vec<[AMPMsg](./#ampmsg)> | Any messages associated with the packet.              |
-| `ctx`      | [AMPCtx](./#ampctx)      | Additional context to be sent along with the message. |
+| Name       | Type                     | Description                                            |
+| ---------- | ------------------------ | ------------------------------------------------------ |
+| `messages` | Vec<[AMPMsg](./#ampmsg)> | Any AMP messages associated with the packet.           |
+| `ctx`      | [AMPCtx](./#ampctx)      | Additional context to be sent along with the messages. |
 
 ### AMPMsg
 
@@ -168,7 +168,7 @@ pub enum ReplyOn {
 #### AMPCtx
 
 {% hint style="warning" %}
-The `origin` and `origin_usernam` are not public to prevent disguised attacks.
+The `origin` and `origin_username` are not public to prevent disguised attacks.
 {% endhint %}
 
 ```rust

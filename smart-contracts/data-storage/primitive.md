@@ -49,7 +49,7 @@ pub enum PrimitiveRestriction {
 }
 ```
 
-* **Private:** Only accessible by the contract owner/operator of the ADO.
+* **Private:** Only accessible by the contract owner of the ADO.
 * **Public:** Accessible by anyone.
 * **Restricted:** Only accessible to the key owner (The address that first set the key).
 
@@ -64,7 +64,7 @@ If `name`is not specified the default key ("default") will be used.
 
 If `SetValue` uses a `name` that is already in use, the old `value` is overwritten by the latest `value.`
 
-Only available to the contract owner/operator.
+Only available to the contract owner.
 {% endhint %}
 
 {% tabs %}
@@ -125,7 +125,7 @@ Deletes the data attached to the specified `name`.
 {% hint style="warning" %}
 If `name` is not specified the default key ("default") will be used.
 
-Only available to the contract owner/operator
+Only available to the contract owner.
 {% endhint %}
 
 {% tabs %}
@@ -160,7 +160,7 @@ Only available to the contract owner/operator
 Changes the restriction set on the primitive.
 
 {% hint style="warning" %}
-Only available to the contract owner/operator.
+Only available to the contract owner.
 {% endhint %}
 
 {% tabs %}
@@ -191,7 +191,7 @@ pub enum ExecuteMsg {
 
 ### Base Executes
 
-The rest of the execute messages can be found in the[ ADO Base](../../platform-and-framework/ado-base.md) section.
+The rest of the execute messages can be found in the[ ADO Base](../../platform-and-framework/ado-base/) section.
 
 ## QueryMsg
 
@@ -314,4 +314,4 @@ Returns a Vec\<String> containing all the keys belonging to the specified `owner
 
 ### Base Queries
 
-The rest of the query messages can be found in the[ ADO Base](../../platform-and-framework/ado-base.md) section.
+The rest of the query messages can be found in the[ ADO Base](../../platform-and-framework/ado-base/) section.

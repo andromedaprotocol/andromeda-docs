@@ -79,7 +79,7 @@ You can then chose from the list of executes to run.
 
 ## Database
 
-Allows querying the on chain [ADO DB](../platform-and-framework/ado-base.md).
+Allows querying the on chain [ADO DB](../platform-and-framework/ado-base/).
 
 | Command       | Description                                           |
 | ------------- | ----------------------------------------------------- |

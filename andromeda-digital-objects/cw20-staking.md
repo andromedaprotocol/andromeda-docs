@@ -178,7 +178,7 @@ pub enum Cw20HookMsg {
 Add `reward_token` as another reward token. A maximum of 10 reward tokens can be added.&#x20;
 
 {% hint style="warning" %}
-Only available to the contract owner/operator.
+Only available to the contract owner.
 {% endhint %}
 
 {% tabs %}
@@ -287,7 +287,7 @@ pub enum ExecuteMsg {
 
 ### AndrReceive
 
-The rest of the executes can be found in the [`AndrReceive`](../platform-and-framework/ado-base.md#andrrecieve) section.
+The rest of the executes can be found in the [`AndrReceive`](../platform-and-framework/ado-base/#andrrecieve) section.
 
 ## QueryMsg
 
@@ -520,4 +520,4 @@ Returns a u64 with the current timestamp in seconds.
 
 ### AndrQuery
 
-A set of base queries common to all Andromeda ADOs. Check[ AndrQuery](../platform-and-framework/ado-base.md#andrquery).
+A set of base queries common to all Andromeda ADOs. Check[ AndrQuery](../platform-and-framework/ado-base/#andrquery).

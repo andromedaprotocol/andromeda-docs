@@ -46,7 +46,7 @@ pub struct InstantiateMsg {
 Adds an address to the address list.
 
 {% hint style="warning" %}
-Only Owner/Operators can execute AddAddress.
+Only the owner can execute AddAddress.
 {% endhint %}
 
 {% tabs %}
@@ -76,7 +76,7 @@ pub enum ExecuteMsg {
 Removes an address from the address list.
 
 {% hint style="warning" %}
-Only Owner/Operators can execute RemoveAddress.
+Only the owner can execute RemoveAddress.
 {% endhint %}
 
 {% tabs %}
@@ -105,6 +105,10 @@ pub enum ExecuteMsg {
 
 Add multiple addresses to the address list.
 
+{% hint style="warning" %}
+Only available to the contract owner.
+{% endhint %}
+
 {% tabs %}
 {% tab title="Rust" %}
 ```rust
@@ -129,7 +133,7 @@ pub enum ExecuteMsg {
 
 ### Base Executes
 
-The rest of the execute messages can be found in the[ ADO Base](../platform-and-framework/ado-base.md) section.
+The rest of the execute messages can be found in the[ ADO Base](../platform-and-framework/ado-base/) section.
 
 ## QueryMsg
 
@@ -215,4 +219,4 @@ Returns a bool with the result. If true, the address list is a whitelist. Otherw
 
 ### Base Queries
 
-The rest of the query messages can be found in the[ ADO Base](../platform-and-framework/ado-base.md) section.
+The rest of the query messages can be found in the[ ADO Base](../platform-and-framework/ado-base/) section.
