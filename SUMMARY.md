@@ -60,6 +60,7 @@
 ## Creating an ADO
 
 * [Getting Started](creating-an-ado/getting-started.md)
+* [ADO Example](creating-an-ado/ado-example.md)
 
 ## Andromeda CLI
 
