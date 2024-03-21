@@ -22,5 +22,5 @@ The team will review the PR and ask for any changes that need to be made. This p
 
 ## Requesting a New Feature on an Existing ADO
 
-In case you are looking to suggest a new feature for an already existing ADO, you can open a new [**ADO Feature Request**](https://github.com/andromedaprotocol/ado-database/issues/new/choose) issue and provide details on the feature you are looking for. The request will be reviewed by the team and if it is deemed usefull, will be added to the ADO. An example for an feature request can be found [here](https://github.com/andromedaprotocol/ado-database/issues/3).
+In case you are looking to suggest a new feature for an already existing ADO, you can open a new [**ADO Feature Request**](https://github.com/andromedaprotocol/ado-database/issues/new/choose) issue and provide details on the feature you are looking for. The request will be reviewed by the team and if it is deemed usefull, will be added to the ADO. An example for a feature request can be found [here](https://github.com/andromedaprotocol/ado-database/issues/3).
 
