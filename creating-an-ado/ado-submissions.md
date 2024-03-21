@@ -3,7 +3,7 @@
 The following document will explain the steps required for a developer to submit their ADO to be included in the official Andromeda ADO library as well as requesting new features for existing ADOs. The workflow can be summarized by the following diagram:
 
 {% hint style="warning" %}
-Although the idea approval is currently done by the Andromeda Team, it will be eventually be handled by the DAO through proposals.
+Although the idea approval is currently done by the Andromeda Team, it will be eventually handled by the DAO through proposals.
 {% endhint %}
 
 <figure><img src="../.gitbook/assets/Screen Shot 2024-03-20 at 6.56.18 PM.png" alt=""><figcaption></figcaption></figure>
