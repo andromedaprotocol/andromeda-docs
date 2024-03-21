@@ -61,6 +61,7 @@
 
 * [Getting Started](creating-an-ado/getting-started.md)
 * [ADO Example](creating-an-ado/ado-example.md)
+* [ADO Submissions](creating-an-ado/ado-submissions.md)
 
 ## Andromeda CLI
 
