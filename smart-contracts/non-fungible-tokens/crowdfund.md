@@ -8,7 +8,7 @@ The owner of the contract can start the crowdfund by executing `StartSale`. Befo
 
 We allow for owners other than the contract, incase the creator wants to set aside a few  tokens for some other use, say airdrop, team allocation, etc., but only those which have the contract as the owner will be available to sell.
 
-Every sale sets a `min_tokens_sold` which specifies the minimum number of tokens that need to be sold in order for the sale to be considered successful. This acts as an insurance for the buyers by allowing them to get a refund in case this goal was not achieved.&#x20;
+Every sale sets a `min_tokens_sold` which specifies the minimum number of tokens that need to be sold in order for the sale to be considered successful. This acts as an insurance for the buyers by allowing them to get a refund in case this goal was not achieved. If this threshhold is met, the owner can end the sale.
 
 The contract supports [modules](broken-reference) to extend its functionality.
 
@@ -33,7 +33,6 @@ pub struct InstantiateMsg {
 ```json
 {
 "token_address":"andr1...",
-"primitive_address":"andr1...",
 "can_mint_after_sale": true,
 "kernel_address":"andr1..."
 }
@@ -113,7 +112,7 @@ Initiates a new crowdfund with the specified information.
 {% hint style="warning" %}
 Only available to the contract owner.
 
-An Expiration must be set (cannot be never) and not in past date.
+An Expiration must be set and not in past date.
 
 A sale should not be already ongoing.
 {% endhint %}
@@ -123,7 +122,7 @@ A sale should not be already ongoing.
 ```rust
 pub enum ExecuteMsg{
  StartSale {
-        expiration: Expiration,
+        expiration: Milliseconds,
         price: Coin,
         min_tokens_sold: Uint128,
         max_amount_per_wallet: Option<u32>,
@@ -135,9 +134,7 @@ pub enum ExecuteMsg{
 {% tab title="JSON" %}
 <pre class="language-json"><code class="lang-json">{
 "start_sale":{
- "expiration":{
-  "at_height": 550
-  },
+ "expiration":10048328053820324,
   "price":{
     "denom":"uandr",
     "amount":"10000"
@@ -153,7 +150,7 @@ pub enum ExecuteMsg{
 {% endtab %}
 {% endtabs %}
 
-<table><thead><tr><th width="272.3333333333333">Name</th><th width="196.50867625185924">Type</th><th>Description</th></tr></thead><tbody><tr><td><code>expiration</code></td><td><a href="../../platform-and-framework/common-types.md#expiration">Expiration</a></td><td>When the sale ends.</td></tr><tr><td><code>price</code></td><td><a href="../../platform-and-framework/common-types.md#coin">Coin</a></td><td>The price per token.</td></tr><tr><td><code>min_tokens_sold</code></td><td>Uint128</td><td>The minimum amount of tokens sold to go through with the sale.</td></tr><tr><td><code>max_amount_per_wallet</code></td><td>Option&#x3C;u32></td><td>The amount of tokens a wallet can purchase, default is 1.</td></tr><tr><td><code>recipient</code></td><td><a href="../../platform-and-framework/common-types.md#recipient">Recipient</a></td><td>The recipient of the funds if the sale met the <code>min_tokens_sold</code>.</td></tr></tbody></table>
+<table><thead><tr><th width="272.3333333333333">Name</th><th width="196.50867625185924">Type</th><th>Description</th></tr></thead><tbody><tr><td><code>expiration</code></td><td><a href="../../platform-and-framework/common-types.md#milliseconds">Milliseconds</a></td><td>A timestamp in milliseconds to when the sale ends.</td></tr><tr><td><code>price</code></td><td><a href="../../platform-and-framework/common-types.md#coin">Coin</a></td><td>The price per token.</td></tr><tr><td><code>min_tokens_sold</code></td><td>Uint128</td><td>The minimum amount of tokens sold to go through with the sale.</td></tr><tr><td><code>max_amount_per_wallet</code></td><td>Option&#x3C;u32></td><td>The amount of tokens a wallet can purchase, default is 1.</td></tr><tr><td><code>recipient</code></td><td><a href="../../platform-and-framework/common-types.md#recipient">Recipient</a></td><td>The recipient of the funds if the sale met the <code>min_tokens_sold</code>.</td></tr></tbody></table>
 
 ### Purchase
 
@@ -248,7 +245,7 @@ If the minimum number of tokens to be sold was not reached. The user can claim t
 Ends the sale. In the case that the minimum number of tokens to be sold is not achieved, refunds are sent to the buyers and tokens are burnt. If the minimum amount of tokens sold was achieved, the tokens are sent to the buyers and the funds to the recipient.&#x20;
 
 {% hint style="warning" %}
-The sale can only be ended if the expiration of the sale has been reached or all the tokens have been sold.
+The sale can only be ended if the expiration of the sale has been reached or the threshhold of min tokens sold is met.
 
 The EndSale message needs to be called twice. Once for distribution of NFTs and another for distribution of funds.&#x20;
 {% endhint %}
@@ -318,7 +315,7 @@ pub enum QueryMsg {
 {% tab title="Rust" %}
 ```rust
 pub struct State {
-    pub expiration: Expiration,
+    pub expiration: Milliseconds,
     pub price: Coin,
     pub min_tokens_sold: Uint128,
     pub max_amount_per_wallet: u32,
@@ -333,9 +330,7 @@ pub struct State {
 {% tab title="JSON" %}
 ```json
 {
- "expiration":{
-  "at_height": 550
-  },
+ "expiration":100384234382943243,
   "price":{
     "denom":"uandr",
     "amount":"10000"
@@ -353,7 +348,7 @@ pub struct State {
 {% endtab %}
 {% endtabs %}
 
-<table><thead><tr><th width="267.3333333333333">Name</th><th>Type</th><th>Description</th></tr></thead><tbody><tr><td><code>expiration</code></td><td><a href="../../platform-and-framework/common-types.md#expiration">Expiration</a></td><td>The expiration denoting when the sale ends.</td></tr><tr><td><code>price</code></td><td><a href="../../platform-and-framework/common-types.md#coin">Coin</a></td><td>The price of each token.</td></tr><tr><td><code>min_tokens_sold</code></td><td>Uint128</td><td>The minimum number of tokens sold for the sale to go through.</td></tr><tr><td><code>max_amount_per_wallet</code></td><td>u32</td><td>The max number of tokens allowed per wallet.</td></tr><tr><td><code>amount_sold</code></td><td>Uint128</td><td>Number of tokens sold.</td></tr><tr><td><code>amount_to_send</code></td><td>Uint128</td><td>The amount of funds to send to recipient if sale successful. This already takes into account the royalties and taxes.</td></tr><tr><td><code>amount_transferred</code></td><td>Uint128</td><td>Number of tokens transferred to purchasers if sale was successful.</td></tr><tr><td><code>recipient</code></td><td><a href="../../platform-and-framework/common-types.md#recipient">Recipient</a></td><td>The recipient of the raised funds if the sale is successful.</td></tr></tbody></table>
+<table><thead><tr><th width="267.3333333333333">Name</th><th>Type</th><th>Description</th></tr></thead><tbody><tr><td><code>expiration</code></td><td><a href="../../platform-and-framework/common-types.md#milliseconds">Milliseconds</a></td><td>The expiration denoting when the sale ends as a timestamp in milliseconds.</td></tr><tr><td><code>price</code></td><td><a href="../../platform-and-framework/common-types.md#coin">Coin</a></td><td>The price of each token.</td></tr><tr><td><code>min_tokens_sold</code></td><td>Uint128</td><td>The minimum number of tokens sold for the sale to go through.</td></tr><tr><td><code>max_amount_per_wallet</code></td><td>u32</td><td>The max number of tokens allowed per wallet.</td></tr><tr><td><code>amount_sold</code></td><td>Uint128</td><td>Number of tokens sold.</td></tr><tr><td><code>amount_to_send</code></td><td>Uint128</td><td>The amount of funds to send to recipient if sale successful. This already takes into account the royalties and taxes.</td></tr><tr><td><code>amount_transferred</code></td><td>Uint128</td><td>Number of tokens transferred to purchasers if sale was successful.</td></tr><tr><td><code>recipient</code></td><td><a href="../../platform-and-framework/common-types.md#recipient">Recipient</a></td><td>The recipient of the raised funds if the sale is successful.</td></tr></tbody></table>
 
 ### Config
 

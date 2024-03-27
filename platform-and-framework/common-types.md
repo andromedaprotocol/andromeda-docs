@@ -41,7 +41,7 @@ pub struct Coin {
 
 ### Definition
 
-Expiration represents a point in time when some event happens. It can compare with a BlockInfo and will return is\_expired() == true once the condition is hit (and for every block in the future).
+Expiration represents a point in time when some event happens. It can compare with a BlockInfo and will return **is\_expired() == true** once the condition is hit (and for every block in the future).
 
 {% tabs %}
 {% tab title="Rust" %}
@@ -85,7 +85,17 @@ or
 }
 ```
 
-### Recipient
+## Milliseconds
+
+Struct that represents time in milliseconds in u64.
+
+```rust
+#[cw_serde]
+#[derive(Default, Eq, PartialOrd, Copy)]
+pub struct Milliseconds(pub u64);
+```
+
+## Recipient
 
 A simple struct used for inter-contract communication:
 
@@ -93,6 +103,7 @@ A simple struct used for inter-contract communication:
 pub struct Recipient {
     pub address: AndrAddr,
     pub msg: Option<Binary>,
+    pub ibc_recovery_address: Option<AndrAddr>,
 }
 ```
 
@@ -102,6 +113,8 @@ The struct can be used in two ways:
 
 &#x20;2\. Providing an `AndrAddr` and a `Binary` message which will be sent to the contract at the resolved address. The `Binary` message can be any message that the contract at the resolved address can handle.
 
+The `ibc_recovery_address` is an address to receive funds in case the IBC message failed.
+
 ### AndrAddr
 
 An address that can be used within the Andromeda ecosystem.
@@ -110,7 +123,7 @@ An address that can be used within the Andromeda ecosystem.
 pub struct AndrAddr(String);
 ```
 
-The address can be one of two things:
+**The address can be one of two things:**
 
 * A valid human readable address e.g. "andr1..."
 * A valid Andromeda [Virtual File System](andromeda-messaging-protocol/virtual-file-system.md) (VFS) path e.g. "/home/user/app/component"

@@ -288,9 +288,9 @@ Only availabe to the contract owner.
 | `ado_type`  | String | The ado type to update the publisher for. |
 | `publisher` | String | The address of the new publsiher.         |
 
-### &#x20;Base Executes
+### Ownership
 
-The rest of the execute messages can be found in the[ ADO Base](../ado-base/) section.
+The set of ownerhsip messages. These messages are the same as the ones found in the [ADO base section](../ado-base/andromedamsg.md#ownership).
 
 ## QueryMsg
 

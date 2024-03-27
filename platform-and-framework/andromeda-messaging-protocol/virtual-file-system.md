@@ -293,9 +293,9 @@ pub enum ExecuteMsg {
 | `name`           | String                                  | The name to assign.            |
 | `parent_address` | [AndrAddr](../common-types.md#andraddr) | The address of the parent ADO. |
 
-### &#x20;Base Executes
+### Ownership
 
-The rest of the execute messages can be found in the[ ADO Base](../ado-base/) section.
+The set of ownerhsip messages. These messages are the same as the ones found in the [ADO base section](../ado-base/andromedamsg.md#ownership).
 
 ## QueryMsg
 
@@ -341,11 +341,16 @@ pub enum QueryMsg {
   #[returns(Vec<PathDetails>)]
     SubDir {
         path: AndrAddr,
-        min: Option<(Addr, String)>,
-        max: Option<(Addr, String)>,
+        min: Option<SubDirBound>,
+        max: Option<SubDirBound>,
         limit: Option<u32>,
     }
  }
+
+ pub struct SubDirBound {
+    address: Addr,
+    name: String,
+}
 ```
 {% endtab %}
 
@@ -364,11 +369,24 @@ pub enum QueryMsg {
 | Name    | Type                                    | Description                                                                                    |
 | ------- | --------------------------------------- | ---------------------------------------------------------------------------------------------- |
 | `path`  | [AndrAddr](../common-types.md#andraddr) | The path to get all sub directories for.                                                       |
-| `min`   | Option<(Addr,String)>                   | The key to start from. Used for pagination.                                                    |
-| `max`   | Option<(Addr,String)>                   | The maximum key to return. Used for pagination.                                                |
+| `min`   | Option\<SubDirBound>                    | The key to start from. Used for pagination.                                                    |
+| `max`   | Option\<SubDirBound>                    | The maximum key to return. Used for pagination.                                                |
 | `limit` | Option\<u32>                            | The number of paths to be returned. Defaults to 50 if not set. Can be set to a maximum of 100. |
 
-In the **JSON** example provided above, all paths under \~/user1/app1 will be returned. This would be all the component paths of the App app1.
+#### PathDetails
+
+Returns the path name and corresponding address for each subdirectory path.
+
+{% tabs %}
+{% tab title="Rust" %}
+```rust
+pub struct PathDetails {
+    name: String,
+    address: Addr,
+}
+```
+{% endtab %}
+{% endtabs %}
 
 ### Paths
 

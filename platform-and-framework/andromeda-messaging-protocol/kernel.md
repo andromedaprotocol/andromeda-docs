@@ -182,6 +182,40 @@ pub enum ExecuteMsg {
 {% endtab %}
 {% endtabs %}
 
+### UpdateChainName
+
+Update the name of the chain the kernel is deployed on. This name is initially specified at instantiation.
+
+{% hint style="warning" %}
+Only available to the owner of the Kernel ADO.&#x20;
+{% endhint %}
+
+{% tabs %}
+{% tab title="Rust" %}
+```rust
+pub enum ExecuteMsg {
+   UpdateChainName {
+        chain_name: String,
+    },
+}
+```
+{% endtab %}
+
+{% tab title="JSON" %}
+```json
+{
+"update_chain_name":{
+    "chain_name":"andromeda"
+    }
+}
+```
+{% endtab %}
+{% endtabs %}
+
+| Name         | Type   | Description                                                   |
+| ------------ | ------ | ------------------------------------------------------------- |
+| `chain_name` | String | The new assigned name of the chain the kernel is deployed on. |
+
 ### RegisterUserCrossChain
 
 Used to register a VFS username cross-chain.
@@ -209,6 +243,10 @@ pub enum ExecuteMsg {
 | `username` | String | The username to be registerd.                           |
 | `address`  | String | The address on the other chain to save the username to. |
 | `chain`    | String | The name of the second chain.                           |
+
+### Ownership
+
+The set of ownerhsip messages. These messages are the same as the ones found in the [ADO base section](../ado-base/andromedamsg.md#ownership).
 
 ## QueryMsg
 
@@ -359,6 +397,55 @@ Gets any fund recoveries available for the specified address.
 | `addr` | Addr | The address to check recoveries for. |
 
 Returns a Vec<[Coin](../common-types.md#coin)> containing the recoverable funds.
+
+### ChainName
+
+Returns the saved chain name specified at instantiation.
+
+{% tabs %}
+{% tab title="Rust" %}
+```rust
+pub enum QueryMsg {
+    #[returns(ChainNameResponse)]
+    ChainName {},
+    }
+```
+{% endtab %}
+
+{% tab title="JSON" %}
+```json
+{
+"chain_name":{}
+}
+```
+{% endtab %}
+{% endtabs %}
+
+#### ChainNameResponse
+
+The struct containing the chain name.
+
+{% tabs %}
+{% tab title="Rust" %}
+```rust
+pub struct ChainNameResponse {
+    pub chain_name: String,
+}
+```
+{% endtab %}
+
+{% tab title="undefined" %}
+```json
+{
+"chain_name:"andr1..."
+}
+```
+{% endtab %}
+{% endtabs %}
+
+| Name         | Type   | Description                                      |
+| ------------ | ------ | ------------------------------------------------ |
+| `chain_name` | String | The name of the chain the kernel is deployed on. |
 
 ### Version
 

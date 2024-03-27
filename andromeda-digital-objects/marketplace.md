@@ -275,6 +275,8 @@ pub struct SaleStateResponse {
     pub coin_denom: String,
     pub price: Uint128,
     pub status: Status,
+    pub start_time: Expiration,
+    pub end_time: Expiration,
 }
 ```
 {% endtab %}
@@ -285,18 +287,30 @@ pub struct SaleStateResponse {
 "sale_id":"3",
 "coin_denom":"uandr",
 "price":"100",
-"status":"open"
+"status":"open",
+"start_time":{
+    "expiration":{
+        "at_time":"1146593483949835832"
+    }
+ },
+"end_time":{
+    "expiration":{
+           "at_time":"1246593483949835832"
+    } 
+  }
 }
 ```
 {% endtab %}
 {% endtabs %}
 
-| Name         | Type    | Description                                                                                                                                                                                               |
-| ------------ | ------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `sale_id`    | Uint128 | The Id of the sale. The first sale has an Id of 1 and each sale after it increments the Id by 1.                                                                                                          |
-| `coin_denom` | String  | The denom used in the sale.                                                                                                                                                                               |
-| `price`      | Uint128 | The price of the NFT.                                                                                                                                                                                     |
-| `status`     | Status  | <p>The status of the sale which can be one of the following options:</p><p>-<strong>Open</strong></p><p>-<strong>Expired</strong></p><p>-<strong>Executed</strong></p><p>-<strong>Cancelled</strong> </p> |
+| Name         | Type                                                               | Description                                                                                                                                                                                               |
+| ------------ | ------------------------------------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `sale_id`    | Uint128                                                            | The Id of the sale. The first sale has an Id of 1 and each sale after it increments the Id by 1.                                                                                                          |
+| `coin_denom` | String                                                             | The denom used in the sale.                                                                                                                                                                               |
+| `price`      | Uint128                                                            | The price of the NFT.                                                                                                                                                                                     |
+| `status`     | Status                                                             | <p>The status of the sale which can be one of the following options:</p><p>-<strong>Open</strong></p><p>-<strong>Expired</strong></p><p>-<strong>Executed</strong></p><p>-<strong>Cancelled</strong> </p> |
+| `start_time` | [Expiration](../platform-and-framework/common-types.md#expiration) | The time the sale on the NFT will start.                                                                                                                                                                  |
+| `end_time`   | [Expiration](../platform-and-framework/common-types.md#expiration) | The time the the sale on the NFT will end.                                                                                                                                                                |
 
 ### SaleState
 

@@ -28,9 +28,9 @@ Withdrawal window should be less than deposit window.
 {% tab title="Rust" %}
 ```rust
 pub struct InstantiateMsg {
-    pub init_timestamp: u64,
-    pub deposit_window: u64,
-    pub withdrawal_window: u64,
+    pub init_timestamp: Milliseconds,
+    pub deposit_window: Milliseconds,
+    pub withdrawal_window: Milliseconds,
     pub incentive_token: String,
     pub native_denom: String,
     pub kernel_address: String,
@@ -43,25 +43,25 @@ pub struct InstantiateMsg {
 ```json
 {
 "native_denom":"uandr",
-"deposit_window":600,
-"init_timestamp":1649877513,
+"deposit_window":600000,
+"init_timestamp":164987751339483294,
 "incentive_token":"andr1...",
-"withdrawal_window":400,
+"withdrawal_window":400000,
 "kernel_address":"andr1..."
 }
 ```
 {% endtab %}
 {% endtabs %}
 
-| Name                | Type            | Description                                                                                                                                                                                                                                                                                                                            |
-| ------------------- | --------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `init_timestamp`    | u64             | Timestamp till when deposits can be made. Provided in seconds.                                                                                                                                                                                                                                                                         |
-| `deposit_window`    | u64             | Number of seconds for which lockup deposits will be accepted.                                                                                                                                                                                                                                                                          |
-| `withdrawal_window` | u64             | Number of seconds for which lockup withdrawals will be allowed.                                                                                                                                                                                                                                                                        |
-| `incentive_token`   | String          | The token being given as incentive.                                                                                                                                                                                                                                                                                                    |
-| `native_denom`      | String          | The native token being deposited.                                                                                                                                                                                                                                                                                                      |
-| `kernel_address`    | String          | Contract address of the [kernel contract](../../platform-and-framework/andromeda-messaging-protocol/kernel.md) to be used for [AMP](../../platform-and-framework/andromeda-messaging-protocol/) messaging. Kernel contract address can be found in our [deployed contracts](<../../platform-and-framework/deployed-contracts (1).md>). |
-| `owner`             | Option\<String> | Optional address to specify as the owner of the ADO being created. Defaults to the sender if not specified.                                                                                                                                                                                                                            |
+| Name                | Type                                                                      | Description                                                                                                                                                                                                                                                                                                                            |
+| ------------------- | ------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `init_timestamp`    | [Milliseconds](../../platform-and-framework/common-types.md#milliseconds) | Timestamp in milliseconds till when deposits can be made. Provided in seconds.                                                                                                                                                                                                                                                         |
+| `deposit_window`    | [Milliseconds](../../platform-and-framework/common-types.md#milliseconds) | Number of milliseconds for which lockup deposits will be accepted.                                                                                                                                                                                                                                                                     |
+| `withdrawal_window` | [Milliseconds](../../platform-and-framework/common-types.md#milliseconds) | Number of milliseconds for which lockup withdrawals will be allowed.                                                                                                                                                                                                                                                                   |
+| `incentive_token`   | String                                                                    | The token being given as incentive.                                                                                                                                                                                                                                                                                                    |
+| `native_denom`      | String                                                                    | The native token being deposited.                                                                                                                                                                                                                                                                                                      |
+| `kernel_address`    | String                                                                    | Contract address of the [kernel contract](../../platform-and-framework/andromeda-messaging-protocol/kernel.md) to be used for [AMP](../../platform-and-framework/andromeda-messaging-protocol/) messaging. Kernel contract address can be found in our [deployed contracts](<../../platform-and-framework/deployed-contracts (1).md>). |
+| `owner`             | Option\<String>                                                           | Optional address to specify as the owner of the ADO being created. Defaults to the sender if not specified.                                                                                                                                                                                                                            |
 
 ## ExecuteMsg
 
@@ -294,9 +294,9 @@ pub enum QueryMsg {
 {% tab title="Rust" %}
 ```rust
 pub struct ConfigResponse {
-    pub init_timestamp: u64,
-    pub deposit_window: u64,
-    pub withdrawal_window: u64,
+    pub init_timestamp: Milliseconds,
+    pub deposit_window: Milliseconds,
+    pub withdrawal_window: Milliseconds,
     pub lockdrop_incentives: Uint128,
     pub incentive_token: String,
     pub native_denom: String,
@@ -305,7 +305,7 @@ pub struct ConfigResponse {
 {% endtab %}
 {% endtabs %}
 
-`lockdrop_incentives` is the total amount of lockdrop incentive tokens (Cw20\_tokens) to be distributed among the users.
+* **`lockdrop_incentives`** is the total amount of lockdrop incentive tokens (Cw20\_tokens) to be distributed among the users.
 
 The rest of the field definitions are the same as the one in the [InstantiateMsg](lockdrop.md#instantiatemsg).
 
@@ -429,7 +429,7 @@ The provided timestamp cannot be in the past.
 pub enum QueryMsg {
       #[returns(Decimal)]
       WithdrawalPercentAllowed {
-            timestamp: Option<u64>,
+            timestamp: Option<Milliseconds>,
     }
 }
 ```
@@ -446,9 +446,9 @@ pub enum QueryMsg {
 {% endtab %}
 {% endtabs %}
 
-| Name        | Type         | Description                                                                                                                 |
-| ----------- | ------------ | --------------------------------------------------------------------------------------------------------------------------- |
-| `timestamp` | Option\<u64> | The timestamp in seconds to check the maximum withdrawal allowed for. If not specified, the current timestamp will be used. |
+| Name        | Type         | Description                                                                                                                      |
+| ----------- | ------------ | -------------------------------------------------------------------------------------------------------------------------------- |
+| `timestamp` | Option\<u64> | The timestamp in milliseconds to check the maximum withdrawal allowed for. If not specified, the current timestamp will be used. |
 
 Returns a number of type Decimal representing the percentage allowed to withdraw.
 

@@ -18,6 +18,8 @@ AMP ADOs are the only ADOs that do not implement the AndromedaQuery base queries
 pub enum AndromedaQuery {
     #[returns(self::ownership::ContractOwnerResponse)]
     Owner {},
+    #[returns(self::ownership::ContractPotentialOwnerResponse)]
+    OwnershipRequest {},
     #[returns(self::ado_type::TypeResponse)]
     Type {},
     #[returns(self::kernel_address::KernelAddressResponse)]
@@ -44,9 +46,8 @@ pub enum AndromedaQuery {
         limit: Option<u32>,
         start_after: Option<String>,
     },
-    #[returns(Vec<String>)]
+    #[returns(Vec<self::permissioning::PermissionedActionsResponse>)]
     PermissionedActions {},
-    
 }
 ```
 
@@ -57,7 +58,7 @@ Queries the owner of the contract.
 {% tabs %}
 {% tab title="Rust" %}
 ```rust
-pub enum AndromedaQuery{
+pub enum AndromedaQuery {
     #[returns(self::ownership::ContractOwnerResponse)]
     Owner{}
 }
@@ -93,6 +94,59 @@ pub struct ContractOwnerResponse {
 ```
 {% endtab %}
 {% endtabs %}
+
+### OwnershipRequest
+
+Returns the owner that has a request to take ownership of the ADO.&#x20;
+
+{% hint style="info" %}
+An OwnershipRequest is present when [UpdateOwner](andromedamsg.md#updateowner) is called.
+{% endhint %}
+
+{% tabs %}
+{% tab title="Rust" %}
+<pre class="language-rust"><code class="lang-rust">pub enum AndromedaQuery {
+<strong>#[returns(self::ownership::ContractPotentialOwnerResponse)]
+</strong>OwnershipRequest {},
+}
+</code></pre>
+{% endtab %}
+
+{% tab title="JSON" %}
+```json
+{
+"ownership_request":{}
+}
+```
+{% endtab %}
+{% endtabs %}
+
+#### ContractPotentialOwnerResponse
+
+A struct that returns the address that has the ownership offer for the ADO.
+
+{% tabs %}
+{% tab title="Rust" %}
+```rust
+{
+pub struct ContractPotentialOwnerResponse {
+    pub potential_owner: Option<Addr>,
+}
+```
+{% endtab %}
+
+{% tab title="JSON" %}
+```json
+{
+"potential_owner":"andr1..."
+}
+```
+{% endtab %}
+{% endtabs %}
+
+| Name              | Type          | Description                                             |
+| ----------------- | ------------- | ------------------------------------------------------- |
+| `potential_owner` | Option\<Addr> | The address that has been offered ownership of the ADO. |
 
 ### Type
 
@@ -258,7 +312,55 @@ pub struct VersionResponse {
 | --------- | ------ | ------------------------ |
 | `version` | String | The version of the ADO.  |
 
+###
+
 ### AppContract
+
+Returns the address of the App ADO that instantiated the ADO.
+
+{% tabs %}
+{% tab title="Rust" %}
+<pre class="language-rust"><code class="lang-rust"><strong>pub enum AndromedaQuery {
+</strong> #[returns(self::app_contract::AppContractResponse)]
+ AppContract {}
+ }
+</code></pre>
+{% endtab %}
+
+{% tab title="JSON" %}
+```json
+{
+"app_contract":{}
+}
+```
+{% endtab %}
+{% endtabs %}
+
+#### AppContractResponse
+
+The struct containing the address of the App ADO.
+
+{% tabs %}
+{% tab title="Rust" %}
+```rust
+pub struct AppContractResponse {
+    pub app_contract: Addr,
+}
+```
+{% endtab %}
+
+{% tab title="JSON" %}
+```json
+{
+"app_contract":"andr1..."
+}
+```
+{% endtab %}
+{% endtabs %}
+
+| Name           | Type | Description                                        |
+| -------------- | ---- | -------------------------------------------------- |
+| `app_contract` | Addr | The address of the App  that instantiated the ADO. |
 
 ### OriginalPublisher
 
@@ -376,7 +478,7 @@ The actions that are permissioned are the ones that have [PermissionAction](andr
 {% tab title="Rust" %}
 ```rust
 pub enum AndromedaQuery {
-    #[returns(Vec<String>)]
+    #[returns(Vec<self::permissioning::PermissionedActionsResponse>)]
     PermissionedActions {},
     }
 ```

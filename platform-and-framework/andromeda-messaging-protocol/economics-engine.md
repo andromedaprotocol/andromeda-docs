@@ -211,6 +211,10 @@ Withdraw CW20 funds from the Andromeda economics module. If no amount is provide
 | `amount` | Option\<Uint128> | The amount of the specified asset to withdraw. If not specified then the total amount is withdrawn. |
 | `asset`  | String           | The contract address of the CW20 token to withdraw.                                                 |
 
+### Ownership
+
+The set of ownerhsip messages. These messages are the same as the ones found in the [ADO base section](../ado-base/andromedamsg.md#ownership).
+
 ## QueryMsg
 
 ### Balance

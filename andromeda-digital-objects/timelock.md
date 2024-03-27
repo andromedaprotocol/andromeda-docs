@@ -71,9 +71,7 @@ pub enum ExecuteMsg {
              "address":"andr1..."
          },
         "condition": {
-            "expiration": {
-              "at_height": 1473847495893493453
-              }
+            "expiration":360000000
         }
     }
 }
@@ -93,15 +91,15 @@ The Expiration timestamp is taken in nanosecond precision. Using another precisi
 
 ```rust
 pub enum EscrowCondition {
-    Expiration(Expiration),
+    Expiration(Milliseconds),
     MinimumFunds(Vec<Coin>),
 }
 ```
 
-| EscrowCondition Type | Type                                                        | Description                                          |
-| -------------------- | ----------------------------------------------------------- | ---------------------------------------------------- |
-| `Expiration`         | [Expiration](broken-reference)                              | Requires a given time or block height to be reached. |
-| `MinimumFunds`       | Vec<[Coin](../platform-and-framework/common-types.md#coin)> | Requires a minimum amount of funds to be deposited.  |
+| EscrowCondition Type | Type                                                                   | Description                                                                 |
+| -------------------- | ---------------------------------------------------------------------- | --------------------------------------------------------------------------- |
+| `Expiration`         | [Milliseconds](../platform-and-framework/common-types.md#milliseconds) | Requires a given time to be reached. The time is specified in milliseconds. |
+| `MinimumFunds`       | Vec<[Coin](../platform-and-framework/common-types.md#coin)>            | Requires a minimum amount of funds to be deposited.                         |
 
 ### ReleaseFunds
 

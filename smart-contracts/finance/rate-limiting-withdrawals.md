@@ -32,7 +32,7 @@ pub struct InstantiateMsg {
     },
 "minimal_withdrawal_frequency":{
     "time":{
-        "time":"3600"
+        "time":"3600000"
         }
     },
 "kernel_address":"andr1...",
@@ -42,7 +42,7 @@ pub struct InstantiateMsg {
 {% endtab %}
 {% endtabs %}
 
-<table><thead><tr><th width="337.06022340942206">Name</th><th width="231.96848920702132">Type</th><th>Description</th></tr></thead><tbody><tr><td><code>allowed_coin</code></td><td><a href="rate-limiting-withdrawals.md#coinandlimit">CoinAndLimit</a></td><td>Set the allowed coin denom and the maximum amount allowed to withdraw.</td></tr><tr><td><code>minimal_withdrawal_frequency</code></td><td><a href="rate-limiting-withdrawals.md#contractandkey">MinimumFrequency</a></td><td>The time required between withdrawals. Specified in seconds. Cannot be 0.</td></tr><tr><td><code>modules</code></td><td>Option&#x3C;Vec&#x3C;Module>></td><td>An optional vector of Andromeda<a href="broken-reference"> Modules</a> that can be attached to the contract. "address-list" module can be added.</td></tr><tr><td><code>kernel_address</code></td><td>String</td><td>Contract address of the <a href="../../platform-and-framework/andromeda-messaging-protocol/kernel.md">kernel contract</a> to be used for <a href="../../platform-and-framework/andromeda-messaging-protocol/">AMP</a> messaging. Kernel contract address can be found in our <a href="../../platform-and-framework/deployed-contracts (1).md">deployed contracts</a>.</td></tr><tr><td><code>owner</code></td><td>Option&#x3C;String></td><td>Optional address to specify as the owner of the ADO being created. Defaults to the sender if not specified.</td></tr></tbody></table>
+<table><thead><tr><th width="337.06022340942206">Name</th><th width="231.96848920702132">Type</th><th>Description</th></tr></thead><tbody><tr><td><code>allowed_coin</code></td><td><a href="rate-limiting-withdrawals.md#coinandlimit">CoinAndLimit</a></td><td>Set the allowed coin denom and the maximum amount allowed to withdraw.</td></tr><tr><td><code>minimal_withdrawal_frequency</code></td><td><a href="rate-limiting-withdrawals.md#contractandkey">MinimumFrequency</a></td><td>The time required between withdrawals. Specified in milliseconds. Cannot be 0.</td></tr><tr><td><code>modules</code></td><td>Option&#x3C;Vec&#x3C;Module>></td><td>An optional vector of Andromeda<a href="broken-reference"> Modules</a> that can be attached to the contract. "address-list" module can be added.</td></tr><tr><td><code>kernel_address</code></td><td>String</td><td>Contract address of the <a href="../../platform-and-framework/andromeda-messaging-protocol/kernel.md">kernel contract</a> to be used for <a href="../../platform-and-framework/andromeda-messaging-protocol/">AMP</a> messaging. Kernel contract address can be found in our <a href="../../platform-and-framework/deployed-contracts (1).md">deployed contracts</a>.</td></tr><tr><td><code>owner</code></td><td>Option&#x3C;String></td><td>Optional address to specify as the owner of the ADO being created. Defaults to the sender if not specified.</td></tr></tbody></table>
 
 #### CoinAndLimit
 
@@ -62,29 +62,11 @@ pub struct CoinAndLimit {
 
 ```rust
 pub enum MinimumFrequency {
-     Time { time: Uint128 },
-     AddressAndKey { address_and_key: ContractAndKey },
+     Time { time: Milliseconds },
      }
 ```
 
-The minimum withdrawal frequency can be set in two ways:
-
-* **Time:** A time in seconds. For example 3600 would specify that each the user needs to wait 3600 seconds between withdrawals.
-* **AddressAndKey:** Takes the value from a primitive. Need to specify the contract address of the primitive and the key associated to the value we want.&#x20;
-
-#### ContractAndKey
-
-```rust
-pub struct ContractAndKey {
-    pub contract_address: String,
-    pub key: Option<String>,
-}
-```
-
-| Name               | Type            | Description                                                                       |
-| ------------------ | --------------- | --------------------------------------------------------------------------------- |
-| `contract_address` | String          | The contract address of the primitive to get the value from.                      |
-| `key`              | Option\<String> | The key of the saved value we want to use. Uses the default key if not specified. |
+* **Time:** A time in milliseconds. For example 3600 would specify that each the user needs to wait 3600 milliseconds between withdrawals.
 
 ## ExecuteMsg
 
@@ -122,7 +104,7 @@ pub enum ExecuteMsg {
 | ----------- | --------------- | ---------------------------------------------------------------------- |
 | `recipient` | Option\<String> | The owner of the deposited funds. If not set, defaults to the sender.  |
 
-### Withdraws
+### WithdrawFunds
 
 {% hint style="warning" %}
 Enough time should pass since the last withdrawal.
@@ -132,7 +114,7 @@ Enough time should pass since the last withdrawal.
 {% tab title="Rust" %}
 ```rust
 pub enum ExecuteMsg{
-     Withdraws {
+     WithdrawFunds {
         amount: Uint128,
     }
 }
@@ -142,7 +124,7 @@ pub enum ExecuteMsg{
 {% tab title="JSON" %}
 ```json
 {
-"withdraws":{
+"withdraw_funds":{
     "amount":"100"
     }
 }
@@ -187,9 +169,9 @@ pub enum QueryMsg{
 {% endtab %}
 {% endtabs %}
 
-#### Response
+#### CoinAllowance
 
-Returns a CoinAllowance struct.
+Returns a **CoinAllowance** struct.
 
 {% tabs %}
 {% tab title="Rust" %}
@@ -197,7 +179,7 @@ Returns a CoinAllowance struct.
 pub struct CoinAllowance {
     pub coin: String,
     pub limit: Uint128,
-    pub minimal_withdrawal_frequency: Uint128,
+    pub minimal_withdrawal_frequency: Milliseconds,
 }
 ```
 {% endtab %}
@@ -207,13 +189,13 @@ pub struct CoinAllowance {
 {
 "coin":"uandr",
 "limit":"50000",
-"minimal_withdrawal_frequency":"3600"
+"minimal_withdrawal_frequency":"3600000"
 }
 ```
 {% endtab %}
 {% endtabs %}
 
-<table><thead><tr><th width="337.06022340942206">Name</th><th width="231.96848920702132">Type</th><th>Description</th></tr></thead><tbody><tr><td><code>coin</code></td><td>string</td><td>The coin denom.</td></tr><tr><td><code>limit</code></td><td>Uint128</td><td>The amount allowed to withdraw per withdrawal.</td></tr><tr><td><code>minimal_withdrawal_frequency</code></td><td>Uint128</td><td>The time required between withdrawals. Specified in seconds. </td></tr></tbody></table>
+<table><thead><tr><th width="337.06022340942206">Name</th><th width="231.96848920702132">Type</th><th>Description</th></tr></thead><tbody><tr><td><code>coin</code></td><td>string</td><td>The coin denom.</td></tr><tr><td><code>limit</code></td><td>Uint128</td><td>The amount allowed to withdraw per withdrawal.</td></tr><tr><td><code>minimal_withdrawal_frequency</code></td><td><a href="../../platform-and-framework/common-types.md#milliseconds">Milliseconds</a></td><td>The time required between withdrawals. Specified in milliseconds. </td></tr></tbody></table>
 
 ### AccountDetails
 
@@ -246,9 +228,9 @@ pub enum QueryMsg{
 | --------- | ------ | ------------------------------------- |
 | `account` | String | The address to check the account for. |
 
-#### Response&#x20;
+#### AccountDetails&#x20;
 
-Returns an AccountDetails struct.
+Returns an **AccountDetails** struct.
 
 {% tabs %}
 {% tab title="Rust" %}

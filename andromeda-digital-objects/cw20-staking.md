@@ -4,8 +4,8 @@
 
 This **CW20 Staking ADO** allows users to stake a specified [CW20 token](cw20.md) and to receive rewards in any number of other tokens in proportion to their share. The reward token does not need to be the token they stake with but it can be. The contract allows for two types of rewards:
 
-* non-allocated rewards: These are rewards that get deposited periodically into the contract and get distributed proportionally to stakers. Rewards that are deposited are instantly granted to the stakers.&#x20;
-* Allocated rewards:  The owner deposits a number of tokens to be distributed over the course of a set time. The rewards get distributed the same way, except all of the reward tokens are already deposited in the contract.
+* **Non-allocated rewards**: These are rewards that get deposited periodically into the contract and get distributed proportionally to stakers. Rewards that are deposited are instantly granted to the stakers.&#x20;
+* **Allocated rewards**:  The owner deposits a number of tokens to be distributed over the course of a set time. The rewards get distributed the same way, except all of the reward tokens are already deposited in the contract.
 
 The added rewards are distributed proportionally between the stakers that are already staked.
 
@@ -64,8 +64,8 @@ pub struct InstantiateMsg {
           "asset_info":{
               "cw20":"andr1..."
               },
+          "init_timestamp": 104329432909800,
           "allocation_config":{
-              "init_timestamp": 104329432,
               "till_timestamp": 104334432,
               "cycle_rewards":"300",
               "cycle duration":"400"
@@ -78,21 +78,23 @@ pub struct InstantiateMsg {
 {% endtab %}
 {% endtabs %}
 
-<table><thead><tr><th width="230.8396361895644">Name</th><th width="254.33333333333331">Type</th><th>Description</th></tr></thead><tbody><tr><td><code>staking_token</code></td><td><a href="../platform-and-framework/common-types.md#andraddr">AndrAddr</a></td><td>Reference to the  CW20 token that can be staked. Can be either the contract address or name in an App.</td></tr><tr><td><code>additional_rewards</code></td><td>Option&#x3C;Vec&#x3C;RewardTokenUnchecked>></td><td>Any rewards in addition to the staking token. This list cannot include the staking token since it is used as a reward by default. Can have a maximum of 10 reward tokens.</td></tr><tr><td><code>kernel_address</code></td><td>String</td><td>Contract address of the <a href="../platform-and-framework/andromeda-messaging-protocol/kernel.md">kernel contract</a> to be used for <a href="../platform-and-framework/andromeda-messaging-protocol/">AMP</a> messaging. Kernel contract address can be found in our <a href="../platform-and-framework/deployed-contracts (1).md">deployed contracts</a>.</td></tr><tr><td><code>owner</code></td><td>Option&#x3C;String></td><td>Optional address to specify as the owner of the ADO being created. Defaults to the sender if not specified.</td></tr></tbody></table>
+<table><thead><tr><th width="230.8396361895644">Name</th><th width="254.33333333333331">Type</th><th>Description</th></tr></thead><tbody><tr><td><code>staking_token</code></td><td><a href="../platform-and-framework/common-types.md#andraddr">AndrAddr</a></td><td>Reference to the  CW20 token that can be staked. Can be either the contract address or a VFS path.</td></tr><tr><td><code>additional_rewards</code></td><td>Option&#x3C;Vec&#x3C;<a href="cw20-staking.md#rewardtokenunchecked">RewardTokenUnchecked</a>>></td><td>Any rewards in addition to the staking token. This list cannot include the staking token since it is used as a reward by default. Can have a maximum of 10 reward tokens.</td></tr><tr><td><code>kernel_address</code></td><td>String</td><td>Contract address of the <a href="../platform-and-framework/andromeda-messaging-protocol/kernel.md">kernel contract</a> to be used for <a href="../platform-and-framework/andromeda-messaging-protocol/">AMP</a> messaging. Kernel contract address can be found in our <a href="../platform-and-framework/deployed-contracts (1).md">deployed contracts</a>.</td></tr><tr><td><code>owner</code></td><td>Option&#x3C;String></td><td>Optional address to specify as the owner of the ADO being created. Defaults to the sender if not specified.</td></tr></tbody></table>
 
 #### RewardTokenUnchecked
 
 ```rust
 pub struct RewardTokenUnchecked {
     pub asset_info: AssetInfoUnchecked,
+    pub init_timestamp: Milliseconds,
     pub allocation_config: Option<AllocationConfig>,
 }
 ```
 
-| Name                | Type                                                         | Description                                                                                                |
-| ------------------- | ------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------- |
-| `asset_info`        | AssetInfoUnchecked                                           | The asset used as a reward.                                                                                |
-| `allocation_config` | Option<[AllocationConfig](cw20-staking.md#allocationconfig)> | How to allocate the `asset_info` as rewards. If not set, then the rewards are of the "non-allocated" type. |
+| Name                | Type                                                                   | Description                                                                                                      |
+| ------------------- | ---------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- |
+| `asset_info`        | [AssetInfoUnchecked](cw20-staking.md#assetinfounchecked)               | The asset used as a reward.                                                                                      |
+| `init_timestamp`    | [Milliseconds](../platform-and-framework/common-types.md#milliseconds) | Timestamp from which Rewards will start getting accrued against the staked LP tokens. Specified in milliseconds. |
+| `allocation_config` | Option<[AllocationConfig](cw20-staking.md#allocationconfig)>           | How to allocate the `asset_info` as rewards. If not set, then the rewards are of the "non-allocated" type.       |
 
 #### AssetInfoUnchecked
 
@@ -116,21 +118,19 @@ pub enum AssetInfoBase<T> {
 
 ```rust
 pub struct AllocationConfig {
-    pub init_timestamp: u64,
-    pub till_timestamp: u64,
+    pub till_timestamp: Milliseconds,
     pub cycle_rewards: Uint128,
-    pub cycle_duration: u64,
+    pub cycle_duration: Milliseconds,
     pub reward_increase: Option<Decimal>,
 }
 ```
 
-| Name              | Type               | Description                                                                                         |
-| ----------------- | ------------------ | --------------------------------------------------------------------------------------------------- |
-| `init_timestamp`  | u64                | Timestamp from which Rewards will start getting accrued against the staked LP tokens.               |
-| `till_timestamp`  | u64                | Timestamp till which Rewards will be accrued. No staking rewards are accrued beyond this timestamp. |
-| `cycle_rewards`   | Uint128            | Rewards distributed during the 1st cycle.                                                           |
-| `cycle_duration`  | u64                | Cycle duration in seconds.                                                                          |
-| `reward_increase` | Optional\<Decimal> | Percent increase in Rewards per cycle.                                                              |
+| Name              | Type                                                                   | Description                                                                                                         |
+| ----------------- | ---------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------- |
+| `till_timestamp`  | [Milliseconds](../platform-and-framework/common-types.md#milliseconds) | Timestamp in milliseconds till which rewards will be accrued. No staking rewards are accrued beyond this timestamp. |
+| `cycle_rewards`   | Uint128                                                                | Rewards distributed during the 1st cycle.                                                                           |
+| `cycle_duration`  | [Milliseconds](../platform-and-framework/common-types.md#milliseconds) | Cycle duration in milliseconds.                                                                                     |
+| `reward_increase` | Optional\<Decimal>                                                     | Percent increase in Rewards per cycle.                                                                              |
 
 ## ExecuteMsg
 
@@ -322,7 +322,7 @@ Returns the config structure.
 {% tab title="Rust" %}
 ```rust
 pub struct Config {
-    pub staking_token: String,
+    pub staking_token: AndrAddr,
     pub number_of_reward_tokens: u32,
 }
 ```
@@ -338,11 +338,11 @@ pub struct Config {
 {% endtab %}
 {% endtabs %}
 
-<table><thead><tr><th width="306.970342910102">Name</th><th width="319.3333333333333">Type</th><th>Description</th></tr></thead><tbody><tr><td><code>staking_token</code></td><td>String</td><td>The token accepted for staking.</td></tr><tr><td><code>number_of_reward_tokens</code></td><td>u32</td><td>The current number of reward tokens, cannot exceed the maximum of 10.</td></tr></tbody></table>
+<table><thead><tr><th width="306.970342910102">Name</th><th width="179.33333333333331">Type</th><th>Description</th></tr></thead><tbody><tr><td><code>staking_token</code></td><td><a href="../platform-and-framework/common-types.md#andraddr">AndrAddr</a></td><td>The token accepted for staking.</td></tr><tr><td><code>number_of_reward_tokens</code></td><td>u32</td><td>The current number of reward tokens, cannot exceed the maximum of 10.</td></tr></tbody></table>
 
 ### State
 
-Gets the state of the contract.
+Gets the state of the contract. Returns the total share of the staking token in the contract
 
 {% tabs %}
 {% tab title="Rust" %}
@@ -442,7 +442,7 @@ pub struct StakerResponse {
     "pending_rewards": [
       [
         "native:uandr",
-        "6666666"
+        "3333333"
       ]
     ]
 }
@@ -487,36 +487,10 @@ Returns a `Vec<StakerResponse>` for range of stakers. The pending rewards are up
 
 |               |                 |                                                                                                        |
 | ------------- | --------------- | ------------------------------------------------------------------------------------------------------ |
-| `start_after` | Option\<String> | An optional Id to start after. Used for pagination.                                                    |
+| `start_after` | Option\<String> | An optional address to start after. Used for pagination.                                               |
 | `limit`       | Optional\<u32>  | An optional limit to the number of stakers to query. Defaults to 10 and can be set to a maximum of 30. |
 
 Returns a vector of [StakerResponse](cw20-staking.md#stakerresponse).
-
-### Timestamp
-
-Queries the current timestamp in seconds.
-
-{% tabs %}
-{% tab title="Rust" %}
-```rust
-pub enum QueryMsg {
-       #[returns(u64)]
-       Timestamp {},
-    }
-}
-```
-{% endtab %}
-
-{% tab title="JSON" %}
-```json
-{
-"timestamp":{}
-}
-```
-{% endtab %}
-{% endtabs %}
-
-Returns a u64 with the current timestamp in seconds.
 
 ### AndrQuery
 
