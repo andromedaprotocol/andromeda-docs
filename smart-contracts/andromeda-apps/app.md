@@ -96,6 +96,8 @@ An enum containing the different component types that can be instantiated.
 
 {% hint style="warning" %}
 In order to create a CrossChain component, `chain_info`field (Found in instantiation message of the App ADO) needs be specified for the chain to deploy the component on. For example, if I want to create a NFT component on Stargaze from an App on the Andromeda chain, I need to specify the [chain info](app.md#chaininfo) for the stargaze chain for it to be successfull.
+
+CrossChain Components are currently disabled.
 {% endhint %}
 
 ```rust
@@ -108,9 +110,9 @@ pub enum ComponentType {
 
 There are three types of components:
 
-* **New:** Provide a base64 encoded binary of the instantiation message of the component to add
-* **Symlink:** Provide a valid Symlink that resolves to the address of the component to add
-* **CrossChain:** Provide a base64 encoded binary of the instantiation message of the component to add as well as the chain. The component will be instantiated on the specified chain
+* **New:** Provide a base64 encoded binary of the instantiation message of the component to add.
+* **Symlink:** Provide a valid Symlink that resolves to the address of the component to add.
+* **CrossChain:** Provide a base64 encoded binary of the instantiation message of the component to add as well as the chain. The component will be instantiated on the specified chain. This option is currently disabled.
 
 #### CrossChainComponent
 
@@ -199,7 +201,7 @@ Only available to the contract owner.
 {% tabs %}
 {% tab title="Rust" %}
 ```rust
-pub enum ExecuteMsg{
+pub enum ExecuteMsg {
    ClaimOwnership { 
       name: Option<String>,
       new_owner:Option<Addr>

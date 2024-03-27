@@ -40,16 +40,3 @@
 | **Kernel** | unset                                      | Contract used for AMP messaging.                            |
 {% endtab %}
 {% endtabs %}
-
-### Juno
-
-{% tabs %}
-{% tab title="Testnet (uni-6)" %}
-
-
-| Contract   | Address                                                         | Description                                                 |
-| ---------- | --------------------------------------------------------------- | ----------------------------------------------------------- |
-| **ADODB**  | juno12eenfngf5hh034mj6y64n4mcl3kzkv92tju43x2gyrp486xf4jrstk8s8l | Contract used to store the code IDs of all the other ADOs.  |
-| **Kernel** | juno1vdjkv6cz80hu439kssnk5ew8hlrsl7cyr3qywa8unf9p6rczr4rsac90za | Contract used for AMP messaging.                            |
-{% endtab %}
-{% endtabs %}

@@ -20,25 +20,17 @@
 * [Introduction to ADOs](andromeda-digital-objects/introduction-to-ados.md)
 * [Auction](smart-contracts/non-fungible-tokens/auction.md)
 * [App](smart-contracts/andromeda-apps/app.md)
-* [Cross-Chain Swap](andromeda-digital-objects/cross-chain-swap.md)
 * [Crowdfund](smart-contracts/non-fungible-tokens/crowdfund.md)
 * [CW20](andromeda-digital-objects/cw20.md)
 * [CW20 Staking](andromeda-digital-objects/cw20-staking.md)
 * [CW721](andromeda-digital-objects/cw721.md)
-* [CW721 Timelock](andromeda-digital-objects/cw721-timelock.md)
 * [CW20 Exchange](andromeda-digital-objects/cw20-exchange.md)
 * [Lockdrop](smart-contracts/fungible-tokens/lockdrop.md)
 * [Marketplace](andromeda-digital-objects/marketplace.md)
 * [Merkle-Airdrop](andromeda-digital-objects/merkle-airdrop.md)
-* [NFT Staking](andromeda-digital-objects/nft-staking.md)
-* [Primitive](smart-contracts/data-storage/primitive.md)
 * [Rate Limiting Withdrawals](smart-contracts/finance/rate-limiting-withdrawals.md)
 * [Splitter](andromeda-digital-objects/splitter.md)
 * [Timelock](andromeda-digital-objects/timelock.md)
-* [Vault](andromeda-digital-objects/vault.md)
-* [Vesting](andromeda-digital-objects/vesting.md)
-* [Weighted Distribution Splitter](andromeda-digital-objects/weighted-distribution-splitter.md)
-* [Wrapped CW721](andromeda-digital-objects/wrapped-cw721.md)
 
 ## Andromeda Apps
 
@@ -47,7 +39,6 @@
 * [Auctioning App](andromeda-apps/auctioning-app.md)
 * [Cw20 Staking App](andromeda-apps/cw20-staking-app.md)
 * [Marketplace App](andromeda-apps/marketplace-app.md)
-* [Wrapped-NFT App](andromeda-apps/wrapped-nft-app.md)
 
 ## Creating an ADO
 
