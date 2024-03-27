@@ -15,8 +15,8 @@ For example, if an NFT with token id "token-1" is sent from the CW721 ADO " andr
 {% tabs %}
 {% tab title="Rust" %}
 <pre class="language-rust"><code class="lang-rust">pub struct InstantiateMsg {
-        pub kernel_address: String,        
-<strong>        }
+   pub kernel_address: String,        
+<strong>   }
 </strong></code></pre>
 {% endtab %}
 

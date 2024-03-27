@@ -10,8 +10,6 @@ This ADO allows creating [English Auctions](https://en.wikipedia.org/wiki/Englis
 Only authorized CW721 contracts are allowed to send NFTs to this ADO.&#x20;
 {% endhint %}
 
-The contract supports [modules](broken-reference) to extend its functionality.
-
 **Ado\_type**: auction
 
 ## InstantiateMsg <a href="#instantiatemsg" id="instantiatemsg"></a>
@@ -20,8 +18,7 @@ The contract supports [modules](broken-reference) to extend its functionality.
 {% tab title="Rust" %}
 <pre class="language-rust"><code class="lang-rust">pub struct InstantiateMsg {
     pub authorized_token_addresses: Option&#x3C;Vec&#x3C;AndrAddr>>,
-<strong>    pub modules: Option&#x3C;Vec&#x3C;Module>>,
-</strong><strong>    pub kernel_address: String,
+<strong>    pub kernel_address: String,
 </strong><strong>    pub owner: Option&#x3C;String>,
 </strong> }
 </code></pre>
@@ -41,7 +38,6 @@ The contract supports [modules](broken-reference) to extend its functionality.
 | Name                         | Type                                                                            | Description                                                                                                                                                                                                                                                                                                                            |
 | ---------------------------- | ------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `authorized_token_addresses` | Option\<Vec<[AndrAddr](../../platform-and-framework/common-types.md#andraddr)>> | Optional set of CW721 contract addresses to be allowed to send NFTs to the Auction ADO. Needs to be added by calling [AuthorizeTokenContract](auction.md#authorizetokencontract) if not specified in instantiation for the Auction to accept NFTs.                                                                                     |
-| `modules`                    | Option\<Vec\<Module>>                                                           | An optional vector of Andromeda[ Modules](broken-reference) that can be attached to the contract. "rates" and "address-list" modules can be added.                                                                                                                                                                                     |
 | `kernel_address`             | String                                                                          | Contract address of the [kernel contract](../../platform-and-framework/andromeda-messaging-protocol/kernel.md) to be used for [AMP](../../platform-and-framework/andromeda-messaging-protocol/) messaging. Kernel contract address can be found in our [deployed contracts](<../../platform-and-framework/deployed-contracts (1).md>). |
 | `owner`                      | Option\<String>                                                                 | Optional address to specify as the owner of the ADO being created. Defaults to the sender if not specified.                                                                                                                                                                                                                            |
 
@@ -366,10 +362,6 @@ pub enum ExecuteMsg {
 | `token_address` | String | The address of the NFT contract.        |
 
 ### Base Executes
-
-{% hint style="warning" %}
-Uses the modules feature.
-{% endhint %}
 
 The rest of the execute messages can be found in the[ ADO Base](../../platform-and-framework/ado-base/) section.
 

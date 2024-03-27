@@ -18,7 +18,6 @@
 ## Andromeda Digital Objects
 
 * [Introduction to ADOs](andromeda-digital-objects/introduction-to-ados.md)
-* [Address List](andromeda-digital-objects/address-list.md)
 * [Auction](smart-contracts/non-fungible-tokens/auction.md)
 * [App](smart-contracts/andromeda-apps/app.md)
 * [Cross-Chain Swap](andromeda-digital-objects/cross-chain-swap.md)
@@ -33,7 +32,6 @@
 * [Merkle-Airdrop](andromeda-digital-objects/merkle-airdrop.md)
 * [NFT Staking](andromeda-digital-objects/nft-staking.md)
 * [Primitive](smart-contracts/data-storage/primitive.md)
-* [Rates](smart-contracts/modules/rates.md)
 * [Rate Limiting Withdrawals](smart-contracts/finance/rate-limiting-withdrawals.md)
 * [Splitter](andromeda-digital-objects/splitter.md)
 * [Timelock](andromeda-digital-objects/timelock.md)
@@ -41,12 +39,6 @@
 * [Vesting](andromeda-digital-objects/vesting.md)
 * [Weighted Distribution Splitter](andromeda-digital-objects/weighted-distribution-splitter.md)
 * [Wrapped CW721](andromeda-digital-objects/wrapped-cw721.md)
-
-## Modules
-
-* [Module Definitions](modules/module-definitions.md)
-* [Rates Module](modules/rates-module.md)
-* [Address List Module](modules/address-list-module/README.md)
 
 ## Andromeda Apps
 

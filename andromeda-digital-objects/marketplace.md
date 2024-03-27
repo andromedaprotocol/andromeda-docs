@@ -4,8 +4,6 @@
 
 The **Marketplace** ADO is a smart contract that allows you to sell your NFTs in a marketplace. The seller sends their NFT to the marketplace ADO with a custom price and denomination to be used to buy the NFT. Once the NFT is sent, it is up for sale and buyers can pay the price to buy the NFT.
 
-The contract supports [modules](broken-reference) to extend its functionality.
-
 {% hint style="warning" %}
 &#x20;Each sale is assigned an Id which starts at 1 and increments for each new sale.&#x20;
 {% endhint %}
@@ -18,7 +16,6 @@ The contract supports [modules](broken-reference) to extend its functionality.
 {% tab title="Rust" %}
 ```rust
 pub struct InstantiateMsg {
-    pub modules: Option<Vec<Module>>,
     pub kernel_address: String,
     pub owner: Option<String>
 
@@ -29,26 +26,16 @@ pub struct InstantiateMsg {
 {% tab title="JSON" %}
 ```json
 {
-"modules":[
-    {
-    "name":"address-list",
-    "address":{
-        "identifier":"andr1..."
-        },
-    "is_mutable": true
-    }
-  ],
  "kernel_address":"andr1..."
 }
 ```
 {% endtab %}
 {% endtabs %}
 
-| Name             | Type                  | Description                                                                                                                                                                                                                                                                                                                   |
-| ---------------- | --------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `modules`        | Option\<Vec\<Module>> | An optional vector of Andromeda [Modules](../modules/module-definitions.md). "rates", "address\_list", "receipt" modules can be added.                                                                                                                                                                                        |
-| `kernel_address` | String                | Contract address of the [kernel contract](../platform-and-framework/andromeda-messaging-protocol/kernel.md) to be used for [AMP](../platform-and-framework/andromeda-messaging-protocol/) messaging. Kernel contract address can be found in our [deployed contracts](<../platform-and-framework/deployed-contracts (1).md>). |
-| `owner`          | Option\<String>       | Optional address to specify as the owner of the ADO being created. Defaults to the sender if not specified.                                                                                                                                                                                                                   |
+| Name             | Type            | Description                                                                                                                                                                                                                                                                                                                   |
+| ---------------- | --------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `kernel_address` | String          | Contract address of the [kernel contract](../platform-and-framework/andromeda-messaging-protocol/kernel.md) to be used for [AMP](../platform-and-framework/andromeda-messaging-protocol/) messaging. Kernel contract address can be found in our [deployed contracts](<../platform-and-framework/deployed-contracts (1).md>). |
+| `owner`          | Option\<String> | Optional address to specify as the owner of the ADO being created. Defaults to the sender if not specified.                                                                                                                                                                                                                   |
 
 ## ExecuteMsg
 
@@ -222,10 +209,6 @@ pub enum ExecuteMsg {
 | `token_address` | String | The address of the cw721 that minted the NFT to cancel the sale for. |
 
 ### Base Executes
-
-{% hint style="warning" %}
-Uses the modules feature.
-{% endhint %}
 
 The rest of the execute messages can be found in the[ ADO Base](../platform-and-framework/ado-base/) section.
 

@@ -6,11 +6,9 @@ description: The set of query messages common to all ADOs in the Andromeda Logic
 
 ## AndromedaQuery
 
-All of the ADOs can call the base query messages found in the AndromedaMsg.
+All of the ADOs can call the base query messages found in the AndromedaMsg.&#x20;
 
 {% hint style="danger" %}
-Some of the query messages are feature specific meaning they are only available to all the ADOs that implement a specific feature such as the modules feature. Implemented features will be specified in the ADO's documentation page.&#x20;
-
 AMP ADOs are the only ADOs that do not implement the AndromedaQuery base queries.
 {% endhint %}
 
@@ -32,12 +30,6 @@ pub enum AndromedaQuery {
     Version {},
     #[returns(Option<::cosmwasm_std::Addr>)]
     AppContract {},
-    #[cfg(feature = "modules")]
-    #[returns(Module)]
-    Module { id: Uint64 },
-    #[cfg(feature = "modules")]
-    #[returns(Vec<String>)]
-    ModuleIds {},
     #[returns(::cosmwasm_std::BalanceResponse)]
     Balance { address: AndrAddr },
     #[returns(Vec<self::permissioning::PermissionInfo>)]
@@ -494,65 +486,3 @@ pub enum AndromedaQuery {
 {% endtabs %}
 
 Returns a Vector of String containing the actions that are permissioned.&#x20;
-
-## Modules
-
-The following can be executed by the contracts that implement modules:
-
-### Module
-
-Queries a module by its Id.
-
-{% tabs %}
-{% tab title="Rust" %}
-```rust
-pub enum AndromedaQuery{
-  #[returns(Module)]
-  Module{
-      id:Uint64,
-  }
-}
-```
-{% endtab %}
-
-{% tab title="JSON" %}
-```json
-{
-   "module":{
-     "id":"tokenid"
-     }
-}
-```
-{% endtab %}
-{% endtabs %}
-
-| Name | Type   | Description                    |
-| ---- | ------ | ------------------------------ |
-| `id` | Uint64 | The Id of the module to query. |
-
-Returns a [Module](../../modules/module-definitions.md#module-definitions) struct with the module information.&#x20;
-
-### ModuleIds
-
-Queries all of the module Ids.
-
-{% tabs %}
-{% tab title="Rust" %}
-```rust
-pub enum AndromedaQuery{
-    #[returns(Vec<String>)]
-    ModuleIds{}
-}
-```
-{% endtab %}
-
-{% tab title="JSON" %}
-```json
-{
-"module_ids":{}
-}
-```
-{% endtab %}
-{% endtabs %}
-
-Returns a `Vec<String>` containing the module Ids.

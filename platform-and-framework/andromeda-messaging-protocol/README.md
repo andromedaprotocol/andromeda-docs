@@ -187,9 +187,12 @@ pub struct AMPCtx {
 | `previous sender` | String             | The previous sender of the packet.               |
 | `id`              | u64                | The id of the packet provided  by the kernel.    |
 
-When the `AMPPkt` is received by the Kernel, it first checks that the `sender` of the message is an Andromeda ADO. It chekcs the `id` of the packet making sure that it was provided by the kernel. It then sends the `AMPPkt` to the first ADO recipient specified in the first `AMPMsg` from the `Vec<AMPMsg>`. When the ADO receives this packet, it is unpacked and executed. Once executed, this `AMPMsg` is removed from the `Vec<AMPMsg>` and the rest of the `AMPPkt` is sent back to the Kernel. The Kernel then recieves the `AMPPkt` and repeats the same operation, relaying it to the next recipient in the next `AMPMsg` until all the messages have been executed.&#x20;
+1. When the `AMPPkt` is received by the Kernel, it first checks that the `sender` of the message is an Andromeda ADO.
+2. Then it checks the `id` of the packet making sure that it was provided by the kernel.
+3. It then sends the `AMPPkt` to the first ADO recipient specified in the first `AMPMsg` from the `Vec<AMPMsg>`.&#x20;
+4. When the ADO receives this packet, it is unpacked and executed. Once executed, this `AMPMsg` is removed from the `Vec<AMPMsg>` and the rest of the `AMPPkt` is sent back to the Kernel.
+5. The Kernel then recieves the `AMPPkt` and repeats the same operation, relaying it to the next recipient in the next `AMPMsg` until all the messages have been executed.&#x20;
 
 ### AMPReceive
 
 All our ADOs have a common execute message to handle receiving an AMP packet from the kernel. When a packet is received by an ADO, it verifies it and proceeds to execute the attached messages.
-

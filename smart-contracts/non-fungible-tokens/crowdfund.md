@@ -10,8 +10,6 @@ We allow for owners other than the contract, incase the creator wants to set asi
 
 Every sale sets a `min_tokens_sold` which specifies the minimum number of tokens that need to be sold in order for the sale to be considered successful. This acts as an insurance for the buyers by allowing them to get a refund in case this goal was not achieved. If this threshhold is met, the owner can end the sale.
 
-The contract supports [modules](broken-reference) to extend its functionality.
-
 **Ado\_type**: crowdfund
 
 ## InstantiateMsg
@@ -22,7 +20,6 @@ The contract supports [modules](broken-reference) to extend its functionality.
 pub struct InstantiateMsg {
     pub token_address: AndrAddr,
     pub can_mint_after_sale: bool,
-    pub modules: Option<Vec<Module>>,
     pub kernel_address: String,
     pub owner: Option<String>,
 }
@@ -40,7 +37,7 @@ pub struct InstantiateMsg {
 {% endtab %}
 {% endtabs %}
 
-<table><thead><tr><th width="259.3333333333333">Name</th><th width="212.3589484327604">Type</th><th>Desctription</th></tr></thead><tbody><tr><td><code>token_address</code></td><td><a href="../../platform-and-framework/common-types.md#andraddr">AndrAddr</a></td><td>The reference to the CW721 ADO that will mint the NFTs for the sale. Can be either the contract address or the name in an App. </td></tr><tr><td><code>modules</code></td><td>Option&#x3C;Vec&#x3C;<a href="../../modules/module-definitions.md#module-definitions">Module</a>>></td><td>An optional vector of Andromeda<a href="broken-reference"> Modules</a> that can be attached to the contract. "rates", "address-list", and  "receipt" modules can be added.</td></tr><tr><td><code>can_mint_after_sale</code></td><td>bool</td><td>A flag to whether minting is allowed after a sale has been done. Minting is never allowed during a sale.  </td></tr><tr><td><code>kernel_address</code></td><td>String</td><td>Contract address of the <a href="../../platform-and-framework/andromeda-messaging-protocol/kernel.md">kernel contract</a> to be used for <a href="../../platform-and-framework/andromeda-messaging-protocol/">AMP</a> messaging. Kernel contract address can be found in our <a href="../../platform-and-framework/deployed-contracts (1).md">deployed contracts</a>.</td></tr><tr><td><code>owner</code></td><td>Option&#x3C;String></td><td>Optional address to specify as the owner of the ADO being created. Defaults to the sender if not specified.</td></tr></tbody></table>
+<table><thead><tr><th width="259.3333333333333">Name</th><th width="212.3589484327604">Type</th><th>Desctription</th></tr></thead><tbody><tr><td><code>token_address</code></td><td><a href="../../platform-and-framework/common-types.md#andraddr">AndrAddr</a></td><td>The reference to the CW721 ADO that will mint the NFTs for the sale. Can be either the contract address or the name in an App. </td></tr><tr><td><code>can_mint_after_sale</code></td><td>bool</td><td>A flag to whether minting is allowed after a sale has been done. Minting is never allowed during a sale.  </td></tr><tr><td><code>kernel_address</code></td><td>String</td><td>Contract address of the <a href="../../platform-and-framework/andromeda-messaging-protocol/kernel.md">kernel contract</a> to be used for <a href="../../platform-and-framework/andromeda-messaging-protocol/">AMP</a> messaging. Kernel contract address can be found in our <a href="../../platform-and-framework/deployed-contracts (1).md">deployed contracts</a>.</td></tr><tr><td><code>owner</code></td><td>Option&#x3C;String></td><td>Optional address to specify as the owner of the ADO being created. Defaults to the sender if not specified.</td></tr></tbody></table>
 
 ## ExecuteMsg
 
@@ -277,10 +274,6 @@ The EndSale message needs to be called twice. Once for distribution of NFTs and 
 | `limit` | Option\<u32>> | An optional limit on the number of transferred tokens in case the sale was a success, or the number of refunds to issue in case the sale did not succeed (min amount not reached). |
 
 ### Base Executes
-
-{% hint style="warning" %}
-Uses the modules feature.
-{% endhint %}
 
 The rest of the execute messages can be found in the[ ADO Base](../../platform-and-framework/ado-base/) section.
 

@@ -9,8 +9,6 @@ There are two main conditions that can be used by the contract:
 
 Once a condition is satisfied, the funds can be released by anyone.
 
-The contract supports [modules](broken-reference) to extend its functionality.
-
 **Ado\_type**: timelock
 
 ## InstantiateMsg
@@ -19,7 +17,6 @@ The contract supports [modules](broken-reference) to extend its functionality.
 {% tab title="Rust" %}
 ```rust
 pub struct InstantiateMsg {
-    pub modules: Option<Vec<Module>>,
     pub kernel_address:String,
     pub owner: Option<String>,
 }
@@ -43,7 +40,7 @@ pub struct InstantiateMsg {
 {% endtab %}
 {% endtabs %}
 
-<table><thead><tr><th width="249.33333333333331">Name</th><th width="252.39014373716634">Type</th><th>Description</th></tr></thead><tbody><tr><td><code>modules</code></td><td>Option&#x3C;Vec&#x3C;<a href="../modules/module-definitions.md">Module</a>>></td><td>An optional vector of Andromeda<a href="broken-reference"> Modules</a> that can be attached to the contract. "address-list" module can be added.</td></tr><tr><td><code>kernel_address</code></td><td>String</td><td>Contract address of the <a href="../platform-and-framework/andromeda-messaging-protocol/kernel.md">kernel contract</a> to be used for <a href="../platform-and-framework/andromeda-messaging-protocol/">AMP</a> messaging. Kernel contract address can be found in our <a href="../platform-and-framework/deployed-contracts (1).md">deployed contracts</a>.</td></tr><tr><td><code>owner</code></td><td>Option&#x3C;String></td><td>Optional address to specify as the owner of the ADO being created. Defaults to the sender if not specified.</td></tr></tbody></table>
+<table><thead><tr><th width="249.33333333333331">Name</th><th width="252.39014373716634">Type</th><th>Description</th></tr></thead><tbody><tr><td><code>kernel_address</code></td><td>String</td><td>Contract address of the <a href="../platform-and-framework/andromeda-messaging-protocol/kernel.md">kernel contract</a> to be used for <a href="../platform-and-framework/andromeda-messaging-protocol/">AMP</a> messaging. Kernel contract address can be found in our <a href="../platform-and-framework/deployed-contracts (1).md">deployed contracts</a>.</td></tr><tr><td><code>owner</code></td><td>Option&#x3C;String></td><td>Optional address to specify as the owner of the ADO being created. Defaults to the sender if not specified.</td></tr></tbody></table>
 
 ## ExecuteMsg
 
@@ -172,10 +169,6 @@ ReleaseSpecificFunds {
 | `recipient_addr` | Option\<String> | Optional address to receive the released funds. Will default to the sender if not specified. |
 
 ### Base Executes
-
-{% hint style="warning" %}
-Uses the modules feature.
-{% endhint %}
 
 The rest of the execute messages can be found in the[ ADO Base](../platform-and-framework/ado-base/) section.
 

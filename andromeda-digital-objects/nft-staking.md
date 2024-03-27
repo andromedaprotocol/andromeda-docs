@@ -285,9 +285,9 @@ pub enum ExecuteMsg {
 | ----- | ------ | ---------------------------------------------------------------------------------------------- |
 | `key` | String | The key of the NFT to claim. Consists of concatenating the cw721 contract address + token Id.  |
 
-### AndrReceive
+### Base Executes
 
-The rest of the executes can be found in the [`AndrReceive`](../platform-and-framework/ado-base/#andrrecieve) section.
+The rest of the execute messages can be found in the[ ADO Base](../platform-and-framework/ado-base/) section.
 
 ## QueryMsg
 
@@ -443,6 +443,6 @@ pub enum QueryMsg {
 
 Returns a type [Coin](../platform-and-framework/common-types.md#coin) with the amount and denom of the reward being distributed per second.
 
-### AndrQuery
+### &#x20;Base Queries
 
-A set of base queries common to all Andromeda ADOs. Check[ AndrQuery](../platform-and-framework/ado-base/#andrquery).
+The rest of the query messages can be found in the[ ADO Base](../platform-and-framework/ado-base/) section.

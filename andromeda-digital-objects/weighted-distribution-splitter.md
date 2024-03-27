@@ -12,8 +12,6 @@ For example, if there are three recipients with weights 4, 7, and 2 respectively
 
 If a recipient is then added, the total weight is increased and the percentages are recalculated.
 
-The contract supports [modules](broken-reference) to extend it's functionality.
-
 **ado\_type:** weighted-distribution-splitter
 
 ## InstantiateMsg
@@ -32,7 +30,6 @@ The maximum lock\_time that can be set is 31,536,000 which is 1 year.
 pub struct InstantiateMsg {
     pub recipients: Vec<AddressWeight>,
     pub lock_time: Option<u64>,
-    pub modules: Option<Vec<Module>>,
     pub kernel_address: String,
     pub owner: Option<String>
 }
@@ -72,7 +69,6 @@ pub struct InstantiateMsg {
 | ---------------- | --------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `recipients`     | Vec<[AddressWeight](weighted-distribution-splitter.md#addressweight)> | The vector of recipients for the contract. Anytime a `Send` execute message is sent the amount sent will be divided amongst these recipients depending on their assigned weight.                                                                                                                                              |
 | `lock_time`      | Option\<u64>                                                          | How long the splitter is locked. When locked, no recipients/weights can be added/changed. In seconds.                                                                                                                                                                                                                         |
-| `modules`        | Option\<Vec<[Module](broken-reference)>>                              | An optional vector of Andromeda[ Modules](broken-reference) that can be attached to the contract."address-list" module can be added.                                                                                                                                                                                          |
 | `kernel_address` | String                                                                | Contract address of the [kernel contract](../platform-and-framework/andromeda-messaging-protocol/kernel.md) to be used for [AMP](../platform-and-framework/andromeda-messaging-protocol/) messaging. Kernel contract address can be found in our [deployed contracts](<../platform-and-framework/deployed-contracts (1).md>). |
 | `owner`          | Option\<String>                                                       | Optional address to specify as the owner of the ADO being created. Defaults to the sender if not specified.                                                                                                                                                                                                                   |
 

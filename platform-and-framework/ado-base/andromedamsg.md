@@ -9,8 +9,6 @@ description: The set of execute messages common to all ADOs in the Andromeda Log
 All of the ADOs can call most of the base execute messages found in the **AndromedaMsg** enum.
 
 {% hint style="danger" %}
-Some of the execute messages are feature specific meaning they are only available to all the ADOs that implement a specific feature such as the modules feature. Implemented features will be specified in the ADO's documentation page.&#x20;
-
 AMP ADOs are the only ADOs that do not implement the AndromedaMsg base executes.
 {% endhint %}
 
@@ -31,23 +29,7 @@ pub enum AndromedaMsg {
     
     #[serde(rename = "amp_receive")]
     AMPReceive(AMPPkt),
-    
     Permissioning(PermissioningMessage),
-    
-    #[cfg(feature = "modules")]
-    RegisterModule {
-        module: Module,
-    },
-    
-    #[cfg(feature = "modules")]
-    DeregisterModule {
-        module_idx: Uint64,
-    },
-    
-    #[cfg(feature = "modules")]
-    AlterModule {
-        module_idx: Uint64,
-        module: Module,
     }
 }
 ```
@@ -61,12 +43,6 @@ All the ADOs can execute:&#x20;
 * [`UpdateKernelAddress`](andromedamsg.md#updatekerneladdress)
 * [`AMPReceive`](andromedamsg.md#ampreceive)
 * [`Permissioning messages`](andromedamsg.md#permissioning)
-
-The modules feature should be enabled for an ADO in order to execute:
-
-* [`RegisterModule`](andromedamsg.md#registermodule)
-* [`DeregisterModule`](andromedamsg.md#deregistermodule)
-* [`AlterModule`](andromedamsg.md#altermodule)
 
 ## Ownership
 
@@ -525,128 +501,3 @@ pub enum PermissioningMessage {
 | Name     | Type   | Description                                             |
 | -------- | ------ | ------------------------------------------------------- |
 | `action` | String | The action/execute message to remove permissioning for. |
-
-## Modules
-
-The following can be executed by the contracts that implement modules:
-
-### RegisterModule
-
-Adds a module to the contract.
-
-{% hint style="warning" %}
-Only the owner can execute RegisterModule.
-
-Each module is assigned a u64 index so as it can be unregistered/altered by the owner.
-{% endhint %}
-
-{% tabs %}
-{% tab title="Rust" %}
-```rust
-pub enum AndromedaMsg {
-  RegisterModule {
-        module: Module,
-    }
-}
-```
-{% endtab %}
-
-{% tab title="JSON" %}
-```json
-{
-   "register_module": {
-          "module":{
-               "name": "rates",
-               "address":"andr1...",
-               "is_mutable": true
-        }
-     }
-   }
-```
-{% endtab %}
-{% endtabs %}
-
-| Name     | Type                                          | Description         |
-| -------- | --------------------------------------------- | ------------------- |
-| `module` | [Module](../../modules/module-definitions.md) | The module to add.  |
-
-### DeregisterModule
-
-Removes a module from the contract.
-
-{% hint style="warning" %}
-Only available to the contract owner.
-
-Only mutable modules can be deregistered.&#x20;
-{% endhint %}
-
-{% tabs %}
-{% tab title="Rust" %}
-```rust
- pub enum AndromedaMsg{
-  DeregisterModule {
-        module_idx: Uint64,
-    }
-  }
-```
-{% endtab %}
-
-{% tab title="JSON" %}
-```json
-{
-    "deregister_module":{
-        "module_idx":"3"
-        }
-}
-```
-{% endtab %}
-{% endtabs %}
-
-| Name         | Type   | Description                            |
-| ------------ | ------ | -------------------------------------- |
-| `module_idx` | Uint64 | The index of the module to be removed. |
-
-### AlterModule
-
-Changes a module to a new one specified.
-
-{% hint style="warning" %}
-Only available to the contract owner.
-
-Only mutable modules can be altered.
-{% endhint %}
-
-{% tabs %}
-{% tab title="Rust" %}
-```rust
-pub enum AndromedaMsg{
- AlterModule {
-        module_idx: Uint64,
-        module: Module,
-    }
-  }
-```
-{% endtab %}
-
-{% tab title="JSON" %}
-```json
-{
- "alter_module":{
-          "module_idx":"3",
-          "module":{
-             "module_type": "rates",
-             "address":"andr1...",
-             "is_mutable": false
-        }
-      }
-    } 
-```
-{% endtab %}
-{% endtabs %}
-
-| Name         | Type                                          | Description                        |
-| ------------ | --------------------------------------------- | ---------------------------------- |
-| `module_idx` | Uint64                                        | The index of the module to change. |
-| `module`     | [Module](../../modules/module-definitions.md) | The new module implement.          |
-
-***

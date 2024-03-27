@@ -16,7 +16,6 @@ The contract supports [modules](broken-reference) to extend its functionality.
 pub struct InstantiateMsg {
     pub allowed_coin: CoinAndLimit,
     pub minimal_withdrawal_frequency: MinimumFrequency,
-    pub modules: Option<Vec<Module>>,
     pub kernel_address: String,
     pub owner: Option<String>,
 }
@@ -42,7 +41,7 @@ pub struct InstantiateMsg {
 {% endtab %}
 {% endtabs %}
 
-<table><thead><tr><th width="337.06022340942206">Name</th><th width="231.96848920702132">Type</th><th>Description</th></tr></thead><tbody><tr><td><code>allowed_coin</code></td><td><a href="rate-limiting-withdrawals.md#coinandlimit">CoinAndLimit</a></td><td>Set the allowed coin denom and the maximum amount allowed to withdraw.</td></tr><tr><td><code>minimal_withdrawal_frequency</code></td><td><a href="rate-limiting-withdrawals.md#contractandkey">MinimumFrequency</a></td><td>The time required between withdrawals. Specified in milliseconds. Cannot be 0.</td></tr><tr><td><code>modules</code></td><td>Option&#x3C;Vec&#x3C;Module>></td><td>An optional vector of Andromeda<a href="broken-reference"> Modules</a> that can be attached to the contract. "address-list" module can be added.</td></tr><tr><td><code>kernel_address</code></td><td>String</td><td>Contract address of the <a href="../../platform-and-framework/andromeda-messaging-protocol/kernel.md">kernel contract</a> to be used for <a href="../../platform-and-framework/andromeda-messaging-protocol/">AMP</a> messaging. Kernel contract address can be found in our <a href="../../platform-and-framework/deployed-contracts (1).md">deployed contracts</a>.</td></tr><tr><td><code>owner</code></td><td>Option&#x3C;String></td><td>Optional address to specify as the owner of the ADO being created. Defaults to the sender if not specified.</td></tr></tbody></table>
+<table><thead><tr><th width="337.06022340942206">Name</th><th width="231.96848920702132">Type</th><th>Description</th></tr></thead><tbody><tr><td><code>allowed_coin</code></td><td><a href="rate-limiting-withdrawals.md#coinandlimit">CoinAndLimit</a></td><td>Set the allowed coin denom and the maximum amount allowed to withdraw.</td></tr><tr><td><code>minimal_withdrawal_frequency</code></td><td><a href="rate-limiting-withdrawals.md#contractandkey">MinimumFrequency</a></td><td>The time required between withdrawals. Specified in milliseconds. Cannot be 0.</td></tr><tr><td><code>kernel_address</code></td><td>String</td><td>Contract address of the <a href="../../platform-and-framework/andromeda-messaging-protocol/kernel.md">kernel contract</a> to be used for <a href="../../platform-and-framework/andromeda-messaging-protocol/">AMP</a> messaging. Kernel contract address can be found in our <a href="../../platform-and-framework/deployed-contracts (1).md">deployed contracts</a>.</td></tr><tr><td><code>owner</code></td><td>Option&#x3C;String></td><td>Optional address to specify as the owner of the ADO being created. Defaults to the sender if not specified.</td></tr></tbody></table>
 
 #### CoinAndLimit
 
@@ -137,10 +136,6 @@ pub enum ExecuteMsg{
 | `amount` | Uint128 | The amount of coins to withdraw. |
 
 ### Base Executes
-
-{% hint style="warning" %}
-Uses the modules feature.
-{% endhint %}
 
 The rest of the execute messages can be found in the[ ADO Base](../../platform-and-framework/ado-base/) section.
 
