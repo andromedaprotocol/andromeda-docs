@@ -113,29 +113,20 @@ The struct can be used in two ways:
 
 &#x20;2\. Providing an `AndrAddr` and a `Binary` message which will be sent to the contract at the resolved address. The `Binary` message can be any message that the contract at the resolved address can handle.
 
-The `ibc_recovery_address` is an address to receive funds in case the IBC message failed.
+{% hint style="warning" %}
+The `ibc_recovery_address` is an address to receive funds in case the IBC message failed. IBC messages are currently disabled and will be enabled soon.&#x20;
+{% endhint %}
 
 ### AndrAddr
 
-An address that can be used within the Andromeda ecosystem.
+An address or path that can be used within the Andromeda ecosystem to reference ADOs and users.
 
 ```rust
 pub struct AndrAddr(String);
 ```
 
-**The address can be one of two things:**
+**The address can be one of the following:**
 
-* A valid human readable address e.g. "andr1..."
-* A valid Andromeda [Virtual File System](andromeda-messaging-protocol/virtual-file-system.md) (VFS) path e.g. "/home/user/app/component"
-
-VFS paths can be local in the case of an app and can be done by referencing  `./component` .
-
-They can also contain protocols for cross chain communication and are structured in the following way:
-
-{% hint style="danger" %}
-The chain is required if IBC is to be used.&#x20;
-
-VFS paths are required in specifying the recipients in IBC messages.
-{% endhint %}
-
-`<protocol>://<chain>/<path>` e.g. `ibc://stargaze/home/user/app/component`
+* A valid human readable address e.g. "**andr14pmn28jyqgphd5wv0z28ppxe5ryeraqqgqfr2v**"&#x20;
+* A valid Andromeda [Virtual File System](andromeda-messaging-protocol/virtual-file-system.md) (VFS) path e.g. "**/home/user/app1/component3**"
+* A valid [VFS](andromeda-messaging-protocol/virtual-file-system.md) local path used in Apps e.g. "**./\<component-name>**"

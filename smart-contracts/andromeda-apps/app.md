@@ -10,12 +10,14 @@ An ADO in the App is called an AppComponent. Every App would be composed of many
 To reference a component from the another component when instantiating an App, you would need to speciy "./\<component-name>. You will see examples of this in our [Andromeda Apps](broken-reference) section.
 {% endhint %}
 
-At instantiation, we specify the address of the [Kernel ADO](../../platform-and-framework/andromeda-messaging-protocol/kernel.md) . This Kernel will have a reference to the [ADODB](../../platform-and-framework/ado-base/) which has the code Ids of all the Andromeda ADOs saved. The Kernel ADO for each chain is already deployed and the addresses can be found in our [deployed contracts](broken-reference) section. You can learn to deploy your first app [here](../../andromeda-apps/crowdfunding-app.md).
+At instantiation, we specify the address of the [Kernel ADO](../../platform-and-framework/andromeda-messaging-protocol/kernel.md) . This Kernel will have a reference to the [ADODB](../../platform-and-framework/ado-base/) which has the code Ids of all the Andromeda ADOs saved. The Kernel ADO for each chain is already deployed and the addresses can be found in our [deployed contracts](<../../platform-and-framework/deployed-contracts (1).md>) section. You can learn to deploy your first app [here](../../andromeda-apps/crowdfunding-app.md).
 
 Our Apps support cross-chain components or ADOs, meaning an App can contain several ADOs each located on a different chain. This is specified by using the `CrossChain` component type.
 
 {% hint style="warning" %}
 The App registers all its components in the [Virtual File System](../../platform-and-framework/andromeda-messaging-protocol/virtual-file-system.md) upon instantiation and assigns to them the names specified by the user upon instantiation of the App.
+
+Crosschain Apps are currently disabled.
 {% endhint %}
 
 **Ado\_type**: app-contract
@@ -24,6 +26,10 @@ The App registers all its components in the [Virtual File System](../../platform
 
 {% hint style="warning" %}
 The maximum number of app components is 50.
+
+You cannot have 2 Apps with the same name instantiated by the same address.
+
+The instantiator address is given ownership over all the components of the App at instantiation.
 {% endhint %}
 
 {% tabs %}
@@ -192,7 +198,7 @@ AddAppComponent{
 
 ### ClaimOwnership
 
-Gives ownership of a component to the specified `new_owner` address instead of the app contract.
+Sends an ownership request to the specified `new_owner` for a component owned by the App.&#x20;
 
 {% hint style="warning" %}
 Only available to the contract owner.
@@ -225,11 +231,11 @@ pub enum ExecuteMsg {
 | Name        | Type            | Description                                                                                     |
 | ----------- | --------------- | ----------------------------------------------------------------------------------------------- |
 | `name`      | Option\<String> | Optional name for the component to claim. If not set, will claim all ADO components in the app. |
-| `new_owner` | Option\<Addr>   | The address to get ownership. Defaults to the sender if not specified.                          |
+| `new_owner` | Option\<Addr>   | Optional address to get the  ownership request. Defaults to the sender if not specified.        |
 
 ### ProxyMessage
 
-Sends a message to the ADO with the specified `name`. This is used in the case the app contract has specific operation privileges over a component.
+Sends a message to the ADO with the specified `name`. This is used in the case the app contract has specific operation privileges (Is the owner)  over a component.
 
 {% hint style="warning" %}
 Only available to the contract owner.

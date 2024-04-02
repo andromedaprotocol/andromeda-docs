@@ -117,9 +117,10 @@ A sale should not be already ongoing.
 {% tabs %}
 {% tab title="Rust" %}
 ```rust
-pub enum ExecuteMsg{
+pub enum ExecuteMsg {
  StartSale {
-        expiration: Milliseconds,
+        start_time: Option<Milliseconds>,
+        end_time: Milliseconds,
         price: Coin,
         min_tokens_sold: Uint128,
         max_amount_per_wallet: Option<u32>,
@@ -131,7 +132,8 @@ pub enum ExecuteMsg{
 {% tab title="JSON" %}
 <pre class="language-json"><code class="lang-json">{
 "start_sale":{
- "expiration":10048328053820324,
+ "start_time":10048328053820324,
+ "end_time":11048328053820324
   "price":{
     "denom":"uandr",
     "amount":"10000"
@@ -147,7 +149,7 @@ pub enum ExecuteMsg{
 {% endtab %}
 {% endtabs %}
 
-<table><thead><tr><th width="272.3333333333333">Name</th><th width="196.50867625185924">Type</th><th>Description</th></tr></thead><tbody><tr><td><code>expiration</code></td><td><a href="../../platform-and-framework/common-types.md#milliseconds">Milliseconds</a></td><td>A timestamp in milliseconds to when the sale ends.</td></tr><tr><td><code>price</code></td><td><a href="../../platform-and-framework/common-types.md#coin">Coin</a></td><td>The price per token.</td></tr><tr><td><code>min_tokens_sold</code></td><td>Uint128</td><td>The minimum amount of tokens sold to go through with the sale.</td></tr><tr><td><code>max_amount_per_wallet</code></td><td>Option&#x3C;u32></td><td>The amount of tokens a wallet can purchase, default is 1.</td></tr><tr><td><code>recipient</code></td><td><a href="../../platform-and-framework/common-types.md#recipient">Recipient</a></td><td>The recipient of the funds if the sale met the <code>min_tokens_sold</code>.</td></tr></tbody></table>
+<table><thead><tr><th width="272.3333333333333">Name</th><th width="196.50867625185924">Type</th><th>Description</th></tr></thead><tbody><tr><td><code>start_time</code></td><td>Option&#x3C;<a href="../../platform-and-framework/common-types.md#milliseconds">Milliseconds</a>></td><td>An optional <a href="https://www.epochconverter.com">timestamp</a> in milliseconds to when the sale start. The sale will immediately start if not specified.</td></tr><tr><td><code>end_time</code></td><td><a href="../../platform-and-framework/common-types.md#milliseconds">Milliseconds</a></td><td><a href="https://www.epochconverter.com">Timestamp</a> in milliseconds to specify when the sale ends.</td></tr><tr><td><code>price</code></td><td><a href="../../platform-and-framework/common-types.md#coin">Coin</a></td><td>The price per token.</td></tr><tr><td><code>min_tokens_sold</code></td><td>Uint128</td><td>The minimum amount of tokens sold to go through with the sale.</td></tr><tr><td><code>max_amount_per_wallet</code></td><td>Option&#x3C;u32></td><td>The amount of tokens a wallet can purchase, default is 1.</td></tr><tr><td><code>recipient</code></td><td><a href="../../platform-and-framework/common-types.md#recipient">Recipient</a></td><td>The recipient of the funds if the sale met the <code>min_tokens_sold</code>.</td></tr></tbody></table>
 
 ### Purchase
 
@@ -272,6 +274,38 @@ The EndSale message needs to be called twice. Once for distribution of NFTs and 
 | Name    | Type          | Description                                                                                                                                                                        |
 | ------- | ------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `limit` | Option\<u32>> | An optional limit on the number of transferred tokens in case the sale was a success, or the number of refunds to issue in case the sale did not succeed (min amount not reached). |
+
+### UpdateTokenContract
+
+Updates the token address of the CW721 used by the Crowdfund to a new one.
+
+{% hint style="warning" %}
+Only available to the owner of the ADO.
+{% endhint %}
+
+{% tabs %}
+{% tab title="Rust" %}
+```rust
+pub enum ExecuteMsg {
+    UpdateTokenContract { address: AndrAddr },
+    }
+```
+{% endtab %}
+
+{% tab title="JSON" %}
+```json
+{
+"update_token_contract":{
+    "address":"andr1..."
+    }
+}
+```
+{% endtab %}
+{% endtabs %}
+
+| Name      | Type                                                              | Description                                        |
+| --------- | ----------------------------------------------------------------- | -------------------------------------------------- |
+| `address` | [AndrAddr](../../platform-and-framework/common-types.md#andraddr) | The new token address to be used in the crowdfund. |
 
 ### Base Executes
 

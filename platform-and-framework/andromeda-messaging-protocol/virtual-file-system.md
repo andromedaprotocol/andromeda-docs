@@ -18,7 +18,7 @@ A user does the following:
 
 1. Registers their address as user1 by calling [RegisterUser](virtual-file-system.md#registeruser)
 2. The user then creates an App and calls it "app-1" which has 2 compnents named "comp-1" and "comp-2"
-3. The App registers its components under their assigned names
+3. The App will automatically register its components under their assigned names
 
 {% hint style="danger" %}
 When you register a username, it will registered in the "home" directory. This can also be represented by the "\~" symbol or the "." symbol.
@@ -33,15 +33,15 @@ The following paths are now registered:
 * /home/user/app-1/comp-1 is the path to get the address of component 1 in the app
 * /home/user/app-1/comp-2 is the path to get the address of component 2 in the app
 
+#### When Can we Use a VFS Path
+
 When you go through our ADOs, you will notice an **AndrAddr** struct used very frequently for specifying addresses, whether be user addresses or ADO addresses. The use of this struct signifies that the address can be referenced by either the VFS path or the user/contract address. More on the **AndrAddr** struct can be found[ here](../common-types.md#andraddr).
 
-In case you want to reference a component in the app itself, you can use ./component as a valid path. For example if I want to create an app with two components named "token" and "auction" and in the auction I want to reference the token address, I can use ./token to do so.&#x20;
+#### VFS Paths in Apps
 
-#### IBC Paths
+Local references can be used in case of Apps. These would include the component addresses and can be referenced using " **./\<component-name>**" as a valid path.&#x20;
 
-When sending IBC messages, the recipient of the message needs to be a valid IBC VFS path. The path is formatted in the following manner:&#x20;
-
-`<protocol>://<chain>/<path>`&#x20;
+For example if I want to create an app with two components named "token" and "auction" and in the auction I want to reference the token address, I can use **./token** to do so. Another example here would be a sending an NFT from a CW721 to an auction. Instead of specifying the auction contract address as the recipient, you can use the local reference **./auction** to do so as long as the components belong to the same App.
 
 **Ado\_type:** vfs
 
