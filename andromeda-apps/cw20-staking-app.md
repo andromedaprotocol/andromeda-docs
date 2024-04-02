@@ -168,26 +168,6 @@ You will be using the contract addresses that were instantiated for you instead 
 
 ### Interacting with the App
 
-Andromeda contracts assign the original instantiator as contract owners. Due to how instantiation via a submessage operates in CosmWasm contracts, we must claim ownership of the components in order to execute messages that have authorization restrictions (owner restricted).
-
-{% hint style="warning" %}
-You can also use proxy messages to execute through the app ADO itself, but for these examples we will be claiming ownership.
-{% endhint %}
-
-#### Claim Components
-
-```json
-{
-"claim_ownership":{}
-}
-```
-
-```
-  wasm execute <app_contract_address> '{"claim_ownership":{}}' 
-```
-
-[Claim Components](https://testnet-ping.wildsage.io/andromeda/tx/E7E573BA85928DC52625CBD9B6F4AA2F303F5C7CD3790AAFF71ABF79DCDA1B1C)
-
 #### User 1 stakes tokens
 
 To stake tokens we perform a `send` message from Token contract and attach the `Stake{}` message to it. For user 1 we will stake 3000 tokens.&#x20;
