@@ -87,8 +87,7 @@ elgafar1    elgafar-1
 pisco1      pisco-1      
 sei-network atlantic-1   
 injective   injective-888
-galileo3    galileo-3    
-junotestnet uni-6        
+galileo3    galileo-3            
 test        galileo-3    
 ? keplr-g3@galileo-3> () 
 ```
@@ -143,8 +142,7 @@ elgafar1    elgafar-1
 pisco1      pisco-1      
 sei-network atlantic-1   
 injective   injective-888
-galileo3    galileo-3    
-junotestnet uni-6         
+galileo3    galileo-3           
 ```
 
 {% hint style="warning" %}
@@ -176,8 +174,7 @@ elgafar1    elgafar-1
 pisco1      pisco-1      
 sei-network atlantic-1   
 injective   injective-888
-galileo3    galileo-3    
-junotestnet uni-6 
+galileo3    galileo-3     
 tutorial elgafar-1
 ```
 
@@ -247,8 +244,7 @@ elgafar1    elgafar-1
 pisco1      pisco-1      
 sei-network atlantic-1   
 injective   injective-888
-galileo3    galileo-3    
-junotestnet uni-6        
+galileo3    galileo-3           
 example     galileo-3      
 
 // Set galileo-3 as the config to use using the ID.

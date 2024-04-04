@@ -26,12 +26,12 @@ wasm execute <contract address> <message>
 
 #### Flags
 
-<table><thead><tr><th>Flag</th><th width="235.66666666666666">Description</th><th>Usage</th></tr></thead><tbody><tr><td><strong>funds</strong></td><td>Funds to send with the message</td><td>--funds 100ujunox</td></tr><tr><td><strong>memo</strong></td><td>An optional memo to attach to the message</td><td>--memo 'Wow what a great transaction!'</td></tr><tr><td><strong>simulate</strong></td><td>Simulates the transaction without broadcasting it. Useful to estimate gas costs.</td><td>-- simulate</td></tr><tr><td><strong>help</strong></td><td>Displays info about the current command. </td><td>--help</td></tr></tbody></table>
+<table><thead><tr><th>Flag</th><th width="235.66666666666666">Description</th><th>Usage</th></tr></thead><tbody><tr><td><strong>funds</strong></td><td>Funds to send with the message</td><td>--funds 100uandr</td></tr><tr><td><strong>memo</strong></td><td>An optional memo to attach to the message</td><td>--memo 'Wow what a great transaction!'</td></tr><tr><td><strong>simulate</strong></td><td>Simulates the transaction without broadcasting it. Useful to estimate gas costs.</td><td>-- simulate</td></tr><tr><td><strong>help</strong></td><td>Displays info about the current command. </td><td>--help</td></tr></tbody></table>
 
 #### Example
 
 ```
-? $test@uni-3> wasm execute juno1jtwyahp6mzntaash8gylzfzusfcqapgzf78r2vfxllxcl4z4c8pqx77sg3 '{"deposit": {}}' --funds 10000ujunox
+? main-star@elgafar-1> wasm execute stars12w4nvet0fr2kh8a6xg594d4fd3tkwulrpy55nawh8s0y2z584pjsq4w2cq '{"deposit": {}}' --funds 10000ustars
 ```
 
 The CLI will promt a confirmation. After confirming, the output is similar to:
@@ -41,10 +41,10 @@ The CLI will promt a confirmation. After confirming, the output is similar to:
 
 Transaction executed!
 
-https://testnet.mintscan.io/juno-testnet/txs/738481C4404F7EF0FF5AEA438448BA33C0E8E3D3D036481F822523D99ED40DB5
-```
+https://testnet-explorer.publicawesome.dev/stargaze/tx/042353250E0D6C67C320195032CB0BB7EDE1873F2434426A9812551ED4206E3E
 
 The link will take you to the explorer to see the transaction details.
+```
 
 ## Instantiate
 
@@ -61,7 +61,7 @@ wasm instantiate <code-id> <instantiate message>
 | Flag         | Description                                                                      | Usage                           |
 | ------------ | -------------------------------------------------------------------------------- | ------------------------------- |
 | **label**    | Used to provide a label assigned to the instantiation.                           | --label 'This is a great label' |
-| **admin**    | Used to provide an alternative admin address for the contract.                   | --admin juno...                 |
+| **admin**    | Used to provide an alternative admin address for the contract.                   | --admin andr1...                |
 | **simulate** | Simulates the transaction without broadcasting it. Useful to estimate gas costs. | --simulate                      |
 | **print**    | Prints the constructed message before simulating.                                | --print                         |
 | **help**     | Displays info about the current command.                                         | --help                          |
@@ -69,13 +69,22 @@ wasm instantiate <code-id> <instantiate message>
 #### Example
 
 ```
-? $test@uni-3> wasm instantiate 572 '{}'
-– Instantiating your contract...
+? main-star@elgafar-1> wasm instantiate 3886 '{"kernel_address":"stars130mz3y4ajamadf9u5df7xh64t5ed5h3cxechz3jw43qdrc7wm09sxtykmx"}'
+– Simulating Instantiation Tx...
+Transaction simulated!
+
+Cost Estimates
+Gas Used: 211327
+Fee estimates:
+   5284ustars
+
+? Do you want to proceed? Yes
+- Instantiating your contract...
 
 Contract instantiated!
 
-https://testnet.mintscan.io/juno-testnet/txs/4546FED1F4D2A92EBEDE58FB4440FF1324473ED11DFEC6B29AC37E566CD3CCB7
-Address: juno1hlp92l8mhkpf9gusaklnqlyu07y2vygvru6m85fvmcqnrt7y0vcq6up78z
+https://testnet-explorer.publicawesome.dev/stargaze/tx/75184641D8275A5B34183CF31181C563FB6E4D007FC7BBC805D2DA43892BBBD7
+Address: stars1zkug84swrqhvxupsuk4zu93zdcgva02uwlfk2095py39n7243vnq3dxd7y
 ```
 
 {% hint style="warning" %}
@@ -95,7 +104,7 @@ wasm migrate <contract address> <new code id> <migrate msg>
 #### Example:
 
 ```
-wasm migrate 126 juno1hlp92l8mhkpf9gusaklnqlyu07y2vygvru6m85fvmcqnrt7y0vcq6up78z {}
+wasm migrate 126 stars1zkug84swrqhvxupsuk4zu93zdcgva02uwlfk2095py39n7243vnq3dxd7y {}
 ```
 
 ## Query
@@ -111,18 +120,17 @@ wasm query <contract address> <query object>
 #### Example
 
 ```
- ? $test@uni-3> wasm query juno1kfl9qxw55hm50ns24hg482hfvh2hdspjpdwq008rue3f84vhu07spwgtky {"balance":{"address":"juno197y44w58djquqkpu8v56p
-gwvm058f6jswm0jec"}} 
+? main-star@elgafar-1> wasm query stars1zkug84swrqhvxupsuk4zu93zdcgva02uwlfk2095py39n7243vnq3dxd7y {"get_locked_funds_for_recipient":{"recipient":"stars1dtlndrtpth240retkn8l54w8gg2g4hzpq3ugas"}}
 ```
 
 {% hint style="warning" %}
 Unlike the other messages, the query does not require single quotes around the message.
 {% endhint %}
 
-Here I am queriying the account of a user from one of our contracts, we get:
+Here I am queriying the account of a user (which is empty) from one of our contracts, we get:
 
 ```
-[ { denom: 'ujunox', amount: '335' } ] 
+[] 
 ```
 
 ## Upload

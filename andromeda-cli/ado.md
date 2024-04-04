@@ -45,7 +45,7 @@ We are then prompted to add the information needed to create the timelock ADO.&#
 | Flag         | Description                                                                      | Usage                                   |
 | ------------ | -------------------------------------------------------------------------------- | --------------------------------------- |
 | **label**    | Used to provide a label assigned to the instantiation                            | --label 'Wow what a great transaction!' |
-| **admin**    | Used to provide an alternative admin address for the contract                    | -- admin juno1...                       |
+| **admin**    | Used to provide an alternative admin address for the contract                    | -- admin andr1...                       |
 | **simulate** | Simulates the transaction without broadcasting it. Useful to estimate gas costs. | -- simulate                             |
 | **help**     | Displays info about the current command.                                         | --help                                  |
 
@@ -71,7 +71,7 @@ You can then chose from the list of executes to run.
 
 | Flag         | Description                                                                      | Usage                                  |
 | ------------ | -------------------------------------------------------------------------------- | -------------------------------------- |
-| **funds**    | Funds to send with the message                                                   | --funds 100ujunox                      |
+| **funds**    | Funds to send with the message                                                   | --funds 100uandr                       |
 | **memo**     | An optional memo to attach to the message                                        | --memo 'Wow what a great transaction!' |
 | **simulate** | Simulates the transaction without broadcasting it. Useful to estimate gas costs. | -- simmulate                           |
 | **print**    | Prints the constructed message before simulating.                                | --print                                |
@@ -190,7 +190,7 @@ ado query <ado-address>
 #### Example
 
 ```
-ado query juno153xscnqm7erc847fye9p2vuqtz6465g2jr48ah5meuwzjmzlc6aqf677yd
+ado query andr1yyca08xqdgvjz0psg56z67ejh9xms6l436u8y58m82npdqqhmmtq9snx2v
 ```
 
 You can then chose from the list of queries to run.&#x20;
@@ -208,22 +208,23 @@ ado transfer <address> <new owner address>
 #### Example
 
 ```
-? main@uni-5> ado transfer juno1yvxl7jcuged55rjl57cd4c967p7l48avnv9r2fcgs0sshl07fuasn8u22f juno13nt2nfvjqgp4qdeg769qyjwzzfmppsdu2380gedqk6czmqtkq6fs8jrx7z
-- Simulating Tx...
+? guide@elgafar-1> ado transfer stars1z77gc0w0h2tly8kkc7y8mt3p5w7q2tev9qe9y3skaq7l6s4xfa8st6793k stars105j9m29uk2486rjwawkcucp8e3l52f8wpgyc2c
+? Would you like to add funds to this message? No
+– Simulating Tx...
 Transaction simulated!
 
 Cost Estimates
-Gas Used: 148616
+Gas Used: 131128
 Fee estimates:
-   3716ujunox
+   3279ustars
 
 ? Do you want to proceed? Yes
-— Executing Tx...
+- Executing Tx...
 
 ADO Transferred!
 
-https://testnet.mintscan.io/juno-testnet/txs/8955682FA597EAA60A5F524A0C626CBDB3519CF8EFBE733FA20896D08F538564
-? main@uni-5> () 
+https://testnet-explorer.publicawesome.dev/stargaze/tx/042353250E0D6C67C320195032CB0BB7EDE1873F2434426A9812551ED4206E3E
+? guide@elgafar-1> () 
 ```
 
 

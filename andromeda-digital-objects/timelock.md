@@ -230,7 +230,7 @@ pub struct GetLockedFundsResponse {
         ...
         ],
         
-        "recipient": "juno1...",
+        "recipient": "andr1...",
         
         "condition": {
             "expiration": {
@@ -267,7 +267,7 @@ pub enum QueryMsg {
 ```json
 {
  "get_locked_funds_for_recipient":{
-   "recipient":"juno1...",
+   "recipient":"andr1...",
    "limit":"15"
    }
  }
@@ -305,7 +305,7 @@ pub struct GetLockedFundsForRecipientResponse {
         ],
         
         "recipient":{
-            "addr":"juno1..."
+            "addr":"andr1..."
         },
         
         "condition": {
