@@ -170,4 +170,4 @@ pub fn migrate(deps: DepsMut, _env: Env, _msg: MigrateMsg) -> Result<Response, C
 
 ### Testing
 
-Other than what we have covered, most of the logic of the CW3 remained the same. Unit test and integration tests were not changed as they are already written and all passed in the ADO version as well. As mentioned in [before](getting-started.md#testing) we do provide custom mock structs for testing. You can check any of our published ADOs testing from our [core repo](https://github.com/andromedaprotocol/andromeda-core) to see how these structs can be used to conduct testing.&#x20;
+Other than what we have covered, most of the logic of the CW3 remained the same. Unit test and integration tests were not changed as they are already written and all passed in the ADO version as well. As mentioned [before](getting-started.md#testing), we do provide custom mock structs for testing. You can check any of our published ADOs testing from our [core repo](https://github.com/andromedaprotocol/andromeda-core) to see how these structs can be used to conduct testing.&#x20;

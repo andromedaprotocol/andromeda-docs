@@ -40,11 +40,11 @@
 * [Cw20 Staking App](andromeda-apps/cw20-staking-app.md)
 * [Marketplace App](andromeda-apps/marketplace-app.md)
 
-## Creating an ADO
+## Developing an ADO
 
-* [Getting Started](creating-an-ado/getting-started.md)
-* [ADO Example](creating-an-ado/ado-example.md)
-* [ADO Submissions](creating-an-ado/ado-submissions.md)
+* [Getting Started](developing-an-ado/getting-started.md)
+* [ADO Example](developing-an-ado/ado-example.md)
+* [ADO Submissions](developing-an-ado/ado-submissions.md)
 
 ## Andromeda CLI
 

@@ -166,7 +166,7 @@ pub fn query(deps: Deps, env: Env, msg: QueryMsg) -> Result<Binary, ContractErro
 
 ### Testing
 
-To aid in testing we provide a separate `mock_dependencies_custom` function that provides handlers for specific ADO contracts. This can be found [here](https://github.com/andromedaprotocol/andromeda-core/blob/amp/packages/std/src/testing/mock\_querier.rs). The following mock variables are used:
+To aid in testing we provide a separate `mock_dependencies_custom` function that provides handlers for specific ADO contracts. This can be found [here](https://github.com/andromedaprotocol/andromeda-core/blob/1.0.rc-1/packages/std/src/testing/mock\_querier.rs). The following mock variables are used:
 
 ```rust
 /// Mock CW20 Contract Address
@@ -213,6 +213,3 @@ fn test_something() {
  // .. The rest of your test code
 }
 ```
-
-
-

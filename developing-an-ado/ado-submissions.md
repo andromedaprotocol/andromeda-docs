@@ -12,7 +12,7 @@ Although the idea approval is currently done by the Andromeda Team, it will be e
 
 The first step requires the developer to submit the  ADO idea to be approved by the Andromeda team. This is to ensure that the suggested ADO is something that alligns with what Andromeda needs and wants to include in the ADO library.&#x20;
 
-Idea submission is done through github by opening an [**ADO Idea Proposal** ](https://github.com/andromedaprotocol/ado-database/issues/new/choose)issue and following the [template](https://github.com/andromedaprotocol/ado-database/issues/2) provided by Andromeda. Once submitted, the Andromeda Team will go through a reviewal process where the proposal is accepted, rejected, or requires some modification.
+Idea submission is done through github by opening an [**ADO Idea Proposal** ](https://github.com/andromedaprotocol/ado-database/issues/new/choose)issue and following the [**template**](https://github.com/andromedaprotocol/ado-database/issues/2) provided by Andromeda. Once submitted, the Andromeda Team will go through a reviewal process where the proposal is accepted, rejected, or requires some modification.
 
 ## Submitting the ADO
 

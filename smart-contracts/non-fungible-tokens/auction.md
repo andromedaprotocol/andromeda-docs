@@ -6,8 +6,6 @@ The **Auction** ADO is a smart contract that allows performing custom auctions o
 
 {% hint style="info" %}
 This ADO allows creating [English Auctions](https://en.wikipedia.org/wiki/English\_auction).&#x20;
-
-Only authorized CW721 contracts are allowed to send NFTs to this ADO.&#x20;
 {% endhint %}
 
 **Ado\_type**: auction
@@ -37,7 +35,7 @@ Only authorized CW721 contracts are allowed to send NFTs to this ADO.&#x20;
 
 | Name                         | Type                                                                            | Description                                                                                                                                                                                                                                                                                                                            |
 | ---------------------------- | ------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `authorized_token_addresses` | Option\<Vec<[AndrAddr](../../platform-and-framework/common-types.md#andraddr)>> | Optional set of CW721 contract addresses to be allowed to send NFTs to the Auction ADO. Needs to be added by calling [AuthorizeTokenContract](auction.md#authorizetokencontract) if not specified in instantiation for the Auction to accept NFTs.                                                                                     |
+| `authorized_token_addresses` | Option\<Vec<[AndrAddr](../../platform-and-framework/common-types.md#andraddr)>> | Optional set of CW721 contract addresses to be allowed to send NFTs to the Auction ADO. If not specified, then any CW721 can send NFTs to the auction.                                                                                                                                                                                 |
 | `kernel_address`             | String                                                                          | Contract address of the [kernel contract](../../platform-and-framework/andromeda-messaging-protocol/kernel.md) to be used for [AMP](../../platform-and-framework/andromeda-messaging-protocol/) messaging. Kernel contract address can be found in our [deployed contracts](<../../platform-and-framework/deployed-contracts (1).md>). |
 | `owner`                      | Option\<String>                                                                 | Optional address to specify as the owner of the ADO being created. Defaults to the sender if not specified.                                                                                                                                                                                                                            |
 
@@ -228,7 +226,7 @@ An auction can be updated only if it has not started yet.&#x20;
    "token_address":"andr1...",
    "start_time": 1663334970211,
    "duration": 1763334970211,
-   "coin_denom": "uusd",
+   "coin_denom": "uandr",
    "min_bid":"400",
    "whitelist": ["andr1...", "andr1...", ...]
     }
@@ -824,6 +822,53 @@ pub enum QueryMsg {
 | `token_address` | String | The address of the token contract.      |
 
 Returns a true if the NFT has been claimed and false otherwise.
+
+### AuthorizedAddresses
+
+Gets all of the authorized CW721 addresses for the auction.
+
+{% tabs %}
+{% tab title="Rust" %}
+```rust
+pub enum QueryMsg {
+   #[returns(AuthorizedAddressesResponse)]
+    AuthorizedAddresses {
+        start_after: Option<String>,
+        limit: Option<u32>,
+        order_by: Option<OrderBy>,
+    }
+}
+```
+{% endtab %}
+
+{% tab title="JSON" %}
+```json
+{
+"authorized_addresses":{
+    "start_after":"andr1...",
+    "limit":40,
+    }
+}
+```
+{% endtab %}
+{% endtabs %}
+
+| Name          | Type                                  | Description                                                                                                                           |
+| ------------- | ------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------- |
+| `start_after` | Option\<String>                       | Optional parameter to specify which `address` to start from.                                                                          |
+| `limit`       | Option\<u64>                          | Optional parameter to specify how many addresses to return. If none specified a default limit of 25 is used. The maximum limit is 50. |
+| `order_by`    | Option<[OrderBy](auction.md#orderby)> | Whether to return the addresses in ascending or descending order. Defaults to ascending if not specified.                             |
+
+#### OrderBy
+
+How the returned addresses are ordered.
+
+```rust
+pub enum OrderBy {
+    Asc,
+    Desc,
+}
+```
 
 ### Base Queries
 
