@@ -13,6 +13,8 @@ coverY: 0
 
 **Andromeda** **Protocol** is a rapid development framework and a next-generation user interface that brings an Easier, Better, and Faster capability to Web 3.0, and the blockchain industry.
 
+{% embed url="https://www.youtube.com/watch?v=Jw6h7D9FhwE" %}
+
 #### What is a blockchain operating system? <a href="#what-is-a-blockchain-operating-system" id="what-is-a-blockchain-operating-system"></a>
 
 In short, a blockchain operating system provides an environment filled with ready to use tooling, common interfaces for applications and features familiar to modern computer users. As Andromeda is the first true operating system designed to run on distributed computing frameworks, the details are quite technical.
