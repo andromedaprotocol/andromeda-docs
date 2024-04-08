@@ -16,7 +16,7 @@ Idea submission is done through github by opening an [**ADO Idea Proposal** ](ht
 
 ## Submitting the ADO
 
-Once the idea proposal has been approved, the developer can start with implementing the ADO. The [**Getting Started**](getting-started.md) section provides a good starting point for any dev looking to build an ADO. Once the development of the ADO is complete, a PR should be made to the [ADO-Database branch](https://github.com/andromedaprotocol/ado-database)**.** The PR should contain all the information on the developed ADO similar to this [template](https://github.com/andromedaprotocol/ado-database/issues/4). An example PR can be found [here](https://github.com/andromedaprotocol/ado-database/pull/5).
+Once the idea proposal has been approved, the developer can start with implementing the ADO. The [**Getting Started**](getting-started/) section provides a good starting point for any dev looking to build an ADO. Once the development of the ADO is complete, a PR should be made to the [ADO-Database branch](https://github.com/andromedaprotocol/ado-database)**.** The PR should contain all the information on the developed ADO similar to this [template](https://github.com/andromedaprotocol/ado-database/issues/4). An example PR can be found [here](https://github.com/andromedaprotocol/ado-database/pull/5).
 
 The team will review the PR and ask for any changes that need to be made. This process will repeat until the ADO is in good enough shape to be added to our library.&#x20;
 

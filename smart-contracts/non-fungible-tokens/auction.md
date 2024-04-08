@@ -79,6 +79,10 @@ In order to start an auction you need to define the message of the `Cw721Receive
 You need to get the base64 encoded representation of the JSON message and attach it as the `msg`when sending.&#x20;
 {% endhint %}
 
+{% hint style="warning" %}
+`start_time` should not be a time in the past.
+{% endhint %}
+
 {% tabs %}
 {% tab title="Rust" %}
 ```rust
@@ -89,6 +93,7 @@ pub enum Cw721HookMsg {
         coin_denom: String,
         min_bid: Option<Uint128>
         whitelist: Option<Vec<Addr>>,
+        recipient: Option<Recipient>,
     }
 }
 ```
@@ -102,7 +107,10 @@ pub enum Cw721HookMsg {
           "end_time": 1763334970211,
           "coin_denom": "uandr",
           "min_bid":"300",
-          "whitelist": ["andr1...", "andr1...", ...]
+          "whitelist": ["andr1...", "andr1...", ...],
+          "recipient":{
+                "address":"andr1..."
+                }
     }
 }
 ```
@@ -116,10 +124,7 @@ pub enum Cw721HookMsg {
 | `coin_denom` | String                                                                            | The native coin denomination to do the auction in.                                                                                                     |
 | `min_bid`    | Option\<Uint128>                                                                  | The minimum bid that can be placed on the auctioned token.                                                                                             |
 | `whitelist`  | Option\<Vec\<Addr>>                                                               | Optional list of addresses to whitelist for the auction. If None, auction is public.                                                                   |
-
-{% hint style="warning" %}
-`start_time` should not be a time in the past.
-{% endhint %}
+| `recipient`  | Option<[Recipient](../../platform-and-framework/common-types.md#recipient)>       | An optional recipient to receive the sale funds for the sold NFT.                                                                                      |
 
 ### AuthorizeTokenContract
 

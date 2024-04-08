@@ -2,11 +2,11 @@
 
 ### Available Commands <a href="#available-commands" id="available-commands"></a>
 
-| Command                                   | Description                                            |
-| ----------------------------------------- | ------------------------------------------------------ |
-| ****[**byaddress**](tx.md#by-address)**** | Gets a history of transactions for a given address     |
-| ****[**history**](tx.md#history)****      | Gets a history of transactions for your current wallet |
-| ****[**info**](tx.md#info)****            | Gets transaction info from provided hash               |
+| Command                           | Description                                            |
+| --------------------------------- | ------------------------------------------------------ |
+| [**byaddress**](tx.md#by-address) | Gets a history of transactions for a given address     |
+| [**history**](tx.md#history)      | Gets a history of transactions for your current wallet |
+| [**info**](tx.md#info)            | Gets transaction info from provided hash               |
 
 ## By Address
 
@@ -21,15 +21,15 @@ tx byaddress <address>
 #### Example
 
 ```
-? $main@uni-5> tx byaddress juno10ejg7p508qxdfsnmt6868lamt35ws3cp7hupzj7xs0wx0fvgnmrs3szsj3
+? main-star@elgafar-1> tx byaddress stars14pmn28jyqgphd5wv0z28ppxe5ryeraqqyhkuas
 
-Hash                                                             Height Link                                                                                                         
-D528CC32305F91C98A8B21140EA9FA3FD22495D158F42ED18DC71CC29C574D6A 106539 https://testnet.mintscan.io/juno-testnet/txs/D528CC32305F91C98A8B21140EA9FA3FD22495D158F42ED18DC71CC29C574D6A
-62C3DA698DC55A084656C6EF8191597BF894727370E08B072F99F229F2FDA772 106531 https://testnet.mintscan.io/juno-testnet/txs/62C3DA698DC55A084656C6EF8191597BF894727370E08B072F99F229F2FDA772
-A9A826ABB849F2EC22D25017D059D39CDCD1523C868345087877C4C445890D3B 106519 https://testnet.mintscan.io/juno-testnet/txs/A9A826ABB849F2EC22D25017D059D39CDCD1523C868345087877C4C445890D3B
-02234589D7BA2AE69966564B70F52F6867E0CFD1A2691B0332852D107F3F6CE0 105916 https://testnet.mintscan.io/juno-testnet/txs/02234589D7BA2AE69966564B70F52F6867E0CFD1A2691B0332852D107F3F6CE0
-DD957DEA751DAC9E04190F9FA99697A09D4B898FC616D845BC6ABC97268246A3 105908 https://testnet.mintscan.io/juno-testnet/txs/DD957DEA751DAC9E04190F9FA99697A09D4B898FC616D845BC6ABC97268246A3
-? $main@uni-5> () 
+Hash                                                             Height  Type                   Link                                                                                                                   
+75184641D8275A5B34183CF31181C563FB6E4D007FC7BBC805D2DA43892BBBD7 9874374 MsgInstantiateContract https://testnet-explorer.publicawesome.dev/stargaze/tx/75184641D8275A5B34183CF31181C563FB6E4D007FC7BBC805D2DA43892BBBD7
+DF1645E23EBFBAF0937CC10462D68E377732FC82100120430533B45C9A3C4C71 3645693 MsgExecuteContract     https://testnet-explorer.publicawesome.dev/stargaze/tx/DF1645E23EBFBAF0937CC10462D68E377732FC82100120430533B45C9A3C4C71
+B1C0271E07BAF4E9707C7753EE69A1FB07DCA050B13647B508F6552C2313F1DF 3645438 MsgExecuteContract     https://testnet-explorer.publicawesome.dev/stargaze/tx/B1C0271E07BAF4E9707C7753EE69A1FB07DCA050B13647B508F6552C2313F1DF
+5738FB93EEB38424D30C49D8F2563E550D91108A8058BBBB12F00C810D024C69 3645427 MsgInstantiateContract https://testnet-explorer.publicawesome.dev/stargaze/tx/5738FB93EEB38424D30C49D8F2563E550D91108A8058BBBB12F00C810D024C69
+DA9586846479E4B174EFC9DFA6CBA35E59A0504AAE19A2B7F353A0739B49259D 3642496 MsgExecuteContract     https://testnet-explorer.publicawesome.dev/stargaze/tx/DA9586846479E4B174EFC9DFA6CBA35E59A0504AAE19A2B7F353A0739B49259D
+? main-star@elgafar-1>
 ```
 
 ## History
@@ -45,14 +45,15 @@ tx history
 #### Example
 
 ```
-? $main@uni-5> tx history
+? main-star@elgafar-1> tx history
 
-Hash                                                             Height Link                                                                                                         
-0BC340FA026B7EE657A58D4F1312B59BF15C2167D368C223493D34F78127A033 106459 https://testnet.mintscan.io/juno-testnet/txs/0BC340FA026B7EE657A58D4F1312B59BF15C2167D368C223493D34F78127A033
-8ADB723D829E995206F409638AD93E5352D1B6D0E49D192C5D7E6E5147430E3B 78474  https://testnet.mintscan.io/juno-testnet/txs/8ADB723D829E995206F409638AD93E5352D1B6D0E49D192C5D7E6E5147430E3B
-BBC56ED6B9D1093A59F146C9A555795256C468FF3966864ECD10BD939AF75292 66204  https://testnet.mintscan.io/juno-testnet/txs/BBC56ED6B9D1093A59F146C9A555795256C468FF3966864ECD10BD939AF75292
-0F820454356D9FE8E80D736CB47F93C9BA40A901FD937B6395B93B9A11D72436 47917  https://testnet.mintscan.io/juno-testnet/txs/0F820454356D9FE8E80D736CB47F93C9BA40A901FD937B6395B93B9A11D72436
-? $main@uni-5> () 
+Hash                                                             Height  Type                   Link                                                                                                                   
+75184641D8275A5B34183CF31181C563FB6E4D007FC7BBC805D2DA43892BBBD7 9874374 MsgInstantiateContract https://testnet-explorer.publicawesome.dev/stargaze/tx/75184641D8275A5B34183CF31181C563FB6E4D007FC7BBC805D2DA43892BBBD7
+DF1645E23EBFBAF0937CC10462D68E377732FC82100120430533B45C9A3C4C71 3645693 MsgExecuteContract     https://testnet-explorer.publicawesome.dev/stargaze/tx/DF1645E23EBFBAF0937CC10462D68E377732FC82100120430533B45C9A3C4C71
+B1C0271E07BAF4E9707C7753EE69A1FB07DCA050B13647B508F6552C2313F1DF 3645438 MsgExecuteContract     https://testnet-explorer.publicawesome.dev/stargaze/tx/B1C0271E07BAF4E9707C7753EE69A1FB07DCA050B13647B508F6552C2313F1DF
+5738FB93EEB38424D30C49D8F2563E550D91108A8058BBBB12F00C810D024C69 3645427 MsgInstantiateContract https://testnet-explorer.publicawesome.dev/stargaze/tx/5738FB93EEB38424D30C49D8F2563E550D91108A8058BBBB12F00C810D024C69
+DA9586846479E4B174EFC9DFA6CBA35E59A0504AAE19A2B7F353A0739B49259D 3642496 MsgExecuteContract     https://testnet-explorer.publicawesome.dev/stargaze/tx/DA9586846479E4B174EFC9DFA6CBA35E59A0504AAE19A2B7F353A0739B49259D
+? main-star@elgafar-1>
 ```
 
 ## Info

@@ -78,18 +78,19 @@ pub enum Cw721HookMsg {
     StartSale {
      price: Uint128,
      coin_denom: String
-     start_time: Option<u64>,
-     duration: Option<u64>,
-       },
+     start_time: Option<Milliseconds>,
+     duration: Option<Milliseconds>,
+     recipient: Option<Recipient>,
+       }
    }
 ```
 
-| Name         | Type         | Description                                                                                                                                      |
-| ------------ | ------------ | ------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `price`      | Uint128      | The price of the NFT.                                                                                                                            |
-| `coin_denom` | String       | The denom to pay the price with.                                                                                                                 |
-| `start_time` | Option\<u64> | Optional start time in milliseconds since [epoch](https://www.epochconverter.com/clock). If not specified, then the sale will start immediately. |
-| `duration`   | Option\<u64> | Optional duration for the sale in milliseconds from the `start_time`. If not specified then the sale never expires.                              |
+| Name         | Type                                                                           | Description                                                                                                                                      |
+| ------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `price`      | Uint128                                                                        | The price of the NFT.                                                                                                                            |
+| `coin_denom` | String                                                                         | The denom to pay the price with.                                                                                                                 |
+| `start_time` | Option<[Milliseconds](../platform-and-framework/common-types.md#milliseconds)> | Optional start time in milliseconds since [epoch](https://www.epochconverter.com/clock). If not specified, then the sale will start immediately. |
+| `duration`   | Option<[Milliseconds](../platform-and-framework/common-types.md#milliseconds)> | Optional duration for the sale in milliseconds from the `start_time`. If not specified then the sale never expires.                              |
 
 ### UpdateSale
 
@@ -107,6 +108,7 @@ Only available to the NFT owner.
         token_address: String,
         price: Uint128,
         coin_denom: String,
+        recipient:Option&#x3C;Recipient>
     }
 }
 </code></pre>
@@ -119,19 +121,23 @@ Only available to the NFT owner.
     "token_id":"1",
     "token_address":"andr1...",
     "price":"100",
-    "coin_denom":"uandr"
+    "coin_denom":"uandr",
+    "recipient":{
+        "address":"andr1..."
+        }
     }
 }
 ```
 {% endtab %}
 {% endtabs %}
 
-| Name            | Type    | Description                                              |
-| --------------- | ------- | -------------------------------------------------------- |
-| `token_id`      | String  | The Id of the token to update the sale for.              |
-| `token_address` | String  | The address of the cw721 contract that minted the token. |
-| `price`         | Uint128 | The price of the NFT.                                    |
-| `coin_denom`    | String  | The denomination used to buy the NFT.                    |
+| Name            | Type                                                                     | Description                                              |
+| --------------- | ------------------------------------------------------------------------ | -------------------------------------------------------- |
+| `token_id`      | String                                                                   | The Id of the token to update the sale for.              |
+| `token_address` | String                                                                   | The address of the cw721 contract that minted the token. |
+| `price`         | Uint128                                                                  | The price of the NFT.                                    |
+| `coin_denom`    | String                                                                   | The denomination used to buy the NFT.                    |
+| `recipient`     | Option<[Recipient](../platform-and-framework/common-types.md#recipient)> | Optional recipient to receive the funds from the sale.   |
 
 ### Buy
 

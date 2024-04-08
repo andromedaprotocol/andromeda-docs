@@ -2,15 +2,14 @@
 
 ## Introduction
 
-This ADO is another part of the toolkit of allowing a user to setup their own [CW20 token](../../andromeda-digital-objects/cw20.md). The lockdrop ADO allows users to deposit a native token in exchange for a given CW20 token (like a crowdfund). This ADO was heavily inspired by the [MARS lockdrop contract](https://github.com/mars-protocol/mars-periphery/tree/main/contracts/lockdrop).&#x20;
+This ADO is another part of the toolkit of allowing a user to setup their own [CW20 token](../../andromeda-digital-objects/cw20.md). The lockdrop ADO allows users to deposit a native token in exchange for a given CW20 token.&#x20;
 
 There are two phases:
 
-The first phase is the deposit phase in which users can deposit a native denom. They can also freely withdraw in this time.
+* The first phase is the deposit phase in which users can deposit a native denom. They can also freely withdraw in this time.
+* The second phase is the withdrawal phase, in which for the first half, users can withdraw up to half of their deposit, and in the second half, the amount they can withdraw decreases linearly from 50% to 0%. Users can only withdraw once during the withdrawal phase.
 
-The second phase is the withdrawal phase, in which for the first half, users can withdraw up to half of their deposit, and in the second half, the amount they can withdraw decreases linearly from 50% to 0%. Users can only withdraw once during the withdrawal phase.
-
-After the deposit phase is over, each user gets the token in proportion to how much of the native denom they put in (claims need to be enabled first).
+After the deposit phase is over, each user gets the token in proportion to how much of the native denom they put in (claims need to be enabled first.
 
 **Ado\_type**: lockdrop
 
@@ -31,7 +30,7 @@ pub struct InstantiateMsg {
     pub init_timestamp: Milliseconds,
     pub deposit_window: Milliseconds,
     pub withdrawal_window: Milliseconds,
-    pub incentive_token: String,
+    pub incentive_token: AndrAddr,
     pub native_denom: String,
     pub kernel_address: String,
     pub owner: Option<String>
@@ -42,11 +41,11 @@ pub struct InstantiateMsg {
 {% tab title="JSON" %}
 ```json
 {
-"native_denom":"uandr",
-"deposit_window":600000,
 "init_timestamp":164987751339483294,
-"incentive_token":"andr1...",
+"deposit_window":600000,
 "withdrawal_window":400000,
+"incentive_token":"andr1...",
+"native_denom":"uandr",
 "kernel_address":"andr1..."
 }
 ```
@@ -58,7 +57,7 @@ pub struct InstantiateMsg {
 | `init_timestamp`    | [Milliseconds](../../platform-and-framework/common-types.md#milliseconds) | Timestamp in milliseconds till when deposits can be made. Provided in seconds.                                                                                                                                                                                                                                                         |
 | `deposit_window`    | [Milliseconds](../../platform-and-framework/common-types.md#milliseconds) | Number of milliseconds for which lockup deposits will be accepted.                                                                                                                                                                                                                                                                     |
 | `withdrawal_window` | [Milliseconds](../../platform-and-framework/common-types.md#milliseconds) | Number of milliseconds for which lockup withdrawals will be allowed.                                                                                                                                                                                                                                                                   |
-| `incentive_token`   | String                                                                    | The token being given as incentive.                                                                                                                                                                                                                                                                                                    |
+| `incentive_token`   | [AndrAddr](../../platform-and-framework/common-types.md#andraddr)         | The token being given as incentive.                                                                                                                                                                                                                                                                                                    |
 | `native_denom`      | String                                                                    | The native token being deposited.                                                                                                                                                                                                                                                                                                      |
 | `kernel_address`    | String                                                                    | Contract address of the [kernel contract](../../platform-and-framework/andromeda-messaging-protocol/kernel.md) to be used for [AMP](../../platform-and-framework/andromeda-messaging-protocol/) messaging. Kernel contract address can be found in our [deployed contracts](<../../platform-and-framework/deployed-contracts (1).md>). |
 | `owner`             | Option\<String>                                                           | Optional address to specify as the owner of the ADO being created. Defaults to the sender if not specified.                                                                                                                                                                                                                            |
@@ -116,6 +115,8 @@ pub enum Cw20HookMsg {
 ```
 {% endtab %}
 {% endtabs %}
+
+***
 
 ### DepositNative
 
@@ -205,7 +206,7 @@ pub enum ExecuteMsg {
 
 ### ClaimRewards
 
-Claims the cw-20 incentive tokens from the lockdrop.
+Claims the CW20 incentive tokens from the lockdrop.
 
 {% tabs %}
 {% tab title="Rust" %}
@@ -224,40 +225,6 @@ pub enum ExecuteMsg {
 ```
 {% endtab %}
 {% endtabs %}
-
-### WithdrawProceeds
-
-Called by the owner after the phases are over to withdraw all of the native tokens to the given recipient, or themselves if not specified.
-
-{% hint style="warning" %}
-Only the contract owner can execute `WithdrawProceeds`.
-{% endhint %}
-
-{% tabs %}
-{% tab title="Rust" %}
-```rust
-pub enum ExecuteMsg {
-    WithdrawProceeds {
-        recipient: Option<String>,
-        }
-    }
-```
-{% endtab %}
-
-{% tab title="JSON" %}
-```json
-{
-"withdraw_proceeds":{
-    "recipient":"andr1..."
-    }
-}
-```
-{% endtab %}
-{% endtabs %}
-
-| Name        | Type            | Description                                                                   |
-| ----------- | --------------- | ----------------------------------------------------------------------------- |
-| `recipient` | Option\<String> | The recipient of the native tokens that are withdrawn. Defaults to the owner. |
 
 ### Base Executes
 
@@ -298,14 +265,14 @@ pub struct ConfigResponse {
     pub deposit_window: Milliseconds,
     pub withdrawal_window: Milliseconds,
     pub lockdrop_incentives: Uint128,
-    pub incentive_token: String,
+    pub incentive_token: AndrAddr,
     pub native_denom: String,
 }
 ```
 {% endtab %}
 {% endtabs %}
 
-* **`lockdrop_incentives`** is the total amount of lockdrop incentive tokens (Cw20\_tokens) to be distributed among the users.
+* **`lockdrop_incentives`** is the total amount of lockdrop incentive tokens (Cw20 tokens) to be distributed among the users.
 
 The rest of the field definitions are the same as the one in the [InstantiateMsg](lockdrop.md#instantiatemsg).
 

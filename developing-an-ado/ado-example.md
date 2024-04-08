@@ -50,7 +50,7 @@ andromeda-std = { version = "0.1.2" }
 
 Now that you are set up with the template, you can start filling in the messages for the ADO. Since we already have most of the logic from the cw3 fixed multisig, we can just move them to our ADO.
 
-&#x20;As explained  in the [Getting Started](getting-started.md) section, we use an **ExecuteContext** struct to be able to handle AMP messages. This information is passed to a **ctx** variable that we use. For example let us take a look   at our **Propose** message from the cw3 version and compare it to the ADO version:
+&#x20;As explained  in the [Getting Started](getting-started/) section, we use an **ExecuteContext** struct to be able to handle AMP messages. This information is passed to a **ctx** variable that we use. For example let us take a look   at our **Propose** message from the cw3 version and compare it to the ADO version:
 
 <pre class="language-rust"><code class="lang-rust"><strong>//CW3 version
 </strong><strong>ExecuteMsg::Propose {
@@ -126,7 +126,7 @@ impl Into<AndromedaContractError> for ContractError {
 
 ### Migrate Function
 
-All our ADOs contain a migrate function to be able to migrate an ADO to a new code\_id. Make sure to include it into our contract:
+All our ADOs contain the following migrate function to be able to migrate an ADO to a new code\_id:
 
 {% hint style="info" %}
 This will be added to our template, but if not found at the time you go through this, make sure to add it.
@@ -168,6 +168,16 @@ pub fn migrate(deps: DepsMut, _env: Env, _msg: MigrateMsg) -> Result<Response, C
 }
 ```
 
-### Testing
+This can be imported and added into your ADO like so:
 
-Other than what we have covered, most of the logic of the CW3 remained the same. Unit test and integration tests were not changed as they are already written and all passed in the ADO version as well. As mentioned [before](getting-started.md#testing), we do provide custom mock structs for testing. You can check any of our published ADOs testing from our [core repo](https://github.com/andromedaprotocol/andromeda-core) to see how these structs can be used to conduct testing.&#x20;
+```rust
+///Import the message
+use andromeda_std::{
+    ado_base::{MigrateMsg},
+    }
+    ...
+/// Add it to the ADO
+ADOContract::default().migrate(deps, CONTRACT_NAME, CONTRACT_VERSION)
+```
+
+Other than what we have covered, most of the logic of the CW3 remained the same. Unit test and integration tests were not changed as they are already written and all passed in the ADO version as well. As mentioned [before](getting-started/#testing), we do provide custom mock structs for testing. You can check any of our published ADOs testing from our [core repo](https://github.com/andromedaprotocol/andromeda-core) to see how these structs can be used to conduct testing.&#x20;

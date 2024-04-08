@@ -42,7 +42,11 @@
 
 ## Developing an ADO
 
-* [Getting Started](developing-an-ado/getting-started.md)
+* [Getting Started](developing-an-ado/getting-started/README.md)
+  * [Instantiation](developing-an-ado/getting-started/instantiation.md)
+  * [Execution](developing-an-ado/getting-started/execution.md)
+  * [Queries](developing-an-ado/getting-started/queries.md)
+  * [Testing](developing-an-ado/getting-started/testing.md)
 * [ADO Example](developing-an-ado/ado-example.md)
 * [ADO Submissions](developing-an-ado/ado-submissions.md)
 
