@@ -37,6 +37,10 @@ The power and performance of the Rust/CosmWasm combo is what allowed this breakt
 
 #### Infinite Reach Through IBC
 
+{% hint style="info" %}
+IBC functionality is being slowly introduced into the system. Not all features mentioned below are currently available.&#x20;
+{% endhint %}
+
 Just like an operating system that can be seamlessly installed on any device, the AndromedaOS transcends limitations tied to the Andromeda chain. It is designed for universal compatibility and can be effortlessly deployed on any chain within the expansive Cosmos ecosystem.&#x20;
 
 The operating system can be employed for local development on the chain, yet its true potential shines through Inter-Blockchain Communication (IBC). This capability allows the creation of Apps that extend seamlessly across multiple interconnected chains.

@@ -303,10 +303,10 @@ pub enum ExecuteMsg {
 {% endtab %}
 {% endtabs %}
 
-| Name   | Type   | Description                            |
-| ------ | ------ | -------------------------------------- |
-| `name` | String | The name of the ADO.                   |
-| `addr` | String | The new contract address for the ADO.  |
+| Name   | Type   | Description                                                                                                             |
+| ------ | ------ | ----------------------------------------------------------------------------------------------------------------------- |
+| `name` | String | The name of the ADO component to update the address for. This needs to be the name of one of the components in the App. |
+| `addr` | String | The new contract address to be associated with the specified name.                                                      |
 
 ### Base Executes
 
