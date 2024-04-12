@@ -87,12 +87,21 @@ or
 
 ## Milliseconds
 
-Struct that represents time in milliseconds in u64.
+Struct that represents time in milliseconds in u64. We have two types that use Milliseconds:
+
+{% hint style="info" %}
+The two type were created to make the usage of the Milliseconds clearer in the different usage cases.&#x20;
+{% endhint %}
+
+* **MillisecondsDuration:** Used for instances that specify a duration in milliseconds.
+* **MillisecondsExpiration:** Used for instances that spceify a timestamp in milliseconds.
 
 ```rust
 #[cw_serde]
 #[derive(Default, Eq, PartialOrd, Copy)]
 pub struct Milliseconds(pub u64);
+pub type MillisecondsDuration = Milliseconds;
+pub type MillisecondsExpiration = Milliseconds;
 ```
 
 ## Recipient

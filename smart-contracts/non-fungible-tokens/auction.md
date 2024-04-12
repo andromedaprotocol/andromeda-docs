@@ -88,8 +88,8 @@ You need to get the base64 encoded representation of the JSON message and attach
 ```rust
 pub enum Cw721HookMsg {
     StartAuction {
-        start_time: Option<Milliseconds>,
-        end_time: Milliseconds,
+        start_time: Option<MillisecondsExpiration>,
+        end_time: MillisecondsExpiration,
         coin_denom: String,
         min_bid: Option<Uint128>
         whitelist: Option<Vec<Addr>>,
@@ -117,14 +117,18 @@ pub enum Cw721HookMsg {
 {% endtab %}
 {% endtabs %}
 
-| Name         | Type                                                                              | Description                                                                                                                                            |
-| ------------ | --------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `start_time` | Option<[Milliseconds](../../platform-and-framework/common-types.md#milliseconds)> | Optional Start time for the sale specified as a [timestamp](https://www.epochconverter.com) in milliseconds. Defaults to immediately if not specified. |
-| `end_time`   | [Milliseconds](../../platform-and-framework/common-types.md#milliseconds)         | [Timestamp](https://www.epochconverter.com) in milliseconds for when the sale ends.                                                                    |
-| `coin_denom` | String                                                                            | The native coin denomination to do the auction in.                                                                                                     |
-| `min_bid`    | Option\<Uint128>                                                                  | The minimum bid that can be placed on the auctioned token.                                                                                             |
-| `whitelist`  | Option\<Vec\<Addr>>                                                               | Optional list of addresses to whitelist for the auction. If None, auction is public.                                                                   |
-| `recipient`  | Option<[Recipient](../../platform-and-framework/common-types.md#recipient)>       | An optional recipient to receive the sale funds for the sold NFT.                                                                                      |
+| Name         | Type                                                                                        | Description                                                                                                                                            |
+| ------------ | ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `start_time` | Option<[MillisecondsExpiration](../../platform-and-framework/common-types.md#milliseconds)> | Optional Start time for the sale specified as a [timestamp](https://www.epochconverter.com) in milliseconds. Defaults to immediately if not specified. |
+| `end_time`   | [MillisecondsExpiration](../../platform-and-framework/common-types.md#milliseconds)         | [Timestamp](https://www.epochconverter.com) in milliseconds for when the sale ends.                                                                    |
+| `coin_denom` | String                                                                                      | The native coin denomination to do the auction in.                                                                                                     |
+| `min_bid`    | Option\<Uint128>                                                                            | The minimum bid that can be placed on the auctioned token.                                                                                             |
+| `whitelist`  | Option\<Vec\<Addr>>                                                                         | Optional list of addresses to whitelist for the auction. If None, auction is public.                                                                   |
+| `recipient`  | Option<[Recipient](../../platform-and-framework/common-types.md#recipient)>                 | An optional recipient to receive the sale funds for the sold NFT.                                                                                      |
+
+
+
+***
 
 ### AuthorizeTokenContract
 
@@ -140,7 +144,7 @@ Only available to the contract owner.
 pub enum ExecuteMsg {
      AuthorizeTokenContract {
         addr: AndrAddr,
-        expiration: Option<Expiration>,
+        expiration: Option<MillisecondsExpiration>,
     }
  }
 ```
@@ -157,10 +161,10 @@ pub enum ExecuteMsg {
 {% endtab %}
 {% endtabs %}
 
-| Name         | Type                                                                          | Description                                                    |
-| ------------ | ----------------------------------------------------------------------------- | -------------------------------------------------------------- |
-| `addr`       | [AndrAddr](../../platform-and-framework/common-types.md#andraddr)             | The contract address of the CW721 (NFT) contract to authorize. |
-| `expiration` | Option<[Expiration](../../platform-and-framework/common-types.md#expiration)> | An optional expiration for the permission.                     |
+| Name         | Type                                                                                        | Description                                                    |
+| ------------ | ------------------------------------------------------------------------------------------- | -------------------------------------------------------------- |
+| `addr`       | [AndrAddr](../../platform-and-framework/common-types.md#andraddr)                           | The contract address of the CW721 (NFT) contract to authorize. |
+| `expiration` | Option<[MillisecondsExpiration](../../platform-and-framework/common-types.md#milliseconds)> | An optional expiration for the permission.                     |
 
 ### DeauthorizeTokenContract
 
@@ -213,8 +217,8 @@ An auction can be updated only if it has not started yet.&#x20;
  UpdateAuction {
         token_id: String,
         token_address: String,
-        start_time: Option<Milliseconds>,
-        end_time: Milliseconds,
+        start_time: Option<MillisecondsExpiration>,
+        end_time: MillisecondsExpiration,
         coin_denom: String,
         min_bid: Option<Uint128>
         whitelist: Option<Vec<Addr>>,
@@ -244,7 +248,7 @@ An auction can be updated only if it has not started yet.&#x20;
 `start_time` should not be a time in the past.
 {% endhint %}
 
-<table><thead><tr><th width="196.33333333333331">Name </th><th>Type</th><th>Description</th></tr></thead><tbody><tr><td><code>token_id</code></td><td>String</td><td>The Id of the NFT that is being auctioned.</td></tr><tr><td><code>token_address</code></td><td>String</td><td>The address of the  NFT contract.</td></tr><tr><td><code>start_time</code></td><td>Option&#x3C;<a href="../../platform-and-framework/common-types.md#milliseconds">Milliseconds</a>></td><td>Start time in milliseconds since <a href="https://www.epochconverter.com/clock">epoch</a>.</td></tr><tr><td><code>end_time</code></td><td><a href="../../platform-and-framework/common-types.md#milliseconds">Milliseconds</a></td><td>Duration in milliseconds from the <code>start_time</code>.</td></tr><tr><td><code>coin_denom</code></td><td>String</td><td>The native coin denomination to do the auction in.</td></tr><tr><td><code>min_bid</code></td><td>Option&#x3C;Uint128></td><td>The minimum bid that can be placed on the auctioned token.</td></tr><tr><td><code>whitelist</code></td><td>Option&#x3C;Vec&#x3C;Addr>></td><td>Optional list of addresses to whitelist for the auction. If None, auction is public.</td></tr></tbody></table>
+<table><thead><tr><th width="196.33333333333331">Name </th><th>Type</th><th>Description</th></tr></thead><tbody><tr><td><code>token_id</code></td><td>String</td><td>The Id of the NFT that is being auctioned.</td></tr><tr><td><code>token_address</code></td><td>String</td><td>The address of the  NFT contract.</td></tr><tr><td><code>start_time</code></td><td>Option&#x3C;<a href="../../platform-and-framework/common-types.md#milliseconds">MillisecondsExpiration</a>></td><td>Start time in milliseconds since <a href="https://www.epochconverter.com/clock">epoch</a>.</td></tr><tr><td><code>end_time</code></td><td><a href="../../platform-and-framework/common-types.md#milliseconds">MillisecondsExpiration</a></td><td>Duration in milliseconds from the <code>start_time</code>.</td></tr><tr><td><code>coin_denom</code></td><td>String</td><td>The native coin denomination to do the auction in.</td></tr><tr><td><code>min_bid</code></td><td>Option&#x3C;Uint128></td><td>The minimum bid that can be placed on the auctioned token.</td></tr><tr><td><code>whitelist</code></td><td>Option&#x3C;Vec&#x3C;Addr>></td><td>Optional list of addresses to whitelist for the auction. If None, auction is public.</td></tr></tbody></table>
 
 ### CancelAuction
 

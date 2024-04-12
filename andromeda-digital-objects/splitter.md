@@ -23,7 +23,7 @@ The maximum lock\_time that can be set is 1 year.
 ```rust
 pub struct InstantiateMsg {
     pub recipients: Vec<AddressPercent>,
-    pub lock_time: Option<Milliseconds>
+    pub lock_time: Option<MillisecondsDuration>,
     pub kernel_address: String,
     pub owner: Option<String>,
 }
@@ -49,7 +49,7 @@ pub struct InstantiateMsg {
 {% endtab %}
 {% endtabs %}
 
-<table><thead><tr><th width="249.33333333333331">Name</th><th width="249.39014373716634">Type</th><th>Description</th></tr></thead><tbody><tr><td><code>lock_time</code></td><td>Option&#x3C;<a href="../platform-and-framework/common-types.md#milliseconds">Milliseconds</a>></td><td>How long the splitter is locked. When locked, no recipients can be added/changed. Specified in milliseconds.</td></tr><tr><td><code>recipients</code></td><td>Vec&#x3C;<a href="splitter.md#addresspercent">AddressPercent</a>></td><td>The recipient list of the splitter. Can be updated after instantiation if there is no current lock time.</td></tr><tr><td><code>kernel_address</code></td><td>String</td><td>Contract address of the <a href="../platform-and-framework/andromeda-messaging-protocol/kernel.md">kernel contract</a> to be used for <a href="../platform-and-framework/andromeda-messaging-protocol/">AMP</a> messaging. Kernel contract address can be found in our <a href="../platform-and-framework/deployed-contracts (1).md">deployed contracts</a>.</td></tr><tr><td><code>owner</code></td><td>Option&#x3C;String></td><td>Optional address to specify as the owner of the ADO being created. Defaults to the sender if not specified.</td></tr></tbody></table>
+<table><thead><tr><th width="249.33333333333331">Name</th><th width="249.39014373716634">Type</th><th>Description</th></tr></thead><tbody><tr><td><code>recipients</code></td><td>Vec&#x3C;<a href="splitter.md#addresspercent">AddressPercent</a>></td><td>The recipient list of the splitter. Can be updated after instantiation if there is no current lock time.</td></tr><tr><td><code>lock_time</code></td><td>Option&#x3C;<a href="../platform-and-framework/common-types.md#milliseconds">MillisecondsDuration</a>></td><td>How long the splitter is locked. When locked, no recipients can be added/changed. Specified in milliseconds.</td></tr><tr><td><code>kernel_address</code></td><td>String</td><td>Contract address of the <a href="../platform-and-framework/andromeda-messaging-protocol/kernel.md">kernel contract</a> to be used for <a href="../platform-and-framework/andromeda-messaging-protocol/">AMP</a> messaging. Kernel contract address can be found in our <a href="../platform-and-framework/deployed-contracts (1).md">deployed contracts</a>.</td></tr><tr><td><code>owner</code></td><td>Option&#x3C;String></td><td>Optional address to specify as the owner of the ADO being created. Defaults to the sender if not specified.</td></tr></tbody></table>
 
 {% hint style="warning" %}
 Anytime a [`Send`](splitter.md#send) execute message is sent, the amount sent will be divided amongst the recipients depending on their assigned percentage.
@@ -155,7 +155,7 @@ The maximum time that can be set is 31,536,000 which is 1 year.
 ```rust
 pub enum ExecuteMsg {
     UpdateLock {
-        lock_time: Milliseconds,
+        lock_time: MillisecondsDuration,
     },
 }
 ```
@@ -172,9 +172,9 @@ pub enum ExecuteMsg {
 {% endtab %}
 {% endtabs %}
 
-| Name        | Type                                                                   | Description                                                                       |
-| ----------- | ---------------------------------------------------------------------- | --------------------------------------------------------------------------------- |
-| `lock_time` | [Milliseconds](../platform-and-framework/common-types.md#milliseconds) | How long the splitter is locked. When locked, no recipients can be added/changed. |
+| Name        | Type                                                                           | Description                                                                       |
+| ----------- | ------------------------------------------------------------------------------ | --------------------------------------------------------------------------------- |
+| `lock_time` | [MillisecondsDuration](../platform-and-framework/common-types.md#milliseconds) | How long the splitter is locked. When locked, no recipients can be added/changed. |
 
 ### **Send**
 
@@ -276,11 +276,11 @@ The splitter's config is stored in a basic struct.
 ```rust
 pub struct Splitter {
     pub recipients: Vec<AddressPercent>, 
-    pub lock: Expiration,                   
+    pub lock: MillisecondsExpiration,                   
 }
 ```
 
-<table><thead><tr><th>Name</th><th width="266.3333333333333">Type</th><th>Description</th></tr></thead><tbody><tr><td><code>recipients</code></td><td>Vec&#x3C;<a href="splitter.md#addresspercent">AdressPercent</a>></td><td>The vector of the assigned recipients to receive the funds along with their percentages. </td></tr><tr><td><code>lock</code></td><td><a href="../platform-and-framework/common-types.md#milliseconds">Milliseconds</a></td><td>Returns the timestamp in milliseconds of the end date for the lock.</td></tr></tbody></table>
+<table><thead><tr><th>Name</th><th width="266.3333333333333">Type</th><th>Description</th></tr></thead><tbody><tr><td><code>recipients</code></td><td>Vec&#x3C;<a href="splitter.md#addresspercent">AdressPercent</a>></td><td>The vector of the assigned recipients to receive the funds along with their percentages. </td></tr><tr><td><code>lock</code></td><td><a href="../platform-and-framework/common-types.md#milliseconds">MillisecondsExpiration</a></td><td>Returns the timestamp in milliseconds of the end date for the lock.</td></tr></tbody></table>
 
 ### Base Queries
 

@@ -88,15 +88,15 @@ The Expiration timestamp is taken in nanosecond precision. Using another precisi
 
 ```rust
 pub enum EscrowCondition {
-    Expiration(Milliseconds),
+    Expiration(MillisecondsExpiration),
     MinimumFunds(Vec<Coin>),
 }
 ```
 
-| EscrowCondition Type | Type                                                                   | Description                                                                 |
-| -------------------- | ---------------------------------------------------------------------- | --------------------------------------------------------------------------- |
-| `Expiration`         | [Milliseconds](../platform-and-framework/common-types.md#milliseconds) | Requires a given time to be reached. The time is specified in milliseconds. |
-| `MinimumFunds`       | Vec<[Coin](../platform-and-framework/common-types.md#coin)>            | Requires a minimum amount of funds to be deposited.                         |
+| EscrowCondition Type | Type                                                                             | Description                                                                 |
+| -------------------- | -------------------------------------------------------------------------------- | --------------------------------------------------------------------------- |
+| `Expiration`         | [MillisecondsExpiration](../platform-and-framework/common-types.md#milliseconds) | Requires a given time to be reached. The time is specified in milliseconds. |
+| `MinimumFunds`       | Vec<[Coin](../platform-and-framework/common-types.md#coin)>                      | Requires a minimum amount of funds to be deposited.                         |
 
 ### ReleaseFunds
 

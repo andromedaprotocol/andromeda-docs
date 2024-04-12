@@ -87,8 +87,8 @@ pub enum Cw20HookMsg {
         asset: AssetInfo,
         exchange_rate: Uint128,
         recipient: Option<String>,
-        start_time: Option<u64>,
-        duration: Option<u64>,
+        start_time: Option<MillisecondsExpiration>,
+        duration: Option<MillisecondsDuration>,
     },
     Purchase {
         recipient: Option<String>,
@@ -114,8 +114,8 @@ pub enum Cw20HookMsg {
         asset: AssetInfo,
         exchange_rate: Uint128,
         recipient: Option<String>,
-        start_time: Option<u64>,
-        duration: Option<u64>,
+        start_time: Option<MillisecondsExpiration>,
+        duration: Option<MillisecondsDuration>,
     }
 }
 ```
@@ -137,13 +137,13 @@ pub enum Cw20HookMsg {
 {% endtab %}
 {% endtabs %}
 
-| Name            | Type                                    | Description                                                                                                                                      |
-| --------------- | --------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `asset`         | [AssetInfo](cw20-exchange.md#undefined) | The asset that may be used to purchase the token.                                                                                                |
-| `exchange_rate` | Uint128                                 | The amount of the above `asset` required to purchase a single token.                                                                             |
-| `recipient`     | Option\<String>                         | The recipient of the sale proceeds. Defaults to the sender if not specified.                                                                     |
-| `start_time`    | Option\<u64>                            | Optional start time in milliseconds since [epoch](https://www.epochconverter.com/clock). If not specified, then the sale will start immediately. |
-| `duration`      | Option\<u64>                            | Optional duration for the sale in milliseconds from the `start_time`. If not specified then the sale never expires.                              |
+| Name            | Type                                                                             | Description                                                                                                                                      |
+| --------------- | -------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `asset`         | [AssetInfo](cw20-exchange.md#undefined)                                          | The asset that may be used to purchase the token.                                                                                                |
+| `exchange_rate` | Uint128                                                                          | The amount of the above `asset` required to purchase a single token.                                                                             |
+| `recipient`     | Option\<String>                                                                  | The recipient of the sale proceeds. Defaults to the sender if not specified.                                                                     |
+| `start_time`    | [MillisecondsExpiration](../platform-and-framework/common-types.md#milliseconds) | Optional start time in milliseconds since [epoch](https://www.epochconverter.com/clock). If not specified, then the sale will start immediately. |
+| `duration`      | [MillisecondsDuration](../platform-and-framework/common-types.md#milliseconds)   | Optional duration for the sale in milliseconds from the `start_time`. If not specified then the sale never expires.                              |
 
 #### AssetInfo
 
@@ -195,6 +195,8 @@ pub enum Cw20HookMsg {
 | Name        | Type            | Description                                                                          |
 | ----------- | --------------- | ------------------------------------------------------------------------------------ |
 | `recipient` | Option\<String> | Optional recipient of the purchased CW20 tokens. If not set, defaults to the sender. |
+
+***
 
 ## CancelSale
 

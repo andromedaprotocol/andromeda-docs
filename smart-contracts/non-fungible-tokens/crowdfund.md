@@ -119,8 +119,8 @@ A sale should not be already ongoing.
 ```rust
 pub enum ExecuteMsg {
  StartSale {
-        start_time: Option<Milliseconds>,
-        end_time: Milliseconds,
+        start_time: Option<MillisecondsExpiration>,
+        end_time: MillisecondsExpiration,
         price: Coin,
         min_tokens_sold: Uint128,
         max_amount_per_wallet: Option<u32>,
@@ -149,7 +149,7 @@ pub enum ExecuteMsg {
 {% endtab %}
 {% endtabs %}
 
-<table><thead><tr><th width="272.3333333333333">Name</th><th width="196.50867625185924">Type</th><th>Description</th></tr></thead><tbody><tr><td><code>start_time</code></td><td>Option&#x3C;<a href="../../platform-and-framework/common-types.md#milliseconds">Milliseconds</a>></td><td>An optional <a href="https://www.epochconverter.com">timestamp</a> in milliseconds to when the sale start. The sale will immediately start if not specified.</td></tr><tr><td><code>end_time</code></td><td><a href="../../platform-and-framework/common-types.md#milliseconds">Milliseconds</a></td><td><a href="https://www.epochconverter.com">Timestamp</a> in milliseconds to specify when the sale ends.</td></tr><tr><td><code>price</code></td><td><a href="../../platform-and-framework/common-types.md#coin">Coin</a></td><td>The price per token.</td></tr><tr><td><code>min_tokens_sold</code></td><td>Uint128</td><td>The minimum amount of tokens sold to go through with the sale.</td></tr><tr><td><code>max_amount_per_wallet</code></td><td>Option&#x3C;u32></td><td>The amount of tokens a wallet can purchase, default is 1.</td></tr><tr><td><code>recipient</code></td><td><a href="../../platform-and-framework/common-types.md#recipient">Recipient</a></td><td>The recipient of the funds if the sale met the <code>min_tokens_sold</code>.</td></tr></tbody></table>
+<table><thead><tr><th width="272.3333333333333">Name</th><th width="196.50867625185924">Type</th><th>Description</th></tr></thead><tbody><tr><td><code>start_time</code></td><td>Option&#x3C;<a href="../../platform-and-framework/common-types.md#milliseconds">MillisecondsExpiration</a>></td><td>An optional <a href="https://www.epochconverter.com">timestamp</a> in milliseconds to when the sale start. The sale will immediately start if not specified.</td></tr><tr><td><code>end_time</code></td><td><a href="../../platform-and-framework/common-types.md#milliseconds">MillisecondsExpiration</a></td><td><a href="https://www.epochconverter.com">Timestamp</a> in milliseconds to specify when the sale ends.</td></tr><tr><td><code>price</code></td><td><a href="../../platform-and-framework/common-types.md#coin">Coin</a></td><td>The price per token.</td></tr><tr><td><code>min_tokens_sold</code></td><td>Uint128</td><td>The minimum amount of tokens sold to go through with the sale.</td></tr><tr><td><code>max_amount_per_wallet</code></td><td>Option&#x3C;u32></td><td>The amount of tokens a wallet can purchase, default is 1.</td></tr><tr><td><code>recipient</code></td><td><a href="../../platform-and-framework/common-types.md#recipient">Recipient</a></td><td>The recipient of the funds if the sale met the <code>min_tokens_sold</code>.</td></tr></tbody></table>
 
 ### Purchase
 

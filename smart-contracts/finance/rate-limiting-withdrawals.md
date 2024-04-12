@@ -61,7 +61,7 @@ pub struct CoinAndLimit {
 
 ```rust
 pub enum MinimumFrequency {
-     Time { time: Milliseconds },
+     Time { time: MillisecondsDuration },
      }
 ```
 
@@ -174,7 +174,7 @@ Returns a **CoinAllowance** struct.
 pub struct CoinAllowance {
     pub coin: String,
     pub limit: Uint128,
-    pub minimal_withdrawal_frequency: Milliseconds,
+    pub minimal_withdrawal_frequency: MillisecondsDuration,
 }
 ```
 {% endtab %}
@@ -190,7 +190,7 @@ pub struct CoinAllowance {
 {% endtab %}
 {% endtabs %}
 
-<table><thead><tr><th width="337.06022340942206">Name</th><th width="231.96848920702132">Type</th><th>Description</th></tr></thead><tbody><tr><td><code>coin</code></td><td>string</td><td>The coin denom.</td></tr><tr><td><code>limit</code></td><td>Uint128</td><td>The amount allowed to withdraw per withdrawal.</td></tr><tr><td><code>minimal_withdrawal_frequency</code></td><td><a href="../../platform-and-framework/common-types.md#milliseconds">Milliseconds</a></td><td>The time required between withdrawals. Specified in milliseconds. </td></tr></tbody></table>
+<table><thead><tr><th width="337.06022340942206">Name</th><th width="231.96848920702132">Type</th><th>Description</th></tr></thead><tbody><tr><td><code>coin</code></td><td>string</td><td>The coin denom.</td></tr><tr><td><code>limit</code></td><td>Uint128</td><td>The amount allowed to withdraw per withdrawal.</td></tr><tr><td><code>minimal_withdrawal_frequency</code></td><td><a href="../../platform-and-framework/common-types.md#milliseconds">MillisecondsDuration</a></td><td>The time required between withdrawals. Specified in milliseconds. </td></tr></tbody></table>
 
 ### AccountDetails
 

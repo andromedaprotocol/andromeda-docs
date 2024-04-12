@@ -78,19 +78,14 @@ pub enum Cw721HookMsg {
     StartSale {
      price: Uint128,
      coin_denom: String
-     start_time: Option<Milliseconds>,
-     duration: Option<Milliseconds>,
+     start_time: Option<MillisecondsExpiration>,
+     duration: Option<MillisecondsDuration>,
      recipient: Option<Recipient>,
        }
    }
 ```
 
-| Name         | Type                                                                           | Description                                                                                                                                      |
-| ------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `price`      | Uint128                                                                        | The price of the NFT.                                                                                                                            |
-| `coin_denom` | String                                                                         | The denom to pay the price with.                                                                                                                 |
-| `start_time` | Option<[Milliseconds](../platform-and-framework/common-types.md#milliseconds)> | Optional start time in milliseconds since [epoch](https://www.epochconverter.com/clock). If not specified, then the sale will start immediately. |
-| `duration`   | Option<[Milliseconds](../platform-and-framework/common-types.md#milliseconds)> | Optional duration for the sale in milliseconds from the `start_time`. If not specified then the sale never expires.                              |
+<table><thead><tr><th>Name</th><th width="267">Type</th><th>Description</th></tr></thead><tbody><tr><td><code>price</code></td><td>Uint128</td><td>The price of the NFT.</td></tr><tr><td><code>coin_denom</code></td><td>String</td><td>The denom to pay the price with. </td></tr><tr><td><code>start_time</code></td><td>Option&#x3C;<a href="../platform-and-framework/common-types.md#milliseconds">MillisecondsExpiration</a>></td><td>Optional start time in milliseconds since <a href="https://www.epochconverter.com/clock">epoch</a>. If not specified, then the sale will start immediately.</td></tr><tr><td><code>duration</code></td><td>Option&#x3C;<a href="../platform-and-framework/common-types.md#milliseconds">MillisecondsDuration</a>></td><td>Optional duration for the sale in milliseconds from the <code>start_time</code>. If not specified then the sale never expires.</td></tr></tbody></table>
 
 ### UpdateSale
 

@@ -27,9 +27,9 @@ Withdrawal window should be less than deposit window.
 {% tab title="Rust" %}
 ```rust
 pub struct InstantiateMsg {
-    pub init_timestamp: Milliseconds,
-    pub deposit_window: Milliseconds,
-    pub withdrawal_window: Milliseconds,
+    pub init_timestamp: MillisecondsExpiration,
+    pub deposit_window: MillisecondsDuration,
+    pub withdrawal_window: MillisecondsDuration,
     pub incentive_token: AndrAddr,
     pub native_denom: String,
     pub kernel_address: String,
@@ -52,15 +52,15 @@ pub struct InstantiateMsg {
 {% endtab %}
 {% endtabs %}
 
-| Name                | Type                                                                      | Description                                                                                                                                                                                                                                                                                                                            |
-| ------------------- | ------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `init_timestamp`    | [Milliseconds](../../platform-and-framework/common-types.md#milliseconds) | Timestamp in milliseconds till when deposits can be made. Provided in seconds.                                                                                                                                                                                                                                                         |
-| `deposit_window`    | [Milliseconds](../../platform-and-framework/common-types.md#milliseconds) | Number of milliseconds for which lockup deposits will be accepted.                                                                                                                                                                                                                                                                     |
-| `withdrawal_window` | [Milliseconds](../../platform-and-framework/common-types.md#milliseconds) | Number of milliseconds for which lockup withdrawals will be allowed.                                                                                                                                                                                                                                                                   |
-| `incentive_token`   | [AndrAddr](../../platform-and-framework/common-types.md#andraddr)         | The token being given as incentive.                                                                                                                                                                                                                                                                                                    |
-| `native_denom`      | String                                                                    | The native token being deposited.                                                                                                                                                                                                                                                                                                      |
-| `kernel_address`    | String                                                                    | Contract address of the [kernel contract](../../platform-and-framework/andromeda-messaging-protocol/kernel.md) to be used for [AMP](../../platform-and-framework/andromeda-messaging-protocol/) messaging. Kernel contract address can be found in our [deployed contracts](<../../platform-and-framework/deployed-contracts (1).md>). |
-| `owner`             | Option\<String>                                                           | Optional address to specify as the owner of the ADO being created. Defaults to the sender if not specified.                                                                                                                                                                                                                            |
+| Name                | Type                                                                                                                                           | Description                                                                                                                                                                                                                                                                                                                            |
+| ------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `init_timestamp`    | [MillisecondsExpiration](../../platform-and-framework/common-types.md#milliseconds)                                                            | Timestamp in milliseconds till when deposits can be made. Provided in seconds.                                                                                                                                                                                                                                                         |
+| `deposit_window`    | [Milliseconds](../../platform-and-framework/common-types.md#milliseconds)[Duration](../../platform-and-framework/common-types.md#milliseconds) | Number of milliseconds for which lockup deposits will be accepted.                                                                                                                                                                                                                                                                     |
+| `withdrawal_window` | [Milliseconds](../../platform-and-framework/common-types.md#milliseconds)[Duration](../../platform-and-framework/common-types.md#milliseconds) | Number of milliseconds for which lockup withdrawals will be allowed.                                                                                                                                                                                                                                                                   |
+| `incentive_token`   | [AndrAddr](../../platform-and-framework/common-types.md#andraddr)                                                                              | The token being given as incentive.                                                                                                                                                                                                                                                                                                    |
+| `native_denom`      | String                                                                                                                                         | The native token being deposited.                                                                                                                                                                                                                                                                                                      |
+| `kernel_address`    | String                                                                                                                                         | Contract address of the [kernel contract](../../platform-and-framework/andromeda-messaging-protocol/kernel.md) to be used for [AMP](../../platform-and-framework/andromeda-messaging-protocol/) messaging. Kernel contract address can be found in our [deployed contracts](<../../platform-and-framework/deployed-contracts (1).md>). |
+| `owner`             | Option\<String>                                                                                                                                | Optional address to specify as the owner of the ADO being created. Defaults to the sender if not specified.                                                                                                                                                                                                                            |
 
 ## ExecuteMsg
 
@@ -261,9 +261,9 @@ pub enum QueryMsg {
 {% tab title="Rust" %}
 ```rust
 pub struct ConfigResponse {
-    pub init_timestamp: Milliseconds,
-    pub deposit_window: Milliseconds,
-    pub withdrawal_window: Milliseconds,
+    pub init_timestamp: MillisecondsExpiration,
+    pub deposit_window: MillisecondsDuration,
+    pub withdrawal_window: MillisecondsDuration,
     pub lockdrop_incentives: Uint128,
     pub incentive_token: AndrAddr,
     pub native_denom: String,

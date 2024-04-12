@@ -85,16 +85,16 @@ pub struct InstantiateMsg {
 ```rust
 pub struct RewardTokenUnchecked {
     pub asset_info: AssetInfoUnchecked,
-    pub init_timestamp: Milliseconds,
+    pub init_timestamp: MillisecondsExpiration,
     pub allocation_config: Option<AllocationConfig>,
 }
 ```
 
-| Name                | Type                                                                   | Description                                                                                                      |
-| ------------------- | ---------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- |
-| `asset_info`        | [AssetInfoUnchecked](cw20-staking.md#assetinfounchecked)               | The asset used as a reward.                                                                                      |
-| `init_timestamp`    | [Milliseconds](../platform-and-framework/common-types.md#milliseconds) | Timestamp from which Rewards will start getting accrued against the staked LP tokens. Specified in milliseconds. |
-| `allocation_config` | Option<[AllocationConfig](cw20-staking.md#allocationconfig)>           | How to allocate the `asset_info` as rewards. If not set, then the rewards are of the "non-allocated" type.       |
+| Name                | Type                                                                                                                                       | Description                                                                                                      |
+| ------------------- | ------------------------------------------------------------------------------------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------------- |
+| `asset_info`        | [AssetInfoUnchecked](cw20-staking.md#assetinfounchecked)                                                                                   | The asset used as a reward.                                                                                      |
+| `init_timestamp`    | [Milliseconds](../platform-and-framework/common-types.md#milliseconds)[Expiration](../platform-and-framework/common-types.md#milliseconds) | Timestamp from which Rewards will start getting accrued against the staked LP tokens. Specified in milliseconds. |
+| `allocation_config` | Option<[AllocationConfig](cw20-staking.md#allocationconfig)>                                                                               | How to allocate the `asset_info` as rewards. If not set, then the rewards are of the "non-allocated" type.       |
 
 #### AssetInfoUnchecked
 
@@ -118,19 +118,19 @@ pub enum AssetInfoBase<T> {
 
 ```rust
 pub struct AllocationConfig {
-    pub till_timestamp: Milliseconds,
+    pub till_timestamp: MillisecondsExpiration,
     pub cycle_rewards: Uint128,
-    pub cycle_duration: Milliseconds,
+    pub cycle_duration: MillisecondsDuration,
     pub reward_increase: Option<Decimal>,
 }
 ```
 
-| Name              | Type                                                                   | Description                                                                                                         |
-| ----------------- | ---------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------- |
-| `till_timestamp`  | [Milliseconds](../platform-and-framework/common-types.md#milliseconds) | Timestamp in milliseconds till which rewards will be accrued. No staking rewards are accrued beyond this timestamp. |
-| `cycle_rewards`   | Uint128                                                                | Rewards distributed during the 1st cycle.                                                                           |
-| `cycle_duration`  | [Milliseconds](../platform-and-framework/common-types.md#milliseconds) | Cycle duration in milliseconds.                                                                                     |
-| `reward_increase` | Optional\<Decimal>                                                     | Percent increase in Rewards per cycle.                                                                              |
+| Name              | Type                                                                                                                                       | Description                                                                                                         |
+| ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------- |
+| `till_timestamp`  | [Milliseconds](../platform-and-framework/common-types.md#milliseconds)[Expiration](../platform-and-framework/common-types.md#milliseconds) | Timestamp in milliseconds till which rewards will be accrued. No staking rewards are accrued beyond this timestamp. |
+| `cycle_rewards`   | Uint128                                                                                                                                    | Rewards distributed during the 1st cycle.                                                                           |
+| `cycle_duration`  | [Milliseconds](../platform-and-framework/common-types.md#milliseconds)[Duration](../platform-and-framework/common-types.md#milliseconds)   | Cycle duration in milliseconds.                                                                                     |
+| `reward_increase` | Optional\<Decimal>                                                                                                                         | Percent increase in Rewards per cycle.                                                                              |
 
 ## ExecuteMsg
 
