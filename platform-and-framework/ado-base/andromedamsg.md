@@ -66,7 +66,7 @@ The enum containing the different ownership message options.
 pub enum OwnershipMessage {
     UpdateOwner {
         new_owner: Addr,
-        expiration: Option<Expiration>,
+        expiration: Option<MillisecondsExpiration>,
     },
     RevokeOwnershipOffer,
     AcceptOwnership,
@@ -90,7 +90,7 @@ Only one offer can be made at a time.
 pub enum OwnershipMessage {
   UpdateOwner {
         new_owner: Addr,
-        expiration: Option<Expiration>,
+        expiration: Option<MillisecondsExpiration>,
     },
  }
 ```
@@ -101,7 +101,8 @@ pub enum OwnershipMessage {
 {
 "ownership":{
     "update_owner":{
-        "new_owner":"andr1..."
+        "new_owner":"andr1...",
+        "expiration": 173493923498234
         }
     }
 }
@@ -109,10 +110,7 @@ pub enum OwnershipMessage {
 {% endtab %}
 {% endtabs %}
 
-| Name         | Type                                                | Description                          |
-| ------------ | --------------------------------------------------- | ------------------------------------ |
-| `new_owner`  | Addr                                                | The address to offer ownership to.   |
-| `expiration` | Option<[Expiration](../common-types.md#expiration)> | An optional expiration to the offer. |
+<table><thead><tr><th width="178">Name</th><th>Type</th><th>Description</th></tr></thead><tbody><tr><td><code>new_owner</code></td><td>Addr</td><td>The address to offer ownership to.</td></tr><tr><td><code>expiration</code></td><td>Option&#x3C;<a href="../common-types.md#milliseconds">MillisecondsExpiration</a>></td><td>An optional expiration to the ownership offer. Uses a Timestamp in milliseconds.</td></tr></tbody></table>
 
 ### AcceptOwnership
 
@@ -412,14 +410,18 @@ Expiration defaults to `Never` if not provided.
 
 ```rust
 pub enum Permission {
-    Blacklisted(Option<Expiration>),
+    Blacklisted(Option<MillisecondsExpiration>),
     Limited {
-        expiration: Option<Expiration>,
+        expiration: Option<MillisecondsExpiration>,
         uses: u32,
     },
-    Whitelisted(Option<Expiration>),
+    Whitelisted(Option<MillisecondsExpiration>),
 }
 ```
+
+{% hint style="warning" %}
+All expirations are set as a timestamp in milliseconds using the [MillisecondsExpiration](../common-types.md#milliseconds) type.
+{% endhint %}
 
 * **Blacklisted:** The user cannot perform the action until after the provided expiration.
 * **Limited:** The user can perform the action while uses are remaining and before the provided expiration.
