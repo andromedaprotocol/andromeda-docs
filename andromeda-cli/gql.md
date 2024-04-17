@@ -6,10 +6,11 @@ description: Queries using our GraphQL server
 
 ### Available Commands
 
-| Command                             | Description                                                              |
-| ----------------------------------- | ------------------------------------------------------------------------ |
-| ****[**app**](gql.md#app)****       | Queries details about an app.                                            |
-| ****[**assets**](gql.md#assets)**** | Queries details about your deployed apps and ADOs for the current chain. |
+| Command                     | Description                                                              |
+| --------------------------- | ------------------------------------------------------------------------ |
+| [**app**](gql.md#app)       | Queries details about an app.                                            |
+| [**assets**](gql.md#assets) | Queries details about your deployed apps and ADOs for the current chain. |
+| [**url**](gql.md#url)       | Fetches the GraphQL url used.                                            |
 
 ## App
 
@@ -75,3 +76,47 @@ andr1qdgvugdnscwnj8lc96q666000gyjv434kn9zl9ey3dph6p0cunuszv3dwf cw721    andr138
 | -------- | ---------------------------------------- | ------------ |
 | **type** | Filter assets by ADO type.               | --type cw721 |
 | **help** | Displays info about the current command. | --help       |
+
+## URL
+
+### Get
+
+Fetches the GraphQL url used.
+
+#### Usage
+
+```
+gql url get
+```
+
+#### Example
+
+```
+? mainnet-1@andromeda-1> gql url get
+https://api.andromedaprotocol.io/graphql/mainnet
+? mainnet-1@andromeda-1> () 
+```
+
+### Set
+
+Sets the GraphQL url to be used.
+
+#### Usage
+
+```
+gql url set <url>
+```
+
+#### Example
+
+```
+gql url set https://api.andromedaprotocol.io/graphql/mainnet
+```
+
+or&#x20;
+
+```
+gql url set
+```
+
+and then choose from the available options.

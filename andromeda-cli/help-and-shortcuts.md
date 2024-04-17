@@ -20,7 +20,6 @@ help    Displays info about the current command
 Any request inputs can be exited using one of the following inputs: .exit, .quit, .e, .q, exit
 Documentation can be found here: https://docs.andromedaprotocol.io/andromeda/andromeda-cli/
 
-
 ```
 
 ### Autofill Suggestions&#x20;
@@ -32,7 +31,7 @@ In addition to the help flag, you can you the "tab" button on your keyboard to l
 To test this out, write any of the commands available but do not press enter to run it. Instead press tab and the "Available commands" should pop up.
 
 ```
-? $main@elgafar-1> () wallets
+? $main@elgafar-1> () wallet
 
 //Press "tab" button
 >> Available commands:
@@ -75,11 +74,14 @@ elgafar1    elgafar-1
 pisco1      pisco-1      
 sei-network atlantic-1   
 injective   injective-888
-galileo3    galileo-3    
-junotestnet uni-6        
+galileo3    galileo-3          
 ```
 
 The command runs and the result is displayed but we are still in the parent shell.&#x20;
+
+### Exiting an Operation
+
+You can exit the current prompt by either typing "exit" or just pressing escape &#x20;
 
 ### Version
 
@@ -88,7 +90,7 @@ Prints the current CLI version
 #### Example
 
 ```
-? user@galileo-3> version
-Version: 0.1.9
-? user@galileo-3> () 
+? mainnet-1@andromeda-1> version
+Version: 1.0.0
+? mainnet-1@andromeda-1> ()
 ```

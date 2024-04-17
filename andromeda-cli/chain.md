@@ -14,7 +14,6 @@ description: Manage chains and configs
 | [**list**](chain.md#list)     | Lists all the currently saved configs.  |
 | [**new**](chain.md#new)       | Creates a new config.                   |
 | [**rm**](chain.md#remove)     | Removes a config by name or chain Id.   |
-| [**set**](chain.md#set)       | Sets the value for a given config key.  |
 | [**use**](chain.md#use)       | Swap to a saved config.                 |
 
 ## Config
@@ -23,17 +22,18 @@ Displays the config of the chain.
 
 | Key                           | Description                                                           |
 | ----------------------------- | --------------------------------------------------------------------- |
-| **chainName**                 | The name of the chain.                                                |
-| **chainId**                   | The Id of the chain to use                                            |
-| **chainUrl**                  | The URL of the chain to use                                           |
-| **kernelAddress**             | The contract address of the Kernel of the chain.                      |
 | **addressPrefix**             | The prefix for all addresses on chain                                 |
-| **defualtFee**                | The default fee amount                                                |
 | **blockExplorerTxPages**      | URLs to block explorers for the given chain. Must include '${txHash}' |
 | **blockExplorerAddressPages** | URLs to block explorers for the given chain. Must include '${txHash}' |
+| **chainId**                   | The Id of the chain to use                                            |
+| **chainUrl**                  | The URL of the chain to use                                           |
+| **chainName**                 | The name of the chain.                                                |
 | **chainType**                 | The type of chain (Testnet or Mainnet).                               |
-| **iconUrl**                   | The icon for the chain.                                               |
+| **defualtFee**                | The default fee amount                                                |
+| **iconUrls**                  | The icon for the chain.                                               |
+| **kernelAddress**             | The contract address of the Kernel of the chain.                      |
 | **name**                      | The name of the config being used.                                    |
+| **enabled**                   | Whether the config is enabled in the CLI.                             |
 
 #### Usage
 
@@ -198,31 +198,6 @@ chain rm <config name>
 ? keplr-g3@galileo-3> chain rm tutorial
 ```
 
-## Set
-
-Sets the value for a given config key.
-
-{% hint style="warning" %}
-This command is disabled on the default chain configs since they are made to be immutable. Any new chain configs that are created or copied can use the command.
-{% endhint %}
-
-#### Usage
-
-```
-chain set <key> <value>
-```
-
-#### Example
-
-Change some of the values in the config:
-
-```
-// Set the default fee to 0.05uandr
-? user@galileo-3> chain set defaultFee 0.05uandr
-```
-
-Run `chain config` to see the changes in the config.&#x20;
-
 ## Use
 
 Swaps to one of the saved configs.
@@ -267,7 +242,5 @@ Config loaded!
 ```
 
 ## CLI Configs
-
-The default configs are saved in our GraphQL server, and can be easily fetched by anyone.
 
 You can get all the configs from the CLI by running [chain config](chain.md#config).
