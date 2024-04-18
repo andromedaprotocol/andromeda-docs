@@ -12,13 +12,13 @@ Upon selecting the **Empty Project** option in the ADO Builder, you will be take
 
 <figure><img src="../../.gitbook/assets/Screen Shot 2024-03-14 at 5.07.22 PM.png" alt=""><figcaption></figcaption></figure>
 
-As you can see, the empty project starts with the base component which is the **App** component. The **App** component has a single field for you to specify the name of your app. For the first app, you will not add any components. Give your app a name and we can proceed to deploying it on chain.&#x20;
+As you can see, the empty project starts with the base component which is the **App** component. The **App** component has a single field for you to specify the name of your application. For the first app, you will not add any components. Give your app a name and we can proceed to deploying it on chain.&#x20;
 
 To deploy the app, simply press the “**Publish**” button. It is important to note that the app will run on the chain you are currently connected to, so make sure you are connected to the desired chain before proceeding with publishing:
 
 <figure><img src="../../.gitbook/assets/Screen Shot 2024-03-14 at 5.09.46 PM.png" alt=""><figcaption></figcaption></figure>
 
-Before the app gets deployed on the chain, you are given an estimate of the costs required to do so. In my case above, the estimated cost is 12880 **ustars** or 0.012880 **stars**. If I multiply this number with the price of **stars**, I can estimate the dollar cost of publishing my app. If satisfied with the result, press “Broadcast” to go through with the deployment. Lastly, you will get the following screen:
+Before the app gets deployed on the chain, you are given an estimate of the costs required to do so. In my case above, the estimated cost is 12880 **ustars** or 0.012880 **stars**. If I multiply this number with the price of **stars**, I can estimate the dollar cost of publishing my app. If satisfied with the result, press “**Broadcast**” to go through with the deployment. Lastly, you will get the following screen:
 
 <figure><img src="../../.gitbook/assets/Screen Shot 2024-03-14 at 5.12.38 PM.png" alt="" width="358"><figcaption></figcaption></figure>
 
@@ -26,7 +26,7 @@ At the top, we have the "**Messages"** that show the generated message of your a
 
 In addition to the message, you also have the option to add a memo or note to the transaction. This can be used to provide additional information about the app or to include any relevant details about the transaction.
 
-Select “Approve” to give the final approval for broadcasting the app to chain:
+Select “**Approve**” to give the final approval for broadcasting the app to chain:
 
 <figure><img src="../../.gitbook/assets/Screen Shot 2024-03-14 at 5.14.51 PM.png" alt="" width="375"><figcaption></figcaption></figure>
 
@@ -34,7 +34,7 @@ Congratulations, you have successfully deployed your first Andromeda App on chai
 
 <figure><img src="../../.gitbook/assets/Screen Shot 2024-03-14 at 5.17.09 PM.png" alt=""><figcaption></figcaption></figure>
 
-Back to the ADO builder, when you press on “Close”, you are taken to the Assets page:
+Back to the ADO builder. When you press on “**Close**”, you are taken to the Assets page:
 
 {% hint style="info" %}
 The Assets page is where you can view all the Apps/ADOs that have your connected wallet as the owner. By default any App/ADO you build will have the connected address as the owner.&#x20;
@@ -55,7 +55,7 @@ When you want to communicate with an app, you can do so by "executing messages."
 
 <figure><img src="../../.gitbook/assets/Screen Shot 2024-03-14 at 5.31.05 PM.png" alt=""><figcaption></figcaption></figure>
 
-For now, you will not execute any messages as the App is empty and basically useless.
+For now, you will not execute any messages as the App is empty and basically useless.&#x20;
 
 {% hint style="warning" %}
 You can read about each ADO's execute messages in the ADO's documentation page.&#x20;

@@ -99,16 +99,14 @@ In case a user wants the App to be the owner of the components, they can transfe
 
 For now, we are interested in learning about **Claim Ownership** and **Proxy Message**.
 
-Since the App component is assigned as the owner of all components, we have set up the **Claim Ownership** message that transfers ownership of all the components (Or one specific component) to our address (Owner/creator address of the App). Once the component is claimed, you can directly execute the **Contract Owner Restricted Messages** on it.&#x20;
-
-If we do not wish to claim the components, then we can use the **Proxy Message** to execute these messages on the components through the App.
-
 Proxy Message is a **Contract Owner Restricted Message** (Only the App owner can call it) which will take your message and send it through the App component. When we execute on components, we are given the choice of using a proxy message, or directly executing on the component itself. This choice is represented with a toggle for each execute message:
 
 <figure><img src="../../.gitbook/assets/Screen Shot 2024-03-14 at 6.32.38 PM.png" alt=""><figcaption></figcaption></figure>
 
 {% hint style="warning" %}
 Never use **Proxy** for **Asset Owner Restricted Messages** as you will get an unauthorized error. This is not the case only if the App address is the owner of the asset.
+
+Proxy message is only needed if you have given ownership of the components to the App.
 {% endhint %}
 
 Now that you understand the above concepts, let's get back to our app. For a CW721, the **Minter Address** is the **ONLY** address allowed the mint NFTs ie. call the **Mint** execute message. This means that the **Mint** message cannot be proxied since the App address is not authorized to call it.
@@ -162,7 +160,7 @@ The denom for funds on the Andromeda chain will always be uandr. Similarly, ujun
 Although rare, some chains might have more than one native token. The native token does not necessarily need to conform with the above naming. For example the native token for the Injective chain is inj and not uinj .&#x20;
 {% endhint %}
 
-After filling in the fields, publish the message to the chain. Now, any address is able to transfer this NFT to their account as long as they attach 1000 ustars to the message which will be credited to your address (The seller). This is the only case where an address, other than the NFT owner, is able to transfer an NFT they do not currently own.&#x20;
+After filling in the fields, publish the message to the chain. Now, any address is able to transfer this NFT to their account by calling the [TransferNFT](https://docs.andromedaprotocol.io/andromeda/andromeda-digital-objects/cw721#transfernft) message as long as they attach 1000 ustars to the message which will be credited to your address (The seller). This is the only case where an address, other than the NFT owner, is able to transfer an NFT they do not currently own.&#x20;
 
 This concludes the second guide. Feel free to play around with your App (Refer to docs to see the messages for the components and their function).
 
