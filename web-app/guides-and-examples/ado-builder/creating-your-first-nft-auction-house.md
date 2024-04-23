@@ -83,7 +83,7 @@ We have succesfully set up one NFT auction. You can do the same for each minted 
 {% hint style="info" %}
 If you want to try bidding on the NFT you just put up for auction, check our "[Using CLI to Interact with Apps](../using-cli-to-interact-with-apps.md)" section.
 
-If you want to make a custom interface for users to bid on the NFTs, check out our "[Embeddables](../embeddables.md)" guide.
+If you want to make a custom interface for users to bid on the NFTs, check out our "[Embeddables](../embeddables/)" guide.
 
 If you are interested in using queries on your App components, check out our [Using Queries ](../using-queries.md)section to learn about that process.
 {% endhint %}
