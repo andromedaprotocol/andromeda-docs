@@ -2,7 +2,7 @@
 
 The ADO Builder is our custom no-code builder that can help you build decentralized applications in minutes instead of months. &#x20;
 
-<figure><img src="../.gitbook/assets/Screenshot 2024-01-22 at 9.49.26 AM.jpg" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/Screen Shot 2024-04-24 at 6.26.00 PM.png" alt=""><figcaption></figcaption></figure>
 
 In the ADO Builder, you have three main options:
 

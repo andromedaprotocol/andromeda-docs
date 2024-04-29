@@ -91,5 +91,5 @@ We have succesfully set up one NFT sale. You can do the same for each minted NFT
 {% hint style="info" %}
 If you want to try buying some of the NFTs from the sale and then checking the results, check our "[Using CLI to Interact with Apps](../using-cli-to-interact-with-apps.md)" section.
 
-If you are interested in using queries on your App components, check out our [Using Queries ](../using-queries.md)section to learn about that process.
+If you are interested in using queries on your App components, check out our [Using Queries ](../../learning-the-basics/using-queries.md)section to learn about that process.
 {% endhint %}

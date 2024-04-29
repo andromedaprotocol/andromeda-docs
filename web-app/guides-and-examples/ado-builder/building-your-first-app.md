@@ -5,7 +5,7 @@ In this guide, you will be utilizing the ADO Builder tool to construct custom An
 <figure><img src="../../.gitbook/assets/Screen Shot 2024-03-14 at 5.04.53 PM 1.png" alt=""><figcaption><p>Selecting a Blank Canvas</p></figcaption></figure>
 
 {% hint style="warning" %}
-Note: The app will utilize the Stargaze chain, as indicated by the connected wallet on the top right corner of the screen. Feel free to use any of the chains available as the steps of building the App will remain the same. If you do not know how to connect your wallet to the web-app, check out our “[Setting up your walle](../setting-up-your-wallet.md)t” guide.
+Note: The app will utilize the Stargaze chain, as indicated by the connected wallet on the top right corner of the screen. Feel free to use any of the chains available as the steps of building the App will remain the same. If you do not know how to connect your wallet to the web-app, check out our “[Setting up your walle](../../learning-the-basics/setting-up-your-wallet.md)t” guide.
 {% endhint %}
 
 Upon selecting the **Empty Project** option in the ADO Builder, you will be taken to the main ADO builder interface:
@@ -61,4 +61,4 @@ For now, you will not execute any messages as the App is empty and basically use
 You can read about each ADO's execute messages in the ADO's documentation page.&#x20;
 {% endhint %}
 
-If you feel confident in what we just learned, jump in the next guide [Building your First NFT Collection ](building-your-first-nft-collection.md)where we take things one step further.
+If you feel confident in what we just learned, jump in the next guide [Building your First NFT Collection ](building-your-first-nft-collection/)where we take things one step further.

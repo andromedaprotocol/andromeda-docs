@@ -2,7 +2,7 @@
 
 ## Building An Embeddable: A General Overview <a href="#ok8t1bh7enzj" id="ok8t1bh7enzj"></a>
 
-In our [ADO Builder examples](../../basics/ado-builder.md), we have covered the basics of building an Andromeda Application from scratch. Now we will be taking a look into embeddables, our easy to use front-end interfaces that provide a face to your app.&#x20;
+In our [ADO Builder examples](../../introduction/ado-builder.md), we have covered the basics of building an Andromeda Application from scratch. Now we will be taking a look into embeddables, our easy to use front-end interfaces that provide a face to your app.&#x20;
 
 Although they are slightly simplistic interfaces, they provide you with the following features:
 

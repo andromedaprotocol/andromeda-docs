@@ -105,7 +105,7 @@ For our Mint message, we need to define the amount of tokens to mint and the add
 
 ![](<../../.gitbook/assets/Screen Shot 2024-04-03 at 8.11.42 PM.png>)
 
-Publish the message to the chain. In previous guides, we did not use many [queries](../using-queries.md), so let us change that in this example by querying the amount of tokens the our address has and confirming that the mint was succesfull. To perform the query, we need to do the following:&#x20;
+Publish the message to the chain. In previous guides, we did not use many [queries](../../learning-the-basics/using-queries.md), so let us change that in this example by querying the amount of tokens the our address has and confirming that the mint was succesfull. To perform the query, we need to do the following:&#x20;
 
 \- Go to your assets page.
 
@@ -182,5 +182,5 @@ As you can see, my CW20 balance is now 100, the amount we purchsed and the uandr
 {% hint style="info" %}
 If you want to try buying some of the CW20s from the sale and then checking the results, check our "[Using CLI to Interact with Apps](../using-cli-to-interact-with-apps.md)" section.
 
-If you are interested in using queries on your App components, check out our [Using Queries ](../using-queries.md)section to learn about that process.
+If you are interested in using queries on your App components, check out our [Using Queries ](../../learning-the-basics/using-queries.md)section to learn about that process.
 {% endhint %}

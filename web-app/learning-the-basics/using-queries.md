@@ -1,12 +1,12 @@
 # Using Queries
 
-&#x20;A query is a way to check or read data from the blockchain without making any updates. Unlike execute messages that modify something in our ADO, queries are just for getting information. We have built many Andromeda Apps in our[ previous guides](ado-builder/). In this section, we will be taking a look at queries and how they work.&#x20;
+&#x20;A query is a way to check or read data from the blockchain without making any updates. Unlike execute messages that modify something in our ADO, queries are just for getting information. We have built many Andromeda Apps in our[ previous guides](../guides-and-examples/ado-builder/). In this section, we will be taking a look at queries and how they work.&#x20;
 
 &#x20;Each ADO type has its own set of unique queries available. For example, let's say someone built an Auction ADO that has some NFTs in auction. As a user, I would want to know what the current highest bid is on said NFT. This information is stored in the ADO and can be retrieved through queries.&#x20;
 
 Each of our ADOs has two sets of queries:
 
-* **Base ADO Queries:** A set of queries common to all our ADOs that provide basic information about the ADO. Examples of base queries include getting the owner, operators, version of the ADO, and many more.
+* **Base ADO Queries:** A set of queries common to all our ADOs that provide basic information about the ADO. Examples of base queries include getting the owner, version of the ADO, and many more. The list of base queries can be found [here](https://docs.andromedaprotocol.io/andromeda/platform-and-framework/ado-base/andromedaquery).
 * **Custom Queries:** A set of queries unique to each ADO. These queries depend on the use of the ADO     and are specific to that use. Examples of custom queries include getting bids for an NFT in an auction, getting the minted NFTs for a CW721, getting the sale information in a crowdfund etc...
 
 {% hint style="info" %}
@@ -32,7 +32,7 @@ Each query is named in a way that makes it easy to assume what information we ar
 As an example, I will be querying some information from a CW721 component in my Crowdfund App:
 
 {% hint style="info" %}
-You can use any CW721 in any App you have built since the queries are the same for the same type of ADO meaning any CW721 will have the same queries not matter the use or app it is part of. If you haven't built any Apps yet, then what are you waiting for, learn how to build your first App [here](ado-builder/building-your-first-app.md).
+You can use any CW721 in any App you have built since the queries are the same for the same type of ADO meaning any CW721 will have the same queries not matter the use or app it is part of. If you haven't built any Apps yet, then what are you waiting for, learn how to build your first App [here](../guides-and-examples/ado-builder/building-your-first-app.md).
 {% endhint %}
 
 Choose any CW721 component and select the Num Tokens query from the dropdown list:&#x20;
