@@ -69,4 +69,4 @@
 
 * [GitHub](https://github.com/andromedaprotocol)
 * [Website](https://andromedaprotocol.io/)
-* [White Paper](https://static1.squarespace.com/static/60b85587d5bf80784bda317f/t/61698246efa74863509bacd8/1634304583185/ANDROMEDA+PROTOCOL.pdf)
+* [White Paper](https://static1.squarespace.com/static/64132ab1e673bd392881d7fd/t/652d8c3e8c27354c67e06d37/1697483840298/10.15.23+Crypto+White+Paper+v4.pdf)
