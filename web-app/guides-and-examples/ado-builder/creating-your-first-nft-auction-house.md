@@ -86,6 +86,8 @@ If you want to try bidding on the NFT you just put up for auction, check our "[U
 If you want to make a custom interface for users to bid on the NFTs, check out our "[Embeddables](../embeddables/)" guide.
 
 If you are interested in using queries on your App components, check out our [Using Queries ](../../learning-the-basics/using-queries.md)section to learn about that process.
+
+&#x20;If you are interested in using CW20 tokens as the bidding token, you can check out the "[Auction Using CW20 Tokens](auction-using-cw20-tokens.md)" example.
 {% endhint %}
 
 Next, we will be going through building some of the popular dApps in the space starting from an [NFT Marketplace App](nft-marketplace-app.md).

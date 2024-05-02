@@ -31,7 +31,6 @@ In Andromeda, we have created several ADOs that work with the CW20 ADO alllowing
 
 * **CW20-Staking:** Allows you to set up staking for your CW20 token.
 * **CW20-Exchange:** Allows you to exchange CW20 tokens for other tokens ( CW20 or Native).
-* **Lockdrop:** Allows you to perform a [lockdrop](https://www.mobee.io/knowledge-center/lockdrop-definition-and-its-differences-with-airdrop) for your project CW20 tokens.
 * **Merkle-Airdrop**: Allows you to perform a [merkle-airdrop](https://medium.com/smartz-blog/merkle-airdrop-the-basics-9a0857fcc930) for your CW20 tokens.
 
 {% hint style="warning" %}

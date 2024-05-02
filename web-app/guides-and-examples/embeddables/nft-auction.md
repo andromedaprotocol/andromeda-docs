@@ -11,7 +11,7 @@ This guide shows you how to create an Embeddable, using a CW721 Auction applicat
 Before using an embeddable, you will need to have an App built to integrate into the embeddable. In this example, we will be using a Auction App similar to the one built in the [**Creating your Frist NFT Auction House**](../ado-builder/creating-your-first-nft-auction-house.md). So before continuing with this guide make sure you have done the following:
 
 * Created an Auction App with at leat one minted NFT
-* Set up the NFT metadata and have it stored somewhere (IPFS, Pinata,nft.storage)
+* [Set up the NFT metadata](../ado-builder/building-your-first-nft-collection/setting-up-nft-metadata.md) and have it stored somewhere (IPFS, Pinata,nft.storage)
 
 {% hint style="warning" %}
 Using an embeddable on an App that does not have any minted NFTs will show up as empty.&#x20;

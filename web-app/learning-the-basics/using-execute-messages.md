@@ -36,3 +36,21 @@ Here, you can set up the minting options to mint an NFT:
 <figure><img src="../.gitbook/assets/Screen Shot 2024-04-25 at 7.28.55 PM.png" alt=""><figcaption></figcaption></figure>
 
 Once you have configured your execute message, you can press the publish button to send the message to the chain and have the ADO execute the mint. Once published, your CW721 ADO will have 1 minted NFT. You can check this by performing a query which we will cover in the next section.
+
+### Multi Execute
+
+To make life easier, we have created a multi-execute option for our users which allows them to send multiple execute messages in one go:
+
+<figure><img src="../.gitbook/assets/Screen Shot 2024-05-01 at 8.20.41 PM.png" alt=""><figcaption></figcaption></figure>
+
+<figure><img src="../.gitbook/assets/Screen Shot 2024-05-01 at 8.35.32 PM.png" alt=""><figcaption></figcaption></figure>
+
+Selecting "**Add Attachment**" will allow us to attach a new execute message. For the first message, I want to burn the NFT I minted earlier so I select the Burn message from the options:
+
+<figure><img src="../.gitbook/assets/Screen Shot 2024-05-01 at 8.37.47 PM.png" alt=""><figcaption></figcaption></figure>
+
+Next I want to mint a new NFT. So I select **Add Attachment** once more and select **Mint** from the list of execute messages:
+
+<figure><img src="../.gitbook/assets/Screen Shot 2024-05-01 at 8.39.40 PM.png" alt=""><figcaption></figcaption></figure>
+
+I can keep adding messages as I see fit. When done, I can publish all these messages to the chain in one go.
