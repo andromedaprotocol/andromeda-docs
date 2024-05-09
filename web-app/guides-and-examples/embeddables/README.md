@@ -10,10 +10,6 @@ Although they are slightly simplistic interfaces, they provide you with the foll
 * Ability to trigger actions on the app (Example bid on an NFT)
 * Information and data retrieval for your App
 
-{% hint style="info" %}
-&#x20;If you are a dev that is interested in learning more about embeddables and how they are created, the foundations for the embeddables are open source and available at: [https://github.com/andromedaprotocol/embeddable-marketplace-demo](https://github.com/andromedaprotocol/embeddable-marketplace-demo)
-{% endhint %}
-
 <figure><img src="../../.gitbook/assets/Screenshot 2023-10-09 at 9.13.22 AM.jpg" alt="" width="563"><figcaption></figcaption></figure>
 
 ### Benefits of Embeddables <a href="#wlwom5a2wigo" id="wlwom5a2wigo"></a>
@@ -25,3 +21,13 @@ Although they are slightly simplistic interfaces, they provide you with the foll
 In the next examples, we will be looking at some examples of using an embeddable with one of your Andromeda Applications.
 
 ***
+
+### Creating Your Own Embeddables
+
+Although our embeddables page contains several ready to go interfaces for our most common applications, we cannot create an embeddable for every single use case that can be built using the aOS as the number in infinite. For this reason, we have created an embeddable starting template for developers looking to develop their own custom embeddables. The template can be found here:
+
+{% embed url="https://github.com/andromedaprotocol/andromeda-nextjs-application-starter?tab=readme-ov-file" %}
+
+{% hint style="warning" %}
+Creating a custom embeddable will require knowledge of Next.js and typescript.
+{% endhint %}
