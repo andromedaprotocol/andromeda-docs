@@ -26,14 +26,6 @@ pub struct InstantiateMsg {
 {% tab title="JSON" %}
 ```json
 {
-"modules": [
-        {
-          "name": "address-list",
-          "address":"andr1...",
-          "is_mutable": true
-        },
-        ...
-    ],
 "kernel_address":"andr1..."
 }
 ```
