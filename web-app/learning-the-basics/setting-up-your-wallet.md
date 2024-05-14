@@ -6,6 +6,10 @@ Andromeda uses Keplr integration with our web-app to easily connect your wallets
 If you already have a Keplr wallet, you can directly go to the [Connecting to the Web App](setting-up-your-wallet.md#connecting-to-the-web-app) section.
 {% endhint %}
 
+The steps that we will cover are also found in video format:
+
+{% embed url="https://www.youtube.com/watch?t=10s&v=5R9i_kNHi2Y" %}
+
 ### Downloading the Keplr Extension
 
 First step we need to do is download the Keplr extension to our browser. You can download the extension from their site:

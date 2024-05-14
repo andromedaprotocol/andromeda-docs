@@ -35,3 +35,7 @@
   * [NFT Auction](guides-and-examples/embeddables/nft-auction.md)
 * [Using CLI to Interact with Apps](guides-and-examples/using-cli-to-interact-with-apps.md)
 * [Importing/Exporting Data](guides-and-examples/importing-exporting-data.md)
+
+## Staking
+
+* [Andromeda Staking](staking/andromeda-staking.md)
