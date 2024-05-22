@@ -65,6 +65,11 @@
 * [Clearing CLI Data](andromeda-cli/clearing-cli-data.md)
 * [Clear and Exit](andromeda-cli/clear-and-exit.md)
 
+## Chain
+
+* [Running a Node](chain/running-a-node.md)
+* [Staking and Rewards](chain/staking-and-rewards.md)
+
 ## Additional Resources
 
 * [GitHub](https://github.com/andromedaprotocol)
