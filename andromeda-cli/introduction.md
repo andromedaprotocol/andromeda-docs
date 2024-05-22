@@ -67,10 +67,16 @@ Andromeda is currently deployed on the following chains
 **Mainnet:**
 
 * Andromeda
+* Terra
+* Archway
 
 ### Getting Started
 
 The first thing to do in the CLI is to choose the chain config and wallets to use.&#x20;
+
+{% hint style="warning" %}
+By default the CLI uses mainnet.
+{% endhint %}
 
 Run:&#x20;
 
@@ -87,14 +93,10 @@ You can also create your own chain config using the [chain new](chain.md#new) co
 {% endhint %}
 
 ```
-? Input the chain ID to use: 
-  elgafar1 
-  pisco1 
-  sei-network 
-  injective 
-❯ galileo3 
-  junotestnet 
-  exit  
+? Input the chain ID to use: (Use arrow keys or type to search, tab to autocomplete)
+❯ andromeda 
+  terra 
+  archway  
 ```
 
 Choose the chain config that you want to use. Then we need to add a wallet. We run:
@@ -122,6 +124,30 @@ If you are using a testnet config make sure to send some tokens to your new addr
 You will notice something similar to `? user@galileo-3>` in the CLI. This signifies which wallet and chain-Id are currently in use. It is formatted in the following way:
 
 `? $<Wallet>@<ChainId>>`
+
+### Switching to Testnet
+
+{% hint style="info" %}
+You can switch from testnet to mainnet using the same process.
+{% endhint %}
+
+Switching to a testnet is a two step process:
+
+1. Set the graphql url to point to testnet by running:
+
+```
+gql url set
+```
+
+Then select TESTNET from the options.
+
+2. Select the chain to use by running:
+
+```
+chain use
+```
+
+Then select the testnet chain to connect to.
 
 ### Start Exploring
 

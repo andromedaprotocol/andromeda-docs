@@ -14,6 +14,10 @@ Andromeda is a central hub for building fully decentralized web-3 Apps in the Co
 
 ### Andromeda CLI
 
+{% hint style="info" %}
+All of the Apps  we will go through can be built using our web-application which is user-friendly interface that makes building application a seamless process. If interested you can check the guides of using the web-app [here](https://docs.andromedaprotocol.io/guides/guides-and-examples/ado-builder/building-your-first-app).
+{% endhint %}
+
 We will be building the Apps using the [Andromeda CLI](broken-reference), so make sure you have it dowloaded. If not you can grab the latest version by running:
 
 ```

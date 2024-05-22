@@ -102,7 +102,7 @@ pub enum Cw721HookMsg {
 {
     "start_sale": {
           "price":"500000",
-          "coin_denom": "uandr"
+          "coin_denom": "uandr",
           "start_time": 1663334970211,
           "duration": 60000000,
           "uses_cw20": false,

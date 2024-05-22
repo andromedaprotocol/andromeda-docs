@@ -99,6 +99,10 @@ https://api.andromedaprotocol.io/graphql/mainnet
 
 ### Set
 
+{% hint style="info" %}
+Setting the URL&#x20;
+{% endhint %}
+
 Sets the GraphQL url to be used.
 
 #### Usage

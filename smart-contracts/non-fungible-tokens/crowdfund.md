@@ -133,7 +133,7 @@ pub enum ExecuteMsg {
 <pre class="language-json"><code class="lang-json">{
 "start_sale":{
  "start_time":10048328053820324,
- "end_time":11048328053820324
+ "end_time":11048328053820324,
   "price":{
     "denom":"uandr",
     "amount":"10000"
@@ -141,7 +141,7 @@ pub enum ExecuteMsg {
   "min_tokens_sold":"1000",
   "max_amount_per_wallet":10,
   "recipient":{
-   "addr":"andr1..."
+   "address":"andr1..."
   }
 <strong> }
 </strong>}
