@@ -39,3 +39,7 @@
 ## Staking
 
 * [Andromeda Staking](staking/andromeda-staking.md)
+
+## Data and Statistics
+
+* [Tokenomics Dashboard](data-and-statistics/tokenomics-dashboard.md)
