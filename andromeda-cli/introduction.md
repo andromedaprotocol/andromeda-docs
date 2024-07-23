@@ -54,21 +54,13 @@ The Andromeda CLI is built to work with any of the chains that Andromeda is depl
 Testnets are currently disable in CLI but will be added very shortly.
 {% endhint %}
 
-Andromeda is currently deployed on the following chains
+To get the list of chains that are integrated with the Andromeda system, run:
 
-**Testnet:**
+```
+chain list
+```
 
-* Andromeda
-* Stargaze
-* Terra
-* Injective
-* Archway
-
-**Mainnet:**
-
-* Andromeda
-* Terra
-* Archway
+<figure><img src="../.gitbook/assets/Screenshot 2024-07-23 at 5.56.07 PM.png" alt="" width="563"><figcaption></figcaption></figure>
 
 ### Getting Started
 
