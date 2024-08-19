@@ -22,7 +22,7 @@ This will display the list of execute messages available for that component. Eac
 ### Example
 
 {% hint style="warning" %}
-If you dont have any assets yet, it is fine to just read and understand how an execute message works for now. You will get plenty of hands on examples in our [ADO Builer](../guides-and-examples/ado-builder/) guides.
+If you dont have any assets yet, it is fine to just read and understand how an execute message works for now. You will get plenty of hands on examples in our [ADO Builder](../guides-and-examples/ado-builder/) guides.
 {% endhint %}
 
 Let us perform an execute message to mint some NFTs. On any CW721 ADO I will select the three dots and choose the **Mint** execute message from the list:
@@ -54,3 +54,26 @@ Next I want to mint a new NFT. So I select **Add Attachment** once more and sele
 <figure><img src="../.gitbook/assets/Screen Shot 2024-05-01 at 8.39.40 PM.png" alt=""><figcaption></figcaption></figure>
 
 I can keep adding messages as I see fit. When done, I can publish all these messages to the chain in one go.
+
+### Execute Message Attachments
+
+In some cases, an execute message will require funds to be sent along with the message. For example, let us say you are buying an NFT on the **Andromeda** chain from a marketplace for 10000uandr, you cant just execute the **Buy**  message without sending any funds along with it to actually pay for the NFT. To do so, you select the Add Attachment:
+
+<figure><img src="../.gitbook/assets/Screenshot 2024-08-19 at 6.55.03 PM.png" alt=""><figcaption></figcaption></figure>
+
+Then select Add Fund:
+
+<figure><img src="../.gitbook/assets/Screenshot 2024-08-19 at 6.56.46 PM.png" alt=""><figcaption></figcaption></figure>
+
+Once selected, the following panel will show up:
+
+<figure><img src="../.gitbook/assets/Screenshot 2024-08-19 at 6.58.19 PM.png" alt=""><figcaption></figcaption></figure>
+
+Here you can sepcify:
+
+* **Coin Denom:** The micro-denomination of the funds you are sending. This is usually the native funds used by the chain you are connected to. In the example we mentioned above we are on the **Andromeda** chain, so it would be "uandr".
+* **Amount:** The amount of funds to send which should be the price of the NFT in the case of a marketplace.&#x20;
+
+{% hint style="warning" %}
+Funds attachments are also used to pay off any fees that might be assosiated with an execute message.
+{% endhint %}
