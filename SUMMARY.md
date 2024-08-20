@@ -70,6 +70,11 @@
 * [Running a Node](chain/running-a-node.md)
 * [Staking and Rewards](chain/staking-and-rewards.md)
 
+## Andromeda Dashboard
+
+* [Tokenomics Dashboard](andromeda-dashboard/tokenomics-dashboard.md)
+* [Dashboard API](andromeda-dashboard/dashboard-api.md)
+
 ## Additional Resources
 
 * [GitHub](https://github.com/andromedaprotocol)
