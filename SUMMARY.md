@@ -12,7 +12,6 @@
   * [AndromedaQuery](ado-base/andromedaquery.md)
 * [Common Types](common-types.md)
 * [Deployed Contracts](deployed-contracts.md)
-* [Page](page.md)
 
 ## Andromeda Digital Objects
 
