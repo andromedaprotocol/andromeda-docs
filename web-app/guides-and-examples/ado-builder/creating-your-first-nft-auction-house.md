@@ -78,7 +78,7 @@ Here we can configure our auction options:
 
 Once done with configuring the fields, publish the message to chain. People can now bid on the NFT you just sent to auction (When the specified start time is reached). Since you sent the NFT to the auction component, it will be used to bid on the NFT.&#x20;
 
-We have succesfully set up one NFT auction. You can do the same for each minted NFT. You can also use the **Multi Execute** option, to set up multiple messages at a time. This would allow you to send multiple NFTs to the auction at a time.
+We have succesfully set up one NFT auction. You can do the same for each minted NFT. You can also use the **Multi Execute** option, to set up multiple messages at a time. This would allow you to send multiple NFTs to the auction in one go.
 
 {% hint style="info" %}
 If you want to try bidding on the NFT you just put up for auction, check our "[Using CLI to Interact with Apps](../using-cli-to-interact-with-apps.md)" section.
