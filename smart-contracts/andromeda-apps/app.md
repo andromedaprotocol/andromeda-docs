@@ -22,6 +22,8 @@ Crosschain Apps are currently disabled.
 
 **Ado\_type**: app-contract
 
+**Version: 1.1.1-beta.1**
+
 ## InstantiateMsg
 
 {% hint style="warning" %}

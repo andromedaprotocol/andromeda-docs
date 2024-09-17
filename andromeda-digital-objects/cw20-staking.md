@@ -38,6 +38,8 @@ After the rewards have been sent, the stakers would not receive any extra reward
 
 **Ado\_type**: cw20-staking
 
+**Version: 2.0.1-beta.1**
+
 ## InstantiateMsg
 
 {% hint style="warning" %}
@@ -64,9 +66,13 @@ pub struct InstantiateMsg {
           "asset_info":{
               "cw20":"andr1..."
               },
-          "init_timestamp": 104329432909800,
+          "init_timestamp":{
+              "from_now":"3600000"
+              },
           "allocation_config":{
-              "till_timestamp": 104334432,
+              "till_timestamp":{
+                  "from_now":"7200000"
+                  },
               "cycle_rewards":"300",
               "cycle duration":"400"
               }
@@ -85,16 +91,16 @@ pub struct InstantiateMsg {
 ```rust
 pub struct RewardTokenUnchecked {
     pub asset_info: AssetInfoUnchecked,
-    pub init_timestamp: MillisecondsExpiration,
+    pub init_timestamp: Expiry,
     pub allocation_config: Option<AllocationConfig>,
 }
 ```
 
-| Name                | Type                                                                                                                                       | Description                                                                                                      |
-| ------------------- | ------------------------------------------------------------------------------------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------------- |
-| `asset_info`        | [AssetInfoUnchecked](cw20-staking.md#assetinfounchecked)                                                                                   | The asset used as a reward.                                                                                      |
-| `init_timestamp`    | [Milliseconds](../platform-and-framework/common-types.md#milliseconds)[Expiration](../platform-and-framework/common-types.md#milliseconds) | Timestamp from which Rewards will start getting accrued against the staked LP tokens. Specified in milliseconds. |
-| `allocation_config` | Option<[AllocationConfig](cw20-staking.md#allocationconfig)>                                                                               | How to allocate the `asset_info` as rewards. If not set, then the rewards are of the "non-allocated" type.       |
+| Name                | Type                                                         | Description                                                                                                      |
+| ------------------- | ------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------------- |
+| `asset_info`        | [AssetInfoUnchecked](cw20-staking.md#assetinfounchecked)     | The asset used as a reward.                                                                                      |
+| `init_timestamp`    | [Expiry](../platform-and-framework/common-types.md#expiry)   | Timestamp from which Rewards will start getting accrued against the staked LP tokens. Specified in milliseconds. |
+| `allocation_config` | Option<[AllocationConfig](cw20-staking.md#allocationconfig)> | How to allocate the `asset_info` as rewards. If not set, then the rewards are of the "non-allocated" type.       |
 
 #### AssetInfoUnchecked
 
@@ -118,19 +124,19 @@ pub enum AssetInfoBase<T> {
 
 ```rust
 pub struct AllocationConfig {
-    pub till_timestamp: MillisecondsExpiration,
+    pub till_timestamp: Expiry,
     pub cycle_rewards: Uint128,
     pub cycle_duration: MillisecondsDuration,
     pub reward_increase: Option<Decimal>,
 }
 ```
 
-| Name              | Type                                                                                                                                       | Description                                                                                                         |
-| ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------- |
-| `till_timestamp`  | [Milliseconds](../platform-and-framework/common-types.md#milliseconds)[Expiration](../platform-and-framework/common-types.md#milliseconds) | Timestamp in milliseconds till which rewards will be accrued. No staking rewards are accrued beyond this timestamp. |
-| `cycle_rewards`   | Uint128                                                                                                                                    | Rewards distributed during the 1st cycle.                                                                           |
-| `cycle_duration`  | [Milliseconds](../platform-and-framework/common-types.md#milliseconds)[Duration](../platform-and-framework/common-types.md#milliseconds)   | Cycle duration in milliseconds.                                                                                     |
-| `reward_increase` | Optional\<Decimal>                                                                                                                         | Percent increase in Rewards per cycle.                                                                              |
+| Name              | Type                                                                                                                                     | Description                                                                                                         |
+| ----------------- | ---------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------- |
+| `till_timestamp`  | [Expiry](../platform-and-framework/common-types.md#expiry)                                                                               | Timestamp in milliseconds till which rewards will be accrued. No staking rewards are accrued beyond this timestamp. |
+| `cycle_rewards`   | Uint128                                                                                                                                  | Rewards distributed during the 1st cycle.                                                                           |
+| `cycle_duration`  | [Milliseconds](../platform-and-framework/common-types.md#milliseconds)[Duration](../platform-and-framework/common-types.md#milliseconds) | Cycle duration in milliseconds.                                                                                     |
+| `reward_increase` | Optional\<Decimal>                                                                                                                       | Percent increase in Rewards per cycle.                                                                              |
 
 ## ExecuteMsg
 
@@ -171,7 +177,9 @@ pub enum Cw20HookMsg {
 
 **StakeTokens**: Stake the sent tokens. Address must match the `staking_token` given on instantiation. The user's pending rewards and indexes are updated for each additional reward token.&#x20;
 
-**UpdateGlobalIndex**: Updates the global reward index on deposit of a valid cw20 token.
+**UpdateGlobalIndex**: Updates the global reward index on deposit of a valid cw20 token. Called whenever new CW20 rewards other than the staked token are added. Funds may be sent along with this.
+
+***
 
 ### AddRewardToken
 
@@ -208,6 +216,91 @@ pub enum ExecuteMsg {
 | Name           | Type                                                         | Description                        |
 | -------------- | ------------------------------------------------------------ | ---------------------------------- |
 | `reward_token` | [RewardTokenUnchecked](cw20-staking.md#rewardtokenunchecked) | The token to be added as a reward. |
+
+### RemoveRewardToken
+
+Removes the token set as a reward.
+
+{% hint style="warning" %}
+Only available to the contract owner.
+{% endhint %}
+
+{% tabs %}
+{% tab title="Rust" %}
+```rust
+pub enum ExecuteMsg {
+     RemoveRewardToken {
+        reward_token: String,
+    },
+}
+```
+{% endtab %}
+
+{% tab title="JSON" %}
+```json
+{
+"remove_reward_token":{
+    "reward_token":"andr1..."
+    }
+}{
+```
+{% endtab %}
+{% endtabs %}
+
+| Name           | Type   | Description                                                                                               |
+| -------------- | ------ | --------------------------------------------------------------------------------------------------------- |
+| `reward_token` | String | The token set as reward to remove. Specify the contract address for CW20 and the denomination for native. |
+
+### ReplaceRewardToken
+
+Replace a token set as reward with another one.
+
+{% hint style="warning" %}
+Only available to the contract owner.
+{% endhint %}
+
+{% tabs %}
+{% tab title="Rust" %}
+```rust
+pub enum ExecuteMsg {
+     ReplaceRewardToken {
+        origin_reward_token: String,
+        reward_token: RewardTokenUnchecked,
+    },
+}
+```
+{% endtab %}
+
+{% tab title="JSON" %}
+```json
+{
+"replace_reward_token":{
+    "origin_reward_token":"andr1...",
+    "reward_token":[{
+          "asset_info":{
+              "cw20":"andr1..."
+              },
+          "init_timestamp":{
+              "from_now":"3600000"
+              },
+          "allocation_config":{
+              "till_timestamp":{
+                  "from_now":"7200000"
+                  },
+              "cycle_rewards":"300",
+              "cycle duration":"400"
+              }
+          }],
+    }
+}
+```
+{% endtab %}
+{% endtabs %}
+
+| Name                  | Type                                                         | Description                                                                                                |
+| --------------------- | ------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------- |
+| `origin_reward_token` | String                                                       | The token set as reward to replace. Specify the contract address for CW20 and the denomination for native. |
+| `reward_token`        | [RewardTokenUnchecked](cw20-staking.md#rewardtokenunchecked) | The new token to be set as a reward.                                                                       |
 
 ### UnstakeTokens
 

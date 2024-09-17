@@ -4,8 +4,6 @@ description: This document is a guide to start using the Andromeda CLI.
 
 # Introduction
 
-The CLI is an all in one tool
-
 ## Installation
 
 To install the Andromeda CLI, run the following command to download our [npm package](https://www.npmjs.com/package/@andromedaprotocol/cli):

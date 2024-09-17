@@ -13,6 +13,8 @@ After the deposit phase is over, each user gets the token in proportion to how m
 
 **Ado\_type**: lockdrop
 
+**Version: 2.0.1-beta.1**
+
 ## InstantiateMsg
 
 {% hint style="warning" %}

@@ -9,7 +9,9 @@ description: The set of execute messages common to all ADOs in the Andromeda Log
 All of the ADOs can call most of the base execute messages found in the **AndromedaMsg** enum.
 
 {% hint style="danger" %}
-AMP ADOs are the only ADOs that do not implement the AndromedaMsg base executes.
+AMP ADOs are the only ADOs that do not implement all the AndromedaMsg base executes.
+
+Rates messages are only available to ADOs that implement Rates. This would be specified in the ADOs documentaion page.
 {% endhint %}
 
 {% tabs %}
@@ -30,6 +32,9 @@ pub enum AndromedaMsg {
     #[serde(rename = "amp_receive")]
     AMPReceive(AMPPkt),
     Permissioning(PermissioningMessage),
+    #[cfg(feature = "rates")]
+    Rates(self::rates::RatesMessage),
+    
     }
 }
 ```
@@ -66,7 +71,7 @@ The enum containing the different ownership message options.
 pub enum OwnershipMessage {
     UpdateOwner {
         new_owner: Addr,
-        expiration: Option<MillisecondsExpiration>,
+        expiration: Option<Expiry>,
     },
     RevokeOwnershipOffer,
     AcceptOwnership,
@@ -90,7 +95,7 @@ Only one offer can be made at a time.
 pub enum OwnershipMessage {
   UpdateOwner {
         new_owner: Addr,
-        expiration: Option<MillisecondsExpiration>,
+        expiration: Option<Expiry>,
     },
  }
 ```
@@ -102,7 +107,9 @@ pub enum OwnershipMessage {
 "ownership":{
     "update_owner":{
         "new_owner":"andr1...",
-        "expiration": 173493923498234
+        "expiration":{
+            "from_now":"6000000"
+            }
         }
     }
 }
@@ -110,7 +117,7 @@ pub enum OwnershipMessage {
 {% endtab %}
 {% endtabs %}
 
-<table><thead><tr><th width="178">Name</th><th>Type</th><th>Description</th></tr></thead><tbody><tr><td><code>new_owner</code></td><td>Addr</td><td>The address to offer ownership to.</td></tr><tr><td><code>expiration</code></td><td>Option&#x3C;<a href="../common-types.md#milliseconds">MillisecondsExpiration</a>></td><td>An optional expiration to the ownership offer. Uses a Timestamp in milliseconds.</td></tr></tbody></table>
+<table><thead><tr><th width="178">Name</th><th>Type</th><th>Description</th></tr></thead><tbody><tr><td><code>new_owner</code></td><td>Addr</td><td>The address to offer ownership to.</td></tr><tr><td><code>expiration</code></td><td>Option&#x3C;<a href="../common-types.md#expiry-and-milliseconds">Expiry</a>></td><td>An optional expiration to the ownership offer. </td></tr></tbody></table>
 
 ### AcceptOwnership
 
@@ -278,7 +285,13 @@ This message is not called by the user, but is the case that handles receiving [
 
 ## Permissioning&#x20;
 
-Messages related to the permissioning of an ADO.&#x20;
+Messages related to the permissioning of an ADO. Permissioning allows ADO owners to give/restrict access to addresses to execute messages on their ADOs.
+
+{% hint style="warning" %}
+You can use the Address List ADO to set up permissions.
+
+Permissioning cannot bypass owner restricted messages.
+{% endhint %}
 
 {% tabs %}
 {% tab title="Rust" %}
@@ -297,14 +310,14 @@ pub enum PermissioningMessage {
   PermissionAction {
         action: String,
     },
-    SetPermission {
-        actor: AndrAddr,
+  SetPermission {
+        actors: Vec<AndrAddr>,
         action: String,
         permission: Permission,
     },
     RemovePermission {
         action: String,
-        actor: AndrAddr,
+        actors: Vec<AndrAddr>,
     },
     DisableActionPermissioning {
         action: String,
@@ -321,7 +334,7 @@ By actions, we are reffering to execute messages.
 
 Only available to the ADO owner.
 
-Permissioning an action will allow you to call SetPermission on that action.
+Permissioning an action will allow you to call [SetPermission](andromedamsg.md#setpermission) on that action.
 {% endhint %}
 
 {% tabs %}
@@ -340,7 +353,7 @@ pub enum PermissioningMessage {
 {
 "permissioning":{
     "permission_action":{
-        "action":"Mint"
+        "action":"Transfer"
     }
   }
 }
@@ -367,7 +380,7 @@ The action needs to be permissioned by calling [PermissionAction](andromedamsg.m
 ```rust
 pub enum PermissioningMessage {
   SetPermission {
-        actor: AndrAddr,
+        actors: Vec<AndrAddr>,
         action: String,
         permission: Permission,
     },
@@ -380,12 +393,14 @@ pub enum PermissioningMessage {
 {
 "permissioning"{
     "set_permission":{
-        "actor"::"andr1...",
-        "action":"Mint",
+        "actors":["andr1...","and1...",...],
+        "action":"Buy",
         "permission":{
+            "local":{
             "limited":{
                 "uses": 5
                 }
+             }
             }
         }
     }
@@ -394,11 +409,11 @@ pub enum PermissioningMessage {
 {% endtab %}
 {% endtabs %}
 
-| Name         | Type                                    | Description                                                                                                                          |
-| ------------ | --------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------ |
-| `actor`      | [AndrAddr](../common-types.md#andraddr) | The address to assign permissions for.                                                                                               |
-| `action`     | String                                  | The execute message to assign a permission for. Action needs to be capitalized i.e. "UpdateSale" to specify the UpdateSale execute.  |
-| `permission` | Permission                              | The type of permission assigned.                                                                                                     |
+| Name         | Type                                     | Description                                                                                                                          |
+| ------------ | ---------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------ |
+| `actor`      | [AndrAddr](../common-types.md#andraddr)  | The address to assign permissions for.                                                                                               |
+| `action`     | String                                   | The execute message to assign a permission for. Action needs to be capitalized i.e. "UpdateSale" to specify the UpdateSale execute.  |
+| `permission` | [Permission](andromedamsg.md#permission) | The type of permission assigned.                                                                                                     |
 
 #### Permission
 
@@ -410,18 +425,26 @@ Expiration defaults to `Never` if not provided.
 
 ```rust
 pub enum Permission {
-    Blacklisted(Option<MillisecondsExpiration>),
-    Limited {
-        expiration: Option<MillisecondsExpiration>,
-        uses: u32,
-    },
-    Whitelisted(Option<MillisecondsExpiration>),
+    Local(LocalPermission),
+    Contract(AndrAddr),
 }
 ```
 
-{% hint style="warning" %}
-All expirations are set as a timestamp in milliseconds using the [MillisecondsExpiration](../common-types.md#milliseconds) type.
-{% endhint %}
+* **Local:** The permissions are directly set from this ADO. You would directly specify the type of permission in this case.&#x20;
+* **Contract:** The permissions are taken from an [Address List ADO](../../andromeda-digital-objects/address-list.md). You would reference the Address List in this case.
+
+**LocalPermission**
+
+```rust
+pub enum LocalPermission {
+    Blacklisted(Option<Expiry>),
+    Limited {
+        expiration: Option<Expiry>,
+        uses: u32,
+    },
+    Whitelisted(Option<Expiry>),
+}
+```
 
 * **Blacklisted:** The user cannot perform the action until after the provided expiration.
 * **Limited:** The user can perform the action while uses are remaining and before the provided expiration.
@@ -441,7 +464,7 @@ Only available to the ADO owner.
 pub enum PermissioningMessage {
      RemovePermission {
         action: String,
-        actor: AndrAddr,
+        actor: Vec<AndrAddr>,
     },
  }
 ```
@@ -452,7 +475,7 @@ pub enum PermissioningMessage {
 {
 "permissioning":{
     "remove_permission":{
-        "actor":"andr1...",
+        "actors":["andr1...","andr1...",...],
         "action":"Mint"
         }
     }
@@ -461,10 +484,10 @@ pub enum PermissioningMessage {
 {% endtab %}
 {% endtabs %}
 
-| Name     | Type                                    | Description                                                                  |
-| -------- | --------------------------------------- | ---------------------------------------------------------------------------- |
-| `actor`  | [AndrAddr](../common-types.md#andraddr) | The address that you want to remove permissions for.                         |
-| `action` | String                                  | The execute message to have its permission removed for the specified actor.  |
+| Name     | Type                                         | Description                                                                  |
+| -------- | -------------------------------------------- | ---------------------------------------------------------------------------- |
+| `actor`  | Vec<[AndrAddr](../common-types.md#andraddr)> | The address that you want to remove permissions for.                         |
+| `action` | String                                       | The execute message to have its permission removed for the specified actor.  |
 
 ### DisableActionPermissioning
 
@@ -503,3 +526,188 @@ pub enum PermissioningMessage {
 | Name     | Type   | Description                                             |
 | -------- | ------ | ------------------------------------------------------- |
 | `action` | String | The action/execute message to remove permissioning for. |
+
+## Rates
+
+Sets a rate on a specific action in the ADO. Rates are used to add taxes or royalties on ADOs where it makes sense such as NFT sales for example. Here is the list of actions that can have rates applied to them:
+
+| ADO             | Messages                                  | Usage                                                                                                        |
+| --------------- | ----------------------------------------- | ------------------------------------------------------------------------------------------------------------ |
+| **Marketplace** | `Buy`                                     | Add a fee on NFT sales.                                                                                      |
+| **Auction**     | `Claim`                                   | Add a fee on auction sales.                                                                                  |
+| **CW721**       | `Transfer`                                | Add a fee in case of a transfer agreement sale.                                                              |
+| **CW20**        | `Send`, `Transfer, SendFrom,TransferFrom` | Add a fee on token transfers. You have to set rates on each message to include rates on all token transfers. |
+| **Primitive**   | `SetValue`                                | Add a fee for setting a value in the primitive. Can only be a flat rate.                                     |
+
+{% hint style="warning" %}
+Only available to the ADOs that implement rates.
+
+You can use the [Rates](../../andromeda-digital-objects/rates.md) ADO to set up rates.
+{% endhint %}
+
+{% tabs %}
+{% tab title="Rust" %}
+```rust
+pub enum AndromedaMsg {
+    #[cfg(feature = "rates")]
+    Rates(self::rates::RatesMessage),
+}
+```
+{% endtab %}
+{% endtabs %}
+
+#### RatesMessage
+
+```rust
+#[cw_serde]
+pub enum RatesMessage {
+    SetRate { action: String, rate: Rate },
+    RemoveRate { action: String },
+}
+```
+
+### SetRate
+
+Sets a rate on the specified action.
+
+{% hint style="info" %}
+Check the [table above ](andromedamsg.md#rates)to see which actions can have rates applied.
+{% endhint %}
+
+{% tabs %}
+{% tab title="Rust" %}
+```rust
+pub enum RatesMessage {
+    SetRate {
+     action: String,
+     rate: Rate 
+      },
+}
+```
+{% endtab %}
+
+{% tab title="JSON" %}
+```json
+{
+"rates":{
+    "set_rate":{
+    "action":"Buy",
+    "rate":{
+        "local":{
+            "rate_type":"additive",
+            "recipients":["andr1...","andr2..."],
+            "value":{
+                "percent":{
+                    "percent": "0.05"
+                    }
+                },
+            "description":"a 5% tax on minting"
+            }
+          }
+        }
+    }
+  }
+```
+{% endtab %}
+{% endtabs %}
+
+| Name     | Type                         | Description                                               |
+| -------- | ---------------------------- | --------------------------------------------------------- |
+| `action` | String                       | The execute message to add rates on.                      |
+| `rate`   | [Rate](andromedamsg.md#rate) | The type of rate. Either local or taken from a rates ADO. |
+
+#### Rate
+
+```rust
+pub enum Rate {
+    Local(LocalRate),
+    Contract(AndrAddr),
+}
+```
+
+* **Local:** The rate configurations are specified within the ADO itself.
+* **Contract:** The rate configurations are taken from a rates ADO. In this case, you need to reference the [rates ADO ](../../andromeda-digital-objects/rates.md)to take the configurations from using an [AndrAddr](../common-types.md#andraddr).
+
+#### Local
+
+```rust
+pub struct LocalRate {
+    pub rate_type: LocalRateType,
+    pub recipients: Vec<Recipient>,
+    pub value: LocalRateValue,
+    pub description: Option<String>,
+}
+```
+
+| Name          | Type                                             | Description                                                                                                                                                                                    |
+| ------------- | ------------------------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `rate_type`   | [LocalRateType](andromedamsg.md#localratetype)   | The type of rate.                                                                                                                                                                              |
+| `recipients`  | Vec<[Recipients](../common-types.md#recipient)>  | The addresses to recieve the rates. Each address specified will receive the full amount of rate. For example, having a rate of 5% and 2 recipients means each address will receive a 5% rate.  |
+| `value`       | [LocalRateValue](andromedamsg.md#localratevalue) | The amount of funds taken.                                                                                                                                                                     |
+| `description` | Option\<String>                                  | Optional description for the purpose of the rate.                                                                                                                                              |
+
+#### LocalRateType
+
+An enum specifying the type of the rate.
+
+```rust
+pub enum LocalRateType {
+    Additive,
+    Deductive,
+}
+```
+
+* **Additive:** The rate amount acts as a tax and is added to the price and payed by the buyer. For example a 10% additive rate (with one recipient) on a price of 1000 uandr means the buyer has to send 1100 uandr.
+* **Deductive:** The rate amount acts as a royalty and is deducted from the price. For example a 10% deductive rate on a price of 1000 uandr means the buyer needs to send 1000 uand and 100 will be taken to the recipient of the rate.
+
+#### LocalRateValue
+
+{% hint style="warning" %}
+Percentage is specified as a decimal. This means a rate of 10% is specified as 0.1 and not 10.
+{% endhint %}
+
+```rust
+pub enum LocalRateValue {
+    Percent(PercentRate),
+    Flat(Coin),
+} 
+
+pub struct PercentRate {
+    pub percent: Decimal,
+}
+```
+
+* **Percent:** The rate is specified as a percentage of the price using decimal.
+* **Flat:** The rate is specified as a fixed amount of [Coin](../common-types.md#coin).
+
+### RemoveRate
+
+Removes the rate set on the specified action.
+
+{% tabs %}
+{% tab title="Rust" %}
+```rust
+pub enum RatesMessage {
+  RemoveRate {
+    action: String 
+  },
+}
+```
+{% endtab %}
+
+{% tab title="JSON" %}
+```json
+{
+"rates":{
+    "remove_rate":{
+        "action":"Claim"
+        }
+    }
+}
+```
+{% endtab %}
+{% endtabs %}
+
+| Name     | Type   | Description                                    |
+| -------- | ------ | ---------------------------------------------- |
+| `action` | String | The execute message to remove the rates from.  |

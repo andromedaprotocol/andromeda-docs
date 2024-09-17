@@ -11,6 +11,8 @@ Once a condition is satisfied, the funds can be released by anyone.
 
 **Ado\_type**: timelock
 
+**Version: 2.0.2-beta.1**
+
 ## InstantiateMsg
 
 {% tabs %}
@@ -60,7 +62,9 @@ pub enum ExecuteMsg {
              "address":"andr1..."
          },
         "condition": {
-            "expiration":360000000
+            "expiration":{
+            "from_now": 360000000
+            }
         }
     }
 }
@@ -80,15 +84,15 @@ The Expiration timestamp is taken in nanosecond precision. Using another precisi
 
 ```rust
 pub enum EscrowCondition {
-    Expiration(MillisecondsExpiration),
+    Expiration(Expiry),
     MinimumFunds(Vec<Coin>),
 }
 ```
 
-| EscrowCondition Type | Type                                                                             | Description                                                                 |
-| -------------------- | -------------------------------------------------------------------------------- | --------------------------------------------------------------------------- |
-| `Expiration`         | [MillisecondsExpiration](../platform-and-framework/common-types.md#milliseconds) | Requires a given time to be reached. The time is specified in milliseconds. |
-| `MinimumFunds`       | Vec<[Coin](../platform-and-framework/common-types.md#coin)>                      | Requires a minimum amount of funds to be deposited.                         |
+| EscrowCondition Type | Type                                                        | Description                                                                 |
+| -------------------- | ----------------------------------------------------------- | --------------------------------------------------------------------------- |
+| `Expiration`         | [Expiry](../platform-and-framework/common-types.md#expiry)  | Requires a given time to be reached. The time is specified in milliseconds. |
+| `MinimumFunds`       | Vec<[Coin](../platform-and-framework/common-types.md#coin)> | Requires a minimum amount of funds to be deposited.                         |
 
 ### ReleaseFunds
 
@@ -240,6 +244,8 @@ pub struct GetLockedFundsResponse {
 | `funds` | Option<[Escrow](timelock.md#escrow)> | Optional Escrow with the held funds and related information. |
 
 ### GetLockedFundsForRecipient
+
+Queries the locked funds for the specified recipient.
 
 {% tabs %}
 {% tab title="Rust" %}

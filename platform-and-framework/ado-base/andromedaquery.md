@@ -28,10 +28,10 @@ pub enum AndromedaQuery {
     BlockHeightUponCreation {},
     #[returns(self::version::VersionResponse)]
     Version {},
+    #[returns(self::version::ADOBaseVersionResponse)]
+    ADOBaseVersion {},
     #[returns(Option<::cosmwasm_std::Addr>)]
     AppContract {},
-    #[returns(::cosmwasm_std::BalanceResponse)]
-    Balance { address: AndrAddr },
     #[returns(Vec<self::permissioning::PermissionInfo>)]
     Permissions {
         actor: AndrAddr,
@@ -40,6 +40,9 @@ pub enum AndromedaQuery {
     },
     #[returns(Vec<self::permissioning::PermissionedActionsResponse>)]
     PermissionedActions {},
+    #[cfg(feature = "rates")]
+    #[returns(Option<self::rates::Rate>)]
+    GetRate { action: String },
 }
 ```
 
@@ -120,9 +123,9 @@ A struct that returns the address that has the ownership offer for the ADO.
 {% tabs %}
 {% tab title="Rust" %}
 ```rust
-{
 pub struct ContractPotentialOwnerResponse {
     pub potential_owner: Option<Addr>,
+    pub expiration: Option<MillisecondsExpiration>,
 }
 ```
 {% endtab %}
@@ -131,14 +134,13 @@ pub struct ContractPotentialOwnerResponse {
 ```json
 {
 "potential_owner":"andr1..."
+"expiration": "1717430894672"
 }
 ```
 {% endtab %}
 {% endtabs %}
 
-| Name              | Type          | Description                                             |
-| ----------------- | ------------- | ------------------------------------------------------- |
-| `potential_owner` | Option\<Addr> | The address that has been offered ownership of the ADO. |
+<table><thead><tr><th width="202">Name</th><th>Type</th><th>Description</th></tr></thead><tbody><tr><td><code>potential_owner</code></td><td>Option&#x3C;Addr></td><td>The address that has been offered ownership of the ADO.</td></tr><tr><td><code>expiration</code></td><td>Option&#x3C;<a href="../common-types.md#expiry-and-milliseconds">MillisecondsExpiration</a>></td><td>When the ownership request expires. Specified as a timestamp in milliseconds.</td></tr></tbody></table>
 
 ### Type
 
@@ -304,7 +306,48 @@ pub struct VersionResponse {
 | --------- | ------ | ------------------------ |
 | `version` | String | The version of the ADO.  |
 
-###
+### ADOBaseVersion
+
+Queries the version of the andromeda-std..
+
+{% tabs %}
+{% tab title="Rust" %}
+```rust
+pub enum AndromedaQuery {
+    #[returns(self::version::ADOBaseVersionResponse)]
+    ADOBaseVersion {},
+     }
+```
+{% endtab %}
+
+{% tab title="JSON" %}
+```json
+{
+"a_d_o_base_version":{}
+}
+```
+{% endtab %}
+{% endtabs %}
+
+#### ADOBaseVersionResponse
+
+{% tabs %}
+{% tab title="Rust" %}
+```rust
+pub struct ADOBaseVersionResponse {
+    pub version: String,
+}
+```
+{% endtab %}
+
+{% tab title="JSON" %}
+```json
+{
+"version":"0.1.1"
+}
+```
+{% endtab %}
+{% endtabs %}
 
 ### AppContract
 
@@ -452,11 +495,11 @@ pub struct PermissionInfo {
 {% endtab %}
 {% endtabs %}
 
-| Name         | Type                                       | Description                                       |
-| ------------ | ------------------------------------------ | ------------------------------------------------- |
-| `permission` | [Permission](andromedaquery.md#permission) | The permission that the actor was given.          |
-| `action`     | String                                     | The action or message that the permission is for. |
-| `actor`      | String                                     | The address that has these permissions.           |
+| Name         | Type                                     | Description                                       |
+| ------------ | ---------------------------------------- | ------------------------------------------------- |
+| `permission` | [Permission](andromedamsg.md#permission) | The permission that the actor was given.          |
+| `action`     | String                                   | The action or message that the permission is for. |
+| `actor`      | String                                   | The address that has these permissions.           |
 
 ### PermissionedActions
 
@@ -486,3 +529,34 @@ pub enum AndromedaQuery {
 {% endtabs %}
 
 Returns a Vector of String containing the actions that are permissioned.&#x20;
+
+### GetRate
+
+{% hint style="info" %}
+Only available to the ADOs that implement modules.
+{% endhint %}
+
+Queries the rates applied for the specified action.
+
+{% tabs %}
+{% tab title="Rust" %}
+```rust
+pub enum AndromedaQuery {
+   #[returns(Option<self::rates::Rate>)]
+    GetRate { action: String },
+    }
+```
+{% endtab %}
+
+{% tab title="JSON" %}
+```json
+{
+"get_rate":{
+    "action":"Mint"
+    }
+}
+```
+{% endtab %}
+{% endtabs %}
+
+Returns a [rate](andromedamsg.md#rate) struct containing the configurations of the rate.

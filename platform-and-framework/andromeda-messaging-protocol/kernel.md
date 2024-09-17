@@ -149,16 +149,12 @@ pub enum ExecuteMsg {
 {% endtab %}
 {% endtabs %}
 
-| Name                                       | Type            | Description                             |
-| ------------------------------------------ | --------------- | --------------------------------------- |
-| <pre><code>ics20_channel_id
-</code></pre>  | Option\<String> | The id of the ics20 channel.            |
-| <pre><code>direct_channel_id
-</code></pre> | Option\<String> | The direct channel id.                  |
-| <pre><code>chain
-</code></pre>             | String          | The name of the target chain.           |
-| <pre><code>kernel_address
-</code></pre>    | String          | The Kernel address of the target chain. |
+| Name                | Type            | Description                             |
+| ------------------- | --------------- | --------------------------------------- |
+| `isc20_channel_id`  | Option\<String> | The id of the ics20 channel.            |
+| `direct_channel_id` | Option\<String> | The direct channel id.                  |
+| `chain`             | String          | The name of the target chain.           |
+| `kernel_address`    | String          | The Kernel address of the target chain. |
 
 ### Recover
 

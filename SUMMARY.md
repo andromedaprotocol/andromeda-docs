@@ -18,9 +18,11 @@
 ## Andromeda Digital Objects
 
 * [Introduction to ADOs](andromeda-digital-objects/introduction-to-ados.md)
+* [Address List](andromeda-digital-objects/address-list.md)
 * [Auction](smart-contracts/non-fungible-tokens/auction.md)
 * [App](smart-contracts/andromeda-apps/app.md)
-* [Crowdfund](smart-contracts/non-fungible-tokens/crowdfund.md)
+* [Conditional Splitter](andromeda-digital-objects/conditional-splitter.md)
+* [Crowdfund](andromeda-digital-objects/crowdfund.md)
 * [CW20](andromeda-digital-objects/cw20.md)
 * [CW20 Staking](andromeda-digital-objects/cw20-staking.md)
 * [CW721](andromeda-digital-objects/cw721.md)
@@ -28,6 +30,8 @@
 * [Lockdrop](smart-contracts/fungible-tokens/lockdrop.md)
 * [Marketplace](andromeda-digital-objects/marketplace.md)
 * [Merkle-Airdrop](andromeda-digital-objects/merkle-airdrop.md)
+* [Primitive](andromeda-digital-objects/primitive.md)
+* [Rates](andromeda-digital-objects/rates.md)
 * [Rate Limiting Withdrawals](smart-contracts/finance/rate-limiting-withdrawals.md)
 * [Splitter](andromeda-digital-objects/splitter.md)
 * [Timelock](andromeda-digital-objects/timelock.md)
@@ -74,6 +78,10 @@
 
 * [Tokenomics Dashboard](andromeda-dashboard/tokenomics-dashboard.md)
 * [Dashboard API](andromeda-dashboard/dashboard-api.md)
+
+## Andromeda Changelog
+
+* [Newest Releases](andromeda-changelog/newest-releases.md)
 
 ## Additional Resources
 
