@@ -41,7 +41,7 @@ When you go through our ADOs, you will notice an **AndrAddr** struct used very f
 
 Local references can be used in case of Apps. These would include the component addresses and can be referenced using " **./\<component-name>**" as a valid path.&#x20;
 
-For example if I want to create an app with two components named "token" and "auction" and in the auction I want to reference the token address, I can use **./token** to do so. Another example here would be sending an NFT from a CW721 to an auction. Instead of specifying the auction contract address as the recipient, you can use the local reference **./auction** to do so as long as the components belong to the same App.
+For example if I want to create an app with two components named "token" and "auction" and in the auction I want to reference the token address, I can use **./token** to do so. Another example here would be a sending an NFT from a CW721 to an auction. Instead of specifying the auction contract address as the recipient, you can use the local reference **./auction** to do so as long as the components belong to the same App.
 
 **Ado\_type:** vfs
 
@@ -70,13 +70,6 @@ pub struct InstantiateMsg {
 | ---------------- | --------------- | ------------------------------------------------------------------------------------------------------------------ |
 | `kernel_address` | String          | Address of the Kernel contract on chain. Can be found in our [deployed contracts](<../deployed-contracts (1).md>). |
 | `owner`          | Option\<String> | Optional address to specify as the owner of the ADO being created. Defaultes to the sender if not specified.       |
-
-### Regex
-
-| Path               | Description                                 | Accepted Characters                                                                                                                                                                                                                             | Accepted Size        |
-| ------------------ | ------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------- |
-| **Component Name** | Accepted regex for component names in Apps. | <p></p><ul><li>Uppercase letters (<code>A-Z</code>), lowercase letters (<code>a-z</code>), digits (<code>0-9</code>).</li><li><strong>Symbols</strong>: Period (<code>.</code>), hyphen (<code>-</code>), underscore (<code>_</code>)</li></ul> | 2-80 characters long |
-| **Usernames**      | Accepted regex for usernames.               | <p></p><ul><li> Lowercase letters (<code>a-z</code>), digits (<code>0-9</code>)<br></li></ul>                                                                                                                                                   | 2-30 characters long |
 
 ### ExecuteMsg
 
@@ -157,7 +150,7 @@ AddSymlink {
 | `symlink`        | AndrAddr                                        | The path to point to.                      |
 | `parent_address` | Option<[AndrAddr](../common-types.md#andraddr)> | The address to register the symlink under. |
 
-In the **JSON** example above, if the username of the sender (parent address) is user1, then the symlink "/home/user1/my-link" would resolve to the path "/home/user2/app1".
+In the **JSON** example above, if the username of the sender (parent address) is user1, then the symlink /home/user1/my-link would resolve to the path /home/user2/app1.
 
 ### RegisterUser
 
@@ -172,7 +165,7 @@ Usernames are unique, meaning no two users can have the same username.
 
 If `address` is provided sender must be Kernel.
 
-Username cannot exceed 30 characters.
+Username cannot exceed 40 characters.
 {% endhint %}
 
 {% tabs %}

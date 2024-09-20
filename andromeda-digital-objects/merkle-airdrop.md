@@ -4,15 +4,7 @@
 
 The Merkle-Airdrop ADO is a smart contract that allows projects to launch airdrops using the Merkle-tree (hashing). Uses the same logic of the [base cw20-merkel-airdrop contract](https://github.com/CosmWasm/cw-tokens/tree/main/contracts/cw20-merkle-airdrop). If you do not know what is a Merkle-airdrop and how it is different from a normal airdrop, please refer to the following [article](https://medium.com/smartz-blog/merkle-airdrop-the-basics-9a0857fcc930).
 
-The merkle airdorp can be used to either airdrop CW20 tokens or native tokens.
-
-{% hint style="warning" %}
-In case of CW20 tokens, the airdrop ADO should be the owner of the CW20 tokens to distribute.
-{% endhint %}
-
 **Ado\_type**: merkle-airdrop
-
-**Version: 2.0.1-beta.1**
 
 ## InstantiateMsg
 
@@ -20,7 +12,7 @@ In case of CW20 tokens, the airdrop ADO should be the owner of the CW20 tokens t
 {% tab title="Rust" %}
 ```rust
 pub struct InstantiateMsg {
-    pub asset_info: Asset,
+    pub asset_info: AssetInfoUnchecked,
     pub kernel_address: String,
     pub owner: Option<String>
 }
@@ -31,7 +23,7 @@ pub struct InstantiateMsg {
 ```json
 {
 "asset_info":{
-    "cw20_token":"andr1..."
+    "cw20":"andr1..."
      },
 "kernel_address":"andr1...",
 "owner":"andr1..."
@@ -40,11 +32,33 @@ pub struct InstantiateMsg {
 {% endtab %}
 {% endtabs %}
 
-| Name             | Type                                                     | Description                                                                                                                                                                                                                                                                                                                   |
-| ---------------- | -------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `asset_info`     | [Asset](../platform-and-framework/common-types.md#asset) | The assets to airdrop. Can be either a native token or a CW20.                                                                                                                                                                                                                                                                |
-| `kernel_address` | String                                                   | Contract address of the [kernel contract](../platform-and-framework/andromeda-messaging-protocol/kernel.md) to be used for [AMP](../platform-and-framework/andromeda-messaging-protocol/) messaging. Kernel contract address can be found in our [deployed contracts](<../platform-and-framework/deployed-contracts (1).md>). |
-| `owner`          | Option\<String>                                          | Optional address to specify as the owner of the ADO being created. Defaults to the sender if not specified.                                                                                                                                                                                                                   |
+| Name             | Type                                                       | Description                                                                                                                                                                                                                                                                                                                   |
+| ---------------- | ---------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `asset_info`     | [AssetInfoUnchecked](merkle-airdrop.md#assetinfounchecked) | The assets to airdrop.                                                                                                                                                                                                                                                                                                        |
+| `kernel_address` | String                                                     | Contract address of the [kernel contract](../platform-and-framework/andromeda-messaging-protocol/kernel.md) to be used for [AMP](../platform-and-framework/andromeda-messaging-protocol/) messaging. Kernel contract address can be found in our [deployed contracts](<../platform-and-framework/deployed-contracts (1).md>). |
+| `owner`          | Option\<String>                                            | Optional address to specify as the owner of the ADO being created. Defaults to the sender if not specified.                                                                                                                                                                                                                   |
+
+#### AssetInfoUnchecked
+
+Represents an **asset info** instance that may contain unverified data; to be used in messages.
+
+```rust
+pub type AssetInfoUnchecked = AssetInfoBase<String>;
+```
+
+#### AssetInfoBase
+
+Represents the type of an fungible asset. Each asset info instance can be one of two variants:&#x20;
+
+* **CW20 tokens**: To create an asset info instance of this type, provide the contract address of the token.
+* &#x20;**Native SDK coins**: To create an asset info instance of this type, provide the denomination ("uandr","uatom").
+
+```rust
+pub enum AssetInfoBase<T> {
+    Cw20(T),
+    Native(String),
+}
+```
 
 ## ExecuteMsg
 
@@ -62,7 +76,7 @@ Only the owner can execute `RegisterMerkleRoot`.
  pub enum ExecuteMsg {
  RegisterMerkleRoot {
         merkle_root: String,
-        expiration: Option<Expiry>,
+        expiration: Option<Expiration>,
         total_amount: Option<Uint128>,
   }
  }
@@ -81,11 +95,11 @@ Only the owner can execute `RegisterMerkleRoot`.
 {% endtab %}
 {% endtabs %}
 
-| Name           | Type                                                               | Description                                                                                      |
-| -------------- | ------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ |
-| `merkle_root`  | String                                                             | A hex-encoded Merkle root.                                                                       |
-| `expiration`   | Option<[Expiry](../platform-and-framework/common-types.md#expiry)> | An optional expiration for the root. Defaults to never if not specified.                         |
-| `total_amount` | Option\<Uint128>                                                   | An optional amount to specify the maximum number of tokens that can be claimed from the airdrop. |
+| Name           | Type                                                                       | Description                                                                                      |
+| -------------- | -------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------ |
+| `merkle_root`  | String                                                                     | A hex-encoded Merkle root.                                                                       |
+| `expiration`   | Option<[Expiration](../platform-and-framework/common-types.md#expiration)> | An optional expiration for the root. Defaults to never if not specified.                         |
+| `total_amount` | Option\<Uint128>                                                           | An optional amount to specify the maximum number of tokens that can be claimed from the airdrop. |
 
 ### Claim
 
@@ -193,7 +207,7 @@ pub enum QueryMsg {
 {% tab title="Rust" %}
 ```rust
 pub struct ConfigResponse {
-    pub asset_info: Asset,
+    pub asset_info: AssetInfo,
 }
 ```
 {% endtab %}
@@ -203,7 +217,7 @@ pub struct ConfigResponse {
 ```json
 {
 "asset_info":{
- "cw20_token":"andr1..."
+ "cw20":"andr1..."
    }
  }
 ```
@@ -211,9 +225,19 @@ pub struct ConfigResponse {
 {% endtab %}
 {% endtabs %}
 
-| Name         | Type                                                     | Description        |
-| ------------ | -------------------------------------------------------- | ------------------ |
-| `asset_info` | [Asset](../platform-and-framework/common-types.md#asset) | The type of Asset. |
+| Name         | Type      | Description        |
+| ------------ | --------- | ------------------ |
+| `asset_info` | AssetInfo | The type of Asset. |
+
+#### AssetInfo
+
+Represents an asset info instance containing only verified data which is saved in the contract storage.
+
+```rust
+pub type AssetInfo = AssetInfoBase<Addr>
+```
+
+[AssetInfoBase](merkle-airdrop.md#assetinfobase)
 
 ### MerkleRoot
 
@@ -326,7 +350,7 @@ pub struct LatestStageResponse {
 
 ### IsClaimed
 
-&#x20;Checks if the specified `address` has claimed the airdrop tokens.
+&#x20;Checks if the specified `address` has claimed its&#x20;
 
 {% tabs %}
 {% tab title="Rust" %}

@@ -23,9 +23,6 @@ pub struct ADOContract<'a> {
     pub(crate) app_contract: Item<'a, Addr>,
     pub(crate) kernel_address: Item<'a, Addr>,
     pub(crate) permissioned_actions: Map<'a, String, bool>,
-    /// Mapping of action to rate
-    #[cfg(feature = "rates")]
-    pub rates: Map<'a, &'a str, Rate>,
 }
 ```
 

@@ -15,8 +15,6 @@ Multiple sales can take place at the same time but no two sales can have the sam
 
 **ado\_type:** cw20-exchange
 
-**Version: 2.0.1-beta.1**
-
 ## InstantiateMsg
 
 {% tabs %}
@@ -57,8 +55,8 @@ Receives CW20 tokens sent from the `token_address` contract by performing a  [Se
 {% tab title="Rust" %}
 ```rust
 pub enum ExecuteMsg {
-    Receive(Cw20ReceiveMsg),
-   }
+        Receive(Cw20ReceiveMsg),
+        }
 ```
 {% endtab %}
 {% endtabs %}
@@ -89,7 +87,7 @@ pub enum Cw20HookMsg {
         asset: AssetInfo,
         exchange_rate: Uint128,
         recipient: Option<String>,
-        start_time: Option<Expiry>,
+        start_time: Option<MillisecondsExpiration>,
         duration: Option<MillisecondsDuration>,
     },
     Purchase {
@@ -116,7 +114,7 @@ pub enum Cw20HookMsg {
         asset: AssetInfo,
         exchange_rate: Uint128,
         recipient: Option<String>,
-        start_time: Option<Expiry>,
+        start_time: Option<MillisecondsExpiration>,
         duration: Option<MillisecondsDuration>,
     }
 }
@@ -131,23 +129,21 @@ pub enum Cw20HookMsg {
         "native":"uandr"
         },
     "exchange_rate":"5",
-    "start_time":{
-        "from_now":"3200000"
-        },
-    "duration":"900000"
+    "start_time": 1663334970211,
+    "duration": 900000
     }
 }
 ```
 {% endtab %}
 {% endtabs %}
 
-| Name            | Type                                                                           | Description                                                                                                                                      |
-| --------------- | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `asset`         | [AssetInfo](cw20-exchange.md#undefined)                                        | The asset that may be used to purchase the token.                                                                                                |
-| `exchange_rate` | Uint128                                                                        | The amount of the above `asset` required to purchase a single token.                                                                             |
-| `recipient`     | Option\<String>                                                                | The recipient of the sale proceeds. Defaults to the sender if not specified.                                                                     |
-| `start_time`    | [Expiry](../platform-and-framework/common-types.md#expiry)                     | Optional start time in milliseconds since [epoch](https://www.epochconverter.com/clock). If not specified, then the sale will start immediately. |
-| `duration`      | [MillisecondsDuration](../platform-and-framework/common-types.md#milliseconds) | Optional duration for the sale in milliseconds from the `start_time`. If not specified then the sale never expires.                              |
+| Name            | Type                                                                             | Description                                                                                                                                      |
+| --------------- | -------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `asset`         | [AssetInfo](cw20-exchange.md#undefined)                                          | The asset that may be used to purchase the token.                                                                                                |
+| `exchange_rate` | Uint128                                                                          | The amount of the above `asset` required to purchase a single token.                                                                             |
+| `recipient`     | Option\<String>                                                                  | The recipient of the sale proceeds. Defaults to the sender if not specified.                                                                     |
+| `start_time`    | [MillisecondsExpiration](../platform-and-framework/common-types.md#milliseconds) | Optional start time in milliseconds since [epoch](https://www.epochconverter.com/clock). If not specified, then the sale will start immediately. |
+| `duration`      | [MillisecondsDuration](../platform-and-framework/common-types.md#milliseconds)   | Optional duration for the sale in milliseconds from the `start_time`. If not specified then the sale never expires.                              |
 
 #### AssetInfo
 
@@ -230,6 +226,7 @@ pub enum ExecuteMsg {
         }
     }
 }
+        
 ```
 {% endtab %}
 {% endtabs %}

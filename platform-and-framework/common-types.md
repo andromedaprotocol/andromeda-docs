@@ -6,21 +6,6 @@ description: Defining recurring structs used by our ADOs.
 
 This section contains the definitions of structures used by many of our ADOs. To avoid redefining them every time, they will be placed in this section and referenced.&#x20;
 
-## Asset
-
-Enum that specifies the type of asset being used.
-
-```rust
-#[cw_serde]
-pub enum Asset {
-    Cw20Token(AndrAddr),
-    NativeToken(String),
-}
-```
-
-* **Cw20Token:** Specifies that the asset being used is a CW20 token. Specify the address of the CW20 contract using the [AndrAddr](common-types.md#andraddr) struct.
-* **NativeToken:** Specifies that the asset being used is a native token. Specify the micro denomination of the token (uandr, ustars etc...).
-
 ## Coin
 
 ### Definition <a href="#definition" id="definition"></a>
@@ -100,23 +85,7 @@ or
 }
 ```
 
-## Expiry and Milliseconds
-
-### Expiry
-
-The Expiry enum is used to define an expiry time using milliseconds. There are two types for Expiry:
-
-```rust
-pub enum Expiry {
-    FromNow(Milliseconds),
-    AtTime(Milliseconds),
-}
-```
-
-* **FromNow:** The expiry time is relative to the current time. For example specifying 60000 means the expiry time is one minute from now.
-* **AtTime:** The expiry time is an absolute time ([Epoch](https://www.epochconverter.com) time in milliseconds).
-
-### Milliseconds
+## Milliseconds
 
 Struct that represents time in milliseconds in u64. We have two types that use Milliseconds:
 

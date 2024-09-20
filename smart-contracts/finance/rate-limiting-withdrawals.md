@@ -6,8 +6,6 @@ The **Rate Limiting Withdrawals ADO** acts as a bank account that limits the fre
 
 **Ado\_type**: rate-limiting-withdrawals
 
-**Version: 2.0.2-beta.1**
-
 ## InstantiateMsg
 
 {% tabs %}
@@ -105,8 +103,6 @@ pub enum ExecuteMsg {
 
 ### WithdrawFunds
 
-Withdraw funds from the available balance.
-
 {% hint style="warning" %}
 Enough time should pass since the last withdrawal.
 {% endhint %}
@@ -160,7 +156,7 @@ pub enum QueryMsg{
 {% tab title="JSON" %}
 ```json
 {
-"coin_allowance_details":{}
+"coin_allowed_details":{}
 }
 ```
 {% endtab %}

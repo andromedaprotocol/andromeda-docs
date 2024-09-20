@@ -15,8 +15,6 @@ Purchasing the NFT can be customized to work with one of the following options:
 
 **Ado\_type:** marketplace
 
-**Version: 2.1.2-beta.1**
-
 ## InstantiateMsg
 
 {% tabs %}
@@ -24,7 +22,6 @@ Purchasing the NFT can be customized to work with one of the following options:
 ```rust
 pub struct InstantiateMsg {
     pub authorized_cw20_address: Option<AndrAddr>,
-    pub authorized_token_addresses: Option<Vec<AndrAddr>>,
     pub kernel_address: String,
     pub owner: Option<String>
 
@@ -42,7 +39,11 @@ pub struct InstantiateMsg {
 {% endtab %}
 {% endtabs %}
 
-<table><thead><tr><th width="306">Name</th><th>Type</th><th>Description</th></tr></thead><tbody><tr><td><code>authorized_cw20_address</code></td><td>Option&#x3C;<a href="../platform-and-framework/common-types.md#andraddr">AndrAddr</a>></td><td>Optional CW20 address to authorize to be used as the purchasing coin for the NFTs in the marketplace sale. If not specified, then any CW20 can be set as the purchasing coin.</td></tr><tr><td><code>authorized_token_addresses</code></td><td>Option&#x3C;Vec&#x3C;<a href="../platform-and-framework/common-types.md#andraddr">AndrAddr</a>></td><td>Optional set of CW721 contract addresses to be allowed to send NFTs to the Marketplace ADO. If not specified, then any CW721 can send NFTs to the marketplace to be sold.</td></tr><tr><td><code>kernel_address</code></td><td>String</td><td>Contract address of the <a href="../platform-and-framework/andromeda-messaging-protocol/kernel.md">kernel contract</a> to be used for <a href="../platform-and-framework/andromeda-messaging-protocol/">AMP</a> messaging. Kernel contract address can be found in our <a href="../platform-and-framework/deployed-contracts (1).md">deployed contracts</a>.</td></tr><tr><td><code>owner</code></td><td>Option&#x3C;String></td><td>Optional address to specify as the owner of the ADO being created. Defaults to the sender if not specified. </td></tr></tbody></table>
+| Name                      | Type                                                                   | Description                                                                                                                                                                                                                                                                                                                   |
+| ------------------------- | ---------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `authorized_cw20_address` | Option<[AndrAddr](../platform-and-framework/common-types.md#andraddr)> | Optional CW20 address to authorize to be used as the purchasing coin for the NFTs in the marketplace sale. If not specified, then any CW20 can be set as the purchasing coin.                                                                                                                                                 |
+| `kernel_address`          | String                                                                 | Contract address of the [kernel contract](../platform-and-framework/andromeda-messaging-protocol/kernel.md) to be used for [AMP](../platform-and-framework/andromeda-messaging-protocol/) messaging. Kernel contract address can be found in our [deployed contracts](<../platform-and-framework/deployed-contracts (1).md>). |
+| `owner`                   | Option\<String>                                                        | Optional address to specify as the owner of the ADO being created. Defaults to the sender if not specified.                                                                                                                                                                                                                   |
 
 ## ExecuteMsg
 
@@ -86,9 +87,10 @@ A CW721 hook message that starts a new sale with the given parameters.&#x20;
 pub enum Cw721HookMsg {
     StartSale {
      price: Uint128,
-     coin_denom: Asset,
-     start_time: Option<Expiry>,
+     coin_denom: String
+     start_time: Option<MillisecondsExpiration>,
      duration: Option<MillisecondsDuration>,
+     uses_cw20: bool,
      recipient: Option<Recipient>,
        }
    }
@@ -100,13 +102,10 @@ pub enum Cw721HookMsg {
 {
     "start_sale": {
           "price":"500000",
-          "coin_denom":{
-                "native_token":"uandr"
-                },
-          "start_time":{
-                "from_now":"7200000"
-                },
+          "coin_denom": "uandr",
+          "start_time": 1663334970211,
           "duration": 60000000,
+          "uses_cw20": false,
           "recipient":{
                 "address":"andr1..."
                 }
@@ -116,7 +115,7 @@ pub enum Cw721HookMsg {
 {% endtab %}
 {% endtabs %}
 
-<table><thead><tr><th>Name</th><th width="267">Type</th><th>Description</th></tr></thead><tbody><tr><td><code>price</code></td><td>Uint128</td><td>The price of the NFT, which is the amount of <code>coin_denom</code> needed to buy the NFT.</td></tr><tr><td><code>coin_denom</code></td><td><a href="../platform-and-framework/common-types.md#asset">Asset</a></td><td>The denom to be used to buy the NFT. Can be either a CW20 or native funds. For CW20, provide the contract address e.g. "<strong>andr1...</strong>". For native provide the denom e.g. "<strong>uandr</strong>".</td></tr><tr><td><code>start_time</code></td><td>Option&#x3C;<a href="../platform-and-framework/common-types.md#expiry">Expiry</a>></td><td>Optional start time in milliseconds since <a href="https://www.epochconverter.com/clock">epoch</a>. If not specified, then the sale will start immediately.</td></tr><tr><td><code>duration</code></td><td>Option&#x3C;<a href="../platform-and-framework/common-types.md#milliseconds">MillisecondsDuration</a>></td><td>Optional duration for the sale in milliseconds from the <code>start_time</code>. If not specified then the sale never expires.</td></tr><tr><td><code>uses_cw20</code></td><td>bool</td><td>Whether a CW20 token is used to purchase the NFT or not.</td></tr><tr><td><code>recipient</code></td><td>Option&#x3C;<a href="../platform-and-framework/common-types.md#recipient">Recipient</a>></td><td>Optional address to receive the funds from the NFT sale. If not specified, then the funds will go to the sender of the NFT.</td></tr></tbody></table>
+<table><thead><tr><th>Name</th><th width="267">Type</th><th>Description</th></tr></thead><tbody><tr><td><code>price</code></td><td>Uint128</td><td>The price of the NFT, which is the amount of <code>coin_denom</code> needed to buy the NFT.</td></tr><tr><td><code>coin_denom</code></td><td>String</td><td>The denom to be used to buy the NFT. Can be either a CW20 or native funds. For CW20, provide the contract address e.g. "<strong>andr1...</strong>". For native provide the denom e.g. "<strong>uandr</strong>".</td></tr><tr><td><code>start_time</code></td><td>Option&#x3C;<a href="../platform-and-framework/common-types.md#milliseconds">MillisecondsExpiration</a>></td><td>Optional start time in milliseconds since <a href="https://www.epochconverter.com/clock">epoch</a>. If not specified, then the sale will start immediately.</td></tr><tr><td><code>duration</code></td><td>Option&#x3C;<a href="../platform-and-framework/common-types.md#milliseconds">MillisecondsDuration</a>></td><td>Optional duration for the sale in milliseconds from the <code>start_time</code>. If not specified then the sale never expires.</td></tr><tr><td><code>uses_cw20</code></td><td>bool</td><td>Whether a CW20 token is used to purchase the NFT or not.</td></tr><tr><td><code>recipient</code></td><td>Option&#x3C;<a href="../platform-and-framework/common-types.md#recipient">Recipient</a>></td><td>Optional address to receive the funds from the NFT sale. If not specified, then the funds will go to the sender of the NFT.</td></tr></tbody></table>
 
 ***
 
@@ -204,7 +203,8 @@ Only available to the NFT owner.
         token_id: String,
         token_address: String,
         price: Uint128,
-        coin_denom: Asset,
+        coin_denom: String,
+        uses_cw20: bool,
         recipient:Option&#x3C;Recipient>
     }
 }
@@ -218,9 +218,8 @@ Only available to the NFT owner.
     "token_id":"1",
     "token_address":"andr1...",
     "price":"100",
-    "coin_denom":{
-        "native_token":"native"
-        },
+    "coin_denom":"uandr",
+    "uses_cw20": false,
     "recipient":{
         "address":"andr1..."
         }
@@ -236,6 +235,7 @@ Only available to the NFT owner.
 | `token_address` | String                                                                   | The address of the cw721 contract that minted the token.                                                                                                                               |
 | `price`         | Uint128                                                                  | The price of the NFT, which is the amount of `coin_denom` needed to buy the NFT.                                                                                                       |
 | `coin_denom`    | String                                                                   | The denom to be used to buy the NFT. Can be either a CW20 or native funds. For CW20, provide the contract address e.g. "**andr1...**". For native provide the denom e.g. "**uandr**".  |
+| `uses_cw20`     | bool                                                                     | Whether a CW20 token is used to purchase the NFT or not.                                                                                                                               |
 | `recipient`     | Option<[Recipient](../platform-and-framework/common-types.md#recipient)> | Optional address to receive the funds from the NFT sale. If not specified, then the funds will go to the sender of the NFT.                                                            |
 
 ### Buy
