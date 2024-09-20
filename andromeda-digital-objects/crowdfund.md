@@ -8,10 +8,8 @@ Each campaign can contain multiple tiers for different levels of support. For ex
 
 When the campaign is over, the user can claim their NFT that corresponds to the tier they have purchased. In case the crowdfund does not reach its set goal, users would get refunds for their purchases.  The sale can be performed using either native tokens or CW20 tokens depending on what the owner wants.
 
-{% hint style="warning" %}
+{% hint style="info" %}
 The NFTs are minted at the end of the sale. Each NFT will take the metadata assigned to its tier.&#x20;
-
-The Crowdfunding ADO needs to be specified as the minter for the CW721 to be able to mint the NFTs for the users.
 {% endhint %}
 
 **Ado\_type**: crowdfund
