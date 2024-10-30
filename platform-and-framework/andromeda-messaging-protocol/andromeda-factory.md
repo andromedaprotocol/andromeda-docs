@@ -2,7 +2,7 @@
 
 ## Introduction
 
-The **Database** ADO (ADODB) is a smart contract that is primarily used to store the code Ids for  Andromeda ADOs. These code Ids are used to instantiate these ADOs in Andromeda [Apps](../../smart-contracts/andromeda-apps/app.md). The code Ids are stored within a key value pair where the key is the ADO type and the value is the ADO code Id.
+The **Database** ADO (ADODB) is a smart contract that is primarily used to store the code Ids for  Andromeda ADOs. These code Ids are used to instantiate these ADOs in Andromeda [Apps](../../andromeda-digital-objects/app-v1.0.1.md). The code Ids are stored within a key value pair where the key is the ADO type and the value is the ADO code Id.
 
 The ADODB is also responsible for managing the [economic engine](economics-engine.md) of the Andromeda ecosystem, allowing ADO publishers  to set custom fees to be paid when interacting with one of their published ADOs. These fees can be set as native or a CW20 token.
 
@@ -290,7 +290,7 @@ Only availabe to the contract owner.
 
 ### Ownership
 
-The set of ownerhsip messages. These messages are the same as the ones found in the [ADO base section](../ado-base/andromedamsg.md#ownership).
+The set of ownerhsip messages. These messages are the same as the ones found in the [ADO base section](../ado-base/andromedamsg-v1.0.0.md#ownership).
 
 ## QueryMsg
 

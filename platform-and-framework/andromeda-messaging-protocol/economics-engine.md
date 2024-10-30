@@ -74,7 +74,7 @@ pub enum ExecuteMsg{
 
 ### Receive
 
-Handles receiving CW20 tokens to be deposited as funds to pay fees with. Called by sending CW20 tokens from the CW20 ADO using the [Send](../../andromeda-digital-objects/cw20.md#send) execute message.&#x20;
+Handles receiving CW20 tokens to be deposited as funds to pay fees with. Called by sending CW20 tokens from the CW20 ADO using the [Send](../../andromeda-digital-objects/cw20-v1.0.0.md#send) execute message.&#x20;
 
 {% hint style="warning" %}
 This is not called directly by the user, but called when the user sends CW20 tokens to this ADO.&#x20;
@@ -213,7 +213,7 @@ Withdraw CW20 funds from the Andromeda economics module. If no amount is provide
 
 ### Ownership
 
-The set of ownerhsip messages. These messages are the same as the ones found in the [ADO base section](../ado-base/andromedamsg.md#ownership).
+The set of ownerhsip messages. These messages are the same as the ones found in the [ADO base section](../ado-base/andromedamsg-v1.0.0.md#ownership).
 
 ## QueryMsg
 

@@ -1,4 +1,4 @@
-# Rate Limiting Withdrawals
+# Rate Limiting Withdrawals V1.0.0
 
 ## Introduction
 
@@ -39,7 +39,7 @@ pub struct InstantiateMsg {
 {% endtab %}
 {% endtabs %}
 
-<table><thead><tr><th width="337.06022340942206">Name</th><th width="231.96848920702132">Type</th><th>Description</th></tr></thead><tbody><tr><td><code>allowed_coin</code></td><td><a href="rate-limiting-withdrawals.md#coinandlimit">CoinAndLimit</a></td><td>Set the allowed coin denom and the maximum amount allowed to withdraw.</td></tr><tr><td><code>minimal_withdrawal_frequency</code></td><td><a href="rate-limiting-withdrawals.md#contractandkey">MinimumFrequency</a></td><td>The time required between withdrawals. Specified in milliseconds. Cannot be 0.</td></tr><tr><td><code>kernel_address</code></td><td>String</td><td>Contract address of the <a href="../../platform-and-framework/andromeda-messaging-protocol/kernel.md">kernel contract</a> to be used for <a href="../../platform-and-framework/andromeda-messaging-protocol/">AMP</a> messaging. Kernel contract address can be found in our <a href="../../platform-and-framework/deployed-contracts (1).md">deployed contracts</a>.</td></tr><tr><td><code>owner</code></td><td>Option&#x3C;String></td><td>Optional address to specify as the owner of the ADO being created. Defaults to the sender if not specified.</td></tr></tbody></table>
+<table><thead><tr><th width="337.06022340942206">Name</th><th width="231.96848920702132">Type</th><th>Description</th></tr></thead><tbody><tr><td><code>allowed_coin</code></td><td><a href="rate-limiting-withdrawals-v1.0.0.md#coinandlimit">CoinAndLimit</a></td><td>Set the allowed coin denom and the maximum amount allowed to withdraw.</td></tr><tr><td><code>minimal_withdrawal_frequency</code></td><td><a href="rate-limiting-withdrawals-v1.0.0.md#contractandkey">MinimumFrequency</a></td><td>The time required between withdrawals. Specified in milliseconds. Cannot be 0.</td></tr><tr><td><code>kernel_address</code></td><td>String</td><td>Contract address of the <a href="../platform-and-framework/andromeda-messaging-protocol/kernel.md">kernel contract</a> to be used for <a href="../platform-and-framework/andromeda-messaging-protocol/">AMP</a> messaging. Kernel contract address can be found in our <a href="../platform-and-framework/deployed-contracts (1).md">deployed contracts</a>.</td></tr><tr><td><code>owner</code></td><td>Option&#x3C;String></td><td>Optional address to specify as the owner of the ADO being created. Defaults to the sender if not specified.</td></tr></tbody></table>
 
 #### CoinAndLimit
 
@@ -135,7 +135,7 @@ pub enum ExecuteMsg{
 
 ### Base Executes
 
-The rest of the execute messages can be found in the[ ADO Base](../../platform-and-framework/ado-base/) section.
+The rest of the execute messages can be found in the[ ADO Base](../platform-and-framework/ado-base/) section.
 
 ## QueryMsg
 
@@ -188,7 +188,7 @@ pub struct CoinAllowance {
 {% endtab %}
 {% endtabs %}
 
-<table><thead><tr><th width="337.06022340942206">Name</th><th width="231.96848920702132">Type</th><th>Description</th></tr></thead><tbody><tr><td><code>coin</code></td><td>string</td><td>The coin denom.</td></tr><tr><td><code>limit</code></td><td>Uint128</td><td>The amount allowed to withdraw per withdrawal.</td></tr><tr><td><code>minimal_withdrawal_frequency</code></td><td><a href="../../platform-and-framework/common-types.md#milliseconds">MillisecondsDuration</a></td><td>The time required between withdrawals. Specified in milliseconds. </td></tr></tbody></table>
+<table><thead><tr><th width="337.06022340942206">Name</th><th width="231.96848920702132">Type</th><th>Description</th></tr></thead><tbody><tr><td><code>coin</code></td><td>string</td><td>The coin denom.</td></tr><tr><td><code>limit</code></td><td>Uint128</td><td>The amount allowed to withdraw per withdrawal.</td></tr><tr><td><code>minimal_withdrawal_frequency</code></td><td><a href="../platform-and-framework/common-types.md#milliseconds">MillisecondsDuration</a></td><td>The time required between withdrawals. Specified in milliseconds. </td></tr></tbody></table>
 
 ### AccountDetails
 
@@ -252,4 +252,4 @@ pub struct AccountDetails {
 
 ### Base Queries
 
-The rest of the query messages can be found in the[ ADO Base](../../platform-and-framework/ado-base/) section.
+The rest of the query messages can be found in the[ ADO Base](../platform-and-framework/ado-base/) section.

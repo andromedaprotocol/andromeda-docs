@@ -246,7 +246,7 @@ pub enum ExecuteMsg {
 
 ### Ownership
 
-The set of ownerhsip messages. These messages are the same as the ones found in the [ADO base section](../ado-base/andromedamsg.md#ownership).
+The set of ownerhsip messages. These messages are the same as the ones found in the [ADO base section](../ado-base/andromedamsg-v1.0.0.md#ownership).
 
 ## QueryMsg
 

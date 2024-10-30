@@ -32,7 +32,9 @@ Displays the config of the chain.
 | **defualtFee**                | The default fee amount                                                |
 | **iconUrls**                  | The icon for the chain.                                               |
 | **kernelAddress**             | The contract address of the Kernel of the chain.                      |
+| **registryAddress**           | The contract address of the registry of the chain.                    |
 | **name**                      | The name of the config being used.                                    |
+|                               |                                                                       |
 | **enabled**                   | Whether the config is enabled in the CLI.                             |
 
 #### Usage
@@ -44,24 +46,26 @@ chain config
 #### Example
 
 ```
-? $main@elgafar-1> chain config
+? user-3@galileo-4> chain config
 ```
 
 The above command will generate an output similar to:
 
 <pre><code>Current chain config
-<strong>Key                       Value                                                            Description                                                          
-</strong>addressPrefix             stars                                                            The prefix for all addresses on chain                                
-blockExplorerTxPages      https://testnet-explorer.publicawesome.dev/stargaze/tx/${txHash} URLs to block explorers for the given chain. Must include '${txHash}'
-blockExplorerAddressPages https://testnet-explorer.publicawesome.dev/stargaze/account/${a… URLs to block explorers for the given chain. Must include '${txHash}'
-chainId                   elgafar-1                                                        The ID of the chain to use                                           
-chainUrl                  https://rpc.elgafar-1.stargaze-apis.com/                         The URL of the chain to use                                          
-chainName                 Stargaze                                                         The name of the chain                                                
-chainType                 testnet                                                          The chain type                                                       
-defaultFee                0.025ustars                                                      The default fee amount                                               
-iconUrls                  [object Object]                                                                                                                       
-kernelAddress             stars1hjm0vy35m9jhy8wjpldmaxv3yq3ctmzmpdfm9z0fscpv9zegpgqq5umjt0 The contract address of the Andromeda Kernel                         
-name                      stargaze-testnet                                                 The name of the chain config used                                                                         
+<strong>Key                       Value                                                           Description                                                          
+</strong>name                      andromeda-testnet                                               The name of the chain config used                                    
+chainName                 Andromeda Testnet                                               The name of the chain                                                
+chainId                   galileo-4                                                       The ID of the chain to use                                           
+chainUrl                  https://api.andromedaprotocol.io/rpc/testnet                    The URL of the chain to use                                          
+kernelAddress             andr14hj2tavq8fpesdwxxcu44rty3hh90vhujrvcmstl4zr3txmfvw9shptkql The contract address of the Andromeda Kernel                         
+addressPrefix             andr                                                            The prefix for all addresses on chain                                
+defaultFee                0.25uandr                                                       The default fee amount                                               
+blockExplorerTxPages      https://explorer.testnet.andromedaprotocol.io/galileo-4/tx/${t… URLs to block explorers for the given chain. Must include '${txHash}'
+blockExplorerAddressPages https://explorer.testnet.andromedaprotocol.io/galileo-4/accoun… URLs to block explorers for the given chain. Must include '${txHash}'
+chainType                 testnet                                                         The chain type                                                       
+iconUrls                  [object Object]                                                                                                                      
+registryAddress           andr1mfxffyrda922hpt23f7hpf8t50sadcwavkt54cuyl3w6p4zwz36sc9hfj6                                                                      
+enabled                   true                                                                                                                                                                                        
 </code></pre>
 
 ## Copy

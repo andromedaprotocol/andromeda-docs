@@ -1,4 +1,4 @@
-# App
+# App V1.0.1
 
 ## Introduction
 
@@ -10,12 +10,12 @@ An ADO in the App is called an AppComponent. Every App would be composed of many
 To reference a component from the another component when instantiating an App, you would need to speciy "./\<component-name>. You will see examples of this in our [Andromeda Apps](broken-reference) section.
 {% endhint %}
 
-At instantiation, we specify the address of the [Kernel ADO](../../platform-and-framework/andromeda-messaging-protocol/kernel.md) . This Kernel will have a reference to the [ADODB](../../platform-and-framework/ado-base/) which has the code Ids of all the Andromeda ADOs saved. The Kernel ADO for each chain is already deployed and the addresses can be found in our [deployed contracts](<../../platform-and-framework/deployed-contracts (1).md>) section. You can learn to deploy your first app [here](../../andromeda-apps/crowdfunding-app.md).
+At instantiation, we specify the address of the [Kernel ADO](../platform-and-framework/andromeda-messaging-protocol/kernel.md) . This Kernel will have a reference to the [ADODB](../platform-and-framework/ado-base/) which has the code Ids of all the Andromeda ADOs saved. The Kernel ADO for each chain is already deployed and the addresses can be found in our [deployed contracts](<../platform-and-framework/deployed-contracts (1).md>) section. You can learn to deploy your first app [here](../andromeda-apps/crowdfunding-app.md).
 
 Our Apps support cross-chain components or ADOs, meaning an App can contain several ADOs each located on a different chain. This is specified by using the `CrossChain` component type.
 
 {% hint style="warning" %}
-The App registers all its components in the [Virtual File System](../../platform-and-framework/andromeda-messaging-protocol/virtual-file-system.md) upon instantiation and assigns to them the names specified by the user upon instantiation of the App.
+The App registers all its components in the [Virtual File System](../platform-and-framework/andromeda-messaging-protocol/virtual-file-system.md) upon instantiation and assigns to them the names specified by the user upon instantiation of the App.
 
 Crosschain Apps are currently disabled.
 {% endhint %}
@@ -68,7 +68,7 @@ pub struct InstantiateMsg {
 {% endtab %}
 {% endtabs %}
 
-<table><thead><tr><th width="264.3333333333333">Name </th><th width="247.18815855494233">Type</th><th>Description</th></tr></thead><tbody><tr><td><code>app_components</code></td><td>Vec&#x3C;<a href="app.md#appcomponent">AppComponent</a>></td><td>The vector of AppComponent containing all the ADOs of the app.</td></tr><tr><td><code>name</code></td><td>String</td><td>The name of the app.</td></tr><tr><td><code>chain_info</code></td><td>Option&#x3C;Vec&#x3C;<a href="app.md#chaininfo">ChainInfo</a>>></td><td>A vector containing the chain information describing the chains that will be used in the App. To be able to deploy a CrossChain component, the chain_info for that chain need to be specified.</td></tr><tr><td><code>kernel_address</code></td><td>String</td><td>Contract address of the <a href="../../platform-and-framework/andromeda-messaging-protocol/kernel.md">kernel contract</a> to be used for <a href="../../platform-and-framework/andromeda-messaging-protocol/">AMP</a> messaging. Kernel contract address can be found in our <a href="../../platform-and-framework/deployed-contracts (1).md">deployed contracts</a>.</td></tr><tr><td><code>owner</code></td><td>Option&#x3C;String></td><td>Optional address to specify as the owner of the ADO being created. Defaults to the sender if not specified. </td></tr></tbody></table>
+<table><thead><tr><th width="264.3333333333333">Name </th><th width="247.18815855494233">Type</th><th>Description</th></tr></thead><tbody><tr><td><code>app_components</code></td><td>Vec&#x3C;<a href="app-v1.0.1.md#appcomponent">AppComponent</a>></td><td>The vector of AppComponent containing all the ADOs of the app.</td></tr><tr><td><code>name</code></td><td>String</td><td>The name of the app.</td></tr><tr><td><code>chain_info</code></td><td>Option&#x3C;Vec&#x3C;<a href="app-v1.0.1.md#chaininfo">ChainInfo</a>>></td><td>A vector containing the chain information describing the chains that will be used in the App. To be able to deploy a CrossChain component, the chain_info for that chain need to be specified.</td></tr><tr><td><code>kernel_address</code></td><td>String</td><td>Contract address of the <a href="../platform-and-framework/andromeda-messaging-protocol/kernel.md">kernel contract</a> to be used for <a href="../platform-and-framework/andromeda-messaging-protocol/">AMP</a> messaging. Kernel contract address can be found in our <a href="../platform-and-framework/deployed-contracts (1).md">deployed contracts</a>.</td></tr><tr><td><code>owner</code></td><td>Option&#x3C;String></td><td>Optional address to specify as the owner of the ADO being created. Defaults to the sender if not specified. </td></tr></tbody></table>
 
 ### AppComponent
 
@@ -90,18 +90,18 @@ pub struct AppComponent {
 }
 ```
 
-| Name             | Type                                 | Description                                                                               |
-| ---------------- | ------------------------------------ | ----------------------------------------------------------------------------------------- |
-| `name`           | String.                              | The name of the ADO component. The names can be used later on to reference the coponent.  |
-| `ado_type`       | String                               | The type of the ADO.                                                                      |
-| `component_type` | [ComponentType](app.md#componenttye) | Specifies the type of component. The components types are discussed below.                |
+| Name             | Type                                        | Description                                                                               |
+| ---------------- | ------------------------------------------- | ----------------------------------------------------------------------------------------- |
+| `name`           | String.                                     | The name of the ADO component. The names can be used later on to reference the coponent.  |
+| `ado_type`       | String                                      | The type of the ADO.                                                                      |
+| `component_type` | [ComponentType](app-v1.0.1.md#componenttye) | Specifies the type of component. The components types are discussed below.                |
 
 #### ComponentType
 
 An enum containing the different component types that can be instantiated.
 
 {% hint style="warning" %}
-In order to create a CrossChain component, `chain_info`field (Found in instantiation message of the App ADO) needs be specified for the chain to deploy the component on. For example, if I want to create a NFT component on Stargaze from an App on the Andromeda chain, I need to specify the [chain info](app.md#chaininfo) for the stargaze chain for it to be successfull.
+In order to create a CrossChain component, `chain_info`field (Found in instantiation message of the App ADO) needs be specified for the chain to deploy the component on. For example, if I want to create a NFT component on Stargaze from an App on the Andromeda chain, I need to specify the [chain info](app-v1.0.1.md#chaininfo) for the stargaze chain for it to be successfull.
 
 CrossChain Components are currently disabled.
 {% endhint %}
@@ -192,9 +192,9 @@ AddAppComponent{
 {% endtab %}
 {% endtabs %}
 
-| Name        | Type                                | Description                          |
-| ----------- | ----------------------------------- | ------------------------------------ |
-| `component` | [AppComponent](app.md#appcomponent) | The ADO component to add to the app. |
+| Name        | Type                                       | Description                          |
+| ----------- | ------------------------------------------ | ------------------------------------ |
+| `component` | [AppComponent](app-v1.0.1.md#appcomponent) | The ADO component to add to the app. |
 
 ### ClaimOwnership
 
@@ -310,7 +310,7 @@ pub enum ExecuteMsg {
 
 ### Base Executes
 
-The rest of the execute messages can be found in the[ ADO Base](../../platform-and-framework/ado-base/) section.
+The rest of the execute messages can be found in the[ ADO Base](../platform-and-framework/ado-base/) section.
 
 ## QueryMsg
 
@@ -411,7 +411,7 @@ pub enum QueryMsg{
 {% endtab %}
 {% endtabs %}
 
-Returns a `Vec<`[`AppComponent`](app.md#appcomponent)`>` which contains all the components of the app.
+Returns a `Vec<`[`AppComponent`](app-v1.0.1.md#appcomponent)`>` which contains all the components of the app.
 
 ### Config
 
@@ -491,4 +491,4 @@ Returns a bool response.
 
 ### &#x20;Base Queries
 
-The rest of the query messages can be found in the[ ADO Base](../../platform-and-framework/ado-base/) section.
+The rest of the query messages can be found in the[ ADO Base](../platform-and-framework/ado-base/) section.

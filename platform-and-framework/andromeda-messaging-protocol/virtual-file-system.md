@@ -8,7 +8,7 @@ Username registration is currently disabled on mainnet.
 
 The **Virtual File System** (VFS) is a part of the Andromeda Messaging System (AMP) which was heavily inspired by the linux file system. Users can register their address to a username. They can also register ADOs to paths. These paths can then be used and referenced in our ADO systems.
 
-When an [Andromeda App](../../smart-contracts/andromeda-apps/app.md) is made, it will register all paths for its child components and also register itself as a child of the instantiating address. Each component under the App is registered by its name, and the App itself is registered under its assigned name.
+When an [Andromeda App](../../andromeda-digital-objects/app-v1.0.1.md) is made, it will register all paths for its child components and also register itself as a child of the instantiating address. Each component under the App is registered by its name, and the App itself is registered under its assigned name.
 
 In addition to paths, [symbolic links](virtual-file-system.md#addsymlink) that point to a path can be created by users.
 
@@ -300,7 +300,7 @@ pub enum ExecuteMsg {
 
 ### Ownership
 
-The set of ownerhsip messages. These messages are the same as the ones found in the [ADO base section](../ado-base/andromedamsg.md#ownership).
+The set of ownerhsip messages. These messages are the same as the ones found in the [ADO base section](../ado-base/andromedamsg-v1.0.0.md#ownership).
 
 ## QueryMsg
 

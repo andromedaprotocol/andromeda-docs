@@ -24,7 +24,7 @@ AndromedaOS, or _aOS_ for short, is comprised of several interoperating systems 
 A quick description of each of the components that make up the aOS:
 
 * ​[Andromeda Digital Objects](./#andromeda-digital-objects-ados) - the building blocks of the system
-* [​Andromeda Apps](smart-contracts/andromeda-apps/app.md) - advanced functionality built with ADOs
+* [​Andromeda Apps](andromeda-digital-objects/app-v1.0.1.md) - advanced functionality built with ADOs
 * ​[aOS Kernel](platform-and-framework/andromeda-messaging-protocol/kernel.md) - the system for enforcing and coordinating the different systems
 * ​[aOS File System](platform-and-framework/andromeda-messaging-protocol/virtual-file-system.md) - common namespace for referencing ADOs, services, network, etc
 * ​[aOS Economics](platform-and-framework/andromeda-messaging-protocol/economics-engine.md) - developer and creator incentives

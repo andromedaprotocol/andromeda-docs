@@ -2,7 +2,7 @@
 description: The set of query messages common to all ADOs in the Andromeda Logic Library.
 ---
 
-# AndromedaQuery
+# AndromedaQuery V1.0.0
 
 ## AndromedaQuery
 
@@ -92,7 +92,7 @@ pub struct ContractOwnerResponse {
 Returns the owner that has a request to take ownership of the ADO.&#x20;
 
 {% hint style="info" %}
-An OwnershipRequest is present when [UpdateOwner](andromedamsg.md#updateowner) is called.
+An OwnershipRequest is present when [UpdateOwner](andromedamsg-v1.0.0.md#updateowner) is called.
 {% endhint %}
 
 {% tabs %}
@@ -452,18 +452,18 @@ pub struct PermissionInfo {
 {% endtab %}
 {% endtabs %}
 
-| Name         | Type                                       | Description                                       |
-| ------------ | ------------------------------------------ | ------------------------------------------------- |
-| `permission` | [Permission](andromedaquery.md#permission) | The permission that the actor was given.          |
-| `action`     | String                                     | The action or message that the permission is for. |
-| `actor`      | String                                     | The address that has these permissions.           |
+| Name         | Type                                              | Description                                       |
+| ------------ | ------------------------------------------------- | ------------------------------------------------- |
+| `permission` | [Permission](andromedaquery-v1.0.0.md#permission) | The permission that the actor was given.          |
+| `action`     | String                                            | The action or message that the permission is for. |
+| `actor`      | String                                            | The address that has these permissions.           |
 
 ### PermissionedActions
 
 Queries the actions or execute messages that are permissioned in the ADO.&#x20;
 
 {% hint style="warning" %}
-The actions that are permissioned are the ones that have [PermissionAction](andromedaquery.md#permissionaction) called on them.
+The actions that are permissioned are the ones that have [PermissionAction](andromedaquery-v1.0.0.md#permissionaction) called on them.
 {% endhint %}
 
 {% tabs %}

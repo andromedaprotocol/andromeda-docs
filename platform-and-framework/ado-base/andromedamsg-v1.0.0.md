@@ -2,7 +2,7 @@
 description: The set of execute messages common to all ADOs in the Andromeda Logic Library.
 ---
 
-# AndromedaMsg
+# AndromedaMsg V1.0.0
 
 ## AndromedaMsg
 
@@ -38,11 +38,11 @@ pub enum AndromedaMsg {
 
 All the ADOs can execute:&#x20;
 
-* [`Ownership messages`](andromedamsg.md#ownership)
-* [`UpdateAppContract`](andromedamsg.md#updateappcontract)
-* [`UpdateKernelAddress`](andromedamsg.md#updatekerneladdress)
-* [`AMPReceive`](andromedamsg.md#ampreceive)
-* [`Permissioning messages`](andromedamsg.md#permissioning)
+* [`Ownership messages`](andromedamsg-v1.0.0.md#ownership)
+* [`UpdateAppContract`](andromedamsg-v1.0.0.md#updateappcontract)
+* [`UpdateKernelAddress`](andromedamsg-v1.0.0.md#updatekerneladdress)
+* [`AMPReceive`](andromedamsg-v1.0.0.md#ampreceive)
+* [`Permissioning messages`](andromedamsg-v1.0.0.md#permissioning)
 
 ## Ownership
 
@@ -359,7 +359,7 @@ Assigns permissions to the specified actor. The action needs to be permissioned 
 {% hint style="warning" %}
 Only availabe to the ADO owner.
 
-The action needs to be permissioned by calling [PermissionAction](andromedamsg.md#permissionaction) to be able to set a permission for it.
+The action needs to be permissioned by calling [PermissionAction](andromedamsg-v1.0.0.md#permissionaction) to be able to set a permission for it.
 {% endhint %}
 
 {% tabs %}

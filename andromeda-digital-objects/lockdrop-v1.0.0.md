@@ -1,8 +1,8 @@
-# Lockdrop
+# Lockdrop V1.0.0
 
 ## Introduction
 
-This ADO is another part of the toolkit of allowing a user to setup their own [CW20 token](../../andromeda-digital-objects/cw20.md). The lockdrop ADO allows users to deposit a native token in exchange for a given CW20 token.&#x20;
+This ADO is another part of the toolkit of allowing a user to setup their own [CW20 token](cw20-v1.0.0.md). The lockdrop ADO allows users to deposit a native token in exchange for a given CW20 token.&#x20;
 
 There are two phases:
 
@@ -52,15 +52,15 @@ pub struct InstantiateMsg {
 {% endtab %}
 {% endtabs %}
 
-| Name                | Type                                                                                                                                           | Description                                                                                                                                                                                                                                                                                                                            |
-| ------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `init_timestamp`    | [MillisecondsExpiration](../../platform-and-framework/common-types.md#milliseconds)                                                            | Timestamp in milliseconds till when deposits can be made.                                                                                                                                                                                                                                                                              |
-| `deposit_window`    | [Milliseconds](../../platform-and-framework/common-types.md#milliseconds)[Duration](../../platform-and-framework/common-types.md#milliseconds) | Number of milliseconds for which lockup deposits will be accepted.                                                                                                                                                                                                                                                                     |
-| `withdrawal_window` | [Milliseconds](../../platform-and-framework/common-types.md#milliseconds)[Duration](../../platform-and-framework/common-types.md#milliseconds) | Number of milliseconds for which lockup withdrawals will be allowed. Cannot exceed the `deposit_window`.                                                                                                                                                                                                                               |
-| `incentive_token`   | [AndrAddr](../../platform-and-framework/common-types.md#andraddr)                                                                              | The CW20 token being given as incentive.                                                                                                                                                                                                                                                                                               |
-| `native_denom`      | String                                                                                                                                         | The native token being deposited.                                                                                                                                                                                                                                                                                                      |
-| `kernel_address`    | String                                                                                                                                         | Contract address of the [kernel contract](../../platform-and-framework/andromeda-messaging-protocol/kernel.md) to be used for [AMP](../../platform-and-framework/andromeda-messaging-protocol/) messaging. Kernel contract address can be found in our [deployed contracts](<../../platform-and-framework/deployed-contracts (1).md>). |
-| `owner`             | Option\<String>                                                                                                                                | Optional address to specify as the owner of the ADO being created. Defaults to the sender if not specified.                                                                                                                                                                                                                            |
+| Name                | Type                                                                                                                                     | Description                                                                                                                                                                                                                                                                                                                   |
+| ------------------- | ---------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `init_timestamp`    | [MillisecondsExpiration](../platform-and-framework/common-types.md#milliseconds)                                                         | Timestamp in milliseconds till when deposits can be made.                                                                                                                                                                                                                                                                     |
+| `deposit_window`    | [Milliseconds](../platform-and-framework/common-types.md#milliseconds)[Duration](../platform-and-framework/common-types.md#milliseconds) | Number of milliseconds for which lockup deposits will be accepted.                                                                                                                                                                                                                                                            |
+| `withdrawal_window` | [Milliseconds](../platform-and-framework/common-types.md#milliseconds)[Duration](../platform-and-framework/common-types.md#milliseconds) | Number of milliseconds for which lockup withdrawals will be allowed. Cannot exceed the `deposit_window`.                                                                                                                                                                                                                      |
+| `incentive_token`   | [AndrAddr](../platform-and-framework/common-types.md#andraddr)                                                                           | The CW20 token being given as incentive.                                                                                                                                                                                                                                                                                      |
+| `native_denom`      | String                                                                                                                                   | The native token being deposited.                                                                                                                                                                                                                                                                                             |
+| `kernel_address`    | String                                                                                                                                   | Contract address of the [kernel contract](../platform-and-framework/andromeda-messaging-protocol/kernel.md) to be used for [AMP](../platform-and-framework/andromeda-messaging-protocol/) messaging. Kernel contract address can be found in our [deployed contracts](<../platform-and-framework/deployed-contracts (1).md>). |
+| `owner`             | Option\<String>                                                                                                                          | Optional address to specify as the owner of the ADO being created. Defaults to the sender if not specified.                                                                                                                                                                                                                   |
 
 ## ExecuteMsg
 
@@ -228,7 +228,7 @@ pub enum ExecuteMsg {
 
 ### Base Executes
 
-The rest of the execute messages can be found in the[ ADO Base](../../platform-and-framework/ado-base/) section.
+The rest of the execute messages can be found in the[ ADO Base](../platform-and-framework/ado-base/) section.
 
 ## QueryMsg
 
@@ -274,7 +274,7 @@ pub struct ConfigResponse {
 
 * **`lockdrop_incentives`** is the total amount of lockdrop incentive tokens (Cw20 tokens) to be distributed among the users.
 
-The rest of the field definitions are the same as the one in the [InstantiateMsg](lockdrop.md#instantiatemsg).
+The rest of the field definitions are the same as the one in the [InstantiateMsg](lockdrop-v1.0.0.md#instantiatemsg).
 
 ### State
 
@@ -421,4 +421,4 @@ Returns a number of type Decimal representing the percentage allowed to withdraw
 
 ### Base Queries
 
-The rest of the query messages can be found in the[ ADO Base](../../platform-and-framework/ado-base/) section.
+The rest of the query messages can be found in the[ ADO Base](../platform-and-framework/ado-base/) section.

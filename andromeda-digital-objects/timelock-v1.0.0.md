@@ -1,4 +1,4 @@
-# Timelock
+# Timelock V1.0.0
 
 The **Timelock** ADO or Escrow ADO is a smart contract built to hold funds (Native coins) for a period of time until the set condition is satisfied.&#x20;
 
@@ -68,7 +68,7 @@ pub enum ExecuteMsg {
 {% endtab %}
 {% endtabs %}
 
-<table><thead><tr><th width="155.33333333333331">Name</th><th>Type</th><th>Description</th></tr></thead><tbody><tr><td><code>recipient</code></td><td>Option&#x3C;<a href="../platform-and-framework/common-types.md#recipient">Recipient</a>></td><td>Optional recipient address. If not set, defaults to the sender.</td></tr><tr><td><code>condition</code></td><td>Option&#x3C;<a href="timelock.md#escrowcondition">EscrowCondition</a>></td><td>An optional condition to unlock the Escrow.</td></tr></tbody></table>
+<table><thead><tr><th width="155.33333333333331">Name</th><th>Type</th><th>Description</th></tr></thead><tbody><tr><td><code>recipient</code></td><td>Option&#x3C;<a href="../platform-and-framework/common-types.md#recipient">Recipient</a>></td><td>Optional recipient address. If not set, defaults to the sender.</td></tr><tr><td><code>condition</code></td><td>Option&#x3C;<a href="timelock-v1.0.0.md#escrowcondition">EscrowCondition</a>></td><td>An optional condition to unlock the Escrow.</td></tr></tbody></table>
 
 #### EscrowCondition
 
@@ -235,9 +235,9 @@ pub struct GetLockedFundsResponse {
 {% endtab %}
 {% endtabs %}
 
-| Name    | Type                                 | Description                                                  |
-| ------- | ------------------------------------ | ------------------------------------------------------------ |
-| `funds` | Option<[Escrow](timelock.md#escrow)> | Optional Escrow with the held funds and related information. |
+| Name    | Type                                        | Description                                                  |
+| ------- | ------------------------------------------- | ------------------------------------------------------------ |
+| `funds` | Option<[Escrow](timelock-v1.0.0.md#escrow)> | Optional Escrow with the held funds and related information. |
 
 ### GetLockedFundsForRecipient
 
@@ -311,9 +311,9 @@ pub struct GetLockedFundsForRecipientResponse {
 {% endtab %}
 {% endtabs %}
 
-| Name    | Type                              | Description                                                  |
-| ------- | --------------------------------- | ------------------------------------------------------------ |
-| `funds` | Vec<[Escrow](timelock.md#escrow)> | Optional Escrow with the held funds and related information. |
+| Name    | Type                                     | Description                                                  |
+| ------- | ---------------------------------------- | ------------------------------------------------------------ |
+| `funds` | Vec<[Escrow](timelock-v1.0.0.md#escrow)> | Optional Escrow with the held funds and related information. |
 
 #### Escrow
 
@@ -330,7 +330,7 @@ pub struct Escrow {
 | Name        | Type                                                             | Description                                               |
 | ----------- | ---------------------------------------------------------------- | --------------------------------------------------------- |
 | `coins`     | Vec<[Coin](../platform-and-framework/common-types.md#coin)>      | Funds being held within the Escrow.                       |
-| `condition` | Option<[EscrowCondition](timelock.md#escrowcondition)>           | Optional condition for the Escrow.                        |
+| `condition` | Option<[EscrowCondition](timelock-v1.0.0.md#escrowcondition)>    | Optional condition for the Escrow.                        |
 | `recipient` | [Recipient](../platform-and-framework/common-types.md#recipient) | The recipient of the funds once `condition` is satisfied. |
 
 ### Base Queries

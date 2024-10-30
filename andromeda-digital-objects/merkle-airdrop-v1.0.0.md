@@ -1,4 +1,4 @@
-# Merkle-Airdrop
+# Merkle-Airdrop V1.0.0
 
 ## Introduction
 
@@ -32,11 +32,11 @@ pub struct InstantiateMsg {
 {% endtab %}
 {% endtabs %}
 
-| Name             | Type                                                       | Description                                                                                                                                                                                                                                                                                                                   |
-| ---------------- | ---------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `asset_info`     | [AssetInfoUnchecked](merkle-airdrop.md#assetinfounchecked) | The assets to airdrop.                                                                                                                                                                                                                                                                                                        |
-| `kernel_address` | String                                                     | Contract address of the [kernel contract](../platform-and-framework/andromeda-messaging-protocol/kernel.md) to be used for [AMP](../platform-and-framework/andromeda-messaging-protocol/) messaging. Kernel contract address can be found in our [deployed contracts](<../platform-and-framework/deployed-contracts (1).md>). |
-| `owner`          | Option\<String>                                            | Optional address to specify as the owner of the ADO being created. Defaults to the sender if not specified.                                                                                                                                                                                                                   |
+| Name             | Type                                                              | Description                                                                                                                                                                                                                                                                                                                   |
+| ---------------- | ----------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `asset_info`     | [AssetInfoUnchecked](merkle-airdrop-v1.0.0.md#assetinfounchecked) | The assets to airdrop.                                                                                                                                                                                                                                                                                                        |
+| `kernel_address` | String                                                            | Contract address of the [kernel contract](../platform-and-framework/andromeda-messaging-protocol/kernel.md) to be used for [AMP](../platform-and-framework/andromeda-messaging-protocol/) messaging. Kernel contract address can be found in our [deployed contracts](<../platform-and-framework/deployed-contracts (1).md>). |
+| `owner`          | Option\<String>                                                   | Optional address to specify as the owner of the ADO being created. Defaults to the sender if not specified.                                                                                                                                                                                                                   |
 
 #### AssetInfoUnchecked
 
@@ -237,7 +237,7 @@ Represents an asset info instance containing only verified data which is saved i
 pub type AssetInfo = AssetInfoBase<Addr>
 ```
 
-[AssetInfoBase](merkle-airdrop.md#assetinfobase)
+[AssetInfoBase](merkle-airdrop-v1.0.0.md#assetinfobase)
 
 ### MerkleRoot
 

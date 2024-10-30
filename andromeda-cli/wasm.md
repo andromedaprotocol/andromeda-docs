@@ -6,13 +6,15 @@ description: Send CosmWasm messages to the chain.
 
 ### Available Commands
 
-| Command                                | Description                         |
-| -------------------------------------- | ----------------------------------- |
-| [**execute**](wasm.md#execute)         | Executes a wasm message.            |
-| [**instantiate**](wasm.md#instantiate) | Instantiates a contract by code Id. |
-| [**migrate**](wasm.md#migrate)         | Migrate a contract.                 |
-| [**query**](wasm.md#query)             | Queries a contract.                 |
-| [**upload**](wasm.md#upload)           | Upload a contract wasm.             |
+| Command                                | Description                                     |
+| -------------------------------------- | ----------------------------------------------- |
+| [**execute**](wasm.md#execute)         | Executes a wasm message.                        |
+| [**instantiate**](wasm.md#instantiate) | Instantiates a contract by code Id.             |
+| [**migrate**](wasm.md#migrate)         | Migrate a contract.                             |
+| [**query**](wasm.md#query)             | Queries a contract.                             |
+| [**upload**](wasm.md#upload)           | Upload a contract wasm.                         |
+| [**info**](wasm.md#info)               | Queries general information about the contract. |
+| [**query-raw**](wasm.md#query-raw)     | Queries base information about the ADO.         |
 
 ## Execute
 
@@ -152,3 +154,71 @@ wasm upload <wasm file>
 ```
 wam upload andromeda_app_contract.wasm
 ```
+
+## Info
+
+Query general information about the ADO.
+
+**Usage**
+
+```
+wasm info <contract-address>
+```
+
+**Example**
+
+```
+? user-3-renamed@galileo-4> wasm info andr1wcs8z2h7nfxfshukh6ys49pcxgnhq6ht7em7ap8z9n0pvxueqzmswqj7tq
+- Querying contract info...
+
+Creator:      andr10whczsw3tgqjrdd8t09s6c9a43w7dk09plelsqm937fpqar2c9gqqpgta0
+Admin:        andr1c397rxvhf8mhj3rnhpmyqsrgg230y4vg4m3zpx                    
+Code ID:      222                                                            
+Label:        Instantiate: timelock@2.0.2-beta.1                             
+IBC Port ID:  None                                                           
+
+? user-3-renamed@galileo-4> () 
+```
+
+## Query Raw
+
+Queries base information about the ADO.
+
+**Usage**
+
+```
+wasm query-raw <contract-address>
+```
+
+**Example**
+
+```
+? user-3-renamed@galileo-4> wasm query-raw andr1wcs8z2h7nfxfshukh6ys49pcxgnhq6ht7em7ap8z9n0pvxueqzmswqj7tq
+⠂ Querying contrac key...
+
+ado_type
+"timelock"
+
+app_contract
+"andr10whczsw3tgqjrdd8t09s6c9a43w7dk09plelsqm937fpqar2c9gqqpgta0"
+
+block_height
+3209082
+
+contract_info
+{"contract":"timelock","version":"2.0.2-beta.1"}
+
+kernel_address
+"andr14hj2tavq8fpesdwxxcu44rty3hh90vhujrvcmstl4zr3txmfvw9shptkql"
+
+original_publisher
+"andr10whczsw3tgqjrdd8t09s6c9a43w7dk09plelsqm937fpqar2c9gqqpgta0"
+
+owner
+"andr1dzrcm9swj22v2d05sqfktlwrz3u8hskgujyqhk"
+```
+
+| Flag       | Description                                              | Usage      |
+| ---------- | -------------------------------------------------------- | ---------- |
+| **limit**  | The number of resutls to return. Defaults to 10.         | --limit 5  |
+| **offset** | Number of results to skip from the start. Defaults to 0. | --offset 3 |

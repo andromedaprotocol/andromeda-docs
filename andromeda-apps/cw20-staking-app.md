@@ -26,8 +26,8 @@ The steps we will perform:&#x20;
 
 The components/ADOs we would need:
 
-* [CW20](../andromeda-digital-objects/cw20.md)
-* [CW20 staking](../andromeda-digital-objects/cw20-staking.md)
+* [CW20](../andromeda-digital-objects/cw20-v1.0.0.md)
+* [CW20 staking](../andromeda-digital-objects/cw20-staking-v1.0.0.md)
 
 {% hint style="warning" %}
 Although not necessary, if you are unfamiliar with these ADOs, it is suggested to read through each of the them before deploying an app.&#x20;
@@ -309,7 +309,7 @@ wasm query  <staking-contract-address> '{"staker":{"address":"<user3-address>"}}
 }
 ```
 
-As we can see each of the stakers got the amount proportional to the amount staked. Each user can now claim these tokens by calling the [ClaimRewards](../andromeda-digital-objects/cw20-staking.md#claimrewards) message.
+As we can see each of the stakers got the amount proportional to the amount staked. Each user can now claim these tokens by calling the [ClaimRewards](../andromeda-digital-objects/cw20-staking-v1.0.0.md#claimrewards) message.
 
 ### Conclusion
 

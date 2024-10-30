@@ -7,7 +7,7 @@ The help flag can be used after any command to get information on it.
 #### Example
 
 ```
-? user@galileo-3> wallets add --help
+? user@galileo-3> wallet add --help
 Adds a new wallet. Can be used with the --recover flag to add a wallet by mnemonic.
 
 Usage:
@@ -41,10 +41,10 @@ add     rm      use     list
 In this example, write the first letter of the command you want to run and see how the CLI will autocomplete it for you.&#x20;
 
 ```
-? $main@elgafar-1> () wallets a
+? $main@elgafar-1> () wallets aut
 
 //Press "tab" button to autocomplete the command
-? $main@elgafar-1> () wallets add
+? $main@elgafar-1> () wallets autosave
 ```
 
 ### Direct Shell Input

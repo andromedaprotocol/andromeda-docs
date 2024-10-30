@@ -1,4 +1,4 @@
-# Marketplace
+# Marketplace V1.0.0
 
 ## Introduction
 
@@ -6,7 +6,7 @@ The **Marketplace** ADO is a smart contract that allows you to sell your NFTs in
 
 Purchasing the NFT can be customized to work with one of the following options:
 
-* **Native:** By specifying the denom of the chain in the [StartSale](marketplace.md#start-sale) message.&#x20;
+* **Native:** By specifying the denom of the chain in the [StartSale](marketplace-v1.0.0.md#start-sale) message.&#x20;
 * **CW20:** By specifying the contract address of the CW20 token to be used in the StartSale. The CW20 tokens allowed to be set as the purchasing token can be restricted by specifying `authorized_cw20_address` at instantiation. If this is not specified, then any CW20 token can be set.
 
 {% hint style="warning" %}
@@ -49,7 +49,7 @@ pub struct InstantiateMsg {
 
 ### ReceiveNft
 
-Receives a token from a [`SendNft`](cw721.md#sendnft) and starts an auction based on the given parameters in the **StartSale** struct. &#x20;
+Receives a token from a [`SendNft`](cw721-v1.0.0.md#sendnft) and starts an auction based on the given parameters in the **StartSale** struct. &#x20;
 
 {% hint style="warning" %}
 This message is not called by the user on this ADO, but is the case that handles receiving NFTs from a CW721 ADO.
@@ -121,7 +121,7 @@ pub enum Cw721HookMsg {
 
 ### Receive
 
-Receives tokens from a CW20 [Send](cw20.md#send)  message to be used to buy an NFT.
+Receives tokens from a CW20 [Send](cw20-v1.0.0.md#send)  message to be used to buy an NFT.
 
 {% hint style="warning" %}
 This message is not called by the user on this ADO, but is the case that handles receiving CW20 tokens from a CW20 ADO.
@@ -433,7 +433,7 @@ pub enum QueryMsg
 | --------- | ------- | ---------------------------- |
 | `sale_id` | Uint128 | The Id of the sale to check. |
 
-Returns a [SaleStateResponse](marketplace.md#salestateresponse).
+Returns a [SaleStateResponse](marketplace-v1.0.0.md#salestateresponse).
 
 ### SaleIds
 

@@ -1,4 +1,4 @@
-# Splitter
+# Splitter V1.0.0
 
 ## Introduction
 
@@ -49,10 +49,10 @@ pub struct InstantiateMsg {
 {% endtab %}
 {% endtabs %}
 
-<table><thead><tr><th width="249.33333333333331">Name</th><th width="249.39014373716634">Type</th><th>Description</th></tr></thead><tbody><tr><td><code>recipients</code></td><td>Vec&#x3C;<a href="splitter.md#addresspercent">AddressPercent</a>></td><td>The recipient list of the splitter. Can be updated after instantiation if there is no current lock time.</td></tr><tr><td><code>lock_time</code></td><td>Option&#x3C;<a href="../platform-and-framework/common-types.md#milliseconds">MillisecondsDuration</a>></td><td>How long the splitter is locked. When locked, no recipients can be added/changed. Specified in milliseconds.</td></tr><tr><td><code>kernel_address</code></td><td>String</td><td>Contract address of the <a href="../platform-and-framework/andromeda-messaging-protocol/kernel.md">kernel contract</a> to be used for <a href="../platform-and-framework/andromeda-messaging-protocol/">AMP</a> messaging. Kernel contract address can be found in our <a href="../platform-and-framework/deployed-contracts (1).md">deployed contracts</a>.</td></tr><tr><td><code>owner</code></td><td>Option&#x3C;String></td><td>Optional address to specify as the owner of the ADO being created. Defaults to the sender if not specified.</td></tr></tbody></table>
+<table><thead><tr><th width="249.33333333333331">Name</th><th width="249.39014373716634">Type</th><th>Description</th></tr></thead><tbody><tr><td><code>recipients</code></td><td>Vec&#x3C;<a href="splitter-v1.0.0.md#addresspercent">AddressPercent</a>></td><td>The recipient list of the splitter. Can be updated after instantiation if there is no current lock time.</td></tr><tr><td><code>lock_time</code></td><td>Option&#x3C;<a href="../platform-and-framework/common-types.md#milliseconds">MillisecondsDuration</a>></td><td>How long the splitter is locked. When locked, no recipients can be added/changed. Specified in milliseconds.</td></tr><tr><td><code>kernel_address</code></td><td>String</td><td>Contract address of the <a href="../platform-and-framework/andromeda-messaging-protocol/kernel.md">kernel contract</a> to be used for <a href="../platform-and-framework/andromeda-messaging-protocol/">AMP</a> messaging. Kernel contract address can be found in our <a href="../platform-and-framework/deployed-contracts (1).md">deployed contracts</a>.</td></tr><tr><td><code>owner</code></td><td>Option&#x3C;String></td><td>Optional address to specify as the owner of the ADO being created. Defaults to the sender if not specified.</td></tr></tbody></table>
 
 {% hint style="warning" %}
-Anytime a [`Send`](splitter.md#send) execute message is sent, the amount sent will be divided amongst the recipients depending on their assigned percentage.
+Anytime a [`Send`](splitter-v1.0.0.md#send) execute message is sent, the amount sent will be divided amongst the recipients depending on their assigned percentage.
 {% endhint %}
 
 #### AddressPercent
@@ -134,9 +134,9 @@ pub enum ExecuteMsg {
 {% endtab %}
 {% endtabs %}
 
-| Name         | Type                                              | Description                                 |
-| ------------ | ------------------------------------------------- | ------------------------------------------- |
-| `recipients` | Vec<[AddressPercent](splitter.md#addresspercent)> | The new list of addresses to receive funds. |
+| Name         | Type                                                     | Description                                 |
+| ------------ | -------------------------------------------------------- | ------------------------------------------- |
+| `recipients` | Vec<[AddressPercent](splitter-v1.0.0.md#addresspercent)> | The new list of addresses to receive funds. |
 
 ### UpdateLock
 
@@ -267,7 +267,7 @@ pub struct GetSplitterConfigResponse {
 {% endtab %}
 {% endtabs %}
 
-<table><thead><tr><th width="275.3333333333333">Name</th><th>Type</th><th>Description</th></tr></thead><tbody><tr><td><code>config</code></td><td><a href="splitter.md#splitter">Splitter</a></td><td>The Splitter config struct.</td></tr></tbody></table>
+<table><thead><tr><th width="275.3333333333333">Name</th><th>Type</th><th>Description</th></tr></thead><tbody><tr><td><code>config</code></td><td><a href="splitter-v1.0.0.md#splitter">Splitter</a></td><td>The Splitter config struct.</td></tr></tbody></table>
 
 #### Splitter
 
@@ -280,7 +280,7 @@ pub struct Splitter {
 }
 ```
 
-<table><thead><tr><th>Name</th><th width="266.3333333333333">Type</th><th>Description</th></tr></thead><tbody><tr><td><code>recipients</code></td><td>Vec&#x3C;<a href="splitter.md#addresspercent">AdressPercent</a>></td><td>The vector of the assigned recipients to receive the funds along with their percentages. </td></tr><tr><td><code>lock</code></td><td><a href="../platform-and-framework/common-types.md#milliseconds">MillisecondsExpiration</a></td><td>Returns the timestamp in milliseconds of the end date for the lock.</td></tr></tbody></table>
+<table><thead><tr><th>Name</th><th width="266.3333333333333">Type</th><th>Description</th></tr></thead><tbody><tr><td><code>recipients</code></td><td>Vec&#x3C;<a href="splitter-v1.0.0.md#addresspercent">AdressPercent</a>></td><td>The vector of the assigned recipients to receive the funds along with their percentages. </td></tr><tr><td><code>lock</code></td><td><a href="../platform-and-framework/common-types.md#milliseconds">MillisecondsExpiration</a></td><td>Returns the timestamp in milliseconds of the end date for the lock.</td></tr></tbody></table>
 
 ### Base Queries
 
