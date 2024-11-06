@@ -182,9 +182,17 @@ As we have seen in other  [guides](nft-marketplace-app.md), we need to send the 
 
 Select **Send NFT** from the list of modifiers for the CW721:
 
+{% hint style="info" %}
+You can use our "[Multi Execute](../../learning-the-basics/using-execute-messages.md#multi-execute)" option to send all the NFTs in one go.
+{% endhint %}
+
 <figure><img src="../../.gitbook/assets/Screenshot 2024-09-04 at 6.00.14 PM.png" alt=""><figcaption></figcaption></figure>
 
 For the **Recipient**, specify the address of the Marketplace ADO in your App. Then, select the Marketplace "**CW721 start sale**" and specify the NFT sale parameters:
+
+{% hint style="warning" %}
+You also need to specify the version of the marketplace you are sending to. Make sure to use the same version of your marketplace component. If not sure, you can check the version in the assets page.
+{% endhint %}
 
 <figure><img src="../../.gitbook/assets/Screenshot 2024-09-04 at 6.00.56 PM.png" alt=""><figcaption></figcaption></figure>
 
@@ -256,7 +264,7 @@ So as a quick recap, we did the following:
 
 1. Tell the marketplace to send the funds from the NFT sales to the Timelock.
 2. Tell the Timelock to hold these funds till the end of the month and to go to the Conditional Splitter when claimed.
-3. Tell the Conditional Splitter the automatically split the funds it receives from the Timelock based on the configurations we set up at creation.
+3. Tell the Conditional Splitter to automatically split the funds it receives from the Timelock based on the configurations we set up at creation.
 
 <figure><img src="../../.gitbook/assets/Screenshot 2024-09-04 at 6.40.56 PM.png" alt=""><figcaption></figcaption></figure>
 
