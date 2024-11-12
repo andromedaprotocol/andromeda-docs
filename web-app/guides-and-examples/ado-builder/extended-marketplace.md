@@ -44,13 +44,15 @@ I use the name "Snail Collection" as this will be the theme for the NFTs.
 
 **Next, we need to add the marketplace component:**
 
-<figure><img src="../../.gitbook/assets/Screenshot 2024-08-26 at 3.25.20 PM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/Screenshot 2024-11-11 at 10.32.13 PM.png" alt=""><figcaption></figcaption></figure>
 
-{% hint style="info" %}
-You can still use native in case CW20 is specified, but since our sale will be solely native there is not need to do that.
+Here we specify the CW721 and CW20 addresses allowed to interact with our marketplace. For CW721 we specify the NFT component of our App. For CW20, we can keep it empty, as we will be using native funds to sell the NFTs.&#x20;
+
+{% hint style="warning" %}
+In case you are looking to sell the NFTs for CW20 tokens, then Authorized CW20 addresses must be set.
 {% endhint %}
 
-Here we specify native, as we want the NFTs to be sold for native uandr tokens.
+<figure><img src="../../.gitbook/assets/Screenshot 2024-11-11 at 10.39.09 PM.png" alt=""><figcaption></figcaption></figure>
 
 **Finally we add our splitter component:**
 
@@ -133,17 +135,19 @@ Now we need to give the 2 artists permission to mint an NFT. In the CW721 modifi
 
 <figure><img src="../../.gitbook/assets/Screenshot 2024-08-26 at 6.13.11 PM.png" alt=""><figcaption></figcaption></figure>
 
-Permissioning is a two step process:
+**Set the permission on the action and publish:**
 
-1. **Enable permissions on the action and publish:**
-
-<figure><img src="../../.gitbook/assets/Screenshot 2024-08-26 at 6.17.00 PM.png" alt=""><figcaption></figcaption></figure>
-
-2. **Set the permission on the action and publish:**
+{% hint style="warning" %}
+In case of a whitelist (instead of a limited permission), you would need to call PermissionAction prior to setting the whitelist.
+{% endhint %}
 
 <figure><img src="../../.gitbook/assets/Screenshot 2024-08-26 at 6.21.14 PM.png" alt=""><figcaption></figcaption></figure>
 
-{% hint style="info" %}
+{% hint style="danger" %}
+You can now add multiple actors at a time. This was not possible at the time of making this guide. You could permission both artists in one go by clicking add item under actor.&#x20;
+{% endhint %}
+
+{% hint style="warning" %}
 Action is case sensitive.
 {% endhint %}
 
