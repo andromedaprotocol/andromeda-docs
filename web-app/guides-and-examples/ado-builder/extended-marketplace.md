@@ -131,7 +131,7 @@ Once you publish, the rates have been successfully applied.&#x20;
 
 ### Setting Permissions
 
-Now we need to give the 2 artists permission to mint an NFT. In the CW721 modifiers, select "**Permissioning**":
+Now we need to give the 2 artists permission to mint an NFT. In the **CW721** modifiers, select "**Permissioning**":
 
 <figure><img src="../../.gitbook/assets/Screenshot 2024-08-26 at 6.13.11 PM.png" alt=""><figcaption></figcaption></figure>
 
@@ -213,7 +213,7 @@ After minting the NFTs for artist-2 and artist-3 (Using their wallets), let us c
 
 As we have seen in the first marketplace guide, we need to send the NFTs from the CW721 component to the marketplace component with the needed configuration in order to start a sale on the NFT.
 
-Select **Send NFT** from the list of modifiers for the CW721:
+Select **Send NFT** from the list of modifiers for the CW721:&#x20;
 
 <figure><img src="../../.gitbook/assets/Screenshot 2024-08-27 at 6.39.02 PM.png" alt=""><figcaption></figcaption></figure>
 
@@ -225,7 +225,7 @@ You can also use the VFS path to specify the recipient.
 
 **Token Id:** The token Id of the NFT we are sending. Use the token Id of the NFT minted by the connected wallet.
 
-For supporting messages, select marketplace, then cw721-start-sale. Specify the sale options for the NFTs :
+For supporting messages, select **marketplace**, then the version of your marketplace component (usually the latest versin), then **cw721-start-sale**. Specify the sale options for the NFTs :
 
 <figure><img src="../../.gitbook/assets/Screenshot 2024-08-27 at 6.48.00 PM.png" alt=""><figcaption></figcaption></figure>
 
