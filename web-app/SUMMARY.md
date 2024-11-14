@@ -17,6 +17,7 @@
   * [CW20: Fungible Token (CW20) Standard](learning-the-basics/the-token-standards/cw20-fungible-token-cw20-standard.md)
 * [Using Execute Messages](learning-the-basics/using-execute-messages.md)
 * [Using Queries](learning-the-basics/using-queries.md)
+* [ADO Ownership](learning-the-basics/ado-ownership.md)
 
 ## Guides and Examples&#x20;
 
