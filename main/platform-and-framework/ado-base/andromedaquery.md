@@ -530,10 +530,10 @@ pub enum AndromedaQuery {
 
 Returns a Vector of String containing the actions that are permissioned.&#x20;
 
-### GetRate
+### Rate
 
 {% hint style="info" %}
-Only available to the ADOs that implement modules.
+Only available to the ADOs that implement rates.
 {% endhint %}
 
 Queries the rates applied for the specified action.
@@ -543,7 +543,7 @@ Queries the rates applied for the specified action.
 ```rust
 pub enum AndromedaQuery {
    #[returns(Option<self::rates::Rate>)]
-    GetRate { action: String },
+    Rate { action: String },
     }
 ```
 {% endtab %}
@@ -551,7 +551,7 @@ pub enum AndromedaQuery {
 {% tab title="JSON" %}
 ```json
 {
-"get_rate":{
+"rate":{
     "action":"Mint"
     }
 }
@@ -560,3 +560,52 @@ pub enum AndromedaQuery {
 {% endtabs %}
 
 Returns a [rate](andromedamsg.md#rate) struct containing the configurations of the rate.
+
+### AllRates
+
+Queries all the rates applied on an ADO.
+
+{% hint style="info" %}
+Only available to the ADOs that implement rates.
+{% endhint %}
+
+Queries the rates applied for the specified action.
+
+{% tabs %}
+{% tab title="Rust" %}
+```rust
+pub enum AndromedaQuery {
+#[returns(self::rates::AllRatesResponse)]
+    AllRates {},
+    }
+```
+{% endtab %}
+
+{% tab title="JSON" %}
+```json
+{
+"all_rates":{}
+}
+```
+{% endtab %}
+{% endtabs %}
+
+**AllRatesResponse**
+
+```rust
+#[cw_serde]
+pub struct AllRatesResponse {
+    pub all_rates: Vec<(String, Rate)>,
+}
+```
+
+<table><thead><tr><th>Name</th><th width="223">Type</th><th>Description</th></tr></thead><tbody><tr><td><code>all_rates</code></td><td>Vec&#x3C;(String, <a href="andromedamsg.md#rate">Rate</a>)></td><td>A vector containing the name of the action and its applied rates.</td></tr></tbody></table>
+
+**AllRatesResponse**
+
+```rust
+#[cw_serde]
+pub struct AllRatesResponse {
+    pub all_rates: Vec<(String, Rate)>,
+}
+```
