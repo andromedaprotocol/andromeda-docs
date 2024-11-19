@@ -600,12 +600,3 @@ pub struct AllRatesResponse {
 ```
 
 <table><thead><tr><th>Name</th><th width="223">Type</th><th>Description</th></tr></thead><tbody><tr><td><code>all_rates</code></td><td>Vec&#x3C;(String, <a href="andromedamsg.md#rate">Rate</a>)></td><td>A vector containing the name of the action and its applied rates.</td></tr></tbody></table>
-
-**AllRatesResponse**
-
-```rust
-#[cw_serde]
-pub struct AllRatesResponse {
-    pub all_rates: Vec<(String, Rate)>,
-}
-```
