@@ -8,7 +8,7 @@ Username registration is currently disabled on mainnet.
 
 The **Virtual File System** (VFS) is a part of the Andromeda Messaging System (AMP) which was heavily inspired by the linux file system. Users can register their address to a username. They can also register ADOs to paths. These paths can then be used and referenced in our ADO systems.
 
-When an [Andromeda App](../../andromeda-digital-objects/app-v1.0.1.md) is made, it will register all paths for its child components and also register itself as a child of the instantiating address. Each component under the App is registered by its name, and the App itself is registered under its assigned name.
+When an [Andromeda App](../../archives/andromeda-digital-objects/app-v1.0.1.md) is made, it will register all paths for its child components and also register itself as a child of the instantiating address. Each component under the App is registered by its name, and the App itself is registered under its assigned name.
 
 In addition to paths, [symbolic links](virtual-file-system.md#addsymlink) that point to a path can be created by users.
 
@@ -25,9 +25,9 @@ A user does the following:
 3. The App will automatically register its components under their assigned names
 
 {% hint style="danger" %}
-When you register a username, it will registered in the "home" directory. This can also be represented by the "\~" symbol or the "." symbol.
+When you register a username, it will registered in the "home" directory. This can also be represented by the "\~" symbol. When using the "\~" we do not add a backslash after.
 
-In the examples below, /home can be replaced by \~ in the paths. For example,  /home/user1 and \~/user1 and ./user1 are considered the same.
+In the examples below, /home can be replaced by \~ in the paths. For example,  /home/user1 and \~user1 are considered the same.
 {% endhint %}
 
 The following paths are now registered:
@@ -39,7 +39,7 @@ The following paths are now registered:
 
 #### When Can we Use a VFS Path
 
-When you go through our ADOs, you will notice an **AndrAddr** struct used very frequently for specifying addresses, whether be user addresses or ADO addresses. The use of this struct signifies that the address can be referenced by either the VFS path or the user/contract address. More on the **AndrAddr** struct can be found[ here](../common-types.md#andraddr).
+When you go through our ADOs, you will notice an **AndrAddr** struct used very frequently for specifying addresses, whether be user addresses or ADO addresses. The use of this struct signifies that the address can be referenced by either the VFS path or the user/contract address. More on the **AndrAddr** struct can be found[ here](../../archives/platform-and-framework/common-types.md#andraddr).
 
 #### VFS Paths in Apps
 
@@ -70,10 +70,10 @@ pub struct InstantiateMsg {
 {% endtab %}
 {% endtabs %}
 
-| Name             | Type            | Description                                                                                                  |
-| ---------------- | --------------- | ------------------------------------------------------------------------------------------------------------ |
-| `kernel_address` | String          | Address of the Kernel contract on chain. Can be found in our [deployed contracts](../deployed-contracts.md). |
-| `owner`          | Option\<String> | Optional address to specify as the owner of the ADO being created. Defaultes to the sender if not specified. |
+| Name             | Type            | Description                                                                                                                                     |
+| ---------------- | --------------- | ----------------------------------------------------------------------------------------------------------------------------------------------- |
+| `kernel_address` | String          | Address of the Kernel contract on chain. Can be found in our [deployed contracts](../../archives/platform-and-framework/deployed-contracts.md). |
+| `owner`          | Option\<String> | Optional address to specify as the owner of the ADO being created. Defaultes to the sender if not specified.                                    |
 
 ### ExecuteMsg
 
@@ -113,11 +113,11 @@ Registering a path that is already found will overwrite the old path.&#x20;
 {% endtab %}
 {% endtabs %}
 
-| Name             | Type                                            | Description                                                                                                                   |
-| ---------------- | ----------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------- |
-| `name`           | String                                          | The name of the component in the path.                                                                                        |
-| `address`        | Addr                                            | The address of the component.                                                                                                 |
-| `parent_address` | Option<[AndrAddr](../common-types.md#andraddr)> | Optional address to specify as the parent for the component. If not specified, then the sender will be the parent by default. |
+| Name             | Type                                                                               | Description                                                                                                                   |
+| ---------------- | ---------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------- |
+| `name`           | String                                                                             | The name of the component in the path.                                                                                        |
+| `address`        | Addr                                                                               | The address of the component.                                                                                                 |
+| `parent_address` | Option<[AndrAddr](../../archives/platform-and-framework/common-types.md#andraddr)> | Optional address to specify as the parent for the component. If not specified, then the sender will be the parent by default. |
 
 ### AddSymlink
 
@@ -148,13 +148,13 @@ AddSymlink {
 {% endtab %}
 {% endtabs %}
 
-| Name             | Type                                            | Description                                |
-| ---------------- | ----------------------------------------------- | ------------------------------------------ |
-| `name`           | String                                          | The name of the symlink.                   |
-| `symlink`        | AndrAddr                                        | The path to point to.                      |
-| `parent_address` | Option<[AndrAddr](../common-types.md#andraddr)> | The address to register the symlink under. |
+| Name             | Type                                                                               | Description                                |
+| ---------------- | ---------------------------------------------------------------------------------- | ------------------------------------------ |
+| `name`           | String                                                                             | The name of the symlink.                   |
+| `symlink`        | AndrAddr                                                                           | The path to point to.                      |
+| `parent_address` | Option<[AndrAddr](../../archives/platform-and-framework/common-types.md#andraddr)> | The address to register the symlink under. |
 
-In the **JSON** example above, if the username of the sender (parent address) is user1, then the symlink /home/user1/my-link would resolve to the path /home/user2/app1.
+In the **JSON** example above, if the username of the sender (parent address) is user1, then the symlink "**/home/user1/my-link**" would resolve to the path "**/home/user2/app1**".
 
 ### RegisterUser
 
@@ -293,14 +293,14 @@ pub enum ExecuteMsg {
 {% endtab %}
 {% endtabs %}
 
-| Name             | Type                                    | Description                    |
-| ---------------- | --------------------------------------- | ------------------------------ |
-| `name`           | String                                  | The name to assign.            |
-| `parent_address` | [AndrAddr](../common-types.md#andraddr) | The address of the parent ADO. |
+| Name             | Type                                                                       | Description                    |
+| ---------------- | -------------------------------------------------------------------------- | ------------------------------ |
+| `name`           | String                                                                     | The name to assign.            |
+| `parent_address` | [AndrAddr](../../archives/platform-and-framework/common-types.md#andraddr) | The address of the parent ADO. |
 
 ### Ownership
 
-The set of ownerhsip messages. These messages are the same as the ones found in the [ADO base section](../ado-base/andromedamsg-v1.0.0.md#ownership).
+The set of ownerhsip messages. These messages are the same as the ones found in the [ADO base section](../../archives/platform-and-framework/ado-base/andromedamsg-v1.0.0.md#ownership).
 
 ## QueryMsg
 
@@ -329,9 +329,9 @@ pub enum QueryMsg {
 {% endtab %}
 {% endtabs %}
 
-| Name   | Type                                    | Description                      |
-| ------ | --------------------------------------- | -------------------------------- |
-| `path` | [AndrAddr](../common-types.md#andraddr) | The path to get the address for. |
+| Name   | Type                                                                       | Description                      |
+| ------ | -------------------------------------------------------------------------- | -------------------------------- |
+| `path` | [AndrAddr](../../archives/platform-and-framework/common-types.md#andraddr) | The path to get the address for. |
 
 Returns the address of of the path.  In the above JSON example, the address of ado2 would be returned.
 
@@ -371,12 +371,12 @@ pub enum QueryMsg {
 {% endtab %}
 {% endtabs %}
 
-| Name    | Type                                    | Description                                                                                    |
-| ------- | --------------------------------------- | ---------------------------------------------------------------------------------------------- |
-| `path`  | [AndrAddr](../common-types.md#andraddr) | The path to get all sub directories for.                                                       |
-| `min`   | Option\<SubDirBound>                    | The key to start from. Used for pagination.                                                    |
-| `max`   | Option\<SubDirBound>                    | The maximum key to return. Used for pagination.                                                |
-| `limit` | Option\<u32>                            | The number of paths to be returned. Defaults to 50 if not set. Can be set to a maximum of 100. |
+| Name    | Type                                                                       | Description                                                                                    |
+| ------- | -------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- |
+| `path`  | [AndrAddr](../../archives/platform-and-framework/common-types.md#andraddr) | The path to get all sub directories for.                                                       |
+| `min`   | Option\<SubDirBound>                                                       | The key to start from. Used for pagination.                                                    |
+| `max`   | Option\<SubDirBound>                                                       | The maximum key to return. Used for pagination.                                                |
+| `limit` | Option\<u32>                                                               | The number of paths to be returned. Defaults to 50 if not set. Can be set to a maximum of 100. |
 
 #### PathDetails
 
@@ -505,9 +505,9 @@ pub enum QueryMsg {
 {% endtab %}
 {% endtabs %}
 
-| Name   | Type                                    | Description                         |
-| ------ | --------------------------------------- | ----------------------------------- |
-| `path` | [AndrAddr](../common-types.md#andraddr) | The path of the symlink to resolve. |
+| Name   | Type                                                                       | Description                         |
+| ------ | -------------------------------------------------------------------------- | ----------------------------------- |
+| `path` | [AndrAddr](../../archives/platform-and-framework/common-types.md#andraddr) | The path of the symlink to resolve. |
 
 ### Version
 

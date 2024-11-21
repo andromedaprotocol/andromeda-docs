@@ -2,7 +2,7 @@
 
 The **Andromeda Messaging Protoco**l (AMP) is an advanced messaging system tailored for Andromeda ADOs. It has been designed to optimize communication between ADOs, addressing common issues present in existing CosmWasm messaging protocols.
 
-All ADO communication can be done through AMP. This means that ADOs would send their messages to AMP (The kernel)  which relays it to the intended ADO. The AMP layer also interacts with the rest of the OS systems such as the [Virtual File System](virtual-file-system.md) (VFS), [economics engine](economics-engine.md), [ADO database](andromeda-factory.md).
+All ADO communication can be done through AMP. This means that ADOs would send their messages to AMP (The kernel)  which relays it to the intended ADO. The AMP layer also interacts with the rest of the OS systems such as the [Virtual File System](../../../platform-and-framework/andromeda-messaging-protocol/virtual-file-system.md) (VFS), [economics engine](economics-engine.md), [ADO database](andromeda-factory.md).
 
 
 

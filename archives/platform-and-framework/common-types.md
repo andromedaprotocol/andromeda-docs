@@ -137,5 +137,5 @@ pub struct AndrAddr(String);
 **The address can be one of the following:**
 
 * A valid human readable address e.g. "**andr14pmn28jyqgphd5wv0z28ppxe5ryeraqqgqfr2v**"&#x20;
-* A valid Andromeda [Virtual File System](andromeda-messaging-protocol/virtual-file-system.md) (VFS) path e.g. "**/home/user/app1/component3**"
-* A valid [VFS](andromeda-messaging-protocol/virtual-file-system.md) local path used in Apps e.g. "**./\<component-name>**"
+* A valid Andromeda [Virtual File System](../../platform-and-framework/andromeda-messaging-protocol/virtual-file-system.md) (VFS) path e.g. "**/home/user/app1/component3**"
+* A valid [VFS](../../platform-and-framework/andromeda-messaging-protocol/virtual-file-system.md) local path used in Apps e.g. "**./\<component-name>**"

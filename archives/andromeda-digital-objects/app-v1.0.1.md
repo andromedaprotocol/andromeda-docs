@@ -15,7 +15,7 @@ At instantiation, we specify the address of the [Kernel ADO](../platform-and-fra
 Our Apps support cross-chain components or ADOs, meaning an App can contain several ADOs each located on a different chain. This is specified by using the `CrossChain` component type.
 
 {% hint style="warning" %}
-The App registers all its components in the [Virtual File System](../platform-and-framework/andromeda-messaging-protocol/virtual-file-system.md) upon instantiation and assigns to them the names specified by the user upon instantiation of the App.
+The App registers all its components in the [Virtual File System](../../platform-and-framework/andromeda-messaging-protocol/virtual-file-system.md) upon instantiation and assigns to them the names specified by the user upon instantiation of the App.
 
 Crosschain Apps are currently disabled.
 {% endhint %}

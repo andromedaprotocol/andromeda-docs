@@ -8,7 +8,7 @@
   * [Kernel](platform-and-framework/andromeda-messaging-protocol/kernel.md)
   * [ADO Database](platform-and-framework/andromeda-messaging-protocol/andromeda-factory.md)
   * [Economics Engine](platform-and-framework/andromeda-messaging-protocol/economics-engine.md)
-  * [Virtual File System](platform-and-framework/andromeda-messaging-protocol/virtual-file-system.md)
+  * [Virtual File System](../platform-and-framework/andromeda-messaging-protocol/virtual-file-system.md)
 * [ADO Base](platform-and-framework/ado-base/README.md)
   * [AndromedaMsg V1.0.0](platform-and-framework/ado-base/andromedamsg-v1.0.0.md)
   * [AndromedaQuery V1.0.0](platform-and-framework/ado-base/andromedaquery-v1.0.0.md)

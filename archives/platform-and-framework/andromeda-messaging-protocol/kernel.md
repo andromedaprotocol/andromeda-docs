@@ -100,7 +100,7 @@ Create {
 
 ### UpsertKeyAddress
 
-Used to save the addresses of the AMP ADOs that the Kernel will be interacting with such as the [ADODB](andromeda-factory.md), [Economics](economics-engine.md), and [VFS](virtual-file-system.md).&#x20;
+Used to save the addresses of the AMP ADOs that the Kernel will be interacting with such as the [ADODB](andromeda-factory.md), [Economics](economics-engine.md), and [VFS](../../../platform-and-framework/andromeda-messaging-protocol/virtual-file-system.md).&#x20;
 
 {% hint style="warning" %}
 Only available to the owner of the Kernel.&#x20;
@@ -221,7 +221,7 @@ pub enum ExecuteMsg {
 Used to register a VFS username cross-chain.
 
 {% hint style="warning" %}
-This message can only be called by the [VFS](virtual-file-system.md).
+This message can only be called by the [VFS](../../../platform-and-framework/andromeda-messaging-protocol/virtual-file-system.md).
 {% endhint %}
 
 {% tabs %}
@@ -256,7 +256,7 @@ Queries the address of the specified `key`.&#x20;
 
 {% hint style="warning" %}
 Currently there are three keys that can be used:\
-vfs : Gets the address of the [VFS](virtual-file-system.md) ADO used by the kernel.
+vfs : Gets the address of the [VFS](../../../platform-and-framework/andromeda-messaging-protocol/virtual-file-system.md) ADO used by the kernel.
 
 adodb: Gets the address of the [ADODB](andromeda-factory.md) ADO used by the kernel.
 
