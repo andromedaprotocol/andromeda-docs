@@ -1,4 +1,4 @@
-# Staking
+# Validator Staking
 
 ## Introduction
 
@@ -21,7 +21,7 @@ This would be just one part of the benefits of buying the project's NFT.&#x20;
 * Using a splitter connection, the funds from the sale are distributed having part of the funds go to the Staking ADO and start staking automatically.
 * The rewards accrued from staking are then sent to another splitter that distributes the rewards back to the NFT buyers.
 
-This gives a small idea of how you can use the **Staking ADO** in your Andromeda Applications to achieve very usefull and cool use cases.&#x20;
+This gives a small idea of how you can use the **Validator** **Staking ADO** in your Andromeda Applications to achieve very usefull and cool use cases.&#x20;
 
 **Ado-type:** validator-staking
 
@@ -50,7 +50,7 @@ pub struct InstantiateMsg {
 {% endtab %}
 {% endtabs %}
 
-<table><thead><tr><th width="249.33333333333331">Name</th><th width="252.39014373716634">Type</th><th>Description</th></tr></thead><tbody><tr><td><code>default_validator</code></td><td>Addr</td><td>The address of the validator to delegate the tokens to by default. This means when you call a <a href="staking.md#stake"><strong>Stake</strong></a> message without specifying the <code>validator</code> field, then the tokens will be staked with the default validator.</td></tr><tr><td><code>kernel_address</code></td><td>String</td><td>Contract address of the kernel contract to be used for AMP messaging. Kernel contract address can be found in our deployed contracts.</td></tr><tr><td><code>owner</code></td><td>Option&#x3C;String></td><td>Optional address to specify as the owner of the ADO being created. Defaults to the sender if not specified.</td></tr></tbody></table>
+<table><thead><tr><th width="249.33333333333331">Name</th><th width="252.39014373716634">Type</th><th>Description</th></tr></thead><tbody><tr><td><code>default_validator</code></td><td>Addr</td><td>The address of the validator to delegate the tokens to by default. This means when you call a <a href="validator-staking.md#stake"><strong>Stake</strong></a> message without specifying the <code>validator</code> field, then the tokens will be staked with the default validator.</td></tr><tr><td><code>kernel_address</code></td><td>String</td><td>Contract address of the kernel contract to be used for AMP messaging. Kernel contract address can be found in our deployed contracts.</td></tr><tr><td><code>owner</code></td><td>Option&#x3C;String></td><td>Optional address to specify as the owner of the ADO being created. Defaults to the sender if not specified.</td></tr></tbody></table>
 
 ## ExecuteMsg
 
