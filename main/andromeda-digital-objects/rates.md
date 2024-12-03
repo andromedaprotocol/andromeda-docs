@@ -6,7 +6,7 @@ We have seen in the [AndromedaMsg](../platform-and-framework/ado-base/andromedam
 
 **ado\_type:** rates
 
-**Version: 2.0.1-beta.1**
+**Version: 2.0.3**
 
 ## InstantiateMsg
 

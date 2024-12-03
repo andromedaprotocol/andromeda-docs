@@ -16,7 +16,7 @@ You can add a fee for setting keys using our rates.
 
 **Ado\_type**: primitive
 
-**Version: 2.0.2-beta.1**
+**Version: 2.0.4**
 
 ## InstantiateMsg
 

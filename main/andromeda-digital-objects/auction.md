@@ -15,12 +15,12 @@ Bidding on the NFT can also be customized to work with one of the following opti
 * **CW20:** By specifying the contract address of the CW20 token to be used in the StartAuction. The CW20 tokens allowed to be set as the bidding token can be restricted by specifying `authorized_cw20_address` at instantiation. If this is not specified, then any CW20 token can be set.
 
 {% hint style="info" %}
-This ADO allows creating [English Auctions](https://en.wikipedia.org/wiki/English\_auction).&#x20;
+This ADO allows creating [English Auctions](https://en.wikipedia.org/wiki/English_auction).&#x20;
 {% endhint %}
 
 **Ado\_type**: auction
 
-**Version: 2.0.2-beta.1**
+**Version: 2.0.3**
 
 ## InstantiateMsg <a href="#instantiatemsg" id="instantiatemsg"></a>
 
@@ -101,19 +101,19 @@ You need to get the base64 encoded representation of the JSON message and attach
 
 {% tabs %}
 {% tab title="Rust" %}
-```rust
-pub enum Cw721HookMsg {
+<pre class="language-rust"><code class="lang-rust">pub enum Cw721HookMsg {
     StartAuction {
-        start_time: Option<Expiry>,
+        start_time: Option&#x3C;Expiry>,
         end_time: Expiry,
         coin_denom: Asset,
-        min_bid: Option<Uint128>,
-        min_raise: Option<Uint128>,
-        whitelist: Option<Vec<Addr>>,
-        recipient: Option<Recipient>,
+<strong>        buy_now_price: Option&#x3C;Uint128>,
+</strong>        min_bid: Option&#x3C;Uint128>,
+        min_raise: Option&#x3C;Uint128>,
+        whitelist: Option&#x3C;Vec&#x3C;Addr>>,
+        recipient: Option&#x3C;Recipient>,
     }
 }
-```
+</code></pre>
 {% endtab %}
 
 {% tab title="JSON" %}
@@ -141,15 +141,16 @@ pub enum Cw721HookMsg {
 {% endtab %}
 {% endtabs %}
 
-| Name         | Type                                                                     | Description                                                                                                                                                                                                     |
-| ------------ | ------------------------------------------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `start_time` | Option<[Expiry](../platform-and-framework/common-types.md#expiry)>       | Optional Start time for the sale specified as a [timestamp](https://www.epochconverter.com) in milliseconds. Defaults to immediately if not specified.                                                          |
-| `end_time`   | [Expiry](../platform-and-framework/common-types.md#expiry)               | The time for the auction to end. Can be specified as a duration from the start or an absolute timestamp. Both specified in milliseconds.                                                                        |
-| `coin_denom` | [Asset](../platform-and-framework/common-types.md#asset)                 | The coin denomination to be used to bid on the NFT. Can be either a native coin ie."**uandr**" or a CW20 token address ie. "**andr1...**"                                                                       |
-| `min_bid`    | Option\<Uint128>                                                         | The minimum starting bid that can be placed on the auctioned token.                                                                                                                                             |
-| `min_raise`  | Option\<Uint128>                                                         | Optional amount that specifies the minimum increase in bidding for a bid to be accepted. For example, if we set it at 25 and the current bid is 100, then the next bid needs to be at least 125 to be accepted. |
-| `whitelist`  | Option\<Vec\<Addr>>                                                      | Optional list of addresses to whitelist for the auction. If None, auction is public.                                                                                                                            |
-| `recipient`  | Option<[Recipient](../platform-and-framework/common-types.md#recipient)> | An optional recipient to receive the sale funds for the sold NFT.                                                                                                                                               |
+| Name            | Type                                                                     | Description                                                                                                                                                                                                     |
+| --------------- | ------------------------------------------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `start_time`    | Option<[Expiry](../platform-and-framework/common-types.md#expiry)>       | Optional Start time for the sale specified as a [timestamp](https://www.epochconverter.com) in milliseconds. Defaults to immediately if not specified.                                                          |
+| `end_time`      | [Expiry](../platform-and-framework/common-types.md#expiry)               | The time for the auction to end. Can be specified as a duration from the start or an absolute timestamp. Both specified in milliseconds.                                                                        |
+| `coin_denom`    | [Asset](../platform-and-framework/common-types.md#asset)                 | The coin denomination to be used to bid on the NFT. Can be either a native coin ie."**uandr**" or a CW20 token address ie. "**andr1...**"                                                                       |
+| `buy_now_price` | Option\<Uint128>                                                         | An optional price that can be set that allows users to immediately purchase the NFT if they provide the specified amount.                                                                                       |
+| `min_bid`       | Option\<Uint128>                                                         | The minimum starting bid that can be placed on the auctioned token.                                                                                                                                             |
+| `min_raise`     | Option\<Uint128>                                                         | Optional amount that specifies the minimum increase in bidding for a bid to be accepted. For example, if we set it at 25 and the current bid is 100, then the next bid needs to be at least 125 to be accepted. |
+| `whitelist`     | Option\<Vec\<Addr>>                                                      | Optional list of addresses to whitelist for the auction. If None, auction is public.                                                                                                                            |
+| `recipient`     | Option<[Recipient](../platform-and-framework/common-types.md#recipient)> | An optional recipient to receive the sale funds for the sold NFT.                                                                                                                                               |
 
 ***
 
@@ -227,22 +228,29 @@ pub enum Cw20HookMsg {
 
 ***
 
-### AuthorizeTokenContract
+### AuthorizeContract
 
-Authorize a CW721 contract to send NFTs to this ADO.
+Authorize a CW721 or CW20 contract to send tokens to this ADO.&#x20;
 
 {% hint style="warning" %}
 Only available to the contract owner.
+
+CW721 is used to send NFTs to be sold, and CW20 is used to send tokens to be used in sales.
+
+For CW721, the action should be specified as "send\_nft".
+
+For CW20, the action should be specified as "send\_cw20".
 {% endhint %}
 
 {% tabs %}
 {% tab title="Rust" %}
 ```rust
 pub enum ExecuteMsg {
-     AuthorizeTokenContract {
+  AuthorizeContract {
+        action: PermissionAction,
         addr: AndrAddr,
         expiration: Option<Expiry>,
-    }
+    },
  }
 ```
 {% endtab %}
@@ -250,7 +258,8 @@ pub enum ExecuteMsg {
 {% tab title="JSON" %}
 ```json
 {
-"authorize_token_contract":{
+"authorize_contract":{
+    "action":"send_cw20",
     "addr":"andr1..."
     }
 }
@@ -260,22 +269,42 @@ pub enum ExecuteMsg {
 
 | Name         | Type                                                               | Description                                                    |
 | ------------ | ------------------------------------------------------------------ | -------------------------------------------------------------- |
+| `action`     | [PermissionAction](auction.md#permissionaction)                    | The action to authorize the specified address to do.           |
 | `addr`       | [AndrAddr](../platform-and-framework/common-types.md#andraddr)     | The contract address of the CW721 (NFT) contract to authorize. |
 | `expiration` | Option<[Expiry](../platform-and-framework/common-types.md#expiry)> | An optional expiration for the permission.                     |
 
-### DeauthorizeTokenContract
+#### PermissionAction
 
-Removes authorization from a CW721 contract to send NFTs to the auction.
+```rust
+#[cw_serde]
+pub enum PermissionAction {
+    SendCw20,
+    SendNft,
+}
+```
+
+**SendCw20:** Used in case the ADO to authorize/deauthorize is a CW20 ADO.&#x20;
+
+**SendNFT:** Used in case the ADO to authorize/deauthorize is a CW721 ADO.
+
+### DeauthorizeContract
+
+Removes authorization from a CW721 or CW20 contract to send tokens to the auction.
 
 {% hint style="warning" %}
 Only available to the contract owner.
+
+For CW721, the action should be specified as "send\_nft".
+
+For CW20, the action should be specified as "send\_cw20".
 {% endhint %}
 
 {% tabs %}
 {% tab title="Rust" %}
 ```rust
 pub enum ExecuteMsg {
-    DeauthorizeTokenContract {
+ DeauthorizeContract {
+        action: PermissionAction,
         addr: AndrAddr,
     },
 }
@@ -285,7 +314,8 @@ pub enum ExecuteMsg {
 {% tab title="JSON" %}
 ```json
 {
-"deauthorize_auction_contract":{
+"deauthorize_contract":{
+    "action":"send_nft",
     "addr":"andr1..."
     }
 }
@@ -293,9 +323,10 @@ pub enum ExecuteMsg {
 {% endtab %}
 {% endtabs %}
 
-| Name   | Type                                                           | Description                                                                   |
-| ------ | -------------------------------------------------------------- | ----------------------------------------------------------------------------- |
-| `addr` | [AndrAddr](../platform-and-framework/common-types.md#andraddr) | The contract address of the CW721 (NFT) contract to remove authorization for. |
+| Name     | Type                                                           | Description                                                                   |
+| -------- | -------------------------------------------------------------- | ----------------------------------------------------------------------------- |
+| `action` | [PermissionAction](auction.md#permissionaction)                | The action to deauthorize the specified address to do.                        |
+| `addr`   | [AndrAddr](../platform-and-framework/common-types.md#andraddr) | The contract address of the CW721 (NFT) contract to remove authorization for. |
 
 ### UpdateAuction
 
@@ -354,7 +385,7 @@ An auction can be updated only if it has not started yet.&#x20;
 `start_time` should not be a time in the past.
 {% endhint %}
 
-<table><thead><tr><th width="196.33333333333331">Name </th><th>Type</th><th>Description</th></tr></thead><tbody><tr><td><code>token_id</code></td><td>String</td><td>The Id of the NFT that is being auctioned.</td></tr><tr><td><code>token_address</code></td><td>String</td><td>The address of the  NFT contract.</td></tr><tr><td><code>start_time</code></td><td>Option&#x3C;<a href="../platform-and-framework/common-types.md#expiry">Expiry</a>></td><td>Start time in milliseconds. If not specified, then the auction will start immediately. </td></tr><tr><td><code>end_time</code></td><td><a href="../platform-and-framework/common-types.md#expiry">Expiry</a></td><td>Duration in milliseconds from the <code>start_time</code>.</td></tr><tr><td><code>coin_denom</code></td><td>String</td><td>The coin denomination to be used to bid on the NFT. Can be either a native coin ie."<strong>uandr</strong>" or a CW20 token address ie. "<strong>andr1...</strong>"</td></tr><tr><td><code>min_bid</code></td><td>Option&#x3C;Uint128></td><td>The minimum starting bid that can be placed on the auctioned token.</td></tr><tr><td><code>min_raise</code></td><td>Option&#x3C;Uint128></td><td>Optional amount that specifies the minimum increase in bidding for a bid to be accepted. For example, if we set it at 25 and the current bid is 100, then the next bid needs to be.</td></tr><tr><td><code>whitelist</code></td><td>Option&#x3C;Vec&#x3C;Addr>></td><td>Optional list of addresses to whitelist for the auction. If None, auction is public.</td></tr><tr><td><code>recipient</code></td><td>Option&#x3C;<a href="../platform-and-framework/common-types.md#recipient">Recipient</a>></td><td>An optional recipient to receive the sale funds for the sold NFT.</td></tr></tbody></table>
+<table><thead><tr><th width="196.33333333333331">Name </th><th>Type</th><th>Description</th></tr></thead><tbody><tr><td><code>token_id</code></td><td>String</td><td>The Id of the NFT that is being auctioned.</td></tr><tr><td><code>token_address</code></td><td>String</td><td>The address of the  NFT contract.</td></tr><tr><td><code>start_time</code></td><td>Option&#x3C;<a href="../platform-and-framework/common-types.md#expiry">Expiry</a>></td><td>Start time in milliseconds. If not specified, then the auction will start immediately. </td></tr><tr><td><code>end_time</code></td><td><a href="../platform-and-framework/common-types.md#expiry">Expiry</a></td><td>Duration in milliseconds from the <code>start_time</code>.</td></tr><tr><td><code>coin_denom</code></td><td><a href="../platform-and-framework/common-types.md#asset">Asset</a></td><td>The coin denomination to be used to bid on the NFT. Can be either a native coin ie."<strong>uandr</strong>" or a CW20 token address ie. "<strong>andr1...</strong>"</td></tr><tr><td><code>min_bid</code></td><td>Option&#x3C;Uint128></td><td>The minimum starting bid that can be placed on the auctioned token.</td></tr><tr><td><code>min_raise</code></td><td>Option&#x3C;Uint128></td><td>Optional amount that specifies the minimum increase in bidding for a bid to be accepted. For example, if we set it at 25 and the current bid is 100, then the next bid needs to be.</td></tr><tr><td><code>whitelist</code></td><td>Option&#x3C;Vec&#x3C;Addr>></td><td>Optional list of addresses to whitelist for the auction. If None, auction is public.</td></tr><tr><td><code>recipient</code></td><td>Option&#x3C;<a href="../platform-and-framework/common-types.md#recipient">Recipient</a>></td><td>An optional recipient to receive the sale funds for the sold NFT.</td></tr></tbody></table>
 
 ### CancelAuction
 
@@ -947,18 +978,25 @@ Returns a true if the NFT has been claimed and false otherwise.
 
 ### AuthorizedAddresses
 
-Gets all of the authorized CW721 addresses for the auction.
+Gets all of the authorized ADO addresses for the specified action.
+
+{% hint style="warning" %}
+For CW721, the action should be specified as "send\_nft".
+
+For CW20, the action should be specified as "send\_cw20".
+{% endhint %}
 
 {% tabs %}
 {% tab title="Rust" %}
 ```rust
 pub enum QueryMsg {
-   #[returns(AuthorizedAddressesResponse)]
+ #[returns(::andromeda_std::common::denom::AuthorizedAddressesResponse)]
     AuthorizedAddresses {
+        action: PermissionAction,
         start_after: Option<String>,
         limit: Option<u32>,
         order_by: Option<OrderBy>,
-    }
+    },
 }
 ```
 {% endtab %}
@@ -967,6 +1005,7 @@ pub enum QueryMsg {
 ```json
 {
 "authorized_addresses":{
+    "action":"send_nft",
     "start_after":"andr1...",
     "limit":40,
     }
@@ -975,11 +1014,12 @@ pub enum QueryMsg {
 {% endtab %}
 {% endtabs %}
 
-| Name          | Type                                  | Description                                                                                                                           |
-| ------------- | ------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------- |
-| `start_after` | Option\<String>                       | Optional parameter to specify which `address` to start from.                                                                          |
-| `limit`       | Option\<u64>                          | Optional parameter to specify how many addresses to return. If none specified a default limit of 25 is used. The maximum limit is 50. |
-| `order_by`    | Option<[OrderBy](auction.md#orderby)> | Whether to return the addresses in ascending or descending order. Defaults to ascending if not specified.                             |
+| Name          | Type                                            | Description                                                                                                                           |
+| ------------- | ----------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------- |
+| `action`      | [PermissionAction](auction.md#permissionaction) | The type of authorized addresses to fetch.                                                                                            |
+| `start_after` | Option\<String>                                 | Optional parameter to specify which `address` to start from.                                                                          |
+| `limit`       | Option\<u64>                                    | Optional parameter to specify how many addresses to return. If none specified a default limit of 25 is used. The maximum limit is 50. |
+| `order_by`    | Option<[OrderBy](auction.md#orderby)>           | Whether to return the addresses in ascending or descending order. Defaults to ascending if not specified.                             |
 
 #### OrderBy
 
@@ -991,6 +1031,19 @@ pub enum OrderBy {
     Desc,
 }
 ```
+
+#### AuthorizedAddressesResponse
+
+```rust
+#[cw_serde]
+pub struct AuthorizedAddressesResponse {
+    pub addresses: Vec<String>,
+}
+```
+
+| Name        | Type         | Description                                                                                |
+| ----------- | ------------ | ------------------------------------------------------------------------------------------ |
+| `addresses` | Vec\<String> | A vector containing the contract addresses of the authorized ADO for the specified action. |
 
 ### Base Queries
 

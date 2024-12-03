@@ -11,7 +11,7 @@ Once a condition is satisfied, the funds can be released by anyone.
 
 **Ado\_type**: timelock
 
-**Version: 2.0.2-beta.1**
+**Version: 2.0.3**
 
 ## InstantiateMsg
 

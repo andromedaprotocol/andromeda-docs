@@ -15,7 +15,7 @@ Purchasing the NFT can be customized to work with one of the following options:
 
 **Ado\_type:** marketplace
 
-**Version: 2.1.2-beta.1**
+**Version: 2.2.4**
 
 ## InstantiateMsg
 
@@ -276,6 +276,106 @@ The Owner of the NFT is not allowed to buy it.
 | `token_id`      | String | The Id of the NFT to buy.                            |
 | `token_address` | String | The address of the cw721 that minted the NFT to buy. |
 
+### AuthorizeContract
+
+Authorize a CW721 or CW20 contract to send tokens to this ADO.&#x20;
+
+{% hint style="warning" %}
+Only available to the contract owner.
+
+CW721 is used to send NFTs to be sold, and CW20 is used to send tokens to be used in sales.
+
+For CW721, the action should be specified as "send\_nft".
+
+For CW20, the action should be specified as "send\_cw20".
+{% endhint %}
+
+{% tabs %}
+{% tab title="Rust" %}
+```rust
+pub enum ExecuteMsg {
+  AuthorizeContract {
+        action: PermissionAction,
+        addr: AndrAddr,
+        expiration: Option<Expiry>,
+    },
+ }
+```
+{% endtab %}
+
+{% tab title="JSON" %}
+```json
+{
+"authorize_contract":{
+    "action":"send_cw20",
+    "addr":"andr1..."
+    }
+}
+```
+{% endtab %}
+{% endtabs %}
+
+| Name         | Type                                                               | Description                                                    |
+| ------------ | ------------------------------------------------------------------ | -------------------------------------------------------------- |
+| `action`     | [PermissionAction](marketplace.md#permissionaction)                | The action to authorize the specified address to do.           |
+| `addr`       | [AndrAddr](../platform-and-framework/common-types.md#andraddr)     | The contract address of the CW721 (NFT) contract to authorize. |
+| `expiration` | Option<[Expiry](../platform-and-framework/common-types.md#expiry)> | An optional expiration for the permission.                     |
+
+#### PermissionAction
+
+```rust
+#[cw_serde]
+pub enum PermissionAction {
+    SendCw20,
+    SendNft,
+}
+```
+
+**SendCw20:** Used in case the ADO to authorize/deauthorize is a CW20 ADO.&#x20;
+
+**SendNFT:** Used in case the ADO to authorize/deauthorize is a CW721 ADO.
+
+### DeauthorizeContract
+
+Removes authorization from a CW721 or CW20 contract to send tokens to this ADO.
+
+{% hint style="warning" %}
+Only available to the contract owner.
+
+For CW721, the action should be specified as "send\_nft".
+
+For CW20, the action should be specified as "send\_cw20".
+{% endhint %}
+
+{% tabs %}
+{% tab title="Rust" %}
+```rust
+pub enum ExecuteMsg {
+ DeauthorizeContract {
+        action: PermissionAction,
+        addr: AndrAddr,
+    },
+}
+```
+{% endtab %}
+
+{% tab title="JSON" %}
+```json
+{
+"deauthorize_contract":{
+    "action":"send_nft",
+    "addr":"andr1..."
+    }
+}
+```
+{% endtab %}
+{% endtabs %}
+
+| Name     | Type                                                           | Description                                                                   |
+| -------- | -------------------------------------------------------------- | ----------------------------------------------------------------------------- |
+| `action` | [PermissionAction](marketplace.md#permissionaction)            | The action to deauthorize the specified address to do.                        |
+| `addr`   | [AndrAddr](../platform-and-framework/common-types.md#andraddr) | The contract address of the CW721 (NFT) contract to remove authorization for. |
+
 ### CancelSale
 
 Cancels the sale for the specified NFT.
@@ -528,6 +628,75 @@ pub struct SaleInfo {
 | `token_address` | String        | The cw721  contract address.               |
 | `token_id`      | String        | The Id of the token.                       |
 
-### &#x20;Base Queries
+### AuthorizedAddresses
+
+Gets all of the authorized ADO addresses for the specified action.
+
+{% hint style="warning" %}
+For CW721, the action should be specified as "send\_nft".
+
+For CW20, the action should be specified as "send\_cw20".
+{% endhint %}
+
+{% tabs %}
+{% tab title="Rust" %}
+```rust
+pub enum QueryMsg {
+ #[returns(::andromeda_std::common::denom::AuthorizedAddressesResponse)]
+    AuthorizedAddresses {
+        action: PermissionAction,
+        start_after: Option<String>,
+        limit: Option<u32>,
+        order_by: Option<OrderBy>,
+    },
+}
+```
+{% endtab %}
+
+{% tab title="JSON" %}
+```json
+{
+"authorized_addresses":{
+    "action":"send_nft",
+    "start_after":"andr1...",
+    "limit":40,
+    }
+}
+```
+{% endtab %}
+{% endtabs %}
+
+| Name          | Type                                                | Description                                                                                                                           |
+| ------------- | --------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------- |
+| `action`      | [PermissionAction](marketplace.md#permissionaction) | The type of authorized addresses to fetch.                                                                                            |
+| `start_after` | Option\<String>                                     | Optional parameter to specify which `address` to start from.                                                                          |
+| `limit`       | Option\<u64>                                        | Optional parameter to specify how many addresses to return. If none specified a default limit of 25 is used. The maximum limit is 50. |
+| `order_by`    | Option<[OrderBy](marketplace.md#orderby)>           | Whether to return the addresses in ascending or descending order. Defaults to ascending if not specified.                             |
+
+#### OrderBy
+
+How the returned addresses are ordered.
+
+```rust
+pub enum OrderBy {
+    Asc,
+    Desc,
+}
+```
+
+#### AuthorizedAddressesResponse
+
+```rust
+#[cw_serde]
+pub struct AuthorizedAddressesResponse {
+    pub addresses: Vec<String>,
+}
+```
+
+| Name        | Type         | Description                                                                                |
+| ----------- | ------------ | ------------------------------------------------------------------------------------------ |
+| `addresses` | Vec\<String> | A vector containing the contract addresses of the authorized ADO for the specified action. |
+
+### Base Queries
 
 The rest of the query messages can be found in the[ ADO Base](../platform-and-framework/ado-base/) section.

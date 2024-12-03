@@ -6,7 +6,7 @@ The **Splitter** ADO is a smart contract used to split funds to a preset number 
 
 **Ado\_type**: splitter
 
-**Version: 2.1.1-beta.1**
+**Version: 2.1.4**
 
 ## InstantiateMsg
 

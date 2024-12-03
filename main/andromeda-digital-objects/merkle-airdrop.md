@@ -12,7 +12,7 @@ In case of CW20 tokens, the airdrop ADO should be the owner of the CW20 tokens t
 
 **Ado\_type**: merkle-airdrop
 
-**Version: 2.0.1-beta.1**
+**Version: 2.0.2**
 
 ## InstantiateMsg
 
