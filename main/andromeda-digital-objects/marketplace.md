@@ -235,7 +235,7 @@ Only available to the NFT owner.
 | `token_id`      | String                                                                   | The Id of the token to update the sale for.                                                                                                                                            |
 | `token_address` | String                                                                   | The address of the cw721 contract that minted the token.                                                                                                                               |
 | `price`         | Uint128                                                                  | The price of the NFT, which is the amount of `coin_denom` needed to buy the NFT.                                                                                                       |
-| `coin_denom`    | String                                                                   | The denom to be used to buy the NFT. Can be either a CW20 or native funds. For CW20, provide the contract address e.g. "**andr1...**". For native provide the denom e.g. "**uandr**".  |
+| `coin_denom`    | [Asset](../platform-and-framework/common-types.md#asset)                 | The denom to be used to buy the NFT. Can be either a CW20 or native funds. For CW20, provide the contract address e.g. "**andr1...**". For native provide the denom e.g. "**uandr**".  |
 | `recipient`     | Option<[Recipient](../platform-and-framework/common-types.md#recipient)> | Optional address to receive the funds from the NFT sale. If not specified, then the funds will go to the sender of the NFT.                                                            |
 
 ### Buy
