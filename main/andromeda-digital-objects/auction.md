@@ -20,7 +20,7 @@ This ADO allows creating [English Auctions](https://en.wikipedia.org/wiki/Englis
 
 **Ado\_type**: auction
 
-**Version: 2.0.3**
+**Version: 2.2.4**
 
 ## InstantiateMsg <a href="#instantiatemsg" id="instantiatemsg"></a>
 
