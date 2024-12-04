@@ -32,6 +32,7 @@
   * [Auction Using CW20 Tokens](guides-and-examples/ado-builder/auction-using-cw20-tokens.md)
   * [Extended Marketplace](guides-and-examples/ado-builder/extended-marketplace.md)
   * [Commission Based Sales Application](guides-and-examples/ado-builder/commission-based-sales-application.md)
+  * [Vesting and Staking App](guides-and-examples/ado-builder/vesting-and-staking-app.md)
 * [App Builder](guides-and-examples/app-builder/README.md)
   * [NFT Auction Marketplace](guides-and-examples/app-builder/nft-auction-marketplace.md)
 * [Embeddables](guides-and-examples/embeddables/README.md)
