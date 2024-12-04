@@ -225,6 +225,46 @@ pub enum ExecuteMsg {
 
 <table><thead><tr><th width="249.33333333333331">Name</th><th width="252.39014373716634">Type</th><th>Description</th></tr></thead><tbody><tr><td><code>validator</code></td><td>Addr</td><td>The new validator address to be used by default.</td></tr></tbody></table>
 
+### Redelegate
+
+Moves the specified amount of staked tokens from one validator to another.&#x20;
+
+{% hint style="warning" %}
+Only available to the contract owner.
+{% endhint %}
+
+{% tabs %}
+{% tab title="Rust" %}
+```rust
+ pub enum ExecuteMsg {
+   Redelegate {
+        src_validator: Option<Addr>,
+        dst_validator: Addr,
+        amount: Option<Uint128>,
+    },
+  }
+```
+{% endtab %}
+
+{% tab title="JSON" %}
+```json
+{
+"redelegate":{
+    "src_validator":"andrvaloper1...",
+    "dst_validator":"andrvaloper1...",
+    "amount": "10000"
+    }
+}
+```
+{% endtab %}
+{% endtabs %}
+
+| Name            | Type             | Description                                                                    |
+| --------------- | ---------------- | ------------------------------------------------------------------------------ |
+| `src_validator` | Option\<Addr>    | The address of the validator to move tokens from.                              |
+| `dst_validator` | Addr             | The address of the validator to move tokens to.                                |
+| `amount`        | Option\<Uint128> | The amount of tokens to redelegate. Takes the maximum amount if not specified. |
+
 ### Base Executes
 
 The rest of the execute messages can be found in the[ ADO Base](../platform-and-framework/ado-base/) section.
@@ -324,6 +364,31 @@ pub struct UnstakingTokens {
 | ----------- | ---------------------------------------------------------------- | ------------------------------------------------------------------------------------ |
 | `fund`      | [Coin](../platform-and-framework/common-types.md#coin)           | The denom and amount of the token being unstaked.                                    |
 | `payout_at` | [Timestamp](../platform-and-framework/common-types.md#timestamp) | The time these tokens can be claimed which is the time the unbonding period is over. |
+
+### DefaultValidator
+
+Queries the default validator address set at instantiation.
+
+{% tabs %}
+{% tab title="Rust" %}
+```rust
+pub enum QueryMsg {
+   #[returns(GetDefaultValidatorResponse)]
+    DefaultValidator {},
+  }
+```
+{% endtab %}
+
+{% tab title="JSON" %}
+```json
+{
+"default_validator":{}
+}
+```
+{% endtab %}
+{% endtabs %}
+
+Returns the address as a string.
 
 ### Base Queries
 
