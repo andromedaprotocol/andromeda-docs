@@ -32,6 +32,8 @@
 * [Rates](andromeda-digital-objects/rates.md)
 * [Splitter](andromeda-digital-objects/splitter.md)
 * [Timelock](andromeda-digital-objects/timelock.md)
+* [Validator Staking](andromeda-digital-objects/validator-staking.md)
+* [Vesting](andromeda-digital-objects/vesting.md)
 
 ## Andromeda Apps
 
