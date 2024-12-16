@@ -220,8 +220,13 @@ pub enum ExecuteMsg {
 {% endtab %}
 
 {% tab title="JSON" %}
-```
-// Some code
+```json
+{
+"register_user_cross_chain":{
+    "chain":"stargaze",
+    "address":"star1..."
+    }
+}
 ```
 {% endtab %}
 {% endtabs %}
@@ -320,8 +325,16 @@ pub enum QueryMsg {
 ```json
 {
 "resolve_path":{
-    "path":"~/user1/app1/ado2"
+    "path":"/home/user1/app1/ado2"
     }
+}
+```
+{% endtab %}
+
+{% tab title="Response" %}
+```json
+{
+"andr1..."
 }
 ```
 {% endtab %}
@@ -365,6 +378,31 @@ pub enum QueryMsg {
     "limit": 68
     }
 }
+```
+{% endtab %}
+
+{% tab title="Response" %}
+```json
+[
+  {
+    "name": "vesting_and_staking",
+    "address": "andr1q6hpzl6u3fh7sdmsys667ychznpr0ect7n44tma7ss8ughpl7nkqu798vv",
+    "parent_address": "andr1c397rxvhf8mhj3rnhpmyqsrgg230y4vg4m3zpx",
+    "symlink": null
+  },
+  {
+    "name": "vesting_and_staking____.",
+    "address": "andr1fq0ddwpnk6qc8cz0nung02h7v923ml0u3e2762qzjddjlwmnnt9sccm3cn",
+    "parent_address": "andr1c397rxvhf8mhj3rnhpmyqsrgg230y4vg4m3zpx",
+    "symlink": null
+  },
+  {
+    "name": "vesting_test",
+    "address": "andr10ms6mtq7s23qrqktqk2feg7hw32chqg9r9sj2nvpx69ntdvsvjnslxjayc",
+    "parent_address": "andr1c397rxvhf8mhj3rnhpmyqsrgg230y4vg4m3zpx",
+    "symlink": null
+  }
+]
 ```
 {% endtab %}
 {% endtabs %}
@@ -414,11 +452,21 @@ pub enum QueryMsg {
 }
 ```
 {% endtab %}
+
+{% tab title="Response" %}
+```json
+[
+  "andr1c397rxvhf8mhj3rnhpmyqsrgg230y4vg4m3zpx/component_1"
+]
+```
+{% endtab %}
 {% endtabs %}
 
 | Name   | Type | Description                       |
 | ------ | ---- | --------------------------------- |
 | `addr` | Addr | The address to get the paths for. |
+
+
 
 ### GetUsername
 
@@ -440,6 +488,14 @@ pub enum QueryMsg {
 "get_username":{
     "address":"andr1..."
     }
+}
+```
+{% endtab %}
+
+{% tab title="Response" %}
+```
+{
+"John"
 }
 ```
 {% endtab %}
@@ -472,6 +528,14 @@ pub enum QueryMsg {
 }
 ```
 {% endtab %}
+
+{% tab title="Response" %}
+```json
+{
+"maths"
+}
+```
+{% endtab %}
 {% endtabs %}
 
 | Name      | Type | Description                                      |
@@ -496,8 +560,16 @@ pub enum QueryMsg {
 ```json
 {
 "resolve_symlink":{
-    "path":"~/user1/symlink1"
+    "path":"/home/user1/symlink1"
     }
+}
+```
+{% endtab %}
+
+{% tab title="Response" %}
+```json
+{
+"/home/user/component1"
 }
 ```
 {% endtab %}
