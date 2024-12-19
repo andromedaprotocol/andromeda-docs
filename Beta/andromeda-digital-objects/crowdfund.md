@@ -386,7 +386,7 @@ pub struct SimpleTierOrder {
 | Name     | Type    | Description                                    |
 | -------- | ------- | ---------------------------------------------- |
 | `level`  | Uint64  | The tier level to purchase from.               |
-| `amount` | Uint128 | How many NFTs to but from the specified level. |
+| `amount` | Uint128 | How many NFTs to buy from the specified level. |
 
 ### Receive
 
