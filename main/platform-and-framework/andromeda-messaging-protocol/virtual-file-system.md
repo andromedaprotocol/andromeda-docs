@@ -13,7 +13,8 @@ When an [Andromeda App](../../andromeda-digital-objects/app.md) is made, it will
 In addition to paths, [symbolic links](virtual-file-system.md#addsymlink) that point to a path can be created by users.
 
 {% hint style="warning" %}
-All paths and usernames are resolved by the VFS in lowercase. For example, the username "USER" and "user" are considered to be the same. Same applies for paths, "`/home/USERNAME"` and  "`/home/username"` are the same.&#x20;
+* All paths and usernames are resolved by the VFS in lowercase. For example, the username "USER" and "user" are considered to be the same. Same applies for paths, "`/home/USERNAME"` and  "`/home/username"` are the same.&#x20;
+* You can also use the \~ (tilda) symbol instead of /home/. For example, "`/home/PATH "`and "`~PATH`" will resolve to the same address.
 {% endhint %}
 
 #### **Example:**
@@ -364,6 +365,7 @@ pub enum QueryMsg {
  }
 
  pub struct SubDirBound {
+    //The parent address
     address: Addr,
     name: String,
 }
