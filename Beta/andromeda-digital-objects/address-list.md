@@ -81,7 +81,7 @@ pub enum Permission {
 
 ## ExecuteMsg
 
-### AddActorPermission
+### PermissionActors
 
 {% hint style="warning" %}
 Only available to the ADO owner.
@@ -120,7 +120,7 @@ PermissionActors {
 | `actors`     | Vec<[AndrAddr](../platform-and-framework/common-types.md#andraddr)> | The list of addresses to apply the permission to. |
 | `permission` | [Permission](address-list.md#permission)                            | The type of permission to assign to the actor.    |
 
-### RemoveActorPermission
+### RemovePermissions
 
 {% hint style="warning" %}
 Only available to the ADO owner.

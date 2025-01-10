@@ -26,9 +26,15 @@ For each split, the owner specifies the percentage of each recipient.
 
 This means that if the amount of funds sent is **between** 300 and 1000, they will go to the subscription addresses. If the amount sent is **between** 1000 and 5000, then they are split between the family addresses. Finally, if the amount sent is greater or equal to 5000, then the funds are split between the employee addresses.
 
+{% hint style="info" %}
+We also have a [percentage based spliiter](splitter.md),  [weighted distribution splitter](weighted-distribution-splitter.md), and [set amount splitter](set-amount-splitter.md).
+{% endhint %}
+
+
+
 **ADO\_type: conditional-splitter**
 
-**Version: 1.2.1-beta.1**
+**Version: 1.2.3-beta**
 
 ## InstantiateMsg
 
