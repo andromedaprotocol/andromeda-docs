@@ -26,6 +26,7 @@ The maximum lock\_time that can be set is 1 year.
 pub struct InstantiateMsg {
     pub recipients: Vec<AddressPercent>,
     pub lock_time: Option<Expiry>,
+    pub default_recipient: Option<Recipient>,
     pub kernel_address: String,
     pub owner: Option<String>,
 }
@@ -44,6 +45,9 @@ pub struct InstantiateMsg {
      },
      ...
     ],
+"default_recipient":{
+        "address":"andr1..."
+        },
 "kernel_address":"andr1...",
 "owner":"andr1..."
 }
@@ -51,7 +55,7 @@ pub struct InstantiateMsg {
 {% endtab %}
 {% endtabs %}
 
-<table><thead><tr><th width="249.33333333333331">Name</th><th width="249.39014373716634">Type</th><th>Description</th></tr></thead><tbody><tr><td><code>recipients</code></td><td>Vec&#x3C;<a href="splitter.md#addresspercent">AddressPercent</a>></td><td>The recipient list of the splitter. Can be updated after instantiation if there is no current lock time.</td></tr><tr><td><code>lock_time</code></td><td>Option&#x3C;<a href="../platform-and-framework/common-types.md#expiry">Expiry</a>></td><td>How long the splitter is locked. When locked, no recipients can be added/changed.</td></tr><tr><td><code>kernel_address</code></td><td>String</td><td>Contract address of the <a href="../platform-and-framework/andromeda-messaging-protocol/kernel.md">kernel contract</a> to be used for <a href="../platform-and-framework/andromeda-messaging-protocol/">AMP</a> messaging. Kernel contract address can be found in our <a href="../platform-and-framework/deployed-contracts.md">deployed contracts</a>.</td></tr><tr><td><code>owner</code></td><td>Option&#x3C;String></td><td>Optional address to specify as the owner of the ADO being created. Defaults to the sender if not specified.</td></tr></tbody></table>
+<table><thead><tr><th width="249.33333333333331">Name</th><th width="249.39014373716634">Type</th><th>Description</th></tr></thead><tbody><tr><td><code>recipients</code></td><td>Vec&#x3C;<a href="splitter.md#addresspercent">AddressPercent</a>></td><td>The recipient list of the splitter. Can be updated after instantiation if there is no current lock time.</td></tr><tr><td><code>lock_time</code></td><td>Option&#x3C;<a href="../platform-and-framework/common-types.md#expiry">Expiry</a>></td><td>How long the splitter is locked. When locked, no recipients can be added/changed.</td></tr><tr><td><code>default_recipient</code></td><td>Option&#x3C;<a href="../platform-and-framework/common-types.md#recipient">Recipient</a>></td><td>An optional recipient to receive any leftover funds in case the split is not exactly distributed. For example if a user sets 40% to one user, and 50% to another, and forgets about the last 10%, they would go this default recipient. Defaults to the sender if not specified.</td></tr><tr><td><code>kernel_address</code></td><td>String</td><td>Contract address of the <a href="../platform-and-framework/andromeda-messaging-protocol/kernel.md">kernel contract</a> to be used for <a href="../platform-and-framework/andromeda-messaging-protocol/">AMP</a> messaging. Kernel contract address can be found in our <a href="../platform-and-framework/deployed-contracts.md">deployed contracts</a>.</td></tr><tr><td><code>owner</code></td><td>Option&#x3C;String></td><td>Optional address to specify as the owner of the ADO being created. Defaults to the sender if not specified.</td></tr></tbody></table>
 
 {% hint style="warning" %}
 Anytime a [`Send`](splitter.md#send) execute message is sent, the amount sent will be divided amongst the recipients depending on their assigned percentage.
@@ -180,7 +184,7 @@ pub enum ExecuteMsg {
 
 ### **Send**
 
-Divides any attached funds to the message amongst the recipients list.
+Divides any attached funds to the message amongst the recipients list.&#x20;
 
 {% hint style="warning" %}
 You cannot send more than 5 coins with one Send.
@@ -192,7 +196,9 @@ Make sure to attach funds when executing a Send.
 {% tab title="Rust" %}
 ```rust
 pub enum ExecuteMsg {
-    Send {}
+    Send {
+    config: Option<Vec<AddressPercent>>,
+    }
 }
 ```
 {% endtab %}
@@ -205,6 +211,44 @@ pub enum ExecuteMsg {
 ```
 {% endtab %}
 {% endtabs %}
+
+<table><thead><tr><th>Name</th><th width="268">Type </th><th>Description</th></tr></thead><tbody><tr><td><code>config</code></td><td>Option&#x3C;Vec&#x3C;<a href="splitter.md#addresspercent">AddressPercent</a>>></td><td>An optional set of recipients to split the funds to. If not defined, then the default recipient list (List defined at instantiation) will be used.</td></tr></tbody></table>
+
+### UpdateDefaultRecipient
+
+Updates the set default recipient.
+
+{% hint style="warning" %}
+Only available to the contract owner.
+{% endhint %}
+
+{% tabs %}
+{% tab title="Rust" %}
+```rust
+pub enum ExecuteMsg {
+  UpdateDefaultRecipient {
+        recipient: Option<Recipient>,
+    },
+}
+```
+{% endtab %}
+
+{% tab title="JSON" %}
+```javascript
+{
+    "update_default_recipient": {
+        "recipient":{
+            "address":"andr1..."
+            }
+        }
+}
+```
+{% endtab %}
+{% endtabs %}
+
+| Name        | Type                                                                     | Description                                                                                                                                                                                                                                                                  |
+| ----------- | ------------------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `recipient` | Option<[Recipient](../platform-and-framework/common-types.md#recipient)> | The new recipient to receive any leftover funds in case the split is not exactly distributed. For example if a user sets 40% to one user, and 50% to another, and forgets about the last 10%, they would go this default recipient. Defaults to the sender if not specified. |
 
 ### Base Executes
 
