@@ -40,6 +40,8 @@ We also have a [percentage based spliiter](splitter.md),  [weighted distribution
 
 {% hint style="warning" %}
 The lock time can only be set between 86400 and 31536000 (1 day and 1 year).
+
+All of the amounts are specified in micro denomination (uandr and not ANDR). For example, a min of 500000 = 0.5 ANDR.
 {% endhint %}
 
 {% tabs %}
@@ -105,6 +107,10 @@ pub struct InstantiateMsg {
 <table><thead><tr><th width="249.33333333333331">Name</th><th width="252.39014373716634">Type</th><th>Description</th></tr></thead><tbody><tr><td><code>thresholds</code></td><td>Vec&#x3C;<a href="conditional-splitter.md#threshold">Threshold</a>></td><td>The sets of recipients, their weights and the min threshold amount.</td></tr><tr><td><code>lock_time</code></td><td>Option&#x3C;<a href="../platform-and-framework/common-types.md#expiry">Expiry</a>></td><td>How long the splitter is locked. When locked, no recipients can be added/changed. Duration specified in milliseconds.</td></tr><tr><td><code>kernel_address</code></td><td>String</td><td>Contract address of the kernel contract to be used for AMP messaging. Kernel contract address can be found in our deployed contracts.</td></tr><tr><td><code>owner</code></td><td>Option&#x3C;String></td><td>Optional address to specify as the owner of the ADO being created. Defaults to the sender if not specified.</td></tr></tbody></table>
 
 #### Threshold
+
+{% hint style="info" %}
+The `min` field is specified in micro denomination (uandr).
+{% endhint %}
 
 ```rust
 pub struct Threshold {
