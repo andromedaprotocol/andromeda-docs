@@ -33,7 +33,7 @@
 * [Primitive](andromeda-digital-objects/primitive.md)
 * [Rates](andromeda-digital-objects/rates.md)
 * [Rate Limiting Withdrawals](andromeda-digital-objects/rate-limiting-withdrawals.md)
-* [Set Amount Splitter](andromeda-digital-objects/set-amount-splitter.md)
+* [Fixed Amount Splitter](andromeda-digital-objects/fixed-amount-splitter.md)
 * [Splitter](andromeda-digital-objects/splitter.md)
 * [Timelock](andromeda-digital-objects/timelock.md)
 * [Validator Staking](andromeda-digital-objects/validator-staking.md)

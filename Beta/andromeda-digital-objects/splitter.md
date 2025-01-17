@@ -5,7 +5,7 @@
 The **Splitter** ADO is a smart contract used to split funds to a preset number of addresses. Each of the addresses has a specific percentage assigned by the contract owner. The splitter can be locked for a specified time as a kind of insurance for recipients that their percentages will not be changed for a certain period of time.
 
 {% hint style="info" %}
-We also have a [set amount splitter](set-amount-splitter.md), [weighted distribution splitter](weighted-distribution-splitter.md), and [conditional splitter](conditional-splitter.md).
+We also have a [set amount splitter](fixed-amount-splitter.md), [weighted distribution splitter](weighted-distribution-splitter.md), and [conditional splitter](conditional-splitter.md).
 {% endhint %}
 
 

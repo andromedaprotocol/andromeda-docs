@@ -15,7 +15,7 @@ On instantiation, the following weights are assigned:
 Then the total weight is 12 and A receives 5/12 of the funds, B receives 3/12 of the funds and C receives 4/12 of the funds. If a recipient is then added, the total weight is increased and the percentages are recalculated.
 
 {% hint style="info" %}
-We also have a [percentage based spliiter](splitter.md),  [set amount splitter](set-amount-splitter.md), and [conditional splitter](conditional-splitter.md).
+We also have a [percentage based spliiter](splitter.md),  [set amount splitter](fixed-amount-splitter.md), and [conditional splitter](conditional-splitter.md).
 {% endhint %}
 
 **Ado\_type:** weighted-distribution-splitter
