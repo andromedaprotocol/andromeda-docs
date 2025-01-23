@@ -6,7 +6,7 @@ The **Rate Limiting Withdrawals ADO** acts as a bank account that limits the fre
 
 **Ado\_type**: rate-limiting-withdrawals
 
-**Version: 2.0.2-beta.1**
+**Version: 2.1.0-beta.1**
 
 ## InstantiateMsg
 

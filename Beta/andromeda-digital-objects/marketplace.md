@@ -15,7 +15,7 @@ Purchasing the NFT can be customized to work with one of the following options:
 
 **Ado\_type:** marketplace
 
-**Version: 2.2.4**
+**Version: 2.1.2-beta.1**
 
 ## InstantiateMsg
 

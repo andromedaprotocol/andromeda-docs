@@ -10,7 +10,7 @@ This ADO can also save and fetch points stored in the[ Point ADO.](point.md)&#x2
 
 **Ado\_type**: cw721
 
-**Version: 0.1.0**
+**Version: 0.1.0-beta**
 
 ## InstantiateMsg
 

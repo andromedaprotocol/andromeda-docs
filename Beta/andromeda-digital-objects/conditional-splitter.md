@@ -34,7 +34,7 @@ We also have a [percentage based spliiter](splitter.md),  [weighted distribution
 
 **ADO\_type: conditional-splitter**
 
-**Version: 1.2.3-beta**
+**Version: 1.3.0-beta**
 
 ## InstantiateMsg
 

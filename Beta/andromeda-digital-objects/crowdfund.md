@@ -16,7 +16,7 @@ The minter of the CW721 linked to the Crowdfund needs to be specified as the Cro
 
 **Ado\_type**: crowdfund
 
-**Version: 2.0.2-beta.1**
+**Version: 2.2.0-beta**
 
 ## InstantiateMsg
 

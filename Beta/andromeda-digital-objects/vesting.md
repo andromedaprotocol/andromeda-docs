@@ -8,6 +8,8 @@ Ownership of the ADO should be transferred after creating the vesting batch to t
 
 **Ado\_type**: vesting
 
+**Version: 3.0.2-beta.1**
+
 ## InstantiateMsg
 
 {% tabs %}

@@ -12,7 +12,7 @@ The Point ADO can be set to one of the following:
 
 **Ado\_type**: point
 
-**Version:** 0.1.0
+**Version:** 0.1.0-beta
 
 ## InstantiateMsg
 

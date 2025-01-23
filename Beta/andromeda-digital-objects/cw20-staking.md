@@ -38,7 +38,7 @@ After the rewards have been sent, the stakers would not receive any extra reward
 
 **Ado\_type**: cw20-staking
 
-**Version: 2.0.1-beta.1**
+**Version: 2.0.3-beta.1**
 
 ## InstantiateMsg
 
