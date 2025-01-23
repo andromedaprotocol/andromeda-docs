@@ -6,7 +6,7 @@ Permissioning allows ADO owners to give/restrict access to addresses to execute 
 
 **ADO\_type: address-list**
 
-**Version: 2.0.3**
+**Version: 2.1.0**
 
 ## InstantiateMsg
 

@@ -8,7 +8,7 @@ Ownership of the ADO should be transferred after creating the vesting batch to t
 
 **Ado\_type**: vesting
 
-**Version: 3.0.4**
+**Version: 3.1.0**
 
 ## InstantiateMsg
 

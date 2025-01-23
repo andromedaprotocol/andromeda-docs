@@ -22,9 +22,9 @@ Crosschain Apps are currently disabled.
 
 **Ado\_type**: app-contract
 
-**Version: 1.1.2**
+**Version: 1.2.0**
 
-## InstantiateMsg
+InstantiateMsg
 
 {% hint style="warning" %}
 The maximum number of app components is 50.

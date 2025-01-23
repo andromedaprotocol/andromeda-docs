@@ -15,7 +15,7 @@ Multiple sales can take place at the same time but no two sales can have the sam
 
 **ado\_type:** cw20-exchange
 
-**Version: 2.0.2**
+**Version: 2.1.0**
 
 ## InstantiateMsg
 

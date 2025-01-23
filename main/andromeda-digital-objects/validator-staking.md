@@ -25,7 +25,7 @@ This gives a small idea of how you can use the **Validator** **Staking ADO** in 
 
 **Ado-type:** validator-staking
 
-**Version:  1.0.0**
+**Version:  1.1.0**
 
 ## InstantiateMsg
 
