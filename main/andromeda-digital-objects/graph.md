@@ -194,7 +194,11 @@ pub struct SignedDecimal(#[schemars(with = "String")] Int128);
 
 ### StoreUserCoordinate <a href="#base-executes" id="base-executes"></a>
 
-Store the coordinates from the specified [Point ADO](broken-reference) addresses.
+Store the coordinates from the specified [Point ADO](point.md) addresses.
+
+{% hint style="warning" %}
+If the coordinates of the point ADO are changed, you need to call this message again on that Point ADO to store the new coordinates.
+{% endhint %}
 
 {% tabs %}
 {% tab title="Rust" %}
@@ -222,7 +226,7 @@ pub enum ExecuteMsg {
 
 ### DeleteUserCoordinate
 
-Deletes the coordinate set for the specified point in the [Point ADO](broken-reference).
+Deletes the coordinate set for the specified point in the[ Point ADO](point.md).
 
 {% tabs %}
 {% tab title="Rust" %}
@@ -404,9 +408,9 @@ pub enum QueryMsg {
 {% endtab %}
 {% endtabs %}
 
-| Name   | Type     | Description                                                     |
-| ------ | -------- | --------------------------------------------------------------- |
-| `user` | AndrAddr | The address of the Point ADO to fetch the poin coordinates for. |
+| Name   | Type     | Description                                                       |
+| ------ | -------- | ----------------------------------------------------------------- |
+| `user` | AndrAddr | The address of the user who set the coordinates in the point ADO. |
 
 Returns an instance of [CoordinateInfo](graph.md#getallpointsresponse).
 
