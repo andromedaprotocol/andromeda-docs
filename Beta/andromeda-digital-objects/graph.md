@@ -172,17 +172,25 @@ Only available to the contract owner.
 ```rust
 #[cw_serde]
 pub struct Coordinate {
-    pub x_coordinate: f64,
-    pub y_coordinate: f64,
-    pub z_coordinate: Option<f64>,
+    pub x_coordinate: SignedDecimal,
+    pub y_coordinate: SignedDecimal,
+    pub z_coordinate: Option<SignedDecimal>,
 }
+
+/// A signed fixed-point decimal value with 18 fractional digits.
+/// The greatest possible value that can be represented is 
+/// 170141183460469231731.687303715884105727 (which is (2^127 - 1) / 10^18)
+/// and the smallest is
+/// -170141183460469231731.687303715884105728 (which is -2^127 / 10^18).
+pub struct SignedDecimal(#[schemars(with = "String")] Int128);
+
 ```
 
-| Name           | Type         | Description                                                                          |
-| -------------- | ------------ | ------------------------------------------------------------------------------------ |
-| `x_coordinate` | f64          | The x coordinate for the point.                                                      |
-| `y_coordinate` | f64          | The y coordinate for the point.                                                      |
-| `z_coordinate` | Option\<f64> | The z coordinate for the point. Do not specify in case the map is 2D (Only x and y). |
+| Name           | Type                   | Description                                                                          |
+| -------------- | ---------------------- | ------------------------------------------------------------------------------------ |
+| `x_coordinate` | SignedDecimal          | The x coordinate for the point.                                                      |
+| `y_coordinate` | SignedDecimal          | The y coordinate for the point.                                                      |
+| `z_coordinate` | Option\<SignedDecimal> | The z coordinate for the point. Do not specify in case the map is 2D (Only x and y). |
 
 ### StoreUserCoordinate <a href="#base-executes" id="base-executes"></a>
 

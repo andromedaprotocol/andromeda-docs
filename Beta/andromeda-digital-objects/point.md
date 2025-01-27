@@ -102,10 +102,17 @@ SetPoint {
 
 ```rust
 pub struct PointCoordinate {
-    pub x_coordinate: String,
-    pub y_coordinate: String,
-    pub z_coordinate: Option<String>,
+    pub x_coordinate: SignedDecimal,
+    pub y_coordinate: SignedDecimal,
+    pub z_coordinate: Option<SignedDecimal>,
 }
+
+/// A signed fixed-point decimal value with 18 fractional digits.
+/// The greatest possible value that can be represented is 
+/// 170141183460469231731.687303715884105727 (which is (2^127 - 1) / 10^18)
+/// and the smallest is
+/// -170141183460469231731.687303715884105728 (which is -2^127 / 10^18).
+pub struct SignedDecimal(#[schemars(with = "String")] Int128);
 ```
 
 | Name           | Type            | Description                                                             |
