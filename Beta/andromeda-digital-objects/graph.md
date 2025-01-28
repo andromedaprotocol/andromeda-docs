@@ -214,7 +214,7 @@ pub enum ExecuteMsg {
 {% tab title="JSON" %}
 ```json
 {
-"store_use_coordinate":{
+"store_user_coordinate":{
     "user_location_paths":["andr1...","andr1...",...]
     }
 }
