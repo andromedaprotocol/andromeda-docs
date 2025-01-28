@@ -7,7 +7,7 @@ The **Fixed Amount Splitter** ADO is a smart contract used to split funds to a p
 The splitter can be locked for a specified time as a kind of insurance for recipients that their percentages will not be changed for a certain period of time.
 
 {% hint style="info" %}
-We also have a [percentage based spliiter](splitter.md),  [weighted distribution splitter](broken-reference), and [conditional splitter](broken-reference).
+We also have a [percentage based spliiter](splitter.md).
 {% endhint %}
 
 **Ado\_type**: fixed-amount-splitter
