@@ -8,7 +8,7 @@ The graph can be a 3D graph (x,y, and z coordinates) or a 2D graph (x,y coordina
 
 This ADO can also save and fetch points stored in the[ Point ADO.](point.md)&#x20;
 
-**Ado\_type**: cw721
+**Ado\_type**: graph
 
 **Version: 0.1.0-beta**
 
