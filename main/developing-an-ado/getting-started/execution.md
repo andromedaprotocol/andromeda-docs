@@ -4,7 +4,11 @@
 
 Executing messages in an ADO is a fairly simple process. We expose a new struct called `ExecuteContext` which has your regular dependencies, info and environment alongside a new [`AMPPkt`](https://github.com/andromedaprotocol/andromeda-core/blob/amp/packages/std/src/amp/messages.rs#L240) struct (`amp_ctx`) that includes info about the current AMP packet if the message was received via the `AMPReceive` message type. \
 \
-An AMP Packet includes some useful information such as the `origin` field which includes the original sender of the packet. **If you are using this for authorisation purposes please verify that the sender is someone you can trust.**&#x20;
+An AMP Packet includes some useful information such as the `origin` field which includes the original sender of the packet.
+
+{% hint style="warning" %}
+&#x20;**If you are using this for authorisation purposes please verify that the sender is someone you can trust.**&#x20;
+{% endhint %}
 
 ```rust
 pub struct ExecuteContext<'a> {
@@ -12,44 +16,46 @@ pub struct ExecuteContext<'a> {
     pub info: MessageInfo,
     pub env: Env,
     pub amp_ctx: Option<AMPPkt>,
+    pub contract: ADOContract<'a>,
+    pub raw_info: MessageInfo,
 }
 ```
 
-In order to expose this data we must first call the method for handling `AMPReceive` messages and provide it your standard execution handler like so:
+In order to expose this data we must first call the method for handling `AMPReceive` messages and provide it your standard execution handler. This is done by our  `andr_execute_fn` macro:
 
 ```rust
-use andromeda_std::{ExecuteContext, ContractError};
-// ..
-
-#[cfg_attr(not(feature = "library"), entry_point)]
-pub fn execute(
-    deps: DepsMut,
-    env: Env,
-    info: MessageInfo,
-    msg: ExecuteMsg,
-) -> Result<Response, ContractError> {
-    let ctx = ExecuteContext::new(deps, info, env);
-    if let ExecuteMsg::AMPReceive(pkt) = msg {
-        ADOContract::default().execute_amp_receive(ctx, pkt, handle_execute)
-    } else {
-        handle_execute(ctx, msg)
-    }
-}
-
-pub fn handle_execute(ctx: ExecuteContext, msg: ExecuteMsg) -> Result<Response, ContractError> {
+#[andromeda_std::andr_execute_fn]
+pub fn execute(ctx: ExecuteContext, msg: ExecuteMsg) -> Result<Response, ContractError> {
     match msg {
         // .. Your execute message handlers,
-        ExecuteMsg::MyMsg { some_param } => my_handler(ctx, some_param),
-        _ => ADOContract::default().execute(ctx, msg),
+        _ => ADOContract::default().execute(ctx, msg)
     }
 }
 
+
 pub fn my_handler(ctx: ExecuteContext, some_param: SomeVariableType) -> Result<Response, ContractError> {
-    let ExecuteContext { amp_ctx, deps, info, env } = ctx;
+  let ExecuteContext {deps, info, env, ..} = ctx;
     // .. Your code
 }
 ```
 
-Here we provide our `handle_execute` method to the `execute_amp_receive` method so that the handler can verify and create the `ExecuteContext` object appropriately before passing it to the handler.
+As a catchall we provide the `.execute(ctx, msg)` call to handle any Andromeda specific messages. If you are looking to use another execute message handler such as cw721-base check out our CW721 contract [here](https://github.com/andromedaprotocol/andromeda-core/blob/5bef681b13fcffadfec06b3e98c55c1ca5551d71/contracts/non-fungible-tokens/andromeda-cw721/src/contract.rs#L110).
 
-As a catchall we provide the `.execute(ctx, msg)` call to handle any Andromeda specific messages. If you are looking to use another execute message handler such as cw721-base check out our CW721 contract [here](https://github.com/andromedaprotocol/andromeda-core/blob/amp/contracts/non-fungible-tokens/andromeda-cw721/src/contract.rs#L103).
+### Attributes
+
+There are a lot of cases where we want messages to have specific validation checks, these validation checks are usually extremely common and add a bit of overhead to implement and validate. To reduce this some of these redundant checks have been moved to "**attributes**". These are field attributes on the `ExecuteMsg` variants that define what validation should occur when the message is called (even when it is called via AMP). These include:
+
+1. `nonpayable` - This message should not accept funds
+2. `restricted` - This message should only be callable by the contract owner
+3. `direct` - This messae should not be callable via AMP
+
+```rust
+pub enum ExecuteMsg {
+  #[attrs(restricted, nonpayable)]
+  MyRestrictedMsg { //.. }.
+  #[attrs(direct)]
+  MyDirectMsg { //.. },
+}
+```
+
+These can be applied in any particular order or combination. The checks for these are then performed using the `andr_execute_fn` macro so they do not require any extra code, however they do add methods to the `ExecuteMsg` enum that may be used as necessary.

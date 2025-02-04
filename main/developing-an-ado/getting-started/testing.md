@@ -2,7 +2,7 @@
 
 ## Testing
 
-To aid in testing we provide a separate `mock_dependencies_custom` function that provides handlers for specific ADO contracts. This can be found [here](https://github.com/andromedaprotocol/andromeda-core/blob/1.0.rc-1/packages/std/src/testing/mock\_querier.rs). The following mock variables are used:
+To aid in testing we provide a separate `mock_dependencies_custom` function that provides handlers for specific ADO contracts. This can be found [here](https://github.com/andromedaprotocol/andromeda-core/blob/main/packages/std/src/testing/mock_querier.rs). The following mock variables are used:
 
 ```rust
 /// Mock CW20 Contract Address
@@ -56,7 +56,7 @@ fn test_something() {
 
 ## Integration Testing
 
-A `cw-multi-test` based testing library for integration testing custom ADO contracts and how they interact with the aOS. Source code is found [here](https://github.com/andromedaprotocol/andromeda-core/tree/1.0.rc-1/packages/andromeda-testing).
+A `cw-multi-test` based testing library for integration testing custom ADO contracts and how they interact with the aOS. Source code is found [here](https://github.com/andromedaprotocol/andromeda-core/tree/main/packages/andromeda-testing).
 
 ### Getting Started
 
@@ -93,7 +93,7 @@ let andr = mock_andromeda();
 andr.store_ado(&mut router, mock_andromeda_app(), "app");
 ```
 
-Here the second parameter is a `cw-multi-test` [mock contract](https://docs.rs/cw-multi-test/latest/cw\_multi\_test/trait.Contract.html) and the third is a name for the ADO. This can be used to access the code id by calling `andr.get_code_id(&router, "app")`. Repeat this process for any ADOs you wish to add (including your own).
+Here the second parameter is a `cw-multi-test` [mock contract](https://docs.rs/cw-multi-test/latest/cw_multi_test/trait.Contract.html) and the third is a name for the ADO. This can be used to access the code id by calling `andr.get_code_id(&router, "app")`. Repeat this process for any ADOs you wish to add (including your own).
 
 ### Creating a Mock Contract
 

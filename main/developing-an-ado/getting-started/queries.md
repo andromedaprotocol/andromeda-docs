@@ -8,7 +8,7 @@ Handling queries in an ADO is a lot simpler, this is simply done by adding a cat
 #[cfg_attr(not(feature = "library"), entry_point)]
 pub fn query(deps: Deps, env: Env, msg: QueryMsg) -> Result<Binary, ContractError> {
     match msg {
-        QueryMsg::GetCount {} => Ok(to_binary(&query::count(deps)?)?),
+    // Query Messages
         _ => ADOContract::default().query(deps, env, msg),
     }
 }

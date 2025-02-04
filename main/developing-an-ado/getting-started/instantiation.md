@@ -12,18 +12,18 @@ pub fn instantiate(
     info: MessageInfo,
     msg: InstantiateMsg,
 ) -> Result<Response, ContractError> {
-    // ... Some previous instantiation code
+    // ... ADO instantiation code
+    
     let contract = ADOContract::default();
-
     let resp = contract.instantiate(
         deps.storage,
         env,
         deps.api,
+        &deps.querier,
         info.clone(),
         BaseInstantiateMsg {
-            ado_type: ADO_NAME.to_string(),
+            ado_type: CONTRACT_NAME.to_string(),
             ado_version: CONTRACT_VERSION.to_string(),
-            operators: None,
             kernel_address: msg.kernel_address,
             owner: msg.owner,
         },
@@ -31,7 +31,8 @@ pub fn instantiate(
 
     Ok(resp
         .add_attribute("method", "instantiate")
-        .add_attribute("owner", info.sender))
+        .add_attribute("owner", info.sender)
+        )
 }
 ```
 
