@@ -23,6 +23,7 @@ pub struct ExecuteContext<'a> {
 
 In order to expose this data we must first call the method for handling `AMPReceive` messages and provide it your standard execution handler. This is done by our  `andr_execute_fn` macro:
 
+{% code title="contract.rs" %}
 ```rust
 #[andromeda_std::andr_execute_fn]
 pub fn execute(ctx: ExecuteContext, msg: ExecuteMsg) -> Result<Response, ContractError> {
@@ -38,6 +39,7 @@ pub fn my_handler(ctx: ExecuteContext, some_param: SomeVariableType) -> Result<R
     // .. Your code
 }
 ```
+{% endcode %}
 
 As a catchall we provide the `.execute(ctx, msg)` call to handle any Andromeda specific messages. If you are looking to use another execute message handler such as cw721-base check out our CW721 contract [here](https://github.com/andromedaprotocol/andromeda-core/blob/5bef681b13fcffadfec06b3e98c55c1ca5551d71/contracts/non-fungible-tokens/andromeda-cw721/src/contract.rs#L110).
 
@@ -49,6 +51,7 @@ There are a lot of cases where we want messages to have specific validation chec
 2. `restricted` - This message should only be callable by the contract owner
 3. `direct` - This messae should not be callable via AMP
 
+{% code title="msg.rs" %}
 ```rust
 pub enum ExecuteMsg {
   #[attrs(restricted, nonpayable)]
@@ -57,5 +60,6 @@ pub enum ExecuteMsg {
   MyDirectMsg { //.. },
 }
 ```
+{% endcode %}
 
 These can be applied in any particular order or combination. The checks for these are then performed using the `andr_execute_fn` macro so they do not require any extra code, however they do add methods to the `ExecuteMsg` enum that may be used as necessary.
