@@ -47,9 +47,11 @@ As a catchall we provide the `.execute(ctx, msg)` call to handle any Andromeda s
 
 There are a lot of cases where we want messages to have specific validation checks, these validation checks are usually extremely common and add a bit of overhead to implement and validate. To reduce this some of these redundant checks have been moved to "**attributes**". These are field attributes on the `ExecuteMsg` variants that define what validation should occur when the message is called (even when it is called via AMP). These include:
 
-1. `nonpayable` - This message should not accept funds
-2. `restricted` - This message should only be callable by the contract owner
-3. `direct` - This messae should not be callable via AMP
+| Atrribute    | Description                                                 |
+| ------------ | ----------------------------------------------------------- |
+| `nonpayable` | <p></p><p>This message should not accept funds.</p><p></p>  |
+| `restricted` | This message should only be callable by the contract owner. |
+| `direct`     | This messae should not be callable via AMP.                 |
 
 {% code title="msg.rs" %}
 ```rust

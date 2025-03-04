@@ -54,7 +54,12 @@
   * [Execution](developing-an-ado/getting-started/execution.md)
   * [Queries](developing-an-ado/getting-started/queries.md)
   * [Testing](developing-an-ado/getting-started/testing.md)
-* [Error Handling](developing-an-ado/error-handling.md)
+* [Error Handling and Migrate Function](developing-an-ado/error-handling-and-migrate-function.md)
+* [CW3 EXAMPLE](developing-an-ado/cw3-example/README.md)
+  * [InstantiateMsg](developing-an-ado/cw3-example/instantiatemsg.md)
+  * [ExecuteMsg](developing-an-ado/cw3-example/executemsg.md)
+  * [QueryMsg](developing-an-ado/cw3-example/querymsg.md)
+  * [Testing](developing-an-ado/cw3-example/testing.md)
 * [ADO Submissions](developing-an-ado/ado-submissions.md)
 
 ## Andromeda CLI
