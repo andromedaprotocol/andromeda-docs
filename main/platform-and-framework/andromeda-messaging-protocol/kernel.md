@@ -548,7 +548,13 @@ enum AndromedaQuery {
 {% endtab %}
 
 {% tab title="JSON" %}
-
+```rust
+{
+"get_env":{
+    "variable":"ENV_3"
+    }
+}
+```
 {% endtab %}
 {% endtabs %}
 
