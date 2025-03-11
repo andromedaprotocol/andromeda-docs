@@ -419,8 +419,6 @@ pub enum QueryMsg {
 
 #### ChainNameResponse
 
-The struct containing the chain name.
-
 {% tabs %}
 {% tab title="Rust" %}
 ```rust
@@ -442,6 +440,152 @@ pub struct ChainNameResponse {
 | Name         | Type   | Description                                      |
 | ------------ | ------ | ------------------------------------------------ |
 | `chain_name` | String | The name of the chain the kernel is deployed on. |
+
+### ChainNameByChannel
+
+Gets the chain name assosiated with the specified channel Id.
+
+{% tabs %}
+{% tab title="Rust" %}
+```rust
+pub enum AndromedaQuery {
+   #[returns(Option<String>)]
+    ChainNameByChannel { channel: String },
+     }
+```
+{% endtab %}
+
+{% tab title="JSON" %}
+```json
+{
+"chain_name_by_channel":{
+    "channel":"channel-2"
+    }
+}
+```
+{% endtab %}
+{% endtabs %}
+
+| Name      | Type   | Description                             |
+| --------- | ------ | --------------------------------------- |
+| `channel` | String | The channel id of the channel to query. |
+
+Returns the chain name as a string.
+
+### PendingPackets
+
+Queries information on any pending packets on the specified channel.&#x20;
+
+{% tabs %}
+{% tab title="Rust" %}
+```rust
+pub enum AndromedaQuery {
+    #[returns(PendingPacketResponse)]
+    PendingPackets { channel_id: Option<String> },
+    }
+```
+{% endtab %}
+
+{% tab title="JSON" %}
+```json
+{
+"pending_packets":{
+    "channel_id":"channel-4",
+    }
+}
+```
+{% endtab %}
+{% endtabs %}
+
+### PendingPacketsResponse
+
+```rust
+pub struct PendingPacketResponse {
+    pub packets: Vec<PacketInfoAndSequence>,
+}
+
+pub struct PacketInfoAndSequence {
+    pub packet_info: Ics20PacketInfo,
+    pub sequence: u64,
+}
+
+
+pub struct Ics20PacketInfo {
+    pub sender: String,
+    pub recipient: AndrAddr,
+    pub message: Binary,
+    pub funds: Coin,
+    pub channel: String,
+    pub pending: bool,
+}
+```
+
+| Name        | Type                                    | Description                                |
+| ----------- | --------------------------------------- | ------------------------------------------ |
+| `sender`    | Addr                                    | The address to check recovery funds for.   |
+| `recipient` | [AndrAddr](../common-types.md#andraddr) | The address receiving the packet.          |
+| `message`   | Binary                                  | The attached message in the packet.        |
+| `funds`     | [Coin](../common-types.md#coin)         | Any funds attached with the packet.        |
+| `channel`   | String                                  | The channel being used to send the packet. |
+| `pending`   | bool                                    | Whether this packet has been processed.    |
+
+### GetEnv
+
+Queries the value for the specified env variable.
+
+{% hint style="warning" %}
+The variable name must be uppercase and can only contain letters, numbers, and underscores.
+{% endhint %}
+
+{% tabs %}
+{% tab title="Rust" %}
+```rust
+enum AndromedaQuery {
+ #[returns(EnvResponse)]
+    GetEnv { variable: String },
+    }
+```
+{% endtab %}
+
+{% tab title="JSON" %}
+
+{% endtab %}
+{% endtabs %}
+
+| Name       | Type   | Description        |
+| ---------- | ------ | ------------------ |
+| `variable` | String | The variable name. |
+
+Returns the value in a String.&#x20;
+
+### Recoveries
+
+Queries any recovery funds (funds returned for a failed tx) for the specified address.
+
+{% tabs %}
+{% tab title="Rust" %}
+```rust
+pub enum AndromedaQuery {
+ #[returns(Vec<::cosmwasm_std::Coin>)]
+    Recoveries { addr: Addr },
+     }
+```
+{% endtab %}
+
+{% tab title="JSON" %}
+```json
+{
+"version":{}
+}
+```
+{% endtab %}
+{% endtabs %}
+
+| Name   | Type | Description                              |
+| ------ | ---- | ---------------------------------------- |
+| `addr` | Addr | The address to check recovery funds for. |
+
+Returns the denom and amounts of the recovery funds in a [Coin](../common-types.md#coin) struct.
 
 ### Version
 
