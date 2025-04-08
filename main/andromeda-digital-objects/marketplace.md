@@ -104,7 +104,7 @@ pub enum Cw721HookMsg {
                 "native_token":"uandr"
                 },
           "start_time":{
-                "from_now":"7200000"
+                "from_now":7200000
                 },
           "duration": 60000000,
           "recipient":{
@@ -116,7 +116,7 @@ pub enum Cw721HookMsg {
 {% endtab %}
 {% endtabs %}
 
-<table><thead><tr><th>Name</th><th width="267">Type</th><th>Description</th></tr></thead><tbody><tr><td><code>price</code></td><td>Uint128</td><td>The price of the NFT, which is the amount of <code>coin_denom</code> needed to buy the NFT.</td></tr><tr><td><code>coin_denom</code></td><td><a href="../platform-and-framework/common-types.md#asset">Asset</a></td><td>The denom to be used to buy the NFT. Can be either a CW20 or native funds. For CW20, provide the contract address e.g. "<strong>andr1...</strong>". For native provide the denom e.g. "<strong>uandr</strong>".</td></tr><tr><td><code>start_time</code></td><td>Option&#x3C;<a href="../platform-and-framework/common-types.md#expiry">Expiry</a>></td><td>Optional start time in milliseconds since <a href="https://www.epochconverter.com/clock">epoch</a>. If not specified, then the sale will start immediately.</td></tr><tr><td><code>duration</code></td><td>Option&#x3C;<a href="../platform-and-framework/common-types.md#milliseconds">MillisecondsDuration</a>></td><td>Optional duration for the sale in milliseconds from the <code>start_time</code>. If not specified then the sale never expires.</td></tr><tr><td><code>uses_cw20</code></td><td>bool</td><td>Whether a CW20 token is used to purchase the NFT or not.</td></tr><tr><td><code>recipient</code></td><td>Option&#x3C;<a href="../platform-and-framework/common-types.md#recipient">Recipient</a>></td><td>Optional address to receive the funds from the NFT sale. If not specified, then the funds will go to the sender of the NFT.</td></tr></tbody></table>
+<table><thead><tr><th>Name</th><th width="267">Type</th><th>Description</th></tr></thead><tbody><tr><td><code>price</code></td><td>Uint128</td><td>The price of the NFT, which is the amount of <code>coin_denom</code> needed to buy the NFT.</td></tr><tr><td><code>coin_denom</code></td><td><a href="../platform-and-framework/common-types.md#asset">Asset</a></td><td>The denom to be used to buy the NFT. Can be either a CW20 or native funds. For CW20, provide the contract address e.g. "<strong>andr1...</strong>". For native provide the denom e.g. "<strong>uandr</strong>".</td></tr><tr><td><code>start_time</code></td><td>Option&#x3C;<a href="../platform-and-framework/common-types.md#expiry">Expiry</a>></td><td>Optional start time in milliseconds. If not specified, then the sale will start immediately.</td></tr><tr><td><code>duration</code></td><td>Option&#x3C;<a href="../platform-and-framework/common-types.md#milliseconds">MillisecondsDuration</a>></td><td>Optional duration for the sale in milliseconds from the <code>start_time</code>. If not specified then the sale never expires.</td></tr><tr><td><code>uses_cw20</code></td><td>bool</td><td>Whether a CW20 token is used to purchase the NFT or not.</td></tr><tr><td><code>recipient</code></td><td>Option&#x3C;<a href="../platform-and-framework/common-types.md#recipient">Recipient</a>></td><td>Optional address to receive the funds from the NFT sale. If not specified, then the funds will go to the sender of the NFT.</td></tr></tbody></table>
 
 ***
 

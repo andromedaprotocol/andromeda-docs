@@ -132,22 +132,22 @@ pub enum Cw20HookMsg {
         },
     "exchange_rate":"5",
     "start_time":{
-        "from_now":"3200000"
+        "from_now":3200000
         },
-    "duration":"900000"
+    "duration":900000
     }
 }
 ```
 {% endtab %}
 {% endtabs %}
 
-| Name            | Type                                                                           | Description                                                                                                                                      |
-| --------------- | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `asset`         | [AssetInfo](cw20-exchange.md#undefined)                                        | The asset that may be used to purchase the token.                                                                                                |
-| `exchange_rate` | Uint128                                                                        | The amount of the above `asset` required to purchase a single token.                                                                             |
-| `recipient`     | Option\<String>                                                                | The recipient of the sale proceeds. Defaults to the sender if not specified.                                                                     |
-| `start_time`    | [Expiry](../platform-and-framework/common-types.md#expiry)                     | Optional start time in milliseconds since [epoch](https://www.epochconverter.com/clock). If not specified, then the sale will start immediately. |
-| `duration`      | [MillisecondsDuration](../platform-and-framework/common-types.md#milliseconds) | Optional duration for the sale in milliseconds from the `start_time`. If not specified then the sale never expires.                              |
+| Name            | Type                                                                           | Description                                                                                                         |
+| --------------- | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------- |
+| `asset`         | [AssetInfo](cw20-exchange.md#undefined)                                        | The asset that may be used to purchase the token.                                                                   |
+| `exchange_rate` | Uint128                                                                        | The amount of the above `asset` required to purchase a single token.                                                |
+| `recipient`     | Option\<String>                                                                | The recipient of the sale proceeds. Defaults to the sender if not specified.                                        |
+| `start_time`    | [Expiry](../platform-and-framework/common-types.md#expiry)                     | Optional start time in milliseconds. If not specified, then the sale will start immediately.                        |
+| `duration`      | [MillisecondsDuration](../platform-and-framework/common-types.md#milliseconds) | Optional duration for the sale in milliseconds from the `start_time`. If not specified then the sale never expires. |
 
 #### AssetInfo
 
