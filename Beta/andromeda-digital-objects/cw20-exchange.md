@@ -132,9 +132,9 @@ pub enum Cw20HookMsg {
         },
     "exchange_rate":"5",
     "start_time":{
-        "from_now":"3200000"
+        "from_now":3200000
         },
-    "duration":"900000"
+    "duration":900000
     }
 }
 ```

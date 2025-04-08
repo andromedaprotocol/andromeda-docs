@@ -292,8 +292,8 @@ pub enum ExecuteMsg {
 ```json
 {
     "start_campaign": {
-        "start_time": "1672531199000", 
-        "end_time": "1672534799000",    
+        "start_time": 1672531199000, 
+        "end_time": 1672534799000,    
         "presale": [
             {
                 "level": "2",  
@@ -312,7 +312,7 @@ pub enum ExecuteMsg {
 {% endtab %}
 {% endtabs %}
 
-<table><thead><tr><th>Name</th><th width="281">Type</th><th>Description</th></tr></thead><tbody><tr><td><code>start_time</code></td><td>Optoion&#x3C;MillisecondsExpiration></td><td>The time that the campaign opens up for purchases.</td></tr><tr><td><code>end_time</code></td><td>MillisecondsExpiration</td><td>The time that the campaign ends.</td></tr><tr><td><code>presale</code></td><td>Option&#x3C;Vec&#x3C;<a href="crowdfund.md#presaletierorder">PresaleTierOrder</a>></td><td>A list of preorders for the campaign. The address that has preordered can directly claim their NFT.</td></tr></tbody></table>
+<table><thead><tr><th>Name</th><th width="281">Type</th><th>Description</th></tr></thead><tbody><tr><td><code>start_time</code></td><td>Optoion&#x3C;<a href="../platform-and-framework/common-types.md#expiry">MillisecondsExpiration</a>></td><td>The time that the campaign opens up for purchases. If not specified, then the campaign will start now.</td></tr><tr><td><code>end_time</code></td><td><a href="../platform-and-framework/common-types.md#expiry">MillisecondsExpiration</a></td><td>The time that the campaign ends.</td></tr><tr><td><code>presale</code></td><td>Option&#x3C;Vec&#x3C;<a href="crowdfund.md#presaletierorder">PresaleTierOrder</a>></td><td>A list of preorders for the campaign. The address that has preordered can directly claim their NFT.</td></tr></tbody></table>
 
 #### PresaleTierOrder
 

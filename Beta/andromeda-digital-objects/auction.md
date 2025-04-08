@@ -121,10 +121,10 @@ You need to get the base64 encoded representation of the JSON message and attach
 {
     "start_auction": {
           "start_time":{
-             "from_now":"3600000"
+             "from_now":3600000
              },
           "end_time":{
-             "from_now":"7200000"
+             "from_now":7200000
              },
           "coin_denom":{
              "native_token":"uandr"
@@ -364,10 +364,10 @@ An auction can be updated only if it has not started yet.&#x20;
   "token_id":"1",
   "token_address":"andr1...",
   "start_time":{
-             "from_now":"3600000"
+             "from_now":3600000
              },
    "end_time":{
-             "from_now":"7200000"
+             "from_now":7200000
              },
    "coin_denom":{
              "native_token":"uandr"
@@ -385,7 +385,7 @@ An auction can be updated only if it has not started yet.&#x20;
 `start_time` should not be a time in the past.
 {% endhint %}
 
-<table><thead><tr><th width="196.33333333333331">Name </th><th>Type</th><th>Description</th></tr></thead><tbody><tr><td><code>token_id</code></td><td>String</td><td>The Id of the NFT that is being auctioned.</td></tr><tr><td><code>token_address</code></td><td>String</td><td>The address of the  NFT contract.</td></tr><tr><td><code>start_time</code></td><td>Option&#x3C;<a href="../platform-and-framework/common-types.md#expiry">Expiry</a>></td><td>Start time in milliseconds. If not specified, then the auction will start immediately. </td></tr><tr><td><code>end_time</code></td><td><a href="../platform-and-framework/common-types.md#expiry">Expiry</a></td><td>Duration in milliseconds from the <code>start_time</code>.</td></tr><tr><td><code>coin_denom</code></td><td><a href="../platform-and-framework/common-types.md#asset">Asset</a></td><td>The coin denomination to be used to bid on the NFT. Can be either a native coin ie."<strong>uandr</strong>" or a CW20 token address ie. "<strong>andr1...</strong>"</td></tr><tr><td><code>min_bid</code></td><td>Option&#x3C;Uint128></td><td>The minimum starting bid that can be placed on the auctioned token.</td></tr><tr><td><code>min_raise</code></td><td>Option&#x3C;Uint128></td><td>Optional amount that specifies the minimum increase in bidding for a bid to be accepted. For example, if we set it at 25 and the current bid is 100, then the next bid needs to be.</td></tr><tr><td><code>whitelist</code></td><td>Option&#x3C;Vec&#x3C;Addr>></td><td>Optional list of addresses to whitelist for the auction. If None, auction is public.</td></tr><tr><td><code>recipient</code></td><td>Option&#x3C;<a href="../platform-and-framework/common-types.md#recipient">Recipient</a>></td><td>An optional recipient to receive the sale funds for the sold NFT.</td></tr></tbody></table>
+<table><thead><tr><th width="196.33333333333331">Name </th><th>Type</th><th>Description</th></tr></thead><tbody><tr><td><code>token_id</code></td><td>String</td><td>The Id of the NFT that is being auctioned.</td></tr><tr><td><code>token_address</code></td><td>String</td><td>The address of the  NFT contract.</td></tr><tr><td><code>start_time</code></td><td>Option&#x3C;<a href="../platform-and-framework/common-types.md#expiry">Expiry</a>></td><td>Start time in milliseconds. If not specified, then the auction will start immediately. </td></tr><tr><td><code>end_time</code></td><td><a href="../platform-and-framework/common-types.md#expiry">Expiry</a></td><td>The time for the auction to end. Can be specified as a duration from the start or an absolute timestamp. Both specified in milliseconds.</td></tr><tr><td><code>coin_denom</code></td><td><a href="../platform-and-framework/common-types.md#asset">Asset</a></td><td>The coin denomination to be used to bid on the NFT. Can be either a native coin ie."<strong>uandr</strong>" or a CW20 token address ie. "<strong>andr1...</strong>"</td></tr><tr><td><code>min_bid</code></td><td>Option&#x3C;Uint128></td><td>The minimum starting bid that can be placed on the auctioned token.</td></tr><tr><td><code>min_raise</code></td><td>Option&#x3C;Uint128></td><td>Optional amount that specifies the minimum increase in bidding for a bid to be accepted. For example, if we set it at 25 and the current bid is 100, then the next bid needs to be.</td></tr><tr><td><code>whitelist</code></td><td>Option&#x3C;Vec&#x3C;Addr>></td><td>Optional list of addresses to whitelist for the auction. If None, auction is public.</td></tr><tr><td><code>recipient</code></td><td>Option&#x3C;<a href="../platform-and-framework/common-types.md#recipient">Recipient</a>></td><td>An optional recipient to receive the sale funds for the sold NFT.</td></tr></tbody></table>
 
 ### CancelAuction
 

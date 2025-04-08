@@ -67,11 +67,11 @@ pub struct InstantiateMsg {
               "cw20":"andr1..."
               },
           "init_timestamp":{
-              "from_now":"3600000"
+              "from_now":3600000
               },
           "allocation_config":{
               "till_timestamp":{
-                  "from_now":"7200000"
+                  "from_now":7200000
                   },
               "cycle_rewards":"300",
               "cycle duration":"400"

@@ -344,7 +344,7 @@ pub struct Splitter {
 }
 ```
 
-<table><thead><tr><th>Name</th><th width="266.3333333333333">Type</th><th>Description</th></tr></thead><tbody><tr><td><code>recipients</code></td><td>Vec&#x3C;<a href="fixed-amount-splitter.md#addresspercent">AdressPercent</a>></td><td>The vector of the assigned recipients to receive the funds along with their percentages. </td></tr><tr><td><code>lock</code></td><td>MillisecondsExpiration</td><td>Returns the timestamp in milliseconds of the end date for the lock.</td></tr></tbody></table>
+<table><thead><tr><th>Name</th><th width="266.3333333333333">Type</th><th>Description</th></tr></thead><tbody><tr><td><code>recipients</code></td><td>Vec&#x3C;<a href="fixed-amount-splitter.md#addresspercent">AdressPercent</a>></td><td>The vector of the assigned recipients to receive the funds along with their percentages. </td></tr><tr><td><code>lock</code></td><td><a href="../platform-and-framework/common-types.md#expiry">MillisecondsExpiration</a></td><td>Returns the timestamp in milliseconds of the end date for the lock.</td></tr></tbody></table>
 
 ### Base Queries
 

@@ -31,7 +31,7 @@ pub struct InstantiateMsg {
     },
 "minimal_withdrawal_frequency":{
     "time":{
-        "time":"3600000"
+        "time":3600000
         }
     },
 "kernel_address":"andr1...",
@@ -186,7 +186,7 @@ pub struct CoinAllowance {
 {
 "coin":"uandr",
 "limit":"50000",
-"minimal_withdrawal_frequency":"3600000"
+"minimal_withdrawal_frequency": 3600000
 }
 ```
 {% endtab %}
