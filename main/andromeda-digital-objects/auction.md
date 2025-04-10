@@ -569,7 +569,6 @@ pub struct AuctionStateResponse {
 {% tab title="JSON" %}
 ```json
 {
-    "auction_state_response": {
           "start_time": { "at_time": 1672764083954000000 },
           "end_time": { "at_time": 1672773083954000000 },
           "high_bidder_addr": "andr1...",
@@ -582,7 +581,6 @@ pub struct AuctionStateResponse {
           "min_bid":"300",
           "owner":"andr1...",
           "whitelist": ["andr1...", "andr1...", ...]
-    }
 }
 ```
 {% endtab %}
@@ -703,7 +701,6 @@ pub struct BidsResponse {
 {% tab title="JSON" %}
 ```json
 {
-    "bids_response": {
         "bids": [ 
             { 
                 "bidder": "andr1...",
@@ -711,7 +708,6 @@ pub struct BidsResponse {
                 "timestamp": "60"
             }
         ]
-    }
 }
 ```
 {% endtab %}
@@ -787,9 +783,7 @@ pub struct AuctionIdsResponse {
 {% tab title="JSON" %}
 ```json
 {
-    "auction_ids_response": {
-        "auction_ids": ["1", "3", ... ]
-    }
+"auction_ids": ["1", "3", ... ]
 }
 ```
 {% endtab %}
@@ -854,12 +848,9 @@ pub struct AuctionInfo {
 {% tab title="JSON" %}
 ```json
 {
-
-"auction_info" {
    "auction_ids": ["0","1",...],
    "token_address":"andr1...",
    "token_id":"token_001"
-   }
 }
    
 ```
