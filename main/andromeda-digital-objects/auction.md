@@ -577,7 +577,6 @@ pub struct AuctionStateResponse {
           "coin_denom":"uandr",
           "uses_cw20": false,
           "is_cancelled": false,
-          "claimed": false,
           "min_bid":"300",
           "owner":"andr1...",
           "whitelist": ["andr1...", "andr1...", ...]
