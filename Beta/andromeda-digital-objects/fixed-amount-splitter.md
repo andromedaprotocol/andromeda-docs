@@ -4,15 +4,31 @@
 
 The **Fixed Amount Splitter** ADO is a smart contract used to split funds to a preset number of addresses. Each of the addresses has a specific amount assigned by the contract owner. Once a [**Send**](fixed-amount-splitter.md#send) message is triggered, the attached funds are distributed to the recipients based on the assigned amounts.
 
-The splitter can be locked for a specified time as a kind of insurance for recipients that their percentages will not be changed for a certain period of time.
+The splitter can be locked for a specified time as a kind of insurance for recipients that their amounts will not be changed for a certain period of time.
 
 {% hint style="info" %}
-We also have a [percentage based spliiter](splitter.md),  [weighted distribution splitter](weighted-distribution-splitter.md), and [conditional splitter](conditional-splitter.md).
+Splitter works with both native and CW20 tokens.&#x20;
+
+We also have a [percentage based spliiter](https://docs.andromedaprotocol.io/andromeda/andromeda-beta-ados-1/andromeda-digital-objects/splitter), [weighted distribution splitter](https://docs.andromedaprotocol.io/andromeda/andromeda-beta-ados-1/andromeda-digital-objects/weighted-distribution-splitter), and [conditional splitter](https://docs.andromedaprotocol.io/andromeda/andromeda-beta-ados-1/andromeda-digital-objects/conditional-splitter).
 {% endhint %}
+
+#### Splitting CW20 Tokens
+
+To setup a CW20 split, you need to define the denom of the [Coin](../platform-and-framework/common-types.md#coin) as the contract address of the CW20 ADO whose token you are splitting. In case this address is not present yet (You are creating the CW20 ADO and Splitter ADO at the same time), you need to:
+
+1. Initialized the ADO with any recipient list.
+2. Update the recipient list by calling UpdateRecipients.
+3. Specify the coin denom field as the CW20 contract address.&#x20;
+
+#### Example Uses
+
+Let’s say you’re running a small team and want to pay monthly salaries. You can set up the **Fixed Amount Splitter** once, assigning fixed amounts to each team member’s address (e.g., Alice: 2,000 USDC, Bob: 3,000 USDC, etc.). Then at the end of each month, you simply trigger a single Send, and everyone receives their salary in one transaction.
+
+This ADO is also ideal for managing fixed recurring costs. For example, if your application needs to pay fixed amounts monthly (e.g., hosting, data, analytics tools), you can configure it once and distribute those payments on demand with just one click.
 
 **Ado\_type**: fixed-amount-splitter
 
-**Version: 1.1.0-beta**
+**Version: 1.2.0**
 
 ## InstantiateMsg
 
@@ -67,21 +83,26 @@ pub struct InstantiateMsg {
 "lock_time":{
       "from_now": 100000000
       },
+"default_recipient":"andr1...",
 "kernel_address":"andr1..."
 }
 ```
 {% endtab %}
 {% endtabs %}
 
-<table><thead><tr><th width="249.33333333333331">Name</th><th width="249.39014373716634">Type</th><th>Description</th></tr></thead><tbody><tr><td><code>recipients</code></td><td>Vec&#x3C;<a href="fixed-amount-splitter.md#addressamount">AddressAmount</a>></td><td>The recipient list of the splitter. Can be updated after instantiation if there is no current lock time.</td></tr><tr><td><code>lock_time</code></td><td>Option&#x3C;Expiry></td><td>How long the splitter is locked. When locked, no recipients can be added/changed.</td></tr><tr><td><code>default_recipient</code></td><td>Option&#x3C;<a href="../platform-and-framework/common-types.md#recipient">Recipient</a>></td><td>An optional recipient to receive any leftover funds in case the split is not exactly distributed or there are any leftover funds. Defaults to the sender if not specified.</td></tr><tr><td><code>kernel_address</code></td><td>String</td><td>Contract address of the kernel contract to be used for AMP messaging. Kernel contract address can be found in our deployed contracts.</td></tr><tr><td><code>owner</code></td><td>Option&#x3C;String></td><td>Optional address to specify as the owner of the ADO being created. Defaults to the sender if not specified.</td></tr></tbody></table>
+<table><thead><tr><th width="249.33333333333331">Name</th><th width="249.39014373716634">Type</th><th>Description</th></tr></thead><tbody><tr><td><code>recipients</code></td><td>Vec&#x3C;<a href="fixed-amount-splitter.md#addressamount">AddressAmount</a>></td><td>The recipient list of the splitter. Can be updated after instantiation if there is no current lock time.</td></tr><tr><td><code>lock_time</code></td><td>Option&#x3C;<a href="../platform-and-framework/common-types.md#expiry">Expiry</a>></td><td>How long the splitter is locked. When locked, no recipients can be added/changed.</td></tr><tr><td><code>default_recipient</code></td><td>Option&#x3C;<a href="../platform-and-framework/common-types.md#recipient">Recipient</a>></td><td>An optional recipient to receive any leftover funds in case the split is not exactly distributed or there are any leftover funds. Defaults to the sender if not specified.</td></tr><tr><td><code>kernel_address</code></td><td>String</td><td>Contract address of the kernel contract to be used for AMP messaging. Kernel contract address can be found in our deployed contracts.</td></tr><tr><td><code>owner</code></td><td>Option&#x3C;String></td><td>Optional address to specify as the owner of the ADO being created. Defaults to the sender if not specified.</td></tr></tbody></table>
 
 {% hint style="warning" %}
-Anytime a [`Send`](fixed-amount-splitter.md#send) execute message is sent, the amount sent will be divided amongst the recipients depending on their assigned percentage.
+Anytime a [`Send`](fixed-amount-splitter.md#send) execute message is sent, the amount sent will be divided amongst the recipients depending on their assigned amounts.
 {% endhint %}
 
 #### AddressAmount
 
-The splitter uses a basic array of structs to determine recipients and how the funds are divided.
+The splitter uses a basic array of structs to determine recipients and how the funds are divided.&#x20;
+
+{% hint style="warning" %}
+For the [Coin](../platform-and-framework/common-types.md#coin) struct, use the contract address as the denom in case you are using CW20 tokens.
+{% endhint %}
 
 {% tabs %}
 {% tab title="Rust" %}
@@ -104,9 +125,75 @@ The splitter uses a basic array of structs to determine recipients and how the f
 {% endtab %}
 {% endtabs %}
 
-Read more about the Recipient struct here.
+Read more about the Recipient struct [here](../platform-and-framework/common-types.md#recipient).
 
 ## ExecuteMsg
+
+### Receive
+
+Receives CW20 tokens sent from a CW20 ADO by performing a  [Send](cw20.md#send). These tokens are then automatically split to the defined recipients of the splitter.
+
+{% tabs %}
+{% tab title="Rust" %}
+```rust
+pub enum ExecuteMsg {
+    Receive(Cw20ReceiveMsg),
+   }
+```
+{% endtab %}
+{% endtabs %}
+
+#### Cw20ReceiveMsg
+
+```rust
+pub struct Cw20ReceiveMsg {
+    pub sender: String,
+    pub amount: Uint128,
+    pub msg: Binary,
+}
+```
+
+The `msg` in the `Cw20ReceiveMsg`should be a base64 encoded `Cw20HookMsg`.
+
+### Cw20HookMsg
+
+```rust
+pub enum Cw20HookMsg {
+    Send { config: Option<Vec<AddressAmount>> },
+}
+```
+
+### Send (CW20)
+
+Distributes sent CW20 funds amongst the recipients list based on their assigned amounts.
+
+{% hint style="warning" %}
+Make sure you are sending CW20 tokens from the CW20 ADO defined in the denom field of the [Coin](../platform-and-framework/common-types.md#coin) struct.
+{% endhint %}
+
+{% tabs %}
+{% tab title="Rust" %}
+```rust
+pub enum Cw20HookMsg {
+    Send {
+         config: Option<Vec<AddressAmount>> 
+    },
+}
+```
+{% endtab %}
+
+{% tab title="JSON" %}
+```javascript
+{
+"send": {}
+}
+```
+{% endtab %}
+{% endtabs %}
+
+<table><thead><tr><th>Name</th><th width="268">Type </th><th>Description</th></tr></thead><tbody><tr><td><code>config</code></td><td>Option&#x3C;Vec&#x3C;<a href="fixed-amount-splitter.md#addressamount">AddressAmount</a>>></td><td>An optional set of recipients/amounts to use. If not defined, then the default configuration will be used.</td></tr></tbody></table>
+
+***
 
 ### UpdateRecipients
 
@@ -205,7 +292,7 @@ pub enum ExecuteMsg {
 | ----------- | ------ | --------------------------------------------------------------------------------- |
 | `lock_time` | Expiry | How long the splitter is locked. When locked, no recipients can be added/changed. |
 
-### **Send**
+### **Send (Native)**
 
 Divides any attached funds to the message amongst the recipients list based on the assigned amounts.
 
@@ -344,7 +431,7 @@ pub struct Splitter {
 }
 ```
 
-<table><thead><tr><th>Name</th><th width="266.3333333333333">Type</th><th>Description</th></tr></thead><tbody><tr><td><code>recipients</code></td><td>Vec&#x3C;<a href="fixed-amount-splitter.md#addresspercent">AdressPercent</a>></td><td>The vector of the assigned recipients to receive the funds along with their percentages. </td></tr><tr><td><code>lock</code></td><td><a href="../platform-and-framework/common-types.md#expiry">MillisecondsExpiration</a></td><td>Returns the timestamp in milliseconds of the end date for the lock.</td></tr></tbody></table>
+<table><thead><tr><th>Name</th><th width="266.3333333333333">Type</th><th>Description</th></tr></thead><tbody><tr><td><code>recipients</code></td><td>Vec&#x3C;<a href="fixed-amount-splitter.md#addressamount">AdressAmount</a>></td><td>The vector of the assigned recipients to receive the funds along with their amounts. </td></tr><tr><td><code>lock</code></td><td>MillisecondsExpiration</td><td>Returns the timestamp in milliseconds of the end date for the lock.</td></tr></tbody></table>
 
 ### Base Queries
 
