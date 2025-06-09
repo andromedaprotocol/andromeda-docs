@@ -4,6 +4,19 @@
 
 The **Splitter** ADO is a smart contract used to split funds to a preset number of addresses. Each of the addresses has a specific percentage assigned by the contract owner. The splitter can be locked for a specified time as a kind of insurance for recipients that their percentages will not be changed for a certain period of time.
 
+{% hint style="info" %}
+Splitter works with both native and CW20 tokens.&#x20;
+
+We also have a [percentage based splitter](splitter.md).
+{% endhint %}
+
+**Example**
+
+Let’s say you’re building a Web3 application and want to split revenue evenly between four contributors. You can set up the Splitter ADO with each wallet assigned 25%, and then route all incoming funds through the contract. Every time revenue comes in, it will be automatically distributed to the four recipients based on their assigned percentages.
+
+\
+To build trust and prevent disputes, you can also lock the splitter for, say, 6 months, guaranteeing that no one can adjust the percentages during that time. This adds an extra layer of transparency and assurance
+
 **Ado\_type**: splitter
 
 **Version: 2.3.0**
@@ -26,6 +39,7 @@ The maximum lock\_time that can be set is 1 year.
 pub struct InstantiateMsg {
     pub recipients: Vec<AddressPercent>,
     pub lock_time: Option<Expiry>,
+    pub default_recipient:Option<Recipient>,
     pub kernel_address: String,
     pub owner: Option<String>,
 }
@@ -44,6 +58,12 @@ pub struct InstantiateMsg {
      },
      ...
     ],
+"lock_time":{
+    "from_now":31560000000
+    },
+"default_recipient":{
+    "address":"andr1..."
+    },
 "kernel_address":"andr1...",
 "owner":"andr1..."
 }
@@ -51,7 +71,7 @@ pub struct InstantiateMsg {
 {% endtab %}
 {% endtabs %}
 
-<table><thead><tr><th width="249.33333333333331">Name</th><th width="249.39014373716634">Type</th><th>Description</th></tr></thead><tbody><tr><td><code>recipients</code></td><td>Vec&#x3C;<a href="splitter.md#addresspercent">AddressPercent</a>></td><td>The recipient list of the splitter. Can be updated after instantiation if there is no current lock time.</td></tr><tr><td><code>lock_time</code></td><td>Option&#x3C;<a href="../platform-and-framework/common-types.md#expiry">Expiry</a>></td><td>How long the splitter is locked. When locked, no recipients can be added/changed.</td></tr><tr><td><code>kernel_address</code></td><td>String</td><td>Contract address of the <a href="../platform-and-framework/andromeda-messaging-protocol/kernel.md">kernel contract</a> to be used for <a href="../platform-and-framework/andromeda-messaging-protocol/">AMP</a> messaging. Kernel contract address can be found in our <a href="../platform-and-framework/deployed-contracts.md">deployed contracts</a>.</td></tr><tr><td><code>owner</code></td><td>Option&#x3C;String></td><td>Optional address to specify as the owner of the ADO being created. Defaults to the sender if not specified.</td></tr></tbody></table>
+<table><thead><tr><th width="249.33333333333331">Name</th><th width="249.39014373716634">Type</th><th>Description</th></tr></thead><tbody><tr><td><code>recipients</code></td><td>Vec&#x3C;<a href="splitter.md#addresspercent">AddressPercent</a>></td><td>The recipient list of the splitter. Can be updated after instantiation if there is no current lock time.</td></tr><tr><td><code>lock_time</code></td><td>Option&#x3C;<a href="../platform-and-framework/common-types.md#expiry">Expiry</a>></td><td>How long the splitter is locked. Defined in seconds. When locked, no recipients can be added/changed.</td></tr><tr><td><code>default_recipient</code></td><td>Option&#x3C;<a href="../platform-and-framework/common-types.md#recipient">Recipient</a>></td><td>An optional recipient to receive any leftover funds in case the split is not exactly distributed. For example if a user sets 40% to one user, and 50% to another, and forgets about the last 10%, they would go this default recipient. Defaults to the sender if not specified.</td></tr><tr><td><code>kernel_address</code></td><td>String</td><td>Contract address of the <a href="../platform-and-framework/andromeda-messaging-protocol/kernel.md">kernel contract</a> to be used for <a href="../platform-and-framework/andromeda-messaging-protocol/">AMP</a> messaging. Kernel contract address can be found in our <a href="../platform-and-framework/deployed-contracts.md">deployed contracts</a>.</td></tr><tr><td><code>owner</code></td><td>Option&#x3C;String></td><td>Optional address to specify as the owner of the ADO being created. Defaults to the sender if not specified.</td></tr></tbody></table>
 
 {% hint style="warning" %}
 Anytime a [`Send`](splitter.md#send) execute message is sent, the amount sent will be divided amongst the recipients depending on their assigned percentage.
@@ -93,6 +113,68 @@ To be a valid recipient list the array of `AddressPercent` structs must meet the
 Read more about the Recipient struct [here](../platform-and-framework/common-types.md#recipient).
 
 ## ExecuteMsg
+
+### Receive
+
+Receives CW20 tokens sent from a CW20 ADO by performing a  [Send](cw20.md#send). These tokens are then automatically split to the defined recipients of the splitter.
+
+{% tabs %}
+{% tab title="Rust" %}
+```rust
+pub enum ExecuteMsg {
+    Receive(Cw20ReceiveMsg),
+   }
+```
+{% endtab %}
+{% endtabs %}
+
+#### Cw20ReceiveMsg
+
+```rust
+pub struct Cw20ReceiveMsg {
+    pub sender: String,
+    pub amount: Uint128,
+    pub msg: Binary,
+}
+```
+
+The `msg` in the `Cw20ReceiveMsg`should be a base64 encoded `Cw20HookMsg`.
+
+### Cw20HookMsg
+
+```rust
+pub enum Cw20HookMsg {
+    Send { config: Option<Vec<AddressPercent>> },
+}
+```
+
+### Send (CW20)
+
+Divides any sent CW20 funds amongst the recipients list.
+
+{% tabs %}
+{% tab title="Rust" %}
+```rust
+pub enum Cw20HookMsg {
+  Send {
+    config: Option<Vec<AddressPercent>>,
+    }
+}
+```
+{% endtab %}
+
+{% tab title="JSON" %}
+```javascript
+{
+"send": {}
+}
+```
+{% endtab %}
+{% endtabs %}
+
+<table><thead><tr><th>Name</th><th width="268">Type </th><th>Description</th></tr></thead><tbody><tr><td><code>config</code></td><td>Option&#x3C;Vec&#x3C;<a href="splitter.md#addresspercent">AddressPercent</a>>></td><td>An optional set of recipients to split the funds to. If not defined, then the default recipient list (List defined at instantiation) will be used.</td></tr></tbody></table>
+
+***
 
 ### UpdateRecipients
 
@@ -157,7 +239,7 @@ The maximum time that can be set is 31,536,000 which is 1 year.
 ```rust
 pub enum ExecuteMsg {
     UpdateLock {
-        lock_time: MillisecondsDuration,
+        lock_time: Expiry,
     },
 }
 ```
@@ -174,11 +256,11 @@ pub enum ExecuteMsg {
 {% endtab %}
 {% endtabs %}
 
-| Name        | Type                                                                           | Description                                                                       |
-| ----------- | ------------------------------------------------------------------------------ | --------------------------------------------------------------------------------- |
-| `lock_time` | [MillisecondsDuration](../platform-and-framework/common-types.md#milliseconds) | How long the splitter is locked. When locked, no recipients can be added/changed. |
+| Name        | Type                                                       | Description                                                                 |
+| ----------- | ---------------------------------------------------------- | --------------------------------------------------------------------------- |
+| `lock_time` | [Expiry](../platform-and-framework/common-types.md#expiry) | How long the splitter is locked in seconds. When locked, cannot be changed. |
 
-### **Send**
+### **Send (Native)**
 
 Divides any attached funds to the message amongst the recipients list.
 
@@ -192,7 +274,9 @@ Make sure to attach funds when executing a Send.
 {% tab title="Rust" %}
 ```rust
 pub enum ExecuteMsg {
-    Send {}
+  Send {
+    config: Option<Vec<AddressPercent>>,
+    }
 }
 ```
 {% endtab %}
@@ -205,6 +289,8 @@ pub enum ExecuteMsg {
 ```
 {% endtab %}
 {% endtabs %}
+
+<table><thead><tr><th>Name</th><th width="268">Type </th><th>Description</th></tr></thead><tbody><tr><td><code>config</code></td><td>Option&#x3C;Vec&#x3C;<a href="splitter.md#addresspercent">AddressPercent</a>>></td><td>An optional set of recipients to split the funds to. If not defined, then the default recipient list (List defined at instantiation) will be used.</td></tr></tbody></table>
 
 ### Base Executes
 
@@ -277,12 +363,13 @@ The splitter's config is stored in a basic struct.
 
 ```rust
 pub struct Splitter {
-    pub recipients: Vec<AddressPercent>, 
-    pub lock: MillisecondsExpiration,                   
+    pub recipients: Vec<AddressPercent>,
+    pub lock: MillisecondsExpiration,
+    pub default_recipient: Option<Recipient>,
 }
 ```
 
-<table><thead><tr><th>Name</th><th width="266.3333333333333">Type</th><th>Description</th></tr></thead><tbody><tr><td><code>recipients</code></td><td>Vec&#x3C;<a href="splitter.md#addresspercent">AdressPercent</a>></td><td>The vector of the assigned recipients to receive the funds along with their percentages. </td></tr><tr><td><code>lock</code></td><td><a href="../platform-and-framework/common-types.md#milliseconds">MillisecondsExpiration</a></td><td>Returns the timestamp in milliseconds of the end date for the lock.</td></tr></tbody></table>
+<table><thead><tr><th>Name</th><th width="266.3333333333333">Type</th><th>Description</th></tr></thead><tbody><tr><td><code>recipients</code></td><td>Vec&#x3C;<a href="splitter.md#addresspercent">AdressPercent</a>></td><td>The vector of the assigned recipients to receive the funds along with their percentages. </td></tr><tr><td><code>lock</code></td><td><a href="../platform-and-framework/common-types.md#milliseconds">MillisecondsExpiration</a></td><td>Returns the timestamp in milliseconds of the end date for the lock.</td></tr><tr><td><code>default_recipient</code></td><td>Option&#x3C;<a href="../platform-and-framework/common-types.md#recipient">Recipient</a>></td><td>The recipient to receive any leftover funds in case the split is not exactly distributed. </td></tr></tbody></table>
 
 ### Base Queries
 
