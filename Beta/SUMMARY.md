@@ -27,7 +27,7 @@
 * [CW20](andromeda-digital-objects/cw20.md)
 * [CW20 Staking](andromeda-digital-objects/cw20-staking.md)
 * [CW721](andromeda-digital-objects/cw721.md)
-* [CW20 Exchange](andromeda-digital-objects/cw20-exchange.md)
+* [Exchange](andromeda-digital-objects/exchange.md)
 * [Graph](andromeda-digital-objects/graph.md)
 * [Lockdrop](andromeda-digital-objects/lockdrop.md)
 * [Marketplace](andromeda-digital-objects/marketplace.md)
