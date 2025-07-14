@@ -82,7 +82,7 @@ This will expand the app to show each of the components inside the app. The aim 
 Before you do that, let us have a small discussion on permissions and Apps. There are three main types of execute messages when it comes to permissioning:
 
 * **ADO Owner Restricted Messages**: Execute messages that can only be executed by the ADO owner. For example, only the ADO owner can transfer ownership of an ADO to another address.
-* **Asset Owner Restricted Messages**: Execute messages that can only be executed by the owner of a certain asset. For example, transfering an NFT or CW20 token to another address can only be done by the owner of that NFT/CW20 token. Even the contract owner is not allowed to to perform these messages.
+* **Asset Owner Restricted Messages**: Execute messages that can only be executed by the owner of a certain asset. For example, transferring an NFT or CW20 token to another address can only be done by the owner of that NFT/CW20 token. Even the contract owner is not allowed to to perform these messages.
 * **Non-Restricted messages**: Execute messages that can be executed by any address.
 
 {% hint style="warning" %}
