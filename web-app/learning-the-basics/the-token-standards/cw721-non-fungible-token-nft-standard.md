@@ -26,5 +26,5 @@ Each created NFT in the CW721 has an owner address which is assigned upon creati
 In Andromeda, we have created several ADOs that work with the CW721 ADO alllowing users to create any use case they desire. These ADOs are the following, with many more to come:
 
 * **Marketplace:** An ADO that interacts with the CW721 to create a custom marketplace for your NFT collection.
-* **Auction:** An ADO that interacts with the CW721 to create custom english auctions for your NFT.
-* **Crowdfund:** An ADO that interacts with the CW721 to create a crowdfund for your project throught the sale of NFTs.
+* **Auction:** An ADO that intercats with the CW721 to create custom english auctions for your NFT.
+* **Crowdfund:** An ADO that intercats with the CW721 to create a crowdfund for your project throught the sale of NFTs.

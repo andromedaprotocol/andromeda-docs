@@ -22,7 +22,7 @@ The **CW20** standard is the standard smart contract used to create coins. It wa
 
 * **Stablecoins:** CW20 tokens can be used to create stablecoins pegged to fiat currencies or other assets, providing a stable medium of exchange and store of value within the Cosmos ecosystem.
 * **Governance Tokens:** Projects can issue CW20 tokens as governance tokens to enable community participation in decision-making processes and protocol upgrades.
-* **Meme-Coins:** With Andromeda, you can create your own meme-token in minutes using the CW20.
+* **Meme-Coins:** With Andromeda, you can create your owne meme-token in minutes using the CW20.
 * **Utility Token:** Can be utilized for various purposes such as accessing platform features, facilitating transactions, incentivizing user participation.
 
 ### Andromeda Compatible ADOs&#x20;

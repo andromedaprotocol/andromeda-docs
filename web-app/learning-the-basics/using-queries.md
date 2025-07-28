@@ -1,6 +1,6 @@
 # Using Queries
 
-&#x20;A query is a way to check or read data from the blockchain without making any updates. Unlike execute messages that modify something in our ADO, queries are just for getting information. We have built many Andromeda Apps in our[ previous guides](../guides-and-examples/ado-builder/). In this section, we will be taking a look at queries and how they work.&#x20;
+&#x20;A query is a way to check or read data from the blockchain without making any updates. Unlike execute messages that modify something in our ADO, queries are just for getting information. We have built many Andromeda Apps in our[ guides](../guides-and-examples/ado-builder/). In this section, we will be taking a look at queries and how they work.&#x20;
 
 &#x20;Each ADO type has its own set of unique queries available. For example, let's say someone built an Auction ADO that has some NFTs in auction. As a user, I would want to know what the current highest bid is on said NFT. This information is stored in the ADO and can be retrieved through queries.&#x20;
 

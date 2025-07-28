@@ -3,6 +3,7 @@
 ## Introduction
 
 * [Overview](README.md)
+* [Glossary](introduction/glossary.md)
 * [ADO Builder](introduction/ado-builder.md)
 * [App Builder](introduction/app-builder.md)
 * [Assets](introduction/assets.md)
@@ -37,6 +38,8 @@
   * [NFT Auction Marketplace](guides-and-examples/app-builder/nft-auction-marketplace.md)
 * [Embeddables](guides-and-examples/embeddables/README.md)
   * [NFT Auction](guides-and-examples/embeddables/nft-auction.md)
+  * [NFT Marketplace](guides-and-examples/embeddables/nft-marketplace.md)
+  * [CW20 Exchange](guides-and-examples/embeddables/cw20-exchange.md)
 * [Using CLI to Interact with Apps](guides-and-examples/using-cli-to-interact-with-apps.md)
 * [Importing/Exporting Data](guides-and-examples/importing-exporting-data.md)
 
