@@ -1,4 +1,4 @@
-# Exchange
+# CW20 Exchange
 
 ## Introduction
 
@@ -143,7 +143,7 @@ pub enum Cw20HookMsg {
 
 | Name            | Type                                                                           | Description                                                                                                         |
 | --------------- | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------- |
-| `asset`         | [AssetInfo](exchange.md#undefined)                                             | The asset that may be used to purchase the token.                                                                   |
+| `asset`         | [AssetInfo](cw20-exchange.md#undefined)                                        | The asset that may be used to purchase the token.                                                                   |
 | `exchange_rate` | Uint128                                                                        | The amount of the above `asset` required to purchase a single token.                                                |
 | `recipient`     | Option\<String>                                                                | The recipient of the sale proceeds. Defaults to the sender if not specified.                                        |
 | `start_time`    | [Expiry](../platform-and-framework/common-types.md#expiry)                     | Optional start time in milliseconds. If not specified, then the sale will start immediately.                        |
@@ -234,16 +234,16 @@ pub enum ExecuteMsg {
 {% endtab %}
 {% endtabs %}
 
-| Name    | Type                               | Description                                 |
-| ------- | ---------------------------------- | ------------------------------------------- |
-| `asset` | [AssetInfo](exchange.md#assetinfo) | The purchasing asset of the sale to cancel. |
+| Name    | Type                                    | Description                                 |
+| ------- | --------------------------------------- | ------------------------------------------- |
+| `asset` | [AssetInfo](cw20-exchange.md#assetinfo) | The purchasing asset of the sale to cancel. |
 
 ### Purchase
 
 Purchase tokens with native funds.
 
 {% hint style="warning" %}
-Dont be confused by the previous [Purchase](exchange.md#purchase) message. Although they share the same name, the first message is attached to a CW20 [Send](cw20.md#send) and is used to buy using CW20 tokens while this message is called directly on the CW20 Exchange ADO and is used to buy using native funds.
+Dont be confused by the previous [Purchase](cw20-exchange.md#purchase) message. Although they share the same name, the first message is attached to a CW20 [Send](cw20.md#send) and is used to buy using CW20 tokens while this message is called directly on the CW20 Exchange ADO and is used to buy using native funds.
 
 You need to attach the native funds to the message when calling this Purchase.
 {% endhint %}
@@ -307,9 +307,9 @@ pub enum QueryMsg {
 {% endtab %}
 {% endtabs %}
 
-| Name    | Type                               | Description                            |
-| ------- | ---------------------------------- | -------------------------------------- |
-| `asset` | [AssetInfo](exchange.md#assetinfo) | The asset of the sale to get info for. |
+| Name    | Type                                    | Description                            |
+| ------- | --------------------------------------- | -------------------------------------- |
+| `asset` | [AssetInfo](cw20-exchange.md#assetinfo) | The asset of the sale to get info for. |
 
 #### SaleResponse
 
